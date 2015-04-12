@@ -74,7 +74,7 @@
         <!-- Adding ores --> 
 
                 <IfCondition condition=':= mchmUraniumDist = "pipeVeins"'>
-                    <Veins name='mchmUraniumVeins' block='minechem:tile.oreUranium' inherits='PresetPipeVeins' seed='0x23C9'>
+                    <Veins name='mchmUraniumVeins' block='minechem:tile.oreUranium' inherits='PresetPipeVeins' seed='0xD504'>
                         <Description> Short sparsely filled veins sloping up from near the bottom of the map. </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6a989</WireframeColor>
@@ -82,6 +82,18 @@
                         <Setting name='MotherlodeSize' avg=':= mchmUraniumSize * _default_' range=':= mchmUraniumSize * _default_'/>
                         <Setting name='SegmentRadius' avg=':= mchmUraniumSize * _default_' range=':= mchmUraniumSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                    </Veins>
+                    <Veins name= mchmUraniumPipe block='minecraft:lava' inherits='PresetPipeVeins' seed='0xD504'>
+                        <Description> Fills center of each tube with Pipe material. </Description>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * _default_'/>
+                        <Setting name='SegmentRadius' avg=':= 0.5 * _default_'/>
+                        <Setting name='OreDensity' avg='1' range='0'/>
+                        <ReplacesOre block='stone'/>
+                        <Replaces block='minecraft:dirt'/>
+                        <Replaces block='minecraft:gravel'/>
+                        <Replaces block='minecraft:netherrack'/>
+                        <Replaces block='minecraft:end_stone'/>
+                        <Replaces block='minechem:tile.oreUranium'/>
                     </Veins>
                 </IfCondition>
 
