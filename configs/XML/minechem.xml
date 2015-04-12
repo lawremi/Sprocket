@@ -1,0 +1,154 @@
+
+<IfModInstalled name="minechem"> 
+
+    <ConfigSection>
+ 
+        <!-- Setup Screen Configuration -->
+
+            <ConfigSection> 
+                <OptionDisplayGroup name='groupminechem' displayName='MineChem Ores' displayState='shown'> 
+                    <Description> 
+                        Distribution options for MineChem Ores.
+                    </Description>
+                </OptionDisplayGroup>
+    
+                 <ConfigSection>
+
+            <!-- Uranium Configuration UI -->
+
+            <OptionChoice name='mchmUraniumDist' displayState='shown' displayGroup='groupminechem'> 
+                <Description> Controls how Uranium is generated </Description> 
+                <DisplayName>MineChem Uranium Type</DisplayName>
+
+               <Choice value='pipeVeins' displayValue='Pipe Veins'>
+                   <Description>
+                       Pipe Veins
+                   </Description>
+               </Choice>
+
+               <Choice value='strategicCloud' displayValue='Clouds'>
+                   <Description>
+                       Strategic Clouds 
+                   </Description>
+               </Choice>
+
+               <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                   <Description>
+                       Vanilla-style clusters. 
+                   </Description>
+               </Choice>
+                <Choice value='none' displayValue='None' description='Uranium is not generated in the world.'/>
+            </OptionChoice>
+    
+            <OptionNumeric name='mchmUraniumFreq' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupminechem'>
+                <Description> Frequency multiplier for MineChem Uranium distributions </Description>
+                <DisplayName>MineChem Uranium Freq.</DisplayName>
+            </OptionNumeric>
+
+            <OptionNumeric name='mchmUraniumSize' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupminechem'>
+                <Description> Size multiplier for MineChem Uranium distributions </Description>
+                <DisplayName>MineChem Uranium Size</DisplayName>
+            </OptionNumeric>
+                </ConfigSection> 
+            </ConfigSection> 
+
+
+            <!-- Setup Overworld -->
+
+            <IfCondition condition=':= ?COGActive'>
+
+
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+
+                    <Substitute name='minechemStandardOreSubstitute0' block='minecraft:stone'>
+                        <Description> 
+                            Replace vanilla-generated ore clusters.   
+                        </Description>
+                        <Comment>  
+                            The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                        </Comment>
+                         <Replaces block='minechem:tile.oreUranium' />
+
+                </Substitute>
+
+        <!-- Adding ores --> 
+
+                <IfCondition condition=':= mchmUraniumDist = "pipeVeins"'>
+                    <Veins name='mchmUraniumVeins' block='minechem:tile.oreUranium' inherits='PresetPipeVeins' seed='0x23C9'>
+                        <Description> Short sparsely filled veins sloping up from near the bottom of the map. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60d6a989</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= mchmUraniumFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= mchmUraniumSize * _default_' range=':= mchmUraniumSize * _default_'/>
+                        <Setting name='SegmentRadius' avg=':= mchmUraniumSize * _default_' range=':= mchmUraniumSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+
+                <IfCondition condition=':= mchmUraniumDist = "strategicCloud"'>
+                    <Cloud name='mchmUraniumCloud' block='minechem:tile.oreUranium' inherits='PresetStrategicCloud'>
+                        <Description>  
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                        </Description> 
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60d6a989</WireframeColor> 
+                        <Setting name='DistributionFrequency' avg=':= mchmUraniumFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= mchmUraniumSize * _default_' range=':= mchmUraniumSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= mchmUraniumSize * _default_' range=':= mchmUraniumSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <Veins name='mchmUraniumHintVeins' block='minechem:tile.oreUranium' inherits='PresetHintVeins'>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60d6a989</WireframeColor> 
+                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= mchmUraniumSize * _default_' range=':= mchmUraniumSize * _default_'/>
+                        </Veins>
+                    </Cloud>
+                </IfCondition>
+
+                <IfCondition condition=':= mchmUraniumDist = "vanillaStdGen"'>
+                    <StandardGen name='mchmUraniumStandard' block='minechem:tile.oreUranium' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60d6a989</WireframeColor>
+                        <Setting name='Size' avg=':= mchmUraniumSize * _default_'/>
+                        <Setting name='Frequency' avg=':= mchmUraniumFreq * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+
+            </IfCondition>
+
+
+            <!-- Setup Nether -->
+
+            <IfCondition condition=':= dimension.generator = "HellRandomLevelSource"'>
+
+
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+
+        <!-- Adding ores --> 
+
+            </IfCondition>
+
+
+            <!-- Setup End -->
+
+            <IfCondition condition=':= dimension.generator = "EndRandomLevelSource"'>
+
+
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+
+        <!-- Adding ores --> 
+
+            </IfCondition>
+
+
+
+    </ConfigSection>
+</IfModInstalled> 
+ 
