@@ -11,7 +11,7 @@
 #              elements.
 
 # UPDATE - 4/11/2015 - Script completely rewritten for more options and
-#              flexibility.
+#              flexibility.  
 
 
 import ConfigParser
@@ -320,9 +320,10 @@ def distributionGen(currentOreGen, currentOrePreDist):
                     </Veins>\n\
                 </IfCondition>\n"
     elif currentOreDist == 'PipeVeins':
+        pipeSeed = "'0x"+generate_random_key(3)+"'"
         return "\n\
                 <IfCondition condition=':= "+oreConfigName+"Dist = \"pipeVeins\"'>\n\
-                    <Veins name='"+oreConfigName+"Veins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"' inherits='PresetPipeVeins' seed='0x"+generate_random_key(3)+"'>\n\
+                    <Veins name='"+oreConfigName+"Veins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"' inherits='PresetPipeVeins' seed="+pipeSeed+">\n\
                         <Description> Short sparsely filled veins sloping up from near the bottom of the map. </Description>\n\
                         <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
@@ -330,6 +331,18 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         <Setting name='MotherlodeSize' avg=':= "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
                         <Setting name='SegmentRadius' avg=':= "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
                         <Replaces block='"+oreReplace[currentOreGen]+"'/>\n\
+                    </Veins>\n\
+                    <Veins name= "+oreConfigName+"Pipe block='"+orePipe[currentOreGen]+"' inherits='PresetPipeVeins' seed="+pipeSeed+">\n\
+                        <Description> Fills center of each tube with Pipe material. </Description>\n\
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * _default_'/>\n\
+                        <Setting name='SegmentRadius' avg=':= 0.5 * _default_'/>\n\
+                        <Setting name='OreDensity' avg='1' range='0'/>\n\
+                        <ReplacesOre block='stone'/>\n\
+                        <Replaces block='minecraft:dirt'/>\n\
+                        <Replaces block='minecraft:gravel'/>\n\
+                        <Replaces block='minecraft:netherrack'/>\n\
+                        <Replaces block='minecraft:end_stone'/>\n\
+                        <Replaces block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'/>\n\
                     </Veins>\n\
                 </IfCondition>\n"
     elif currentOreDist == 'StrategicCloud':
