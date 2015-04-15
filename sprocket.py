@@ -297,7 +297,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
                         <Setting name='MotherlodeFrequency' avg=':= "+oreConfigName+"Freq * _default_'/>\n\
-                        <Setting name='MotherlodeSize' avg=':= 2 * "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeSize' avg=':= 3 * "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
                         <Replaces block='minecraft:air'/>\n\
                         <Replaces block='minecraft:water'/>\n\
                         <Replaces block='minecraft:lava'/>\n\
@@ -310,7 +310,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
                         <Setting name='MotherlodeFrequency' avg=':= "+oreConfigName+"Freq * _default_'/>\n\
-                        <Setting name='MotherlodeSize' avg=':= "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeSize' avg=':= 1.5 * "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
                         <Replaces block='"+orePipe[currentOreGen]+"'/>\n\
                     </Veins>\n\
                     <Veins name='"+oreConfigName+"Veins' block='minecraft:air' inherits='PresetSmallDeposits' seed="+geodeSeed+">\n\
@@ -320,7 +320,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
                         <Setting name='MotherlodeFrequency' avg=':= "+oreConfigName+"Freq * _default_'/>\n\
-                        <Setting name='MotherlodeSize' avg=':= 0.5 * "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeSize' avg=':= "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
                         <Replaces block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'/>\n\
                     </Veins>\n\
                 </IfCondition>\n"
