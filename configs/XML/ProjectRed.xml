@@ -1,4 +1,11 @@
 
+<!--  
+
+Custom Ore Generation:   Project Red Module
+
+Generates: Ruby, Sapphire, Peridot
+
+-->
 <IfModInstalled name="ProjRed|Exploration"> 
 
     <ConfigSection>
@@ -40,16 +47,17 @@
                 <Choice value='none' displayValue='None' description='Ruby is not generated in the world.'/>
             </OptionChoice>
     
-            <OptionNumeric name='predRubyFreq' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupProjectRed'>
+            <OptionNumeric name='predRubyFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupProjectRed'>
                 <Description> Frequency multiplier for Project Red Ruby distributions </Description>
                 <DisplayName>Project Red Ruby Freq.</DisplayName>
             </OptionNumeric>
 
-            <OptionNumeric name='predRubySize' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupProjectRed'>
+            <OptionNumeric name='predRubySize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupProjectRed'>
                 <Description> Size multiplier for Project Red Ruby distributions </Description>
                 <DisplayName>Project Red Ruby Size</DisplayName>
             </OptionNumeric>
                 </ConfigSection> 
+
                 <ConfigSection>
 
             <!-- Sapphire Configuration UI -->
@@ -78,16 +86,17 @@
                 <Choice value='none' displayValue='None' description='Sapphire is not generated in the world.'/>
             </OptionChoice>
     
-            <OptionNumeric name='predSapphireFreq' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupProjectRed'>
+            <OptionNumeric name='predSapphireFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupProjectRed'>
                 <Description> Frequency multiplier for Project Red Sapphire distributions </Description>
                 <DisplayName>Project Red Sapphire Freq.</DisplayName>
             </OptionNumeric>
 
-            <OptionNumeric name='predSapphireSize' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupProjectRed'>
+            <OptionNumeric name='predSapphireSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupProjectRed'>
                 <Description> Size multiplier for Project Red Sapphire distributions </Description>
                 <DisplayName>Project Red Sapphire Size</DisplayName>
             </OptionNumeric>
                 </ConfigSection> 
+
                 <ConfigSection>
 
             <!-- Peridot Configuration UI -->
@@ -116,17 +125,19 @@
                 <Choice value='none' displayValue='None' description='Peridot is not generated in the world.'/>
             </OptionChoice>
     
-            <OptionNumeric name='predPeridotFreq' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupProjectRed'>
+            <OptionNumeric name='predPeridotFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupProjectRed'>
                 <Description> Frequency multiplier for Project Red Peridot distributions </Description>
                 <DisplayName>Project Red Peridot Freq.</DisplayName>
             </OptionNumeric>
 
-            <OptionNumeric name='predPeridotSize' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupProjectRed'>
+            <OptionNumeric name='predPeridotSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupProjectRed'>
                 <Description> Size multiplier for Project Red Peridot distributions </Description>
                 <DisplayName>Project Red Peridot Size</DisplayName>
             </OptionNumeric>
                 </ConfigSection> 
+
             </ConfigSection> 
+
 
 
             <!-- Setup Overworld -->
@@ -152,7 +163,7 @@
         <!-- Adding ores --> 
 
                 <IfCondition condition=':= predRubyDist = "pipeVeins"'>
-                    <Veins name='predRubyVeins' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetPipeVeins' seed='0x28A1'>
+                    <Veins name='predRubyVeins' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetPipeVeins' seed='0xB9B6'>
                         <Description> Short sparsely filled veins sloping up from near the bottom of the map. </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
@@ -162,7 +173,7 @@
                         <Setting name='SegmentRadius' avg=':= 1 * predRubySize * _default_' range=':= 1 * predRubySize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'predRubyPipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x28A1'>
+                    <Veins name= 'predRubyPipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0xB9B6'>
                         <Description> Fills center of each tube with Pipe material. </Description>
                         <Setting name='MotherlodeSize' avg=':= 0.5 * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal'/> 
@@ -217,7 +228,7 @@
                 </IfCondition>
 
                 <IfCondition condition=':= predSapphireDist = "pipeVeins"'>
-                    <Veins name='predSapphireVeins' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetPipeVeins' seed='0xB366'>
+                    <Veins name='predSapphireVeins' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetPipeVeins' seed='0xB5B2'>
                         <Description> Short sparsely filled veins sloping up from near the bottom of the map. </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
@@ -227,7 +238,7 @@
                         <Setting name='SegmentRadius' avg=':= 1 * predSapphireSize * _default_' range=':= 1 * predSapphireSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'predSapphirePipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0xB366'>
+                    <Veins name= 'predSapphirePipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0xB5B2'>
                         <Description> Fills center of each tube with Pipe material. </Description>
                         <Setting name='MotherlodeSize' avg=':= 0.5 * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal'/> 
@@ -282,7 +293,7 @@
                 </IfCondition>
 
                 <IfCondition condition=':= predPeridotDist = "pipeVeins"'>
-                    <Veins name='predPeridotVeins' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetPipeVeins' seed='0x7B07'>
+                    <Veins name='predPeridotVeins' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetPipeVeins' seed='0x9DD9'>
                         <Description> Short sparsely filled veins sloping up from near the bottom of the map. </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
@@ -292,7 +303,7 @@
                         <Setting name='SegmentRadius' avg=':= 1 * predPeridotSize * _default_' range=':= 1 * predPeridotSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'predPeridotPipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x7B07'>
+                    <Veins name= 'predPeridotPipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x9DD9'>
                         <Description> Fills center of each tube with Pipe material. </Description>
                         <Setting name='MotherlodeSize' avg=':= 0.5 * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal'/> 

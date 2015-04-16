@@ -1,4 +1,11 @@
 
+<!--  
+
+Custom Ore Generation:   MineChem Module
+
+Generates: Uranium
+
+-->
 <IfModInstalled name="minechem"> 
 
     <ConfigSection>
@@ -40,17 +47,19 @@
                 <Choice value='none' displayValue='None' description='Uranium is not generated in the world.'/>
             </OptionChoice>
     
-            <OptionNumeric name='mchmUraniumFreq' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupMineChem'>
+            <OptionNumeric name='mchmUraniumFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMineChem'>
                 <Description> Frequency multiplier for MineChem Uranium distributions </Description>
                 <DisplayName>MineChem Uranium Freq.</DisplayName>
             </OptionNumeric>
 
-            <OptionNumeric name='mchmUraniumSize' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupMineChem'>
+            <OptionNumeric name='mchmUraniumSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMineChem'>
                 <Description> Size multiplier for MineChem Uranium distributions </Description>
                 <DisplayName>MineChem Uranium Size</DisplayName>
             </OptionNumeric>
                 </ConfigSection> 
+
             </ConfigSection> 
+
 
 
             <!-- Setup Overworld -->
@@ -74,7 +83,7 @@
         <!-- Adding ores --> 
 
                 <IfCondition condition=':= mchmUraniumDist = "pipeVeins"'>
-                    <Veins name='mchmUraniumVeins' block='minechem:tile.oreUranium' inherits='PresetPipeVeins' seed='0xE4C1'>
+                    <Veins name='mchmUraniumVeins' block='minechem:tile.oreUranium' inherits='PresetPipeVeins' seed='0xAE26'>
                         <Description> Short sparsely filled veins sloping up from near the bottom of the map. </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6a989</WireframeColor>
@@ -84,7 +93,7 @@
                         <Setting name='SegmentRadius' avg=':= 1 * mchmUraniumSize * _default_' range=':= 1 * mchmUraniumSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'mchmUraniumPipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0xE4C1'>
+                    <Veins name= 'mchmUraniumPipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0xAE26'>
                         <Description> Fills center of each tube with Pipe material. </Description>
                         <Setting name='MotherlodeSize' avg=':= 0.5 * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal'/> 
