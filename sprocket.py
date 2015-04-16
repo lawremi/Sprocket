@@ -209,12 +209,12 @@ def controlsGen(currentOreGen):
                 <Choice value='none' displayValue='None' description='"+oreName[currentOreGen]+" is not generated in the world.'/>\n\
             </OptionChoice>\n\
     \n\
-            <OptionNumeric name='"+oreConfigName+"Freq' default='1'  min='0' max='5' displayState='hidden' displayGroup='group"+modConfigName+"'>\n\
+            <OptionNumeric name='"+oreConfigName+"Freq' default='1'  min='0' max='5' displayState=':= if(?advOptions,\"shown\",\"hidden\")' displayGroup='group"+modConfigName+"'>\n\
                 <Description> Frequency multiplier for "+modName+" "+oreName[currentOreGen]+" distributions </Description>\n\
                 <DisplayName>"+modName+" "+oreName[currentOreGen]+" Freq.</DisplayName>\n\
             </OptionNumeric>\n\
 \n\
-            <OptionNumeric name='"+oreConfigName+"Size' default='1'  min='0' max='5' displayState='hidden' displayGroup='group"+modConfigName+"'>\n\
+            <OptionNumeric name='"+oreConfigName+"Size' default='1'  min='0' max='5' displayState=':= if(?advOptions,\"shown\",\"hidden\")' displayGroup='group"+modConfigName+"'>\n\
                 <Description> Size multiplier for "+modName+" "+oreName[currentOreGen]+" distributions </Description>\n\
                 <DisplayName>"+modName+" "+oreName[currentOreGen]+" Size</DisplayName>\n\
             </OptionNumeric>\n"
@@ -532,21 +532,34 @@ def depositRemoval(world):
 # If a mod is not installed, don't run the configuration.
 
 def modDetectLevel():
-    
-    outConfig="\n\
+    if modDetect != "minecraft":
+        outConfig="\n\
 <IfModInstalled name=\""+modDetect+"\"> \n\n\
     <ConfigSection>\n "
     
-    outConfig += configSetupSection()+"\n"
-    outConfig += overworldSetupSection()+"\n"
-    outConfig += netherSetupSection()+"\n"
-    outConfig += endSetupSection()+"\n"
+        outConfig += configSetupSection()+"\n"
+        outConfig += overworldSetupSection()+"\n"
+        outConfig += netherSetupSection()+"\n"
+        outConfig += endSetupSection()+"\n"
     
-    outConfig +="\n\n\
+        outConfig +="\n\n\
     </ConfigSection>\n\
 </IfModInstalled> \n "
 
-    return outConfig
+        return outConfig
+    else:
+        outConfig="\n\n\
+    <ConfigSection>\n "
+    
+        outConfig += configSetupSection()+"\n"
+        outConfig += overworldSetupSection()+"\n"
+        outConfig += netherSetupSection()+"\n"
+        outConfig += endSetupSection()+"\n"
+    
+        outConfig +="\n\n\
+    </ConfigSection>\n"
+
+        return outConfig
 
 ############################# SETUP SCREEN ##########################
 # Final configuration screen setup
@@ -569,10 +582,10 @@ def configSetupSection():
                 <ConfigSection>\n"
         setupConfig += controlsGen(oreSelect)
         setupConfig += "\
-                </ConfigSection> \n"
+                </ConfigSection> \n\n"
     
     setupConfig += "\
-            </ConfigSection> \n"
+            </ConfigSection> \n\n"
     
     return setupConfig
 
@@ -654,7 +667,9 @@ def endSetupSection():
 # This is where the configuration setup begins and ends.
 
 def assembleConfig():
-    configOutput = modDetectLevel()
+    
+    configOutput = headerGen()
+    configOutput += modDetectLevel()
     
     return configOutput
     
