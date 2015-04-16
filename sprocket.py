@@ -25,7 +25,6 @@ import string
 
 configFile = sys.argv[1]
 modName = ""        # This is the mod name component for variable names
-modNameVis = ""     # This is the mod name displayed in strings.
 modPrefix = ""      # This comes before the ore name in variable names
                     #     (tic, mtlg)
 
@@ -39,6 +38,11 @@ oreReplace = []       # The block the ore replaces
 orePipe = []          # Content of pipe distribution (usually lava)
 oreDistributions = [] # Comma-separated list of distribution options.
 oreWireframe = []     # Wireframe color (0x60 followed by web code)
+oreHeight = []        # Center level for ore distributions
+oreRange = []         # Level range between lowest and highest point
+oreFrequency = []     # Ore Frequency Multiplier
+oreSize = []          # Ore Size Multiplier
+
 oreList = ""
 
 # Open a configuration file for reading.
@@ -47,10 +51,12 @@ Config.read(configFile)
 
 # Get the mod's name in three forms, one for mod-specific variables,
 # one for display in strings, and a prefix to use for ore variables.
-modName = Config.get('Mod', 'Code')     # "myMod2"
-modNameVis = Config.get('Mod', 'Name')  # "My Mod 2"
+modName = Config.get('Mod', 'Name')  # "My Mod 2"
 modPrefix = Config.get('Mod', 'Prefix') # "mmd2"
 modDetect = Config.get('Mod', 'Detect') # "MyMod"
+
+                    
+modConfigName=modName.replace(" ", "")
 
 oreName = Config.sections()
 oreName.pop(0) # The first section is not an ore, it's the mod's
@@ -70,6 +76,11 @@ for currentOre in oreName:
     orePipe.append(Config.get(currentOre, 'Pipe'))
     oreDistributions.append(Config.get(currentOre, 'Distributions'))
     oreWireframe.append(Config.get(currentOre, 'Wireframe'))
+    oreHeight.append(Config.get(currentOre, 'Height'))
+    oreRange.append(Config.get(currentOre, 'Range'))
+    oreFrequency.append(Config.get(currentOre, 'Frequency'))
+    oreSize.append(Config.get(currentOre, 'Size'))
+    
     ++oreCount
 
 # All ore data has been imported from the configuration file.  Now we 
@@ -95,7 +106,7 @@ def headerGen():
     return "\n\
 <!--  \n\
 \n\
-Custom Ore Generation:   "+modNameVis+" Module\n\n\
+Custom Ore Generation:   "+modName+" Module\n\n\
 Generates: "+fmtOreList+"\n\
 \n\
 -->"
@@ -190,22 +201,22 @@ def controlsGen(currentOreGen):
     configScriptOpen = "\n\
             <!-- "+oreName[currentOreGen]+" Configuration UI -->\n\
 \n\
-            <OptionChoice name='"+oreConfigName+"Dist' displayState='shown' displayGroup='group"+modName+"'> \n\
+            <OptionChoice name='"+oreConfigName+"Dist' displayState='shown' displayGroup='group"+modConfigName+"'> \n\
                 <Description> Controls how "+oreName[currentOreGen]+" is generated </Description> \n\
-                <DisplayName>"+modNameVis+" "+oreName[currentOreGen]+" Type</DisplayName>\n"
+                <DisplayName>"+modName+" "+oreName[currentOreGen]+" Type</DisplayName>\n"
     
     configScriptClose = "\
                 <Choice value='none' displayValue='None' description='"+oreName[currentOreGen]+" is not generated in the world.'/>\n\
             </OptionChoice>\n\
     \n\
-            <OptionNumeric name='"+oreConfigName+"Freq' default='1'  min='0' max='5' displayState='hidden' displayGroup='group"+modName+"'>\n\
-                <Description> Frequency multiplier for "+modNameVis+" "+oreName[currentOreGen]+" distributions </Description>\n\
-                <DisplayName>"+modNameVis+" "+oreName[currentOreGen]+" Freq.</DisplayName>\n\
+            <OptionNumeric name='"+oreConfigName+"Freq' default='1'  min='0' max='5' displayState='hidden' displayGroup='group"+modConfigName+"'>\n\
+                <Description> Frequency multiplier for "+modName+" "+oreName[currentOreGen]+" distributions </Description>\n\
+                <DisplayName>"+modName+" "+oreName[currentOreGen]+" Freq.</DisplayName>\n\
             </OptionNumeric>\n\
 \n\
-            <OptionNumeric name='"+oreConfigName+"Size' default='1'  min='0' max='5' displayState='hidden' displayGroup='group"+modName+"'>\n\
-                <Description> Size multiplier for "+modNameVis+" "+oreName[currentOreGen]+" distributions </Description>\n\
-                <DisplayName>"+modNameVis+" "+oreName[currentOreGen]+" Size</DisplayName>\n\
+            <OptionNumeric name='"+oreConfigName+"Size' default='1'  min='0' max='5' displayState='hidden' displayGroup='group"+modConfigName+"'>\n\
+                <Description> Size multiplier for "+modName+" "+oreName[currentOreGen]+" distributions </Description>\n\
+                <DisplayName>"+modName+" "+oreName[currentOreGen]+" Size</DisplayName>\n\
             </OptionNumeric>\n"
           
     return configScriptOpen+configScriptList+configScriptClose
@@ -237,8 +248,9 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         <Description> This mimics vanilla ore generation. </Description>\n\
                         <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
-                        <Setting name='Size' avg=':= "+oreConfigName+"Size * _default_'/>\n\
-                        <Setting name='Frequency' avg=':= "+oreConfigName+"Freq * _default_'/>\n\
+                        <Setting name='Size' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='Frequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
+                        <Setting name='Height' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel'/> \n\
                         <Replaces block='"+oreReplace[currentOreGen]+"'/>\n\
                     </StandardGen>\n\
                 </IfCondition>\n"
@@ -251,9 +263,10 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         </Description> \n\
                         <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor> \n\
-                        <Setting name='MotherlodeFrequency' avg=':= "+oreConfigName+"Freq * _default_'/>\n\
-                        <Setting name='MotherlodeSize' avg=':= "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
-                        <Setting name='SegmentRadius' avg=':= "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
+                        <Setting name='MotherlodeSize' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
+                        <Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
                         <Replaces block='"+oreReplace[currentOreGen]+"'/>\n\
                     </Veins>\n\
                 </IfCondition>\n"
@@ -266,8 +279,9 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         </Description>\n\
                         <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
-                        <Setting name='MotherlodeFrequency' avg=':= 1.3 * "+oreConfigName+"Freq * _default_'/>\n\
-                        <Setting name='SegmentRadius' avg=':= "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeFrequency' avg=':= 1.3 * "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
+                        <Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
                         <Replaces block='"+oreReplace[currentOreGen]+"'/>\n\
                     </Veins>\n\
                 </IfCondition>\n"
@@ -281,8 +295,9 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         </Description>\n\
                         <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
-                        <Setting name='MotherlodeFrequency' avg=':= "+oreConfigName+"Freq * _default_'/>\n\
-                        <Setting name='MotherlodeSize' avg=':= "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
+                        <Setting name='MotherlodeSize' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
                         <Replaces block='"+oreReplace[currentOreGen]+"'/>\n\
                     </Veins>\n\
                 </IfCondition>\n"
@@ -296,8 +311,9 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         </Description>\n\
                         <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
-                        <Setting name='MotherlodeFrequency' avg=':= "+oreConfigName+"Freq * _default_'/>\n\
-                        <Setting name='MotherlodeSize' avg=':= 3 * "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
+                        <Setting name='MotherlodeSize' avg=':= 3 * "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
                         <Replaces block='minecraft:air'/>\n\
                         <Replaces block='minecraft:water'/>\n\
                         <Replaces block='minecraft:lava'/>\n\
@@ -309,8 +325,9 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         </Description>\n\
                         <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
-                        <Setting name='MotherlodeFrequency' avg=':= "+oreConfigName+"Freq * _default_'/>\n\
-                        <Setting name='MotherlodeSize' avg=':= 1.5 * "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
+                        <Setting name='MotherlodeSize' avg=':= 1.5 * "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
                         <Replaces block='"+orePipe[currentOreGen]+"'/>\n\
                     </Veins>\n\
                     <Veins name='"+oreConfigName+"Veins' block='minecraft:air' inherits='PresetSmallDeposits' seed="+geodeSeed+">\n\
@@ -319,8 +336,9 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         </Description>\n\
                         <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
-                        <Setting name='MotherlodeFrequency' avg=':= "+oreConfigName+"Freq * _default_'/>\n\
-                        <Setting name='MotherlodeSize' avg=':= "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
+                        <Setting name='MotherlodeSize' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
                         <Replaces block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'/>\n\
                     </Veins>\n\
                 </IfCondition>\n"
@@ -340,9 +358,10 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         </Description> \n\
                         <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor> \n\
-                        <Setting name='MotherlodeFrequency' avg=':= "+oreConfigName+"Freq * _default_'/>\n\
-                        <Setting name='MotherlodeSize' avg=':= "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
-                        <Setting name='SegmentRadius' avg=':= "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
+                        <Setting name='MotherlodeSize' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
+                        <Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
                         <Replaces block='"+oreReplace[currentOreGen]+"'/>\n\
                     </Veins>\n\
                 </IfCondition>\n"
@@ -358,9 +377,10 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         </Description>\n\
                         <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
-                        <Setting name='MotherlodeFrequency' avg=':= "+oreConfigName+"Freq * _default_'/>\n\
-                        <Setting name='MotherlodeSize' avg=':= "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
-                        <Setting name='SegmentRadius' avg=':= "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
+                        <Setting name='MotherlodeSize' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
+                        <Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
                         <Replaces block='"+oreReplace[currentOreGen]+"'/>\n\
                     </Veins>\n\
                 </IfCondition>\n"
@@ -372,14 +392,16 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         <Description> Short sparsely filled veins sloping up from near the bottom of the map. </Description>\n\
                         <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
-                        <Setting name='MotherlodeFrequency' avg=':= "+oreConfigName+"Freq * _default_'/>\n\
-                        <Setting name='MotherlodeSize' avg=':= "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
-                        <Setting name='SegmentRadius' avg=':= "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
+                        <Setting name='MotherlodeSize' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
+                        <Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
                         <Replaces block='"+oreReplace[currentOreGen]+"'/>\n\
                     </Veins>\n\
-                    <Veins name= "+oreConfigName+"Pipe block='"+orePipe[currentOreGen]+"' inherits='PresetPipeVeins' seed="+pipeSeed+">\n\
+                    <Veins name= '"+oreConfigName+"Pipe' block='"+orePipe[currentOreGen]+"' inherits='PresetPipeVeins' seed="+pipeSeed+">\n\
                         <Description> Fills center of each tube with Pipe material. </Description>\n\
                         <Setting name='MotherlodeSize' avg=':= 0.5 * _default_'/>\n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
                         <Setting name='SegmentRadius' avg=':= 0.5 * _default_'/>\n\
                         <Setting name='OreDensity' avg='1' range='0'/>\n\
                         <ReplacesOre block='stone'/>\n\
@@ -404,15 +426,17 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         </Description> \n\
                         <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor> \n\
-                        <Setting name='DistributionFrequency' avg=':= "+oreConfigName+"Freq *_default_'/>\n\
-                        <Setting name='CloudRadius' avg=':= "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
-                        <Setting name='CloudThickness' avg=':= "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='DistributionFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq *_default_'/>\n\
+                        <Setting name='CloudRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='CloudThickness' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
+                        <Setting name='CloudHeight' avg='"+oreHeight[currentOreGen]+"' range='"+oreRange[currentOreGen]+"' type='normal' scaleTo='sealevel'/>\n\
                         <Replaces block='"+oreReplace[currentOreGen]+"'/>\n\
                         <Veins name='"+oreConfigName+"HintVeins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"' inherits='PresetHintVeins'>\n\
                             <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                             <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor> \n\
                             <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> \n\
-                            <Setting name='MotherlodeRangeLimit' avg=':= "+oreConfigName+"Size * _default_' range=':= "+oreConfigName+"Size * _default_'/>\n\
+                            <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
+                            <Setting name='MotherlodeRangeLimit' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
                         </Veins>\n\
                     </Cloud>\n\
                 </IfCondition>\n"
@@ -483,7 +507,7 @@ def depositRemoval(world):
     for blockSelect in range (0, len(list(set(replacementBlocks)))):
     
         outConfig += "\n\
-                    <Substitute name='"+modName+"StandardOreSubstitute"+str(blockSelect)+"' block='"+list(set(replacementBlocks))[blockSelect]+"'>\n\
+                    <Substitute name='"+modConfigName+"StandardOreSubstitute"+str(blockSelect)+"' block='"+list(set(replacementBlocks))[blockSelect]+"'>\n\
                         <Description> \n\
                             Replace vanilla-generated ore clusters.   \n\
                         </Description>\n\
@@ -533,9 +557,9 @@ def configSetupSection():
         <!-- Setup Screen Configuration -->\n\
 \n\
             <ConfigSection> \n\
-                <OptionDisplayGroup name='group"+modName+"' displayName='"+modNameVis+" Ores' displayState='shown'> \n\
+                <OptionDisplayGroup name='group"+modConfigName+"' displayName='"+modName+" Ores' displayState='shown'> \n\
                     <Description> \n\
-                        Distribution options for "+modNameVis+" Ores.\n\
+                        Distribution options for "+modName+" Ores.\n\
                     </Description>\n\
                 </OptionDisplayGroup>\n\
     \n "
@@ -638,5 +662,5 @@ def assembleConfig():
 # This is actually where the rubber meets the road; the configuration
 # is assembled and written to an XML file.
 
-xmlConfigFile = open('./'+modName+'.xml', 'w+')
+xmlConfigFile = open('./'+modConfigName+'.xml', 'w+')
 xmlConfigFile.write(assembleConfig())
