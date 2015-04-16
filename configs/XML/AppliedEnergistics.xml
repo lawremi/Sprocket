@@ -1,0 +1,295 @@
+
+<IfModInstalled name="appliedenergistics2"> 
+
+    <ConfigSection>
+ 
+        <!-- Setup Screen Configuration -->
+
+            <ConfigSection> 
+                <OptionDisplayGroup name='groupAppliedEnergistics' displayName='Applied Energistics Ores' displayState='shown'> 
+                    <Description> 
+                        Distribution options for Applied Energistics Ores.
+                    </Description>
+                </OptionDisplayGroup>
+    
+                 <ConfigSection>
+
+            <!-- Quartz Configuration UI -->
+
+            <OptionChoice name='apenQuartzDist' displayState='shown' displayGroup='groupAppliedEnergistics'> 
+                <Description> Controls how Quartz is generated </Description> 
+                <DisplayName>Applied Energistics Quartz Type</DisplayName>
+
+               <Choice value='layeredVeins' displayValue='Layered Veins'>
+                   <Description>
+                       Layered Veins. 
+                   </Description>
+               </Choice>
+
+               <Choice value='smallDeposits' displayValue='Small Deposits'>
+                   <Description>
+                       Small Deposits. 
+                   </Description>
+               </Choice>
+
+               <Choice value='strategicCloud' displayValue='Clouds'>
+                   <Description>
+                       Strategic Clouds 
+                   </Description>
+               </Choice>
+
+               <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                   <Description>
+                       Vanilla-style clusters. 
+                   </Description>
+               </Choice>
+                <Choice value='none' displayValue='None' description='Quartz is not generated in the world.'/>
+            </OptionChoice>
+    
+            <OptionNumeric name='apenQuartzFreq' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupAppliedEnergistics'>
+                <Description> Frequency multiplier for Applied Energistics Quartz distributions </Description>
+                <DisplayName>Applied Energistics Quartz Freq.</DisplayName>
+            </OptionNumeric>
+
+            <OptionNumeric name='apenQuartzSize' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupAppliedEnergistics'>
+                <Description> Size multiplier for Applied Energistics Quartz distributions </Description>
+                <DisplayName>Applied Energistics Quartz Size</DisplayName>
+            </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+
+            <!-- ChargedQuartz Configuration UI -->
+
+            <OptionChoice name='apenChargedQuartzDist' displayState='shown' displayGroup='groupAppliedEnergistics'> 
+                <Description> Controls how ChargedQuartz is generated </Description> 
+                <DisplayName>Applied Energistics ChargedQuartz Type</DisplayName>
+
+               <Choice value='layeredVeins' displayValue='Layered Veins'>
+                   <Description>
+                       Layered Veins. 
+                   </Description>
+               </Choice>
+
+               <Choice value='smallDeposits' displayValue='Small Deposits'>
+                   <Description>
+                       Small Deposits. 
+                   </Description>
+               </Choice>
+
+               <Choice value='strategicCloud' displayValue='Clouds'>
+                   <Description>
+                       Strategic Clouds 
+                   </Description>
+               </Choice>
+
+               <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                   <Description>
+                       Vanilla-style clusters. 
+                   </Description>
+               </Choice>
+                <Choice value='none' displayValue='None' description='ChargedQuartz is not generated in the world.'/>
+            </OptionChoice>
+    
+            <OptionNumeric name='apenChargedQuartzFreq' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupAppliedEnergistics'>
+                <Description> Frequency multiplier for Applied Energistics ChargedQuartz distributions </Description>
+                <DisplayName>Applied Energistics ChargedQuartz Freq.</DisplayName>
+            </OptionNumeric>
+
+            <OptionNumeric name='apenChargedQuartzSize' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupAppliedEnergistics'>
+                <Description> Size multiplier for Applied Energistics ChargedQuartz distributions </Description>
+                <DisplayName>Applied Energistics ChargedQuartz Size</DisplayName>
+            </OptionNumeric>
+                </ConfigSection> 
+            </ConfigSection> 
+
+
+            <!-- Setup Overworld -->
+
+            <IfCondition condition=':= ?COGActive'>
+
+
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+
+                    <Substitute name='AppliedEnergisticsStandardOreSubstitute0' block='minecraft:stone'>
+                        <Description> 
+                            Replace vanilla-generated ore clusters.   
+                        </Description>
+                        <Comment>  
+                            The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                        </Comment>
+                         <Replaces block='appliedenergistics2:tile.OreQuartz' />
+                        <Replaces block='appliedenergistics2:tile.OreQuartzCharged' />
+
+                </Substitute>
+
+        <!-- Adding ores --> 
+
+                <IfCondition condition=':= apenQuartzDist = "layeredVeins"'>
+                    <Veins name='apenQuartzVeins' block='appliedenergistics2:tile.OreQuartz' inherits='PresetLayeredVeins'>
+                        <Description> 
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description> 
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor> 
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * apenQuartzFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * apenQuartzSize * _default_' range=':= 1 * apenQuartzSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * apenQuartzSize * _default_' range=':= 1 * apenQuartzSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+
+                <IfCondition condition=':= apenQuartzDist = "smallDeposits"'>
+                    <Veins name='apenQuartzVeins' block='appliedenergistics2:tile.OreQuartz' inherits='PresetSmallDeposits'>
+                        <Description>
+                            Small motherlodes without any branches.
+                            Similar to the deposits produced by StandardGen distributions.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * apenQuartzFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal'/> 
+                        <Setting name='MotherlodeSize' avg=':= 1 * apenQuartzSize * _default_' range=':= 1 * apenQuartzSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+
+                <IfCondition condition=':= apenQuartzDist = "strategicCloud"'>
+                    <Cloud name='apenQuartzCloud' block='appliedenergistics2:tile.OreQuartz' inherits='PresetStrategicCloud'>
+                        <Description>  
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                        </Description> 
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor> 
+                        <Setting name='DistributionFrequency' avg=':= 1 * apenQuartzFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * apenQuartzSize * _default_' range=':= 1 * apenQuartzSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * apenQuartzSize * _default_' range=':= 1 * apenQuartzSize * _default_'/>
+                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='sealevel'/>
+                        <Replaces block='minecraft:stone'/>
+                        <Veins name='apenQuartzHintVeins' block='appliedenergistics2:tile.OreQuartz' inherits='PresetHintVeins'>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60e25d21</WireframeColor> 
+                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal'/> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * apenQuartzSize * _default_' range=':= 1 * apenQuartzSize * _default_'/>
+                        </Veins>
+                    </Cloud>
+                </IfCondition>
+
+                <IfCondition condition=':= apenQuartzDist = "vanillaStdGen"'>
+                    <StandardGen name='apenQuartzStandard' block='appliedenergistics2:tile.OreQuartz' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * apenQuartzSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * apenQuartzFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+
+                <IfCondition condition=':= apenChargedQuartzDist = "layeredVeins"'>
+                    <Veins name='apenChargedQuartzVeins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetLayeredVeins'>
+                        <Description> 
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description> 
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor> 
+                        <Setting name='MotherlodeFrequency' avg=':= 0.5 * apenChargedQuartzFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * apenChargedQuartzSize * _default_' range=':= 0.5 * apenChargedQuartzSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal'/> 
+                        <Setting name='SegmentRadius' avg=':= 0.5 * apenChargedQuartzSize * _default_' range=':= 0.5 * apenChargedQuartzSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+
+                <IfCondition condition=':= apenChargedQuartzDist = "smallDeposits"'>
+                    <Veins name='apenChargedQuartzVeins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetSmallDeposits'>
+                        <Description>
+                            Small motherlodes without any branches.
+                            Similar to the deposits produced by StandardGen distributions.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 0.5 * apenChargedQuartzFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal'/> 
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * apenChargedQuartzSize * _default_' range=':= 0.5 * apenChargedQuartzSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+
+                <IfCondition condition=':= apenChargedQuartzDist = "strategicCloud"'>
+                    <Cloud name='apenChargedQuartzCloud' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetStrategicCloud'>
+                        <Description>  
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                        </Description> 
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor> 
+                        <Setting name='DistributionFrequency' avg=':= 0.5 * apenChargedQuartzFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 0.5 * apenChargedQuartzSize * _default_' range=':= 0.5 * apenChargedQuartzSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 0.5 * apenChargedQuartzSize * _default_' range=':= 0.5 * apenChargedQuartzSize * _default_'/>
+                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='sealevel'/>
+                        <Replaces block='minecraft:stone'/>
+                        <Veins name='apenChargedQuartzHintVeins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetHintVeins'>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60e25d21</WireframeColor> 
+                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal'/> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 0.5 * apenChargedQuartzSize * _default_' range=':= 0.5 * apenChargedQuartzSize * _default_'/>
+                        </Veins>
+                    </Cloud>
+                </IfCondition>
+
+                <IfCondition condition=':= apenChargedQuartzDist = "vanillaStdGen"'>
+                    <StandardGen name='apenChargedQuartzStandard' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='Size' avg=':= 0.5 * apenChargedQuartzSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 0.5 * apenChargedQuartzFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+
+            </IfCondition>
+
+
+            <!-- Setup Nether -->
+
+            <IfCondition condition=':= dimension.generator = "HellRandomLevelSource"'>
+
+
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+
+        <!-- Adding ores --> 
+
+            </IfCondition>
+
+
+            <!-- Setup End -->
+
+            <IfCondition condition=':= dimension.generator = "EndRandomLevelSource"'>
+
+
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+
+        <!-- Adding ores --> 
+
+            </IfCondition>
+
+
+
+    </ConfigSection>
+</IfModInstalled> 
+ 

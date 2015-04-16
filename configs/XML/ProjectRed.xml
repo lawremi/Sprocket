@@ -1,0 +1,379 @@
+
+<IfModInstalled name="ProjRed|Exploration"> 
+
+    <ConfigSection>
+ 
+        <!-- Setup Screen Configuration -->
+
+            <ConfigSection> 
+                <OptionDisplayGroup name='groupProjectRed' displayName='Project Red Ores' displayState='shown'> 
+                    <Description> 
+                        Distribution options for Project Red Ores.
+                    </Description>
+                </OptionDisplayGroup>
+    
+                 <ConfigSection>
+
+            <!-- Ruby Configuration UI -->
+
+            <OptionChoice name='predRubyDist' displayState='shown' displayGroup='groupProjectRed'> 
+                <Description> Controls how Ruby is generated </Description> 
+                <DisplayName>Project Red Ruby Type</DisplayName>
+
+               <Choice value='pipeVeins' displayValue='Pipe Veins'>
+                   <Description>
+                       Pipe Veins
+                   </Description>
+               </Choice>
+
+               <Choice value='strategicCloud' displayValue='Clouds'>
+                   <Description>
+                       Strategic Clouds 
+                   </Description>
+               </Choice>
+
+               <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                   <Description>
+                       Vanilla-style clusters. 
+                   </Description>
+               </Choice>
+                <Choice value='none' displayValue='None' description='Ruby is not generated in the world.'/>
+            </OptionChoice>
+    
+            <OptionNumeric name='predRubyFreq' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupProjectRed'>
+                <Description> Frequency multiplier for Project Red Ruby distributions </Description>
+                <DisplayName>Project Red Ruby Freq.</DisplayName>
+            </OptionNumeric>
+
+            <OptionNumeric name='predRubySize' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupProjectRed'>
+                <Description> Size multiplier for Project Red Ruby distributions </Description>
+                <DisplayName>Project Red Ruby Size</DisplayName>
+            </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+
+            <!-- Sapphire Configuration UI -->
+
+            <OptionChoice name='predSapphireDist' displayState='shown' displayGroup='groupProjectRed'> 
+                <Description> Controls how Sapphire is generated </Description> 
+                <DisplayName>Project Red Sapphire Type</DisplayName>
+
+               <Choice value='pipeVeins' displayValue='Pipe Veins'>
+                   <Description>
+                       Pipe Veins
+                   </Description>
+               </Choice>
+
+               <Choice value='strategicCloud' displayValue='Clouds'>
+                   <Description>
+                       Strategic Clouds 
+                   </Description>
+               </Choice>
+
+               <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                   <Description>
+                       Vanilla-style clusters. 
+                   </Description>
+               </Choice>
+                <Choice value='none' displayValue='None' description='Sapphire is not generated in the world.'/>
+            </OptionChoice>
+    
+            <OptionNumeric name='predSapphireFreq' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupProjectRed'>
+                <Description> Frequency multiplier for Project Red Sapphire distributions </Description>
+                <DisplayName>Project Red Sapphire Freq.</DisplayName>
+            </OptionNumeric>
+
+            <OptionNumeric name='predSapphireSize' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupProjectRed'>
+                <Description> Size multiplier for Project Red Sapphire distributions </Description>
+                <DisplayName>Project Red Sapphire Size</DisplayName>
+            </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+
+            <!-- Peridot Configuration UI -->
+
+            <OptionChoice name='predPeridotDist' displayState='shown' displayGroup='groupProjectRed'> 
+                <Description> Controls how Peridot is generated </Description> 
+                <DisplayName>Project Red Peridot Type</DisplayName>
+
+               <Choice value='pipeVeins' displayValue='Pipe Veins'>
+                   <Description>
+                       Pipe Veins
+                   </Description>
+               </Choice>
+
+               <Choice value='strategicCloud' displayValue='Clouds'>
+                   <Description>
+                       Strategic Clouds 
+                   </Description>
+               </Choice>
+
+               <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                   <Description>
+                       Vanilla-style clusters. 
+                   </Description>
+               </Choice>
+                <Choice value='none' displayValue='None' description='Peridot is not generated in the world.'/>
+            </OptionChoice>
+    
+            <OptionNumeric name='predPeridotFreq' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupProjectRed'>
+                <Description> Frequency multiplier for Project Red Peridot distributions </Description>
+                <DisplayName>Project Red Peridot Freq.</DisplayName>
+            </OptionNumeric>
+
+            <OptionNumeric name='predPeridotSize' default='1'  min='0' max='5' displayState='hidden' displayGroup='groupProjectRed'>
+                <Description> Size multiplier for Project Red Peridot distributions </Description>
+                <DisplayName>Project Red Peridot Size</DisplayName>
+            </OptionNumeric>
+                </ConfigSection> 
+            </ConfigSection> 
+
+
+            <!-- Setup Overworld -->
+
+            <IfCondition condition=':= ?COGActive'>
+
+
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+
+                    <Substitute name='ProjectRedStandardOreSubstitute0' block='minecraft:stone'>
+                        <Description> 
+                            Replace vanilla-generated ore clusters.   
+                        </Description>
+                        <Comment>  
+                            The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                        </Comment>
+                         <Replaces block='ProjRed|Exploration:projectred.exploration.ore' />
+                        <Replaces block='ProjRed|Exploration:projectred.exploration.ore:1' />
+                        <Replaces block='ProjRed|Exploration:projectred.exploration.ore:2' />
+
+                </Substitute>
+
+        <!-- Adding ores --> 
+
+                <IfCondition condition=':= predRubyDist = "pipeVeins"'>
+                    <Veins name='predRubyVeins' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetPipeVeins' seed='0x28A1'>
+                        <Description> Short sparsely filled veins sloping up from near the bottom of the map. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * predRubyFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * predRubySize * _default_' range=':= 1 * predRubySize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * predRubySize * _default_' range=':= 1 * predRubySize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                    <Veins name= 'predRubyPipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x28A1'>
+                        <Description> Fills center of each tube with Pipe material. </Description>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal'/> 
+                        <Setting name='SegmentRadius' avg=':= 0.5 * _default_'/>
+                        <Setting name='OreDensity' avg='1' range='0'/>
+                        <ReplacesOre block='stone'/>
+                        <Replaces block='minecraft:dirt'/>
+                        <Replaces block='minecraft:gravel'/>
+                        <Replaces block='minecraft:netherrack'/>
+                        <Replaces block='minecraft:end_stone'/>
+                        <Replaces block='ProjRed|Exploration:projectred.exploration.ore'/>
+                    </Veins>
+                </IfCondition>
+
+                <IfCondition condition=':= predRubyDist = "strategicCloud"'>
+                    <Cloud name='predRubyCloud' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetStrategicCloud'>
+                        <Description>  
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                        </Description> 
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor> 
+                        <Setting name='DistributionFrequency' avg=':= 1 * predRubyFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * predRubySize * _default_' range=':= 1 * predRubySize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * predRubySize * _default_' range=':= 1 * predRubySize * _default_'/>
+                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='sealevel'/>
+                        <Replaces block='minecraft:stone'/>
+                        <Veins name='predRubyHintVeins' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetHintVeins'>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60db0917</WireframeColor> 
+                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal'/> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * predRubySize * _default_' range=':= 1 * predRubySize * _default_'/>
+                        </Veins>
+                    </Cloud>
+                </IfCondition>
+
+                <IfCondition condition=':= predRubyDist = "vanillaStdGen"'>
+                    <StandardGen name='predRubyStandard' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * predRubySize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * predRubyFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+
+                <IfCondition condition=':= predSapphireDist = "pipeVeins"'>
+                    <Veins name='predSapphireVeins' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetPipeVeins' seed='0xB366'>
+                        <Description> Short sparsely filled veins sloping up from near the bottom of the map. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * predSapphireFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * predSapphireSize * _default_' range=':= 1 * predSapphireSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * predSapphireSize * _default_' range=':= 1 * predSapphireSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                    <Veins name= 'predSapphirePipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0xB366'>
+                        <Description> Fills center of each tube with Pipe material. </Description>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal'/> 
+                        <Setting name='SegmentRadius' avg=':= 0.5 * _default_'/>
+                        <Setting name='OreDensity' avg='1' range='0'/>
+                        <ReplacesOre block='stone'/>
+                        <Replaces block='minecraft:dirt'/>
+                        <Replaces block='minecraft:gravel'/>
+                        <Replaces block='minecraft:netherrack'/>
+                        <Replaces block='minecraft:end_stone'/>
+                        <Replaces block='ProjRed|Exploration:projectred.exploration.ore:1'/>
+                    </Veins>
+                </IfCondition>
+
+                <IfCondition condition=':= predSapphireDist = "strategicCloud"'>
+                    <Cloud name='predSapphireCloud' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetStrategicCloud'>
+                        <Description>  
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                        </Description> 
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor> 
+                        <Setting name='DistributionFrequency' avg=':= 1 * predSapphireFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * predSapphireSize * _default_' range=':= 1 * predSapphireSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * predSapphireSize * _default_' range=':= 1 * predSapphireSize * _default_'/>
+                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='sealevel'/>
+                        <Replaces block='minecraft:stone'/>
+                        <Veins name='predSapphireHintVeins' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetHintVeins'>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60db0917</WireframeColor> 
+                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal'/> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * predSapphireSize * _default_' range=':= 1 * predSapphireSize * _default_'/>
+                        </Veins>
+                    </Cloud>
+                </IfCondition>
+
+                <IfCondition condition=':= predSapphireDist = "vanillaStdGen"'>
+                    <StandardGen name='predSapphireStandard' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * predSapphireSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * predSapphireFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+
+                <IfCondition condition=':= predPeridotDist = "pipeVeins"'>
+                    <Veins name='predPeridotVeins' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetPipeVeins' seed='0x7B07'>
+                        <Description> Short sparsely filled veins sloping up from near the bottom of the map. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * predPeridotFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * predPeridotSize * _default_' range=':= 1 * predPeridotSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * predPeridotSize * _default_' range=':= 1 * predPeridotSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                    <Veins name= 'predPeridotPipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x7B07'>
+                        <Description> Fills center of each tube with Pipe material. </Description>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal'/> 
+                        <Setting name='SegmentRadius' avg=':= 0.5 * _default_'/>
+                        <Setting name='OreDensity' avg='1' range='0'/>
+                        <ReplacesOre block='stone'/>
+                        <Replaces block='minecraft:dirt'/>
+                        <Replaces block='minecraft:gravel'/>
+                        <Replaces block='minecraft:netherrack'/>
+                        <Replaces block='minecraft:end_stone'/>
+                        <Replaces block='ProjRed|Exploration:projectred.exploration.ore:2'/>
+                    </Veins>
+                </IfCondition>
+
+                <IfCondition condition=':= predPeridotDist = "strategicCloud"'>
+                    <Cloud name='predPeridotCloud' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetStrategicCloud'>
+                        <Description>  
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                        </Description> 
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor> 
+                        <Setting name='DistributionFrequency' avg=':= 1 * predPeridotFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * predPeridotSize * _default_' range=':= 1 * predPeridotSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * predPeridotSize * _default_' range=':= 1 * predPeridotSize * _default_'/>
+                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='sealevel'/>
+                        <Replaces block='minecraft:stone'/>
+                        <Veins name='predPeridotHintVeins' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetHintVeins'>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60db0917</WireframeColor> 
+                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal'/> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * predPeridotSize * _default_' range=':= 1 * predPeridotSize * _default_'/>
+                        </Veins>
+                    </Cloud>
+                </IfCondition>
+
+                <IfCondition condition=':= predPeridotDist = "vanillaStdGen"'>
+                    <StandardGen name='predPeridotStandard' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * predPeridotSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * predPeridotFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+
+            </IfCondition>
+
+
+            <!-- Setup Nether -->
+
+            <IfCondition condition=':= dimension.generator = "HellRandomLevelSource"'>
+
+
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+
+        <!-- Adding ores --> 
+
+            </IfCondition>
+
+
+            <!-- Setup End -->
+
+            <IfCondition condition=':= dimension.generator = "EndRandomLevelSource"'>
+
+
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+
+        <!-- Adding ores --> 
+
+            </IfCondition>
+
+
+
+    </ConfigSection>
+</IfModInstalled> 
+ 
