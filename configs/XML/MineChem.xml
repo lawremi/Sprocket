@@ -83,20 +83,20 @@ Generates: Uranium
         <!-- Adding ores --> 
 
                 <IfCondition condition=':= mchmUraniumDist = "pipeVeins"'>
-                    <Veins name='mchmUraniumVeins' block='minechem:tile.oreUranium' inherits='PresetPipeVeins' seed='0xAE26'>
+                    <Veins name='mchmUraniumVeins' block='minechem:tile.oreUranium' inherits='PresetPipeVeins' seed='0x8F5B'>
                         <Description> Short sparsely filled veins sloping up from near the bottom of the map. </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6a989</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * mchmUraniumFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 1 * mchmUraniumSize * _default_' range=':= 1 * mchmUraniumSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * mchmUraniumSize * _default_' range=':= 1 * mchmUraniumSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'mchmUraniumPipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0xAE26'>
+                    <Veins name= 'mchmUraniumPipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0x8F5B'>
                         <Description> Fills center of each tube with Pipe material. </Description>
                         <Setting name='MotherlodeSize' avg=':= 0.5 * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
                         <Setting name='SegmentRadius' avg=':= 0.5 * _default_'/>
                         <Setting name='OreDensity' avg='1' range='0'/>
                         <ReplacesOre block='stone'/>
@@ -123,13 +123,13 @@ Generates: Uranium
                         <Setting name='DistributionFrequency' avg=':= 1 * mchmUraniumFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * mchmUraniumSize * _default_' range=':= 1 * mchmUraniumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * mchmUraniumSize * _default_' range=':= 1 * mchmUraniumSize * _default_'/>
-                        <Setting name='CloudHeight' avg='16' range='8' type='normal' scaleTo='sealevel'/>
+                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='biome'/>
                         <Replaces block='minecraft:stone'/>
                         <Veins name='mchmUraniumHintVeins' block='minechem:tile.oreUranium' inherits='PresetHintVeins'>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6a989</WireframeColor> 
                             <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * mchmUraniumSize * _default_' range=':= 1 * mchmUraniumSize * _default_'/>
                         </Veins>
                     </Cloud>
@@ -142,7 +142,7 @@ Generates: Uranium
                         <WireframeColor>0x60d6a989</WireframeColor>
                         <Setting name='Size' avg=':= 1 * mchmUraniumSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * mchmUraniumFreq * _default_'/>
-                        <Setting name='Height' avg=':= 16/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel'/> 
+                        <Setting name='Height' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
