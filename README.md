@@ -158,17 +158,22 @@ Options:
 
     Height:
 
-	This sets the height around which the ore will generate
+	This sets the height around which the ore will generate; this is the
+	center of the range.  "64" is considered ground level; the actual
+	number scales depending on the biome and/or presence of Alternate
+	Terrain Generation.
 
     Range:
 
-	This sets the range of heights around the height the ore will generate.
+	This sets the range around the above center height that ores will
+	generate.  Like the height, this number is scaled based on the biome
+	or presence of ATG.
 
     Size:
 
-	This is the vein size multiplier.  1 is the default.  Less than 1
-	(make sure the number is in the form of 0.x) makes the ore deposit
-	smaller.  More than 1 makes the ore deposit larger.
+	This is the vein size multiplier.  1 is the default; nothing is
+	changed.  Less than 1 (make sure the number is in the form of 0.x)
+	make the ore deposits smaller.  More than 1 makes them larger.
 
     Frequency:
 
