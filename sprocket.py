@@ -265,7 +265,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor> \n\
                         <Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
                         <Setting name='MotherlodeSize' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
-                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> \n\
                         <Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
                         <Replaces block='"+oreReplace[currentOreGen]+"'/>\n\
                     </Veins>\n\
@@ -280,7 +280,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
                         <Setting name='MotherlodeFrequency' avg=':= 1.3 * "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
-                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> \n\
                         <Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
                         <Replaces block='"+oreReplace[currentOreGen]+"'/>\n\
                     </Veins>\n\
@@ -296,7 +296,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
                         <Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
-                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> \n\
                         <Setting name='MotherlodeSize' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
                         <Replaces block='"+oreReplace[currentOreGen]+"'/>\n\
                     </Veins>\n\
@@ -313,7 +313,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
                         <Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
                         <Setting name='MotherlodeSize' avg=':= 3 * "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
-                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> \n\
                         <Replaces block='minecraft:air'/>\n\
                         <Replaces block='minecraft:water'/>\n\
                         <Replaces block='minecraft:lava'/>\n\
@@ -327,7 +327,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
                         <Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
                         <Setting name='MotherlodeSize' avg=':= 1.5 * "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
-                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> \n\
                         <Replaces block='"+orePipe[currentOreGen]+"'/>\n\
                     </Veins>\n\
                     <Veins name='"+oreConfigName+"Veins' block='minecraft:air' inherits='PresetSmallDeposits' seed="+geodeSeed+">\n\
@@ -338,7 +338,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
                         <Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
                         <Setting name='MotherlodeSize' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
-                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> \n\
                         <Replaces block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'/>\n\
                     </Veins>\n\
                 </IfCondition>\n"
@@ -360,7 +360,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor> \n\
                         <Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
                         <Setting name='MotherlodeSize' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
-                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> \n\
                         <Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
                         <Replaces block='"+oreReplace[currentOreGen]+"'/>\n\
                     </Veins>\n\
@@ -379,7 +379,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
                         <Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
                         <Setting name='MotherlodeSize' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
-                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> \n\
                         <Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
                         <Replaces block='"+oreReplace[currentOreGen]+"'/>\n\
                     </Veins>\n\
@@ -394,14 +394,14 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n\
                         <Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n\
                         <Setting name='MotherlodeSize' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
-                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> \n\
                         <Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
                         <Replaces block='"+oreReplace[currentOreGen]+"'/>\n\
                     </Veins>\n\
                     <Veins name= '"+oreConfigName+"Pipe' block='"+orePipe[currentOreGen]+"' inherits='PresetPipeVeins' seed="+pipeSeed+">\n\
                         <Description> Fills center of each tube with Pipe material. </Description>\n\
                         <Setting name='MotherlodeSize' avg=':= 0.5 * _default_'/>\n\
-                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
+                        <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> \n\
                         <Setting name='SegmentRadius' avg=':= 0.5 * _default_'/>\n\
                         <Setting name='OreDensity' avg='1' range='0'/>\n\
                         <ReplacesOre block='stone'/>\n\
@@ -429,13 +429,13 @@ def distributionGen(currentOreGen, currentOrePreDist):
                         <Setting name='DistributionFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreConfigName+"Freq *_default_'/>\n\
                         <Setting name='CloudRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
                         <Setting name='CloudThickness' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
-                        <Setting name='CloudHeight' avg='"+oreHeight[currentOreGen]+"' range='"+oreRange[currentOreGen]+"' type='normal' scaleTo='sealevel'/>\n\
+                        <Setting name='CloudHeight' avg='"+oreHeight[currentOreGen]+"' range='"+oreRange[currentOreGen]+"' type='normal' scaleTo='biome'/>\n\
                         <Replaces block='"+oreReplace[currentOreGen]+"'/>\n\
                         <Veins name='"+oreConfigName+"HintVeins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"' inherits='PresetHintVeins'>\n\
                             <DrawWireframe>:=drawWireframes</DrawWireframe>\n\
                             <WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor> \n\
                             <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> \n\
-                            <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal'/> \n\
+                            <Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"/64 * dimension.groundLevel' range=':= "+oreRange[currentOreGen]+"/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> \n\
                             <Setting name='MotherlodeRangeLimit' avg=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n\
                         </Veins>\n\
                     </Cloud>\n\
