@@ -158,26 +158,6 @@ Options:
 
     Height:
 
-<<<<<<< HEAD
-	This sets the height around which the ore will generate.  The number
-	for surface level is "64".  The configuration will add "biome"
-	scaling	to the number, to account for the biome's average surface
-	height.
-
-    Range:
-
-	The ores will be randomly spawned within the range specified here,
-	using the above height value as a center.  So, a height of 32 and a
-	range of 8 means that ore veins/clouds/clusters will spawn between
-	levels 24 and 40.  Similar to the above height value, these are
-	scaled based on the average surface height of the current biome.
-
-    Size:
-
-	This is the vein size multiplier.  1 does not multiply the default.
-	Less than 1	(make sure the number is in the form of 0.x) makes the
-	ore deposit smaller.  More than 1 makes the ore deposit larger.
-=======
 	This sets the height around which the ore will generate; this is the
 	center of the range.  "64" is considered ground level; the actual
 	number scales depending on the biome and/or presence of Alternate
@@ -194,7 +174,6 @@ Options:
 	This is the vein size multiplier.  1 is the default; nothing is
 	changed.  Less than 1 (make sure the number is in the form of 0.x)
 	make the ore deposits smaller.  More than 1 makes them larger.
->>>>>>> ee40bb143c1486196d00f2302ce123d0e6201313
 
     Frequency:
 
