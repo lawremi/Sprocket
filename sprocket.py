@@ -55,6 +55,7 @@ oreSize = []          # Ore Size Multiplier
 oreBiomes = []        # Ores only spawn in these biomes
 orePreferBiomes = []  # Ores spawn extra in these biomes
 oreScale = []         # COG Surface Scaling
+oreActive= []         # Is ore distribution active by default?
 
 oreList = ""
 indentLine=0
@@ -74,7 +75,8 @@ Config = ConfigParser.SafeConfigParser(
               'Size':'1',
               'Biomes':'ALL',
               'Prefers':'NONE',
-              'Scale':'Biome'
+              'Scale':'Biome',
+              'Active':'Yes'
     })
 Config.read(configFile)
 
@@ -113,7 +115,8 @@ for currentOre in oreName:
     oreSize.append(Config.get(currentOre, 'Size'))
     oreBiomes.append(Config.get(currentOre, 'Biomes'))
     orePreferBiomes.append(Config.get(currentOre, 'Prefers'))
-    oreScale.append(Config.get(currentOre, 'Scale'))    
+    oreScale.append(Config.get(currentOre, 'Scale'))
+    oreActive.append(Config.get(currentOre, 'Active'))
     
     # Check to make sure the Block value is valid.
     if Config.get(currentOre, 'Block') == 'MISSING':
@@ -130,6 +133,17 @@ for currentOre in oreName:
 headerTemplate = ""
 controlsTemplate = []
 oreConfigTemplate = []
+
+########################## IS DISTRIBUTION ACTIVE? ###################
+# Return nothing if distribution is active; the default distribution
+# will be the first one configured.  If the distribution is active,
+# then "default='none'" will be returned.
+
+def ifDistActive(oreSelect):
+    if (oreActive[oreSelect] == "no"):
+        return " default='none'"
+    else:
+        return " "
 
 ########################## MAKE CONFIG HEADING #######################
 
@@ -317,7 +331,7 @@ def controlsGen(currentOreGen):
     
     # Opening
     configScriptOpen = indentText(indentLine)+"<!-- "+oreName[currentOreGen]+" Configuration UI -->\n"
-    configScriptOpen += indentText(indentLine)+"<OptionChoice name='"+oreConfigName+"Dist' displayState='shown' displayGroup='group"+modConfigName+"'> \n"
+    configScriptOpen += indentText(indentLine)+"<OptionChoice name='"+oreConfigName+"Dist'"+ifDistActive(currentOreGen)+" displayState='shown' displayGroup='group"+modConfigName+"'> \n"
     indentLine += 1
     configScriptOpen += indentText(indentLine)+"<Description> Controls how "+oreName[currentOreGen]+" is generated </Description> \n"
     configScriptOpen += indentText(indentLine)+"<DisplayName>"+modName+" "+oreName[currentOreGen]+"</DisplayName>\n"
