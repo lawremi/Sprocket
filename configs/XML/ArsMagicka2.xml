@@ -1,0 +1,218 @@
+
+<!-- ================================================================ 
+
+Custom Ore Generation:   Ars Magicka 2 Module
+
+Generates: Vinteum, Chimerite, Blue Topaz
+
+================================================================ -->
+
+    <IfModInstalled name="arsmagica2">
+
+        <ConfigSection>
+            <!-- Setup Screen Configuration -->
+
+            <ConfigSection>
+                <OptionDisplayGroup name='groupArsMagicka2' displayName='Ars Magicka 2 Ores' displayState='shown'> 
+                    <Description>
+                        Distribution options for Ars Magicka 2 Ores.
+                    </Description>
+                </OptionDisplayGroup>
+
+                <ConfigSection>
+                    <!-- Vinteum Configuration UI -->
+                    <OptionChoice name='arsmVinteumDist' displayState='shown' displayGroup='groupArsMagicka2'> 
+                        <Description> Controls how Vinteum is generated </Description> 
+                        <DisplayName>Ars Magicka 2 Vinteum</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Vinteum is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='arsmVinteumFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupArsMagicka2'>
+                        <Description> Frequency multiplier for Ars Magicka 2 Vinteum distributions </Description>
+                        <DisplayName>Ars Magicka 2 Vinteum Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='arsmVinteumSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupArsMagicka2'>
+                        <Description> Size multiplier for Ars Magicka 2 Vinteum distributions </Description>
+                        <DisplayName>Ars Magicka 2 Vinteum Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Chimerite Configuration UI -->
+                    <OptionChoice name='arsmChimeriteDist' displayState='shown' displayGroup='groupArsMagicka2'> 
+                        <Description> Controls how Chimerite is generated </Description> 
+                        <DisplayName>Ars Magicka 2 Chimerite</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Chimerite is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='arsmChimeriteFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupArsMagicka2'>
+                        <Description> Frequency multiplier for Ars Magicka 2 Chimerite distributions </Description>
+                        <DisplayName>Ars Magicka 2 Chimerite Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='arsmChimeriteSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupArsMagicka2'>
+                        <Description> Size multiplier for Ars Magicka 2 Chimerite distributions </Description>
+                        <DisplayName>Ars Magicka 2 Chimerite Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Blue Topaz Configuration UI -->
+                    <OptionChoice name='arsmBlueTopazDist' displayState='shown' displayGroup='groupArsMagicka2'> 
+                        <Description> Controls how Blue Topaz is generated </Description> 
+                        <DisplayName>Ars Magicka 2 Blue Topaz</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Blue Topaz is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='arsmBlueTopazFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupArsMagicka2'>
+                        <Description> Frequency multiplier for Ars Magicka 2 Blue Topaz distributions </Description>
+                        <DisplayName>Ars Magicka 2 Blue Topaz Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='arsmBlueTopazSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupArsMagicka2'>
+                        <Description> Size multiplier for Ars Magicka 2 Blue Topaz distributions </Description>
+                        <DisplayName>Ars Magicka 2 Blue Topaz Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+            </ConfigSection>
+
+
+            <!-- Setup Overworld -->
+            <IfCondition condition=':= ?COGActive'>
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+                <Substitute name='arsmOverworldOreSubstitute0' block='minecraft:stone'>
+                    <Description>
+                        Replace vanilla-generated ore clusters.
+                    </Description>
+                    <Comment>
+                        The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                    </Comment>
+                    <Replaces block='arsmagica2:vinteumOre:0' />
+                    <Replaces block='arsmagica2:vinteumOre:1' />
+                    <Replaces block='arsmagica2:vinteumOre:2' />
+                </Substitute>
+                <!-- Adding ores --> 
+                <IfCondition condition=':= arsmVinteumDist = "layeredVeins"'>
+                    <Veins name='arsmVinteum0Veins' block='arsmagica2:vinteumOre' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x602B2DC0</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * arsmVinteumSize * _default_' range=':= 1 * arsmVinteumSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * arsmVinteumFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * arsmVinteumSize * _default_' range=':= 1 * arsmVinteumSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= arsmVinteumDist = "vanillaStdGen"'>
+                    <StandardGen name='arsmVinteum0Standard' block='arsmagica2:vinteumOre' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x602B2DC0</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * arsmVinteumSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * arsmVinteumFreq * _default_'/>
+                        <Setting name='Height' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= arsmChimeriteDist = "layeredVeins"'>
+                    <Veins name='arsmChimerite0Veins' block='arsmagica2:vinteumOre:1' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x602B2DC0</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * arsmChimeriteSize * _default_' range=':= 1 * arsmChimeriteSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * arsmChimeriteFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * arsmChimeriteSize * _default_' range=':= 1 * arsmChimeriteSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= arsmChimeriteDist = "vanillaStdGen"'>
+                    <StandardGen name='arsmChimerite0Standard' block='arsmagica2:vinteumOre:1' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x602B2DC0</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * arsmChimeriteSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * arsmChimeriteFreq * _default_'/>
+                        <Setting name='Height' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= arsmBlueTopazDist = "layeredVeins"'>
+                    <Veins name='arsmBlueTopaz0Veins' block='arsmagica2:vinteumOre:2' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x602B2DC0</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * arsmBlueTopazSize * _default_' range=':= 1 * arsmBlueTopazSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * arsmBlueTopazFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * arsmBlueTopazSize * _default_' range=':= 1 * arsmBlueTopazSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= arsmBlueTopazDist = "vanillaStdGen"'>
+                    <StandardGen name='arsmBlueTopaz0Standard' block='arsmagica2:vinteumOre:2' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x602B2DC0</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * arsmBlueTopazSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * arsmBlueTopazFreq * _default_'/>
+                        <Setting name='Height' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+            </IfCondition>
+
+
+ 
+ 
+        </ConfigSection>
+    </IfModInstalled> 
+ 
+
+
+<!-- This file was made using the Sprocket Configuration Generator. -->

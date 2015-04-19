@@ -1,0 +1,346 @@
+
+<!-- ================================================================ 
+
+Custom Ore Generation:   Simple Ores Module
+
+Generates: Copper, Tin, Mythril, Adamantium, Onyx
+
+================================================================ -->
+
+    <IfModInstalled name="simpleores">
+
+        <ConfigSection>
+            <!-- Setup Screen Configuration -->
+
+            <ConfigSection>
+                <OptionDisplayGroup name='groupSimpleOres' displayName='Simple Ores Ores' displayState='shown'> 
+                    <Description>
+                        Distribution options for Simple Ores Ores.
+                    </Description>
+                </OptionDisplayGroup>
+
+                <ConfigSection>
+                    <!-- Copper Configuration UI -->
+                    <OptionChoice name='smpoCopperDist' displayState='shown' displayGroup='groupSimpleOres'> 
+                        <Description> Controls how Copper is generated </Description> 
+                        <DisplayName>Simple Ores Copper</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Copper is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='smpoCopperFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSimpleOres'>
+                        <Description> Frequency multiplier for Simple Ores Copper distributions </Description>
+                        <DisplayName>Simple Ores Copper Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='smpoCopperSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSimpleOres'>
+                        <Description> Size multiplier for Simple Ores Copper distributions </Description>
+                        <DisplayName>Simple Ores Copper Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Tin Configuration UI -->
+                    <OptionChoice name='smpoTinDist' displayState='shown' displayGroup='groupSimpleOres'> 
+                        <Description> Controls how Tin is generated </Description> 
+                        <DisplayName>Simple Ores Tin</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Tin is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='smpoTinFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSimpleOres'>
+                        <Description> Frequency multiplier for Simple Ores Tin distributions </Description>
+                        <DisplayName>Simple Ores Tin Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='smpoTinSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSimpleOres'>
+                        <Description> Size multiplier for Simple Ores Tin distributions </Description>
+                        <DisplayName>Simple Ores Tin Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Mythril Configuration UI -->
+                    <OptionChoice name='smpoMythrilDist' displayState='shown' displayGroup='groupSimpleOres'> 
+                        <Description> Controls how Mythril is generated </Description> 
+                        <DisplayName>Simple Ores Mythril</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Mythril is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='smpoMythrilFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSimpleOres'>
+                        <Description> Frequency multiplier for Simple Ores Mythril distributions </Description>
+                        <DisplayName>Simple Ores Mythril Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='smpoMythrilSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSimpleOres'>
+                        <Description> Size multiplier for Simple Ores Mythril distributions </Description>
+                        <DisplayName>Simple Ores Mythril Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Adamantium Configuration UI -->
+                    <OptionChoice name='smpoAdamantiumDist' displayState='shown' displayGroup='groupSimpleOres'> 
+                        <Description> Controls how Adamantium is generated </Description> 
+                        <DisplayName>Simple Ores Adamantium</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Adamantium is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='smpoAdamantiumFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSimpleOres'>
+                        <Description> Frequency multiplier for Simple Ores Adamantium distributions </Description>
+                        <DisplayName>Simple Ores Adamantium Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='smpoAdamantiumSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSimpleOres'>
+                        <Description> Size multiplier for Simple Ores Adamantium distributions </Description>
+                        <DisplayName>Simple Ores Adamantium Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Onyx Configuration UI -->
+                    <OptionChoice name='smpoOnyxDist' displayState='shown' displayGroup='groupSimpleOres'> 
+                        <Description> Controls how Onyx is generated </Description> 
+                        <DisplayName>Simple Ores Onyx</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Onyx is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='smpoOnyxFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSimpleOres'>
+                        <Description> Frequency multiplier for Simple Ores Onyx distributions </Description>
+                        <DisplayName>Simple Ores Onyx Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='smpoOnyxSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSimpleOres'>
+                        <Description> Size multiplier for Simple Ores Onyx distributions </Description>
+                        <DisplayName>Simple Ores Onyx Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+            </ConfigSection>
+
+
+            <!-- Setup Overworld -->
+            <IfCondition condition=':= ?COGActive'>
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+                <Substitute name='smpoOverworldOreSubstitute0' block='minecraft:stone'>
+                    <Description>
+                        Replace vanilla-generated ore clusters.
+                    </Description>
+                    <Comment>
+                        The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                    </Comment>
+                    <Replaces block='simpleores:copper_ore:0' />
+                    <Replaces block='simpleores:tin_ore:0' />
+                    <Replaces block='simpleores:mythril_ore:0' />
+                    <Replaces block='simpleores:adamantium_ore:0' />
+                </Substitute>
+                <!-- Adding ores --> 
+                <IfCondition condition=':= smpoCopperDist = "layeredVeins"'>
+                    <Veins name='smpoCopper0Veins' block='simpleores:copper_ore' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6020CDD5</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * smpoCopperSize * _default_' range=':= 1 * smpoCopperSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * smpoCopperFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * smpoCopperSize * _default_' range=':= 1 * smpoCopperSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= smpoCopperDist = "vanillaStdGen"'>
+                    <StandardGen name='smpoCopper0Standard' block='simpleores:copper_ore' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6020CDD5</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * smpoCopperSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * smpoCopperFreq * _default_'/>
+                        <Setting name='Height' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= smpoTinDist = "layeredVeins"'>
+                    <Veins name='smpoTin0Veins' block='simpleores:tin_ore' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6020CDD5</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * smpoTinSize * _default_' range=':= 1 * smpoTinSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * smpoTinFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * smpoTinSize * _default_' range=':= 1 * smpoTinSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= smpoTinDist = "vanillaStdGen"'>
+                    <StandardGen name='smpoTin0Standard' block='simpleores:tin_ore' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6020CDD5</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * smpoTinSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * smpoTinFreq * _default_'/>
+                        <Setting name='Height' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= smpoMythrilDist = "layeredVeins"'>
+                    <Veins name='smpoMythril0Veins' block='simpleores:mythril_ore' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6020CDD5</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * smpoMythrilSize * _default_' range=':= 1 * smpoMythrilSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * smpoMythrilFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * smpoMythrilSize * _default_' range=':= 1 * smpoMythrilSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= smpoMythrilDist = "vanillaStdGen"'>
+                    <StandardGen name='smpoMythril0Standard' block='simpleores:mythril_ore' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6020CDD5</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * smpoMythrilSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * smpoMythrilFreq * _default_'/>
+                        <Setting name='Height' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= smpoAdamantiumDist = "layeredVeins"'>
+                    <Veins name='smpoAdamantium0Veins' block='simpleores:adamantium_ore' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6020CDD5</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * smpoAdamantiumSize * _default_' range=':= 1 * smpoAdamantiumSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * smpoAdamantiumFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * smpoAdamantiumSize * _default_' range=':= 1 * smpoAdamantiumSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= smpoAdamantiumDist = "vanillaStdGen"'>
+                    <StandardGen name='smpoAdamantium0Standard' block='simpleores:adamantium_ore' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6020CDD5</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * smpoAdamantiumSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * smpoAdamantiumFreq * _default_'/>
+                        <Setting name='Height' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+            </IfCondition>
+
+
+            <!-- Setup Nether -->
+            <IfCondition condition=':= dimension.generator = "HellRandomLevelSource"'>
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+                <Substitute name='smpoNetherOreSubstitute0' block='minecraft:netherrack'>
+                    <Description>
+                        Replace vanilla-generated ore clusters.
+                    </Description>
+                    <Comment>
+                        The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                    </Comment>
+                    <Replaces block='simpleores:onyx_ore:0' />
+                </Substitute>
+                <!-- Adding ores --> 
+                <IfCondition condition=':= smpoOnyxDist = "layeredVeins"'>
+                    <Veins name='smpoOnyx0Veins' block='simpleores:onyx_ore' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6020CDD5</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * smpoOnyxSize * _default_' range=':= 1 * smpoOnyxSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * smpoOnyxFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * smpoOnyxSize * _default_' range=':= 1 * smpoOnyxSize * _default_'/>
+                        <Replaces block='minecraft:netherrack'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= smpoOnyxDist = "vanillaStdGen"'>
+                    <StandardGen name='smpoOnyx0Standard' block='simpleores:onyx_ore' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6020CDD5</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * smpoOnyxSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * smpoOnyxFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:netherrack'/>
+                    </StandardGen>
+                </IfCondition>
+            </IfCondition>
+
+
+ 
+        </ConfigSection>
+    </IfModInstalled> 
+ 
+
+
+<!-- This file was made using the Sprocket Configuration Generator. -->

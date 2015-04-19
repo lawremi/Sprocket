@@ -1,0 +1,218 @@
+
+<!-- ================================================================ 
+
+Custom Ore Generation:   Metallurgy 4 Precious Module
+
+Generates: Zinc, Silver, Platinum
+
+================================================================ -->
+
+    <IfModInstalled name="Metallurgy">
+
+        <ConfigSection>
+            <!-- Setup Screen Configuration -->
+
+            <ConfigSection>
+                <OptionDisplayGroup name='groupMetallurgy4Precious' displayName='Metallurgy 4 Precious Ores' displayState='shown'> 
+                    <Description>
+                        Distribution options for Metallurgy 4 Precious Ores.
+                    </Description>
+                </OptionDisplayGroup>
+
+                <ConfigSection>
+                    <!-- Zinc Configuration UI -->
+                    <OptionChoice name='mtlpZincDist' displayState='shown' displayGroup='groupMetallurgy4Precious'> 
+                        <Description> Controls how Zinc is generated </Description> 
+                        <DisplayName>Metallurgy 4 Precious Zinc</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Zinc is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlpZincFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Precious'>
+                        <Description> Frequency multiplier for Metallurgy 4 Precious Zinc distributions </Description>
+                        <DisplayName>Metallurgy 4 Precious Zinc Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlpZincSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Precious'>
+                        <Description> Size multiplier for Metallurgy 4 Precious Zinc distributions </Description>
+                        <DisplayName>Metallurgy 4 Precious Zinc Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Silver Configuration UI -->
+                    <OptionChoice name='mtlpSilverDist' displayState='shown' displayGroup='groupMetallurgy4Precious'> 
+                        <Description> Controls how Silver is generated </Description> 
+                        <DisplayName>Metallurgy 4 Precious Silver</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Silver is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlpSilverFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Precious'>
+                        <Description> Frequency multiplier for Metallurgy 4 Precious Silver distributions </Description>
+                        <DisplayName>Metallurgy 4 Precious Silver Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlpSilverSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Precious'>
+                        <Description> Size multiplier for Metallurgy 4 Precious Silver distributions </Description>
+                        <DisplayName>Metallurgy 4 Precious Silver Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Platinum Configuration UI -->
+                    <OptionChoice name='mtlpPlatinumDist' displayState='shown' displayGroup='groupMetallurgy4Precious'> 
+                        <Description> Controls how Platinum is generated </Description> 
+                        <DisplayName>Metallurgy 4 Precious Platinum</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Platinum is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlpPlatinumFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Precious'>
+                        <Description> Frequency multiplier for Metallurgy 4 Precious Platinum distributions </Description>
+                        <DisplayName>Metallurgy 4 Precious Platinum Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlpPlatinumSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Precious'>
+                        <Description> Size multiplier for Metallurgy 4 Precious Platinum distributions </Description>
+                        <DisplayName>Metallurgy 4 Precious Platinum Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+            </ConfigSection>
+
+
+            <!-- Setup Overworld -->
+            <IfCondition condition=':= ?COGActive'>
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+                <Substitute name='mtlpOverworldOreSubstitute0' block='minecraft:stone'>
+                    <Description>
+                        Replace vanilla-generated ore clusters.
+                    </Description>
+                    <Comment>
+                        The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                    </Comment>
+                    <Replaces block='Metallurgy:precious.ore:0' />
+                    <Replaces block='Metallurgy:precious.ore:1' />
+                    <Replaces block='Metallurgy:precious.ore:2' />
+                </Substitute>
+                <!-- Adding ores --> 
+                <IfCondition condition=':= mtlpZincDist = "layeredVeins"'>
+                    <Veins name='mtlpZinc0Veins' block='Metallurgy:precious.ore' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605B95D0</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlpZincSize * _default_' range=':= 1 * mtlpZincSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtlpZincFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlpZincSize * _default_' range=':= 1 * mtlpZincSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlpZincDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlpZinc0Standard' block='Metallurgy:precious.ore' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605B95D0</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlpZincSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtlpZincFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlpSilverDist = "layeredVeins"'>
+                    <Veins name='mtlpSilver0Veins' block='Metallurgy:precious.ore:1' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605B95D0</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlpSilverSize * _default_' range=':= 1 * mtlpSilverSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtlpSilverFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlpSilverSize * _default_' range=':= 1 * mtlpSilverSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlpSilverDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlpSilver0Standard' block='Metallurgy:precious.ore:1' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605B95D0</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlpSilverSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtlpSilverFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlpPlatinumDist = "layeredVeins"'>
+                    <Veins name='mtlpPlatinum0Veins' block='Metallurgy:precious.ore:2' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605B95D0</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlpPlatinumSize * _default_' range=':= 1 * mtlpPlatinumSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtlpPlatinumFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlpPlatinumSize * _default_' range=':= 1 * mtlpPlatinumSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlpPlatinumDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlpPlatinum0Standard' block='Metallurgy:precious.ore:2' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605B95D0</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlpPlatinumSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtlpPlatinumFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+            </IfCondition>
+
+
+ 
+ 
+        </ConfigSection>
+    </IfModInstalled> 
+ 
+
+
+<!-- This file was made using the Sprocket Configuration Generator. -->

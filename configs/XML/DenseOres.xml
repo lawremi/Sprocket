@@ -1,0 +1,525 @@
+
+<!-- ================================================================ 
+
+Custom Ore Generation:   Dense Ores Module
+
+Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
+
+================================================================ -->
+
+    <IfModInstalled name="denseores">
+
+        <ConfigSection>
+            <!-- Setup Screen Configuration -->
+
+            <ConfigSection>
+                <OptionDisplayGroup name='groupDenseOres' displayName='Dense Ores Ores' displayState='shown'> 
+                    <Description>
+                        Distribution options for Dense Ores Ores.
+                    </Description>
+                </OptionDisplayGroup>
+
+                <ConfigSection>
+                    <!-- Iron Configuration UI -->
+                    <OptionChoice name='dnsoIronDist' displayState='shown' displayGroup='groupDenseOres'> 
+                        <Description> Controls how Iron is generated </Description> 
+                        <DisplayName>Dense Ores Iron</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Iron is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='dnsoIronFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupDenseOres'>
+                        <Description> Frequency multiplier for Dense Ores Iron distributions </Description>
+                        <DisplayName>Dense Ores Iron Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='dnsoIronSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupDenseOres'>
+                        <Description> Size multiplier for Dense Ores Iron distributions </Description>
+                        <DisplayName>Dense Ores Iron Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Gold Configuration UI -->
+                    <OptionChoice name='dnsoGoldDist' displayState='shown' displayGroup='groupDenseOres'> 
+                        <Description> Controls how Gold is generated </Description> 
+                        <DisplayName>Dense Ores Gold</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Gold is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='dnsoGoldFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupDenseOres'>
+                        <Description> Frequency multiplier for Dense Ores Gold distributions </Description>
+                        <DisplayName>Dense Ores Gold Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='dnsoGoldSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupDenseOres'>
+                        <Description> Size multiplier for Dense Ores Gold distributions </Description>
+                        <DisplayName>Dense Ores Gold Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Lapis Configuration UI -->
+                    <OptionChoice name='dnsoLapisDist' displayState='shown' displayGroup='groupDenseOres'> 
+                        <Description> Controls how Lapis is generated </Description> 
+                        <DisplayName>Dense Ores Lapis</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Lapis is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='dnsoLapisFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupDenseOres'>
+                        <Description> Frequency multiplier for Dense Ores Lapis distributions </Description>
+                        <DisplayName>Dense Ores Lapis Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='dnsoLapisSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupDenseOres'>
+                        <Description> Size multiplier for Dense Ores Lapis distributions </Description>
+                        <DisplayName>Dense Ores Lapis Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Diamond Configuration UI -->
+                    <OptionChoice name='dnsoDiamondDist' displayState='shown' displayGroup='groupDenseOres'> 
+                        <Description> Controls how Diamond is generated </Description> 
+                        <DisplayName>Dense Ores Diamond</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Diamond is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='dnsoDiamondFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupDenseOres'>
+                        <Description> Frequency multiplier for Dense Ores Diamond distributions </Description>
+                        <DisplayName>Dense Ores Diamond Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='dnsoDiamondSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupDenseOres'>
+                        <Description> Size multiplier for Dense Ores Diamond distributions </Description>
+                        <DisplayName>Dense Ores Diamond Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Emerald Configuration UI -->
+                    <OptionChoice name='dnsoEmeraldDist' displayState='shown' displayGroup='groupDenseOres'> 
+                        <Description> Controls how Emerald is generated </Description> 
+                        <DisplayName>Dense Ores Emerald</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Emerald is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='dnsoEmeraldFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupDenseOres'>
+                        <Description> Frequency multiplier for Dense Ores Emerald distributions </Description>
+                        <DisplayName>Dense Ores Emerald Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='dnsoEmeraldSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupDenseOres'>
+                        <Description> Size multiplier for Dense Ores Emerald distributions </Description>
+                        <DisplayName>Dense Ores Emerald Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Redstone Configuration UI -->
+                    <OptionChoice name='dnsoRedstoneDist' displayState='shown' displayGroup='groupDenseOres'> 
+                        <Description> Controls how Redstone is generated </Description> 
+                        <DisplayName>Dense Ores Redstone</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Redstone is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='dnsoRedstoneFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupDenseOres'>
+                        <Description> Frequency multiplier for Dense Ores Redstone distributions </Description>
+                        <DisplayName>Dense Ores Redstone Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='dnsoRedstoneSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupDenseOres'>
+                        <Description> Size multiplier for Dense Ores Redstone distributions </Description>
+                        <DisplayName>Dense Ores Redstone Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Coal Configuration UI -->
+                    <OptionChoice name='dnsoCoalDist' displayState='shown' displayGroup='groupDenseOres'> 
+                        <Description> Controls how Coal is generated </Description> 
+                        <DisplayName>Dense Ores Coal</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Coal is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='dnsoCoalFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupDenseOres'>
+                        <Description> Frequency multiplier for Dense Ores Coal distributions </Description>
+                        <DisplayName>Dense Ores Coal Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='dnsoCoalSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupDenseOres'>
+                        <Description> Size multiplier for Dense Ores Coal distributions </Description>
+                        <DisplayName>Dense Ores Coal Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Nether Quartz Configuration UI -->
+                    <OptionChoice name='dnsoNetherQuartzDist' displayState='shown' displayGroup='groupDenseOres'> 
+                        <Description> Controls how Nether Quartz is generated </Description> 
+                        <DisplayName>Dense Ores Nether Quartz</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Nether Quartz is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='dnsoNetherQuartzFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupDenseOres'>
+                        <Description> Frequency multiplier for Dense Ores Nether Quartz distributions </Description>
+                        <DisplayName>Dense Ores Nether Quartz Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='dnsoNetherQuartzSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupDenseOres'>
+                        <Description> Size multiplier for Dense Ores Nether Quartz distributions </Description>
+                        <DisplayName>Dense Ores Nether Quartz Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+            </ConfigSection>
+
+
+            <!-- Setup Overworld -->
+            <IfCondition condition=':= ?COGActive'>
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+                <Substitute name='dnsoOverworldOreSubstitute0' block='minecraft:stone'>
+                    <Description>
+                        Replace vanilla-generated ore clusters.
+                    </Description>
+                    <Comment>
+                        The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                    </Comment>
+                    <Replaces block='denseores:block0:0' />
+                    <Replaces block='denseores:block0:0' />
+                    <Replaces block='denseores:block0:0' />
+                    <Replaces block='denseores:block0:0' />
+                    <Replaces block='denseores:block0:0' />
+                    <Replaces block='denseores:block0:0' />
+                    <Replaces block='denseores:block0:0' />
+                    <Replaces block='denseores:block0:0' />
+                </Substitute>
+                <!-- Adding ores --> 
+                <IfCondition condition=':= dnsoIronDist = "layeredVeins"'>
+                    <Veins name='dnsoIron0Veins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60E3A2C2</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * dnsoIronSize * _default_' range=':= 1 * dnsoIronSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * dnsoIronFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * dnsoIronSize * _default_' range=':= 1 * dnsoIronSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= dnsoIronDist = "vanillaStdGen"'>
+                    <StandardGen name='dnsoIron0Standard' block='denseores:block0' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60E3A2C2</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * dnsoIronSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * dnsoIronFreq * _default_'/>
+                        <Setting name='Height' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= dnsoGoldDist = "layeredVeins"'>
+                    <Veins name='dnsoGold0Veins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60E3A2C2</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * dnsoGoldSize * _default_' range=':= 1 * dnsoGoldSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * dnsoGoldFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * dnsoGoldSize * _default_' range=':= 1 * dnsoGoldSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= dnsoGoldDist = "vanillaStdGen"'>
+                    <StandardGen name='dnsoGold0Standard' block='denseores:block0' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60E3A2C2</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * dnsoGoldSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * dnsoGoldFreq * _default_'/>
+                        <Setting name='Height' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= dnsoLapisDist = "layeredVeins"'>
+                    <Veins name='dnsoLapis0Veins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60E3A2C2</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * dnsoLapisSize * _default_' range=':= 1 * dnsoLapisSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * dnsoLapisFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * dnsoLapisSize * _default_' range=':= 1 * dnsoLapisSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= dnsoLapisDist = "vanillaStdGen"'>
+                    <StandardGen name='dnsoLapis0Standard' block='denseores:block0' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60E3A2C2</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * dnsoLapisSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * dnsoLapisFreq * _default_'/>
+                        <Setting name='Height' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= dnsoDiamondDist = "layeredVeins"'>
+                    <Veins name='dnsoDiamond0Veins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60E3A2C2</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * dnsoDiamondSize * _default_' range=':= 1 * dnsoDiamondSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * dnsoDiamondFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * dnsoDiamondSize * _default_' range=':= 1 * dnsoDiamondSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= dnsoDiamondDist = "vanillaStdGen"'>
+                    <StandardGen name='dnsoDiamond0Standard' block='denseores:block0' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60E3A2C2</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * dnsoDiamondSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * dnsoDiamondFreq * _default_'/>
+                        <Setting name='Height' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= dnsoEmeraldDist = "layeredVeins"'>
+                    <Veins name='dnsoEmerald0Veins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60E3A2C2</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * dnsoEmeraldSize * _default_' range=':= 1 * dnsoEmeraldSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * dnsoEmeraldFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * dnsoEmeraldSize * _default_' range=':= 1 * dnsoEmeraldSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= dnsoEmeraldDist = "vanillaStdGen"'>
+                    <StandardGen name='dnsoEmerald0Standard' block='denseores:block0' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60E3A2C2</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * dnsoEmeraldSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * dnsoEmeraldFreq * _default_'/>
+                        <Setting name='Height' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= dnsoRedstoneDist = "layeredVeins"'>
+                    <Veins name='dnsoRedstone0Veins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60E3A2C2</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * dnsoRedstoneSize * _default_' range=':= 1 * dnsoRedstoneSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * dnsoRedstoneFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * dnsoRedstoneSize * _default_' range=':= 1 * dnsoRedstoneSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= dnsoRedstoneDist = "vanillaStdGen"'>
+                    <StandardGen name='dnsoRedstone0Standard' block='denseores:block0' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60E3A2C2</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * dnsoRedstoneSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * dnsoRedstoneFreq * _default_'/>
+                        <Setting name='Height' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= dnsoCoalDist = "layeredVeins"'>
+                    <Veins name='dnsoCoal0Veins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60E3A2C2</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * dnsoCoalSize * _default_' range=':= 1 * dnsoCoalSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * dnsoCoalFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * dnsoCoalSize * _default_' range=':= 1 * dnsoCoalSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= dnsoCoalDist = "vanillaStdGen"'>
+                    <StandardGen name='dnsoCoal0Standard' block='denseores:block0' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60E3A2C2</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * dnsoCoalSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * dnsoCoalFreq * _default_'/>
+                        <Setting name='Height' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+            </IfCondition>
+
+
+            <!-- Setup Nether -->
+            <IfCondition condition=':= dimension.generator = "HellRandomLevelSource"'>
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+                <Substitute name='dnsoNetherOreSubstitute0' block='minecraft:stone'>
+                    <Description>
+                        Replace vanilla-generated ore clusters.
+                    </Description>
+                    <Comment>
+                        The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                    </Comment>
+                    <Replaces block='denseores:block0:0' />
+                    <Replaces block='denseores:block0:0' />
+                    <Replaces block='denseores:block0:0' />
+                    <Replaces block='denseores:block0:0' />
+                    <Replaces block='denseores:block0:0' />
+                    <Replaces block='denseores:block0:0' />
+                    <Replaces block='denseores:block0:0' />
+                    <Replaces block='denseores:block0:0' />
+                </Substitute>
+                <!-- Adding ores --> 
+                <IfCondition condition=':= dnsoNetherQuartzDist = "layeredVeins"'>
+                    <Veins name='dnsoNetherQuartz0Veins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60E3A2C2</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * dnsoNetherQuartzSize * _default_' range=':= 1 * dnsoNetherQuartzSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * dnsoNetherQuartzFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * dnsoNetherQuartzSize * _default_' range=':= 1 * dnsoNetherQuartzSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= dnsoNetherQuartzDist = "vanillaStdGen"'>
+                    <StandardGen name='dnsoNetherQuartz0Standard' block='denseores:block0' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60E3A2C2</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * dnsoNetherQuartzSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * dnsoNetherQuartzFreq * _default_'/>
+                        <Setting name='Height' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+            </IfCondition>
+
+
+ 
+        </ConfigSection>
+    </IfModInstalled> 
+ 
+
+
+<!-- This file was made using the Sprocket Configuration Generator. -->

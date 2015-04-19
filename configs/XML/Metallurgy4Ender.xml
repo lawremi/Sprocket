@@ -1,0 +1,167 @@
+
+<!-- ================================================================ 
+
+Custom Ore Generation:   Metallurgy 4 Ender Module
+
+Generates: Eximite, Meutoite
+
+================================================================ -->
+
+    <IfModInstalled name="Metallurgy">
+
+        <ConfigSection>
+            <!-- Setup Screen Configuration -->
+
+            <ConfigSection>
+                <OptionDisplayGroup name='groupMetallurgy4Ender' displayName='Metallurgy 4 Ender Ores' displayState='shown'> 
+                    <Description>
+                        Distribution options for Metallurgy 4 Ender Ores.
+                    </Description>
+                </OptionDisplayGroup>
+
+                <ConfigSection>
+                    <!-- Eximite Configuration UI -->
+                    <OptionChoice name='mtleEximiteDist' displayState='shown' displayGroup='groupMetallurgy4Ender'> 
+                        <Description> Controls how Eximite is generated </Description> 
+                        <DisplayName>Metallurgy 4 Ender Eximite</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Eximite is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtleEximiteFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Ender'>
+                        <Description> Frequency multiplier for Metallurgy 4 Ender Eximite distributions </Description>
+                        <DisplayName>Metallurgy 4 Ender Eximite Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtleEximiteSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Ender'>
+                        <Description> Size multiplier for Metallurgy 4 Ender Eximite distributions </Description>
+                        <DisplayName>Metallurgy 4 Ender Eximite Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Meutoite Configuration UI -->
+                    <OptionChoice name='mtleMeutoiteDist' displayState='shown' displayGroup='groupMetallurgy4Ender'> 
+                        <Description> Controls how Meutoite is generated </Description> 
+                        <DisplayName>Metallurgy 4 Ender Meutoite</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Meutoite is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtleMeutoiteFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Ender'>
+                        <Description> Frequency multiplier for Metallurgy 4 Ender Meutoite distributions </Description>
+                        <DisplayName>Metallurgy 4 Ender Meutoite Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtleMeutoiteSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Ender'>
+                        <Description> Size multiplier for Metallurgy 4 Ender Meutoite distributions </Description>
+                        <DisplayName>Metallurgy 4 Ender Meutoite Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+            </ConfigSection>
+
+
+            <!-- Setup Overworld -->
+            <IfCondition condition=':= ?COGActive'>
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+                <!-- Adding ores --> 
+            </IfCondition>
+
+
+ 
+            <!-- Setup End -->
+            <IfCondition condition=':= dimension.generator = "EndRandomLevelSource"'>
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+                <Substitute name='mtleEndOreSubstitute0' block='minecraft:end_stone'>
+                    <Description>
+                        Replace vanilla-generated ore clusters.
+                    </Description>
+                    <Comment>
+                        The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                    </Comment>
+                    <Replaces block='Metallurgy:ender.ore:0' />
+                    <Replaces block='Metallurgy:ender.ore:1' />
+                </Substitute>
+                <!-- Adding ores --> 
+                <IfCondition condition=':= mtleEximiteDist = "layeredVeins"'>
+                    <Veins name='mtleEximite0Veins' block='Metallurgy:ender.ore' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x600AE729</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtleEximiteSize * _default_' range=':= 1 * mtleEximiteSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * mtleEximiteFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtleEximiteSize * _default_' range=':= 1 * mtleEximiteSize * _default_'/>
+                        <Replaces block='minecraft:end_stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtleEximiteDist = "vanillaStdGen"'>
+                    <StandardGen name='mtleEximite0Standard' block='Metallurgy:ender.ore' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x600AE729</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtleEximiteSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * mtleEximiteFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:end_stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtleMeutoiteDist = "layeredVeins"'>
+                    <Veins name='mtleMeutoite0Veins' block='Metallurgy:ender.ore:1' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x600AE729</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtleMeutoiteSize * _default_' range=':= 1 * mtleMeutoiteSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * mtleMeutoiteFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtleMeutoiteSize * _default_' range=':= 1 * mtleMeutoiteSize * _default_'/>
+                        <Replaces block='minecraft:end_stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtleMeutoiteDist = "vanillaStdGen"'>
+                    <StandardGen name='mtleMeutoite0Standard' block='Metallurgy:ender.ore:1' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x600AE729</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtleMeutoiteSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * mtleMeutoiteFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:end_stone'/>
+                    </StandardGen>
+                </IfCondition>
+            </IfCondition>
+
+
+        </ConfigSection>
+    </IfModInstalled> 
+ 
+
+
+<!-- This file was made using the Sprocket Configuration Generator. -->

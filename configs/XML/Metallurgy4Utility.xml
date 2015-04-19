@@ -1,0 +1,407 @@
+
+<!-- ================================================================ 
+
+Custom Ore Generation:   Metallurgy 4 Utility Module
+
+Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
+
+================================================================ -->
+
+    <IfModInstalled name="Metallurgy">
+
+        <ConfigSection>
+            <!-- Setup Screen Configuration -->
+
+            <ConfigSection>
+                <OptionDisplayGroup name='groupMetallurgy4Utility' displayName='Metallurgy 4 Utility Ores' displayState='shown'> 
+                    <Description>
+                        Distribution options for Metallurgy 4 Utility Ores.
+                    </Description>
+                </OptionDisplayGroup>
+
+                <ConfigSection>
+                    <!-- Sulfur Configuration UI -->
+                    <OptionChoice name='mtluSulfurDist' displayState='shown' displayGroup='groupMetallurgy4Utility'> 
+                        <Description> Controls how Sulfur is generated </Description> 
+                        <DisplayName>Metallurgy 4 Utility Sulfur</DisplayName>
+                        <Choice value='sparseVeins' displayValue='Sparse Veins'>
+                            <Description>
+                                Sparse Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Sulfur is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtluSulfurFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Utility'>
+                        <Description> Frequency multiplier for Metallurgy 4 Utility Sulfur distributions </Description>
+                        <DisplayName>Metallurgy 4 Utility Sulfur Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtluSulfurSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Utility'>
+                        <Description> Size multiplier for Metallurgy 4 Utility Sulfur distributions </Description>
+                        <DisplayName>Metallurgy 4 Utility Sulfur Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Phosphorite Configuration UI -->
+                    <OptionChoice name='mtluPhosphoriteDist' displayState='shown' displayGroup='groupMetallurgy4Utility'> 
+                        <Description> Controls how Phosphorite is generated </Description> 
+                        <DisplayName>Metallurgy 4 Utility Phosphorite</DisplayName>
+                        <Choice value='sparseVeins' displayValue='Sparse Veins'>
+                            <Description>
+                                Sparse Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Phosphorite is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtluPhosphoriteFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Utility'>
+                        <Description> Frequency multiplier for Metallurgy 4 Utility Phosphorite distributions </Description>
+                        <DisplayName>Metallurgy 4 Utility Phosphorite Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtluPhosphoriteSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Utility'>
+                        <Description> Size multiplier for Metallurgy 4 Utility Phosphorite distributions </Description>
+                        <DisplayName>Metallurgy 4 Utility Phosphorite Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Saltpeter Configuration UI -->
+                    <OptionChoice name='mtluSaltpeterDist' displayState='shown' displayGroup='groupMetallurgy4Utility'> 
+                        <Description> Controls how Saltpeter is generated </Description> 
+                        <DisplayName>Metallurgy 4 Utility Saltpeter</DisplayName>
+                        <Choice value='sparseVeins' displayValue='Sparse Veins'>
+                            <Description>
+                                Sparse Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Saltpeter is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtluSaltpeterFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Utility'>
+                        <Description> Frequency multiplier for Metallurgy 4 Utility Saltpeter distributions </Description>
+                        <DisplayName>Metallurgy 4 Utility Saltpeter Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtluSaltpeterSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Utility'>
+                        <Description> Size multiplier for Metallurgy 4 Utility Saltpeter distributions </Description>
+                        <DisplayName>Metallurgy 4 Utility Saltpeter Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Magnesium Configuration UI -->
+                    <OptionChoice name='mtluMagnesiumDist' displayState='shown' displayGroup='groupMetallurgy4Utility'> 
+                        <Description> Controls how Magnesium is generated </Description> 
+                        <DisplayName>Metallurgy 4 Utility Magnesium</DisplayName>
+                        <Choice value='sparseVeins' displayValue='Sparse Veins'>
+                            <Description>
+                                Sparse Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Magnesium is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtluMagnesiumFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Utility'>
+                        <Description> Frequency multiplier for Metallurgy 4 Utility Magnesium distributions </Description>
+                        <DisplayName>Metallurgy 4 Utility Magnesium Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtluMagnesiumSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Utility'>
+                        <Description> Size multiplier for Metallurgy 4 Utility Magnesium distributions </Description>
+                        <DisplayName>Metallurgy 4 Utility Magnesium Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Bitumen Configuration UI -->
+                    <OptionChoice name='mtluBitumenDist' displayState='shown' displayGroup='groupMetallurgy4Utility'> 
+                        <Description> Controls how Bitumen is generated </Description> 
+                        <DisplayName>Metallurgy 4 Utility Bitumen</DisplayName>
+                        <Choice value='sparseVeins' displayValue='Sparse Veins'>
+                            <Description>
+                                Sparse Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Bitumen is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtluBitumenFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Utility'>
+                        <Description> Frequency multiplier for Metallurgy 4 Utility Bitumen distributions </Description>
+                        <DisplayName>Metallurgy 4 Utility Bitumen Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtluBitumenSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Utility'>
+                        <Description> Size multiplier for Metallurgy 4 Utility Bitumen distributions </Description>
+                        <DisplayName>Metallurgy 4 Utility Bitumen Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Potash Configuration UI -->
+                    <OptionChoice name='mtluPotashDist' displayState='shown' displayGroup='groupMetallurgy4Utility'> 
+                        <Description> Controls how Potash is generated </Description> 
+                        <DisplayName>Metallurgy 4 Utility Potash</DisplayName>
+                        <Choice value='sparseVeins' displayValue='Sparse Veins'>
+                            <Description>
+                                Sparse Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Potash is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtluPotashFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Utility'>
+                        <Description> Frequency multiplier for Metallurgy 4 Utility Potash distributions </Description>
+                        <DisplayName>Metallurgy 4 Utility Potash Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtluPotashSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Utility'>
+                        <Description> Size multiplier for Metallurgy 4 Utility Potash distributions </Description>
+                        <DisplayName>Metallurgy 4 Utility Potash Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+            </ConfigSection>
+
+
+            <!-- Setup Overworld -->
+            <IfCondition condition=':= ?COGActive'>
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+                <Substitute name='mtluOverworldOreSubstitute0' block='minecraft:stone'>
+                    <Description>
+                        Replace vanilla-generated ore clusters.
+                    </Description>
+                    <Comment>
+                        The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                    </Comment>
+                    <Replaces block='Metallurgy:utility.ore:0' />
+                    <Replaces block='Metallurgy:utility.ore:1' />
+                    <Replaces block='Metallurgy:utility.ore:2' />
+                    <Replaces block='Metallurgy:utility.ore:3' />
+                    <Replaces block='Metallurgy:utility.ore:4' />
+                    <Replaces block='Metallurgy:utility.ore:5' />
+                </Substitute>
+                <!-- Adding ores --> 
+                <IfCondition condition=':= mtluSulfurDist = "sparseVeins"'>
+                    <Veins name='mtluSulfur0Veins' block='Metallurgy:utility.ore' inherits='PresetSparseVeins'>
+                        <Description>
+                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
+                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
+                            compared to solid ore veins.  They are also more difficult to follow, since it is 
+                            harder to get an idea of their direction while mining.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60C1B080</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtluSulfurFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtluSulfurSize * _default_' range=':= 1 * mtluSulfurSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
+                        <Setting name='SegmentRadius' avg=':= 1 * mtluSulfurSize * _default_' range=':= 1 * mtluSulfurSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtluSulfurDist = "vanillaStdGen"'>
+                    <StandardGen name='mtluSulfur0Standard' block='Metallurgy:utility.ore' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60C1B080</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtluSulfurSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtluSulfurFreq * _default_'/>
+                        <Setting name='Height' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtluPhosphoriteDist = "sparseVeins"'>
+                    <Veins name='mtluPhosphorite0Veins' block='Metallurgy:utility.ore:1' inherits='PresetSparseVeins'>
+                        <Description>
+                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
+                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
+                            compared to solid ore veins.  They are also more difficult to follow, since it is 
+                            harder to get an idea of their direction while mining.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60C1B080</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtluPhosphoriteFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtluPhosphoriteSize * _default_' range=':= 1 * mtluPhosphoriteSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
+                        <Setting name='SegmentRadius' avg=':= 1 * mtluPhosphoriteSize * _default_' range=':= 1 * mtluPhosphoriteSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtluPhosphoriteDist = "vanillaStdGen"'>
+                    <StandardGen name='mtluPhosphorite0Standard' block='Metallurgy:utility.ore:1' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60C1B080</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtluPhosphoriteSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtluPhosphoriteFreq * _default_'/>
+                        <Setting name='Height' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtluSaltpeterDist = "sparseVeins"'>
+                    <Veins name='mtluSaltpeter0Veins' block='Metallurgy:utility.ore:2' inherits='PresetSparseVeins'>
+                        <Description>
+                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
+                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
+                            compared to solid ore veins.  They are also more difficult to follow, since it is 
+                            harder to get an idea of their direction while mining.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60C1B080</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtluSaltpeterFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtluSaltpeterSize * _default_' range=':= 1 * mtluSaltpeterSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
+                        <Setting name='SegmentRadius' avg=':= 1 * mtluSaltpeterSize * _default_' range=':= 1 * mtluSaltpeterSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtluSaltpeterDist = "vanillaStdGen"'>
+                    <StandardGen name='mtluSaltpeter0Standard' block='Metallurgy:utility.ore:2' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60C1B080</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtluSaltpeterSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtluSaltpeterFreq * _default_'/>
+                        <Setting name='Height' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtluMagnesiumDist = "sparseVeins"'>
+                    <Veins name='mtluMagnesium0Veins' block='Metallurgy:utility.ore:3' inherits='PresetSparseVeins'>
+                        <Description>
+                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
+                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
+                            compared to solid ore veins.  They are also more difficult to follow, since it is 
+                            harder to get an idea of their direction while mining.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60C1B080</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtluMagnesiumFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtluMagnesiumSize * _default_' range=':= 1 * mtluMagnesiumSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
+                        <Setting name='SegmentRadius' avg=':= 1 * mtluMagnesiumSize * _default_' range=':= 1 * mtluMagnesiumSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtluMagnesiumDist = "vanillaStdGen"'>
+                    <StandardGen name='mtluMagnesium0Standard' block='Metallurgy:utility.ore:3' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60C1B080</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtluMagnesiumSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtluMagnesiumFreq * _default_'/>
+                        <Setting name='Height' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtluBitumenDist = "sparseVeins"'>
+                    <Veins name='mtluBitumen0Veins' block='Metallurgy:utility.ore:4' inherits='PresetSparseVeins'>
+                        <Description>
+                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
+                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
+                            compared to solid ore veins.  They are also more difficult to follow, since it is 
+                            harder to get an idea of their direction while mining.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60C1B080</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtluBitumenFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtluBitumenSize * _default_' range=':= 1 * mtluBitumenSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
+                        <Setting name='SegmentRadius' avg=':= 1 * mtluBitumenSize * _default_' range=':= 1 * mtluBitumenSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtluBitumenDist = "vanillaStdGen"'>
+                    <StandardGen name='mtluBitumen0Standard' block='Metallurgy:utility.ore:4' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60C1B080</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtluBitumenSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtluBitumenFreq * _default_'/>
+                        <Setting name='Height' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtluPotashDist = "sparseVeins"'>
+                    <Veins name='mtluPotash0Veins' block='Metallurgy:utility.ore:5' inherits='PresetSparseVeins'>
+                        <Description>
+                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
+                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
+                            compared to solid ore veins.  They are also more difficult to follow, since it is 
+                            harder to get an idea of their direction while mining.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60C1B080</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtluPotashFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtluPotashSize * _default_' range=':= 1 * mtluPotashSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
+                        <Setting name='SegmentRadius' avg=':= 1 * mtluPotashSize * _default_' range=':= 1 * mtluPotashSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtluPotashDist = "vanillaStdGen"'>
+                    <StandardGen name='mtluPotash0Standard' block='Metallurgy:utility.ore:5' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60C1B080</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtluPotashSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtluPotashFreq * _default_'/>
+                        <Setting name='Height' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+            </IfCondition>
+
+
+ 
+ 
+        </ConfigSection>
+    </IfModInstalled> 
+ 
+
+
+<!-- This file was made using the Sprocket Configuration Generator. -->

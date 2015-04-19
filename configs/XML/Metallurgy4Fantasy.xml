@@ -1,0 +1,675 @@
+
+<!-- ================================================================ 
+
+Custom Ore Generation:   Metallurgy 4 Fantasy Module
+
+Generates: Promethium, Deep Iron, Infuscolium, Oureclase, Astral Silver, Carmot,
+Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
+
+================================================================ -->
+
+    <IfModInstalled name="Metallurgy">
+
+        <ConfigSection>
+            <!-- Setup Screen Configuration -->
+
+            <ConfigSection>
+                <OptionDisplayGroup name='groupMetallurgy4Fantasy' displayName='Metallurgy 4 Fantasy Ores' displayState='shown'> 
+                    <Description>
+                        Distribution options for Metallurgy 4 Fantasy Ores.
+                    </Description>
+                </OptionDisplayGroup>
+
+                <ConfigSection>
+                    <!-- Promethium Configuration UI -->
+                    <OptionChoice name='mtlfPromethiumDist' displayState='shown' displayGroup='groupMetallurgy4Fantasy'> 
+                        <Description> Controls how Promethium is generated </Description> 
+                        <DisplayName>Metallurgy 4 Fantasy Promethium</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Promethium is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlfPromethiumFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Frequency multiplier for Metallurgy 4 Fantasy Promethium distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Promethium Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlfPromethiumSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Size multiplier for Metallurgy 4 Fantasy Promethium distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Promethium Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Deep Iron Configuration UI -->
+                    <OptionChoice name='mtlfDeepIronDist' displayState='shown' displayGroup='groupMetallurgy4Fantasy'> 
+                        <Description> Controls how Deep Iron is generated </Description> 
+                        <DisplayName>Metallurgy 4 Fantasy Deep Iron</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Deep Iron is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlfDeepIronFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Frequency multiplier for Metallurgy 4 Fantasy Deep Iron distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Deep Iron Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlfDeepIronSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Size multiplier for Metallurgy 4 Fantasy Deep Iron distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Deep Iron Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Infuscolium Configuration UI -->
+                    <OptionChoice name='mtlfInfuscoliumDist' displayState='shown' displayGroup='groupMetallurgy4Fantasy'> 
+                        <Description> Controls how Infuscolium is generated </Description> 
+                        <DisplayName>Metallurgy 4 Fantasy Infuscolium</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Infuscolium is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlfInfuscoliumFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Frequency multiplier for Metallurgy 4 Fantasy Infuscolium distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Infuscolium Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlfInfuscoliumSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Size multiplier for Metallurgy 4 Fantasy Infuscolium distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Infuscolium Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Oureclase Configuration UI -->
+                    <OptionChoice name='mtlfOureclaseDist' displayState='shown' displayGroup='groupMetallurgy4Fantasy'> 
+                        <Description> Controls how Oureclase is generated </Description> 
+                        <DisplayName>Metallurgy 4 Fantasy Oureclase</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Oureclase is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlfOureclaseFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Frequency multiplier for Metallurgy 4 Fantasy Oureclase distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Oureclase Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlfOureclaseSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Size multiplier for Metallurgy 4 Fantasy Oureclase distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Oureclase Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Astral Silver Configuration UI -->
+                    <OptionChoice name='mtlfAstralSilverDist' displayState='shown' displayGroup='groupMetallurgy4Fantasy'> 
+                        <Description> Controls how Astral Silver is generated </Description> 
+                        <DisplayName>Metallurgy 4 Fantasy Astral Silver</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Astral Silver is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlfAstralSilverFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Frequency multiplier for Metallurgy 4 Fantasy Astral Silver distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Astral Silver Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlfAstralSilverSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Size multiplier for Metallurgy 4 Fantasy Astral Silver distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Astral Silver Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Carmot Configuration UI -->
+                    <OptionChoice name='mtlfCarmotDist' displayState='shown' displayGroup='groupMetallurgy4Fantasy'> 
+                        <Description> Controls how Carmot is generated </Description> 
+                        <DisplayName>Metallurgy 4 Fantasy Carmot</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Carmot is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlfCarmotFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Frequency multiplier for Metallurgy 4 Fantasy Carmot distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Carmot Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlfCarmotSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Size multiplier for Metallurgy 4 Fantasy Carmot distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Carmot Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Mithril Configuration UI -->
+                    <OptionChoice name='mtlfMithrilDist' displayState='shown' displayGroup='groupMetallurgy4Fantasy'> 
+                        <Description> Controls how Mithril is generated </Description> 
+                        <DisplayName>Metallurgy 4 Fantasy Mithril</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Mithril is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlfMithrilFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Frequency multiplier for Metallurgy 4 Fantasy Mithril distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Mithril Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlfMithrilSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Size multiplier for Metallurgy 4 Fantasy Mithril distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Mithril Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Rubracium Configuration UI -->
+                    <OptionChoice name='mtlfRubraciumDist' displayState='shown' displayGroup='groupMetallurgy4Fantasy'> 
+                        <Description> Controls how Rubracium is generated </Description> 
+                        <DisplayName>Metallurgy 4 Fantasy Rubracium</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Rubracium is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlfRubraciumFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Frequency multiplier for Metallurgy 4 Fantasy Rubracium distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Rubracium Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlfRubraciumSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Size multiplier for Metallurgy 4 Fantasy Rubracium distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Rubracium Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Orichalcum Configuration UI -->
+                    <OptionChoice name='mtlfOrichalcumDist' displayState='shown' displayGroup='groupMetallurgy4Fantasy'> 
+                        <Description> Controls how Orichalcum is generated </Description> 
+                        <DisplayName>Metallurgy 4 Fantasy Orichalcum</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Orichalcum is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlfOrichalcumFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Frequency multiplier for Metallurgy 4 Fantasy Orichalcum distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Orichalcum Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlfOrichalcumSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Size multiplier for Metallurgy 4 Fantasy Orichalcum distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Orichalcum Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Adamantine Configuration UI -->
+                    <OptionChoice name='mtlfAdamantineDist' displayState='shown' displayGroup='groupMetallurgy4Fantasy'> 
+                        <Description> Controls how Adamantine is generated </Description> 
+                        <DisplayName>Metallurgy 4 Fantasy Adamantine</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Adamantine is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlfAdamantineFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Frequency multiplier for Metallurgy 4 Fantasy Adamantine distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Adamantine Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlfAdamantineSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Size multiplier for Metallurgy 4 Fantasy Adamantine distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Adamantine Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Atlarus Configuration UI -->
+                    <OptionChoice name='mtlfAtlarusDist' displayState='shown' displayGroup='groupMetallurgy4Fantasy'> 
+                        <Description> Controls how Atlarus is generated </Description> 
+                        <DisplayName>Metallurgy 4 Fantasy Atlarus</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Atlarus is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlfAtlarusFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Frequency multiplier for Metallurgy 4 Fantasy Atlarus distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Atlarus Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlfAtlarusSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Fantasy'>
+                        <Description> Size multiplier for Metallurgy 4 Fantasy Atlarus distributions </Description>
+                        <DisplayName>Metallurgy 4 Fantasy Atlarus Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+            </ConfigSection>
+
+
+            <!-- Setup Overworld -->
+            <IfCondition condition=':= ?COGActive'>
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+                <Substitute name='mtlfOverworldOreSubstitute0' block='minecraft:stone'>
+                    <Description>
+                        Replace vanilla-generated ore clusters.
+                    </Description>
+                    <Comment>
+                        The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                    </Comment>
+                    <Replaces block='Metallurgy:fantasy.ore:0' />
+                    <Replaces block='Metallurgy:fantasy.ore:1' />
+                    <Replaces block='Metallurgy:fantasy.ore:2' />
+                    <Replaces block='Metallurgy:fantasy.ore:4' />
+                    <Replaces block='Metallurgy:fantasy.ore:5' />
+                    <Replaces block='Metallurgy:fantasy.ore:6' />
+                    <Replaces block='Metallurgy:fantasy.ore:7' />
+                    <Replaces block='Metallurgy:fantasy.ore:8' />
+                    <Replaces block='Metallurgy:fantasy.ore:11' />
+                    <Replaces block='Metallurgy:fantasy.ore:13' />
+                    <Replaces block='Metallurgy:fantasy.ore:14' />
+                </Substitute>
+                <!-- Adding ores --> 
+                <IfCondition condition=':= mtlfPromethiumDist = "layeredVeins"'>
+                    <Veins name='mtlfPromethium0Veins' block='Metallurgy:fantasy.ore' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlfPromethiumSize * _default_' range=':= 1 * mtlfPromethiumSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtlfPromethiumFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlfPromethiumSize * _default_' range=':= 1 * mtlfPromethiumSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlfPromethiumDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlfPromethium0Standard' block='Metallurgy:fantasy.ore' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlfPromethiumSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtlfPromethiumFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlfDeepIronDist = "layeredVeins"'>
+                    <Veins name='mtlfDeepIron0Veins' block='Metallurgy:fantasy.ore:1' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlfDeepIronSize * _default_' range=':= 1 * mtlfDeepIronSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtlfDeepIronFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlfDeepIronSize * _default_' range=':= 1 * mtlfDeepIronSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlfDeepIronDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlfDeepIron0Standard' block='Metallurgy:fantasy.ore:1' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlfDeepIronSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtlfDeepIronFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlfInfuscoliumDist = "layeredVeins"'>
+                    <Veins name='mtlfInfuscolium0Veins' block='Metallurgy:fantasy.ore:2' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlfInfuscoliumSize * _default_' range=':= 1 * mtlfInfuscoliumSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtlfInfuscoliumFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlfInfuscoliumSize * _default_' range=':= 1 * mtlfInfuscoliumSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlfInfuscoliumDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlfInfuscolium0Standard' block='Metallurgy:fantasy.ore:2' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlfInfuscoliumSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtlfInfuscoliumFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlfOureclaseDist = "layeredVeins"'>
+                    <Veins name='mtlfOureclase0Veins' block='Metallurgy:fantasy.ore:4' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlfOureclaseSize * _default_' range=':= 1 * mtlfOureclaseSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtlfOureclaseFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlfOureclaseSize * _default_' range=':= 1 * mtlfOureclaseSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlfOureclaseDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlfOureclase0Standard' block='Metallurgy:fantasy.ore:4' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlfOureclaseSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtlfOureclaseFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlfAstralSilverDist = "layeredVeins"'>
+                    <Veins name='mtlfAstralSilver0Veins' block='Metallurgy:fantasy.ore:5' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlfAstralSilverSize * _default_' range=':= 1 * mtlfAstralSilverSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtlfAstralSilverFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlfAstralSilverSize * _default_' range=':= 1 * mtlfAstralSilverSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlfAstralSilverDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlfAstralSilver0Standard' block='Metallurgy:fantasy.ore:5' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlfAstralSilverSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtlfAstralSilverFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlfCarmotDist = "layeredVeins"'>
+                    <Veins name='mtlfCarmot0Veins' block='Metallurgy:fantasy.ore:6' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlfCarmotSize * _default_' range=':= 1 * mtlfCarmotSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtlfCarmotFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlfCarmotSize * _default_' range=':= 1 * mtlfCarmotSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlfCarmotDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlfCarmot0Standard' block='Metallurgy:fantasy.ore:6' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlfCarmotSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtlfCarmotFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlfMithrilDist = "layeredVeins"'>
+                    <Veins name='mtlfMithril0Veins' block='Metallurgy:fantasy.ore:7' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlfMithrilSize * _default_' range=':= 1 * mtlfMithrilSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtlfMithrilFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlfMithrilSize * _default_' range=':= 1 * mtlfMithrilSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlfMithrilDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlfMithril0Standard' block='Metallurgy:fantasy.ore:7' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlfMithrilSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtlfMithrilFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlfRubraciumDist = "layeredVeins"'>
+                    <Veins name='mtlfRubracium0Veins' block='Metallurgy:fantasy.ore:8' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlfRubraciumSize * _default_' range=':= 1 * mtlfRubraciumSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtlfRubraciumFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlfRubraciumSize * _default_' range=':= 1 * mtlfRubraciumSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlfRubraciumDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlfRubracium0Standard' block='Metallurgy:fantasy.ore:8' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlfRubraciumSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtlfRubraciumFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlfOrichalcumDist = "layeredVeins"'>
+                    <Veins name='mtlfOrichalcum0Veins' block='Metallurgy:fantasy.ore:11' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlfOrichalcumSize * _default_' range=':= 1 * mtlfOrichalcumSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtlfOrichalcumFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlfOrichalcumSize * _default_' range=':= 1 * mtlfOrichalcumSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlfOrichalcumDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlfOrichalcum0Standard' block='Metallurgy:fantasy.ore:11' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlfOrichalcumSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtlfOrichalcumFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlfAdamantineDist = "layeredVeins"'>
+                    <Veins name='mtlfAdamantine0Veins' block='Metallurgy:fantasy.ore:13' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlfAdamantineSize * _default_' range=':= 1 * mtlfAdamantineSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtlfAdamantineFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlfAdamantineSize * _default_' range=':= 1 * mtlfAdamantineSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlfAdamantineDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlfAdamantine0Standard' block='Metallurgy:fantasy.ore:13' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlfAdamantineSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtlfAdamantineFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlfAtlarusDist = "layeredVeins"'>
+                    <Veins name='mtlfAtlarus0Veins' block='Metallurgy:fantasy.ore:14' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlfAtlarusSize * _default_' range=':= 1 * mtlfAtlarusSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtlfAtlarusFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlfAtlarusSize * _default_' range=':= 1 * mtlfAtlarusSize * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlfAtlarusDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlfAtlarus0Standard' block='Metallurgy:fantasy.ore:14' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x6023E788</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlfAtlarusSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * mtlfAtlarusFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 32/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:stone'/>
+                    </StandardGen>
+                </IfCondition>
+            </IfCondition>
+
+
+ 
+ 
+        </ConfigSection>
+    </IfModInstalled> 
+ 
+
+
+<!-- This file was made using the Sprocket Configuration Generator. -->

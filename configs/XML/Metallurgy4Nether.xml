@@ -1,0 +1,624 @@
+
+<!-- ================================================================ 
+
+Custom Ore Generation:   Metallurgy 4 Nether Module
+
+Generates: Ignatius, Shadow Iron, Lemurite, Midasium, Vyroxeres, Ceruclase,
+Alduorite, Kalendrite, Vulcanite, Sanguinite
+
+================================================================ -->
+
+    <IfModInstalled name="Metallurgy">
+
+        <ConfigSection>
+            <!-- Setup Screen Configuration -->
+
+            <ConfigSection>
+                <OptionDisplayGroup name='groupMetallurgy4Nether' displayName='Metallurgy 4 Nether Ores' displayState='shown'> 
+                    <Description>
+                        Distribution options for Metallurgy 4 Nether Ores.
+                    </Description>
+                </OptionDisplayGroup>
+
+                <ConfigSection>
+                    <!-- Ignatius Configuration UI -->
+                    <OptionChoice name='mtlnIgnatiusDist' displayState='shown' displayGroup='groupMetallurgy4Nether'> 
+                        <Description> Controls how Ignatius is generated </Description> 
+                        <DisplayName>Metallurgy 4 Nether Ignatius</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Ignatius is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlnIgnatiusFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Frequency multiplier for Metallurgy 4 Nether Ignatius distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Ignatius Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlnIgnatiusSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Size multiplier for Metallurgy 4 Nether Ignatius distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Ignatius Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Shadow Iron Configuration UI -->
+                    <OptionChoice name='mtlnShadowIronDist' displayState='shown' displayGroup='groupMetallurgy4Nether'> 
+                        <Description> Controls how Shadow Iron is generated </Description> 
+                        <DisplayName>Metallurgy 4 Nether Shadow Iron</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Shadow Iron is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlnShadowIronFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Frequency multiplier for Metallurgy 4 Nether Shadow Iron distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Shadow Iron Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlnShadowIronSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Size multiplier for Metallurgy 4 Nether Shadow Iron distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Shadow Iron Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Lemurite Configuration UI -->
+                    <OptionChoice name='mtlnLemuriteDist' displayState='shown' displayGroup='groupMetallurgy4Nether'> 
+                        <Description> Controls how Lemurite is generated </Description> 
+                        <DisplayName>Metallurgy 4 Nether Lemurite</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Lemurite is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlnLemuriteFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Frequency multiplier for Metallurgy 4 Nether Lemurite distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Lemurite Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlnLemuriteSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Size multiplier for Metallurgy 4 Nether Lemurite distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Lemurite Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Midasium Configuration UI -->
+                    <OptionChoice name='mtlnMidasiumDist' displayState='shown' displayGroup='groupMetallurgy4Nether'> 
+                        <Description> Controls how Midasium is generated </Description> 
+                        <DisplayName>Metallurgy 4 Nether Midasium</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Midasium is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlnMidasiumFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Frequency multiplier for Metallurgy 4 Nether Midasium distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Midasium Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlnMidasiumSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Size multiplier for Metallurgy 4 Nether Midasium distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Midasium Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Vyroxeres Configuration UI -->
+                    <OptionChoice name='mtlnVyroxeresDist' displayState='shown' displayGroup='groupMetallurgy4Nether'> 
+                        <Description> Controls how Vyroxeres is generated </Description> 
+                        <DisplayName>Metallurgy 4 Nether Vyroxeres</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Vyroxeres is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlnVyroxeresFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Frequency multiplier for Metallurgy 4 Nether Vyroxeres distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Vyroxeres Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlnVyroxeresSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Size multiplier for Metallurgy 4 Nether Vyroxeres distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Vyroxeres Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Ceruclase Configuration UI -->
+                    <OptionChoice name='mtlnCeruclaseDist' displayState='shown' displayGroup='groupMetallurgy4Nether'> 
+                        <Description> Controls how Ceruclase is generated </Description> 
+                        <DisplayName>Metallurgy 4 Nether Ceruclase</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Ceruclase is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlnCeruclaseFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Frequency multiplier for Metallurgy 4 Nether Ceruclase distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Ceruclase Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlnCeruclaseSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Size multiplier for Metallurgy 4 Nether Ceruclase distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Ceruclase Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Alduorite Configuration UI -->
+                    <OptionChoice name='mtlnAlduoriteDist' displayState='shown' displayGroup='groupMetallurgy4Nether'> 
+                        <Description> Controls how Alduorite is generated </Description> 
+                        <DisplayName>Metallurgy 4 Nether Alduorite</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Alduorite is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlnAlduoriteFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Frequency multiplier for Metallurgy 4 Nether Alduorite distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Alduorite Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlnAlduoriteSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Size multiplier for Metallurgy 4 Nether Alduorite distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Alduorite Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Kalendrite Configuration UI -->
+                    <OptionChoice name='mtlnKalendriteDist' displayState='shown' displayGroup='groupMetallurgy4Nether'> 
+                        <Description> Controls how Kalendrite is generated </Description> 
+                        <DisplayName>Metallurgy 4 Nether Kalendrite</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Kalendrite is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlnKalendriteFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Frequency multiplier for Metallurgy 4 Nether Kalendrite distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Kalendrite Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlnKalendriteSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Size multiplier for Metallurgy 4 Nether Kalendrite distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Kalendrite Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Vulcanite Configuration UI -->
+                    <OptionChoice name='mtlnVulcaniteDist' displayState='shown' displayGroup='groupMetallurgy4Nether'> 
+                        <Description> Controls how Vulcanite is generated </Description> 
+                        <DisplayName>Metallurgy 4 Nether Vulcanite</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Vulcanite is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlnVulcaniteFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Frequency multiplier for Metallurgy 4 Nether Vulcanite distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Vulcanite Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlnVulcaniteSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Size multiplier for Metallurgy 4 Nether Vulcanite distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Vulcanite Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+                <ConfigSection>
+                    <!-- Sanguinite Configuration UI -->
+                    <OptionChoice name='mtlnSanguiniteDist' displayState='shown' displayGroup='groupMetallurgy4Nether'> 
+                        <Description> Controls how Sanguinite is generated </Description> 
+                        <DisplayName>Metallurgy 4 Nether Sanguinite</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Sanguinite is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='mtlnSanguiniteFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Frequency multiplier for Metallurgy 4 Nether Sanguinite distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Sanguinite Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='mtlnSanguiniteSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupMetallurgy4Nether'>
+                        <Description> Size multiplier for Metallurgy 4 Nether Sanguinite distributions </Description>
+                        <DisplayName>Metallurgy 4 Nether Sanguinite Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+            </ConfigSection>
+
+
+            <!-- Setup Overworld -->
+            <IfCondition condition=':= ?COGActive'>
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+                <!-- Adding ores --> 
+            </IfCondition>
+
+
+            <!-- Setup Nether -->
+            <IfCondition condition=':= dimension.generator = "HellRandomLevelSource"'>
+                <!-- **********   Vanilla Deposit Removal   ************* -->
+                <Substitute name='mtlnNetherOreSubstitute0' block='minecraft:netherrack'>
+                    <Description>
+                        Replace vanilla-generated ore clusters.
+                    </Description>
+                    <Comment>
+                        The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                    </Comment>
+                    <Replaces block='Metallurgy:nether.ore:0' />
+                    <Replaces block='Metallurgy:nether.ore:1' />
+                    <Replaces block='Metallurgy:nether.ore:2' />
+                    <Replaces block='Metallurgy:nether.ore:3' />
+                    <Replaces block='Metallurgy:nether.ore:4' />
+                    <Replaces block='Metallurgy:nether.ore:5' />
+                    <Replaces block='Metallurgy:nether.ore:6' />
+                    <Replaces block='Metallurgy:nether.ore:7' />
+                    <Replaces block='Metallurgy:nether.ore:8' />
+                    <Replaces block='Metallurgy:nether.ore:9' />
+                </Substitute>
+                <!-- Adding ores --> 
+                <IfCondition condition=':= mtlnIgnatiusDist = "layeredVeins"'>
+                    <Veins name='mtlnIgnatius0Veins' block='Metallurgy:nether.ore' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlnIgnatiusSize * _default_' range=':= 1 * mtlnIgnatiusSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * mtlnIgnatiusFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlnIgnatiusSize * _default_' range=':= 1 * mtlnIgnatiusSize * _default_'/>
+                        <Replaces block='minecraft:netherrack'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlnIgnatiusDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlnIgnatius0Standard' block='Metallurgy:nether.ore' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlnIgnatiusSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * mtlnIgnatiusFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:netherrack'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlnShadowIronDist = "layeredVeins"'>
+                    <Veins name='mtlnShadowIron0Veins' block='Metallurgy:nether.ore:1' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlnShadowIronSize * _default_' range=':= 1 * mtlnShadowIronSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * mtlnShadowIronFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlnShadowIronSize * _default_' range=':= 1 * mtlnShadowIronSize * _default_'/>
+                        <Replaces block='minecraft:netherrack'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlnShadowIronDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlnShadowIron0Standard' block='Metallurgy:nether.ore:1' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlnShadowIronSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * mtlnShadowIronFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:netherrack'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlnLemuriteDist = "layeredVeins"'>
+                    <Veins name='mtlnLemurite0Veins' block='Metallurgy:nether.ore:2' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlnLemuriteSize * _default_' range=':= 1 * mtlnLemuriteSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * mtlnLemuriteFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlnLemuriteSize * _default_' range=':= 1 * mtlnLemuriteSize * _default_'/>
+                        <Replaces block='minecraft:netherrack'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlnLemuriteDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlnLemurite0Standard' block='Metallurgy:nether.ore:2' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlnLemuriteSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * mtlnLemuriteFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:netherrack'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlnMidasiumDist = "layeredVeins"'>
+                    <Veins name='mtlnMidasium0Veins' block='Metallurgy:nether.ore:3' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlnMidasiumSize * _default_' range=':= 1 * mtlnMidasiumSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * mtlnMidasiumFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlnMidasiumSize * _default_' range=':= 1 * mtlnMidasiumSize * _default_'/>
+                        <Replaces block='minecraft:netherrack'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlnMidasiumDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlnMidasium0Standard' block='Metallurgy:nether.ore:3' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlnMidasiumSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * mtlnMidasiumFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:netherrack'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlnVyroxeresDist = "layeredVeins"'>
+                    <Veins name='mtlnVyroxeres0Veins' block='Metallurgy:nether.ore:4' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlnVyroxeresSize * _default_' range=':= 1 * mtlnVyroxeresSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * mtlnVyroxeresFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlnVyroxeresSize * _default_' range=':= 1 * mtlnVyroxeresSize * _default_'/>
+                        <Replaces block='minecraft:netherrack'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlnVyroxeresDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlnVyroxeres0Standard' block='Metallurgy:nether.ore:4' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlnVyroxeresSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * mtlnVyroxeresFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:netherrack'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlnCeruclaseDist = "layeredVeins"'>
+                    <Veins name='mtlnCeruclase0Veins' block='Metallurgy:nether.ore:5' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlnCeruclaseSize * _default_' range=':= 1 * mtlnCeruclaseSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * mtlnCeruclaseFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlnCeruclaseSize * _default_' range=':= 1 * mtlnCeruclaseSize * _default_'/>
+                        <Replaces block='minecraft:netherrack'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlnCeruclaseDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlnCeruclase0Standard' block='Metallurgy:nether.ore:5' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlnCeruclaseSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * mtlnCeruclaseFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:netherrack'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlnAlduoriteDist = "layeredVeins"'>
+                    <Veins name='mtlnAlduorite0Veins' block='Metallurgy:nether.ore:6' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlnAlduoriteSize * _default_' range=':= 1 * mtlnAlduoriteSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * mtlnAlduoriteFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlnAlduoriteSize * _default_' range=':= 1 * mtlnAlduoriteSize * _default_'/>
+                        <Replaces block='minecraft:netherrack'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlnAlduoriteDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlnAlduorite0Standard' block='Metallurgy:nether.ore:6' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlnAlduoriteSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * mtlnAlduoriteFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:netherrack'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlnKalendriteDist = "layeredVeins"'>
+                    <Veins name='mtlnKalendrite0Veins' block='Metallurgy:nether.ore:7' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlnKalendriteSize * _default_' range=':= 1 * mtlnKalendriteSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * mtlnKalendriteFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlnKalendriteSize * _default_' range=':= 1 * mtlnKalendriteSize * _default_'/>
+                        <Replaces block='minecraft:netherrack'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlnKalendriteDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlnKalendrite0Standard' block='Metallurgy:nether.ore:7' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlnKalendriteSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * mtlnKalendriteFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:netherrack'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlnVulcaniteDist = "layeredVeins"'>
+                    <Veins name='mtlnVulcanite0Veins' block='Metallurgy:nether.ore:8' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlnVulcaniteSize * _default_' range=':= 1 * mtlnVulcaniteSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * mtlnVulcaniteFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlnVulcaniteSize * _default_' range=':= 1 * mtlnVulcaniteSize * _default_'/>
+                        <Replaces block='minecraft:netherrack'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlnVulcaniteDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlnVulcanite0Standard' block='Metallurgy:nether.ore:8' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlnVulcaniteSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * mtlnVulcaniteFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:netherrack'/>
+                    </StandardGen>
+                </IfCondition>
+                <IfCondition condition=':= mtlnSanguiniteDist = "layeredVeins"'>
+                    <Veins name='mtlnSanguinite0Veins' block='Metallurgy:nether.ore:9' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * mtlnSanguiniteSize * _default_' range=':= 1 * mtlnSanguiniteSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * mtlnSanguiniteFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * mtlnSanguiniteSize * _default_' range=':= 1 * mtlnSanguiniteSize * _default_'/>
+                        <Replaces block='minecraft:netherrack'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mtlnSanguiniteDist = "vanillaStdGen"'>
+                    <StandardGen name='mtlnSanguinite0Standard' block='Metallurgy:nether.ore:9' inherits='PresetStandardGen'>
+                        <Description> This mimics vanilla ore generation. </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x605A36DD</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * mtlnSanguiniteSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * mtlnSanguiniteFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <Replaces block='minecraft:netherrack'/>
+                    </StandardGen>
+                </IfCondition>
+            </IfCondition>
+
+
+ 
+        </ConfigSection>
+    </IfModInstalled> 
+ 
+
+
+<!-- This file was made using the Sprocket Configuration Generator. -->
