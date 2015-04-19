@@ -642,7 +642,7 @@ Quartz
                 </StandardGen>
             </IfCondition>
             <IfCondition condition=':= vnlaDiamondDist = "pipeVeins"'>
-                <Veins name='vnlaDiamond0Veins' block='minecraft:diamond_ore' inherits='PresetPipeVeins' seed='0x9901'>
+                <Veins name='vnlaDiamond0Veins' block='minecraft:diamond_ore' inherits='PresetPipeVeins' seed='0xAB0A'>
                     <Description>
                         Short sparsely filled veins sloping up from near the bottom of the map.
                     </Description>
@@ -654,7 +654,7 @@ Quartz
                     <Setting name='SegmentRadius' avg=':= 1 * vnlaDiamondSize * _default_' range=':= 1 * vnlaDiamondSize * _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
-                <Veins name= 'vnlaDiamond0Pipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0x9901'>
+                <Veins name= 'vnlaDiamond0Pipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0xAB0A'>
                     <Description>
                         Fills center of each tube with Pipe material.
                     </Description>
@@ -710,6 +710,18 @@ Quartz
                     <Setting name='SegmentRadius' avg=':= 1 * vnlaRedstoneSize * _default_' range=':= 1 * vnlaRedstoneSize * _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
+                <Veins name='vnlaRedstone1Veins' block='minecraft:redstone_ore' inherits='PresetVerticalVeins'>
+                    <Description>
+                        Single vertical veins that occur with no motherlodes.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 1.3 * 1 * vnlaRedstoneFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                    <Setting name='SegmentRadius' avg=':= 1 * vnlaRedstoneSize * _default_' range=':= 1 * vnlaRedstoneSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                    <BiomeType name='desert'/>
+                </Veins>
             </IfCondition>
             <IfCondition condition=':= vnlaRedstoneDist = "smallDeposits"'>
                 <Veins name='vnlaRedstone0Veins' block='minecraft:redstone_ore' inherits='PresetSmallDeposits'>
@@ -724,6 +736,19 @@ Quartz
                     <Setting name='MotherlodeSize' avg=':= 1 * vnlaRedstoneSize * _default_' range=':= 1 * vnlaRedstoneSize * _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
+                <Veins name='vnlaRedstone1Veins' block='minecraft:redstone_ore' inherits='PresetSmallDeposits'>
+                    <Description>
+                        Small motherlodes without any branches.
+                        Similar to the deposits produced by StandardGen distributions.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 1 * vnlaRedstoneFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaRedstoneSize * _default_' range=':= 1 * vnlaRedstoneSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                    <BiomeType name='desert'/>
+                </Veins>
             </IfCondition>
             <IfCondition condition=':= vnlaRedstoneDist = "vanillaStdGen"'>
                 <StandardGen name='vnlaRedstone0Standard' block='minecraft:redstone_ore' inherits='PresetStandardGen'>
@@ -735,9 +760,19 @@ Quartz
                     <Setting name='Height' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
                     <Replaces block='minecraft:stone'/>
                 </StandardGen>
+                <StandardGen name='vnlaRedstone1Standard' block='minecraft:redstone_ore' inherits='PresetStandardGen'>
+                    <Description> This mimics vanilla ore generation. </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='Size' avg=':= 1 * vnlaRedstoneSize * _default_'/>
+                    <Setting name='Frequency' avg=':= 1 * vnlaRedstoneFreq * _default_'/>
+                    <Setting name='Height' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                    <Replaces block='minecraft:stone'/>
+                    <BiomeType name='desert'/>
+                </StandardGen>
             </IfCondition>
             <IfCondition condition=':= vnlaEmeraldDist = "pipeVeins"'>
-                <Veins name='vnlaEmerald0Veins' block='minecraft:emerald_ore' inherits='PresetPipeVeins' seed='0x893E'>
+                <Veins name='vnlaEmerald0Veins' block='minecraft:emerald_ore' inherits='PresetPipeVeins' seed='0xF922'>
                     <Description>
                         Short sparsely filled veins sloping up from near the bottom of the map.
                     </Description>
@@ -749,7 +784,7 @@ Quartz
                     <Setting name='SegmentRadius' avg=':= 1 * vnlaEmeraldSize * _default_' range=':= 1 * vnlaEmeraldSize * _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
-                <Veins name= 'vnlaEmerald0Pipe' block='minecraft:monster_egg' inherits='PresetPipeVeins' seed='0x893E'>
+                <Veins name= 'vnlaEmerald0Pipe' block='minecraft:monster_egg' inherits='PresetPipeVeins' seed='0xF922'>
                     <Description>
                         Fills center of each tube with Pipe material.
                     </Description>
@@ -855,3 +890,7 @@ Quartz
 
     </ConfigSection>
 
+
+
+
+<!-- This file was made using the Sprocket Configuration Generator. -->

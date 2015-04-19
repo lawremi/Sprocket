@@ -1231,6 +1231,8 @@ def assembleConfig():
     configOutput = headerGen()
     configOutput += modDetectLevel()
     
+    configOutput += "\n\n\n<!-- This file was made using the Sprocket Configuration Generator. -->"
+    
     return configOutput
 
 ################ ERROR CHECK ########################################
