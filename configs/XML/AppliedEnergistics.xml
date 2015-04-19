@@ -137,6 +137,23 @@ Generates: Quartz, Charged Quartz
                     </Veins>
                 </IfCondition>
                 <IfCondition condition=':= apenQuartzDist = "strategicCloud"'>
+                    <Cloud name='apenQuartz0Cloud' block='appliedenergistics2:tile.OreQuartz' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 3 * apenQuartzFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * apenQuartzSize * _default_' range=':= 1 * apenQuartzSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * apenQuartzSize * _default_' range=':= 1 * apenQuartzSize * _default_'/>
+                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='Biome'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Cloud>
                     <Veins name='apenQuartz0HintVeins' block='appliedenergistics2:tile.OreQuartz' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -188,6 +205,23 @@ Generates: Quartz, Charged Quartz
                     </Veins>
                 </IfCondition>
                 <IfCondition condition=':= apenChargedQuartzDist = "strategicCloud"'>
+                    <Cloud name='apenChargedQuartz0Cloud' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 3 * apenChargedQuartzFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * apenChargedQuartzSize * _default_' range=':= 1 * apenChargedQuartzSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * apenChargedQuartzSize * _default_' range=':= 1 * apenChargedQuartzSize * _default_'/>
+                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='Biome'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Cloud>
                     <Veins name='apenChargedQuartz0HintVeins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.

@@ -67,7 +67,7 @@ Generates: Uranium
                 </Substitute>
                 <!-- Adding ores --> 
                 <IfCondition condition=':= mchmUraniumDist = "pipeVeins"'>
-                    <Veins name='mchmUranium0Veins' block='minechem:tile.oreUranium' inherits='PresetPipeVeins' seed='0x6423'>
+                    <Veins name='mchmUranium0Veins' block='minechem:tile.oreUranium' inherits='PresetPipeVeins' seed='0x1CC5'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
@@ -79,7 +79,7 @@ Generates: Uranium
                         <Setting name='SegmentRadius' avg=':= 1 * mchmUraniumSize * _default_' range=':= 1 * mchmUraniumSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'mchmUranium0Pipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0x6423'>
+                    <Veins name= 'mchmUranium0Pipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0x1CC5'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
@@ -99,6 +99,23 @@ Generates: Uranium
                     </Veins>
                 </IfCondition>
                 <IfCondition condition=':= mchmUraniumDist = "strategicCloud"'>
+                    <Cloud name='mchmUranium0Cloud' block='minechem:tile.oreUranium' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60d6a989</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * mchmUraniumFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * mchmUraniumSize * _default_' range=':= 1 * mchmUraniumSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * mchmUraniumSize * _default_' range=':= 1 * mchmUraniumSize * _default_'/>
+                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='Biome'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Cloud>
                     <Veins name='mchmUranium0HintVeins' block='minechem:tile.oreUranium' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.

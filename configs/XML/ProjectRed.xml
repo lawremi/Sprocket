@@ -195,7 +195,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                 </Substitute>
                 <!-- Adding ores --> 
                 <IfCondition condition=':= predRubyDist = "pipeVeins"'>
-                    <Veins name='predRuby0Veins' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetPipeVeins' seed='0x3047'>
+                    <Veins name='predRuby0Veins' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetPipeVeins' seed='0x2051'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
@@ -207,7 +207,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         <Setting name='SegmentRadius' avg=':= 1 * predRubySize * _default_' range=':= 1 * predRubySize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'predRuby0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x3047'>
+                    <Veins name= 'predRuby0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x2051'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
@@ -227,6 +227,23 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                     </Veins>
                 </IfCondition>
                 <IfCondition condition=':= predRubyDist = "strategicCloud"'>
+                    <Cloud name='predRuby0Cloud' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * predRubyFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * predRubySize * _default_' range=':= 1 * predRubySize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * predRubySize * _default_' range=':= 1 * predRubySize * _default_'/>
+                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='Biome'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Cloud>
                     <Veins name='predRuby0HintVeins' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -250,7 +267,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                     </StandardGen>
                 </IfCondition>
                 <IfCondition condition=':= predSapphireDist = "pipeVeins"'>
-                    <Veins name='predSapphire0Veins' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetPipeVeins' seed='0x1CA8'>
+                    <Veins name='predSapphire0Veins' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetPipeVeins' seed='0x0068'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
@@ -262,7 +279,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         <Setting name='SegmentRadius' avg=':= 1 * predSapphireSize * _default_' range=':= 1 * predSapphireSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'predSapphire0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x1CA8'>
+                    <Veins name= 'predSapphire0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x0068'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
@@ -282,6 +299,23 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                     </Veins>
                 </IfCondition>
                 <IfCondition condition=':= predSapphireDist = "strategicCloud"'>
+                    <Cloud name='predSapphire0Cloud' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * predSapphireFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * predSapphireSize * _default_' range=':= 1 * predSapphireSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * predSapphireSize * _default_' range=':= 1 * predSapphireSize * _default_'/>
+                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='Biome'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Cloud>
                     <Veins name='predSapphire0HintVeins' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -305,7 +339,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                     </StandardGen>
                 </IfCondition>
                 <IfCondition condition=':= predPeridotDist = "pipeVeins"'>
-                    <Veins name='predPeridot0Veins' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetPipeVeins' seed='0xE293'>
+                    <Veins name='predPeridot0Veins' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetPipeVeins' seed='0x00A1'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
@@ -317,7 +351,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         <Setting name='SegmentRadius' avg=':= 1 * predPeridotSize * _default_' range=':= 1 * predPeridotSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'predPeridot0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0xE293'>
+                    <Veins name= 'predPeridot0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x00A1'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
@@ -337,6 +371,23 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                     </Veins>
                 </IfCondition>
                 <IfCondition condition=':= predPeridotDist = "strategicCloud"'>
+                    <Cloud name='predPeridot0Cloud' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * predPeridotFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * predPeridotSize * _default_' range=':= 1 * predPeridotSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * predPeridotSize * _default_' range=':= 1 * predPeridotSize * _default_'/>
+                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='Biome'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Cloud>
                     <Veins name='predPeridot0HintVeins' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -360,7 +411,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                     </StandardGen>
                 </IfCondition>
                 <IfCondition condition=':= predMarbleDist = "pipeVeins"'>
-                    <Veins name='predMarble0Veins' block='ProjRed|Exploration:projectred.exploration.stone' inherits='PresetPipeVeins' seed='0x8672'>
+                    <Veins name='predMarble0Veins' block='ProjRed|Exploration:projectred.exploration.stone' inherits='PresetPipeVeins' seed='0xBCA1'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
@@ -372,7 +423,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         <Setting name='SegmentRadius' avg=':= 1 * predMarbleSize * _default_' range=':= 1 * predMarbleSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'predMarble0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x8672'>
+                    <Veins name= 'predMarble0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0xBCA1'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
@@ -392,6 +443,23 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                     </Veins>
                 </IfCondition>
                 <IfCondition condition=':= predMarbleDist = "strategicCloud"'>
+                    <Cloud name='predMarble0Cloud' block='ProjRed|Exploration:projectred.exploration.stone' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * predMarbleFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * predMarbleSize * _default_' range=':= 1 * predMarbleSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * predMarbleSize * _default_' range=':= 1 * predMarbleSize * _default_'/>
+                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Cloud>
                     <Veins name='predMarble0HintVeins' block='ProjRed|Exploration:projectred.exploration.stone' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -415,7 +483,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                     </StandardGen>
                 </IfCondition>
                 <IfCondition condition=':= predBasaltDist = "pipeVeins"'>
-                    <Veins name='predBasalt0Veins' block='ProjRed|Exploration:projectred.exploration.stone:3' inherits='PresetPipeVeins' seed='0xBB37'>
+                    <Veins name='predBasalt0Veins' block='ProjRed|Exploration:projectred.exploration.stone:3' inherits='PresetPipeVeins' seed='0x708A'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
@@ -427,7 +495,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         <Setting name='SegmentRadius' avg=':= 1 * predBasaltSize * _default_' range=':= 1 * predBasaltSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'predBasalt0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0xBB37'>
+                    <Veins name= 'predBasalt0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x708A'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
@@ -447,6 +515,23 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                     </Veins>
                 </IfCondition>
                 <IfCondition condition=':= predBasaltDist = "strategicCloud"'>
+                    <Cloud name='predBasalt0Cloud' block='ProjRed|Exploration:projectred.exploration.stone:3' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * predBasaltFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * predBasaltSize * _default_' range=':= 1 * predBasaltSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * predBasaltSize * _default_' range=':= 1 * predBasaltSize * _default_'/>
+                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Cloud>
                     <Veins name='predBasalt0HintVeins' block='ProjRed|Exploration:projectred.exploration.stone:3' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.

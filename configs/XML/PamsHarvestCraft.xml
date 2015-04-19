@@ -81,6 +81,23 @@ Generates: Salt
                     </Veins>
                 </IfCondition>
                 <IfCondition condition=':= hvstSaltDist = "strategicCloud"'>
+                    <Cloud name='hvstSalt0Cloud' block='harvestcraft:salt' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60888888</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 3 * hvstSaltFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * hvstSaltSize * _default_' range=':= 1 * hvstSaltSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * hvstSaltSize * _default_' range=':= 1 * hvstSaltSize * _default_'/>
+                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
+                        <Replaces block='minecraft:stone'/>
+                    </Cloud>
                     <Veins name='hvstSalt0HintVeins' block='harvestcraft:salt' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
