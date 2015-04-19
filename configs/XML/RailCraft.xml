@@ -1,5 +1,5 @@
 
-<!--  
+<!-- ================================================================ 
 
 Custom Ore Generation:   RailCraft Module
 
@@ -7,541 +7,413 @@ Generates: Quarry Stone, Sulfur, Poor Iron, Poor Gold, Poor Copper, Poor Tin,
 Poor Lead, Saltpeter, Dark Diamond Geodes, Dark Emerald Geodes, Dark
 Lapis Lazuli Geodes, Firestone
 
--->
-<IfModInstalled name="Railcraft"> 
+================================================================ -->
 
-    <ConfigSection>
- 
-        <!-- Setup Screen Configuration -->
+    <IfModInstalled name="Railcraft">
 
-            <ConfigSection> 
+        <ConfigSection>
+            <!-- Setup Screen Configuration -->
+
+            <ConfigSection>
                 <OptionDisplayGroup name='groupRailCraft' displayName='RailCraft Ores' displayState='shown'> 
-                    <Description> 
+                    <Description>
                         Distribution options for RailCraft Ores.
                     </Description>
                 </OptionDisplayGroup>
-    
-                 <ConfigSection>
-
-            <!-- Quarry Stone Configuration UI -->
-
-            <OptionChoice name='rlcrQuarryStoneDist' displayState='shown' displayGroup='groupRailCraft'> 
-                <Description> Controls how Quarry Stone is generated </Description> 
-                <DisplayName>RailCraft Quarry Stone Type</DisplayName>
-
-               <Choice value='layeredVeins' displayValue='Layered Veins'>
-                   <Description>
-                       Layered Veins. 
-                   </Description>
-               </Choice>
-
-               <Choice value='strategicCloud' displayValue='Clouds'>
-                   <Description>
-                       Strategic Clouds 
-                   </Description>
-               </Choice>
-
-               <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                   <Description>
-                       Vanilla-style clusters. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Quarry Stone is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='rlcrQuarryStoneFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Frequency multiplier for RailCraft Quarry Stone distributions </Description>
-                <DisplayName>RailCraft Quarry Stone Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='rlcrQuarryStoneSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Size multiplier for RailCraft Quarry Stone distributions </Description>
-                <DisplayName>RailCraft Quarry Stone Size</DisplayName>
-            </OptionNumeric>
-                </ConfigSection> 
 
                 <ConfigSection>
-
-            <!-- Sulfur Configuration UI -->
-
-            <OptionChoice name='rlcrSulfurDist' displayState='shown' displayGroup='groupRailCraft'> 
-                <Description> Controls how Sulfur is generated </Description> 
-                <DisplayName>RailCraft Sulfur Type</DisplayName>
-
-               <Choice value='layeredVeins' displayValue='Layered Veins'>
-                   <Description>
-                       Layered Veins. 
-                   </Description>
-               </Choice>
-
-               <Choice value='strategicCloud' displayValue='Clouds'>
-                   <Description>
-                       Strategic Clouds 
-                   </Description>
-               </Choice>
-
-               <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                   <Description>
-                       Vanilla-style clusters. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Sulfur is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='rlcrSulfurFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Frequency multiplier for RailCraft Sulfur distributions </Description>
-                <DisplayName>RailCraft Sulfur Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='rlcrSulfurSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Size multiplier for RailCraft Sulfur distributions </Description>
-                <DisplayName>RailCraft Sulfur Size</DisplayName>
-            </OptionNumeric>
+                    <!-- Quarry Stone Configuration UI -->
+                    <OptionChoice name='rlcrQuarryStoneDist' displayState='shown' displayGroup='groupRailCraft'> 
+                        <Description> Controls how Quarry Stone is generated </Description> 
+                        <DisplayName>RailCraft Quarry Stone Type</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Quarry Stone is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='rlcrQuarryStoneFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Frequency multiplier for RailCraft Quarry Stone distributions </Description>
+                        <DisplayName>RailCraft Quarry Stone Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='rlcrQuarryStoneSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Size multiplier for RailCraft Quarry Stone distributions </Description>
+                        <DisplayName>RailCraft Quarry Stone Size</DisplayName>
+                    </OptionNumeric>
                 </ConfigSection> 
-
                 <ConfigSection>
-
-            <!-- Poor Iron Configuration UI -->
-
-            <OptionChoice name='rlcrPoorIronDist' displayState='shown' displayGroup='groupRailCraft'> 
-                <Description> Controls how Poor Iron is generated </Description> 
-                <DisplayName>RailCraft Poor Iron Type</DisplayName>
-
-               <Choice value='layeredVeins' displayValue='Layered Veins'>
-                   <Description>
-                       Layered Veins. 
-                   </Description>
-               </Choice>
-
-               <Choice value='strategicCloud' displayValue='Clouds'>
-                   <Description>
-                       Strategic Clouds 
-                   </Description>
-               </Choice>
-
-               <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                   <Description>
-                       Vanilla-style clusters. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Poor Iron is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='rlcrPoorIronFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Frequency multiplier for RailCraft Poor Iron distributions </Description>
-                <DisplayName>RailCraft Poor Iron Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='rlcrPoorIronSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Size multiplier for RailCraft Poor Iron distributions </Description>
-                <DisplayName>RailCraft Poor Iron Size</DisplayName>
-            </OptionNumeric>
+                    <!-- Sulfur Configuration UI -->
+                    <OptionChoice name='rlcrSulfurDist' displayState='shown' displayGroup='groupRailCraft'> 
+                        <Description> Controls how Sulfur is generated </Description> 
+                        <DisplayName>RailCraft Sulfur Type</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Sulfur is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='rlcrSulfurFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Frequency multiplier for RailCraft Sulfur distributions </Description>
+                        <DisplayName>RailCraft Sulfur Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='rlcrSulfurSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Size multiplier for RailCraft Sulfur distributions </Description>
+                        <DisplayName>RailCraft Sulfur Size</DisplayName>
+                    </OptionNumeric>
                 </ConfigSection> 
-
                 <ConfigSection>
-
-            <!-- Poor Gold Configuration UI -->
-
-            <OptionChoice name='rlcrPoorGoldDist' displayState='shown' displayGroup='groupRailCraft'> 
-                <Description> Controls how Poor Gold is generated </Description> 
-                <DisplayName>RailCraft Poor Gold Type</DisplayName>
-
-               <Choice value='layeredVeins' displayValue='Layered Veins'>
-                   <Description>
-                       Layered Veins. 
-                   </Description>
-               </Choice>
-
-               <Choice value='strategicCloud' displayValue='Clouds'>
-                   <Description>
-                       Strategic Clouds 
-                   </Description>
-               </Choice>
-
-               <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                   <Description>
-                       Vanilla-style clusters. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Poor Gold is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='rlcrPoorGoldFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Frequency multiplier for RailCraft Poor Gold distributions </Description>
-                <DisplayName>RailCraft Poor Gold Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='rlcrPoorGoldSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Size multiplier for RailCraft Poor Gold distributions </Description>
-                <DisplayName>RailCraft Poor Gold Size</DisplayName>
-            </OptionNumeric>
+                    <!-- Poor Iron Configuration UI -->
+                    <OptionChoice name='rlcrPoorIronDist' displayState='shown' displayGroup='groupRailCraft'> 
+                        <Description> Controls how Poor Iron is generated </Description> 
+                        <DisplayName>RailCraft Poor Iron Type</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Poor Iron is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='rlcrPoorIronFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Frequency multiplier for RailCraft Poor Iron distributions </Description>
+                        <DisplayName>RailCraft Poor Iron Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='rlcrPoorIronSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Size multiplier for RailCraft Poor Iron distributions </Description>
+                        <DisplayName>RailCraft Poor Iron Size</DisplayName>
+                    </OptionNumeric>
                 </ConfigSection> 
-
                 <ConfigSection>
-
-            <!-- Poor Copper Configuration UI -->
-
-            <OptionChoice name='rlcrPoorCopperDist' displayState='shown' displayGroup='groupRailCraft'> 
-                <Description> Controls how Poor Copper is generated </Description> 
-                <DisplayName>RailCraft Poor Copper Type</DisplayName>
-
-               <Choice value='layeredVeins' displayValue='Layered Veins'>
-                   <Description>
-                       Layered Veins. 
-                   </Description>
-               </Choice>
-
-               <Choice value='strategicCloud' displayValue='Clouds'>
-                   <Description>
-                       Strategic Clouds 
-                   </Description>
-               </Choice>
-
-               <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                   <Description>
-                       Vanilla-style clusters. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Poor Copper is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='rlcrPoorCopperFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Frequency multiplier for RailCraft Poor Copper distributions </Description>
-                <DisplayName>RailCraft Poor Copper Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='rlcrPoorCopperSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Size multiplier for RailCraft Poor Copper distributions </Description>
-                <DisplayName>RailCraft Poor Copper Size</DisplayName>
-            </OptionNumeric>
+                    <!-- Poor Gold Configuration UI -->
+                    <OptionChoice name='rlcrPoorGoldDist' displayState='shown' displayGroup='groupRailCraft'> 
+                        <Description> Controls how Poor Gold is generated </Description> 
+                        <DisplayName>RailCraft Poor Gold Type</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Poor Gold is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='rlcrPoorGoldFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Frequency multiplier for RailCraft Poor Gold distributions </Description>
+                        <DisplayName>RailCraft Poor Gold Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='rlcrPoorGoldSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Size multiplier for RailCraft Poor Gold distributions </Description>
+                        <DisplayName>RailCraft Poor Gold Size</DisplayName>
+                    </OptionNumeric>
                 </ConfigSection> 
-
                 <ConfigSection>
-
-            <!-- Poor Tin Configuration UI -->
-
-            <OptionChoice name='rlcrPoorTinDist' displayState='shown' displayGroup='groupRailCraft'> 
-                <Description> Controls how Poor Tin is generated </Description> 
-                <DisplayName>RailCraft Poor Tin Type</DisplayName>
-
-               <Choice value='layeredVeins' displayValue='Layered Veins'>
-                   <Description>
-                       Layered Veins. 
-                   </Description>
-               </Choice>
-
-               <Choice value='strategicCloud' displayValue='Clouds'>
-                   <Description>
-                       Strategic Clouds 
-                   </Description>
-               </Choice>
-
-               <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                   <Description>
-                       Vanilla-style clusters. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Poor Tin is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='rlcrPoorTinFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Frequency multiplier for RailCraft Poor Tin distributions </Description>
-                <DisplayName>RailCraft Poor Tin Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='rlcrPoorTinSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Size multiplier for RailCraft Poor Tin distributions </Description>
-                <DisplayName>RailCraft Poor Tin Size</DisplayName>
-            </OptionNumeric>
+                    <!-- Poor Copper Configuration UI -->
+                    <OptionChoice name='rlcrPoorCopperDist' displayState='shown' displayGroup='groupRailCraft'> 
+                        <Description> Controls how Poor Copper is generated </Description> 
+                        <DisplayName>RailCraft Poor Copper Type</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Poor Copper is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='rlcrPoorCopperFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Frequency multiplier for RailCraft Poor Copper distributions </Description>
+                        <DisplayName>RailCraft Poor Copper Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='rlcrPoorCopperSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Size multiplier for RailCraft Poor Copper distributions </Description>
+                        <DisplayName>RailCraft Poor Copper Size</DisplayName>
+                    </OptionNumeric>
                 </ConfigSection> 
-
                 <ConfigSection>
-
-            <!-- Poor Lead Configuration UI -->
-
-            <OptionChoice name='rlcrPoorLeadDist' displayState='shown' displayGroup='groupRailCraft'> 
-                <Description> Controls how Poor Lead is generated </Description> 
-                <DisplayName>RailCraft Poor Lead Type</DisplayName>
-
-               <Choice value='layeredVeins' displayValue='Layered Veins'>
-                   <Description>
-                       Layered Veins. 
-                   </Description>
-               </Choice>
-
-               <Choice value='strategicCloud' displayValue='Clouds'>
-                   <Description>
-                       Strategic Clouds 
-                   </Description>
-               </Choice>
-
-               <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                   <Description>
-                       Vanilla-style clusters. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Poor Lead is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='rlcrPoorLeadFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Frequency multiplier for RailCraft Poor Lead distributions </Description>
-                <DisplayName>RailCraft Poor Lead Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='rlcrPoorLeadSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Size multiplier for RailCraft Poor Lead distributions </Description>
-                <DisplayName>RailCraft Poor Lead Size</DisplayName>
-            </OptionNumeric>
+                    <!-- Poor Tin Configuration UI -->
+                    <OptionChoice name='rlcrPoorTinDist' displayState='shown' displayGroup='groupRailCraft'> 
+                        <Description> Controls how Poor Tin is generated </Description> 
+                        <DisplayName>RailCraft Poor Tin Type</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Poor Tin is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='rlcrPoorTinFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Frequency multiplier for RailCraft Poor Tin distributions </Description>
+                        <DisplayName>RailCraft Poor Tin Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='rlcrPoorTinSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Size multiplier for RailCraft Poor Tin distributions </Description>
+                        <DisplayName>RailCraft Poor Tin Size</DisplayName>
+                    </OptionNumeric>
                 </ConfigSection> 
-
                 <ConfigSection>
-
-            <!-- Saltpeter Configuration UI -->
-
-            <OptionChoice name='rlcrSaltpeterDist' displayState='shown' displayGroup='groupRailCraft'> 
-                <Description> Controls how Saltpeter is generated </Description> 
-                <DisplayName>RailCraft Saltpeter Type</DisplayName>
-
-               <Choice value='layeredVeins' displayValue='Layered Veins'>
-                   <Description>
-                       Layered Veins. 
-                   </Description>
-               </Choice>
-
-               <Choice value='strategicCloud' displayValue='Clouds'>
-                   <Description>
-                       Strategic Clouds 
-                   </Description>
-               </Choice>
-
-               <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                   <Description>
-                       Vanilla-style clusters. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Saltpeter is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='rlcrSaltpeterFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Frequency multiplier for RailCraft Saltpeter distributions </Description>
-                <DisplayName>RailCraft Saltpeter Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='rlcrSaltpeterSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Size multiplier for RailCraft Saltpeter distributions </Description>
-                <DisplayName>RailCraft Saltpeter Size</DisplayName>
-            </OptionNumeric>
+                    <!-- Poor Lead Configuration UI -->
+                    <OptionChoice name='rlcrPoorLeadDist' displayState='shown' displayGroup='groupRailCraft'> 
+                        <Description> Controls how Poor Lead is generated </Description> 
+                        <DisplayName>RailCraft Poor Lead Type</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Poor Lead is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='rlcrPoorLeadFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Frequency multiplier for RailCraft Poor Lead distributions </Description>
+                        <DisplayName>RailCraft Poor Lead Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='rlcrPoorLeadSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Size multiplier for RailCraft Poor Lead distributions </Description>
+                        <DisplayName>RailCraft Poor Lead Size</DisplayName>
+                    </OptionNumeric>
                 </ConfigSection> 
-
                 <ConfigSection>
-
-            <!-- Dark Diamond Geodes Configuration UI -->
-
-            <OptionChoice name='rlcrDarkDiamondGeodesDist' displayState='shown' displayGroup='groupRailCraft'> 
-                <Description> Controls how Dark Diamond Geodes is generated </Description> 
-                <DisplayName>RailCraft Dark Diamond Geodes Type</DisplayName>
-
-               <Choice value='geodes' displayValue='Geodes'>
-                   <Description>
-                       Geodes. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Dark Diamond Geodes is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='rlcrDarkDiamondGeodesFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Frequency multiplier for RailCraft Dark Diamond Geodes distributions </Description>
-                <DisplayName>RailCraft Dark Diamond Geodes Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='rlcrDarkDiamondGeodesSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Size multiplier for RailCraft Dark Diamond Geodes distributions </Description>
-                <DisplayName>RailCraft Dark Diamond Geodes Size</DisplayName>
-            </OptionNumeric>
+                    <!-- Saltpeter Configuration UI -->
+                    <OptionChoice name='rlcrSaltpeterDist' displayState='shown' displayGroup='groupRailCraft'> 
+                        <Description> Controls how Saltpeter is generated </Description> 
+                        <DisplayName>RailCraft Saltpeter Type</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Saltpeter is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='rlcrSaltpeterFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Frequency multiplier for RailCraft Saltpeter distributions </Description>
+                        <DisplayName>RailCraft Saltpeter Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='rlcrSaltpeterSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Size multiplier for RailCraft Saltpeter distributions </Description>
+                        <DisplayName>RailCraft Saltpeter Size</DisplayName>
+                    </OptionNumeric>
                 </ConfigSection> 
-
                 <ConfigSection>
-
-            <!-- Dark Emerald Geodes Configuration UI -->
-
-            <OptionChoice name='rlcrDarkEmeraldGeodesDist' displayState='shown' displayGroup='groupRailCraft'> 
-                <Description> Controls how Dark Emerald Geodes is generated </Description> 
-                <DisplayName>RailCraft Dark Emerald Geodes Type</DisplayName>
-
-               <Choice value='geodes' displayValue='Geodes'>
-                   <Description>
-                       Geodes. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Dark Emerald Geodes is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='rlcrDarkEmeraldGeodesFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Frequency multiplier for RailCraft Dark Emerald Geodes distributions </Description>
-                <DisplayName>RailCraft Dark Emerald Geodes Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='rlcrDarkEmeraldGeodesSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Size multiplier for RailCraft Dark Emerald Geodes distributions </Description>
-                <DisplayName>RailCraft Dark Emerald Geodes Size</DisplayName>
-            </OptionNumeric>
+                    <!-- Dark Diamond Geodes Configuration UI -->
+                    <OptionChoice name='rlcrDarkDiamondGeodesDist' displayState='shown' displayGroup='groupRailCraft'> 
+                        <Description> Controls how Dark Diamond Geodes is generated </Description> 
+                        <DisplayName>RailCraft Dark Diamond Geodes Type</DisplayName>
+                        <Choice value='geodes' displayValue='Geodes'>
+                            <Description>
+                                Geodes.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Dark Diamond Geodes is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='rlcrDarkDiamondGeodesFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Frequency multiplier for RailCraft Dark Diamond Geodes distributions </Description>
+                        <DisplayName>RailCraft Dark Diamond Geodes Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='rlcrDarkDiamondGeodesSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Size multiplier for RailCraft Dark Diamond Geodes distributions </Description>
+                        <DisplayName>RailCraft Dark Diamond Geodes Size</DisplayName>
+                    </OptionNumeric>
                 </ConfigSection> 
-
                 <ConfigSection>
-
-            <!-- Dark Lapis Lazuli Geodes Configuration UI -->
-
-            <OptionChoice name='rlcrDarkLapisLazuliGeodesDist' displayState='shown' displayGroup='groupRailCraft'> 
-                <Description> Controls how Dark Lapis Lazuli Geodes is generated </Description> 
-                <DisplayName>RailCraft Dark Lapis Lazuli Geodes Type</DisplayName>
-
-               <Choice value='geodes' displayValue='Geodes'>
-                   <Description>
-                       Geodes. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Dark Lapis Lazuli Geodes is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='rlcrDarkLapisLazuliGeodesFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Frequency multiplier for RailCraft Dark Lapis Lazuli Geodes distributions </Description>
-                <DisplayName>RailCraft Dark Lapis Lazuli Geodes Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='rlcrDarkLapisLazuliGeodesSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Size multiplier for RailCraft Dark Lapis Lazuli Geodes distributions </Description>
-                <DisplayName>RailCraft Dark Lapis Lazuli Geodes Size</DisplayName>
-            </OptionNumeric>
+                    <!-- Dark Emerald Geodes Configuration UI -->
+                    <OptionChoice name='rlcrDarkEmeraldGeodesDist' displayState='shown' displayGroup='groupRailCraft'> 
+                        <Description> Controls how Dark Emerald Geodes is generated </Description> 
+                        <DisplayName>RailCraft Dark Emerald Geodes Type</DisplayName>
+                        <Choice value='geodes' displayValue='Geodes'>
+                            <Description>
+                                Geodes.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Dark Emerald Geodes is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='rlcrDarkEmeraldGeodesFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Frequency multiplier for RailCraft Dark Emerald Geodes distributions </Description>
+                        <DisplayName>RailCraft Dark Emerald Geodes Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='rlcrDarkEmeraldGeodesSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Size multiplier for RailCraft Dark Emerald Geodes distributions </Description>
+                        <DisplayName>RailCraft Dark Emerald Geodes Size</DisplayName>
+                    </OptionNumeric>
                 </ConfigSection> 
-
                 <ConfigSection>
-
-            <!-- Firestone Configuration UI -->
-
-            <OptionChoice name='rlcrFirestoneDist' displayState='shown' displayGroup='groupRailCraft'> 
-                <Description> Controls how Firestone is generated </Description> 
-                <DisplayName>RailCraft Firestone Type</DisplayName>
-
-               <Choice value='layeredVeins' displayValue='Layered Veins'>
-                   <Description>
-                       Layered Veins. 
-                   </Description>
-               </Choice>
-
-               <Choice value='strategicCloud' displayValue='Clouds'>
-                   <Description>
-                       Strategic Clouds 
-                   </Description>
-               </Choice>
-
-               <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                   <Description>
-                       Vanilla-style clusters. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Firestone is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='rlcrFirestoneFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Frequency multiplier for RailCraft Firestone distributions </Description>
-                <DisplayName>RailCraft Firestone Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='rlcrFirestoneSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                <Description> Size multiplier for RailCraft Firestone distributions </Description>
-                <DisplayName>RailCraft Firestone Size</DisplayName>
-            </OptionNumeric>
+                    <!-- Dark Lapis Lazuli Geodes Configuration UI -->
+                    <OptionChoice name='rlcrDarkLapisLazuliGeodesDist' displayState='shown' displayGroup='groupRailCraft'> 
+                        <Description> Controls how Dark Lapis Lazuli Geodes is generated </Description> 
+                        <DisplayName>RailCraft Dark Lapis Lazuli Geodes Type</DisplayName>
+                        <Choice value='geodes' displayValue='Geodes'>
+                            <Description>
+                                Geodes.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Dark Lapis Lazuli Geodes is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='rlcrDarkLapisLazuliGeodesFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Frequency multiplier for RailCraft Dark Lapis Lazuli Geodes distributions </Description>
+                        <DisplayName>RailCraft Dark Lapis Lazuli Geodes Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='rlcrDarkLapisLazuliGeodesSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Size multiplier for RailCraft Dark Lapis Lazuli Geodes distributions </Description>
+                        <DisplayName>RailCraft Dark Lapis Lazuli Geodes Size</DisplayName>
+                    </OptionNumeric>
                 </ConfigSection> 
-
-            </ConfigSection> 
-
+                <ConfigSection>
+                    <!-- Firestone Configuration UI -->
+                    <OptionChoice name='rlcrFirestoneDist' displayState='shown' displayGroup='groupRailCraft'> 
+                        <Description> Controls how Firestone is generated </Description> 
+                        <DisplayName>RailCraft Firestone Type</DisplayName>
+                        <Choice value='layeredVeins' displayValue='Layered Veins'>
+                            <Description>
+                                Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='strategicCloud' displayValue='Clouds'>
+                            <Description>
+                                Strategic Clouds.
+                            </Description>
+                        </Choice>
+                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                            <Description>
+                                Vanilla-style clusters.
+                            </Description>
+                        </Choice>
+                        <Choice value='none' displayValue='None' description='Firestone is not generated in the world.'/>
+                    </OptionChoice>
+                    <OptionNumeric name='rlcrFirestoneFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Frequency multiplier for RailCraft Firestone distributions </Description>
+                        <DisplayName>RailCraft Firestone Freq.</DisplayName>
+                    </OptionNumeric>
+                    <OptionNumeric name='rlcrFirestoneSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
+                        <Description> Size multiplier for RailCraft Firestone distributions </Description>
+                        <DisplayName>RailCraft Firestone Size</DisplayName>
+                    </OptionNumeric>
+                </ConfigSection> 
+            </ConfigSection>
 
 
             <!-- Setup Overworld -->
-
             <IfCondition condition=':= ?COGActive'>
-
-
                 <!-- **********   Vanilla Deposit Removal   ************* -->
-
-                    <Substitute name='RailCraftStandardOreSubstitute0' block='minecraft:stone'>
-                        <Description> 
-                            Replace vanilla-generated ore clusters.   
-                        </Description>
-                        <Comment>  
-                            The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
-                        </Comment>
-                         <Replaces block='Railcraft:cube:7' />
-                        <Replaces block='Railcraft:ore' />
-                        <Replaces block='Railcraft:ore:7' />
-                        <Replaces block='Railcraft:ore:8' />
-                        <Replaces block='Railcraft:ore:9' />
-                        <Replaces block='Railcraft:ore:10' />
-                        <Replaces block='Railcraft:ore:11' />
-                        <Replaces block='Railcraft:ore:2' />
-                        <Replaces block='Railcraft:ore:3' />
-                        <Replaces block='Railcraft:ore:4' />
-                        <Replaces block='Railcraft:ore:5' />
-
+                <Substitute name='rlcrOverworldOreSubstitute0' block='minecraft:stone'>
+                    <Description>
+                        Replace vanilla-generated ore clusters.
+                    </Description>
+                    <Comment>
+                        The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                    </Comment>
+                    <Replaces block='Railcraft:cube:7' />
+                    <Replaces block='Railcraft:ore:0' />
+                    <Replaces block='Railcraft:ore:7' />
+                    <Replaces block='Railcraft:ore:8' />
+                    <Replaces block='Railcraft:ore:9' />
+                    <Replaces block='Railcraft:ore:10' />
+                    <Replaces block='Railcraft:ore:11' />
+                    <Replaces block='Railcraft:ore:2' />
+                    <Replaces block='Railcraft:ore:3' />
+                    <Replaces block='Railcraft:ore:4' />
+                    <Replaces block='Railcraft:ore:5' />
                 </Substitute>
-
-                    <Substitute name='RailCraftStandardOreSubstitute1' block='minecraft:sandstone'>
-                        <Description> 
-                            Replace vanilla-generated ore clusters.   
-                        </Description>
-                        <Comment>  
-                            The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
-                        </Comment>
-                         <Replaces block='Railcraft:ore:1' />
-
+                <Substitute name='rlcrOverworldOreSubstitute1' block='minecraft:sandstone'>
+                    <Description>
+                        Replace vanilla-generated ore clusters.
+                    </Description>
+                    <Comment>
+                        The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                    </Comment>
+                    <Replaces block='Railcraft:ore:1' />
                 </Substitute>
-
-        <!-- Adding ores --> 
-
+                <!-- Adding ores --> 
                 <IfCondition condition=':= rlcrQuarryStoneDist = "layeredVeins"'>
-                    <Veins name='rlcrQuarryStoneVeins' block='Railcraft:cube:7' inherits='PresetLayeredVeins'>
-                        <Description> 
+                    <Veins name='rlcrQuarryStone0Veins' block='Railcraft:cube:7' inherits='PresetLayeredVeins'>
+                        <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description> 
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60ae6ac0</WireframeColor> 
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * rlcrQuarryStoneFreq * _default_'/>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * rlcrQuarryStoneSize * _default_' range=':= 1 * rlcrQuarryStoneSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * rlcrQuarryStoneFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * rlcrQuarryStoneSize * _default_' range=':= 1 * rlcrQuarryStoneSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
-
-                <IfCondition condition=':= rlcrQuarryStoneDist = "strategicCloud"'>
-                    <Cloud name='rlcrQuarryStoneCloud' block='Railcraft:cube:7' inherits='PresetStrategicCloud'>
-                        <Description>  
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60ae6ac0</WireframeColor> 
-                        <Setting name='DistributionFrequency' avg=':= 1 * rlcrQuarryStoneFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * rlcrQuarryStoneSize * _default_' range=':= 1 * rlcrQuarryStoneSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * rlcrQuarryStoneSize * _default_' range=':= 1 * rlcrQuarryStoneSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='biome'/>
-                        <Replaces block='minecraft:stone'/>
-                        <Veins name='rlcrQuarryStoneHintVeins' block='Railcraft:cube:7' inherits='PresetHintVeins'>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60ae6ac0</WireframeColor> 
-                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * rlcrQuarryStoneSize * _default_' range=':= 1 * rlcrQuarryStoneSize * _default_'/>
-                        </Veins>
-                    </Cloud>
-                </IfCondition>
-
                 <IfCondition condition=':= rlcrQuarryStoneDist = "vanillaStdGen"'>
-                    <StandardGen name='rlcrQuarryStoneStandard' block='Railcraft:cube:7' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrQuarryStone0Standard' block='Railcraft:cube:7' inherits='PresetStandardGen'>
                         <Description> This mimics vanilla ore generation. </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
@@ -551,51 +423,22 @@ Lapis Lazuli Geodes, Firestone
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
-
                 <IfCondition condition=':= rlcrSulfurDist = "layeredVeins"'>
-                    <Veins name='rlcrSulfurVeins' block='Railcraft:ore' inherits='PresetLayeredVeins'>
-                        <Description> 
+                    <Veins name='rlcrSulfur0Veins' block='Railcraft:ore' inherits='PresetLayeredVeins'>
+                        <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description> 
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60ae6ac0</WireframeColor> 
-                        <Setting name='MotherlodeFrequency' avg=':= 3 * rlcrSulfurFreq * _default_'/>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * rlcrSulfurSize * _default_' range=':= 1 * rlcrSulfurSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
+                        <Setting name='MotherlodeFrequency' avg=':= 3 * rlcrSulfurFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * rlcrSulfurSize * _default_' range=':= 1 * rlcrSulfurSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
-
-                <IfCondition condition=':= rlcrSulfurDist = "strategicCloud"'>
-                    <Cloud name='rlcrSulfurCloud' block='Railcraft:ore' inherits='PresetStrategicCloud'>
-                        <Description>  
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60ae6ac0</WireframeColor> 
-                        <Setting name='DistributionFrequency' avg=':= 3 * rlcrSulfurFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * rlcrSulfurSize * _default_' range=':= 1 * rlcrSulfurSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * rlcrSulfurSize * _default_' range=':= 1 * rlcrSulfurSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='biome'/>
-                        <Replaces block='minecraft:stone'/>
-                        <Veins name='rlcrSulfurHintVeins' block='Railcraft:ore' inherits='PresetHintVeins'>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60ae6ac0</WireframeColor> 
-                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * rlcrSulfurSize * _default_' range=':= 1 * rlcrSulfurSize * _default_'/>
-                        </Veins>
-                    </Cloud>
-                </IfCondition>
-
                 <IfCondition condition=':= rlcrSulfurDist = "vanillaStdGen"'>
-                    <StandardGen name='rlcrSulfurStandard' block='Railcraft:ore' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrSulfur0Standard' block='Railcraft:ore' inherits='PresetStandardGen'>
                         <Description> This mimics vanilla ore generation. </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
@@ -605,51 +448,22 @@ Lapis Lazuli Geodes, Firestone
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
-
                 <IfCondition condition=':= rlcrPoorIronDist = "layeredVeins"'>
-                    <Veins name='rlcrPoorIronVeins' block='Railcraft:ore:7' inherits='PresetLayeredVeins'>
-                        <Description> 
+                    <Veins name='rlcrPoorIron0Veins' block='Railcraft:ore:7' inherits='PresetLayeredVeins'>
+                        <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description> 
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60ae6ac0</WireframeColor> 
-                        <Setting name='MotherlodeFrequency' avg=':= 3 * rlcrPoorIronFreq * _default_'/>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * rlcrPoorIronSize * _default_' range=':= 1 * rlcrPoorIronSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
+                        <Setting name='MotherlodeFrequency' avg=':= 3 * rlcrPoorIronFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * rlcrPoorIronSize * _default_' range=':= 1 * rlcrPoorIronSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
-
-                <IfCondition condition=':= rlcrPoorIronDist = "strategicCloud"'>
-                    <Cloud name='rlcrPoorIronCloud' block='Railcraft:ore:7' inherits='PresetStrategicCloud'>
-                        <Description>  
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60ae6ac0</WireframeColor> 
-                        <Setting name='DistributionFrequency' avg=':= 3 * rlcrPoorIronFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * rlcrPoorIronSize * _default_' range=':= 1 * rlcrPoorIronSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * rlcrPoorIronSize * _default_' range=':= 1 * rlcrPoorIronSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='biome'/>
-                        <Replaces block='minecraft:stone'/>
-                        <Veins name='rlcrPoorIronHintVeins' block='Railcraft:ore:7' inherits='PresetHintVeins'>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60ae6ac0</WireframeColor> 
-                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * rlcrPoorIronSize * _default_' range=':= 1 * rlcrPoorIronSize * _default_'/>
-                        </Veins>
-                    </Cloud>
-                </IfCondition>
-
                 <IfCondition condition=':= rlcrPoorIronDist = "vanillaStdGen"'>
-                    <StandardGen name='rlcrPoorIronStandard' block='Railcraft:ore:7' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrPoorIron0Standard' block='Railcraft:ore:7' inherits='PresetStandardGen'>
                         <Description> This mimics vanilla ore generation. </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
@@ -659,51 +473,22 @@ Lapis Lazuli Geodes, Firestone
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
-
                 <IfCondition condition=':= rlcrPoorGoldDist = "layeredVeins"'>
-                    <Veins name='rlcrPoorGoldVeins' block='Railcraft:ore:8' inherits='PresetLayeredVeins'>
-                        <Description> 
+                    <Veins name='rlcrPoorGold0Veins' block='Railcraft:ore:8' inherits='PresetLayeredVeins'>
+                        <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description> 
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60ae6ac0</WireframeColor> 
-                        <Setting name='MotherlodeFrequency' avg=':= 0.5 * rlcrPoorGoldFreq * _default_'/>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * rlcrPoorGoldSize * _default_' range=':= 1 * rlcrPoorGoldSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
+                        <Setting name='MotherlodeFrequency' avg=':= 0.5 * rlcrPoorGoldFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * rlcrPoorGoldSize * _default_' range=':= 1 * rlcrPoorGoldSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
-
-                <IfCondition condition=':= rlcrPoorGoldDist = "strategicCloud"'>
-                    <Cloud name='rlcrPoorGoldCloud' block='Railcraft:ore:8' inherits='PresetStrategicCloud'>
-                        <Description>  
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60ae6ac0</WireframeColor> 
-                        <Setting name='DistributionFrequency' avg=':= 0.5 * rlcrPoorGoldFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * rlcrPoorGoldSize * _default_' range=':= 1 * rlcrPoorGoldSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * rlcrPoorGoldSize * _default_' range=':= 1 * rlcrPoorGoldSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='biome'/>
-                        <Replaces block='minecraft:stone'/>
-                        <Veins name='rlcrPoorGoldHintVeins' block='Railcraft:ore:8' inherits='PresetHintVeins'>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60ae6ac0</WireframeColor> 
-                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * rlcrPoorGoldSize * _default_' range=':= 1 * rlcrPoorGoldSize * _default_'/>
-                        </Veins>
-                    </Cloud>
-                </IfCondition>
-
                 <IfCondition condition=':= rlcrPoorGoldDist = "vanillaStdGen"'>
-                    <StandardGen name='rlcrPoorGoldStandard' block='Railcraft:ore:8' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrPoorGold0Standard' block='Railcraft:ore:8' inherits='PresetStandardGen'>
                         <Description> This mimics vanilla ore generation. </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
@@ -713,51 +498,22 @@ Lapis Lazuli Geodes, Firestone
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
-
                 <IfCondition condition=':= rlcrPoorCopperDist = "layeredVeins"'>
-                    <Veins name='rlcrPoorCopperVeins' block='Railcraft:ore:9' inherits='PresetLayeredVeins'>
-                        <Description> 
+                    <Veins name='rlcrPoorCopper0Veins' block='Railcraft:ore:9' inherits='PresetLayeredVeins'>
+                        <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description> 
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60ae6ac0</WireframeColor> 
-                        <Setting name='MotherlodeFrequency' avg=':= 3 * rlcrPoorCopperFreq * _default_'/>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * rlcrPoorCopperSize * _default_' range=':= 1 * rlcrPoorCopperSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
+                        <Setting name='MotherlodeFrequency' avg=':= 3 * rlcrPoorCopperFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * rlcrPoorCopperSize * _default_' range=':= 1 * rlcrPoorCopperSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
-
-                <IfCondition condition=':= rlcrPoorCopperDist = "strategicCloud"'>
-                    <Cloud name='rlcrPoorCopperCloud' block='Railcraft:ore:9' inherits='PresetStrategicCloud'>
-                        <Description>  
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60ae6ac0</WireframeColor> 
-                        <Setting name='DistributionFrequency' avg=':= 3 * rlcrPoorCopperFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * rlcrPoorCopperSize * _default_' range=':= 1 * rlcrPoorCopperSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * rlcrPoorCopperSize * _default_' range=':= 1 * rlcrPoorCopperSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='biome'/>
-                        <Replaces block='minecraft:stone'/>
-                        <Veins name='rlcrPoorCopperHintVeins' block='Railcraft:ore:9' inherits='PresetHintVeins'>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60ae6ac0</WireframeColor> 
-                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * rlcrPoorCopperSize * _default_' range=':= 1 * rlcrPoorCopperSize * _default_'/>
-                        </Veins>
-                    </Cloud>
-                </IfCondition>
-
                 <IfCondition condition=':= rlcrPoorCopperDist = "vanillaStdGen"'>
-                    <StandardGen name='rlcrPoorCopperStandard' block='Railcraft:ore:9' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrPoorCopper0Standard' block='Railcraft:ore:9' inherits='PresetStandardGen'>
                         <Description> This mimics vanilla ore generation. </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
@@ -767,51 +523,22 @@ Lapis Lazuli Geodes, Firestone
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
-
                 <IfCondition condition=':= rlcrPoorTinDist = "layeredVeins"'>
-                    <Veins name='rlcrPoorTinVeins' block='Railcraft:ore:10' inherits='PresetLayeredVeins'>
-                        <Description> 
+                    <Veins name='rlcrPoorTin0Veins' block='Railcraft:ore:10' inherits='PresetLayeredVeins'>
+                        <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description> 
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60ae6ac0</WireframeColor> 
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * rlcrPoorTinFreq * _default_'/>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * rlcrPoorTinSize * _default_' range=':= 1 * rlcrPoorTinSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * rlcrPoorTinFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * rlcrPoorTinSize * _default_' range=':= 1 * rlcrPoorTinSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
-
-                <IfCondition condition=':= rlcrPoorTinDist = "strategicCloud"'>
-                    <Cloud name='rlcrPoorTinCloud' block='Railcraft:ore:10' inherits='PresetStrategicCloud'>
-                        <Description>  
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60ae6ac0</WireframeColor> 
-                        <Setting name='DistributionFrequency' avg=':= 1 * rlcrPoorTinFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * rlcrPoorTinSize * _default_' range=':= 1 * rlcrPoorTinSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * rlcrPoorTinSize * _default_' range=':= 1 * rlcrPoorTinSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='biome'/>
-                        <Replaces block='minecraft:stone'/>
-                        <Veins name='rlcrPoorTinHintVeins' block='Railcraft:ore:10' inherits='PresetHintVeins'>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60ae6ac0</WireframeColor> 
-                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * rlcrPoorTinSize * _default_' range=':= 1 * rlcrPoorTinSize * _default_'/>
-                        </Veins>
-                    </Cloud>
-                </IfCondition>
-
                 <IfCondition condition=':= rlcrPoorTinDist = "vanillaStdGen"'>
-                    <StandardGen name='rlcrPoorTinStandard' block='Railcraft:ore:10' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrPoorTin0Standard' block='Railcraft:ore:10' inherits='PresetStandardGen'>
                         <Description> This mimics vanilla ore generation. </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
@@ -821,51 +548,22 @@ Lapis Lazuli Geodes, Firestone
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
-
                 <IfCondition condition=':= rlcrPoorLeadDist = "layeredVeins"'>
-                    <Veins name='rlcrPoorLeadVeins' block='Railcraft:ore:11' inherits='PresetLayeredVeins'>
-                        <Description> 
+                    <Veins name='rlcrPoorLead0Veins' block='Railcraft:ore:11' inherits='PresetLayeredVeins'>
+                        <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description> 
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60ae6ac0</WireframeColor> 
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * rlcrPoorLeadFreq * _default_'/>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * rlcrPoorLeadSize * _default_' range=':= 1 * rlcrPoorLeadSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * rlcrPoorLeadFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * rlcrPoorLeadSize * _default_' range=':= 1 * rlcrPoorLeadSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
-
-                <IfCondition condition=':= rlcrPoorLeadDist = "strategicCloud"'>
-                    <Cloud name='rlcrPoorLeadCloud' block='Railcraft:ore:11' inherits='PresetStrategicCloud'>
-                        <Description>  
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60ae6ac0</WireframeColor> 
-                        <Setting name='DistributionFrequency' avg=':= 2 * rlcrPoorLeadFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * rlcrPoorLeadSize * _default_' range=':= 1 * rlcrPoorLeadSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * rlcrPoorLeadSize * _default_' range=':= 1 * rlcrPoorLeadSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='biome'/>
-                        <Replaces block='minecraft:stone'/>
-                        <Veins name='rlcrPoorLeadHintVeins' block='Railcraft:ore:11' inherits='PresetHintVeins'>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60ae6ac0</WireframeColor> 
-                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * rlcrPoorLeadSize * _default_' range=':= 1 * rlcrPoorLeadSize * _default_'/>
-                        </Veins>
-                    </Cloud>
-                </IfCondition>
-
                 <IfCondition condition=':= rlcrPoorLeadDist = "vanillaStdGen"'>
-                    <StandardGen name='rlcrPoorLeadStandard' block='Railcraft:ore:11' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrPoorLead0Standard' block='Railcraft:ore:11' inherits='PresetStandardGen'>
                         <Description> This mimics vanilla ore generation. </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
@@ -875,51 +573,22 @@ Lapis Lazuli Geodes, Firestone
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
-
                 <IfCondition condition=':= rlcrSaltpeterDist = "layeredVeins"'>
-                    <Veins name='rlcrSaltpeterVeins' block='Railcraft:ore:1' inherits='PresetLayeredVeins'>
-                        <Description> 
+                    <Veins name='rlcrSaltpeter0Veins' block='Railcraft:ore:1' inherits='PresetLayeredVeins'>
+                        <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description> 
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60ae6ac0</WireframeColor> 
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * rlcrSaltpeterFreq * _default_'/>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * rlcrSaltpeterSize * _default_' range=':= 1 * rlcrSaltpeterSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * rlcrSaltpeterFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * rlcrSaltpeterSize * _default_' range=':= 1 * rlcrSaltpeterSize * _default_'/>
                         <Replaces block='minecraft:sandstone'/>
                     </Veins>
                 </IfCondition>
-
-                <IfCondition condition=':= rlcrSaltpeterDist = "strategicCloud"'>
-                    <Cloud name='rlcrSaltpeterCloud' block='Railcraft:ore:1' inherits='PresetStrategicCloud'>
-                        <Description>  
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60ae6ac0</WireframeColor> 
-                        <Setting name='DistributionFrequency' avg=':= 1 * rlcrSaltpeterFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * rlcrSaltpeterSize * _default_' range=':= 1 * rlcrSaltpeterSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * rlcrSaltpeterSize * _default_' range=':= 1 * rlcrSaltpeterSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='biome'/>
-                        <Replaces block='minecraft:sandstone'/>
-                        <Veins name='rlcrSaltpeterHintVeins' block='Railcraft:ore:1' inherits='PresetHintVeins'>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60ae6ac0</WireframeColor> 
-                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * rlcrSaltpeterSize * _default_' range=':= 1 * rlcrSaltpeterSize * _default_'/>
-                        </Veins>
-                    </Cloud>
-                </IfCondition>
-
                 <IfCondition condition=':= rlcrSaltpeterDist = "vanillaStdGen"'>
-                    <StandardGen name='rlcrSaltpeterStandard' block='Railcraft:ore:1' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrSaltpeter0Standard' block='Railcraft:ore:1' inherits='PresetStandardGen'>
                         <Description> This mimics vanilla ore generation. </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
@@ -929,9 +598,8 @@ Lapis Lazuli Geodes, Firestone
                         <Replaces block='minecraft:sandstone'/>
                     </StandardGen>
                 </IfCondition>
-
                 <IfCondition condition=':= rlcrDarkDiamondGeodesDist = "geodes"'>
-                    <Veins name='rlcrDarkDiamondGeodesVeins' block='Railcraft:cube:6' inherits='PresetSmallDeposits' seed='0x1B7B'>
+                    <Veins name='rlcrDarkDiamondGeodes0Shell' block='Railcraft:cube:6' inherits='PresetSmallDeposits' seed='0x6EAA'>
                         <Description>
                             The geode's outer shell, composed of the Pipe material.
                         </Description>
@@ -939,13 +607,13 @@ Lapis Lazuli Geodes, Firestone
                         <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * rlcrDarkDiamondGeodesFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 3 * 1 * rlcrDarkDiamondGeodesSize * _default_' range=':= 1 * rlcrDarkDiamondGeodesSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
                         <Replaces block='minecraft:air'/>
                         <Replaces block='minecraft:water'/>
                         <Replaces block='minecraft:lava'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name='rlcrDarkDiamondGeodesVeins' block='Railcraft:ore:2' inherits='PresetSmallDeposits' seed='0x1B7B'>
+                    <Veins name='rlcrDarkDiamondGeodes0Crystal' block='Railcraft:ore:2' inherits='PresetSmallDeposits' seed='0x6EAA'>
                         <Description>
                             The geode's inner material, usually some form of crystal.
                         </Description>
@@ -953,10 +621,10 @@ Lapis Lazuli Geodes, Firestone
                         <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * rlcrDarkDiamondGeodesFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 1.5 * 1 * rlcrDarkDiamondGeodesSize * _default_' range=':= 1 * rlcrDarkDiamondGeodesSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
                         <Replaces block='Railcraft:cube:6'/>
                     </Veins>
-                    <Veins name='rlcrDarkDiamondGeodesVeins' block='minecraft:air' inherits='PresetSmallDeposits' seed='0x1B7B'>
+                    <Veins name='rlcrDarkDiamondGeodes0AirBubble' block='minecraft:air' inherits='PresetSmallDeposits' seed='0x6EAA'>
                         <Description>
                             The air pocket within the center of a geode.
                         </Description>
@@ -964,13 +632,13 @@ Lapis Lazuli Geodes, Firestone
                         <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * rlcrDarkDiamondGeodesFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 1 * rlcrDarkDiamondGeodesSize * _default_' range=':= 1 * rlcrDarkDiamondGeodesSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * rlcrDarkDiamondGeodesSize * _default_' range=':= 1 * rlcrDarkDiamondGeodesSize * _default_'/>
                         <Replaces block='Railcraft:ore:2'/>
                     </Veins>
                 </IfCondition>
-
                 <IfCondition condition=':= rlcrDarkEmeraldGeodesDist = "geodes"'>
-                    <Veins name='rlcrDarkEmeraldGeodesVeins' block='Railcraft:cube:6' inherits='PresetSmallDeposits' seed='0x7141'>
+                    <Veins name='rlcrDarkEmeraldGeodes0Shell' block='Railcraft:cube:6' inherits='PresetSmallDeposits' seed='0x0740'>
                         <Description>
                             The geode's outer shell, composed of the Pipe material.
                         </Description>
@@ -978,13 +646,13 @@ Lapis Lazuli Geodes, Firestone
                         <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * rlcrDarkEmeraldGeodesFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 3 * 1 * rlcrDarkEmeraldGeodesSize * _default_' range=':= 1 * rlcrDarkEmeraldGeodesSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
                         <Replaces block='minecraft:air'/>
                         <Replaces block='minecraft:water'/>
                         <Replaces block='minecraft:lava'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name='rlcrDarkEmeraldGeodesVeins' block='Railcraft:ore:3' inherits='PresetSmallDeposits' seed='0x7141'>
+                    <Veins name='rlcrDarkEmeraldGeodes0Crystal' block='Railcraft:ore:3' inherits='PresetSmallDeposits' seed='0x0740'>
                         <Description>
                             The geode's inner material, usually some form of crystal.
                         </Description>
@@ -992,10 +660,10 @@ Lapis Lazuli Geodes, Firestone
                         <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * rlcrDarkEmeraldGeodesFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 1.5 * 1 * rlcrDarkEmeraldGeodesSize * _default_' range=':= 1 * rlcrDarkEmeraldGeodesSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
                         <Replaces block='Railcraft:cube:6'/>
                     </Veins>
-                    <Veins name='rlcrDarkEmeraldGeodesVeins' block='minecraft:air' inherits='PresetSmallDeposits' seed='0x7141'>
+                    <Veins name='rlcrDarkEmeraldGeodes0AirBubble' block='minecraft:air' inherits='PresetSmallDeposits' seed='0x0740'>
                         <Description>
                             The air pocket within the center of a geode.
                         </Description>
@@ -1003,13 +671,13 @@ Lapis Lazuli Geodes, Firestone
                         <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * rlcrDarkEmeraldGeodesFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 1 * rlcrDarkEmeraldGeodesSize * _default_' range=':= 1 * rlcrDarkEmeraldGeodesSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * rlcrDarkEmeraldGeodesSize * _default_' range=':= 1 * rlcrDarkEmeraldGeodesSize * _default_'/>
                         <Replaces block='Railcraft:ore:3'/>
                     </Veins>
                 </IfCondition>
-
                 <IfCondition condition=':= rlcrDarkLapisLazuliGeodesDist = "geodes"'>
-                    <Veins name='rlcrDarkLapisLazuliGeodesVeins' block='Railcraft:cube:6' inherits='PresetSmallDeposits' seed='0xB5F2'>
+                    <Veins name='rlcrDarkLapisLazuliGeodes0Shell' block='Railcraft:cube:6' inherits='PresetSmallDeposits' seed='0xFFF6'>
                         <Description>
                             The geode's outer shell, composed of the Pipe material.
                         </Description>
@@ -1017,13 +685,13 @@ Lapis Lazuli Geodes, Firestone
                         <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * rlcrDarkLapisLazuliGeodesFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 3 * 1 * rlcrDarkLapisLazuliGeodesSize * _default_' range=':= 1 * rlcrDarkLapisLazuliGeodesSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
                         <Replaces block='minecraft:air'/>
                         <Replaces block='minecraft:water'/>
                         <Replaces block='minecraft:lava'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name='rlcrDarkLapisLazuliGeodesVeins' block='Railcraft:ore:4' inherits='PresetSmallDeposits' seed='0xB5F2'>
+                    <Veins name='rlcrDarkLapisLazuliGeodes0Crystal' block='Railcraft:ore:4' inherits='PresetSmallDeposits' seed='0xFFF6'>
                         <Description>
                             The geode's inner material, usually some form of crystal.
                         </Description>
@@ -1031,10 +699,10 @@ Lapis Lazuli Geodes, Firestone
                         <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * rlcrDarkLapisLazuliGeodesFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 1.5 * 1 * rlcrDarkLapisLazuliGeodesSize * _default_' range=':= 1 * rlcrDarkLapisLazuliGeodesSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
                         <Replaces block='Railcraft:cube:6'/>
                     </Veins>
-                    <Veins name='rlcrDarkLapisLazuliGeodesVeins' block='minecraft:air' inherits='PresetSmallDeposits' seed='0xB5F2'>
+                    <Veins name='rlcrDarkLapisLazuliGeodes0AirBubble' block='minecraft:air' inherits='PresetSmallDeposits' seed='0xFFF6'>
                         <Description>
                             The air pocket within the center of a geode.
                         </Description>
@@ -1042,88 +710,53 @@ Lapis Lazuli Geodes, Firestone
                         <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * rlcrDarkLapisLazuliGeodesFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 1 * rlcrDarkLapisLazuliGeodesSize * _default_' range=':= 1 * rlcrDarkLapisLazuliGeodesSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * rlcrDarkLapisLazuliGeodesSize * _default_' range=':= 1 * rlcrDarkLapisLazuliGeodesSize * _default_'/>
                         <Replaces block='Railcraft:ore:4'/>
                     </Veins>
                 </IfCondition>
-
             </IfCondition>
 
 
             <!-- Setup Nether -->
-
             <IfCondition condition=':= dimension.generator = "HellRandomLevelSource"'>
-
-
                 <!-- **********   Vanilla Deposit Removal   ************* -->
-
-                    <Substitute name='RailCraftStandardOreSubstitute0' block='minecraft:stone'>
-                        <Description> 
-                            Replace vanilla-generated ore clusters.   
-                        </Description>
-                        <Comment>  
-                            The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
-                        </Comment>
-                         <Replaces block='Railcraft:cube:7' />
-                        <Replaces block='Railcraft:ore' />
-                        <Replaces block='Railcraft:ore:7' />
-                        <Replaces block='Railcraft:ore:8' />
-                        <Replaces block='Railcraft:ore:9' />
-                        <Replaces block='Railcraft:ore:10' />
-                        <Replaces block='Railcraft:ore:11' />
-                        <Replaces block='Railcraft:ore:2' />
-                        <Replaces block='Railcraft:ore:3' />
-                        <Replaces block='Railcraft:ore:4' />
-                        <Replaces block='Railcraft:ore:5' />
-
+                <Substitute name='rlcrNetherOreSubstitute0' block='minecraft:stone'>
+                    <Description>
+                        Replace vanilla-generated ore clusters.
+                    </Description>
+                    <Comment>
+                        The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                    </Comment>
+                    <Replaces block='Railcraft:cube:7' />
+                    <Replaces block='Railcraft:ore:0' />
+                    <Replaces block='Railcraft:ore:7' />
+                    <Replaces block='Railcraft:ore:8' />
+                    <Replaces block='Railcraft:ore:9' />
+                    <Replaces block='Railcraft:ore:10' />
+                    <Replaces block='Railcraft:ore:11' />
+                    <Replaces block='Railcraft:ore:2' />
+                    <Replaces block='Railcraft:ore:3' />
+                    <Replaces block='Railcraft:ore:4' />
+                    <Replaces block='Railcraft:ore:5' />
                 </Substitute>
-
-        <!-- Adding ores --> 
-
+                <!-- Adding ores --> 
                 <IfCondition condition=':= rlcrFirestoneDist = "layeredVeins"'>
-                    <Veins name='rlcrFirestoneVeins' block='Railcraft:ore:5' inherits='PresetLayeredVeins'>
-                        <Description> 
+                    <Veins name='rlcrFirestone0Veins' block='Railcraft:ore:5' inherits='PresetLayeredVeins'>
+                        <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description> 
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60ae6ac0</WireframeColor> 
-                        <Setting name='MotherlodeFrequency' avg=':= 0.5 * rlcrFirestoneFreq * _default_'/>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 0.5 * rlcrFirestoneSize * _default_' range=':= 0.5 * rlcrFirestoneSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
+                        <Setting name='MotherlodeFrequency' avg=':= 0.5 * rlcrFirestoneFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
                         <Setting name='SegmentRadius' avg=':= 0.5 * rlcrFirestoneSize * _default_' range=':= 0.5 * rlcrFirestoneSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
-
-                <IfCondition condition=':= rlcrFirestoneDist = "strategicCloud"'>
-                    <Cloud name='rlcrFirestoneCloud' block='Railcraft:ore:5' inherits='PresetStrategicCloud'>
-                        <Description>  
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60ae6ac0</WireframeColor> 
-                        <Setting name='DistributionFrequency' avg=':= 0.5 * rlcrFirestoneFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 0.5 * rlcrFirestoneSize * _default_' range=':= 0.5 * rlcrFirestoneSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 0.5 * rlcrFirestoneSize * _default_' range=':= 0.5 * rlcrFirestoneSize * _default_'/>
-                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='biome'/>
-                        <Replaces block='minecraft:stone'/>
-                        <Veins name='rlcrFirestoneHintVeins' block='Railcraft:ore:5' inherits='PresetHintVeins'>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60ae6ac0</WireframeColor> 
-                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 0.5 * rlcrFirestoneSize * _default_' range=':= 0.5 * rlcrFirestoneSize * _default_'/>
-                        </Veins>
-                    </Cloud>
-                </IfCondition>
-
                 <IfCondition condition=':= rlcrFirestoneDist = "vanillaStdGen"'>
-                    <StandardGen name='rlcrFirestoneStandard' block='Railcraft:ore:5' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrFirestone0Standard' block='Railcraft:ore:5' inherits='PresetStandardGen'>
                         <Description> This mimics vanilla ore generation. </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
@@ -1133,23 +766,10 @@ Lapis Lazuli Geodes, Firestone
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
-
             </IfCondition>
 
 
-            <!-- Setup End -->
-
-            <IfCondition condition=':= dimension.generator = "EndRandomLevelSource"'>
-
-
-                <!-- **********   Vanilla Deposit Removal   ************* -->
-
-        <!-- Adding ores --> 
-
-            </IfCondition>
-
-
-
-    </ConfigSection>
-</IfModInstalled> 
+ 
+        </ConfigSection>
+    </IfModInstalled> 
  

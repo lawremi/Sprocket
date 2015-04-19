@@ -1,1032 +1,857 @@
 
-<!--  
+<!-- ================================================================ 
 
 Custom Ore Generation:   Vanilla Minecraft Module
 
 Generates: Gold, Iron, Coal, Lapis Lazuli, Diamond, Redstone, Emerald, Nether
 Quartz
 
--->
+================================================================ -->
 
     <ConfigSection>
- 
-        <!-- Setup Screen Configuration -->
-
-            <ConfigSection> 
-                <OptionDisplayGroup name='groupVanillaMinecraft' displayName='Vanilla Minecraft Ores' displayState='shown'> 
-                    <Description> 
-                        Distribution options for Vanilla Minecraft Ores.
-                    </Description>
-                </OptionDisplayGroup>
-    
-                 <ConfigSection>
-
-            <!-- Gold Configuration UI -->
-
-            <OptionChoice name='vnlaGoldDist' displayState='shown' displayGroup='groupVanillaMinecraft'> 
-                <Description> Controls how Gold is generated </Description> 
-                <DisplayName>Vanilla Minecraft Gold Type</DisplayName>
-
-               <Choice value='layeredVeins' displayValue='Layered Veins'>
-                   <Description>
-                       Layered Veins. 
-                   </Description>
-               </Choice>
-
-               <Choice value='smallDeposits' displayValue='Small Deposits'>
-                   <Description>
-                       Small Deposits. 
-                   </Description>
-               </Choice>
-
-               <Choice value='strategicCloud' displayValue='Clouds'>
-                   <Description>
-                       Strategic Clouds 
-                   </Description>
-               </Choice>
-
-               <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                   <Description>
-                       Vanilla-style clusters. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Gold is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='vnlaGoldFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
-                <Description> Frequency multiplier for Vanilla Minecraft Gold distributions </Description>
-                <DisplayName>Vanilla Minecraft Gold Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='vnlaGoldSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
-                <Description> Size multiplier for Vanilla Minecraft Gold distributions </Description>
-                <DisplayName>Vanilla Minecraft Gold Size</DisplayName>
-            </OptionNumeric>
-                </ConfigSection> 
-
-                <ConfigSection>
-
-            <!-- Iron Configuration UI -->
-
-            <OptionChoice name='vnlaIronDist' displayState='shown' displayGroup='groupVanillaMinecraft'> 
-                <Description> Controls how Iron is generated </Description> 
-                <DisplayName>Vanilla Minecraft Iron Type</DisplayName>
-
-               <Choice value='layeredVeins' displayValue='Layered Veins'>
-                   <Description>
-                       Layered Veins. 
-                   </Description>
-               </Choice>
-
-               <Choice value='smallDeposits' displayValue='Small Deposits'>
-                   <Description>
-                       Small Deposits. 
-                   </Description>
-               </Choice>
-
-               <Choice value='strategicCloud' displayValue='Clouds'>
-                   <Description>
-                       Strategic Clouds 
-                   </Description>
-               </Choice>
-
-               <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                   <Description>
-                       Vanilla-style clusters. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Iron is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='vnlaIronFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
-                <Description> Frequency multiplier for Vanilla Minecraft Iron distributions </Description>
-                <DisplayName>Vanilla Minecraft Iron Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='vnlaIronSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
-                <Description> Size multiplier for Vanilla Minecraft Iron distributions </Description>
-                <DisplayName>Vanilla Minecraft Iron Size</DisplayName>
-            </OptionNumeric>
-                </ConfigSection> 
-
-                <ConfigSection>
-
-            <!-- Coal Configuration UI -->
-
-            <OptionChoice name='vnlaCoalDist' displayState='shown' displayGroup='groupVanillaMinecraft'> 
-                <Description> Controls how Coal is generated </Description> 
-                <DisplayName>Vanilla Minecraft Coal Type</DisplayName>
-
-               <Choice value='sparseVeins' displayValue='Sparse Veins'>
-                   <Description>
-                       Sparse Veins
-                   </Description>
-               </Choice>
-
-               <Choice value='smallDeposits' displayValue='Small Deposits'>
-                   <Description>
-                       Small Deposits. 
-                   </Description>
-               </Choice>
-
-               <Choice value='strategicCloud' displayValue='Clouds'>
-                   <Description>
-                       Strategic Clouds 
-                   </Description>
-               </Choice>
-
-               <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                   <Description>
-                       Vanilla-style clusters. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Coal is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='vnlaCoalFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
-                <Description> Frequency multiplier for Vanilla Minecraft Coal distributions </Description>
-                <DisplayName>Vanilla Minecraft Coal Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='vnlaCoalSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
-                <Description> Size multiplier for Vanilla Minecraft Coal distributions </Description>
-                <DisplayName>Vanilla Minecraft Coal Size</DisplayName>
-            </OptionNumeric>
-                </ConfigSection> 
-
-                <ConfigSection>
-
-            <!-- Lapis Lazuli Configuration UI -->
-
-            <OptionChoice name='vnlaLapisLazuliDist' displayState='shown' displayGroup='groupVanillaMinecraft'> 
-                <Description> Controls how Lapis Lazuli is generated </Description> 
-                <DisplayName>Vanilla Minecraft Lapis Lazuli Type</DisplayName>
-
-               <Choice value='verticalVeins' displayValue='Vertical Veins'>
-                   <Description>
-                       Vertical Veins. 
-                   </Description>
-               </Choice>
-
-               <Choice value='smallDeposits' displayValue='Small Deposits'>
-                   <Description>
-                       Small Deposits. 
-                   </Description>
-               </Choice>
-
-               <Choice value='strategicCloud' displayValue='Clouds'>
-                   <Description>
-                       Strategic Clouds 
-                   </Description>
-               </Choice>
-
-               <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                   <Description>
-                       Vanilla-style clusters. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Lapis Lazuli is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='vnlaLapisLazuliFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
-                <Description> Frequency multiplier for Vanilla Minecraft Lapis Lazuli distributions </Description>
-                <DisplayName>Vanilla Minecraft Lapis Lazuli Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='vnlaLapisLazuliSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
-                <Description> Size multiplier for Vanilla Minecraft Lapis Lazuli distributions </Description>
-                <DisplayName>Vanilla Minecraft Lapis Lazuli Size</DisplayName>
-            </OptionNumeric>
-                </ConfigSection> 
-
-                <ConfigSection>
-
-            <!-- Diamond Configuration UI -->
-
-            <OptionChoice name='vnlaDiamondDist' displayState='shown' displayGroup='groupVanillaMinecraft'> 
-                <Description> Controls how Diamond is generated </Description> 
-                <DisplayName>Vanilla Minecraft Diamond Type</DisplayName>
-
-               <Choice value='pipeVeins' displayValue='Pipe Veins'>
-                   <Description>
-                       Pipe Veins
-                   </Description>
-               </Choice>
-
-               <Choice value='smallDeposits' displayValue='Small Deposits'>
-                   <Description>
-                       Small Deposits. 
-                   </Description>
-               </Choice>
-
-               <Choice value='strategicCloud' displayValue='Clouds'>
-                   <Description>
-                       Strategic Clouds 
-                   </Description>
-               </Choice>
-
-               <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                   <Description>
-                       Vanilla-style clusters. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Diamond is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='vnlaDiamondFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
-                <Description> Frequency multiplier for Vanilla Minecraft Diamond distributions </Description>
-                <DisplayName>Vanilla Minecraft Diamond Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='vnlaDiamondSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
-                <Description> Size multiplier for Vanilla Minecraft Diamond distributions </Description>
-                <DisplayName>Vanilla Minecraft Diamond Size</DisplayName>
-            </OptionNumeric>
-                </ConfigSection> 
-
-                <ConfigSection>
-
-            <!-- Redstone Configuration UI -->
-
-            <OptionChoice name='vnlaRedstoneDist' displayState='shown' displayGroup='groupVanillaMinecraft'> 
-                <Description> Controls how Redstone is generated </Description> 
-                <DisplayName>Vanilla Minecraft Redstone Type</DisplayName>
-
-               <Choice value='verticalVeins' displayValue='Vertical Veins'>
-                   <Description>
-                       Vertical Veins. 
-                   </Description>
-               </Choice>
-
-               <Choice value='smallDeposits' displayValue='Small Deposits'>
-                   <Description>
-                       Small Deposits. 
-                   </Description>
-               </Choice>
-
-               <Choice value='strategicCloud' displayValue='Clouds'>
-                   <Description>
-                       Strategic Clouds 
-                   </Description>
-               </Choice>
-
-               <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                   <Description>
-                       Vanilla-style clusters. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Redstone is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='vnlaRedstoneFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
-                <Description> Frequency multiplier for Vanilla Minecraft Redstone distributions </Description>
-                <DisplayName>Vanilla Minecraft Redstone Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='vnlaRedstoneSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
-                <Description> Size multiplier for Vanilla Minecraft Redstone distributions </Description>
-                <DisplayName>Vanilla Minecraft Redstone Size</DisplayName>
-            </OptionNumeric>
-                </ConfigSection> 
-
-                <ConfigSection>
-
-            <!-- Emerald Configuration UI -->
-
-            <OptionChoice name='vnlaEmeraldDist' displayState='shown' displayGroup='groupVanillaMinecraft'> 
-                <Description> Controls how Emerald is generated </Description> 
-                <DisplayName>Vanilla Minecraft Emerald Type</DisplayName>
-
-               <Choice value='pipeVeins' displayValue='Pipe Veins'>
-                   <Description>
-                       Pipe Veins
-                   </Description>
-               </Choice>
-
-               <Choice value='smallDeposits' displayValue='Small Deposits'>
-                   <Description>
-                       Small Deposits. 
-                   </Description>
-               </Choice>
-
-               <Choice value='strategicCloud' displayValue='Clouds'>
-                   <Description>
-                       Strategic Clouds 
-                   </Description>
-               </Choice>
-
-               <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                   <Description>
-                       Vanilla-style clusters. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Emerald is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='vnlaEmeraldFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
-                <Description> Frequency multiplier for Vanilla Minecraft Emerald distributions </Description>
-                <DisplayName>Vanilla Minecraft Emerald Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='vnlaEmeraldSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
-                <Description> Size multiplier for Vanilla Minecraft Emerald distributions </Description>
-                <DisplayName>Vanilla Minecraft Emerald Size</DisplayName>
-            </OptionNumeric>
-                </ConfigSection> 
-
-                <ConfigSection>
-
-            <!-- Nether Quartz Configuration UI -->
-
-            <OptionChoice name='vnlaNetherQuartzDist' displayState='shown' displayGroup='groupVanillaMinecraft'> 
-                <Description> Controls how Nether Quartz is generated </Description> 
-                <DisplayName>Vanilla Minecraft Nether Quartz Type</DisplayName>
-
-               <Choice value='layeredVeins' displayValue='Layered Veins'>
-                   <Description>
-                       Layered Veins. 
-                   </Description>
-               </Choice>
-
-               <Choice value='smallDeposits' displayValue='Small Deposits'>
-                   <Description>
-                       Small Deposits. 
-                   </Description>
-               </Choice>
-
-               <Choice value='strategicCloud' displayValue='Clouds'>
-                   <Description>
-                       Strategic Clouds 
-                   </Description>
-               </Choice>
-
-               <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                   <Description>
-                       Vanilla-style clusters. 
-                   </Description>
-               </Choice>
-                <Choice value='none' displayValue='None' description='Nether Quartz is not generated in the world.'/>
-            </OptionChoice>
-    
-            <OptionNumeric name='vnlaNetherQuartzFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
-                <Description> Frequency multiplier for Vanilla Minecraft Nether Quartz distributions </Description>
-                <DisplayName>Vanilla Minecraft Nether Quartz Freq.</DisplayName>
-            </OptionNumeric>
-
-            <OptionNumeric name='vnlaNetherQuartzSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
-                <Description> Size multiplier for Vanilla Minecraft Nether Quartz distributions </Description>
-                <DisplayName>Vanilla Minecraft Nether Quartz Size</DisplayName>
-            </OptionNumeric>
-                </ConfigSection> 
-
+         <!-- Setup Screen Configuration -->
+
+        <ConfigSection>
+            <OptionDisplayGroup name='groupVanillaMinecraft' displayName='Vanilla Minecraft Ores' displayState='shown'> 
+                <Description>
+                    Distribution options for Vanilla Minecraft Ores.
+                </Description>
+            </OptionDisplayGroup>
+
+            <ConfigSection>
+                <!-- Gold Configuration UI -->
+                <OptionChoice name='vnlaGoldDist' displayState='shown' displayGroup='groupVanillaMinecraft'> 
+                    <Description> Controls how Gold is generated </Description> 
+                    <DisplayName>Vanilla Minecraft Gold Type</DisplayName>
+                    <Choice value='layeredVeins' displayValue='Layered Veins'>
+                        <Description>
+                            Layered Veins.
+                        </Description>
+                    </Choice>
+                    <Choice value='smallDeposits' displayValue='Small Deposits'>
+                        <Description>
+                            Small Deposits.
+                        </Description>
+                    </Choice>
+                    <Choice value='strategicCloud' displayValue='Clouds'>
+                        <Description>
+                            Strategic Clouds.
+                        </Description>
+                    </Choice>
+                    <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                        <Description>
+                            Vanilla-style clusters.
+                        </Description>
+                    </Choice>
+                    <Choice value='none' displayValue='None' description='Gold is not generated in the world.'/>
+                </OptionChoice>
+                <OptionNumeric name='vnlaGoldFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
+                    <Description> Frequency multiplier for Vanilla Minecraft Gold distributions </Description>
+                    <DisplayName>Vanilla Minecraft Gold Freq.</DisplayName>
+                </OptionNumeric>
+                <OptionNumeric name='vnlaGoldSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
+                    <Description> Size multiplier for Vanilla Minecraft Gold distributions </Description>
+                    <DisplayName>Vanilla Minecraft Gold Size</DisplayName>
+                </OptionNumeric>
             </ConfigSection> 
-
-
-
-            <!-- Setup Overworld -->
-
-            <IfCondition condition=':= ?COGActive'>
-
-
-                <!-- **********   Vanilla Deposit Removal   ************* -->
-
-                    <Substitute name='VanillaMinecraftStandardOreSubstitute0' block='minecraft:stone'>
-                        <Description> 
-                            Replace vanilla-generated ore clusters.   
-                        </Description>
-                        <Comment>  
-                            The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
-                        </Comment>
-                         <Replaces block='minecraft:gold_ore' />
-                        <Replaces block='minecraft:iron_ore' />
-                        <Replaces block='minecraft:coal_ore' />
-                        <Replaces block='minecraft:lapis_ore' />
-                        <Replaces block='minecraft:diamond_ore' />
-                        <Replaces block='minecraft:redstone_ore' />
-                        <Replaces block='minecraft:emerald_ore' />
-
-                </Substitute>
-
-        <!-- Adding ores --> 
-
-                <IfCondition condition=':= vnlaGoldDist = "layeredVeins"'>
-                    <Veins name='vnlaGoldVeins' block='minecraft:gold_ore' inherits='PresetLayeredVeins'>
-                        <Description> 
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor> 
-                        <Setting name='MotherlodeFrequency' avg=':= 0.5 * vnlaGoldFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * vnlaGoldSize * _default_' range=':= 1 * vnlaGoldSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * vnlaGoldSize * _default_' range=':= 1 * vnlaGoldSize * _default_'/>
-                        <Replaces block='minecraft:stone'/>
-                    </Veins>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaGoldDist = "smallDeposits"'>
-                    <Veins name='vnlaGoldVeins' block='minecraft:gold_ore' inherits='PresetSmallDeposits'>
+            <ConfigSection>
+                <!-- Iron Configuration UI -->
+                <OptionChoice name='vnlaIronDist' displayState='shown' displayGroup='groupVanillaMinecraft'> 
+                    <Description> Controls how Iron is generated </Description> 
+                    <DisplayName>Vanilla Minecraft Iron Type</DisplayName>
+                    <Choice value='layeredVeins' displayValue='Layered Veins'>
                         <Description>
-                            Small motherlodes without any branches.
-                            Similar to the deposits produced by StandardGen distributions.
+                            Layered Veins.
                         </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 0.5 * vnlaGoldFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                        <Setting name='MotherlodeSize' avg=':= 1 * vnlaGoldSize * _default_' range=':= 1 * vnlaGoldSize * _default_'/>
-                        <Replaces block='minecraft:stone'/>
-                    </Veins>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaGoldDist = "strategicCloud"'>
-                    <Cloud name='vnlaGoldCloud' block='minecraft:gold_ore' inherits='PresetStrategicCloud'>
-                        <Description>  
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor> 
-                        <Setting name='DistributionFrequency' avg=':= 0.5 * vnlaGoldFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * vnlaGoldSize * _default_' range=':= 1 * vnlaGoldSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * vnlaGoldSize * _default_' range=':= 1 * vnlaGoldSize * _default_'/>
-                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='biome'/>
-                        <Replaces block='minecraft:stone'/>
-                        <Veins name='vnlaGoldHintVeins' block='minecraft:gold_ore' inherits='PresetHintVeins'>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60e25d21</WireframeColor> 
-                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * vnlaGoldSize * _default_' range=':= 1 * vnlaGoldSize * _default_'/>
-                        </Veins>
-                    </Cloud>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaGoldDist = "vanillaStdGen"'>
-                    <StandardGen name='vnlaGoldStandard' block='minecraft:gold_ore' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * vnlaGoldSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 0.5 * vnlaGoldFreq * _default_'/>
-                        <Setting name='Height' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
-                        <Replaces block='minecraft:stone'/>
-                    </StandardGen>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaIronDist = "layeredVeins"'>
-                    <Veins name='vnlaIronVeins' block='minecraft:iron_ore' inherits='PresetLayeredVeins'>
-                        <Description> 
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor> 
-                        <Setting name='MotherlodeFrequency' avg=':= 3 * vnlaIronFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * vnlaIronSize * _default_' range=':= 1 * vnlaIronSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * vnlaIronSize * _default_' range=':= 1 * vnlaIronSize * _default_'/>
-                        <Replaces block='minecraft:stone'/>
-                    </Veins>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaIronDist = "smallDeposits"'>
-                    <Veins name='vnlaIronVeins' block='minecraft:iron_ore' inherits='PresetSmallDeposits'>
+                    </Choice>
+                    <Choice value='smallDeposits' displayValue='Small Deposits'>
                         <Description>
-                            Small motherlodes without any branches.
-                            Similar to the deposits produced by StandardGen distributions.
+                            Small Deposits.
                         </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 3 * vnlaIronFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                        <Setting name='MotherlodeSize' avg=':= 1 * vnlaIronSize * _default_' range=':= 1 * vnlaIronSize * _default_'/>
-                        <Replaces block='minecraft:stone'/>
-                    </Veins>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaIronDist = "strategicCloud"'>
-                    <Cloud name='vnlaIronCloud' block='minecraft:iron_ore' inherits='PresetStrategicCloud'>
-                        <Description>  
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor> 
-                        <Setting name='DistributionFrequency' avg=':= 3 * vnlaIronFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * vnlaIronSize * _default_' range=':= 1 * vnlaIronSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * vnlaIronSize * _default_' range=':= 1 * vnlaIronSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='biome'/>
-                        <Replaces block='minecraft:stone'/>
-                        <Veins name='vnlaIronHintVeins' block='minecraft:iron_ore' inherits='PresetHintVeins'>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60e25d21</WireframeColor> 
-                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * vnlaIronSize * _default_' range=':= 1 * vnlaIronSize * _default_'/>
-                        </Veins>
-                    </Cloud>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaIronDist = "vanillaStdGen"'>
-                    <StandardGen name='vnlaIronStandard' block='minecraft:iron_ore' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * vnlaIronSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 3 * vnlaIronFreq * _default_'/>
-                        <Setting name='Height' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
-                        <Replaces block='minecraft:stone'/>
-                    </StandardGen>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaCoalDist = "sparseVeins"'>
-                    <Veins name='vnlaCoalVeins' block='minecraft:coal_ore' inherits='PresetSparseVeins'>    
+                    </Choice>
+                    <Choice value='strategicCloud' displayValue='Clouds'>
                         <Description>
-                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
-                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
-                            compared to solid ore veins.  They are also more difficult to follow, since it is 
-                            harder to get an idea of their direction while mining.
+                            Strategic Clouds.
                         </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * vnlaCoalFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * vnlaCoalSize * _default_' range=':= 1 * vnlaCoalSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * vnlaCoalSize * _default_' range=':= 1 * vnlaCoalSize * _default_'/>
-                        <Replaces block='minecraft:stone'/>
-                    </Veins>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaCoalDist = "smallDeposits"'>
-                    <Veins name='vnlaCoalVeins' block='minecraft:coal_ore' inherits='PresetSmallDeposits'>
+                    </Choice>
+                    <Choice value='vanillaStdGen' displayValue='Vanilla'>
                         <Description>
-                            Small motherlodes without any branches.
-                            Similar to the deposits produced by StandardGen distributions.
+                            Vanilla-style clusters.
                         </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * vnlaCoalFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                        <Setting name='MotherlodeSize' avg=':= 1 * vnlaCoalSize * _default_' range=':= 1 * vnlaCoalSize * _default_'/>
-                        <Replaces block='minecraft:stone'/>
-                    </Veins>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaCoalDist = "strategicCloud"'>
-                    <Cloud name='vnlaCoalCloud' block='minecraft:coal_ore' inherits='PresetStrategicCloud'>
-                        <Description>  
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor> 
-                        <Setting name='DistributionFrequency' avg=':= 1 * vnlaCoalFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * vnlaCoalSize * _default_' range=':= 1 * vnlaCoalSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * vnlaCoalSize * _default_' range=':= 1 * vnlaCoalSize * _default_'/>
-                        <Setting name='CloudHeight' avg='98' range='64' type='normal' scaleTo='biome'/>
-                        <Replaces block='minecraft:stone'/>
-                        <Veins name='vnlaCoalHintVeins' block='minecraft:coal_ore' inherits='PresetHintVeins'>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60e25d21</WireframeColor> 
-                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * vnlaCoalSize * _default_' range=':= 1 * vnlaCoalSize * _default_'/>
-                        </Veins>
-                    </Cloud>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaCoalDist = "vanillaStdGen"'>
-                    <StandardGen name='vnlaCoalStandard' block='minecraft:coal_ore' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * vnlaCoalSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * vnlaCoalFreq * _default_'/>
-                        <Setting name='Height' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
-                        <Replaces block='minecraft:stone'/>
-                    </StandardGen>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaLapisLazuliDist = "verticalVeins"'>
-                    <Veins name='vnlaLapisLazuliVeins' block='minecraft:lapis_ore' inherits='PresetVerticalVeins'>
+                    </Choice>
+                    <Choice value='none' displayValue='None' description='Iron is not generated in the world.'/>
+                </OptionChoice>
+                <OptionNumeric name='vnlaIronFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
+                    <Description> Frequency multiplier for Vanilla Minecraft Iron distributions </Description>
+                    <DisplayName>Vanilla Minecraft Iron Freq.</DisplayName>
+                </OptionNumeric>
+                <OptionNumeric name='vnlaIronSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
+                    <Description> Size multiplier for Vanilla Minecraft Iron distributions </Description>
+                    <DisplayName>Vanilla Minecraft Iron Size</DisplayName>
+                </OptionNumeric>
+            </ConfigSection> 
+            <ConfigSection>
+                <!-- Coal Configuration UI -->
+                <OptionChoice name='vnlaCoalDist' displayState='shown' displayGroup='groupVanillaMinecraft'> 
+                    <Description> Controls how Coal is generated </Description> 
+                    <DisplayName>Vanilla Minecraft Coal Type</DisplayName>
+                    <Choice value='sparseVeins' displayValue='Sparse Veins'>
                         <Description>
-                            Single vertical veins that occur with no motherlodes.
+                            Sparse Veins.
                         </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.3 * 1 * vnlaLapisLazuliFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * vnlaLapisLazuliSize * _default_' range=':= 1 * vnlaLapisLazuliSize * _default_'/>
-                        <Replaces block='minecraft:stone'/>
-                    </Veins>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaLapisLazuliDist = "smallDeposits"'>
-                    <Veins name='vnlaLapisLazuliVeins' block='minecraft:lapis_ore' inherits='PresetSmallDeposits'>
+                    </Choice>
+                    <Choice value='smallDeposits' displayValue='Small Deposits'>
                         <Description>
-                            Small motherlodes without any branches.
-                            Similar to the deposits produced by StandardGen distributions.
+                            Small Deposits.
                         </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * vnlaLapisLazuliFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                        <Setting name='MotherlodeSize' avg=':= 1 * vnlaLapisLazuliSize * _default_' range=':= 1 * vnlaLapisLazuliSize * _default_'/>
-                        <Replaces block='minecraft:stone'/>
-                    </Veins>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaLapisLazuliDist = "strategicCloud"'>
-                    <Cloud name='vnlaLapisLazuliCloud' block='minecraft:lapis_ore' inherits='PresetStrategicCloud'>
-                        <Description>  
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor> 
-                        <Setting name='DistributionFrequency' avg=':= 1 * vnlaLapisLazuliFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * vnlaLapisLazuliSize * _default_' range=':= 1 * vnlaLapisLazuliSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * vnlaLapisLazuliSize * _default_' range=':= 1 * vnlaLapisLazuliSize * _default_'/>
-                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='biome'/>
-                        <Replaces block='minecraft:stone'/>
-                        <Veins name='vnlaLapisLazuliHintVeins' block='minecraft:lapis_ore' inherits='PresetHintVeins'>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60e25d21</WireframeColor> 
-                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * vnlaLapisLazuliSize * _default_' range=':= 1 * vnlaLapisLazuliSize * _default_'/>
-                        </Veins>
-                    </Cloud>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaLapisLazuliDist = "vanillaStdGen"'>
-                    <StandardGen name='vnlaLapisLazuliStandard' block='minecraft:lapis_ore' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * vnlaLapisLazuliSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * vnlaLapisLazuliFreq * _default_'/>
-                        <Setting name='Height' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
-                        <Replaces block='minecraft:stone'/>
-                    </StandardGen>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaDiamondDist = "pipeVeins"'>
-                    <Veins name='vnlaDiamondVeins' block='minecraft:diamond_ore' inherits='PresetPipeVeins' seed='0x092A'>
-                        <Description> Short sparsely filled veins sloping up from near the bottom of the map. </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 0.5 * vnlaDiamondFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * vnlaDiamondSize * _default_' range=':= 1 * vnlaDiamondSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * vnlaDiamondSize * _default_' range=':= 1 * vnlaDiamondSize * _default_'/>
-                        <Replaces block='minecraft:stone'/>
-                    </Veins>
-                    <Veins name= 'vnlaDiamondPipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0x092A'>
-                        <Description> Fills center of each tube with Pipe material. </Description>
-                        <Setting name='MotherlodeSize' avg=':= 0.5 * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                        <Setting name='SegmentRadius' avg=':= 0.5 * _default_'/>
-                        <Setting name='OreDensity' avg='1' range='0'/>
-                        <ReplacesOre block='stone'/>
-                        <Replaces block='minecraft:dirt'/>
-                        <Replaces block='minecraft:gravel'/>
-                        <Replaces block='minecraft:netherrack'/>
-                        <Replaces block='minecraft:end_stone'/>
-                        <Replaces block='minecraft:diamond_ore'/>
-                    </Veins>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaDiamondDist = "smallDeposits"'>
-                    <Veins name='vnlaDiamondVeins' block='minecraft:diamond_ore' inherits='PresetSmallDeposits'>
+                    </Choice>
+                    <Choice value='strategicCloud' displayValue='Clouds'>
                         <Description>
-                            Small motherlodes without any branches.
-                            Similar to the deposits produced by StandardGen distributions.
+                            Strategic Clouds.
                         </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 0.5 * vnlaDiamondFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                        <Setting name='MotherlodeSize' avg=':= 1 * vnlaDiamondSize * _default_' range=':= 1 * vnlaDiamondSize * _default_'/>
-                        <Replaces block='minecraft:stone'/>
-                    </Veins>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaDiamondDist = "strategicCloud"'>
-                    <Cloud name='vnlaDiamondCloud' block='minecraft:diamond_ore' inherits='PresetStrategicCloud'>
-                        <Description>  
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor> 
-                        <Setting name='DistributionFrequency' avg=':= 0.5 * vnlaDiamondFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * vnlaDiamondSize * _default_' range=':= 1 * vnlaDiamondSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * vnlaDiamondSize * _default_' range=':= 1 * vnlaDiamondSize * _default_'/>
-                        <Setting name='CloudHeight' avg='8' range='8' type='normal' scaleTo='biome'/>
-                        <Replaces block='minecraft:stone'/>
-                        <Veins name='vnlaDiamondHintVeins' block='minecraft:diamond_ore' inherits='PresetHintVeins'>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60e25d21</WireframeColor> 
-                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * vnlaDiamondSize * _default_' range=':= 1 * vnlaDiamondSize * _default_'/>
-                        </Veins>
-                    </Cloud>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaDiamondDist = "vanillaStdGen"'>
-                    <StandardGen name='vnlaDiamondStandard' block='minecraft:diamond_ore' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * vnlaDiamondSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 0.5 * vnlaDiamondFreq * _default_'/>
-                        <Setting name='Height' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel'/> 
-                        <Replaces block='minecraft:stone'/>
-                    </StandardGen>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaRedstoneDist = "verticalVeins"'>
-                    <Veins name='vnlaRedstoneVeins' block='minecraft:redstone_ore' inherits='PresetVerticalVeins'>
+                    </Choice>
+                    <Choice value='vanillaStdGen' displayValue='Vanilla'>
                         <Description>
-                            Single vertical veins that occur with no motherlodes.
+                            Vanilla-style clusters.
                         </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.3 * 1 * vnlaRedstoneFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * vnlaRedstoneSize * _default_' range=':= 1 * vnlaRedstoneSize * _default_'/>
-                        <Replaces block='minecraft:stone'/>
-                    </Veins>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaRedstoneDist = "smallDeposits"'>
-                    <Veins name='vnlaRedstoneVeins' block='minecraft:redstone_ore' inherits='PresetSmallDeposits'>
+                    </Choice>
+                    <Choice value='none' displayValue='None' description='Coal is not generated in the world.'/>
+                </OptionChoice>
+                <OptionNumeric name='vnlaCoalFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
+                    <Description> Frequency multiplier for Vanilla Minecraft Coal distributions </Description>
+                    <DisplayName>Vanilla Minecraft Coal Freq.</DisplayName>
+                </OptionNumeric>
+                <OptionNumeric name='vnlaCoalSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
+                    <Description> Size multiplier for Vanilla Minecraft Coal distributions </Description>
+                    <DisplayName>Vanilla Minecraft Coal Size</DisplayName>
+                </OptionNumeric>
+            </ConfigSection> 
+            <ConfigSection>
+                <!-- Lapis Lazuli Configuration UI -->
+                <OptionChoice name='vnlaLapisLazuliDist' displayState='shown' displayGroup='groupVanillaMinecraft'> 
+                    <Description> Controls how Lapis Lazuli is generated </Description> 
+                    <DisplayName>Vanilla Minecraft Lapis Lazuli Type</DisplayName>
+                    <Choice value='verticalVeins' displayValue='Vertical Veins'>
                         <Description>
-                            Small motherlodes without any branches.
-                            Similar to the deposits produced by StandardGen distributions.
+                            Vertical Veins.
                         </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * vnlaRedstoneFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                        <Setting name='MotherlodeSize' avg=':= 1 * vnlaRedstoneSize * _default_' range=':= 1 * vnlaRedstoneSize * _default_'/>
-                        <Replaces block='minecraft:stone'/>
-                    </Veins>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaRedstoneDist = "strategicCloud"'>
-                    <Cloud name='vnlaRedstoneCloud' block='minecraft:redstone_ore' inherits='PresetStrategicCloud'>
-                        <Description>  
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor> 
-                        <Setting name='DistributionFrequency' avg=':= 1 * vnlaRedstoneFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * vnlaRedstoneSize * _default_' range=':= 1 * vnlaRedstoneSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * vnlaRedstoneSize * _default_' range=':= 1 * vnlaRedstoneSize * _default_'/>
-                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='biome'/>
-                        <Replaces block='minecraft:stone'/>
-                        <Veins name='vnlaRedstoneHintVeins' block='minecraft:redstone_ore' inherits='PresetHintVeins'>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60e25d21</WireframeColor> 
-                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * vnlaRedstoneSize * _default_' range=':= 1 * vnlaRedstoneSize * _default_'/>
-                        </Veins>
-                    </Cloud>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaRedstoneDist = "vanillaStdGen"'>
-                    <StandardGen name='vnlaRedstoneStandard' block='minecraft:redstone_ore' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * vnlaRedstoneSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * vnlaRedstoneFreq * _default_'/>
-                        <Setting name='Height' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
-                        <Replaces block='minecraft:stone'/>
-                    </StandardGen>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaEmeraldDist = "pipeVeins"'>
-                    <Veins name='vnlaEmeraldVeins' block='minecraft:emerald_ore' inherits='PresetPipeVeins' seed='0x24D2'>
-                        <Description> Short sparsely filled veins sloping up from near the bottom of the map. </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 0.2 * vnlaEmeraldFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * vnlaEmeraldSize * _default_' range=':= 1 * vnlaEmeraldSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * vnlaEmeraldSize * _default_' range=':= 1 * vnlaEmeraldSize * _default_'/>
-                        <Replaces block='minecraft:stone'/>
-                    </Veins>
-                    <Veins name= 'vnlaEmeraldPipe' block='minecraft:monster_egg' inherits='PresetPipeVeins' seed='0x24D2'>
-                        <Description> Fills center of each tube with Pipe material. </Description>
-                        <Setting name='MotherlodeSize' avg=':= 0.5 * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                        <Setting name='SegmentRadius' avg=':= 0.5 * _default_'/>
-                        <Setting name='OreDensity' avg='1' range='0'/>
-                        <ReplacesOre block='stone'/>
-                        <Replaces block='minecraft:dirt'/>
-                        <Replaces block='minecraft:gravel'/>
-                        <Replaces block='minecraft:netherrack'/>
-                        <Replaces block='minecraft:end_stone'/>
-                        <Replaces block='minecraft:emerald_ore'/>
-                    </Veins>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaEmeraldDist = "smallDeposits"'>
-                    <Veins name='vnlaEmeraldVeins' block='minecraft:emerald_ore' inherits='PresetSmallDeposits'>
+                    </Choice>
+                    <Choice value='smallDeposits' displayValue='Small Deposits'>
                         <Description>
-                            Small motherlodes without any branches.
-                            Similar to the deposits produced by StandardGen distributions.
+                            Small Deposits.
                         </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 0.2 * vnlaEmeraldFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                        <Setting name='MotherlodeSize' avg=':= 1 * vnlaEmeraldSize * _default_' range=':= 1 * vnlaEmeraldSize * _default_'/>
-                        <Replaces block='minecraft:stone'/>
-                    </Veins>
-                </IfCondition>
+                    </Choice>
+                    <Choice value='strategicCloud' displayValue='Clouds'>
+                        <Description>
+                            Strategic Clouds.
+                        </Description>
+                    </Choice>
+                    <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                        <Description>
+                            Vanilla-style clusters.
+                        </Description>
+                    </Choice>
+                    <Choice value='none' displayValue='None' description='Lapis Lazuli is not generated in the world.'/>
+                </OptionChoice>
+                <OptionNumeric name='vnlaLapisLazuliFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
+                    <Description> Frequency multiplier for Vanilla Minecraft Lapis Lazuli distributions </Description>
+                    <DisplayName>Vanilla Minecraft Lapis Lazuli Freq.</DisplayName>
+                </OptionNumeric>
+                <OptionNumeric name='vnlaLapisLazuliSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
+                    <Description> Size multiplier for Vanilla Minecraft Lapis Lazuli distributions </Description>
+                    <DisplayName>Vanilla Minecraft Lapis Lazuli Size</DisplayName>
+                </OptionNumeric>
+            </ConfigSection> 
+            <ConfigSection>
+                <!-- Diamond Configuration UI -->
+                <OptionChoice name='vnlaDiamondDist' displayState='shown' displayGroup='groupVanillaMinecraft'> 
+                    <Description> Controls how Diamond is generated </Description> 
+                    <DisplayName>Vanilla Minecraft Diamond Type</DisplayName>
+                    <Choice value='pipeVeins' displayValue='Pipe Veins'>
+                        <Description>
+                            Pipe Veins.
+                        </Description>
+                    </Choice>
+                    <Choice value='smallDeposits' displayValue='Small Deposits'>
+                        <Description>
+                            Small Deposits.
+                        </Description>
+                    </Choice>
+                    <Choice value='strategicCloud' displayValue='Clouds'>
+                        <Description>
+                            Strategic Clouds.
+                        </Description>
+                    </Choice>
+                    <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                        <Description>
+                            Vanilla-style clusters.
+                        </Description>
+                    </Choice>
+                    <Choice value='none' displayValue='None' description='Diamond is not generated in the world.'/>
+                </OptionChoice>
+                <OptionNumeric name='vnlaDiamondFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
+                    <Description> Frequency multiplier for Vanilla Minecraft Diamond distributions </Description>
+                    <DisplayName>Vanilla Minecraft Diamond Freq.</DisplayName>
+                </OptionNumeric>
+                <OptionNumeric name='vnlaDiamondSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
+                    <Description> Size multiplier for Vanilla Minecraft Diamond distributions </Description>
+                    <DisplayName>Vanilla Minecraft Diamond Size</DisplayName>
+                </OptionNumeric>
+            </ConfigSection> 
+            <ConfigSection>
+                <!-- Redstone Configuration UI -->
+                <OptionChoice name='vnlaRedstoneDist' displayState='shown' displayGroup='groupVanillaMinecraft'> 
+                    <Description> Controls how Redstone is generated </Description> 
+                    <DisplayName>Vanilla Minecraft Redstone Type</DisplayName>
+                    <Choice value='verticalVeins' displayValue='Vertical Veins'>
+                        <Description>
+                            Vertical Veins.
+                        </Description>
+                    </Choice>
+                    <Choice value='smallDeposits' displayValue='Small Deposits'>
+                        <Description>
+                            Small Deposits.
+                        </Description>
+                    </Choice>
+                    <Choice value='strategicCloud' displayValue='Clouds'>
+                        <Description>
+                            Strategic Clouds.
+                        </Description>
+                    </Choice>
+                    <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                        <Description>
+                            Vanilla-style clusters.
+                        </Description>
+                    </Choice>
+                    <Choice value='none' displayValue='None' description='Redstone is not generated in the world.'/>
+                </OptionChoice>
+                <OptionNumeric name='vnlaRedstoneFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
+                    <Description> Frequency multiplier for Vanilla Minecraft Redstone distributions </Description>
+                    <DisplayName>Vanilla Minecraft Redstone Freq.</DisplayName>
+                </OptionNumeric>
+                <OptionNumeric name='vnlaRedstoneSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
+                    <Description> Size multiplier for Vanilla Minecraft Redstone distributions </Description>
+                    <DisplayName>Vanilla Minecraft Redstone Size</DisplayName>
+                </OptionNumeric>
+            </ConfigSection> 
+            <ConfigSection>
+                <!-- Emerald Configuration UI -->
+                <OptionChoice name='vnlaEmeraldDist' displayState='shown' displayGroup='groupVanillaMinecraft'> 
+                    <Description> Controls how Emerald is generated </Description> 
+                    <DisplayName>Vanilla Minecraft Emerald Type</DisplayName>
+                    <Choice value='pipeVeins' displayValue='Pipe Veins'>
+                        <Description>
+                            Pipe Veins.
+                        </Description>
+                    </Choice>
+                    <Choice value='smallDeposits' displayValue='Small Deposits'>
+                        <Description>
+                            Small Deposits.
+                        </Description>
+                    </Choice>
+                    <Choice value='strategicCloud' displayValue='Clouds'>
+                        <Description>
+                            Strategic Clouds.
+                        </Description>
+                    </Choice>
+                    <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                        <Description>
+                            Vanilla-style clusters.
+                        </Description>
+                    </Choice>
+                    <Choice value='none' displayValue='None' description='Emerald is not generated in the world.'/>
+                </OptionChoice>
+                <OptionNumeric name='vnlaEmeraldFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
+                    <Description> Frequency multiplier for Vanilla Minecraft Emerald distributions </Description>
+                    <DisplayName>Vanilla Minecraft Emerald Freq.</DisplayName>
+                </OptionNumeric>
+                <OptionNumeric name='vnlaEmeraldSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
+                    <Description> Size multiplier for Vanilla Minecraft Emerald distributions </Description>
+                    <DisplayName>Vanilla Minecraft Emerald Size</DisplayName>
+                </OptionNumeric>
+            </ConfigSection> 
+            <ConfigSection>
+                <!-- Nether Quartz Configuration UI -->
+                <OptionChoice name='vnlaNetherQuartzDist' displayState='shown' displayGroup='groupVanillaMinecraft'> 
+                    <Description> Controls how Nether Quartz is generated </Description> 
+                    <DisplayName>Vanilla Minecraft Nether Quartz Type</DisplayName>
+                    <Choice value='layeredVeins' displayValue='Layered Veins'>
+                        <Description>
+                            Layered Veins.
+                        </Description>
+                    </Choice>
+                    <Choice value='smallDeposits' displayValue='Small Deposits'>
+                        <Description>
+                            Small Deposits.
+                        </Description>
+                    </Choice>
+                    <Choice value='strategicCloud' displayValue='Clouds'>
+                        <Description>
+                            Strategic Clouds.
+                        </Description>
+                    </Choice>
+                    <Choice value='vanillaStdGen' displayValue='Vanilla'>
+                        <Description>
+                            Vanilla-style clusters.
+                        </Description>
+                    </Choice>
+                    <Choice value='none' displayValue='None' description='Nether Quartz is not generated in the world.'/>
+                </OptionChoice>
+                <OptionNumeric name='vnlaNetherQuartzFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
+                    <Description> Frequency multiplier for Vanilla Minecraft Nether Quartz distributions </Description>
+                    <DisplayName>Vanilla Minecraft Nether Quartz Freq.</DisplayName>
+                </OptionNumeric>
+                <OptionNumeric name='vnlaNetherQuartzSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
+                    <Description> Size multiplier for Vanilla Minecraft Nether Quartz distributions </Description>
+                    <DisplayName>Vanilla Minecraft Nether Quartz Size</DisplayName>
+                </OptionNumeric>
+            </ConfigSection> 
+        </ConfigSection>
 
-                <IfCondition condition=':= vnlaEmeraldDist = "strategicCloud"'>
-                    <Cloud name='vnlaEmeraldCloud' block='minecraft:emerald_ore' inherits='PresetStrategicCloud'>
-                        <Description>  
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor> 
-                        <Setting name='DistributionFrequency' avg=':= 0.2 * vnlaEmeraldFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * vnlaEmeraldSize * _default_' range=':= 1 * vnlaEmeraldSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * vnlaEmeraldSize * _default_' range=':= 1 * vnlaEmeraldSize * _default_'/>
-                        <Setting name='CloudHeight' avg='8' range='8' type='normal' scaleTo='biome'/>
-                        <Replaces block='minecraft:stone'/>
-                        <Veins name='vnlaEmeraldHintVeins' block='minecraft:emerald_ore' inherits='PresetHintVeins'>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60e25d21</WireframeColor> 
-                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * vnlaEmeraldSize * _default_' range=':= 1 * vnlaEmeraldSize * _default_'/>
-                        </Veins>
-                    </Cloud>
-                </IfCondition>
 
-                <IfCondition condition=':= vnlaEmeraldDist = "vanillaStdGen"'>
-                    <StandardGen name='vnlaEmeraldStandard' block='minecraft:emerald_ore' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * vnlaEmeraldSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 0.2 * vnlaEmeraldFreq * _default_'/>
-                        <Setting name='Height' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel'/> 
-                        <Replaces block='minecraft:stone'/>
-                    </StandardGen>
-                </IfCondition>
-
+        <!-- Setup Overworld -->
+        <IfCondition condition=':= ?COGActive'>
+            <!-- **********   Vanilla Deposit Removal   ************* -->
+            <Substitute name='vnlaOverworldOreSubstitute0' block='minecraft:stone'>
+                <Description>
+                    Replace vanilla-generated ore clusters.
+                </Description>
+                <Comment>
+                    The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                </Comment>
+                <Replaces block='minecraft:gold_ore:0' />
+                <Replaces block='minecraft:iron_ore:0' />
+                <Replaces block='minecraft:coal_ore:0' />
+                <Replaces block='minecraft:lapis_ore:0' />
+                <Replaces block='minecraft:diamond_ore:0' />
+                <Replaces block='minecraft:redstone_ore:0' />
+                <Replaces block='minecraft:emerald_ore:0' />
+            </Substitute>
+            <!-- Adding ores --> 
+            <IfCondition condition=':= vnlaGoldDist = "layeredVeins"'>
+                <Veins name='vnlaGold0Veins' block='minecraft:gold_ore' inherits='PresetLayeredVeins'>
+                    <Description>
+                        Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaGoldSize * _default_' range=':= 1 * vnlaGoldSize * _default_'/>
+                    <Setting name='MotherlodeFrequency' avg=':= 0.5 * vnlaGoldFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                    <Setting name='SegmentRadius' avg=':= 1 * vnlaGoldSize * _default_' range=':= 1 * vnlaGoldSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                </Veins>
+                <Veins name='vnlaGold1Veins' block='minecraft:gold_ore' inherits='PresetLayeredVeins'>
+                    <Description>
+                        Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaGoldSize * _default_' range=':= 1 * vnlaGoldSize * _default_'/>
+                    <Setting name='MotherlodeFrequency' avg=':= 0.5 * vnlaGoldFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                    <Setting name='SegmentRadius' avg=':= 1 * vnlaGoldSize * _default_' range=':= 1 * vnlaGoldSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                    <BiomeType name='jungle'/>
+                    <BiomeType name='forest'/>
+                </Veins>
             </IfCondition>
-
-
-            <!-- Setup Nether -->
-
-            <IfCondition condition=':= dimension.generator = "HellRandomLevelSource"'>
-
-
-                <!-- **********   Vanilla Deposit Removal   ************* -->
-
-                    <Substitute name='VanillaMinecraftStandardOreSubstitute0' block='minecraft:stone'>
-                        <Description> 
-                            Replace vanilla-generated ore clusters.   
-                        </Description>
-                        <Comment>  
-                            The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
-                        </Comment>
-                         <Replaces block='minecraft:gold_ore' />
-                        <Replaces block='minecraft:iron_ore' />
-                        <Replaces block='minecraft:coal_ore' />
-                        <Replaces block='minecraft:lapis_ore' />
-                        <Replaces block='minecraft:diamond_ore' />
-                        <Replaces block='minecraft:redstone_ore' />
-                        <Replaces block='minecraft:emerald_ore' />
-
-                </Substitute>
-
-        <!-- Adding ores --> 
-
-                <IfCondition condition=':= vnlaNetherQuartzDist = "layeredVeins"'>
-                    <Veins name='vnlaNetherQuartzVeins' block='minecraft:quartz_ore' inherits='PresetLayeredVeins'>
-                        <Description> 
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor> 
-                        <Setting name='MotherlodeFrequency' avg=':= 3 * vnlaNetherQuartzFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * vnlaNetherQuartzSize * _default_' range=':= 1 * vnlaNetherQuartzSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * vnlaNetherQuartzSize * _default_' range=':= 1 * vnlaNetherQuartzSize * _default_'/>
-                        <Replaces block='minecraft:netherrack'/>
-                    </Veins>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaNetherQuartzDist = "smallDeposits"'>
-                    <Veins name='vnlaNetherQuartzVeins' block='minecraft:quartz_ore' inherits='PresetSmallDeposits'>
-                        <Description>
-                            Small motherlodes without any branches.
-                            Similar to the deposits produced by StandardGen distributions.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 3 * vnlaNetherQuartzFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                        <Setting name='MotherlodeSize' avg=':= 1 * vnlaNetherQuartzSize * _default_' range=':= 1 * vnlaNetherQuartzSize * _default_'/>
-                        <Replaces block='minecraft:netherrack'/>
-                    </Veins>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaNetherQuartzDist = "strategicCloud"'>
-                    <Cloud name='vnlaNetherQuartzCloud' block='minecraft:quartz_ore' inherits='PresetStrategicCloud'>
-                        <Description>  
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description> 
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor> 
-                        <Setting name='DistributionFrequency' avg=':= 3 * vnlaNetherQuartzFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * vnlaNetherQuartzSize * _default_' range=':= 1 * vnlaNetherQuartzSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * vnlaNetherQuartzSize * _default_' range=':= 1 * vnlaNetherQuartzSize * _default_'/>
-                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='biome'/>
-                        <Replaces block='minecraft:netherrack'/>
-                        <Veins name='vnlaNetherQuartzHintVeins' block='minecraft:quartz_ore' inherits='PresetHintVeins'>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60e25d21</WireframeColor> 
-                            <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='biome' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * vnlaNetherQuartzSize * _default_' range=':= 1 * vnlaNetherQuartzSize * _default_'/>
-                        </Veins>
-                    </Cloud>
-                </IfCondition>
-
-                <IfCondition condition=':= vnlaNetherQuartzDist = "vanillaStdGen"'>
-                    <StandardGen name='vnlaNetherQuartzStandard' block='minecraft:quartz_ore' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * vnlaNetherQuartzSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 3 * vnlaNetherQuartzFreq * _default_'/>
-                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
-                        <Replaces block='minecraft:netherrack'/>
-                    </StandardGen>
-                </IfCondition>
-
+            <IfCondition condition=':= vnlaGoldDist = "smallDeposits"'>
+                <Veins name='vnlaGold0Veins' block='minecraft:gold_ore' inherits='PresetSmallDeposits'>
+                    <Description>
+                        Small motherlodes without any branches.
+                        Similar to the deposits produced by StandardGen distributions.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 0.5 * vnlaGoldFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaGoldSize * _default_' range=':= 1 * vnlaGoldSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                </Veins>
+                <Veins name='vnlaGold1Veins' block='minecraft:gold_ore' inherits='PresetSmallDeposits'>
+                    <Description>
+                        Small motherlodes without any branches.
+                        Similar to the deposits produced by StandardGen distributions.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 0.5 * vnlaGoldFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaGoldSize * _default_' range=':= 1 * vnlaGoldSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                    <BiomeType name='jungle'/>
+                    <BiomeType name='forest'/>
+                </Veins>
             </IfCondition>
-
-
-            <!-- Setup End -->
-
-            <IfCondition condition=':= dimension.generator = "EndRandomLevelSource"'>
-
-
-                <!-- **********   Vanilla Deposit Removal   ************* -->
-
-        <!-- Adding ores --> 
-
+            <IfCondition condition=':= vnlaGoldDist = "vanillaStdGen"'>
+                <StandardGen name='vnlaGold0Standard' block='minecraft:gold_ore' inherits='PresetStandardGen'>
+                    <Description> This mimics vanilla ore generation. </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='Size' avg=':= 1 * vnlaGoldSize * _default_'/>
+                    <Setting name='Frequency' avg=':= 0.5 * vnlaGoldFreq * _default_'/>
+                    <Setting name='Height' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                    <Replaces block='minecraft:stone'/>
+                </StandardGen>
+                <StandardGen name='vnlaGold1Standard' block='minecraft:gold_ore' inherits='PresetStandardGen'>
+                    <Description> This mimics vanilla ore generation. </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='Size' avg=':= 1 * vnlaGoldSize * _default_'/>
+                    <Setting name='Frequency' avg=':= 0.5 * vnlaGoldFreq * _default_'/>
+                    <Setting name='Height' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                    <Replaces block='minecraft:stone'/>
+                    <BiomeType name='jungle'/>
+                    <BiomeType name='forest'/>
+                </StandardGen>
             </IfCondition>
+            <IfCondition condition=':= vnlaIronDist = "layeredVeins"'>
+                <Veins name='vnlaIron0Veins' block='minecraft:iron_ore' inherits='PresetLayeredVeins'>
+                    <Description>
+                        Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaIronSize * _default_' range=':= 1 * vnlaIronSize * _default_'/>
+                    <Setting name='MotherlodeFrequency' avg=':= 3 * vnlaIronFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                    <Setting name='SegmentRadius' avg=':= 1 * vnlaIronSize * _default_' range=':= 1 * vnlaIronSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                </Veins>
+                <Veins name='vnlaIron1Veins' block='minecraft:iron_ore' inherits='PresetLayeredVeins'>
+                    <Description>
+                        Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaIronSize * _default_' range=':= 1 * vnlaIronSize * _default_'/>
+                    <Setting name='MotherlodeFrequency' avg=':= 3 * vnlaIronFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                    <Setting name='SegmentRadius' avg=':= 1 * vnlaIronSize * _default_' range=':= 1 * vnlaIronSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                    <BiomeType name='frozen'/>
+                    <BiomeType name='mountain'/>
+                </Veins>
+            </IfCondition>
+            <IfCondition condition=':= vnlaIronDist = "smallDeposits"'>
+                <Veins name='vnlaIron0Veins' block='minecraft:iron_ore' inherits='PresetSmallDeposits'>
+                    <Description>
+                        Small motherlodes without any branches.
+                        Similar to the deposits produced by StandardGen distributions.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 3 * vnlaIronFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaIronSize * _default_' range=':= 1 * vnlaIronSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                </Veins>
+                <Veins name='vnlaIron1Veins' block='minecraft:iron_ore' inherits='PresetSmallDeposits'>
+                    <Description>
+                        Small motherlodes without any branches.
+                        Similar to the deposits produced by StandardGen distributions.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 3 * vnlaIronFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaIronSize * _default_' range=':= 1 * vnlaIronSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                    <BiomeType name='frozen'/>
+                    <BiomeType name='mountain'/>
+                </Veins>
+            </IfCondition>
+            <IfCondition condition=':= vnlaIronDist = "vanillaStdGen"'>
+                <StandardGen name='vnlaIron0Standard' block='minecraft:iron_ore' inherits='PresetStandardGen'>
+                    <Description> This mimics vanilla ore generation. </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='Size' avg=':= 1 * vnlaIronSize * _default_'/>
+                    <Setting name='Frequency' avg=':= 3 * vnlaIronFreq * _default_'/>
+                    <Setting name='Height' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                    <Replaces block='minecraft:stone'/>
+                </StandardGen>
+                <StandardGen name='vnlaIron1Standard' block='minecraft:iron_ore' inherits='PresetStandardGen'>
+                    <Description> This mimics vanilla ore generation. </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='Size' avg=':= 1 * vnlaIronSize * _default_'/>
+                    <Setting name='Frequency' avg=':= 3 * vnlaIronFreq * _default_'/>
+                    <Setting name='Height' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                    <Replaces block='minecraft:stone'/>
+                    <BiomeType name='frozen'/>
+                    <BiomeType name='mountain'/>
+                </StandardGen>
+            </IfCondition>
+            <IfCondition condition=':= vnlaCoalDist = "sparseVeins"'>
+                <Veins name='vnlaCoal0Veins' block='minecraft:coal_ore' inherits='PresetSparseVeins'>
+                    <Description>
+                        Large veins filled very lightly with ore.  Because they contain less ore per volume, 
+                        these veins are relatively wide and long.  Mining the ore from them is time consuming 
+                        compared to solid ore veins.  They are also more difficult to follow, since it is 
+                        harder to get an idea of their direction while mining.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 1 * vnlaCoalFreq * _default_'/>
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaCoalSize * _default_' range=':= 1 * vnlaCoalSize * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
+                    <Setting name='SegmentRadius' avg=':= 1 * vnlaCoalSize * _default_' range=':= 1 * vnlaCoalSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                </Veins>
+                <Veins name='vnlaCoal1Veins' block='minecraft:coal_ore' inherits='PresetSparseVeins'>
+                    <Description>
+                        Large veins filled very lightly with ore.  Because they contain less ore per volume, 
+                        these veins are relatively wide and long.  Mining the ore from them is time consuming 
+                        compared to solid ore veins.  They are also more difficult to follow, since it is 
+                        harder to get an idea of their direction while mining.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 1 * vnlaCoalFreq * _default_'/>
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaCoalSize * _default_' range=':= 1 * vnlaCoalSize * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
+                    <Setting name='SegmentRadius' avg=':= 1 * vnlaCoalSize * _default_' range=':= 1 * vnlaCoalSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                    <BiomeType name='swamp'/>
+                    <BiomeType name='forest'/>
+                </Veins>
+            </IfCondition>
+            <IfCondition condition=':= vnlaCoalDist = "smallDeposits"'>
+                <Veins name='vnlaCoal0Veins' block='minecraft:coal_ore' inherits='PresetSmallDeposits'>
+                    <Description>
+                        Small motherlodes without any branches.
+                        Similar to the deposits produced by StandardGen distributions.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 1 * vnlaCoalFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaCoalSize * _default_' range=':= 1 * vnlaCoalSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                </Veins>
+                <Veins name='vnlaCoal1Veins' block='minecraft:coal_ore' inherits='PresetSmallDeposits'>
+                    <Description>
+                        Small motherlodes without any branches.
+                        Similar to the deposits produced by StandardGen distributions.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 1 * vnlaCoalFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaCoalSize * _default_' range=':= 1 * vnlaCoalSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                    <BiomeType name='swamp'/>
+                    <BiomeType name='forest'/>
+                </Veins>
+            </IfCondition>
+            <IfCondition condition=':= vnlaCoalDist = "vanillaStdGen"'>
+                <StandardGen name='vnlaCoal0Standard' block='minecraft:coal_ore' inherits='PresetStandardGen'>
+                    <Description> This mimics vanilla ore generation. </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='Size' avg=':= 1 * vnlaCoalSize * _default_'/>
+                    <Setting name='Frequency' avg=':= 1 * vnlaCoalFreq * _default_'/>
+                    <Setting name='Height' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                    <Replaces block='minecraft:stone'/>
+                </StandardGen>
+                <StandardGen name='vnlaCoal1Standard' block='minecraft:coal_ore' inherits='PresetStandardGen'>
+                    <Description> This mimics vanilla ore generation. </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='Size' avg=':= 1 * vnlaCoalSize * _default_'/>
+                    <Setting name='Frequency' avg=':= 1 * vnlaCoalFreq * _default_'/>
+                    <Setting name='Height' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                    <Replaces block='minecraft:stone'/>
+                    <BiomeType name='swamp'/>
+                    <BiomeType name='forest'/>
+                </StandardGen>
+            </IfCondition>
+            <IfCondition condition=':= vnlaLapisLazuliDist = "verticalVeins"'>
+                <Veins name='vnlaLapisLazuli0Veins' block='minecraft:lapis_ore' inherits='PresetVerticalVeins'>
+                    <Description>
+                        Single vertical veins that occur with no motherlodes.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 1.3 * 1 * vnlaLapisLazuliFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                    <Setting name='SegmentRadius' avg=':= 1 * vnlaLapisLazuliSize * _default_' range=':= 1 * vnlaLapisLazuliSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                </Veins>
+                <Veins name='vnlaLapisLazuli1Veins' block='minecraft:lapis_ore' inherits='PresetVerticalVeins'>
+                    <Description>
+                        Single vertical veins that occur with no motherlodes.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 1.3 * 1 * vnlaLapisLazuliFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                    <Setting name='SegmentRadius' avg=':= 1 * vnlaLapisLazuliSize * _default_' range=':= 1 * vnlaLapisLazuliSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                    <BiomeType name='ocean'/>
+                </Veins>
+            </IfCondition>
+            <IfCondition condition=':= vnlaLapisLazuliDist = "smallDeposits"'>
+                <Veins name='vnlaLapisLazuli0Veins' block='minecraft:lapis_ore' inherits='PresetSmallDeposits'>
+                    <Description>
+                        Small motherlodes without any branches.
+                        Similar to the deposits produced by StandardGen distributions.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 1 * vnlaLapisLazuliFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaLapisLazuliSize * _default_' range=':= 1 * vnlaLapisLazuliSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                </Veins>
+                <Veins name='vnlaLapisLazuli1Veins' block='minecraft:lapis_ore' inherits='PresetSmallDeposits'>
+                    <Description>
+                        Small motherlodes without any branches.
+                        Similar to the deposits produced by StandardGen distributions.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 1 * vnlaLapisLazuliFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaLapisLazuliSize * _default_' range=':= 1 * vnlaLapisLazuliSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                    <BiomeType name='ocean'/>
+                </Veins>
+            </IfCondition>
+            <IfCondition condition=':= vnlaLapisLazuliDist = "vanillaStdGen"'>
+                <StandardGen name='vnlaLapisLazuli0Standard' block='minecraft:lapis_ore' inherits='PresetStandardGen'>
+                    <Description> This mimics vanilla ore generation. </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='Size' avg=':= 1 * vnlaLapisLazuliSize * _default_'/>
+                    <Setting name='Frequency' avg=':= 1 * vnlaLapisLazuliFreq * _default_'/>
+                    <Setting name='Height' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                    <Replaces block='minecraft:stone'/>
+                </StandardGen>
+                <StandardGen name='vnlaLapisLazuli1Standard' block='minecraft:lapis_ore' inherits='PresetStandardGen'>
+                    <Description> This mimics vanilla ore generation. </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='Size' avg=':= 1 * vnlaLapisLazuliSize * _default_'/>
+                    <Setting name='Frequency' avg=':= 1 * vnlaLapisLazuliFreq * _default_'/>
+                    <Setting name='Height' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                    <Replaces block='minecraft:stone'/>
+                    <BiomeType name='ocean'/>
+                </StandardGen>
+            </IfCondition>
+            <IfCondition condition=':= vnlaDiamondDist = "pipeVeins"'>
+                <Veins name='vnlaDiamond0Veins' block='minecraft:diamond_ore' inherits='PresetPipeVeins' seed='0x9901'>
+                    <Description>
+                        Short sparsely filled veins sloping up from near the bottom of the map.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 0.5 * vnlaDiamondFreq * _default_'/>
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaDiamondSize * _default_' range=':= 1 * vnlaDiamondSize * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
+                    <Setting name='SegmentRadius' avg=':= 1 * vnlaDiamondSize * _default_' range=':= 1 * vnlaDiamondSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                </Veins>
+                <Veins name= 'vnlaDiamond0Pipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0x9901'>
+                    <Description>
+                        Fills center of each tube with Pipe material.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * vnlaDiamondSize * _default_' range=':= 0.5 * 1 * vnlaDiamondSize * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
+                    <Setting name='SegmentRadius' avg=':= 0.5 * 1 * vnlaDiamondSize * _default_' range=':= 0.5 * 1 * vnlaDiamondSize * _default_'/>
+                    <Setting name='MotherlodeFrequency' avg=':= 0.5 * vnlaDiamondFreq * _default_'/>
+                    <Setting name='OreDensity' avg='1' range='0'/>
+                    <Replaces block='minecraft:dirt'/>
+                    <Replaces block='minecraft:stone'/>
+                    <Replaces block='minecraft:gravel'/>
+                    <Replaces block='minecraft:netherrack'/>
+                    <Replaces block='minecraft:end_stone'/>
+                    <Replaces block='minecraft:stone'/>
+                </Veins>
+            </IfCondition>
+            <IfCondition condition=':= vnlaDiamondDist = "smallDeposits"'>
+                <Veins name='vnlaDiamond0Veins' block='minecraft:diamond_ore' inherits='PresetSmallDeposits'>
+                    <Description>
+                        Small motherlodes without any branches.
+                        Similar to the deposits produced by StandardGen distributions.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 0.5 * vnlaDiamondFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaDiamondSize * _default_' range=':= 1 * vnlaDiamondSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                </Veins>
+            </IfCondition>
+            <IfCondition condition=':= vnlaDiamondDist = "vanillaStdGen"'>
+                <StandardGen name='vnlaDiamond0Standard' block='minecraft:diamond_ore' inherits='PresetStandardGen'>
+                    <Description> This mimics vanilla ore generation. </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='Size' avg=':= 1 * vnlaDiamondSize * _default_'/>
+                    <Setting name='Frequency' avg=':= 0.5 * vnlaDiamondFreq * _default_'/>
+                    <Setting name='Height' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel'/> 
+                    <Replaces block='minecraft:stone'/>
+                </StandardGen>
+            </IfCondition>
+            <IfCondition condition=':= vnlaRedstoneDist = "verticalVeins"'>
+                <Veins name='vnlaRedstone0Veins' block='minecraft:redstone_ore' inherits='PresetVerticalVeins'>
+                    <Description>
+                        Single vertical veins that occur with no motherlodes.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 1.3 * 1 * vnlaRedstoneFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                    <Setting name='SegmentRadius' avg=':= 1 * vnlaRedstoneSize * _default_' range=':= 1 * vnlaRedstoneSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                </Veins>
+            </IfCondition>
+            <IfCondition condition=':= vnlaRedstoneDist = "smallDeposits"'>
+                <Veins name='vnlaRedstone0Veins' block='minecraft:redstone_ore' inherits='PresetSmallDeposits'>
+                    <Description>
+                        Small motherlodes without any branches.
+                        Similar to the deposits produced by StandardGen distributions.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 1 * vnlaRedstoneFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaRedstoneSize * _default_' range=':= 1 * vnlaRedstoneSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                </Veins>
+            </IfCondition>
+            <IfCondition condition=':= vnlaRedstoneDist = "vanillaStdGen"'>
+                <StandardGen name='vnlaRedstone0Standard' block='minecraft:redstone_ore' inherits='PresetStandardGen'>
+                    <Description> This mimics vanilla ore generation. </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='Size' avg=':= 1 * vnlaRedstoneSize * _default_'/>
+                    <Setting name='Frequency' avg=':= 1 * vnlaRedstoneFreq * _default_'/>
+                    <Setting name='Height' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                    <Replaces block='minecraft:stone'/>
+                </StandardGen>
+            </IfCondition>
+            <IfCondition condition=':= vnlaEmeraldDist = "pipeVeins"'>
+                <Veins name='vnlaEmerald0Veins' block='minecraft:emerald_ore' inherits='PresetPipeVeins' seed='0x893E'>
+                    <Description>
+                        Short sparsely filled veins sloping up from near the bottom of the map.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 0.2 * vnlaEmeraldFreq * _default_'/>
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaEmeraldSize * _default_' range=':= 1 * vnlaEmeraldSize * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
+                    <Setting name='SegmentRadius' avg=':= 1 * vnlaEmeraldSize * _default_' range=':= 1 * vnlaEmeraldSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                </Veins>
+                <Veins name= 'vnlaEmerald0Pipe' block='minecraft:monster_egg' inherits='PresetPipeVeins' seed='0x893E'>
+                    <Description>
+                        Fills center of each tube with Pipe material.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * vnlaEmeraldSize * _default_' range=':= 0.5 * 1 * vnlaEmeraldSize * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
+                    <Setting name='SegmentRadius' avg=':= 0.5 * 1 * vnlaEmeraldSize * _default_' range=':= 0.5 * 1 * vnlaEmeraldSize * _default_'/>
+                    <Setting name='MotherlodeFrequency' avg=':= 0.2 * vnlaEmeraldFreq * _default_'/>
+                    <Setting name='OreDensity' avg='1' range='0'/>
+                    <Replaces block='minecraft:dirt'/>
+                    <Replaces block='minecraft:stone'/>
+                    <Replaces block='minecraft:gravel'/>
+                    <Replaces block='minecraft:netherrack'/>
+                    <Replaces block='minecraft:end_stone'/>
+                    <Replaces block='minecraft:stone'/>
+                </Veins>
+            </IfCondition>
+            <IfCondition condition=':= vnlaEmeraldDist = "smallDeposits"'>
+                <Veins name='vnlaEmerald0Veins' block='minecraft:emerald_ore' inherits='PresetSmallDeposits'>
+                    <Description>
+                        Small motherlodes without any branches.
+                        Similar to the deposits produced by StandardGen distributions.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 0.2 * vnlaEmeraldFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaEmeraldSize * _default_' range=':= 1 * vnlaEmeraldSize * _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                </Veins>
+            </IfCondition>
+            <IfCondition condition=':= vnlaEmeraldDist = "vanillaStdGen"'>
+                <StandardGen name='vnlaEmerald0Standard' block='minecraft:emerald_ore' inherits='PresetStandardGen'>
+                    <Description> This mimics vanilla ore generation. </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='Size' avg=':= 1 * vnlaEmeraldSize * _default_'/>
+                    <Setting name='Frequency' avg=':= 0.2 * vnlaEmeraldFreq * _default_'/>
+                    <Setting name='Height' avg=':= 8/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel'/> 
+                    <Replaces block='minecraft:stone'/>
+                </StandardGen>
+            </IfCondition>
+        </IfCondition>
 
 
+        <!-- Setup Nether -->
+        <IfCondition condition=':= dimension.generator = "HellRandomLevelSource"'>
+            <!-- **********   Vanilla Deposit Removal   ************* -->
+            <Substitute name='vnlaNetherOreSubstitute0' block='minecraft:netherrack'>
+                <Description>
+                    Replace vanilla-generated ore clusters.
+                </Description>
+                <Comment>
+                    The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                </Comment>
+                <Replaces block='minecraft:quartz_ore:0' />
+            </Substitute>
+            <!-- Adding ores --> 
+            <IfCondition condition=':= vnlaNetherQuartzDist = "layeredVeins"'>
+                <Veins name='vnlaNetherQuartz0Veins' block='minecraft:quartz_ore' inherits='PresetLayeredVeins'>
+                    <Description>
+                        Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaNetherQuartzSize * _default_' range=':= 1 * vnlaNetherQuartzSize * _default_'/>
+                    <Setting name='MotherlodeFrequency' avg=':= 3 * vnlaNetherQuartzFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
+                    <Setting name='SegmentRadius' avg=':= 1 * vnlaNetherQuartzSize * _default_' range=':= 1 * vnlaNetherQuartzSize * _default_'/>
+                    <Replaces block='minecraft:netherrack'/>
+                </Veins>
+            </IfCondition>
+            <IfCondition condition=':= vnlaNetherQuartzDist = "smallDeposits"'>
+                <Veins name='vnlaNetherQuartz0Veins' block='minecraft:quartz_ore' inherits='PresetSmallDeposits'>
+                    <Description>
+                        Small motherlodes without any branches.
+                        Similar to the deposits produced by StandardGen distributions.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 3 * vnlaNetherQuartzFreq * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                    <Setting name='MotherlodeSize' avg=':= 1 * vnlaNetherQuartzSize * _default_' range=':= 1 * vnlaNetherQuartzSize * _default_'/>
+                    <Replaces block='minecraft:netherrack'/>
+                </Veins>
+            </IfCondition>
+            <IfCondition condition=':= vnlaNetherQuartzDist = "vanillaStdGen"'>
+                <StandardGen name='vnlaNetherQuartz0Standard' block='minecraft:quartz_ore' inherits='PresetStandardGen'>
+                    <Description> This mimics vanilla ore generation. </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='Size' avg=':= 1 * vnlaNetherQuartzSize * _default_'/>
+                    <Setting name='Frequency' avg=':= 3 * vnlaNetherQuartzFreq * _default_'/>
+                    <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                    <Replaces block='minecraft:netherrack'/>
+                </StandardGen>
+            </IfCondition>
+        </IfCondition>
+
+
+ 
 
     </ConfigSection>
+
