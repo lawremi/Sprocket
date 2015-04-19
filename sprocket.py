@@ -826,7 +826,7 @@ def compoundVeinsDist(currentOreGen,level):
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
     
-    distText = indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Veins' block='"+orePipe[currentOreGen]+"' inherits='PresetLayeredVeins' seed="+veinSeed+">\n"
+    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Veins' block='"+orePipe[currentOreGen]+"' inherits='PresetLayeredVeins' seed="+veinSeed+">\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
     indentLine += 1
