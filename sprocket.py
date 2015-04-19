@@ -320,7 +320,7 @@ def controlsGen(currentOreGen):
     configScriptOpen += indentText(indentLine)+"<OptionChoice name='"+oreConfigName+"Dist' displayState='shown' displayGroup='group"+modConfigName+"'> \n"
     indentLine += 1
     configScriptOpen += indentText(indentLine)+"<Description> Controls how "+oreName[currentOreGen]+" is generated </Description> \n"
-    configScriptOpen += indentText(indentLine)+"<DisplayName>"+modName+" "+oreName[currentOreGen]+" Type</DisplayName>\n"
+    configScriptOpen += indentText(indentLine)+"<DisplayName>"+modName+" "+oreName[currentOreGen]+"</DisplayName>\n"
     
     # Actual Configuration List
     # Start with an empty script
