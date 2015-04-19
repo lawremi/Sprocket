@@ -136,6 +136,18 @@ Generates: Quartz, Charged Quartz
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
+                <IfCondition condition=':= apenQuartzDist = "strategicCloud"'>
+                    <Veins name='apenQuartz0HintVeins' block='appliedenergistics2:tile.OreQuartz' inherits='PresetHintVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * apenQuartzSize * _default_' range=':= 1 * apenQuartzSize * _default_'/>
+                    </Veins>
+                </IfCondition>
                 <IfCondition condition=':= apenQuartzDist = "vanillaStdGen"'>
                     <StandardGen name='apenQuartz0Standard' block='appliedenergistics2:tile.OreQuartz' inherits='PresetStandardGen'>
                         <Description> This mimics vanilla ore generation. </Description>
@@ -173,6 +185,18 @@ Generates: Quartz, Charged Quartz
                         <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
                         <Setting name='MotherlodeSize' avg=':= 1 * apenChargedQuartzSize * _default_' range=':= 1 * apenChargedQuartzSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= apenChargedQuartzDist = "strategicCloud"'>
+                    <Veins name='apenChargedQuartz0HintVeins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetHintVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * apenChargedQuartzSize * _default_' range=':= 1 * apenChargedQuartzSize * _default_'/>
                     </Veins>
                 </IfCondition>
                 <IfCondition condition=':= apenChargedQuartzDist = "vanillaStdGen"'>

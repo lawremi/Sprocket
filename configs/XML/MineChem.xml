@@ -67,7 +67,7 @@ Generates: Uranium
                 </Substitute>
                 <!-- Adding ores --> 
                 <IfCondition condition=':= mchmUraniumDist = "pipeVeins"'>
-                    <Veins name='mchmUranium0Veins' block='minechem:tile.oreUranium' inherits='PresetPipeVeins' seed='0x20AF'>
+                    <Veins name='mchmUranium0Veins' block='minechem:tile.oreUranium' inherits='PresetPipeVeins' seed='0x6423'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
@@ -79,7 +79,7 @@ Generates: Uranium
                         <Setting name='SegmentRadius' avg=':= 1 * mchmUraniumSize * _default_' range=':= 1 * mchmUraniumSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'mchmUranium0Pipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0x20AF'>
+                    <Veins name= 'mchmUranium0Pipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0x6423'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
@@ -96,6 +96,18 @@ Generates: Uranium
                         <Replaces block='minecraft:netherrack'/>
                         <Replaces block='minecraft:end_stone'/>
                         <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= mchmUraniumDist = "strategicCloud"'>
+                    <Veins name='mchmUranium0HintVeins' block='minechem:tile.oreUranium' inherits='PresetHintVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60d6a989</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * mchmUraniumSize * _default_' range=':= 1 * mchmUraniumSize * _default_'/>
                     </Veins>
                 </IfCondition>
                 <IfCondition condition=':= mchmUraniumDist = "vanillaStdGen"'>

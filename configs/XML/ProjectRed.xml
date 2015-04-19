@@ -195,7 +195,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                 </Substitute>
                 <!-- Adding ores --> 
                 <IfCondition condition=':= predRubyDist = "pipeVeins"'>
-                    <Veins name='predRuby0Veins' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetPipeVeins' seed='0x0453'>
+                    <Veins name='predRuby0Veins' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetPipeVeins' seed='0x3047'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
@@ -207,7 +207,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         <Setting name='SegmentRadius' avg=':= 1 * predRubySize * _default_' range=':= 1 * predRubySize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'predRuby0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x0453'>
+                    <Veins name= 'predRuby0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x3047'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
@@ -226,6 +226,18 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
+                <IfCondition condition=':= predRubyDist = "strategicCloud"'>
+                    <Veins name='predRuby0HintVeins' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetHintVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * predRubySize * _default_' range=':= 1 * predRubySize * _default_'/>
+                    </Veins>
+                </IfCondition>
                 <IfCondition condition=':= predRubyDist = "vanillaStdGen"'>
                     <StandardGen name='predRuby0Standard' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetStandardGen'>
                         <Description> This mimics vanilla ore generation. </Description>
@@ -238,7 +250,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                     </StandardGen>
                 </IfCondition>
                 <IfCondition condition=':= predSapphireDist = "pipeVeins"'>
-                    <Veins name='predSapphire0Veins' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetPipeVeins' seed='0x154D'>
+                    <Veins name='predSapphire0Veins' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetPipeVeins' seed='0x1CA8'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
@@ -250,7 +262,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         <Setting name='SegmentRadius' avg=':= 1 * predSapphireSize * _default_' range=':= 1 * predSapphireSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'predSapphire0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x154D'>
+                    <Veins name= 'predSapphire0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x1CA8'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
@@ -269,6 +281,18 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
+                <IfCondition condition=':= predSapphireDist = "strategicCloud"'>
+                    <Veins name='predSapphire0HintVeins' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetHintVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * predSapphireSize * _default_' range=':= 1 * predSapphireSize * _default_'/>
+                    </Veins>
+                </IfCondition>
                 <IfCondition condition=':= predSapphireDist = "vanillaStdGen"'>
                     <StandardGen name='predSapphire0Standard' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetStandardGen'>
                         <Description> This mimics vanilla ore generation. </Description>
@@ -281,7 +305,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                     </StandardGen>
                 </IfCondition>
                 <IfCondition condition=':= predPeridotDist = "pipeVeins"'>
-                    <Veins name='predPeridot0Veins' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetPipeVeins' seed='0x0232'>
+                    <Veins name='predPeridot0Veins' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetPipeVeins' seed='0xE293'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
@@ -293,7 +317,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         <Setting name='SegmentRadius' avg=':= 1 * predPeridotSize * _default_' range=':= 1 * predPeridotSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'predPeridot0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x0232'>
+                    <Veins name= 'predPeridot0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0xE293'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
@@ -312,6 +336,18 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
+                <IfCondition condition=':= predPeridotDist = "strategicCloud"'>
+                    <Veins name='predPeridot0HintVeins' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetHintVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * predPeridotSize * _default_' range=':= 1 * predPeridotSize * _default_'/>
+                    </Veins>
+                </IfCondition>
                 <IfCondition condition=':= predPeridotDist = "vanillaStdGen"'>
                     <StandardGen name='predPeridot0Standard' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetStandardGen'>
                         <Description> This mimics vanilla ore generation. </Description>
@@ -324,7 +360,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                     </StandardGen>
                 </IfCondition>
                 <IfCondition condition=':= predMarbleDist = "pipeVeins"'>
-                    <Veins name='predMarble0Veins' block='ProjRed|Exploration:projectred.exploration.stone' inherits='PresetPipeVeins' seed='0x085C'>
+                    <Veins name='predMarble0Veins' block='ProjRed|Exploration:projectred.exploration.stone' inherits='PresetPipeVeins' seed='0x8672'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
@@ -336,7 +372,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         <Setting name='SegmentRadius' avg=':= 1 * predMarbleSize * _default_' range=':= 1 * predMarbleSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'predMarble0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x085C'>
+                    <Veins name= 'predMarble0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x8672'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
@@ -355,6 +391,18 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
+                <IfCondition condition=':= predMarbleDist = "strategicCloud"'>
+                    <Veins name='predMarble0HintVeins' block='ProjRed|Exploration:projectred.exploration.stone' inherits='PresetHintVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * predMarbleSize * _default_' range=':= 1 * predMarbleSize * _default_'/>
+                    </Veins>
+                </IfCondition>
                 <IfCondition condition=':= predMarbleDist = "vanillaStdGen"'>
                     <StandardGen name='predMarble0Standard' block='ProjRed|Exploration:projectred.exploration.stone' inherits='PresetStandardGen'>
                         <Description> This mimics vanilla ore generation. </Description>
@@ -367,7 +415,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                     </StandardGen>
                 </IfCondition>
                 <IfCondition condition=':= predBasaltDist = "pipeVeins"'>
-                    <Veins name='predBasalt0Veins' block='ProjRed|Exploration:projectred.exploration.stone:3' inherits='PresetPipeVeins' seed='0x5B06'>
+                    <Veins name='predBasalt0Veins' block='ProjRed|Exploration:projectred.exploration.stone:3' inherits='PresetPipeVeins' seed='0xBB37'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
@@ -379,7 +427,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         <Setting name='SegmentRadius' avg=':= 1 * predBasaltSize * _default_' range=':= 1 * predBasaltSize * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'predBasalt0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x5B06'>
+                    <Veins name= 'predBasalt0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0xBB37'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
@@ -396,6 +444,18 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         <Replaces block='minecraft:netherrack'/>
                         <Replaces block='minecraft:end_stone'/>
                         <Replaces block='minecraft:stone'/>
+                    </Veins>
+                </IfCondition>
+                <IfCondition condition=':= predBasaltDist = "strategicCloud"'>
+                    <Veins name='predBasalt0HintVeins' block='ProjRed|Exploration:projectred.exploration.stone:3' inherits='PresetHintVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60db0917</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * predBasaltSize * _default_' range=':= 1 * predBasaltSize * _default_'/>
                     </Veins>
                 </IfCondition>
                 <IfCondition condition=':= predBasaltDist = "vanillaStdGen"'>

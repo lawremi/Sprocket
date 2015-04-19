@@ -80,6 +80,18 @@ Generates: Salt
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
+                <IfCondition condition=':= hvstSaltDist = "strategicCloud"'>
+                    <Veins name='hvstSalt0HintVeins' block='harvestcraft:salt' inherits='PresetHintVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60888888</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
+                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * hvstSaltSize * _default_' range=':= 1 * hvstSaltSize * _default_'/>
+                    </Veins>
+                </IfCondition>
                 <IfCondition condition=':= hvstSaltDist = "vanillaStdGen"'>
                     <StandardGen name='hvstSalt0Standard' block='harvestcraft:salt' inherits='PresetStandardGen'>
                         <Description> This mimics vanilla ore generation. </Description>
