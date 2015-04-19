@@ -171,7 +171,18 @@ def biomeList(currentBiomeList):
 def distributionControlGen(currentOreDistBase):
     global indentLine
     currentOreDist = currentOreDistBase.replace(" ", "")
-    if currentOreDist == 'Vanilla': # uses StandardGen
+    if currentOreDist == 'Substitute': # uses StandardGen
+        optionText = indentText(indentLine)+"<Choice value='substituteGen' displayValue='Substitute'>\n"
+        indentLine += 1
+        optionText += indentText(indentLine)+"<Description>\n"
+        indentLine += 1
+        optionText += indentText(indentLine)+"Simple substitution.\n"
+        indentLine -= 1
+        optionText += indentText(indentLine)+"</Description>\n"
+        indentLine -= 1
+        optionText += indentText(indentLine)+"</Choice>\n"
+        return optionText
+    elif currentOreDist == 'Vanilla': # uses StandardGen
         optionText = indentText(indentLine)+"<Choice value='vanillaStdGen' displayValue='Vanilla'>\n"
         indentLine += 1
         optionText += indentText(indentLine)+"<Description>\n"
@@ -354,6 +365,27 @@ def metaGen(currentMeta):
 ################## INDIVIDUAL DISTRIBUTIONS ######################
 # Each distribution is individually defined.
 
+
+### Substitution Distribution
+
+def substituteDist(currentOreGen,level):
+    orePreConfigName=modPrefix+oreName[currentOreGen]
+    orePreBiomeName=oreBiomes[currentOreGen]
+    orePrePreferName=orePreferBiomes[currentOreGen]
+    oreConfigName=orePreConfigName.replace(" ", "")
+    oreBiomeName=orePreBiomeName.replace(" ", "")
+    orePreferName=orePrePreferName.replace(" ", "")
+    global indentLine
+    
+    distText = indentText(indentLine)+"<Substitute name='"+oreConfigName+str(level)+"Substitute' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'>\n"
+    indentLine += 1
+    distText += indentText(indentLine)+"<Description> This is a straight-up replacement of one block with another. </Description>\n"
+    distText += indentText(indentLine)+"<Replaces block='"+oreReplace[currentOreGen]+"'/>\n"
+    indentLine -= 1
+    distText += indentText(indentLine)+"</Substitute>\n"
+     
+    return distText
+    
 ### Standard "Vanilla" Distribution
 
 def vanillaDist(currentOreGen,level):
@@ -904,7 +936,13 @@ def distributionGen(currentOreGen, currentOrePreDist):
     oreConfigName=orePreConfigName.replace(" ", "")
     currentOreDist=currentOrePreDist.replace(" ", "")
     
-    if currentOreDist == 'Vanilla':
+    if currentOreDist == 'Substitute':
+        distributionText = indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"substituteGen\"'>\n"
+        indentLine += 1
+        distributionText += substituteDist(currentOreGen, 0)
+        indentLine -= 1
+        distributionText += indentText(indentLine)+"</IfCondition>\n"
+    elif currentOreDist == 'Vanilla':
         distributionText = indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"vanillaStdGen\"'>\n"
         indentLine += 1
         distributionText += vanillaDist(currentOreGen, 0)
