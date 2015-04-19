@@ -1,0 +1,74 @@
+
+<!-- ================================================================ 
+
+Custom Ore Generation:   Sand to Glass Module
+
+Generates: Glass
+
+================================================================ -->
+
+    <ConfigSection>
+         <!-- Setup Screen Configuration -->
+
+        <ConfigSection>
+            <OptionDisplayGroup name='groupSandtoGlass' displayName='Sand to Glass Ores' displayState='shown'> 
+                <Description>
+                    Distribution options for Sand to Glass Ores.
+                </Description>
+            </OptionDisplayGroup>
+
+            <ConfigSection>
+                <!-- Glass Configuration UI -->
+                <OptionChoice name='stglGlassDist' displayState='shown' displayGroup='groupSandtoGlass'> 
+                    <Description> Controls how Glass is generated </Description> 
+                    <DisplayName>Sand to Glass Glass Type</DisplayName>
+                    <Choice value='substituteGen' displayValue='Substitute'>
+                        <Description>
+                            Simple substitution.
+                        </Description>
+                    </Choice>
+                    <Choice value='none' displayValue='None' description='Glass is not generated in the world.'/>
+                </OptionChoice>
+                <OptionNumeric name='stglGlassFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSandtoGlass'>
+                    <Description> Frequency multiplier for Sand to Glass Glass distributions </Description>
+                    <DisplayName>Sand to Glass Glass Freq.</DisplayName>
+                </OptionNumeric>
+                <OptionNumeric name='stglGlassSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSandtoGlass'>
+                    <Description> Size multiplier for Sand to Glass Glass distributions </Description>
+                    <DisplayName>Sand to Glass Glass Size</DisplayName>
+                </OptionNumeric>
+            </ConfigSection> 
+        </ConfigSection>
+
+
+        <!-- Setup Overworld -->
+        <IfCondition condition=':= ?COGActive'>
+            <!-- **********   Vanilla Deposit Removal   ************* -->
+            <Substitute name='stglOverworldOreSubstitute0' block='minecraft:sand'>
+                <Description>
+                    Replace vanilla-generated ore clusters.
+                </Description>
+                <Comment>
+                    The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
+                </Comment>
+                <Replaces block='minecraft:glass:0' />
+            </Substitute>
+            <!-- Adding ores --> 
+            <IfCondition condition=':= stglGlassDist = "substituteGen"'>
+                <Substitute name='stglGlass0Substitute' block='minecraft:glass'>
+                    <Description> This is a straight-up replacement of one block with another. </Description>
+                    <Replaces block='minecraft:sand'/>
+                </Substitute>
+            </IfCondition>
+        </IfCondition>
+
+
+ 
+ 
+
+    </ConfigSection>
+
+
+
+
+<!-- This file was made using the Sprocket Configuration Generator. -->
