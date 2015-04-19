@@ -99,10 +99,16 @@ Options:
     Block:
 
 	The block name, such as "minecraft:iron_ore"
+	
+	There is no default value; if an ore does not have a block assigned,
+	Sprocket will report it, and no configuration file will be written.
 
     Meta:
 
 	If a block has a meta number, this is the number it uses.
+	
+	The default is 0, although it's recommended to include the meta
+	number to avoid confusion.
 
     Replace:
 
@@ -112,6 +118,8 @@ Options:
 	"minecraft:end_stone".  Another example would be Tinker's
 	Construct's gravel ores, which would replace 
 	"minecraft:gravel".
+	
+	The default is "minecraft:stone".
 
     Distributions:
 
@@ -136,6 +144,9 @@ Options:
 	
 	There is also "none" as a distribution to turn the ores off, but it
 	is automatically added at generation.
+	
+	The default is "Vanilla".  If an invalid distribution is selected,
+	Sprocket will report it, and no configuration file will be written.
 
     Wireframe:
 
@@ -148,6 +159,8 @@ Options:
 	This option specifically is meant to select the color the wireframe
 	will be.  The code will be written as "0x60", followed by a 6-digit 
 	hexadecimal number (also known as a "hex triplet," or "web color").
+	
+	The default is randomly generated every time Sprocket is run.
 
     Pipe:
         
@@ -155,6 +168,8 @@ Options:
 	set to minecraft:lava (configuration for Diamonds) or 
 	minecraft:monster_egg (configuration for Emeralds).  Also used to
 	define the "shell" material for geodes.
+	
+	The default is "minecraft:lava".
 
     Height:
 
@@ -162,21 +177,57 @@ Options:
 	center of the range.  "64" is considered ground level; the actual
 	number scales depending on the biome and/or presence of Alternate
 	Terrain Generation.
+	
+	The default is 64.
 
     Range:
 
 	This sets the range around the above center height that ores will
 	generate.  Like the height, this number is scaled based on the biome
 	or presence of ATG.
+	
+	The default is 64.
 
     Size:
 
 	This is the vein size multiplier.  1 is the default; nothing is
 	changed.  Less than 1 (make sure the number is in the form of 0.x)
 	make the ore deposits smaller.  More than 1 makes them larger.
+	
+	The default is 1.
 
     Frequency:
 
 	Frequency multiplier; works the same way as the size multiplier.
+	
+	The default is 1.
+	
+	Biomes:
+	
+	Biome requirements as a comma-separated list of biome dictionary
+	entries.  This means that only those biomes listed will actually
+	spawn the ore.  If the biome is not on this list, the ore will not
+	spawn there.
+	
+	The default is "ALL".
+	
+	Prefers:
+	
+	Biome preferences as a comma-separated list of biome dictionary
+	entries.  This means that the biomes listed in this option will
+	have double the ores spawning.  This doubling also includes the
+	above multipliers, so be careful to balance the two.
+	
+	The default value is "NONE".
+	
+	Scale:
+	
+	The ScaleTo attribute is there to scale the ore height depending on
+	where the "surface" is.  Options includ Base (level 64), SeaLevel,
+	CloudLevel, World (averaged over the whole world), Biome (averaged
+	over the whole biome), and Position (Either the current ATG level or
+	else defaults to Biome).  The default is "Biome," although it will
+	change to "Position" when a bug that crashes the game with COG, ATG,
+	and Mystcraft is resolved.
 
 In any event, enjoy, and I hope you find this utility useful!
