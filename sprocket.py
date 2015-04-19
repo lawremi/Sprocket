@@ -935,7 +935,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
     orePreConfigName=modPrefix+oreName[currentOreGen]
     oreConfigName=orePreConfigName.replace(" ", "")
     currentOreDist=currentOrePreDist.replace(" ", "")
-    
+        
     if currentOreDist == 'Substitute':
         distributionText = indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"substituteGen\"'>\n"
         indentLine += 1
@@ -1005,7 +1005,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
         indentLine -= 1
         distributionText += indentText(indentLine)+"</IfCondition>\n"
 
-    elif currentOreDist == 'StrategicClouds':
+    elif currentOreDist == 'StrategicCloud':
         distributionText = indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"strategicCloud\"'>\n"
         indentLine += 1
         distributionText +=  strategicCloudsDist(currentOreGen, 0)
