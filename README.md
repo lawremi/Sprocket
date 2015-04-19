@@ -239,5 +239,11 @@ Options:
 	else defaults to Biome).  The default is "Biome," although it will
 	change to "Position" when a bug that crashes the game with COG, ATG,
 	and Mystcraft is resolved.
+	
+	Active:
+
+	By default, ores will be distributed based on the first distribution
+	choice in "Distributions".  Set this option to "no" for an ore, and
+	its default distribution will be set to "none".
 
 In any event, enjoy, and I hope you find this utility useful!
