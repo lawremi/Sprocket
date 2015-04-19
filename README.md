@@ -70,7 +70,9 @@ The Configuration:
 	The "Detect" name is for the COG mod-detection feature.  COG will
 	look for this name in the modid list while running Minecraft.  If
 	this name is not found, COG will assume the mod is not installed,
-	and skip the configuration.
+	and skip the configuration.  If the mod's name is "minecraft", then
+	detection will not be added to the configuration (in other words,
+	this configuration will ALWAYS work)
 
 [DEFAULT] Section
 	
@@ -141,6 +143,14 @@ Options:
 	                  of ore.
 	* Geodes: An ore cluster, surrounded by a pipe material, and 
 	          surrounding a small air bubble.
+	* CompoundVeins: An ore vein inside another ore vein.  The greater
+                         vein will be determined by the ore block, while the
+                         smaller vein will use the pipe material.
+	* Substitute: This is a simple one-for-one replacement; the block
+                      identified by "Replace:" will be replaced by the block
+                      identified by "Block:".  The options covering side,
+                      frequency, and location are permitted, but are
+                      useless.
 	
 	There is also "none" as a distribution to turn the ores off, but it
 	is automatically added at generation.
