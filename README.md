@@ -1,5 +1,5 @@
 # Sprocket
-Configuration Utility for Custom Ore Gen: First Revival mod
+Configuration Utility for Custom Ore Gen: First Revival mod (http://tinyurl.com/qdpekog)
 
 	The Custom Ore Generation mod for Minecraft is one of the best
 	discoveries I've made to this point.
