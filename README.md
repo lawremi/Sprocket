@@ -143,14 +143,11 @@ Options:
 	                  of ore.
 	* Geodes: An ore cluster, surrounded by a pipe material, and 
 	          surrounding a small air bubble.
-	* CompoundVeins: An ore vein inside another ore vein.  The greater
-                         vein will be determined by the ore block, while the
-                         smaller vein will use the pipe material.
 	* Substitute: This is a simple one-for-one replacement; the block
-                      identified by "Replace:" will be replaced by the block
-                      identified by "Block:".  The options covering side,
-                      frequency, and location are permitted, but are
-                      useless.
+                  identified by "Replace:" will be replaced by the
+                  block identified by "Block:".  The options
+                  covering side, frequency, and location are
+                  permitted, but are useless.
 	
 	There is also "none" as a distribution to turn the ores off, but it
 	is automatically added at generation.
@@ -204,12 +201,43 @@ Options:
 	changed.  Less than 1 (make sure the number is in the form of 0.x)
 	make the ore deposits smaller.  More than 1 makes them larger.
 	
+	Additionally, the following can be used to further multiply the
+	specific distributions (they combine with the Size multiplier)
+	
+	    Standard Size: Size multiplier for "vanilla" distributions
+	    Vein Size: Size multiplier for motherlode/vein distributions
+	    Cloud Size: Size multiplier for cloud distributions
+	
 	The default is 1.
 
     Frequency:
 
 	Frequency multiplier; works the same way as the size multiplier.
 	
+	Additionally, the following can be used to further multiply the
+	specific distributions (they combine with the Frequency multiplier)
+	
+	    Standard Frequency: Frequency multiplier for vanilla.
+	    Vein Frequency: Frequency multiplier for motherlodes/veins.
+	    Cloud Frequency: Frequency multiplier for clouds.
+	    
+	The default is 1.
+	
+	Density:
+	
+	Sometimes, you don't want a vein or cloud to be too full of ore.
+	Density will reduce the ore in a vein or cloud, causing space to be
+	generated between the various blocks.  The lower the density, the
+	fewer ore blocks are in an area.  This setting is a multiplier of
+	the default density.
+	
+	Additionally, the following can be used to further multiply the
+	specific distributions (they combine with the Density multiplier)
+	
+	    Standard Density: Density multiplier for vanilla.
+	    Vein Density: Density multiplier for motherlodes/veins.
+	    Cloud Density: Density multiplier for clouds.
+	    
 	The default is 1.
 	
 	Biomes:
@@ -219,7 +247,7 @@ Options:
 	spawn the ore.  If the biome is not on this list, the ore will not
 	spawn there.
 	
-	The default is "ALL".
+	The default is "ALL". (There is no "NONE")
 	
 	Prefers:
 	
@@ -228,7 +256,18 @@ Options:
 	have double the ores spawning.  This doubling also includes the
 	above multipliers, so be careful to balance the two.
 	
-	The default value is "NONE".
+	The default value is "NONE". (There is no "ALL")
+	
+	Prefers Multiplier:
+	
+	Sometimes, you want the preferred biome to do more than double the
+	ore.  This option will multiply the preferred biome frequency (for
+	example, using "2" will double the distributions in the preferred
+	biome... in addition to the single distribution generated from the
+	non-preferred set... for a total multiplier of "3" in a preferred
+	biome.
+	
+	The default is 1.
 	
 	Scale:
 	
