@@ -14,7 +14,7 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
             <!-- Setup Screen Configuration -->
 
             <ConfigSection>
-                <OptionDisplayGroup name='groupThaumcraft4' displayName='Thaumcraft 4 Ores' displayState='shown'> 
+                <OptionDisplayGroup name='groupThaumcraft4' displayName='Thaumcraft 4' displayState='shown'> 
                     <Description>
                         Distribution options for Thaumcraft 4 Ores.
                     </Description>
@@ -22,7 +22,7 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
 
                 <ConfigSection>
                     <!-- Cinnabar Configuration UI -->
-                    <OptionChoice name='thm4CinnabarDist' displayState='shown' displayGroup='groupThaumcraft4'> 
+                    <OptionChoice name='thm4CinnabarDist'  displayState='shown' displayGroup='groupThaumcraft4'> 
                         <Description> Controls how Cinnabar is generated </Description> 
                         <DisplayName>Thaumcraft 4 Cinnabar</DisplayName>
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
@@ -53,7 +53,7 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Air Infused Stone Configuration UI -->
-                    <OptionChoice name='thm4AirInfusedStoneDist' displayState='shown' displayGroup='groupThaumcraft4'> 
+                    <OptionChoice name='thm4AirInfusedStoneDist'  displayState='shown' displayGroup='groupThaumcraft4'> 
                         <Description> Controls how Air Infused Stone is generated </Description> 
                         <DisplayName>Thaumcraft 4 Air Infused Stone</DisplayName>
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
@@ -84,7 +84,7 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Fire Infused Stone Configuration UI -->
-                    <OptionChoice name='thm4FireInfusedStoneDist' displayState='shown' displayGroup='groupThaumcraft4'> 
+                    <OptionChoice name='thm4FireInfusedStoneDist'  displayState='shown' displayGroup='groupThaumcraft4'> 
                         <Description> Controls how Fire Infused Stone is generated </Description> 
                         <DisplayName>Thaumcraft 4 Fire Infused Stone</DisplayName>
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
@@ -115,7 +115,7 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Water Infused Stone Configuration UI -->
-                    <OptionChoice name='thm4WaterInfusedStoneDist' displayState='shown' displayGroup='groupThaumcraft4'> 
+                    <OptionChoice name='thm4WaterInfusedStoneDist'  displayState='shown' displayGroup='groupThaumcraft4'> 
                         <Description> Controls how Water Infused Stone is generated </Description> 
                         <DisplayName>Thaumcraft 4 Water Infused Stone</DisplayName>
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
@@ -146,7 +146,7 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Earth Infused Stone Configuration UI -->
-                    <OptionChoice name='thm4EarthInfusedStoneDist' displayState='shown' displayGroup='groupThaumcraft4'> 
+                    <OptionChoice name='thm4EarthInfusedStoneDist'  displayState='shown' displayGroup='groupThaumcraft4'> 
                         <Description> Controls how Earth Infused Stone is generated </Description> 
                         <DisplayName>Thaumcraft 4 Earth Infused Stone</DisplayName>
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
@@ -177,7 +177,7 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Order Infused Stone Configuration UI -->
-                    <OptionChoice name='thm4OrderInfusedStoneDist' displayState='shown' displayGroup='groupThaumcraft4'> 
+                    <OptionChoice name='thm4OrderInfusedStoneDist'  displayState='shown' displayGroup='groupThaumcraft4'> 
                         <Description> Controls how Order Infused Stone is generated </Description> 
                         <DisplayName>Thaumcraft 4 Order Infused Stone</DisplayName>
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
@@ -208,7 +208,7 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Entropy Infused Stone Configuration UI -->
-                    <OptionChoice name='thm4EntropyInfusedStoneDist' displayState='shown' displayGroup='groupThaumcraft4'> 
+                    <OptionChoice name='thm4EntropyInfusedStoneDist'  displayState='shown' displayGroup='groupThaumcraft4'> 
                         <Description> Controls how Entropy Infused Stone is generated </Description> 
                         <DisplayName>Thaumcraft 4 Entropy Infused Stone</DisplayName>
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
@@ -239,7 +239,7 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Amber Configuration UI -->
-                    <OptionChoice name='thm4AmberDist' displayState='shown' displayGroup='groupThaumcraft4'> 
+                    <OptionChoice name='thm4AmberDist'  displayState='shown' displayGroup='groupThaumcraft4'> 
                         <Description> Controls how Amber is generated </Description> 
                         <DisplayName>Thaumcraft 4 Amber</DisplayName>
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
@@ -291,6 +291,8 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     <Replaces block='Thaumcraft:blockCustomOre:7' />
                 </Substitute>
                 <!-- Adding ores --> 
+                
+                <!-- Cinnabar Generation. --> 
                 <IfCondition condition=':= thm4CinnabarDist = "layeredVeins"'>
                     <Veins name='thm4Cinnabar0Veins' block='Thaumcraft:blockCustomOre' inherits='PresetLayeredVeins'>
                         <Description>
@@ -298,10 +300,11 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * thm4CinnabarSize * _default_' range=':= 1 * thm4CinnabarSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * thm4CinnabarFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * thm4CinnabarSize * _default_' range=':= 1 * thm4CinnabarSize * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thm4CinnabarSize * _default_' range=':= 1 * 1 * thm4CinnabarSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * thm4CinnabarFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 16' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * thm4CinnabarSize * _default_' range=':= 1 * 1 * thm4CinnabarSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
@@ -317,34 +320,41 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * thm4CinnabarFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * thm4CinnabarSize * _default_' range=':= 1 * thm4CinnabarSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * thm4CinnabarSize * _default_' range=':= 1 * thm4CinnabarSize * _default_'/>
-                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='Biome'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * thm4CinnabarFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * thm4CinnabarSize * _default_' range=':= 1 * 1 * thm4CinnabarSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * thm4CinnabarSize * _default_' range=':= 1 * 1 * thm4CinnabarSize * _default_'/>
+                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * thm4CinnabarSize * _default_' range=':= 1 * 1 * 1 * thm4CinnabarSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='thm4Cinnabar0HintVeins' block='Thaumcraft:blockCustomOre' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x609d98f0</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * thm4CinnabarFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 32' range=':= 16' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thm4CinnabarSize * _default_' range=':= 1 * 1 * thm4CinnabarSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='thm4Cinnabar0HintVeins' block='Thaumcraft:blockCustomOre' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * thm4CinnabarSize * _default_' range=':= 1 * thm4CinnabarSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= thm4CinnabarDist = "vanillaStdGen"'>
                     <StandardGen name='thm4Cinnabar0Standard' block='Thaumcraft:blockCustomOre' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * thm4CinnabarSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * thm4CinnabarFreq * _default_'/>
-                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                        <Setting name='Size' avg=':= 1 * 1 * thm4CinnabarSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * thm4CinnabarFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32' range=':= 16'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
+                
+                <!-- Air Infused Stone Generation. --> 
                 <IfCondition condition=':= thm4AirInfusedStoneDist = "layeredVeins"'>
                     <Veins name='thm4AirInfusedStone0Veins' block='Thaumcraft:blockCustomOre:1' inherits='PresetLayeredVeins'>
                         <Description>
@@ -352,10 +362,11 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * thm4AirInfusedStoneSize * _default_' range=':= 1 * thm4AirInfusedStoneSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * thm4AirInfusedStoneFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * thm4AirInfusedStoneSize * _default_' range=':= 1 * thm4AirInfusedStoneSize * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thm4AirInfusedStoneSize * _default_' range=':= 1 * 1 * thm4AirInfusedStoneSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * thm4AirInfusedStoneFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 16' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * thm4AirInfusedStoneSize * _default_' range=':= 1 * 1 * thm4AirInfusedStoneSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
@@ -371,34 +382,41 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * thm4AirInfusedStoneFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * thm4AirInfusedStoneSize * _default_' range=':= 1 * thm4AirInfusedStoneSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * thm4AirInfusedStoneSize * _default_' range=':= 1 * thm4AirInfusedStoneSize * _default_'/>
-                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='Biome'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * thm4AirInfusedStoneFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * thm4AirInfusedStoneSize * _default_' range=':= 1 * 1 * thm4AirInfusedStoneSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * thm4AirInfusedStoneSize * _default_' range=':= 1 * 1 * thm4AirInfusedStoneSize * _default_'/>
+                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * thm4AirInfusedStoneSize * _default_' range=':= 1 * 1 * 1 * thm4AirInfusedStoneSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='thm4AirInfusedStone0HintVeins' block='Thaumcraft:blockCustomOre:1' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x609d98f0</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * thm4AirInfusedStoneFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 32' range=':= 16' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thm4AirInfusedStoneSize * _default_' range=':= 1 * 1 * thm4AirInfusedStoneSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='thm4AirInfusedStone0HintVeins' block='Thaumcraft:blockCustomOre:1' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * thm4AirInfusedStoneSize * _default_' range=':= 1 * thm4AirInfusedStoneSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= thm4AirInfusedStoneDist = "vanillaStdGen"'>
                     <StandardGen name='thm4AirInfusedStone0Standard' block='Thaumcraft:blockCustomOre:1' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * thm4AirInfusedStoneSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * thm4AirInfusedStoneFreq * _default_'/>
-                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                        <Setting name='Size' avg=':= 1 * 1 * thm4AirInfusedStoneSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * thm4AirInfusedStoneFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32' range=':= 16'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
+                
+                <!-- Fire Infused Stone Generation. --> 
                 <IfCondition condition=':= thm4FireInfusedStoneDist = "layeredVeins"'>
                     <Veins name='thm4FireInfusedStone0Veins' block='Thaumcraft:blockCustomOre:2' inherits='PresetLayeredVeins'>
                         <Description>
@@ -406,10 +424,11 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * thm4FireInfusedStoneSize * _default_' range=':= 1 * thm4FireInfusedStoneSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * thm4FireInfusedStoneFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * thm4FireInfusedStoneSize * _default_' range=':= 1 * thm4FireInfusedStoneSize * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thm4FireInfusedStoneSize * _default_' range=':= 1 * 1 * thm4FireInfusedStoneSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * thm4FireInfusedStoneFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 16' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * thm4FireInfusedStoneSize * _default_' range=':= 1 * 1 * thm4FireInfusedStoneSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
@@ -425,34 +444,41 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * thm4FireInfusedStoneFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * thm4FireInfusedStoneSize * _default_' range=':= 1 * thm4FireInfusedStoneSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * thm4FireInfusedStoneSize * _default_' range=':= 1 * thm4FireInfusedStoneSize * _default_'/>
-                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='Biome'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * thm4FireInfusedStoneFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * thm4FireInfusedStoneSize * _default_' range=':= 1 * 1 * thm4FireInfusedStoneSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * thm4FireInfusedStoneSize * _default_' range=':= 1 * 1 * thm4FireInfusedStoneSize * _default_'/>
+                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * thm4FireInfusedStoneSize * _default_' range=':= 1 * 1 * 1 * thm4FireInfusedStoneSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='thm4FireInfusedStone0HintVeins' block='Thaumcraft:blockCustomOre:2' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x609d98f0</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * thm4FireInfusedStoneFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 32' range=':= 16' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thm4FireInfusedStoneSize * _default_' range=':= 1 * 1 * thm4FireInfusedStoneSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='thm4FireInfusedStone0HintVeins' block='Thaumcraft:blockCustomOre:2' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * thm4FireInfusedStoneSize * _default_' range=':= 1 * thm4FireInfusedStoneSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= thm4FireInfusedStoneDist = "vanillaStdGen"'>
                     <StandardGen name='thm4FireInfusedStone0Standard' block='Thaumcraft:blockCustomOre:2' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * thm4FireInfusedStoneSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * thm4FireInfusedStoneFreq * _default_'/>
-                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                        <Setting name='Size' avg=':= 1 * 1 * thm4FireInfusedStoneSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * thm4FireInfusedStoneFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32' range=':= 16'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
+                
+                <!-- Water Infused Stone Generation. --> 
                 <IfCondition condition=':= thm4WaterInfusedStoneDist = "layeredVeins"'>
                     <Veins name='thm4WaterInfusedStone0Veins' block='Thaumcraft:blockCustomOre:3' inherits='PresetLayeredVeins'>
                         <Description>
@@ -460,10 +486,11 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * thm4WaterInfusedStoneSize * _default_' range=':= 1 * thm4WaterInfusedStoneSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * thm4WaterInfusedStoneFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * thm4WaterInfusedStoneSize * _default_' range=':= 1 * thm4WaterInfusedStoneSize * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thm4WaterInfusedStoneSize * _default_' range=':= 1 * 1 * thm4WaterInfusedStoneSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * thm4WaterInfusedStoneFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 16' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * thm4WaterInfusedStoneSize * _default_' range=':= 1 * 1 * thm4WaterInfusedStoneSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
@@ -479,34 +506,41 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * thm4WaterInfusedStoneFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * thm4WaterInfusedStoneSize * _default_' range=':= 1 * thm4WaterInfusedStoneSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * thm4WaterInfusedStoneSize * _default_' range=':= 1 * thm4WaterInfusedStoneSize * _default_'/>
-                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='Biome'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * thm4WaterInfusedStoneFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * thm4WaterInfusedStoneSize * _default_' range=':= 1 * 1 * thm4WaterInfusedStoneSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * thm4WaterInfusedStoneSize * _default_' range=':= 1 * 1 * thm4WaterInfusedStoneSize * _default_'/>
+                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * thm4WaterInfusedStoneSize * _default_' range=':= 1 * 1 * 1 * thm4WaterInfusedStoneSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='thm4WaterInfusedStone0HintVeins' block='Thaumcraft:blockCustomOre:3' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x609d98f0</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * thm4WaterInfusedStoneFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 32' range=':= 16' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thm4WaterInfusedStoneSize * _default_' range=':= 1 * 1 * thm4WaterInfusedStoneSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='thm4WaterInfusedStone0HintVeins' block='Thaumcraft:blockCustomOre:3' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * thm4WaterInfusedStoneSize * _default_' range=':= 1 * thm4WaterInfusedStoneSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= thm4WaterInfusedStoneDist = "vanillaStdGen"'>
                     <StandardGen name='thm4WaterInfusedStone0Standard' block='Thaumcraft:blockCustomOre:3' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * thm4WaterInfusedStoneSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * thm4WaterInfusedStoneFreq * _default_'/>
-                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                        <Setting name='Size' avg=':= 1 * 1 * thm4WaterInfusedStoneSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * thm4WaterInfusedStoneFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32' range=':= 16'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
+                
+                <!-- Earth Infused Stone Generation. --> 
                 <IfCondition condition=':= thm4EarthInfusedStoneDist = "layeredVeins"'>
                     <Veins name='thm4EarthInfusedStone0Veins' block='Thaumcraft:blockCustomOre:4' inherits='PresetLayeredVeins'>
                         <Description>
@@ -514,10 +548,11 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * thm4EarthInfusedStoneSize * _default_' range=':= 1 * thm4EarthInfusedStoneSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * thm4EarthInfusedStoneFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * thm4EarthInfusedStoneSize * _default_' range=':= 1 * thm4EarthInfusedStoneSize * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thm4EarthInfusedStoneSize * _default_' range=':= 1 * 1 * thm4EarthInfusedStoneSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * thm4EarthInfusedStoneFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 16' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * thm4EarthInfusedStoneSize * _default_' range=':= 1 * 1 * thm4EarthInfusedStoneSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
@@ -533,34 +568,41 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * thm4EarthInfusedStoneFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * thm4EarthInfusedStoneSize * _default_' range=':= 1 * thm4EarthInfusedStoneSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * thm4EarthInfusedStoneSize * _default_' range=':= 1 * thm4EarthInfusedStoneSize * _default_'/>
-                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='Biome'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * thm4EarthInfusedStoneFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * thm4EarthInfusedStoneSize * _default_' range=':= 1 * 1 * thm4EarthInfusedStoneSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * thm4EarthInfusedStoneSize * _default_' range=':= 1 * 1 * thm4EarthInfusedStoneSize * _default_'/>
+                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * thm4EarthInfusedStoneSize * _default_' range=':= 1 * 1 * 1 * thm4EarthInfusedStoneSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='thm4EarthInfusedStone0HintVeins' block='Thaumcraft:blockCustomOre:4' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x609d98f0</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * thm4EarthInfusedStoneFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 32' range=':= 16' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thm4EarthInfusedStoneSize * _default_' range=':= 1 * 1 * thm4EarthInfusedStoneSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='thm4EarthInfusedStone0HintVeins' block='Thaumcraft:blockCustomOre:4' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * thm4EarthInfusedStoneSize * _default_' range=':= 1 * thm4EarthInfusedStoneSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= thm4EarthInfusedStoneDist = "vanillaStdGen"'>
                     <StandardGen name='thm4EarthInfusedStone0Standard' block='Thaumcraft:blockCustomOre:4' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * thm4EarthInfusedStoneSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * thm4EarthInfusedStoneFreq * _default_'/>
-                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                        <Setting name='Size' avg=':= 1 * 1 * thm4EarthInfusedStoneSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * thm4EarthInfusedStoneFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32' range=':= 16'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
+                
+                <!-- Order Infused Stone Generation. --> 
                 <IfCondition condition=':= thm4OrderInfusedStoneDist = "layeredVeins"'>
                     <Veins name='thm4OrderInfusedStone0Veins' block='Thaumcraft:blockCustomOre:5' inherits='PresetLayeredVeins'>
                         <Description>
@@ -568,10 +610,11 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * thm4OrderInfusedStoneSize * _default_' range=':= 1 * thm4OrderInfusedStoneSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * thm4OrderInfusedStoneFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * thm4OrderInfusedStoneSize * _default_' range=':= 1 * thm4OrderInfusedStoneSize * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thm4OrderInfusedStoneSize * _default_' range=':= 1 * 1 * thm4OrderInfusedStoneSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * thm4OrderInfusedStoneFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 16' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * thm4OrderInfusedStoneSize * _default_' range=':= 1 * 1 * thm4OrderInfusedStoneSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
@@ -587,34 +630,41 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * thm4OrderInfusedStoneFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * thm4OrderInfusedStoneSize * _default_' range=':= 1 * thm4OrderInfusedStoneSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * thm4OrderInfusedStoneSize * _default_' range=':= 1 * thm4OrderInfusedStoneSize * _default_'/>
-                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='Biome'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * thm4OrderInfusedStoneFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * thm4OrderInfusedStoneSize * _default_' range=':= 1 * 1 * thm4OrderInfusedStoneSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * thm4OrderInfusedStoneSize * _default_' range=':= 1 * 1 * thm4OrderInfusedStoneSize * _default_'/>
+                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * thm4OrderInfusedStoneSize * _default_' range=':= 1 * 1 * 1 * thm4OrderInfusedStoneSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='thm4OrderInfusedStone0HintVeins' block='Thaumcraft:blockCustomOre:5' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x609d98f0</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * thm4OrderInfusedStoneFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 32' range=':= 16' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thm4OrderInfusedStoneSize * _default_' range=':= 1 * 1 * thm4OrderInfusedStoneSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='thm4OrderInfusedStone0HintVeins' block='Thaumcraft:blockCustomOre:5' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * thm4OrderInfusedStoneSize * _default_' range=':= 1 * thm4OrderInfusedStoneSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= thm4OrderInfusedStoneDist = "vanillaStdGen"'>
                     <StandardGen name='thm4OrderInfusedStone0Standard' block='Thaumcraft:blockCustomOre:5' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * thm4OrderInfusedStoneSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * thm4OrderInfusedStoneFreq * _default_'/>
-                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                        <Setting name='Size' avg=':= 1 * 1 * thm4OrderInfusedStoneSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * thm4OrderInfusedStoneFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32' range=':= 16'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
+                
+                <!-- Entropy Infused Stone Generation. --> 
                 <IfCondition condition=':= thm4EntropyInfusedStoneDist = "layeredVeins"'>
                     <Veins name='thm4EntropyInfusedStone0Veins' block='Thaumcraft:blockCustomOre:6' inherits='PresetLayeredVeins'>
                         <Description>
@@ -622,10 +672,11 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * thm4EntropyInfusedStoneSize * _default_' range=':= 1 * thm4EntropyInfusedStoneSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * thm4EntropyInfusedStoneFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * thm4EntropyInfusedStoneSize * _default_' range=':= 1 * thm4EntropyInfusedStoneSize * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thm4EntropyInfusedStoneSize * _default_' range=':= 1 * 1 * thm4EntropyInfusedStoneSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * thm4EntropyInfusedStoneFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 16' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * thm4EntropyInfusedStoneSize * _default_' range=':= 1 * 1 * thm4EntropyInfusedStoneSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
@@ -641,34 +692,41 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * thm4EntropyInfusedStoneFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * thm4EntropyInfusedStoneSize * _default_' range=':= 1 * thm4EntropyInfusedStoneSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * thm4EntropyInfusedStoneSize * _default_' range=':= 1 * thm4EntropyInfusedStoneSize * _default_'/>
-                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='Biome'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * thm4EntropyInfusedStoneFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * thm4EntropyInfusedStoneSize * _default_' range=':= 1 * 1 * thm4EntropyInfusedStoneSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * thm4EntropyInfusedStoneSize * _default_' range=':= 1 * 1 * thm4EntropyInfusedStoneSize * _default_'/>
+                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * thm4EntropyInfusedStoneSize * _default_' range=':= 1 * 1 * 1 * thm4EntropyInfusedStoneSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='thm4EntropyInfusedStone0HintVeins' block='Thaumcraft:blockCustomOre:6' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x609d98f0</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * thm4EntropyInfusedStoneFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 32' range=':= 16' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thm4EntropyInfusedStoneSize * _default_' range=':= 1 * 1 * thm4EntropyInfusedStoneSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='thm4EntropyInfusedStone0HintVeins' block='Thaumcraft:blockCustomOre:6' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * thm4EntropyInfusedStoneSize * _default_' range=':= 1 * thm4EntropyInfusedStoneSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= thm4EntropyInfusedStoneDist = "vanillaStdGen"'>
                     <StandardGen name='thm4EntropyInfusedStone0Standard' block='Thaumcraft:blockCustomOre:6' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * thm4EntropyInfusedStoneSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * thm4EntropyInfusedStoneFreq * _default_'/>
-                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                        <Setting name='Size' avg=':= 1 * 1 * thm4EntropyInfusedStoneSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * thm4EntropyInfusedStoneFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32' range=':= 16'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
+                
+                <!-- Amber Generation. --> 
                 <IfCondition condition=':= thm4AmberDist = "layeredVeins"'>
                     <Veins name='thm4Amber0Veins' block='Thaumcraft:blockCustomOre:7' inherits='PresetLayeredVeins'>
                         <Description>
@@ -676,10 +734,11 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * thm4AmberSize * _default_' range=':= 1 * thm4AmberSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * thm4AmberFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * thm4AmberSize * _default_' range=':= 1 * thm4AmberSize * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thm4AmberSize * _default_' range=':= 1 * 1 * thm4AmberSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * thm4AmberFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 16' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * thm4AmberSize * _default_' range=':= 1 * 1 * thm4AmberSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
@@ -695,31 +754,36 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * thm4AmberFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * thm4AmberSize * _default_' range=':= 1 * thm4AmberSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * thm4AmberSize * _default_' range=':= 1 * thm4AmberSize * _default_'/>
-                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='Biome'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * thm4AmberFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * thm4AmberSize * _default_' range=':= 1 * 1 * thm4AmberSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * thm4AmberSize * _default_' range=':= 1 * 1 * thm4AmberSize * _default_'/>
+                        <Setting name='CloudHeight' avg='32' range='16' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * thm4AmberSize * _default_' range=':= 1 * 1 * 1 * thm4AmberSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='thm4Amber0HintVeins' block='Thaumcraft:blockCustomOre:7' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x609d98f0</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * thm4AmberFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 32' range=':= 16' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thm4AmberSize * _default_' range=':= 1 * 1 * thm4AmberSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='thm4Amber0HintVeins' block='Thaumcraft:blockCustomOre:7' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * thm4AmberSize * _default_' range=':= 1 * thm4AmberSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= thm4AmberDist = "vanillaStdGen"'>
                     <StandardGen name='thm4Amber0Standard' block='Thaumcraft:blockCustomOre:7' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x609d98f0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * thm4AmberSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * thm4AmberFreq * _default_'/>
-                        <Setting name='Height' avg=':= 32/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                        <Setting name='Size' avg=':= 1 * 1 * thm4AmberSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * thm4AmberFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32' range=':= 16'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>

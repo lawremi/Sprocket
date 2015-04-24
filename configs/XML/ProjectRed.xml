@@ -13,7 +13,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
             <!-- Setup Screen Configuration -->
 
             <ConfigSection>
-                <OptionDisplayGroup name='groupProjectRed' displayName='Project Red Ores' displayState='shown'> 
+                <OptionDisplayGroup name='groupProjectRed' displayName='Project Red' displayState='shown'> 
                     <Description>
                         Distribution options for Project Red Ores.
                     </Description>
@@ -21,7 +21,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
 
                 <ConfigSection>
                     <!-- Ruby Configuration UI -->
-                    <OptionChoice name='predRubyDist' displayState='shown' displayGroup='groupProjectRed'> 
+                    <OptionChoice name='predRubyDist'  displayState='shown' displayGroup='groupProjectRed'> 
                         <Description> Controls how Ruby is generated </Description> 
                         <DisplayName>Project Red Ruby</DisplayName>
                         <Choice value='pipeVeins' displayValue='Pipe Veins'>
@@ -52,7 +52,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Sapphire Configuration UI -->
-                    <OptionChoice name='predSapphireDist' displayState='shown' displayGroup='groupProjectRed'> 
+                    <OptionChoice name='predSapphireDist'  displayState='shown' displayGroup='groupProjectRed'> 
                         <Description> Controls how Sapphire is generated </Description> 
                         <DisplayName>Project Red Sapphire</DisplayName>
                         <Choice value='pipeVeins' displayValue='Pipe Veins'>
@@ -83,7 +83,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Peridot Configuration UI -->
-                    <OptionChoice name='predPeridotDist' displayState='shown' displayGroup='groupProjectRed'> 
+                    <OptionChoice name='predPeridotDist'  displayState='shown' displayGroup='groupProjectRed'> 
                         <Description> Controls how Peridot is generated </Description> 
                         <DisplayName>Project Red Peridot</DisplayName>
                         <Choice value='pipeVeins' displayValue='Pipe Veins'>
@@ -114,7 +114,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Marble Configuration UI -->
-                    <OptionChoice name='predMarbleDist' displayState='shown' displayGroup='groupProjectRed'> 
+                    <OptionChoice name='predMarbleDist'  displayState='shown' displayGroup='groupProjectRed'> 
                         <Description> Controls how Marble is generated </Description> 
                         <DisplayName>Project Red Marble</DisplayName>
                         <Choice value='pipeVeins' displayValue='Pipe Veins'>
@@ -145,7 +145,7 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Basalt Configuration UI -->
-                    <OptionChoice name='predBasaltDist' displayState='shown' displayGroup='groupProjectRed'> 
+                    <OptionChoice name='predBasaltDist'  displayState='shown' displayGroup='groupProjectRed'> 
                         <Description> Controls how Basalt is generated </Description> 
                         <DisplayName>Project Red Basalt</DisplayName>
                         <Choice value='pipeVeins' displayValue='Pipe Veins'>
@@ -194,30 +194,33 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                     <Replaces block='ProjRed|Exploration:projectred.exploration.stone:3' />
                 </Substitute>
                 <!-- Adding ores --> 
+                
+                <!-- Ruby Generation. --> 
                 <IfCondition condition=':= predRubyDist = "pipeVeins"'>
-                    <Veins name='predRuby0Veins' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetPipeVeins' seed='0x41D2'>
+                    <Veins name='predRuby0Veins' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetPipeVeins' seed='0xED96'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * predRubyFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * predRubySize * _default_' range=':= 1 * predRubySize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 1 * predRubySize * _default_' range=':= 1 * predRubySize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * predRubyFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * predRubySize * _default_' range=':= 1 * 1 * predRubySize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * predRubySize * _default_' range=':= 1 * 1 * predRubySize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'predRuby0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x41D2'>
+                    <Veins name= 'predRuby0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0xED96'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * predRubySize * _default_' range=':= 0.5 * 1 * predRubySize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * predRubySize * _default_' range=':= 0.5 * 1 * predRubySize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * predRubyFreq * _default_'/>
-                        <Setting name='OreDensity' avg='1' range='0'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * 1 * predRubySize * _default_' range=':= 0.5 * 1 * 1 * predRubySize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * 1 * predRubySize * _default_' range=':= 0.5 * 1 * 1 * predRubySize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * predRubyFreq * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:dirt'/>
                         <Replaces block='minecraft:stone'/>
                         <Replaces block='minecraft:gravel'/>
@@ -238,58 +241,66 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * predRubyFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * predRubySize * _default_' range=':= 1 * predRubySize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * predRubySize * _default_' range=':= 1 * predRubySize * _default_'/>
-                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='Biome'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * predRubyFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * predRubySize * _default_' range=':= 1 * 1 * predRubySize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * predRubySize * _default_' range=':= 1 * 1 * predRubySize * _default_'/>
+                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * predRubySize * _default_' range=':= 1 * 1 * 1 * predRubySize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='predRuby0HintVeins' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60db0917</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * predRubyFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * predRubySize * _default_' range=':= 1 * 1 * predRubySize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='predRuby0HintVeins' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * predRubySize * _default_' range=':= 1 * predRubySize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= predRubyDist = "vanillaStdGen"'>
                     <StandardGen name='predRuby0Standard' block='ProjRed|Exploration:projectred.exploration.ore' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * predRubySize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * predRubyFreq * _default_'/>
-                        <Setting name='Height' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                        <Setting name='Size' avg=':= 1 * 1 * predRubySize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * predRubyFreq * _default_'/>
+                        <Setting name='Height' avg=':= 16' range=':= 16'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
+                
+                <!-- Sapphire Generation. --> 
                 <IfCondition condition=':= predSapphireDist = "pipeVeins"'>
-                    <Veins name='predSapphire0Veins' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetPipeVeins' seed='0xC5FA'>
+                    <Veins name='predSapphire0Veins' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetPipeVeins' seed='0x32B4'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * predSapphireFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * predSapphireSize * _default_' range=':= 1 * predSapphireSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 1 * predSapphireSize * _default_' range=':= 1 * predSapphireSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * predSapphireFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * predSapphireSize * _default_' range=':= 1 * 1 * predSapphireSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * predSapphireSize * _default_' range=':= 1 * 1 * predSapphireSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'predSapphire0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0xC5FA'>
+                    <Veins name= 'predSapphire0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x32B4'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * predSapphireSize * _default_' range=':= 0.5 * 1 * predSapphireSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * predSapphireSize * _default_' range=':= 0.5 * 1 * predSapphireSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * predSapphireFreq * _default_'/>
-                        <Setting name='OreDensity' avg='1' range='0'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * 1 * predSapphireSize * _default_' range=':= 0.5 * 1 * 1 * predSapphireSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * 1 * predSapphireSize * _default_' range=':= 0.5 * 1 * 1 * predSapphireSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * predSapphireFreq * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:dirt'/>
                         <Replaces block='minecraft:stone'/>
                         <Replaces block='minecraft:gravel'/>
@@ -310,58 +321,66 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * predSapphireFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * predSapphireSize * _default_' range=':= 1 * predSapphireSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * predSapphireSize * _default_' range=':= 1 * predSapphireSize * _default_'/>
-                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='Biome'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * predSapphireFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * predSapphireSize * _default_' range=':= 1 * 1 * predSapphireSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * predSapphireSize * _default_' range=':= 1 * 1 * predSapphireSize * _default_'/>
+                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * predSapphireSize * _default_' range=':= 1 * 1 * 1 * predSapphireSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='predSapphire0HintVeins' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60db0917</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * predSapphireFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * predSapphireSize * _default_' range=':= 1 * 1 * predSapphireSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='predSapphire0HintVeins' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * predSapphireSize * _default_' range=':= 1 * predSapphireSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= predSapphireDist = "vanillaStdGen"'>
                     <StandardGen name='predSapphire0Standard' block='ProjRed|Exploration:projectred.exploration.ore:1' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * predSapphireSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * predSapphireFreq * _default_'/>
-                        <Setting name='Height' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                        <Setting name='Size' avg=':= 1 * 1 * predSapphireSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * predSapphireFreq * _default_'/>
+                        <Setting name='Height' avg=':= 16' range=':= 16'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
+                
+                <!-- Peridot Generation. --> 
                 <IfCondition condition=':= predPeridotDist = "pipeVeins"'>
-                    <Veins name='predPeridot0Veins' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetPipeVeins' seed='0xA6D7'>
+                    <Veins name='predPeridot0Veins' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetPipeVeins' seed='0x3175'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * predPeridotFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * predPeridotSize * _default_' range=':= 1 * predPeridotSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 1 * predPeridotSize * _default_' range=':= 1 * predPeridotSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * predPeridotFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * predPeridotSize * _default_' range=':= 1 * 1 * predPeridotSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * predPeridotSize * _default_' range=':= 1 * 1 * predPeridotSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'predPeridot0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0xA6D7'>
+                    <Veins name= 'predPeridot0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x3175'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * predPeridotSize * _default_' range=':= 0.5 * 1 * predPeridotSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * predPeridotSize * _default_' range=':= 0.5 * 1 * predPeridotSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * predPeridotFreq * _default_'/>
-                        <Setting name='OreDensity' avg='1' range='0'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * 1 * predPeridotSize * _default_' range=':= 0.5 * 1 * 1 * predPeridotSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * 1 * predPeridotSize * _default_' range=':= 0.5 * 1 * 1 * predPeridotSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * predPeridotFreq * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:dirt'/>
                         <Replaces block='minecraft:stone'/>
                         <Replaces block='minecraft:gravel'/>
@@ -382,58 +401,66 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * predPeridotFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * predPeridotSize * _default_' range=':= 1 * predPeridotSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * predPeridotSize * _default_' range=':= 1 * predPeridotSize * _default_'/>
-                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='Biome'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * predPeridotFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * predPeridotSize * _default_' range=':= 1 * 1 * predPeridotSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * predPeridotSize * _default_' range=':= 1 * 1 * predPeridotSize * _default_'/>
+                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * predPeridotSize * _default_' range=':= 1 * 1 * 1 * predPeridotSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='predPeridot0HintVeins' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60db0917</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * predPeridotFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * predPeridotSize * _default_' range=':= 1 * 1 * predPeridotSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='predPeridot0HintVeins' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * predPeridotSize * _default_' range=':= 1 * predPeridotSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= predPeridotDist = "vanillaStdGen"'>
                     <StandardGen name='predPeridot0Standard' block='ProjRed|Exploration:projectred.exploration.ore:2' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * predPeridotSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * predPeridotFreq * _default_'/>
-                        <Setting name='Height' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/> 
+                        <Setting name='Size' avg=':= 1 * 1 * predPeridotSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * predPeridotFreq * _default_'/>
+                        <Setting name='Height' avg=':= 16' range=':= 16'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
+                
+                <!-- Marble Generation. --> 
                 <IfCondition condition=':= predMarbleDist = "pipeVeins"'>
-                    <Veins name='predMarble0Veins' block='ProjRed|Exploration:projectred.exploration.stone' inherits='PresetPipeVeins' seed='0x371C'>
+                    <Veins name='predMarble0Veins' block='ProjRed|Exploration:projectred.exploration.stone' inherits='PresetPipeVeins' seed='0x65EB'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * predMarbleFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * predMarbleSize * _default_' range=':= 1 * predMarbleSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 1 * predMarbleSize * _default_' range=':= 1 * predMarbleSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * predMarbleFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * predMarbleSize * _default_' range=':= 1 * 1 * predMarbleSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * predMarbleSize * _default_' range=':= 1 * 1 * predMarbleSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'predMarble0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x371C'>
+                    <Veins name= 'predMarble0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x65EB'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * predMarbleSize * _default_' range=':= 0.5 * 1 * predMarbleSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * predMarbleSize * _default_' range=':= 0.5 * 1 * predMarbleSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * predMarbleFreq * _default_'/>
-                        <Setting name='OreDensity' avg='1' range='0'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * 1 * predMarbleSize * _default_' range=':= 0.5 * 1 * 1 * predMarbleSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * 1 * predMarbleSize * _default_' range=':= 0.5 * 1 * 1 * predMarbleSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * predMarbleFreq * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:dirt'/>
                         <Replaces block='minecraft:stone'/>
                         <Replaces block='minecraft:gravel'/>
@@ -454,58 +481,66 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * predMarbleFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * predMarbleSize * _default_' range=':= 1 * predMarbleSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * predMarbleSize * _default_' range=':= 1 * predMarbleSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * predMarbleFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * predMarbleSize * _default_' range=':= 1 * 1 * predMarbleSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * predMarbleSize * _default_' range=':= 1 * 1 * predMarbleSize * _default_'/>
+                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * predMarbleSize * _default_' range=':= 1 * 1 * 1 * predMarbleSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='predMarble0HintVeins' block='ProjRed|Exploration:projectred.exploration.stone' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60db0917</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * predMarbleFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * predMarbleSize * _default_' range=':= 1 * 1 * predMarbleSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='predMarble0HintVeins' block='ProjRed|Exploration:projectred.exploration.stone' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * predMarbleSize * _default_' range=':= 1 * predMarbleSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= predMarbleDist = "vanillaStdGen"'>
                     <StandardGen name='predMarble0Standard' block='ProjRed|Exploration:projectred.exploration.stone' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * predMarbleSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * predMarbleFreq * _default_'/>
-                        <Setting name='Height' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <Setting name='Size' avg=':= 1 * 1 * predMarbleSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * predMarbleFreq * _default_'/>
+                        <Setting name='Height' avg=':= 64' range=':= 64'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
+                
+                <!-- Basalt Generation. --> 
                 <IfCondition condition=':= predBasaltDist = "pipeVeins"'>
-                    <Veins name='predBasalt0Veins' block='ProjRed|Exploration:projectred.exploration.stone:3' inherits='PresetPipeVeins' seed='0x0B3C'>
+                    <Veins name='predBasalt0Veins' block='ProjRed|Exploration:projectred.exploration.stone:3' inherits='PresetPipeVeins' seed='0x8703'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * predBasaltFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * predBasaltSize * _default_' range=':= 1 * predBasaltSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 1 * predBasaltSize * _default_' range=':= 1 * predBasaltSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * predBasaltFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * predBasaltSize * _default_' range=':= 1 * 1 * predBasaltSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * predBasaltSize * _default_' range=':= 1 * 1 * predBasaltSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'predBasalt0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x0B3C'>
+                    <Veins name= 'predBasalt0Pipe' block='minecraft:stone' inherits='PresetPipeVeins' seed='0x8703'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * predBasaltSize * _default_' range=':= 0.5 * 1 * predBasaltSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * predBasaltSize * _default_' range=':= 0.5 * 1 * predBasaltSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * predBasaltFreq * _default_'/>
-                        <Setting name='OreDensity' avg='1' range='0'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * 1 * predBasaltSize * _default_' range=':= 0.5 * 1 * 1 * predBasaltSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * 1 * predBasaltSize * _default_' range=':= 0.5 * 1 * 1 * predBasaltSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * predBasaltFreq * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:dirt'/>
                         <Replaces block='minecraft:stone'/>
                         <Replaces block='minecraft:gravel'/>
@@ -526,31 +561,36 @@ Generates: Ruby, Sapphire, Peridot, Marble, Basalt
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * predBasaltFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * predBasaltSize * _default_' range=':= 1 * predBasaltSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * predBasaltSize * _default_' range=':= 1 * predBasaltSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * predBasaltFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * predBasaltSize * _default_' range=':= 1 * 1 * predBasaltSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * predBasaltSize * _default_' range=':= 1 * 1 * predBasaltSize * _default_'/>
+                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * predBasaltSize * _default_' range=':= 1 * 1 * 1 * predBasaltSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='predBasalt0HintVeins' block='ProjRed|Exploration:projectred.exploration.stone:3' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60db0917</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * predBasaltFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * predBasaltSize * _default_' range=':= 1 * 1 * predBasaltSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='predBasalt0HintVeins' block='ProjRed|Exploration:projectred.exploration.stone:3' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * predBasaltSize * _default_' range=':= 1 * predBasaltSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= predBasaltDist = "vanillaStdGen"'>
                     <StandardGen name='predBasalt0Standard' block='ProjRed|Exploration:projectred.exploration.stone:3' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60db0917</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * predBasaltSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * predBasaltFreq * _default_'/>
-                        <Setting name='Height' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <Setting name='Size' avg=':= 1 * 1 * predBasaltSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * predBasaltFreq * _default_'/>
+                        <Setting name='Height' avg=':= 64' range=':= 64'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>

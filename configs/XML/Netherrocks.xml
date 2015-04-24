@@ -13,7 +13,7 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
             <!-- Setup Screen Configuration -->
 
             <ConfigSection>
-                <OptionDisplayGroup name='groupNetherrocks' displayName='Netherrocks Ores' displayState='shown'> 
+                <OptionDisplayGroup name='groupNetherrocks' displayName='Netherrocks' displayState='shown'> 
                     <Description>
                         Distribution options for Netherrocks Ores.
                     </Description>
@@ -21,7 +21,7 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
 
                 <ConfigSection>
                     <!-- Malachite Configuration UI -->
-                    <OptionChoice name='nthrMalachiteDist' displayState='shown' displayGroup='groupNetherrocks'> 
+                    <OptionChoice name='nthrMalachiteDist'  displayState='shown' displayGroup='groupNetherrocks'> 
                         <Description> Controls how Malachite is generated </Description> 
                         <DisplayName>Netherrocks Malachite</DisplayName>
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
@@ -52,7 +52,7 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Dragonstone Configuration UI -->
-                    <OptionChoice name='nthrDragonstoneDist' displayState='shown' displayGroup='groupNetherrocks'> 
+                    <OptionChoice name='nthrDragonstoneDist'  displayState='shown' displayGroup='groupNetherrocks'> 
                         <Description> Controls how Dragonstone is generated </Description> 
                         <DisplayName>Netherrocks Dragonstone</DisplayName>
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
@@ -83,7 +83,7 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Illumenite Configuration UI -->
-                    <OptionChoice name='nthrIllumeniteDist' displayState='shown' displayGroup='groupNetherrocks'> 
+                    <OptionChoice name='nthrIllumeniteDist'  displayState='shown' displayGroup='groupNetherrocks'> 
                         <Description> Controls how Illumenite is generated </Description> 
                         <DisplayName>Netherrocks Illumenite</DisplayName>
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
@@ -114,7 +114,7 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Fyrite Configuration UI -->
-                    <OptionChoice name='nthrFyriteDist' displayState='shown' displayGroup='groupNetherrocks'> 
+                    <OptionChoice name='nthrFyriteDist'  displayState='shown' displayGroup='groupNetherrocks'> 
                         <Description> Controls how Fyrite is generated </Description> 
                         <DisplayName>Netherrocks Fyrite</DisplayName>
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
@@ -145,7 +145,7 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Ashtone Configuration UI -->
-                    <OptionChoice name='nthrAshtoneDist' displayState='shown' displayGroup='groupNetherrocks'> 
+                    <OptionChoice name='nthrAshtoneDist'  displayState='shown' displayGroup='groupNetherrocks'> 
                         <Description> Controls how Ashtone is generated </Description> 
                         <DisplayName>Netherrocks Ashtone</DisplayName>
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
@@ -176,7 +176,7 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Argonite Configuration UI -->
-                    <OptionChoice name='nthrArgoniteDist' displayState='shown' displayGroup='groupNetherrocks'> 
+                    <OptionChoice name='nthrArgoniteDist'  displayState='shown' displayGroup='groupNetherrocks'> 
                         <Description> Controls how Argonite is generated </Description> 
                         <DisplayName>Netherrocks Argonite</DisplayName>
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
@@ -212,6 +212,18 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
             <IfCondition condition=':= ?COGActive'>
                 <!-- **********   Vanilla Deposit Removal   ************* -->
                 <!-- Adding ores --> 
+                
+                <!-- Malachite Generation. --> 
+                
+                <!-- Dragonstone Generation. --> 
+                
+                <!-- Illumenite Generation. --> 
+                
+                <!-- Fyrite Generation. --> 
+                
+                <!-- Ashtone Generation. --> 
+                
+                <!-- Argonite Generation. --> 
             </IfCondition>
 
 
@@ -239,11 +251,12 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * nthrMalachiteSize * _default_' range=':= 1 * nthrMalachiteSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * nthrMalachiteFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * nthrMalachiteSize * _default_' range=':= 1 * nthrMalachiteSize * _default_'/>
+                        <WireframeColor>0x6012246F</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * nthrMalachiteSize * _default_' range=':= 1 * 1 * nthrMalachiteSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * 1 * nthrMalachiteFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * nthrMalachiteSize * _default_' range=':= 1 * 1 * nthrMalachiteSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:netherrack'/>
                     </Veins>
                 </IfCondition>
@@ -258,32 +271,37 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 2 * nthrMalachiteFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * nthrMalachiteSize * _default_' range=':= 1 * nthrMalachiteSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * nthrMalachiteSize * _default_' range=':= 1 * nthrMalachiteSize * _default_'/>
-                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x6012246F</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 2 * 1 * nthrMalachiteFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * nthrMalachiteSize * _default_' range=':= 1 * 1 * nthrMalachiteSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * nthrMalachiteSize * _default_' range=':= 1 * 1 * nthrMalachiteSize * _default_'/>
+                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * nthrMalachiteSize * _default_' range=':= 1 * 1 * 1 * nthrMalachiteSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        <Veins name='nthrMalachite0HintVeins' block='netherrocks:malachite_ore' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x6012246F</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 2 * 1 * nthrMalachiteFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * nthrMalachiteSize * _default_' range=':= 1 * 1 * nthrMalachiteSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='nthrMalachite0HintVeins' block='netherrocks:malachite_ore' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * nthrMalachiteSize * _default_' range=':= 1 * nthrMalachiteSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= nthrMalachiteDist = "vanillaStdGen"'>
                     <StandardGen name='nthrMalachite0Standard' block='netherrocks:malachite_ore' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * nthrMalachiteSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 2 * nthrMalachiteFreq * _default_'/>
-                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <WireframeColor>0x6012246F</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * nthrMalachiteSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 2 * 1 * nthrMalachiteFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:netherrack'/>
                     </StandardGen>
                 </IfCondition>
@@ -293,11 +311,12 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * nthrDragonstoneSize * _default_' range=':= 1 * nthrDragonstoneSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * nthrDragonstoneFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * nthrDragonstoneSize * _default_' range=':= 1 * nthrDragonstoneSize * _default_'/>
+                        <WireframeColor>0x6012246F</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * nthrDragonstoneSize * _default_' range=':= 1 * 1 * nthrDragonstoneSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * 1 * nthrDragonstoneFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * nthrDragonstoneSize * _default_' range=':= 1 * 1 * nthrDragonstoneSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:netherrack'/>
                     </Veins>
                 </IfCondition>
@@ -312,32 +331,37 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 2 * nthrDragonstoneFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * nthrDragonstoneSize * _default_' range=':= 1 * nthrDragonstoneSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * nthrDragonstoneSize * _default_' range=':= 1 * nthrDragonstoneSize * _default_'/>
-                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x6012246F</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 2 * 1 * nthrDragonstoneFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * nthrDragonstoneSize * _default_' range=':= 1 * 1 * nthrDragonstoneSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * nthrDragonstoneSize * _default_' range=':= 1 * 1 * nthrDragonstoneSize * _default_'/>
+                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * nthrDragonstoneSize * _default_' range=':= 1 * 1 * 1 * nthrDragonstoneSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        <Veins name='nthrDragonstone0HintVeins' block='netherrocks:dragonstone_ore' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x6012246F</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 2 * 1 * nthrDragonstoneFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * nthrDragonstoneSize * _default_' range=':= 1 * 1 * nthrDragonstoneSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='nthrDragonstone0HintVeins' block='netherrocks:dragonstone_ore' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * nthrDragonstoneSize * _default_' range=':= 1 * nthrDragonstoneSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= nthrDragonstoneDist = "vanillaStdGen"'>
                     <StandardGen name='nthrDragonstone0Standard' block='netherrocks:dragonstone_ore' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * nthrDragonstoneSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 2 * nthrDragonstoneFreq * _default_'/>
-                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <WireframeColor>0x6012246F</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * nthrDragonstoneSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 2 * 1 * nthrDragonstoneFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:netherrack'/>
                     </StandardGen>
                 </IfCondition>
@@ -347,11 +371,12 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * nthrIllumeniteSize * _default_' range=':= 1 * nthrIllumeniteSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * nthrIllumeniteFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * nthrIllumeniteSize * _default_' range=':= 1 * nthrIllumeniteSize * _default_'/>
+                        <WireframeColor>0x6012246F</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * nthrIllumeniteSize * _default_' range=':= 1 * 1 * nthrIllumeniteSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * 1 * nthrIllumeniteFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * nthrIllumeniteSize * _default_' range=':= 1 * 1 * nthrIllumeniteSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:netherrack'/>
                     </Veins>
                 </IfCondition>
@@ -366,32 +391,37 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 2 * nthrIllumeniteFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * nthrIllumeniteSize * _default_' range=':= 1 * nthrIllumeniteSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * nthrIllumeniteSize * _default_' range=':= 1 * nthrIllumeniteSize * _default_'/>
-                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x6012246F</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 2 * 1 * nthrIllumeniteFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * nthrIllumeniteSize * _default_' range=':= 1 * 1 * nthrIllumeniteSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * nthrIllumeniteSize * _default_' range=':= 1 * 1 * nthrIllumeniteSize * _default_'/>
+                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * nthrIllumeniteSize * _default_' range=':= 1 * 1 * 1 * nthrIllumeniteSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        <Veins name='nthrIllumenite0HintVeins' block='netherrocks:illumenite_ore' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x6012246F</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 2 * 1 * nthrIllumeniteFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * nthrIllumeniteSize * _default_' range=':= 1 * 1 * nthrIllumeniteSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='nthrIllumenite0HintVeins' block='netherrocks:illumenite_ore' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * nthrIllumeniteSize * _default_' range=':= 1 * nthrIllumeniteSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= nthrIllumeniteDist = "vanillaStdGen"'>
                     <StandardGen name='nthrIllumenite0Standard' block='netherrocks:illumenite_ore' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * nthrIllumeniteSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 2 * nthrIllumeniteFreq * _default_'/>
-                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <WireframeColor>0x6012246F</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * nthrIllumeniteSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 2 * 1 * nthrIllumeniteFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:netherrack'/>
                     </StandardGen>
                 </IfCondition>
@@ -401,11 +431,12 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * nthrFyriteSize * _default_' range=':= 1 * nthrFyriteSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * nthrFyriteFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * nthrFyriteSize * _default_' range=':= 1 * nthrFyriteSize * _default_'/>
+                        <WireframeColor>0x6012246F</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * nthrFyriteSize * _default_' range=':= 1 * 1 * nthrFyriteSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * 1 * nthrFyriteFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * nthrFyriteSize * _default_' range=':= 1 * 1 * nthrFyriteSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:netherrack'/>
                     </Veins>
                 </IfCondition>
@@ -420,32 +451,37 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 2 * nthrFyriteFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * nthrFyriteSize * _default_' range=':= 1 * nthrFyriteSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * nthrFyriteSize * _default_' range=':= 1 * nthrFyriteSize * _default_'/>
-                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x6012246F</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 2 * 1 * nthrFyriteFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * nthrFyriteSize * _default_' range=':= 1 * 1 * nthrFyriteSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * nthrFyriteSize * _default_' range=':= 1 * 1 * nthrFyriteSize * _default_'/>
+                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * nthrFyriteSize * _default_' range=':= 1 * 1 * 1 * nthrFyriteSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        <Veins name='nthrFyrite0HintVeins' block='netherrocks:fyrite_ore' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x6012246F</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 2 * 1 * nthrFyriteFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * nthrFyriteSize * _default_' range=':= 1 * 1 * nthrFyriteSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='nthrFyrite0HintVeins' block='netherrocks:fyrite_ore' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * nthrFyriteSize * _default_' range=':= 1 * nthrFyriteSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= nthrFyriteDist = "vanillaStdGen"'>
                     <StandardGen name='nthrFyrite0Standard' block='netherrocks:fyrite_ore' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * nthrFyriteSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 2 * nthrFyriteFreq * _default_'/>
-                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <WireframeColor>0x6012246F</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * nthrFyriteSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 2 * 1 * nthrFyriteFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:netherrack'/>
                     </StandardGen>
                 </IfCondition>
@@ -455,11 +491,12 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * nthrAshtoneSize * _default_' range=':= 1 * nthrAshtoneSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * nthrAshtoneFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * nthrAshtoneSize * _default_' range=':= 1 * nthrAshtoneSize * _default_'/>
+                        <WireframeColor>0x6012246F</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * nthrAshtoneSize * _default_' range=':= 1 * 1 * nthrAshtoneSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * 1 * nthrAshtoneFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * nthrAshtoneSize * _default_' range=':= 1 * 1 * nthrAshtoneSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:netherrack'/>
                     </Veins>
                 </IfCondition>
@@ -474,32 +511,37 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 2 * nthrAshtoneFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * nthrAshtoneSize * _default_' range=':= 1 * nthrAshtoneSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * nthrAshtoneSize * _default_' range=':= 1 * nthrAshtoneSize * _default_'/>
-                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x6012246F</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 2 * 1 * nthrAshtoneFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * nthrAshtoneSize * _default_' range=':= 1 * 1 * nthrAshtoneSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * nthrAshtoneSize * _default_' range=':= 1 * 1 * nthrAshtoneSize * _default_'/>
+                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * nthrAshtoneSize * _default_' range=':= 1 * 1 * 1 * nthrAshtoneSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        <Veins name='nthrAshtone0HintVeins' block='netherrocks:ashstone_ore' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x6012246F</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 2 * 1 * nthrAshtoneFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * nthrAshtoneSize * _default_' range=':= 1 * 1 * nthrAshtoneSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='nthrAshtone0HintVeins' block='netherrocks:ashstone_ore' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * nthrAshtoneSize * _default_' range=':= 1 * nthrAshtoneSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= nthrAshtoneDist = "vanillaStdGen"'>
                     <StandardGen name='nthrAshtone0Standard' block='netherrocks:ashstone_ore' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * nthrAshtoneSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 2 * nthrAshtoneFreq * _default_'/>
-                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <WireframeColor>0x6012246F</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * nthrAshtoneSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 2 * 1 * nthrAshtoneFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:netherrack'/>
                     </StandardGen>
                 </IfCondition>
@@ -509,11 +551,12 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * nthrArgoniteSize * _default_' range=':= 1 * nthrArgoniteSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * nthrArgoniteFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * nthrArgoniteSize * _default_' range=':= 1 * nthrArgoniteSize * _default_'/>
+                        <WireframeColor>0x6012246F</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * nthrArgoniteSize * _default_' range=':= 1 * 1 * nthrArgoniteSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * 1 * nthrArgoniteFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * nthrArgoniteSize * _default_' range=':= 1 * 1 * nthrArgoniteSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:netherrack'/>
                     </Veins>
                 </IfCondition>
@@ -528,32 +571,37 @@ Generates: Malachite, Dragonstone, Illumenite, Fyrite, Ashtone, Argonite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 2 * nthrArgoniteFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * nthrArgoniteSize * _default_' range=':= 1 * nthrArgoniteSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * nthrArgoniteSize * _default_' range=':= 1 * nthrArgoniteSize * _default_'/>
-                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x6012246F</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 2 * 1 * nthrArgoniteFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * nthrArgoniteSize * _default_' range=':= 1 * 1 * nthrArgoniteSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * nthrArgoniteSize * _default_' range=':= 1 * 1 * nthrArgoniteSize * _default_'/>
+                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * nthrArgoniteSize * _default_' range=':= 1 * 1 * 1 * nthrArgoniteSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        <Veins name='nthrArgonite0HintVeins' block='netherrocks:argonite_ore' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x6012246F</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 2 * 1 * nthrArgoniteFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * nthrArgoniteSize * _default_' range=':= 1 * 1 * nthrArgoniteSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='nthrArgonite0HintVeins' block='netherrocks:argonite_ore' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * nthrArgoniteSize * _default_' range=':= 1 * nthrArgoniteSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= nthrArgoniteDist = "vanillaStdGen"'>
                     <StandardGen name='nthrArgonite0Standard' block='netherrocks:argonite_ore' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6005DFD3</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * nthrArgoniteSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 2 * nthrArgoniteFreq * _default_'/>
-                        <Setting name='Height' avg=':= 120/64 * dimension.groundLevel' range=':= 120/64 * dimension.groundLevel'/> 
+                        <WireframeColor>0x6012246F</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * nthrArgoniteSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 2 * 1 * nthrArgoniteFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:netherrack'/>
                     </StandardGen>
                 </IfCondition>

@@ -11,7 +11,7 @@ Generates: Glass
          <!-- Setup Screen Configuration -->
 
         <ConfigSection>
-            <OptionDisplayGroup name='groupSandtoGlass' displayName='Sand to Glass Ores' displayState='shown'> 
+            <OptionDisplayGroup name='groupSandtoGlass' displayName='Sand to Glass' displayState='shown'> 
                 <Description>
                     Distribution options for Sand to Glass Ores.
                 </Description>
@@ -19,7 +19,7 @@ Generates: Glass
 
             <ConfigSection>
                 <!-- Glass Configuration UI -->
-                <OptionChoice name='stglGlassDist' displayState='shown' displayGroup='groupSandtoGlass'> 
+                <OptionChoice name='stglGlassDist' default='none' displayState='shown' displayGroup='groupSandtoGlass'> 
                     <Description> Controls how Glass is generated </Description> 
                     <DisplayName>Sand to Glass Glass</DisplayName>
                     <Choice value='substituteGen' displayValue='Substitute'>
@@ -54,6 +54,8 @@ Generates: Glass
                 <Replaces block='minecraft:glass:0' />
             </Substitute>
             <!-- Adding ores --> 
+            
+            <!-- Glass Generation. --> 
             <IfCondition condition=':= stglGlassDist = "substituteGen"'>
                 <Substitute name='stglGlass0Substitute' block='minecraft:glass'>
                     <Description> This is a straight-up replacement of one block with another. </Description>

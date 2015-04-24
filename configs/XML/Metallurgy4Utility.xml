@@ -13,7 +13,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
             <!-- Setup Screen Configuration -->
 
             <ConfigSection>
-                <OptionDisplayGroup name='groupMetallurgy4Utility' displayName='Metallurgy 4 Utility Ores' displayState='shown'> 
+                <OptionDisplayGroup name='groupMetallurgy4Utility' displayName='Metallurgy 4 Utility' displayState='shown'> 
                     <Description>
                         Distribution options for Metallurgy 4 Utility Ores.
                     </Description>
@@ -21,7 +21,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
 
                 <ConfigSection>
                     <!-- Sulfur Configuration UI -->
-                    <OptionChoice name='mtluSulfurDist' displayState='shown' displayGroup='groupMetallurgy4Utility'> 
+                    <OptionChoice name='mtluSulfurDist'  displayState='shown' displayGroup='groupMetallurgy4Utility'> 
                         <Description> Controls how Sulfur is generated </Description> 
                         <DisplayName>Metallurgy 4 Utility Sulfur</DisplayName>
                         <Choice value='sparseVeins' displayValue='Sparse Veins'>
@@ -52,7 +52,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Phosphorite Configuration UI -->
-                    <OptionChoice name='mtluPhosphoriteDist' displayState='shown' displayGroup='groupMetallurgy4Utility'> 
+                    <OptionChoice name='mtluPhosphoriteDist'  displayState='shown' displayGroup='groupMetallurgy4Utility'> 
                         <Description> Controls how Phosphorite is generated </Description> 
                         <DisplayName>Metallurgy 4 Utility Phosphorite</DisplayName>
                         <Choice value='sparseVeins' displayValue='Sparse Veins'>
@@ -83,7 +83,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Saltpeter Configuration UI -->
-                    <OptionChoice name='mtluSaltpeterDist' displayState='shown' displayGroup='groupMetallurgy4Utility'> 
+                    <OptionChoice name='mtluSaltpeterDist'  displayState='shown' displayGroup='groupMetallurgy4Utility'> 
                         <Description> Controls how Saltpeter is generated </Description> 
                         <DisplayName>Metallurgy 4 Utility Saltpeter</DisplayName>
                         <Choice value='sparseVeins' displayValue='Sparse Veins'>
@@ -114,7 +114,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Magnesium Configuration UI -->
-                    <OptionChoice name='mtluMagnesiumDist' displayState='shown' displayGroup='groupMetallurgy4Utility'> 
+                    <OptionChoice name='mtluMagnesiumDist'  displayState='shown' displayGroup='groupMetallurgy4Utility'> 
                         <Description> Controls how Magnesium is generated </Description> 
                         <DisplayName>Metallurgy 4 Utility Magnesium</DisplayName>
                         <Choice value='sparseVeins' displayValue='Sparse Veins'>
@@ -145,7 +145,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Bitumen Configuration UI -->
-                    <OptionChoice name='mtluBitumenDist' displayState='shown' displayGroup='groupMetallurgy4Utility'> 
+                    <OptionChoice name='mtluBitumenDist'  displayState='shown' displayGroup='groupMetallurgy4Utility'> 
                         <Description> Controls how Bitumen is generated </Description> 
                         <DisplayName>Metallurgy 4 Utility Bitumen</DisplayName>
                         <Choice value='sparseVeins' displayValue='Sparse Veins'>
@@ -176,7 +176,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Potash Configuration UI -->
-                    <OptionChoice name='mtluPotashDist' displayState='shown' displayGroup='groupMetallurgy4Utility'> 
+                    <OptionChoice name='mtluPotashDist'  displayState='shown' displayGroup='groupMetallurgy4Utility'> 
                         <Description> Controls how Potash is generated </Description> 
                         <DisplayName>Metallurgy 4 Utility Potash</DisplayName>
                         <Choice value='sparseVeins' displayValue='Sparse Veins'>
@@ -226,6 +226,8 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                     <Replaces block='Metallurgy:utility.ore:5' />
                 </Substitute>
                 <!-- Adding ores --> 
+                
+                <!-- Sulfur Generation. --> 
                 <IfCondition condition=':= mtluSulfurDist = "sparseVeins"'>
                     <Veins name='mtluSulfur0Veins' block='Metallurgy:utility.ore' inherits='PresetSparseVeins'>
                         <Description>
@@ -235,11 +237,12 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtluSulfurFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * mtluSulfurSize * _default_' range=':= 1 * mtluSulfurSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 1 * mtluSulfurSize * _default_' range=':= 1 * mtluSulfurSize * _default_'/>
+                        <WireframeColor>0x6032B144</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * mtluSulfurFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtluSulfurSize * _default_' range=':= 1 * 1 * mtluSulfurSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 98' range=':= 64' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mtluSulfurSize * _default_' range=':= 1 * 1 * mtluSulfurSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
@@ -254,35 +257,42 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * mtluSulfurFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * mtluSulfurSize * _default_' range=':= 1 * mtluSulfurSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * mtluSulfurSize * _default_' range=':= 1 * mtluSulfurSize * _default_'/>
-                        <Setting name='CloudHeight' avg='98' range='64' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x6032B144</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mtluSulfurFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * mtluSulfurSize * _default_' range=':= 1 * 1 * mtluSulfurSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * mtluSulfurSize * _default_' range=':= 1 * 1 * mtluSulfurSize * _default_'/>
+                        <Setting name='CloudHeight' avg='98' range='64' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtluSulfurSize * _default_' range=':= 1 * 1 * 1 * mtluSulfurSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='mtluSulfur0HintVeins' block='Metallurgy:utility.ore' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x6032B144</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mtluSulfurFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 98' range=':= 64' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtluSulfurSize * _default_' range=':= 1 * 1 * mtluSulfurSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='mtluSulfur0HintVeins' block='Metallurgy:utility.ore' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * mtluSulfurSize * _default_' range=':= 1 * mtluSulfurSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= mtluSulfurDist = "vanillaStdGen"'>
                     <StandardGen name='mtluSulfur0Standard' block='Metallurgy:utility.ore' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * mtluSulfurSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * mtluSulfurFreq * _default_'/>
-                        <Setting name='Height' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <WireframeColor>0x6032B144</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * mtluSulfurSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * mtluSulfurFreq * _default_'/>
+                        <Setting name='Height' avg=':= 98' range=':= 64'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
+                
+                <!-- Phosphorite Generation. --> 
                 <IfCondition condition=':= mtluPhosphoriteDist = "sparseVeins"'>
                     <Veins name='mtluPhosphorite0Veins' block='Metallurgy:utility.ore:1' inherits='PresetSparseVeins'>
                         <Description>
@@ -292,11 +302,12 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtluPhosphoriteFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * mtluPhosphoriteSize * _default_' range=':= 1 * mtluPhosphoriteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 1 * mtluPhosphoriteSize * _default_' range=':= 1 * mtluPhosphoriteSize * _default_'/>
+                        <WireframeColor>0x6032B144</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * mtluPhosphoriteFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtluPhosphoriteSize * _default_' range=':= 1 * 1 * mtluPhosphoriteSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 98' range=':= 64' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mtluPhosphoriteSize * _default_' range=':= 1 * 1 * mtluPhosphoriteSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
@@ -311,35 +322,42 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * mtluPhosphoriteFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * mtluPhosphoriteSize * _default_' range=':= 1 * mtluPhosphoriteSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * mtluPhosphoriteSize * _default_' range=':= 1 * mtluPhosphoriteSize * _default_'/>
-                        <Setting name='CloudHeight' avg='98' range='64' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x6032B144</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mtluPhosphoriteFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * mtluPhosphoriteSize * _default_' range=':= 1 * 1 * mtluPhosphoriteSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * mtluPhosphoriteSize * _default_' range=':= 1 * 1 * mtluPhosphoriteSize * _default_'/>
+                        <Setting name='CloudHeight' avg='98' range='64' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtluPhosphoriteSize * _default_' range=':= 1 * 1 * 1 * mtluPhosphoriteSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='mtluPhosphorite0HintVeins' block='Metallurgy:utility.ore:1' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x6032B144</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mtluPhosphoriteFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 98' range=':= 64' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtluPhosphoriteSize * _default_' range=':= 1 * 1 * mtluPhosphoriteSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='mtluPhosphorite0HintVeins' block='Metallurgy:utility.ore:1' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * mtluPhosphoriteSize * _default_' range=':= 1 * mtluPhosphoriteSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= mtluPhosphoriteDist = "vanillaStdGen"'>
                     <StandardGen name='mtluPhosphorite0Standard' block='Metallurgy:utility.ore:1' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * mtluPhosphoriteSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * mtluPhosphoriteFreq * _default_'/>
-                        <Setting name='Height' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <WireframeColor>0x6032B144</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * mtluPhosphoriteSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * mtluPhosphoriteFreq * _default_'/>
+                        <Setting name='Height' avg=':= 98' range=':= 64'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
+                
+                <!-- Saltpeter Generation. --> 
                 <IfCondition condition=':= mtluSaltpeterDist = "sparseVeins"'>
                     <Veins name='mtluSaltpeter0Veins' block='Metallurgy:utility.ore:2' inherits='PresetSparseVeins'>
                         <Description>
@@ -349,11 +367,12 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtluSaltpeterFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * mtluSaltpeterSize * _default_' range=':= 1 * mtluSaltpeterSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 1 * mtluSaltpeterSize * _default_' range=':= 1 * mtluSaltpeterSize * _default_'/>
+                        <WireframeColor>0x6032B144</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * mtluSaltpeterFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtluSaltpeterSize * _default_' range=':= 1 * 1 * mtluSaltpeterSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 98' range=':= 64' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mtluSaltpeterSize * _default_' range=':= 1 * 1 * mtluSaltpeterSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
@@ -368,35 +387,42 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * mtluSaltpeterFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * mtluSaltpeterSize * _default_' range=':= 1 * mtluSaltpeterSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * mtluSaltpeterSize * _default_' range=':= 1 * mtluSaltpeterSize * _default_'/>
-                        <Setting name='CloudHeight' avg='98' range='64' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x6032B144</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mtluSaltpeterFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * mtluSaltpeterSize * _default_' range=':= 1 * 1 * mtluSaltpeterSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * mtluSaltpeterSize * _default_' range=':= 1 * 1 * mtluSaltpeterSize * _default_'/>
+                        <Setting name='CloudHeight' avg='98' range='64' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtluSaltpeterSize * _default_' range=':= 1 * 1 * 1 * mtluSaltpeterSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='mtluSaltpeter0HintVeins' block='Metallurgy:utility.ore:2' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x6032B144</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mtluSaltpeterFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 98' range=':= 64' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtluSaltpeterSize * _default_' range=':= 1 * 1 * mtluSaltpeterSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='mtluSaltpeter0HintVeins' block='Metallurgy:utility.ore:2' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * mtluSaltpeterSize * _default_' range=':= 1 * mtluSaltpeterSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= mtluSaltpeterDist = "vanillaStdGen"'>
                     <StandardGen name='mtluSaltpeter0Standard' block='Metallurgy:utility.ore:2' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * mtluSaltpeterSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * mtluSaltpeterFreq * _default_'/>
-                        <Setting name='Height' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <WireframeColor>0x6032B144</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * mtluSaltpeterSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * mtluSaltpeterFreq * _default_'/>
+                        <Setting name='Height' avg=':= 98' range=':= 64'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
+                
+                <!-- Magnesium Generation. --> 
                 <IfCondition condition=':= mtluMagnesiumDist = "sparseVeins"'>
                     <Veins name='mtluMagnesium0Veins' block='Metallurgy:utility.ore:3' inherits='PresetSparseVeins'>
                         <Description>
@@ -406,11 +432,12 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtluMagnesiumFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * mtluMagnesiumSize * _default_' range=':= 1 * mtluMagnesiumSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 1 * mtluMagnesiumSize * _default_' range=':= 1 * mtluMagnesiumSize * _default_'/>
+                        <WireframeColor>0x6032B144</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * mtluMagnesiumFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtluMagnesiumSize * _default_' range=':= 1 * 1 * mtluMagnesiumSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 98' range=':= 64' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mtluMagnesiumSize * _default_' range=':= 1 * 1 * mtluMagnesiumSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
@@ -425,35 +452,42 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * mtluMagnesiumFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * mtluMagnesiumSize * _default_' range=':= 1 * mtluMagnesiumSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * mtluMagnesiumSize * _default_' range=':= 1 * mtluMagnesiumSize * _default_'/>
-                        <Setting name='CloudHeight' avg='98' range='64' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x6032B144</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mtluMagnesiumFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * mtluMagnesiumSize * _default_' range=':= 1 * 1 * mtluMagnesiumSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * mtluMagnesiumSize * _default_' range=':= 1 * 1 * mtluMagnesiumSize * _default_'/>
+                        <Setting name='CloudHeight' avg='98' range='64' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtluMagnesiumSize * _default_' range=':= 1 * 1 * 1 * mtluMagnesiumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='mtluMagnesium0HintVeins' block='Metallurgy:utility.ore:3' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x6032B144</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mtluMagnesiumFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 98' range=':= 64' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtluMagnesiumSize * _default_' range=':= 1 * 1 * mtluMagnesiumSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='mtluMagnesium0HintVeins' block='Metallurgy:utility.ore:3' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * mtluMagnesiumSize * _default_' range=':= 1 * mtluMagnesiumSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= mtluMagnesiumDist = "vanillaStdGen"'>
                     <StandardGen name='mtluMagnesium0Standard' block='Metallurgy:utility.ore:3' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * mtluMagnesiumSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * mtluMagnesiumFreq * _default_'/>
-                        <Setting name='Height' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <WireframeColor>0x6032B144</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * mtluMagnesiumSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * mtluMagnesiumFreq * _default_'/>
+                        <Setting name='Height' avg=':= 98' range=':= 64'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
+                
+                <!-- Bitumen Generation. --> 
                 <IfCondition condition=':= mtluBitumenDist = "sparseVeins"'>
                     <Veins name='mtluBitumen0Veins' block='Metallurgy:utility.ore:4' inherits='PresetSparseVeins'>
                         <Description>
@@ -463,11 +497,12 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtluBitumenFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * mtluBitumenSize * _default_' range=':= 1 * mtluBitumenSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 1 * mtluBitumenSize * _default_' range=':= 1 * mtluBitumenSize * _default_'/>
+                        <WireframeColor>0x6032B144</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * mtluBitumenFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtluBitumenSize * _default_' range=':= 1 * 1 * mtluBitumenSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 98' range=':= 64' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mtluBitumenSize * _default_' range=':= 1 * 1 * mtluBitumenSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
@@ -482,35 +517,42 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * mtluBitumenFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * mtluBitumenSize * _default_' range=':= 1 * mtluBitumenSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * mtluBitumenSize * _default_' range=':= 1 * mtluBitumenSize * _default_'/>
-                        <Setting name='CloudHeight' avg='98' range='64' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x6032B144</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mtluBitumenFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * mtluBitumenSize * _default_' range=':= 1 * 1 * mtluBitumenSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * mtluBitumenSize * _default_' range=':= 1 * 1 * mtluBitumenSize * _default_'/>
+                        <Setting name='CloudHeight' avg='98' range='64' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtluBitumenSize * _default_' range=':= 1 * 1 * 1 * mtluBitumenSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='mtluBitumen0HintVeins' block='Metallurgy:utility.ore:4' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x6032B144</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mtluBitumenFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 98' range=':= 64' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtluBitumenSize * _default_' range=':= 1 * 1 * mtluBitumenSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='mtluBitumen0HintVeins' block='Metallurgy:utility.ore:4' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * mtluBitumenSize * _default_' range=':= 1 * mtluBitumenSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= mtluBitumenDist = "vanillaStdGen"'>
                     <StandardGen name='mtluBitumen0Standard' block='Metallurgy:utility.ore:4' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * mtluBitumenSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * mtluBitumenFreq * _default_'/>
-                        <Setting name='Height' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <WireframeColor>0x6032B144</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * mtluBitumenSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * mtluBitumenFreq * _default_'/>
+                        <Setting name='Height' avg=':= 98' range=':= 64'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
+                
+                <!-- Potash Generation. --> 
                 <IfCondition condition=':= mtluPotashDist = "sparseVeins"'>
                     <Veins name='mtluPotash0Veins' block='Metallurgy:utility.ore:5' inherits='PresetSparseVeins'>
                         <Description>
@@ -520,11 +562,12 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * mtluPotashFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * mtluPotashSize * _default_' range=':= 1 * mtluPotashSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 1 * mtluPotashSize * _default_' range=':= 1 * mtluPotashSize * _default_'/>
+                        <WireframeColor>0x6032B144</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * mtluPotashFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtluPotashSize * _default_' range=':= 1 * 1 * mtluPotashSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 98' range=':= 64' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mtluPotashSize * _default_' range=':= 1 * 1 * mtluPotashSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
@@ -539,32 +582,37 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * mtluPotashFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * mtluPotashSize * _default_' range=':= 1 * mtluPotashSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * mtluPotashSize * _default_' range=':= 1 * mtluPotashSize * _default_'/>
-                        <Setting name='CloudHeight' avg='98' range='64' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x6032B144</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mtluPotashFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * mtluPotashSize * _default_' range=':= 1 * 1 * mtluPotashSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * mtluPotashSize * _default_' range=':= 1 * 1 * mtluPotashSize * _default_'/>
+                        <Setting name='CloudHeight' avg='98' range='64' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtluPotashSize * _default_' range=':= 1 * 1 * 1 * mtluPotashSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='mtluPotash0HintVeins' block='Metallurgy:utility.ore:5' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x6032B144</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mtluPotashFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 98' range=':= 64' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtluPotashSize * _default_' range=':= 1 * 1 * mtluPotashSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='mtluPotash0HintVeins' block='Metallurgy:utility.ore:5' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * mtluPotashSize * _default_' range=':= 1 * mtluPotashSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= mtluPotashDist = "vanillaStdGen"'>
                     <StandardGen name='mtluPotash0Standard' block='Metallurgy:utility.ore:5' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60DC1890</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * mtluPotashSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * mtluPotashFreq * _default_'/>
-                        <Setting name='Height' avg=':= 98/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <WireframeColor>0x6032B144</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * mtluPotashSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * mtluPotashFreq * _default_'/>
+                        <Setting name='Height' avg=':= 98' range=':= 64'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>

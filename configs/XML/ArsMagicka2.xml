@@ -13,7 +13,7 @@ Generates: Vinteum, Chimerite, Blue Topaz
             <!-- Setup Screen Configuration -->
 
             <ConfigSection>
-                <OptionDisplayGroup name='groupArsMagicka2' displayName='Ars Magicka 2 Ores' displayState='shown'> 
+                <OptionDisplayGroup name='groupArsMagicka2' displayName='Ars Magicka 2' displayState='shown'> 
                     <Description>
                         Distribution options for Ars Magicka 2 Ores.
                     </Description>
@@ -21,7 +21,7 @@ Generates: Vinteum, Chimerite, Blue Topaz
 
                 <ConfigSection>
                     <!-- Vinteum Configuration UI -->
-                    <OptionChoice name='arsmVinteumDist' displayState='shown' displayGroup='groupArsMagicka2'> 
+                    <OptionChoice name='arsmVinteumDist'  displayState='shown' displayGroup='groupArsMagicka2'> 
                         <Description> Controls how Vinteum is generated </Description> 
                         <DisplayName>Ars Magicka 2 Vinteum</DisplayName>
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
@@ -52,7 +52,7 @@ Generates: Vinteum, Chimerite, Blue Topaz
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Chimerite Configuration UI -->
-                    <OptionChoice name='arsmChimeriteDist' displayState='shown' displayGroup='groupArsMagicka2'> 
+                    <OptionChoice name='arsmChimeriteDist'  displayState='shown' displayGroup='groupArsMagicka2'> 
                         <Description> Controls how Chimerite is generated </Description> 
                         <DisplayName>Ars Magicka 2 Chimerite</DisplayName>
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
@@ -83,7 +83,7 @@ Generates: Vinteum, Chimerite, Blue Topaz
                 </ConfigSection> 
                 <ConfigSection>
                     <!-- Blue Topaz Configuration UI -->
-                    <OptionChoice name='arsmBlueTopazDist' displayState='shown' displayGroup='groupArsMagicka2'> 
+                    <OptionChoice name='arsmBlueTopazDist'  displayState='shown' displayGroup='groupArsMagicka2'> 
                         <Description> Controls how Blue Topaz is generated </Description> 
                         <DisplayName>Ars Magicka 2 Blue Topaz</DisplayName>
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
@@ -130,17 +130,20 @@ Generates: Vinteum, Chimerite, Blue Topaz
                     <Replaces block='arsmagica2:vinteumOre:2' />
                 </Substitute>
                 <!-- Adding ores --> 
+                
+                <!-- Vinteum Generation. --> 
                 <IfCondition condition=':= arsmVinteumDist = "layeredVeins"'>
                     <Veins name='arsmVinteum0Veins' block='arsmagica2:vinteumOre' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60923300</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * arsmVinteumSize * _default_' range=':= 1 * arsmVinteumSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * arsmVinteumFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * arsmVinteumSize * _default_' range=':= 1 * arsmVinteumSize * _default_'/>
+                        <WireframeColor>0x60D6119D</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * arsmVinteumSize * _default_' range=':= 1 * 1 * arsmVinteumSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * arsmVinteumFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * arsmVinteumSize * _default_' range=':= 1 * 1 * arsmVinteumSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
@@ -155,46 +158,54 @@ Generates: Vinteum, Chimerite, Blue Topaz
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60923300</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * arsmVinteumFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * arsmVinteumSize * _default_' range=':= 1 * arsmVinteumSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * arsmVinteumSize * _default_' range=':= 1 * arsmVinteumSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x60D6119D</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * arsmVinteumFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * arsmVinteumSize * _default_' range=':= 1 * 1 * arsmVinteumSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * arsmVinteumSize * _default_' range=':= 1 * 1 * arsmVinteumSize * _default_'/>
+                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * arsmVinteumSize * _default_' range=':= 1 * 1 * 1 * arsmVinteumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='arsmVinteum0HintVeins' block='arsmagica2:vinteumOre' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60D6119D</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * arsmVinteumFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * arsmVinteumSize * _default_' range=':= 1 * 1 * arsmVinteumSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='arsmVinteum0HintVeins' block='arsmagica2:vinteumOre' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60923300</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * arsmVinteumSize * _default_' range=':= 1 * arsmVinteumSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= arsmVinteumDist = "vanillaStdGen"'>
                     <StandardGen name='arsmVinteum0Standard' block='arsmagica2:vinteumOre' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60923300</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * arsmVinteumSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * arsmVinteumFreq * _default_'/>
-                        <Setting name='Height' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <WireframeColor>0x60D6119D</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * arsmVinteumSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * arsmVinteumFreq * _default_'/>
+                        <Setting name='Height' avg=':= 64' range=':= 64'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
+                
+                <!-- Chimerite Generation. --> 
                 <IfCondition condition=':= arsmChimeriteDist = "layeredVeins"'>
                     <Veins name='arsmChimerite0Veins' block='arsmagica2:vinteumOre:1' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60923300</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * arsmChimeriteSize * _default_' range=':= 1 * arsmChimeriteSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * arsmChimeriteFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * arsmChimeriteSize * _default_' range=':= 1 * arsmChimeriteSize * _default_'/>
+                        <WireframeColor>0x60D6119D</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * arsmChimeriteSize * _default_' range=':= 1 * 1 * arsmChimeriteSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * arsmChimeriteFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * arsmChimeriteSize * _default_' range=':= 1 * 1 * arsmChimeriteSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
@@ -209,46 +220,54 @@ Generates: Vinteum, Chimerite, Blue Topaz
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60923300</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * arsmChimeriteFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * arsmChimeriteSize * _default_' range=':= 1 * arsmChimeriteSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * arsmChimeriteSize * _default_' range=':= 1 * arsmChimeriteSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x60D6119D</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * arsmChimeriteFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * arsmChimeriteSize * _default_' range=':= 1 * 1 * arsmChimeriteSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * arsmChimeriteSize * _default_' range=':= 1 * 1 * arsmChimeriteSize * _default_'/>
+                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * arsmChimeriteSize * _default_' range=':= 1 * 1 * 1 * arsmChimeriteSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='arsmChimerite0HintVeins' block='arsmagica2:vinteumOre:1' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60D6119D</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * arsmChimeriteFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * arsmChimeriteSize * _default_' range=':= 1 * 1 * arsmChimeriteSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='arsmChimerite0HintVeins' block='arsmagica2:vinteumOre:1' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60923300</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * arsmChimeriteSize * _default_' range=':= 1 * arsmChimeriteSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= arsmChimeriteDist = "vanillaStdGen"'>
                     <StandardGen name='arsmChimerite0Standard' block='arsmagica2:vinteumOre:1' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60923300</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * arsmChimeriteSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * arsmChimeriteFreq * _default_'/>
-                        <Setting name='Height' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <WireframeColor>0x60D6119D</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * arsmChimeriteSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * arsmChimeriteFreq * _default_'/>
+                        <Setting name='Height' avg=':= 64' range=':= 64'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
+                
+                <!-- Blue Topaz Generation. --> 
                 <IfCondition condition=':= arsmBlueTopazDist = "layeredVeins"'>
                     <Veins name='arsmBlueTopaz0Veins' block='arsmagica2:vinteumOre:2' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60923300</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * arsmBlueTopazSize * _default_' range=':= 1 * arsmBlueTopazSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * arsmBlueTopazFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * arsmBlueTopazSize * _default_' range=':= 1 * arsmBlueTopazSize * _default_'/>
+                        <WireframeColor>0x60D6119D</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * arsmBlueTopazSize * _default_' range=':= 1 * 1 * arsmBlueTopazSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * arsmBlueTopazFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * arsmBlueTopazSize * _default_' range=':= 1 * 1 * arsmBlueTopazSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 </IfCondition>
@@ -263,32 +282,37 @@ Generates: Vinteum, Chimerite, Blue Topaz
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60923300</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * arsmBlueTopazFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * arsmBlueTopazSize * _default_' range=':= 1 * arsmBlueTopazSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * arsmBlueTopazSize * _default_' range=':= 1 * arsmBlueTopazSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x60D6119D</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * arsmBlueTopazFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * arsmBlueTopazSize * _default_' range=':= 1 * 1 * arsmBlueTopazSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * arsmBlueTopazSize * _default_' range=':= 1 * 1 * arsmBlueTopazSize * _default_'/>
+                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * arsmBlueTopazSize * _default_' range=':= 1 * 1 * 1 * arsmBlueTopazSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <Veins name='arsmBlueTopaz0HintVeins' block='arsmagica2:vinteumOre:2' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60D6119D</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * arsmBlueTopazFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * arsmBlueTopazSize * _default_' range=':= 1 * 1 * arsmBlueTopazSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        </Veins>
                     </Cloud>
-                    <Veins name='arsmBlueTopaz0HintVeins' block='arsmagica2:vinteumOre:2' inherits='PresetHintVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60923300</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1.2 * _default_' range=':= _default_'/> 
-                        <Setting name='MotherlodeHeight' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel' type='normal' scaleTo='Biome' /> 
-                        <Setting name='MotherlodeRangeLimit' avg=':= 1 * arsmBlueTopazSize * _default_' range=':= 1 * arsmBlueTopazSize * _default_'/>
-                    </Veins>
                 </IfCondition>
                 <IfCondition condition=':= arsmBlueTopazDist = "vanillaStdGen"'>
                     <StandardGen name='arsmBlueTopaz0Standard' block='arsmagica2:vinteumOre:2' inherits='PresetStandardGen'>
-                        <Description> This mimics vanilla ore generation. </Description>
+                        <Description>
+                            This mimics vanilla ore generation.
+                        </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60923300</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * arsmBlueTopazSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * arsmBlueTopazFreq * _default_'/>
-                        <Setting name='Height' avg=':= 64/64 * dimension.groundLevel' range=':= 64/64 * dimension.groundLevel'/> 
+                        <WireframeColor>0x60D6119D</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * arsmBlueTopazSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * arsmBlueTopazFreq * _default_'/>
+                        <Setting name='Height' avg=':= 64' range=':= 64'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 </IfCondition>
