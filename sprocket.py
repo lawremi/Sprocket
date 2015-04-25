@@ -475,8 +475,9 @@ def vanillaDist(currentOreGen,level):
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == 0 :
             distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
+            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Vanilla) Settings -->\n"
             distText += vanillaDist(currentOreGen, 1)    
+            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Vanilla) Settings -->\n"
     return distText
 
 ### Layered Vein Distribution
@@ -524,8 +525,9 @@ def layeredVeinsDist(currentOreGen,level):
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == 0 :
             distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
+            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Layered Veins) Settings -->\n"
             distText += layeredVeinsDist(currentOreGen, 1)    
+            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Layered Veins) Settings -->\n"
     return distText
 
 ### Vertical Vein Distribution
@@ -572,8 +574,9 @@ def verticalVeinsDist(currentOreGen,level):
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == 0 :
             distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
+            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Vertical Veins) Settings -->\n"
             distText += verticalVeinsDist(currentOreGen, 1)    
+            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Vertical Veins) Settings -->\n"
     return distText
 
 ### Small Deposit Distribution
@@ -621,8 +624,9 @@ def smallDepositsDist(currentOreGen,level):
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == 0 :
             distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
+            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Small Deposits) Settings -->\n"
             distText += smallDepositsDist(currentOreGen, 1)    
+            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Small Deposits) Settings -->\n"
     return distText
 
 ### Geode Distribution
@@ -643,8 +647,9 @@ def geodesDist(currentOreGen,level):
         preferMultiplier = "1"
     
     #   Outer Crust
-    
-    distText = indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Shell' block='"+orePipe[currentOreGen]+"' inherits='PresetSmallDeposits' seed="+geodeSeed+">\n"
+    distText = indentText(indentLine)+"\n"
+    distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Geode Crust -->\n"
+    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Shell' block='"+orePipe[currentOreGen]+"' inherits='PresetSmallDeposits' seed="+geodeSeed+">\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
     indentLine += 1
@@ -670,9 +675,13 @@ def geodesDist(currentOreGen,level):
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
+    distText += indentText(indentLine)+"<!-- End "+oreName[currentOreGen]+" Geode Crust -->\n"
+    distText += indentText(indentLine)+"\n"
             
     # Inner Crystals
     
+    distText += indentText(indentLine)+"\n"
+    distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Geode Crystals -->\n"
     distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Crystal' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"' inherits='PresetSmallDeposits' seed="+geodeSeed+">\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
@@ -697,9 +706,13 @@ def geodesDist(currentOreGen,level):
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
+    distText += indentText(indentLine)+"<!-- End "+oreName[currentOreGen]+" Geode Crystals -->\n"
+    distText += indentText(indentLine)+"\n"
         
     #   Central Air Pocket
     
+    distText += indentText(indentLine)+"\n"
+    distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Geode Air Pocket -->\n"
     distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"AirBubble' block='minecraft:air' inherits='PresetSmallDeposits' seed="+geodeSeed+">\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
@@ -724,12 +737,15 @@ def geodesDist(currentOreGen,level):
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
+    distText += indentText(indentLine)+"<!-- End "+oreName[currentOreGen]+" Geode Air Pocket -->\n"
+    distText += indentText(indentLine)+"\n"
         
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == 0 :
             distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
+            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Geode) Settings -->\n"
             distText += geodesDist(currentOreGen, 1) 
+            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Geode) Settings -->\n"
       
     return distText
 
@@ -785,8 +801,9 @@ def hugeVeinsDist(currentOreGen,level):
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == 0 :
             distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
-            distText += hugeVeinsDist(currentOreGen, 1)    
+            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Huge Veins) Settings -->\n"
+            distText += hugeVeinsDist(currentOreGen, 1)  
+            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Huge Veins) Settings -->\n"  
     return distText
 
 ### Sparse Vein Distribution
@@ -837,8 +854,9 @@ def sparseVeinsDist(currentOreGen,level):
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == 0 :
             distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
-            distText += sparseVeinsDist(currentOreGen, 1)    
+            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Sparse Veins) Settings -->\n"
+            distText += sparseVeinsDist(currentOreGen, 1)  
+            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Sparse Veins) Settings -->\n"  
     return distText
 
 ### Pipe Vein Distribution
@@ -860,7 +878,9 @@ def pipeVeinsDist(currentOreGen,level):
     
     # Ore
     
-    distText = indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Veins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"' inherits='PresetPipeVeins' seed="+pipeSeed+">\n"
+    distText = indentText(indentLine)+"\n"
+    distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Ore Configuration -->\n"
+    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Veins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"' inherits='PresetPipeVeins' seed="+pipeSeed+">\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
     indentLine += 1
@@ -885,9 +905,13 @@ def pipeVeinsDist(currentOreGen,level):
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
+    distText += indentText(indentLine)+"<!-- End "+oreName[currentOreGen]+" Ore Configuration -->\n"
+    distText += indentText(indentLine)+"\n"
     
     # Pipe Material
     
+    distText += indentText(indentLine)+"\n"
+    distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Pipe Configuration -->\n"
     distText += indentText(indentLine)+"<Veins name= '"+oreConfigName+str(level)+"Pipe' block='"+orePipe[currentOreGen]+"' inherits='PresetPipeVeins' seed="+pipeSeed+">\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
@@ -918,12 +942,15 @@ def pipeVeinsDist(currentOreGen,level):
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
+    distText += indentText(indentLine)+"<!-- End "+oreName[currentOreGen]+" Pipe Configuration -->\n"
+    distText += indentText(indentLine)+"\n"
         
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == 0 :
             distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
+            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Pipe Veins) Settings -->\n"
             distText += pipeVeinsDist(currentOreGen, 1)    
+            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Pipe Veins) Settings -->\n"
     return distText
 
 ### Compound Vein Distribution
@@ -998,8 +1025,9 @@ def pipeVeinsDist(currentOreGen,level):
 #    if orePreferBiomes[currentOreGen] != "NONE":
 #        if level == 0 :
 #            distText += indentText(indentLine)+"\n"
-#            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
-#            distText += compoundVeinsDist(currentOreGen, 1)    
+#            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Compound Veins) Settings -->\n"
+#            distText += compoundVeinsDist(currentOreGen, 1)  
+#            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Compound Veins) Settings -->\n"  
 #    return distText
 
 ### Strategic Cloud Distribution
@@ -1051,6 +1079,8 @@ def strategicCloudsDist(currentOreGen,level):
 
     # "Hint" Veins
     
+    distText += indentText(indentLine)+"\n"
+    distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Strategic Cloud Hint Veins -->\n"
     distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"HintVeins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"' inherits='PresetHintVeins'>\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
@@ -1074,6 +1104,7 @@ def strategicCloudsDist(currentOreGen,level):
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
+    distText += indentText(indentLine)+"<!-- End "+oreName[currentOreGen]+" Strategic Cloud Hint Veins -->\n\n"
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Cloud>\n"
@@ -1081,8 +1112,9 @@ def strategicCloudsDist(currentOreGen,level):
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == 0 :
             distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
+            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Strategic Cloud) Settings -->\n"
             distText += strategicCloudsDist(currentOreGen, 1)    
+            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Strategic Cloud) Settings -->\n"
     return distText
 
     
@@ -1099,7 +1131,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
     currentOreDist=currentOrePreDist.replace(" ", "")
     
     distributionText = indentText(indentLine)+"\n"
-    distributionText += indentText(indentLine)+"<!-- "+currentOrePreDist+" distribution of "+oreName[currentOreGen]+". -->\n"
+    distributionText += indentText(indentLine)+"<!-- Begin "+currentOrePreDist+" distribution of "+oreName[currentOreGen]+" -->\n"
         
     if currentOreDist == 'Substitute':
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"substituteGen\"'>\n"
@@ -1198,6 +1230,9 @@ def distributionGen(currentOreGen, currentOrePreDist):
         indentLine -= 1
         distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
+    
+    distributionText += indentText(indentLine)+"<!-- End "+currentOrePreDist+" distribution of "+oreName[currentOreGen]+" -->\n"
+    distributionText += indentText(indentLine)+"\n"
         
     return distributionText
     
@@ -1279,7 +1314,8 @@ def depositRemoval(world):
             
     replaceList = list(set(replacementBlocks))
                 
-    outConfig += indentText(indentLine)+"<!-- **********   Vanilla Deposit Removal   ************* -->\n"
+    outConfig += indentText(indentLine)+"\n"
+    outConfig += indentText(indentLine)+"<!-- Starting Original "+world+" Ore Removal -->\n"
     
     for blockSelect in range (0, len(replaceList)): # list(set(replacementBlocks)) = remove duplicate blocks
         outConfig += indentText(indentLine)+"<Substitute name='"+modPrefix+world+"OreSubstitute"+str(blockSelect)+"' block='"+replaceList[blockSelect]+"'>\n"
@@ -1299,6 +1335,9 @@ def depositRemoval(world):
     
         indentLine -= 1
         outConfig += indentText(indentLine)+"</Substitute>\n"
+    
+    
+    outConfig += indentText(indentLine)+"<!-- Original "+world+" Ore Removal Complete -->\n"
             
         
     return outConfig
@@ -1403,8 +1442,11 @@ def overworldSetupSection():
     for oreSelect in range(0,len(oreName)):
         if oreWorld[oreSelect] == "Overworld":
             setupConfig += indentText(indentLine)+"\n"
-            setupConfig += indentText(indentLine)+"<!-- "+oreName[oreSelect]+" Generation. --> \n"
+            setupConfig += indentText(indentLine)+"<!-- Begin "+oreName[oreSelect]+" Generation --> \n"
         setupConfig+=distConfigGen(oreSelect, "Overworld")
+        if oreWorld[oreSelect] == "Overworld":
+            setupConfig += indentText(indentLine)+"<!-- End "+oreName[oreSelect]+" Generation --> \n\n"
+        
     
     setupConfig += indentText(indentLine)+"<!-- Done adding ores -->\n"
     indentLine -= 1

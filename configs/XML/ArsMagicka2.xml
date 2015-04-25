@@ -129,7 +129,8 @@ Generates: Vinteum, Chimerite, Blue Topaz
 
             <!-- Setup Overworld -->
             <IfCondition condition=':= ?COGActive'>
-                <!-- **********   Vanilla Deposit Removal   ************* -->
+                
+                <!-- Starting Original Overworld Ore Removal -->
                 <Substitute name='arsmOverworldOreSubstitute0' block='minecraft:stone'>
                     <Description>
                         Replace vanilla-generated ore clusters.
@@ -141,12 +142,13 @@ Generates: Vinteum, Chimerite, Blue Topaz
                     <Replaces block='arsmagica2:vinteumOre:1' />
                     <Replaces block='arsmagica2:vinteumOre:2' />
                 </Substitute>
+                <!-- Original Overworld Ore Removal Complete -->
                 
                 <!-- Adding ores --> 
                 
-                <!-- Vinteum Generation. --> 
+                <!-- Begin Vinteum Generation --> 
                 
-                <!-- Layered Veins distribution of Vinteum. -->
+                <!-- Begin Layered Veins distribution of Vinteum -->
                 <IfCondition condition=':= arsmVinteumDist = "layeredVeins"'>
                 
                     <Veins name='arsmVinteum0Veins' block='arsmagica2:vinteumOre' inherits='PresetLayeredVeins'>
@@ -154,7 +156,7 @@ Generates: Vinteum, Chimerite, Blue Topaz
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6085317A</WireframeColor>
+                        <WireframeColor>0x60DEF1A5</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * arsmVinteumSize * _default_' range=':= 1 * 0.8 * arsmVinteumSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * arsmVinteumFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -163,14 +165,14 @@ Generates: Vinteum, Chimerite, Blue Topaz
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Vinteum Layered Veins) Settings -->
                     <Veins name='arsmVinteum1Veins' block='arsmagica2:vinteumOre' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6085317A</WireframeColor>
+                        <WireframeColor>0x60DEF1A5</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * arsmVinteumSize * _default_' range=':= 1 * 0.8 * arsmVinteumSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * arsmVinteumFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -179,10 +181,13 @@ Generates: Vinteum, Chimerite, Blue Topaz
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Vinteum Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Vinteum -->
                 
-                <!--  Strategic Cloud distribution of Vinteum. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Vinteum -->
                 <IfCondition condition=':= arsmVinteumDist = "strategicCloud"'>
                 
                     <Cloud name='arsmVinteum0Cloud' block='arsmagica2:vinteumOre' inherits='PresetStrategicCloud'>
@@ -195,7 +200,7 @@ Generates: Vinteum, Chimerite, Blue Topaz
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6085317A</WireframeColor>
+                        <WireframeColor>0x60DEF1A5</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * arsmVinteumFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * arsmVinteumSize * _default_' range=':= 1 * 0.8 * arsmVinteumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * arsmVinteumSize * _default_' range=':= 1 * 0.8 * arsmVinteumSize * _default_'/>
@@ -203,20 +208,24 @@ Generates: Vinteum, Chimerite, Blue Topaz
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * arsmVinteumSize * _default_' range=':= 1 * 1 * 0.8 * arsmVinteumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Vinteum Strategic Cloud Hint Veins -->
                         <Veins name='arsmVinteum0HintVeins' block='arsmagica2:vinteumOre' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x6085317A</WireframeColor>
+                            <WireframeColor>0x60DEF1A5</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * arsmVinteumFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * arsmVinteumSize * _default_' range=':= 1 * 0.8 * arsmVinteumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Vinteum Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Vinteum Strategic Cloud) Settings -->
                     <Cloud name='arsmVinteum1Cloud' block='arsmagica2:vinteumOre' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -228,7 +237,7 @@ Generates: Vinteum, Chimerite, Blue Topaz
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6085317A</WireframeColor>
+                        <WireframeColor>0x60DEF1A5</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * arsmVinteumFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * arsmVinteumSize * _default_' range=':= 1 * 0.8 * arsmVinteumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * arsmVinteumSize * _default_' range=':= 1 * 0.8 * arsmVinteumSize * _default_'/>
@@ -237,24 +246,31 @@ Generates: Vinteum, Chimerite, Blue Topaz
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * arsmVinteumSize * _default_' range=':= 1 * 1 * 0.8 * arsmVinteumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Vinteum Strategic Cloud Hint Veins -->
                         <Veins name='arsmVinteum1HintVeins' block='arsmagica2:vinteumOre' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x6085317A</WireframeColor>
+                            <WireframeColor>0x60DEF1A5</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * arsmVinteumFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * arsmVinteumSize * _default_' range=':= 1 * 0.8 * arsmVinteumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Vinteum Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Vinteum Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Vinteum -->
                 
-                <!--  Vanilla distribution of Vinteum. -->
+                
+                <!-- Begin  Vanilla distribution of Vinteum -->
                 <IfCondition condition=':= arsmVinteumDist = "vanillaStdGen"'>
                 
                     <StandardGen name='arsmVinteum0Standard' block='arsmagica2:vinteumOre' inherits='PresetStandardGen'>
@@ -262,33 +278,38 @@ Generates: Vinteum, Chimerite, Blue Topaz
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6085317A</WireframeColor>
+                        <WireframeColor>0x60DEF1A5</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * arsmVinteumSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * arsmVinteumFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Vinteum Vanilla) Settings -->
                     <StandardGen name='arsmVinteum1Standard' block='arsmagica2:vinteumOre' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6085317A</WireframeColor>
+                        <WireframeColor>0x60DEF1A5</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * arsmVinteumSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * arsmVinteumFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Vinteum Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Vinteum -->
                 
-                <!-- Chimerite Generation. --> 
+                <!-- End Vinteum Generation --> 
+
                 
-                <!-- Layered Veins distribution of Chimerite. -->
+                <!-- Begin Chimerite Generation --> 
+                
+                <!-- Begin Layered Veins distribution of Chimerite -->
                 <IfCondition condition=':= arsmChimeriteDist = "layeredVeins"'>
                 
                     <Veins name='arsmChimerite0Veins' block='arsmagica2:vinteumOre:1' inherits='PresetLayeredVeins'>
@@ -296,7 +317,7 @@ Generates: Vinteum, Chimerite, Blue Topaz
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6085317A</WireframeColor>
+                        <WireframeColor>0x60DEF1A5</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * arsmChimeriteSize * _default_' range=':= 1 * 0.8 * arsmChimeriteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * arsmChimeriteFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -305,14 +326,14 @@ Generates: Vinteum, Chimerite, Blue Topaz
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Chimerite Layered Veins) Settings -->
                     <Veins name='arsmChimerite1Veins' block='arsmagica2:vinteumOre:1' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6085317A</WireframeColor>
+                        <WireframeColor>0x60DEF1A5</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * arsmChimeriteSize * _default_' range=':= 1 * 0.8 * arsmChimeriteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * arsmChimeriteFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -321,10 +342,13 @@ Generates: Vinteum, Chimerite, Blue Topaz
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Chimerite Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Chimerite -->
                 
-                <!--  Strategic Cloud distribution of Chimerite. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Chimerite -->
                 <IfCondition condition=':= arsmChimeriteDist = "strategicCloud"'>
                 
                     <Cloud name='arsmChimerite0Cloud' block='arsmagica2:vinteumOre:1' inherits='PresetStrategicCloud'>
@@ -337,7 +361,7 @@ Generates: Vinteum, Chimerite, Blue Topaz
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6085317A</WireframeColor>
+                        <WireframeColor>0x60DEF1A5</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * arsmChimeriteFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * arsmChimeriteSize * _default_' range=':= 1 * 0.8 * arsmChimeriteSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * arsmChimeriteSize * _default_' range=':= 1 * 0.8 * arsmChimeriteSize * _default_'/>
@@ -345,20 +369,24 @@ Generates: Vinteum, Chimerite, Blue Topaz
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * arsmChimeriteSize * _default_' range=':= 1 * 1 * 0.8 * arsmChimeriteSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Chimerite Strategic Cloud Hint Veins -->
                         <Veins name='arsmChimerite0HintVeins' block='arsmagica2:vinteumOre:1' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x6085317A</WireframeColor>
+                            <WireframeColor>0x60DEF1A5</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * arsmChimeriteFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * arsmChimeriteSize * _default_' range=':= 1 * 0.8 * arsmChimeriteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Chimerite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Chimerite Strategic Cloud) Settings -->
                     <Cloud name='arsmChimerite1Cloud' block='arsmagica2:vinteumOre:1' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -370,7 +398,7 @@ Generates: Vinteum, Chimerite, Blue Topaz
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6085317A</WireframeColor>
+                        <WireframeColor>0x60DEF1A5</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * arsmChimeriteFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * arsmChimeriteSize * _default_' range=':= 1 * 0.8 * arsmChimeriteSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * arsmChimeriteSize * _default_' range=':= 1 * 0.8 * arsmChimeriteSize * _default_'/>
@@ -379,24 +407,31 @@ Generates: Vinteum, Chimerite, Blue Topaz
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * arsmChimeriteSize * _default_' range=':= 1 * 1 * 0.8 * arsmChimeriteSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Chimerite Strategic Cloud Hint Veins -->
                         <Veins name='arsmChimerite1HintVeins' block='arsmagica2:vinteumOre:1' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x6085317A</WireframeColor>
+                            <WireframeColor>0x60DEF1A5</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * arsmChimeriteFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * arsmChimeriteSize * _default_' range=':= 1 * 0.8 * arsmChimeriteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Chimerite Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Chimerite Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Chimerite -->
                 
-                <!--  Vanilla distribution of Chimerite. -->
+                
+                <!-- Begin  Vanilla distribution of Chimerite -->
                 <IfCondition condition=':= arsmChimeriteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='arsmChimerite0Standard' block='arsmagica2:vinteumOre:1' inherits='PresetStandardGen'>
@@ -404,33 +439,38 @@ Generates: Vinteum, Chimerite, Blue Topaz
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6085317A</WireframeColor>
+                        <WireframeColor>0x60DEF1A5</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * arsmChimeriteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * arsmChimeriteFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Chimerite Vanilla) Settings -->
                     <StandardGen name='arsmChimerite1Standard' block='arsmagica2:vinteumOre:1' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6085317A</WireframeColor>
+                        <WireframeColor>0x60DEF1A5</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * arsmChimeriteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * arsmChimeriteFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Chimerite Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Chimerite -->
                 
-                <!-- Blue Topaz Generation. --> 
+                <!-- End Chimerite Generation --> 
+
                 
-                <!-- Layered Veins distribution of Blue Topaz. -->
+                <!-- Begin Blue Topaz Generation --> 
+                
+                <!-- Begin Layered Veins distribution of Blue Topaz -->
                 <IfCondition condition=':= arsmBlueTopazDist = "layeredVeins"'>
                 
                     <Veins name='arsmBlueTopaz0Veins' block='arsmagica2:vinteumOre:2' inherits='PresetLayeredVeins'>
@@ -438,7 +478,7 @@ Generates: Vinteum, Chimerite, Blue Topaz
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6085317A</WireframeColor>
+                        <WireframeColor>0x60DEF1A5</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * arsmBlueTopazSize * _default_' range=':= 1 * 0.8 * arsmBlueTopazSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * arsmBlueTopazFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -447,14 +487,14 @@ Generates: Vinteum, Chimerite, Blue Topaz
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Blue Topaz Layered Veins) Settings -->
                     <Veins name='arsmBlueTopaz1Veins' block='arsmagica2:vinteumOre:2' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6085317A</WireframeColor>
+                        <WireframeColor>0x60DEF1A5</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * arsmBlueTopazSize * _default_' range=':= 1 * 0.8 * arsmBlueTopazSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * arsmBlueTopazFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -463,10 +503,13 @@ Generates: Vinteum, Chimerite, Blue Topaz
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Blue Topaz Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Blue Topaz -->
                 
-                <!--  Strategic Cloud distribution of Blue Topaz. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Blue Topaz -->
                 <IfCondition condition=':= arsmBlueTopazDist = "strategicCloud"'>
                 
                     <Cloud name='arsmBlueTopaz0Cloud' block='arsmagica2:vinteumOre:2' inherits='PresetStrategicCloud'>
@@ -479,7 +522,7 @@ Generates: Vinteum, Chimerite, Blue Topaz
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6085317A</WireframeColor>
+                        <WireframeColor>0x60DEF1A5</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * arsmBlueTopazFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * arsmBlueTopazSize * _default_' range=':= 1 * 0.8 * arsmBlueTopazSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * arsmBlueTopazSize * _default_' range=':= 1 * 0.8 * arsmBlueTopazSize * _default_'/>
@@ -487,20 +530,24 @@ Generates: Vinteum, Chimerite, Blue Topaz
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * arsmBlueTopazSize * _default_' range=':= 1 * 1 * 0.8 * arsmBlueTopazSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Blue Topaz Strategic Cloud Hint Veins -->
                         <Veins name='arsmBlueTopaz0HintVeins' block='arsmagica2:vinteumOre:2' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x6085317A</WireframeColor>
+                            <WireframeColor>0x60DEF1A5</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * arsmBlueTopazFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * arsmBlueTopazSize * _default_' range=':= 1 * 0.8 * arsmBlueTopazSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Blue Topaz Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Blue Topaz Strategic Cloud) Settings -->
                     <Cloud name='arsmBlueTopaz1Cloud' block='arsmagica2:vinteumOre:2' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -512,7 +559,7 @@ Generates: Vinteum, Chimerite, Blue Topaz
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6085317A</WireframeColor>
+                        <WireframeColor>0x60DEF1A5</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * arsmBlueTopazFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * arsmBlueTopazSize * _default_' range=':= 1 * 0.8 * arsmBlueTopazSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * arsmBlueTopazSize * _default_' range=':= 1 * 0.8 * arsmBlueTopazSize * _default_'/>
@@ -521,24 +568,31 @@ Generates: Vinteum, Chimerite, Blue Topaz
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * arsmBlueTopazSize * _default_' range=':= 1 * 1 * 0.8 * arsmBlueTopazSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Blue Topaz Strategic Cloud Hint Veins -->
                         <Veins name='arsmBlueTopaz1HintVeins' block='arsmagica2:vinteumOre:2' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x6085317A</WireframeColor>
+                            <WireframeColor>0x60DEF1A5</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * arsmBlueTopazFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * arsmBlueTopazSize * _default_' range=':= 1 * 0.8 * arsmBlueTopazSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Blue Topaz Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Blue Topaz Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Blue Topaz -->
                 
-                <!--  Vanilla distribution of Blue Topaz. -->
+                
+                <!-- Begin  Vanilla distribution of Blue Topaz -->
                 <IfCondition condition=':= arsmBlueTopazDist = "vanillaStdGen"'>
                 
                     <StandardGen name='arsmBlueTopaz0Standard' block='arsmagica2:vinteumOre:2' inherits='PresetStandardGen'>
@@ -546,29 +600,34 @@ Generates: Vinteum, Chimerite, Blue Topaz
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6085317A</WireframeColor>
+                        <WireframeColor>0x60DEF1A5</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * arsmBlueTopazSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * arsmBlueTopazFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Blue Topaz Vanilla) Settings -->
                     <StandardGen name='arsmBlueTopaz1Standard' block='arsmagica2:vinteumOre:2' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6085317A</WireframeColor>
+                        <WireframeColor>0x60DEF1A5</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * arsmBlueTopazSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * arsmBlueTopazFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Blue Topaz Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Blue Topaz -->
+                
+                <!-- End Blue Topaz Generation --> 
+
                 <!-- Done adding ores -->
             
             </IfCondition>

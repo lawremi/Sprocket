@@ -61,7 +61,8 @@ Generates: Salt
 
             <!-- Setup Overworld -->
             <IfCondition condition=':= ?COGActive'>
-                <!-- **********   Vanilla Deposit Removal   ************* -->
+                
+                <!-- Starting Original Overworld Ore Removal -->
                 <Substitute name='hvstOverworldOreSubstitute0' block='minecraft:stone'>
                     <Description>
                         Replace vanilla-generated ore clusters.
@@ -71,12 +72,13 @@ Generates: Salt
                     </Comment>
                     <Replaces block='harvestcraft:salt:0' />
                 </Substitute>
+                <!-- Original Overworld Ore Removal Complete -->
                 
                 <!-- Adding ores --> 
                 
-                <!-- Salt Generation. --> 
+                <!-- Begin Salt Generation --> 
                 
-                <!-- LayeredVeins distribution of Salt. -->
+                <!-- Begin LayeredVeins distribution of Salt -->
                 <IfCondition condition=':= hvstSaltDist = "layeredVeins"'>
                 
                     <Veins name='hvstSalt0Veins' block='harvestcraft:salt' inherits='PresetLayeredVeins'>
@@ -93,7 +95,7 @@ Generates: Salt
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Salt Layered Veins) Settings -->
                     <Veins name='hvstSalt1Veins' block='harvestcraft:salt' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -111,10 +113,13 @@ Generates: Salt
                         <BiomeType name='Beach'/>
                         <BiomeType name='Mountain'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Salt Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Salt -->
                 
-                <!--  StrategicCloud distribution of Salt. -->
+                
+                <!-- Begin  StrategicCloud distribution of Salt -->
                 <IfCondition condition=':= hvstSaltDist = "strategicCloud"'>
                 
                     <Cloud name='hvstSalt0Cloud' block='harvestcraft:salt' inherits='PresetStrategicCloud'>
@@ -135,6 +140,8 @@ Generates: Salt
                         <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * hvstSaltSize * _default_' range=':= 1 * 1 * 1 * hvstSaltSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Salt Strategic Cloud Hint Veins -->
                         <Veins name='hvstSalt0HintVeins' block='harvestcraft:salt' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -146,9 +153,11 @@ Generates: Salt
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * hvstSaltSize * _default_' range=':= 1 * 1 * hvstSaltSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Salt Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Salt Strategic Cloud) Settings -->
                     <Cloud name='hvstSalt1Cloud' block='harvestcraft:salt' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -171,6 +180,8 @@ Generates: Salt
                         <BiomeType name='Ocean'/>
                         <BiomeType name='Beach'/>
                         <BiomeType name='Mountain'/>
+                        
+                        <!-- Begin Salt Strategic Cloud Hint Veins -->
                         <Veins name='hvstSalt1HintVeins' block='harvestcraft:salt' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -186,11 +197,16 @@ Generates: Salt
                             <BiomeType name='Beach'/>
                             <BiomeType name='Mountain'/>
                         </Veins>
+                        <!-- End Salt Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Salt Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Salt -->
                 
-                <!--  Vanilla distribution of Salt. -->
+                
+                <!-- Begin  Vanilla distribution of Salt -->
                 <IfCondition condition=':= hvstSaltDist = "vanillaStdGen"'>
                 
                     <StandardGen name='hvstSalt0Standard' block='harvestcraft:salt' inherits='PresetStandardGen'>
@@ -205,7 +221,7 @@ Generates: Salt
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Salt Vanilla) Settings -->
                     <StandardGen name='hvstSalt1Standard' block='harvestcraft:salt' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -221,8 +237,13 @@ Generates: Salt
                         <BiomeType name='Beach'/>
                         <BiomeType name='Mountain'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Salt Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Salt -->
+                
+                <!-- End Salt Generation --> 
+
                 <!-- Done adding ores -->
             
             </IfCondition>

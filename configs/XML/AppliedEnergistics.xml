@@ -105,7 +105,8 @@ Generates: Quartz, Charged Quartz
 
             <!-- Setup Overworld -->
             <IfCondition condition=':= ?COGActive'>
-                <!-- **********   Vanilla Deposit Removal   ************* -->
+                
+                <!-- Starting Original Overworld Ore Removal -->
                 <Substitute name='apenOverworldOreSubstitute0' block='minecraft:stone'>
                     <Description>
                         Replace vanilla-generated ore clusters.
@@ -116,12 +117,13 @@ Generates: Quartz, Charged Quartz
                     <Replaces block='appliedenergistics2:tile.OreQuartz:0' />
                     <Replaces block='appliedenergistics2:tile.OreQuartzCharged:0' />
                 </Substitute>
+                <!-- Original Overworld Ore Removal Complete -->
                 
                 <!-- Adding ores --> 
                 
-                <!-- Quartz Generation. --> 
+                <!-- Begin Quartz Generation --> 
                 
-                <!-- LayeredVeins distribution of Quartz. -->
+                <!-- Begin LayeredVeins distribution of Quartz -->
                 <IfCondition condition=':= apenQuartzDist = "layeredVeins"'>
                 
                     <Veins name='apenQuartz0Veins' block='appliedenergistics2:tile.OreQuartz' inherits='PresetLayeredVeins'>
@@ -138,7 +140,7 @@ Generates: Quartz, Charged Quartz
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Quartz Layered Veins) Settings -->
                     <Veins name='apenQuartz1Veins' block='appliedenergistics2:tile.OreQuartz' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -154,10 +156,13 @@ Generates: Quartz, Charged Quartz
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Desert'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Quartz Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Quartz -->
                 
-                <!--  Small Deposits distribution of Quartz. -->
+                
+                <!-- Begin  Small Deposits distribution of Quartz -->
                 <IfCondition condition=':= apenQuartzDist = "smallDeposits"'>
                 
                     <Veins name='apenQuartz0Veins' block='appliedenergistics2:tile.OreQuartz' inherits='PresetSmallDeposits'>
@@ -174,7 +179,7 @@ Generates: Quartz, Charged Quartz
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Quartz Small Deposits) Settings -->
                     <Veins name='apenQuartz1Veins' block='appliedenergistics2:tile.OreQuartz' inherits='PresetSmallDeposits'>
                         <Description>
                             Small motherlodes without any branches.
@@ -190,10 +195,13 @@ Generates: Quartz, Charged Quartz
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Desert'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Quartz Small Deposits) Settings -->
                 
                 </IfCondition>
+                <!-- End  Small Deposits distribution of Quartz -->
                 
-                <!--  StrategicCloud distribution of Quartz. -->
+                
+                <!-- Begin  StrategicCloud distribution of Quartz -->
                 <IfCondition condition=':= apenQuartzDist = "strategicCloud"'>
                 
                     <Cloud name='apenQuartz0Cloud' block='appliedenergistics2:tile.OreQuartz' inherits='PresetStrategicCloud'>
@@ -214,6 +222,8 @@ Generates: Quartz, Charged Quartz
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * 1 * apenQuartzSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Quartz Strategic Cloud Hint Veins -->
                         <Veins name='apenQuartz0HintVeins' block='appliedenergistics2:tile.OreQuartz' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -225,9 +235,11 @@ Generates: Quartz, Charged Quartz
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * apenQuartzSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Quartz Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Quartz Strategic Cloud) Settings -->
                     <Cloud name='apenQuartz1Cloud' block='appliedenergistics2:tile.OreQuartz' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -248,6 +260,8 @@ Generates: Quartz, Charged Quartz
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * 1 * apenQuartzSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Desert'/>
+                        
+                        <!-- Begin Quartz Strategic Cloud Hint Veins -->
                         <Veins name='apenQuartz1HintVeins' block='appliedenergistics2:tile.OreQuartz' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -261,11 +275,16 @@ Generates: Quartz, Charged Quartz
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Desert'/>
                         </Veins>
+                        <!-- End Quartz Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Quartz Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Quartz -->
                 
-                <!--  Vanilla distribution of Quartz. -->
+                
+                <!-- Begin  Vanilla distribution of Quartz -->
                 <IfCondition condition=':= apenQuartzDist = "vanillaStdGen"'>
                 
                     <StandardGen name='apenQuartz0Standard' block='appliedenergistics2:tile.OreQuartz' inherits='PresetStandardGen'>
@@ -280,7 +299,7 @@ Generates: Quartz, Charged Quartz
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Quartz Vanilla) Settings -->
                     <StandardGen name='apenQuartz1Standard' block='appliedenergistics2:tile.OreQuartz' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -294,12 +313,17 @@ Generates: Quartz, Charged Quartz
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Desert'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Quartz Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Quartz -->
                 
-                <!-- Charged Quartz Generation. --> 
+                <!-- End Quartz Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Charged Quartz. -->
+                <!-- Begin Charged Quartz Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Charged Quartz -->
                 <IfCondition condition=':= apenChargedQuartzDist = "layeredVeins"'>
                 
                     <Veins name='apenChargedQuartz0Veins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetLayeredVeins'>
@@ -316,7 +340,7 @@ Generates: Quartz, Charged Quartz
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Charged Quartz Layered Veins) Settings -->
                     <Veins name='apenChargedQuartz1Veins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -332,10 +356,13 @@ Generates: Quartz, Charged Quartz
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Desert'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Charged Quartz Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Charged Quartz -->
                 
-                <!--  Small Deposits distribution of Charged Quartz. -->
+                
+                <!-- Begin  Small Deposits distribution of Charged Quartz -->
                 <IfCondition condition=':= apenChargedQuartzDist = "smallDeposits"'>
                 
                     <Veins name='apenChargedQuartz0Veins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetSmallDeposits'>
@@ -352,7 +379,7 @@ Generates: Quartz, Charged Quartz
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Charged Quartz Small Deposits) Settings -->
                     <Veins name='apenChargedQuartz1Veins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetSmallDeposits'>
                         <Description>
                             Small motherlodes without any branches.
@@ -368,10 +395,13 @@ Generates: Quartz, Charged Quartz
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Desert'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Charged Quartz Small Deposits) Settings -->
                 
                 </IfCondition>
+                <!-- End  Small Deposits distribution of Charged Quartz -->
                 
-                <!--  StrategicCloud distribution of Charged Quartz. -->
+                
+                <!-- Begin  StrategicCloud distribution of Charged Quartz -->
                 <IfCondition condition=':= apenChargedQuartzDist = "strategicCloud"'>
                 
                     <Cloud name='apenChargedQuartz0Cloud' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetStrategicCloud'>
@@ -392,6 +422,8 @@ Generates: Quartz, Charged Quartz
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * 1 * apenChargedQuartzSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Charged Quartz Strategic Cloud Hint Veins -->
                         <Veins name='apenChargedQuartz0HintVeins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -403,9 +435,11 @@ Generates: Quartz, Charged Quartz
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * apenChargedQuartzSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Charged Quartz Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Charged Quartz Strategic Cloud) Settings -->
                     <Cloud name='apenChargedQuartz1Cloud' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -426,6 +460,8 @@ Generates: Quartz, Charged Quartz
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * 1 * apenChargedQuartzSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Desert'/>
+                        
+                        <!-- Begin Charged Quartz Strategic Cloud Hint Veins -->
                         <Veins name='apenChargedQuartz1HintVeins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -439,11 +475,16 @@ Generates: Quartz, Charged Quartz
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Desert'/>
                         </Veins>
+                        <!-- End Charged Quartz Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Charged Quartz Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Charged Quartz -->
                 
-                <!--  Vanilla distribution of Charged Quartz. -->
+                
+                <!-- Begin  Vanilla distribution of Charged Quartz -->
                 <IfCondition condition=':= apenChargedQuartzDist = "vanillaStdGen"'>
                 
                     <StandardGen name='apenChargedQuartz0Standard' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetStandardGen'>
@@ -458,7 +499,7 @@ Generates: Quartz, Charged Quartz
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Charged Quartz Vanilla) Settings -->
                     <StandardGen name='apenChargedQuartz1Standard' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -472,8 +513,13 @@ Generates: Quartz, Charged Quartz
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Desert'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Charged Quartz Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Charged Quartz -->
+                
+                <!-- End Charged Quartz Generation --> 
+
                 <!-- Done adding ores -->
             
             </IfCondition>

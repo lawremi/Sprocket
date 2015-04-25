@@ -402,7 +402,8 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
 
             <!-- Setup Overworld -->
             <IfCondition condition=':= ?COGActive'>
-                <!-- **********   Vanilla Deposit Removal   ************* -->
+                
+                <!-- Starting Original Overworld Ore Removal -->
                 <Substitute name='mtlfOverworldOreSubstitute0' block='minecraft:stone'>
                     <Description>
                         Replace vanilla-generated ore clusters.
@@ -422,12 +423,13 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                     <Replaces block='Metallurgy:fantasy.ore:13' />
                     <Replaces block='Metallurgy:fantasy.ore:14' />
                 </Substitute>
+                <!-- Original Overworld Ore Removal Complete -->
                 
                 <!-- Adding ores --> 
                 
-                <!-- Promethium Generation. --> 
+                <!-- Begin Promethium Generation --> 
                 
-                <!-- Layered Veins distribution of Promethium. -->
+                <!-- Begin Layered Veins distribution of Promethium -->
                 <IfCondition condition=':= mtlfPromethiumDist = "layeredVeins"'>
                 
                     <Veins name='mtlfPromethium0Veins' block='Metallurgy:fantasy.ore' inherits='PresetLayeredVeins'>
@@ -435,7 +437,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfPromethiumSize * _default_' range=':= 1 * 0.8 * mtlfPromethiumSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * mtlfPromethiumFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -444,14 +446,14 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Promethium Layered Veins) Settings -->
                     <Veins name='mtlfPromethium1Veins' block='Metallurgy:fantasy.ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfPromethiumSize * _default_' range=':= 1 * 0.8 * mtlfPromethiumSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * mtlfPromethiumFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -460,10 +462,13 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Promethium Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Promethium -->
                 
-                <!--  Strategic Cloud distribution of Promethium. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Promethium -->
                 <IfCondition condition=':= mtlfPromethiumDist = "strategicCloud"'>
                 
                     <Cloud name='mtlfPromethium0Cloud' block='Metallurgy:fantasy.ore' inherits='PresetStrategicCloud'>
@@ -476,7 +481,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * mtlfPromethiumFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfPromethiumSize * _default_' range=':= 1 * 0.8 * mtlfPromethiumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfPromethiumSize * _default_' range=':= 1 * 0.8 * mtlfPromethiumSize * _default_'/>
@@ -484,20 +489,24 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfPromethiumSize * _default_' range=':= 1 * 1 * 0.8 * mtlfPromethiumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Promethium Strategic Cloud Hint Veins -->
                         <Veins name='mtlfPromethium0HintVeins' block='Metallurgy:fantasy.ore' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * mtlfPromethiumFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfPromethiumSize * _default_' range=':= 1 * 0.8 * mtlfPromethiumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Promethium Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Promethium Strategic Cloud) Settings -->
                     <Cloud name='mtlfPromethium1Cloud' block='Metallurgy:fantasy.ore' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -509,7 +518,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * mtlfPromethiumFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfPromethiumSize * _default_' range=':= 1 * 0.8 * mtlfPromethiumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfPromethiumSize * _default_' range=':= 1 * 0.8 * mtlfPromethiumSize * _default_'/>
@@ -518,24 +527,31 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfPromethiumSize * _default_' range=':= 1 * 1 * 0.8 * mtlfPromethiumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Promethium Strategic Cloud Hint Veins -->
                         <Veins name='mtlfPromethium1HintVeins' block='Metallurgy:fantasy.ore' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * mtlfPromethiumFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfPromethiumSize * _default_' range=':= 1 * 0.8 * mtlfPromethiumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Promethium Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Promethium Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Promethium -->
                 
-                <!--  Vanilla distribution of Promethium. -->
+                
+                <!-- Begin  Vanilla distribution of Promethium -->
                 <IfCondition condition=':= mtlfPromethiumDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlfPromethium0Standard' block='Metallurgy:fantasy.ore' inherits='PresetStandardGen'>
@@ -543,33 +559,38 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfPromethiumSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * mtlfPromethiumFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Promethium Vanilla) Settings -->
                     <StandardGen name='mtlfPromethium1Standard' block='Metallurgy:fantasy.ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfPromethiumSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * mtlfPromethiumFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Promethium Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Promethium -->
                 
-                <!-- Deep Iron Generation. --> 
+                <!-- End Promethium Generation --> 
+
                 
-                <!-- Layered Veins distribution of Deep Iron. -->
+                <!-- Begin Deep Iron Generation --> 
+                
+                <!-- Begin Layered Veins distribution of Deep Iron -->
                 <IfCondition condition=':= mtlfDeepIronDist = "layeredVeins"'>
                 
                     <Veins name='mtlfDeepIron0Veins' block='Metallurgy:fantasy.ore:1' inherits='PresetLayeredVeins'>
@@ -577,7 +598,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfDeepIronSize * _default_' range=':= 1 * 0.8 * mtlfDeepIronSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * mtlfDeepIronFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -586,14 +607,14 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Deep Iron Layered Veins) Settings -->
                     <Veins name='mtlfDeepIron1Veins' block='Metallurgy:fantasy.ore:1' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfDeepIronSize * _default_' range=':= 1 * 0.8 * mtlfDeepIronSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * mtlfDeepIronFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -602,10 +623,13 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Deep Iron Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Deep Iron -->
                 
-                <!--  Strategic Cloud distribution of Deep Iron. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Deep Iron -->
                 <IfCondition condition=':= mtlfDeepIronDist = "strategicCloud"'>
                 
                     <Cloud name='mtlfDeepIron0Cloud' block='Metallurgy:fantasy.ore:1' inherits='PresetStrategicCloud'>
@@ -618,7 +642,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * mtlfDeepIronFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfDeepIronSize * _default_' range=':= 1 * 0.8 * mtlfDeepIronSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfDeepIronSize * _default_' range=':= 1 * 0.8 * mtlfDeepIronSize * _default_'/>
@@ -626,20 +650,24 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfDeepIronSize * _default_' range=':= 1 * 1 * 0.8 * mtlfDeepIronSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Deep Iron Strategic Cloud Hint Veins -->
                         <Veins name='mtlfDeepIron0HintVeins' block='Metallurgy:fantasy.ore:1' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * mtlfDeepIronFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfDeepIronSize * _default_' range=':= 1 * 0.8 * mtlfDeepIronSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Deep Iron Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Deep Iron Strategic Cloud) Settings -->
                     <Cloud name='mtlfDeepIron1Cloud' block='Metallurgy:fantasy.ore:1' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -651,7 +679,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * mtlfDeepIronFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfDeepIronSize * _default_' range=':= 1 * 0.8 * mtlfDeepIronSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfDeepIronSize * _default_' range=':= 1 * 0.8 * mtlfDeepIronSize * _default_'/>
@@ -660,24 +688,31 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfDeepIronSize * _default_' range=':= 1 * 1 * 0.8 * mtlfDeepIronSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Deep Iron Strategic Cloud Hint Veins -->
                         <Veins name='mtlfDeepIron1HintVeins' block='Metallurgy:fantasy.ore:1' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * mtlfDeepIronFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfDeepIronSize * _default_' range=':= 1 * 0.8 * mtlfDeepIronSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Deep Iron Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Deep Iron Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Deep Iron -->
                 
-                <!--  Vanilla distribution of Deep Iron. -->
+                
+                <!-- Begin  Vanilla distribution of Deep Iron -->
                 <IfCondition condition=':= mtlfDeepIronDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlfDeepIron0Standard' block='Metallurgy:fantasy.ore:1' inherits='PresetStandardGen'>
@@ -685,33 +720,38 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfDeepIronSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * mtlfDeepIronFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Deep Iron Vanilla) Settings -->
                     <StandardGen name='mtlfDeepIron1Standard' block='Metallurgy:fantasy.ore:1' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfDeepIronSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * mtlfDeepIronFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Deep Iron Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Deep Iron -->
                 
-                <!-- Infuscolium Generation. --> 
+                <!-- End Deep Iron Generation --> 
+
                 
-                <!-- Layered Veins distribution of Infuscolium. -->
+                <!-- Begin Infuscolium Generation --> 
+                
+                <!-- Begin Layered Veins distribution of Infuscolium -->
                 <IfCondition condition=':= mtlfInfuscoliumDist = "layeredVeins"'>
                 
                     <Veins name='mtlfInfuscolium0Veins' block='Metallurgy:fantasy.ore:2' inherits='PresetLayeredVeins'>
@@ -719,7 +759,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfInfuscoliumSize * _default_' range=':= 1 * 0.8 * mtlfInfuscoliumSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * mtlfInfuscoliumFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -728,14 +768,14 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Infuscolium Layered Veins) Settings -->
                     <Veins name='mtlfInfuscolium1Veins' block='Metallurgy:fantasy.ore:2' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfInfuscoliumSize * _default_' range=':= 1 * 0.8 * mtlfInfuscoliumSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * mtlfInfuscoliumFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -744,10 +784,13 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Infuscolium Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Infuscolium -->
                 
-                <!--  Strategic Cloud distribution of Infuscolium. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Infuscolium -->
                 <IfCondition condition=':= mtlfInfuscoliumDist = "strategicCloud"'>
                 
                     <Cloud name='mtlfInfuscolium0Cloud' block='Metallurgy:fantasy.ore:2' inherits='PresetStrategicCloud'>
@@ -760,7 +803,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * mtlfInfuscoliumFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfInfuscoliumSize * _default_' range=':= 1 * 0.8 * mtlfInfuscoliumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfInfuscoliumSize * _default_' range=':= 1 * 0.8 * mtlfInfuscoliumSize * _default_'/>
@@ -768,20 +811,24 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfInfuscoliumSize * _default_' range=':= 1 * 1 * 0.8 * mtlfInfuscoliumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Infuscolium Strategic Cloud Hint Veins -->
                         <Veins name='mtlfInfuscolium0HintVeins' block='Metallurgy:fantasy.ore:2' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * mtlfInfuscoliumFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfInfuscoliumSize * _default_' range=':= 1 * 0.8 * mtlfInfuscoliumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Infuscolium Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Infuscolium Strategic Cloud) Settings -->
                     <Cloud name='mtlfInfuscolium1Cloud' block='Metallurgy:fantasy.ore:2' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -793,7 +840,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * mtlfInfuscoliumFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfInfuscoliumSize * _default_' range=':= 1 * 0.8 * mtlfInfuscoliumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfInfuscoliumSize * _default_' range=':= 1 * 0.8 * mtlfInfuscoliumSize * _default_'/>
@@ -802,24 +849,31 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfInfuscoliumSize * _default_' range=':= 1 * 1 * 0.8 * mtlfInfuscoliumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Infuscolium Strategic Cloud Hint Veins -->
                         <Veins name='mtlfInfuscolium1HintVeins' block='Metallurgy:fantasy.ore:2' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * mtlfInfuscoliumFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfInfuscoliumSize * _default_' range=':= 1 * 0.8 * mtlfInfuscoliumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Infuscolium Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Infuscolium Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Infuscolium -->
                 
-                <!--  Vanilla distribution of Infuscolium. -->
+                
+                <!-- Begin  Vanilla distribution of Infuscolium -->
                 <IfCondition condition=':= mtlfInfuscoliumDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlfInfuscolium0Standard' block='Metallurgy:fantasy.ore:2' inherits='PresetStandardGen'>
@@ -827,33 +881,38 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfInfuscoliumSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * mtlfInfuscoliumFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Infuscolium Vanilla) Settings -->
                     <StandardGen name='mtlfInfuscolium1Standard' block='Metallurgy:fantasy.ore:2' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfInfuscoliumSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * mtlfInfuscoliumFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Infuscolium Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Infuscolium -->
                 
-                <!-- Oureclase Generation. --> 
+                <!-- End Infuscolium Generation --> 
+
                 
-                <!-- Layered Veins distribution of Oureclase. -->
+                <!-- Begin Oureclase Generation --> 
+                
+                <!-- Begin Layered Veins distribution of Oureclase -->
                 <IfCondition condition=':= mtlfOureclaseDist = "layeredVeins"'>
                 
                     <Veins name='mtlfOureclase0Veins' block='Metallurgy:fantasy.ore:4' inherits='PresetLayeredVeins'>
@@ -861,7 +920,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfOureclaseSize * _default_' range=':= 1 * 0.8 * mtlfOureclaseSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * mtlfOureclaseFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -870,14 +929,14 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Oureclase Layered Veins) Settings -->
                     <Veins name='mtlfOureclase1Veins' block='Metallurgy:fantasy.ore:4' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfOureclaseSize * _default_' range=':= 1 * 0.8 * mtlfOureclaseSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * mtlfOureclaseFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -886,10 +945,13 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Oureclase Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Oureclase -->
                 
-                <!--  Strategic Cloud distribution of Oureclase. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Oureclase -->
                 <IfCondition condition=':= mtlfOureclaseDist = "strategicCloud"'>
                 
                     <Cloud name='mtlfOureclase0Cloud' block='Metallurgy:fantasy.ore:4' inherits='PresetStrategicCloud'>
@@ -902,7 +964,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * mtlfOureclaseFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfOureclaseSize * _default_' range=':= 1 * 0.8 * mtlfOureclaseSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfOureclaseSize * _default_' range=':= 1 * 0.8 * mtlfOureclaseSize * _default_'/>
@@ -910,20 +972,24 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfOureclaseSize * _default_' range=':= 1 * 1 * 0.8 * mtlfOureclaseSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Oureclase Strategic Cloud Hint Veins -->
                         <Veins name='mtlfOureclase0HintVeins' block='Metallurgy:fantasy.ore:4' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * mtlfOureclaseFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfOureclaseSize * _default_' range=':= 1 * 0.8 * mtlfOureclaseSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Oureclase Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Oureclase Strategic Cloud) Settings -->
                     <Cloud name='mtlfOureclase1Cloud' block='Metallurgy:fantasy.ore:4' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -935,7 +1001,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * mtlfOureclaseFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfOureclaseSize * _default_' range=':= 1 * 0.8 * mtlfOureclaseSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfOureclaseSize * _default_' range=':= 1 * 0.8 * mtlfOureclaseSize * _default_'/>
@@ -944,24 +1010,31 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfOureclaseSize * _default_' range=':= 1 * 1 * 0.8 * mtlfOureclaseSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Oureclase Strategic Cloud Hint Veins -->
                         <Veins name='mtlfOureclase1HintVeins' block='Metallurgy:fantasy.ore:4' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * mtlfOureclaseFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfOureclaseSize * _default_' range=':= 1 * 0.8 * mtlfOureclaseSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Oureclase Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Oureclase Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Oureclase -->
                 
-                <!--  Vanilla distribution of Oureclase. -->
+                
+                <!-- Begin  Vanilla distribution of Oureclase -->
                 <IfCondition condition=':= mtlfOureclaseDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlfOureclase0Standard' block='Metallurgy:fantasy.ore:4' inherits='PresetStandardGen'>
@@ -969,33 +1042,38 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfOureclaseSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * mtlfOureclaseFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Oureclase Vanilla) Settings -->
                     <StandardGen name='mtlfOureclase1Standard' block='Metallurgy:fantasy.ore:4' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfOureclaseSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * mtlfOureclaseFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Oureclase Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Oureclase -->
                 
-                <!-- Astral Silver Generation. --> 
+                <!-- End Oureclase Generation --> 
+
                 
-                <!-- Layered Veins distribution of Astral Silver. -->
+                <!-- Begin Astral Silver Generation --> 
+                
+                <!-- Begin Layered Veins distribution of Astral Silver -->
                 <IfCondition condition=':= mtlfAstralSilverDist = "layeredVeins"'>
                 
                     <Veins name='mtlfAstralSilver0Veins' block='Metallurgy:fantasy.ore:5' inherits='PresetLayeredVeins'>
@@ -1003,7 +1081,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfAstralSilverSize * _default_' range=':= 1 * 0.8 * mtlfAstralSilverSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * mtlfAstralSilverFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -1012,14 +1090,14 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Astral Silver Layered Veins) Settings -->
                     <Veins name='mtlfAstralSilver1Veins' block='Metallurgy:fantasy.ore:5' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfAstralSilverSize * _default_' range=':= 1 * 0.8 * mtlfAstralSilverSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * mtlfAstralSilverFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -1028,10 +1106,13 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Astral Silver Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Astral Silver -->
                 
-                <!--  Strategic Cloud distribution of Astral Silver. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Astral Silver -->
                 <IfCondition condition=':= mtlfAstralSilverDist = "strategicCloud"'>
                 
                     <Cloud name='mtlfAstralSilver0Cloud' block='Metallurgy:fantasy.ore:5' inherits='PresetStrategicCloud'>
@@ -1044,7 +1125,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * mtlfAstralSilverFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfAstralSilverSize * _default_' range=':= 1 * 0.8 * mtlfAstralSilverSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfAstralSilverSize * _default_' range=':= 1 * 0.8 * mtlfAstralSilverSize * _default_'/>
@@ -1052,20 +1133,24 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfAstralSilverSize * _default_' range=':= 1 * 1 * 0.8 * mtlfAstralSilverSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Astral Silver Strategic Cloud Hint Veins -->
                         <Veins name='mtlfAstralSilver0HintVeins' block='Metallurgy:fantasy.ore:5' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * mtlfAstralSilverFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfAstralSilverSize * _default_' range=':= 1 * 0.8 * mtlfAstralSilverSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Astral Silver Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Astral Silver Strategic Cloud) Settings -->
                     <Cloud name='mtlfAstralSilver1Cloud' block='Metallurgy:fantasy.ore:5' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1077,7 +1162,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * mtlfAstralSilverFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfAstralSilverSize * _default_' range=':= 1 * 0.8 * mtlfAstralSilverSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfAstralSilverSize * _default_' range=':= 1 * 0.8 * mtlfAstralSilverSize * _default_'/>
@@ -1086,24 +1171,31 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfAstralSilverSize * _default_' range=':= 1 * 1 * 0.8 * mtlfAstralSilverSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Astral Silver Strategic Cloud Hint Veins -->
                         <Veins name='mtlfAstralSilver1HintVeins' block='Metallurgy:fantasy.ore:5' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * mtlfAstralSilverFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfAstralSilverSize * _default_' range=':= 1 * 0.8 * mtlfAstralSilverSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Astral Silver Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Astral Silver Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Astral Silver -->
                 
-                <!--  Vanilla distribution of Astral Silver. -->
+                
+                <!-- Begin  Vanilla distribution of Astral Silver -->
                 <IfCondition condition=':= mtlfAstralSilverDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlfAstralSilver0Standard' block='Metallurgy:fantasy.ore:5' inherits='PresetStandardGen'>
@@ -1111,33 +1203,38 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfAstralSilverSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * mtlfAstralSilverFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Astral Silver Vanilla) Settings -->
                     <StandardGen name='mtlfAstralSilver1Standard' block='Metallurgy:fantasy.ore:5' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfAstralSilverSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * mtlfAstralSilverFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Astral Silver Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Astral Silver -->
                 
-                <!-- Carmot Generation. --> 
+                <!-- End Astral Silver Generation --> 
+
                 
-                <!-- Layered Veins distribution of Carmot. -->
+                <!-- Begin Carmot Generation --> 
+                
+                <!-- Begin Layered Veins distribution of Carmot -->
                 <IfCondition condition=':= mtlfCarmotDist = "layeredVeins"'>
                 
                     <Veins name='mtlfCarmot0Veins' block='Metallurgy:fantasy.ore:6' inherits='PresetLayeredVeins'>
@@ -1145,7 +1242,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfCarmotSize * _default_' range=':= 1 * 0.8 * mtlfCarmotSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * mtlfCarmotFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -1154,14 +1251,14 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Carmot Layered Veins) Settings -->
                     <Veins name='mtlfCarmot1Veins' block='Metallurgy:fantasy.ore:6' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfCarmotSize * _default_' range=':= 1 * 0.8 * mtlfCarmotSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * mtlfCarmotFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -1170,10 +1267,13 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Carmot Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Carmot -->
                 
-                <!--  Strategic Cloud distribution of Carmot. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Carmot -->
                 <IfCondition condition=':= mtlfCarmotDist = "strategicCloud"'>
                 
                     <Cloud name='mtlfCarmot0Cloud' block='Metallurgy:fantasy.ore:6' inherits='PresetStrategicCloud'>
@@ -1186,7 +1286,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * mtlfCarmotFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfCarmotSize * _default_' range=':= 1 * 0.8 * mtlfCarmotSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfCarmotSize * _default_' range=':= 1 * 0.8 * mtlfCarmotSize * _default_'/>
@@ -1194,20 +1294,24 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfCarmotSize * _default_' range=':= 1 * 1 * 0.8 * mtlfCarmotSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Carmot Strategic Cloud Hint Veins -->
                         <Veins name='mtlfCarmot0HintVeins' block='Metallurgy:fantasy.ore:6' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * mtlfCarmotFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfCarmotSize * _default_' range=':= 1 * 0.8 * mtlfCarmotSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Carmot Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Carmot Strategic Cloud) Settings -->
                     <Cloud name='mtlfCarmot1Cloud' block='Metallurgy:fantasy.ore:6' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1219,7 +1323,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * mtlfCarmotFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfCarmotSize * _default_' range=':= 1 * 0.8 * mtlfCarmotSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfCarmotSize * _default_' range=':= 1 * 0.8 * mtlfCarmotSize * _default_'/>
@@ -1228,24 +1332,31 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfCarmotSize * _default_' range=':= 1 * 1 * 0.8 * mtlfCarmotSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Carmot Strategic Cloud Hint Veins -->
                         <Veins name='mtlfCarmot1HintVeins' block='Metallurgy:fantasy.ore:6' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * mtlfCarmotFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfCarmotSize * _default_' range=':= 1 * 0.8 * mtlfCarmotSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Carmot Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Carmot Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Carmot -->
                 
-                <!--  Vanilla distribution of Carmot. -->
+                
+                <!-- Begin  Vanilla distribution of Carmot -->
                 <IfCondition condition=':= mtlfCarmotDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlfCarmot0Standard' block='Metallurgy:fantasy.ore:6' inherits='PresetStandardGen'>
@@ -1253,33 +1364,38 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfCarmotSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * mtlfCarmotFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Carmot Vanilla) Settings -->
                     <StandardGen name='mtlfCarmot1Standard' block='Metallurgy:fantasy.ore:6' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfCarmotSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * mtlfCarmotFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Carmot Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Carmot -->
                 
-                <!-- Mithril Generation. --> 
+                <!-- End Carmot Generation --> 
+
                 
-                <!-- Layered Veins distribution of Mithril. -->
+                <!-- Begin Mithril Generation --> 
+                
+                <!-- Begin Layered Veins distribution of Mithril -->
                 <IfCondition condition=':= mtlfMithrilDist = "layeredVeins"'>
                 
                     <Veins name='mtlfMithril0Veins' block='Metallurgy:fantasy.ore:7' inherits='PresetLayeredVeins'>
@@ -1287,7 +1403,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfMithrilSize * _default_' range=':= 1 * 0.8 * mtlfMithrilSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * mtlfMithrilFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -1296,14 +1412,14 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Mithril Layered Veins) Settings -->
                     <Veins name='mtlfMithril1Veins' block='Metallurgy:fantasy.ore:7' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfMithrilSize * _default_' range=':= 1 * 0.8 * mtlfMithrilSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * mtlfMithrilFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -1312,10 +1428,13 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Mithril Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Mithril -->
                 
-                <!--  Strategic Cloud distribution of Mithril. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Mithril -->
                 <IfCondition condition=':= mtlfMithrilDist = "strategicCloud"'>
                 
                     <Cloud name='mtlfMithril0Cloud' block='Metallurgy:fantasy.ore:7' inherits='PresetStrategicCloud'>
@@ -1328,7 +1447,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * mtlfMithrilFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfMithrilSize * _default_' range=':= 1 * 0.8 * mtlfMithrilSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfMithrilSize * _default_' range=':= 1 * 0.8 * mtlfMithrilSize * _default_'/>
@@ -1336,20 +1455,24 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfMithrilSize * _default_' range=':= 1 * 1 * 0.8 * mtlfMithrilSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Mithril Strategic Cloud Hint Veins -->
                         <Veins name='mtlfMithril0HintVeins' block='Metallurgy:fantasy.ore:7' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * mtlfMithrilFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfMithrilSize * _default_' range=':= 1 * 0.8 * mtlfMithrilSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Mithril Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Mithril Strategic Cloud) Settings -->
                     <Cloud name='mtlfMithril1Cloud' block='Metallurgy:fantasy.ore:7' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1361,7 +1484,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * mtlfMithrilFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfMithrilSize * _default_' range=':= 1 * 0.8 * mtlfMithrilSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfMithrilSize * _default_' range=':= 1 * 0.8 * mtlfMithrilSize * _default_'/>
@@ -1370,24 +1493,31 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfMithrilSize * _default_' range=':= 1 * 1 * 0.8 * mtlfMithrilSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Mithril Strategic Cloud Hint Veins -->
                         <Veins name='mtlfMithril1HintVeins' block='Metallurgy:fantasy.ore:7' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * mtlfMithrilFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfMithrilSize * _default_' range=':= 1 * 0.8 * mtlfMithrilSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Mithril Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Mithril Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Mithril -->
                 
-                <!--  Vanilla distribution of Mithril. -->
+                
+                <!-- Begin  Vanilla distribution of Mithril -->
                 <IfCondition condition=':= mtlfMithrilDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlfMithril0Standard' block='Metallurgy:fantasy.ore:7' inherits='PresetStandardGen'>
@@ -1395,33 +1525,38 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfMithrilSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * mtlfMithrilFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Mithril Vanilla) Settings -->
                     <StandardGen name='mtlfMithril1Standard' block='Metallurgy:fantasy.ore:7' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfMithrilSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * mtlfMithrilFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Mithril Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Mithril -->
                 
-                <!-- Rubracium Generation. --> 
+                <!-- End Mithril Generation --> 
+
                 
-                <!-- Layered Veins distribution of Rubracium. -->
+                <!-- Begin Rubracium Generation --> 
+                
+                <!-- Begin Layered Veins distribution of Rubracium -->
                 <IfCondition condition=':= mtlfRubraciumDist = "layeredVeins"'>
                 
                     <Veins name='mtlfRubracium0Veins' block='Metallurgy:fantasy.ore:8' inherits='PresetLayeredVeins'>
@@ -1429,7 +1564,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfRubraciumSize * _default_' range=':= 1 * 0.8 * mtlfRubraciumSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * mtlfRubraciumFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -1438,14 +1573,14 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Rubracium Layered Veins) Settings -->
                     <Veins name='mtlfRubracium1Veins' block='Metallurgy:fantasy.ore:8' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfRubraciumSize * _default_' range=':= 1 * 0.8 * mtlfRubraciumSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * mtlfRubraciumFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -1454,10 +1589,13 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Rubracium Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Rubracium -->
                 
-                <!--  Strategic Cloud distribution of Rubracium. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Rubracium -->
                 <IfCondition condition=':= mtlfRubraciumDist = "strategicCloud"'>
                 
                     <Cloud name='mtlfRubracium0Cloud' block='Metallurgy:fantasy.ore:8' inherits='PresetStrategicCloud'>
@@ -1470,7 +1608,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * mtlfRubraciumFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfRubraciumSize * _default_' range=':= 1 * 0.8 * mtlfRubraciumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfRubraciumSize * _default_' range=':= 1 * 0.8 * mtlfRubraciumSize * _default_'/>
@@ -1478,20 +1616,24 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfRubraciumSize * _default_' range=':= 1 * 1 * 0.8 * mtlfRubraciumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Rubracium Strategic Cloud Hint Veins -->
                         <Veins name='mtlfRubracium0HintVeins' block='Metallurgy:fantasy.ore:8' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * mtlfRubraciumFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfRubraciumSize * _default_' range=':= 1 * 0.8 * mtlfRubraciumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Rubracium Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Rubracium Strategic Cloud) Settings -->
                     <Cloud name='mtlfRubracium1Cloud' block='Metallurgy:fantasy.ore:8' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1503,7 +1645,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * mtlfRubraciumFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfRubraciumSize * _default_' range=':= 1 * 0.8 * mtlfRubraciumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfRubraciumSize * _default_' range=':= 1 * 0.8 * mtlfRubraciumSize * _default_'/>
@@ -1512,24 +1654,31 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfRubraciumSize * _default_' range=':= 1 * 1 * 0.8 * mtlfRubraciumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Rubracium Strategic Cloud Hint Veins -->
                         <Veins name='mtlfRubracium1HintVeins' block='Metallurgy:fantasy.ore:8' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * mtlfRubraciumFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfRubraciumSize * _default_' range=':= 1 * 0.8 * mtlfRubraciumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Rubracium Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Rubracium Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Rubracium -->
                 
-                <!--  Vanilla distribution of Rubracium. -->
+                
+                <!-- Begin  Vanilla distribution of Rubracium -->
                 <IfCondition condition=':= mtlfRubraciumDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlfRubracium0Standard' block='Metallurgy:fantasy.ore:8' inherits='PresetStandardGen'>
@@ -1537,33 +1686,38 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfRubraciumSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * mtlfRubraciumFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Rubracium Vanilla) Settings -->
                     <StandardGen name='mtlfRubracium1Standard' block='Metallurgy:fantasy.ore:8' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfRubraciumSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * mtlfRubraciumFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Rubracium Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Rubracium -->
                 
-                <!-- Orichalcum Generation. --> 
+                <!-- End Rubracium Generation --> 
+
                 
-                <!-- Layered Veins distribution of Orichalcum. -->
+                <!-- Begin Orichalcum Generation --> 
+                
+                <!-- Begin Layered Veins distribution of Orichalcum -->
                 <IfCondition condition=':= mtlfOrichalcumDist = "layeredVeins"'>
                 
                     <Veins name='mtlfOrichalcum0Veins' block='Metallurgy:fantasy.ore:11' inherits='PresetLayeredVeins'>
@@ -1571,7 +1725,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfOrichalcumSize * _default_' range=':= 1 * 0.8 * mtlfOrichalcumSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * mtlfOrichalcumFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -1580,14 +1734,14 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Orichalcum Layered Veins) Settings -->
                     <Veins name='mtlfOrichalcum1Veins' block='Metallurgy:fantasy.ore:11' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfOrichalcumSize * _default_' range=':= 1 * 0.8 * mtlfOrichalcumSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * mtlfOrichalcumFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -1596,10 +1750,13 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Orichalcum Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Orichalcum -->
                 
-                <!--  Strategic Cloud distribution of Orichalcum. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Orichalcum -->
                 <IfCondition condition=':= mtlfOrichalcumDist = "strategicCloud"'>
                 
                     <Cloud name='mtlfOrichalcum0Cloud' block='Metallurgy:fantasy.ore:11' inherits='PresetStrategicCloud'>
@@ -1612,7 +1769,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * mtlfOrichalcumFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfOrichalcumSize * _default_' range=':= 1 * 0.8 * mtlfOrichalcumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfOrichalcumSize * _default_' range=':= 1 * 0.8 * mtlfOrichalcumSize * _default_'/>
@@ -1620,20 +1777,24 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfOrichalcumSize * _default_' range=':= 1 * 1 * 0.8 * mtlfOrichalcumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Orichalcum Strategic Cloud Hint Veins -->
                         <Veins name='mtlfOrichalcum0HintVeins' block='Metallurgy:fantasy.ore:11' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * mtlfOrichalcumFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfOrichalcumSize * _default_' range=':= 1 * 0.8 * mtlfOrichalcumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Orichalcum Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Orichalcum Strategic Cloud) Settings -->
                     <Cloud name='mtlfOrichalcum1Cloud' block='Metallurgy:fantasy.ore:11' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1645,7 +1806,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * mtlfOrichalcumFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfOrichalcumSize * _default_' range=':= 1 * 0.8 * mtlfOrichalcumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfOrichalcumSize * _default_' range=':= 1 * 0.8 * mtlfOrichalcumSize * _default_'/>
@@ -1654,24 +1815,31 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfOrichalcumSize * _default_' range=':= 1 * 1 * 0.8 * mtlfOrichalcumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Orichalcum Strategic Cloud Hint Veins -->
                         <Veins name='mtlfOrichalcum1HintVeins' block='Metallurgy:fantasy.ore:11' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * mtlfOrichalcumFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfOrichalcumSize * _default_' range=':= 1 * 0.8 * mtlfOrichalcumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Orichalcum Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Orichalcum Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Orichalcum -->
                 
-                <!--  Vanilla distribution of Orichalcum. -->
+                
+                <!-- Begin  Vanilla distribution of Orichalcum -->
                 <IfCondition condition=':= mtlfOrichalcumDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlfOrichalcum0Standard' block='Metallurgy:fantasy.ore:11' inherits='PresetStandardGen'>
@@ -1679,33 +1847,38 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfOrichalcumSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * mtlfOrichalcumFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Orichalcum Vanilla) Settings -->
                     <StandardGen name='mtlfOrichalcum1Standard' block='Metallurgy:fantasy.ore:11' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfOrichalcumSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * mtlfOrichalcumFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Orichalcum Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Orichalcum -->
                 
-                <!-- Adamantine Generation. --> 
+                <!-- End Orichalcum Generation --> 
+
                 
-                <!-- Layered Veins distribution of Adamantine. -->
+                <!-- Begin Adamantine Generation --> 
+                
+                <!-- Begin Layered Veins distribution of Adamantine -->
                 <IfCondition condition=':= mtlfAdamantineDist = "layeredVeins"'>
                 
                     <Veins name='mtlfAdamantine0Veins' block='Metallurgy:fantasy.ore:13' inherits='PresetLayeredVeins'>
@@ -1713,7 +1886,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfAdamantineSize * _default_' range=':= 1 * 0.8 * mtlfAdamantineSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * mtlfAdamantineFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -1722,14 +1895,14 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Adamantine Layered Veins) Settings -->
                     <Veins name='mtlfAdamantine1Veins' block='Metallurgy:fantasy.ore:13' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfAdamantineSize * _default_' range=':= 1 * 0.8 * mtlfAdamantineSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * mtlfAdamantineFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -1738,10 +1911,13 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Adamantine Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Adamantine -->
                 
-                <!--  Strategic Cloud distribution of Adamantine. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Adamantine -->
                 <IfCondition condition=':= mtlfAdamantineDist = "strategicCloud"'>
                 
                     <Cloud name='mtlfAdamantine0Cloud' block='Metallurgy:fantasy.ore:13' inherits='PresetStrategicCloud'>
@@ -1754,7 +1930,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * mtlfAdamantineFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfAdamantineSize * _default_' range=':= 1 * 0.8 * mtlfAdamantineSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfAdamantineSize * _default_' range=':= 1 * 0.8 * mtlfAdamantineSize * _default_'/>
@@ -1762,20 +1938,24 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfAdamantineSize * _default_' range=':= 1 * 1 * 0.8 * mtlfAdamantineSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Adamantine Strategic Cloud Hint Veins -->
                         <Veins name='mtlfAdamantine0HintVeins' block='Metallurgy:fantasy.ore:13' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * mtlfAdamantineFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfAdamantineSize * _default_' range=':= 1 * 0.8 * mtlfAdamantineSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Adamantine Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Adamantine Strategic Cloud) Settings -->
                     <Cloud name='mtlfAdamantine1Cloud' block='Metallurgy:fantasy.ore:13' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1787,7 +1967,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * mtlfAdamantineFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfAdamantineSize * _default_' range=':= 1 * 0.8 * mtlfAdamantineSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfAdamantineSize * _default_' range=':= 1 * 0.8 * mtlfAdamantineSize * _default_'/>
@@ -1796,24 +1976,31 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfAdamantineSize * _default_' range=':= 1 * 1 * 0.8 * mtlfAdamantineSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Adamantine Strategic Cloud Hint Veins -->
                         <Veins name='mtlfAdamantine1HintVeins' block='Metallurgy:fantasy.ore:13' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * mtlfAdamantineFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfAdamantineSize * _default_' range=':= 1 * 0.8 * mtlfAdamantineSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Adamantine Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Adamantine Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Adamantine -->
                 
-                <!--  Vanilla distribution of Adamantine. -->
+                
+                <!-- Begin  Vanilla distribution of Adamantine -->
                 <IfCondition condition=':= mtlfAdamantineDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlfAdamantine0Standard' block='Metallurgy:fantasy.ore:13' inherits='PresetStandardGen'>
@@ -1821,33 +2008,38 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfAdamantineSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * mtlfAdamantineFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Adamantine Vanilla) Settings -->
                     <StandardGen name='mtlfAdamantine1Standard' block='Metallurgy:fantasy.ore:13' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfAdamantineSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * mtlfAdamantineFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Adamantine Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Adamantine -->
                 
-                <!-- Atlarus Generation. --> 
+                <!-- End Adamantine Generation --> 
+
                 
-                <!-- Layered Veins distribution of Atlarus. -->
+                <!-- Begin Atlarus Generation --> 
+                
+                <!-- Begin Layered Veins distribution of Atlarus -->
                 <IfCondition condition=':= mtlfAtlarusDist = "layeredVeins"'>
                 
                     <Veins name='mtlfAtlarus0Veins' block='Metallurgy:fantasy.ore:14' inherits='PresetLayeredVeins'>
@@ -1855,7 +2047,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfAtlarusSize * _default_' range=':= 1 * 0.8 * mtlfAtlarusSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * mtlfAtlarusFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -1864,14 +2056,14 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Atlarus Layered Veins) Settings -->
                     <Veins name='mtlfAtlarus1Veins' block='Metallurgy:fantasy.ore:14' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlfAtlarusSize * _default_' range=':= 1 * 0.8 * mtlfAtlarusSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * mtlfAtlarusFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -1880,10 +2072,13 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Atlarus Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Atlarus -->
                 
-                <!--  Strategic Cloud distribution of Atlarus. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Atlarus -->
                 <IfCondition condition=':= mtlfAtlarusDist = "strategicCloud"'>
                 
                     <Cloud name='mtlfAtlarus0Cloud' block='Metallurgy:fantasy.ore:14' inherits='PresetStrategicCloud'>
@@ -1896,7 +2091,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * mtlfAtlarusFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfAtlarusSize * _default_' range=':= 1 * 0.8 * mtlfAtlarusSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfAtlarusSize * _default_' range=':= 1 * 0.8 * mtlfAtlarusSize * _default_'/>
@@ -1904,20 +2099,24 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfAtlarusSize * _default_' range=':= 1 * 1 * 0.8 * mtlfAtlarusSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Atlarus Strategic Cloud Hint Veins -->
                         <Veins name='mtlfAtlarus0HintVeins' block='Metallurgy:fantasy.ore:14' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * mtlfAtlarusFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfAtlarusSize * _default_' range=':= 1 * 0.8 * mtlfAtlarusSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Atlarus Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Atlarus Strategic Cloud) Settings -->
                     <Cloud name='mtlfAtlarus1Cloud' block='Metallurgy:fantasy.ore:14' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1929,7 +2128,7 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * mtlfAtlarusFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlfAtlarusSize * _default_' range=':= 1 * 0.8 * mtlfAtlarusSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlfAtlarusSize * _default_' range=':= 1 * 0.8 * mtlfAtlarusSize * _default_'/>
@@ -1938,24 +2137,31 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlfAtlarusSize * _default_' range=':= 1 * 1 * 0.8 * mtlfAtlarusSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Atlarus Strategic Cloud Hint Veins -->
                         <Veins name='mtlfAtlarus1HintVeins' block='Metallurgy:fantasy.ore:14' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x601FC69C</WireframeColor>
+                            <WireframeColor>0x603E8259</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * mtlfAtlarusFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlfAtlarusSize * _default_' range=':= 1 * 0.8 * mtlfAtlarusSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Atlarus Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Atlarus Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Atlarus -->
                 
-                <!--  Vanilla distribution of Atlarus. -->
+                
+                <!-- Begin  Vanilla distribution of Atlarus -->
                 <IfCondition condition=':= mtlfAtlarusDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlfAtlarus0Standard' block='Metallurgy:fantasy.ore:14' inherits='PresetStandardGen'>
@@ -1963,29 +2169,34 @@ Mithril, Rubracium, Orichalcum, Adamantine, Atlarus
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfAtlarusSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * mtlfAtlarusFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Atlarus Vanilla) Settings -->
                     <StandardGen name='mtlfAtlarus1Standard' block='Metallurgy:fantasy.ore:14' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x601FC69C</WireframeColor>
+                        <WireframeColor>0x603E8259</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlfAtlarusSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * mtlfAtlarusFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Atlarus Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Atlarus -->
+                
+                <!-- End Atlarus Generation --> 
+
                 <!-- Done adding ores -->
             
             </IfCondition>

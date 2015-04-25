@@ -300,7 +300,8 @@ Amber
 
             <!-- Setup Overworld -->
             <IfCondition condition=':= ?COGActive'>
-                <!-- **********   Vanilla Deposit Removal   ************* -->
+                
+                <!-- Starting Original Overworld Ore Removal -->
                 <Substitute name='boplOverworldOreSubstitute0' block='minecraft:stone'>
                     <Description>
                         Replace vanilla-generated ore clusters.
@@ -316,12 +317,13 @@ Amber
                     <Replaces block='BiomesOPlenty:gemOre:12' />
                     <Replaces block='BiomesOPlenty:gemOre:14' />
                 </Substitute>
+                <!-- Original Overworld Ore Removal Complete -->
                 
                 <!-- Adding ores --> 
                 
-                <!-- Ruby Generation. --> 
+                <!-- Begin Ruby Generation --> 
                 
-                <!-- Sparse Veins distribution of Ruby. -->
+                <!-- Begin Sparse Veins distribution of Ruby -->
                 <IfCondition condition=':= boplRubyDist = "sparseVeins"'>
                 
                     <Veins name='boplRuby0Veins' block='BiomesOPlenty:gemOre:2' inherits='PresetSparseVeins'>
@@ -341,7 +343,7 @@ Amber
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Ruby Sparse Veins) Settings -->
                     <Veins name='boplRuby1Veins' block='BiomesOPlenty:gemOre:2' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
@@ -360,10 +362,13 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Ruby Sparse Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Sparse Veins distribution of Ruby -->
                 
-                <!--  Strategic Cloud distribution of Ruby. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Ruby -->
                 <IfCondition condition=':= boplRubyDist = "strategicCloud"'>
                 
                     <Cloud name='boplRuby0Cloud' block='BiomesOPlenty:gemOre:2' inherits='PresetStrategicCloud'>
@@ -384,6 +389,8 @@ Amber
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplRubySize * _default_' range=':= 1 * 1 * 0.8 * boplRubySize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Ruby Strategic Cloud Hint Veins -->
                         <Veins name='boplRuby0HintVeins' block='BiomesOPlenty:gemOre:2' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -395,9 +402,11 @@ Amber
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplRubySize * _default_' range=':= 1 * 0.8 * boplRubySize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Ruby Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Ruby Strategic Cloud) Settings -->
                     <Cloud name='boplRuby1Cloud' block='BiomesOPlenty:gemOre:2' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -418,6 +427,8 @@ Amber
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplRubySize * _default_' range=':= 1 * 1 * 0.8 * boplRubySize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Ruby Strategic Cloud Hint Veins -->
                         <Veins name='boplRuby1HintVeins' block='BiomesOPlenty:gemOre:2' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -431,11 +442,16 @@ Amber
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Ruby Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Ruby Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Ruby -->
                 
-                <!--  Vanilla distribution of Ruby. -->
+                
+                <!-- Begin  Vanilla distribution of Ruby -->
                 <IfCondition condition=':= boplRubyDist = "vanillaStdGen"'>
                 
                     <StandardGen name='boplRuby0Standard' block='BiomesOPlenty:gemOre:2' inherits='PresetStandardGen'>
@@ -450,7 +466,7 @@ Amber
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Ruby Vanilla) Settings -->
                     <StandardGen name='boplRuby1Standard' block='BiomesOPlenty:gemOre:2' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -464,12 +480,17 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Ruby Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Ruby -->
                 
-                <!-- Peridot Generation. --> 
+                <!-- End Ruby Generation --> 
+
                 
-                <!-- Sparse Veins distribution of Peridot. -->
+                <!-- Begin Peridot Generation --> 
+                
+                <!-- Begin Sparse Veins distribution of Peridot -->
                 <IfCondition condition=':= boplPeridotDist = "sparseVeins"'>
                 
                     <Veins name='boplPeridot0Veins' block='BiomesOPlenty:gemOre:4' inherits='PresetSparseVeins'>
@@ -489,7 +510,7 @@ Amber
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Peridot Sparse Veins) Settings -->
                     <Veins name='boplPeridot1Veins' block='BiomesOPlenty:gemOre:4' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
@@ -508,10 +529,13 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Peridot Sparse Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Sparse Veins distribution of Peridot -->
                 
-                <!--  Strategic Cloud distribution of Peridot. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Peridot -->
                 <IfCondition condition=':= boplPeridotDist = "strategicCloud"'>
                 
                     <Cloud name='boplPeridot0Cloud' block='BiomesOPlenty:gemOre:4' inherits='PresetStrategicCloud'>
@@ -532,6 +556,8 @@ Amber
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplPeridotSize * _default_' range=':= 1 * 1 * 0.8 * boplPeridotSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Peridot Strategic Cloud Hint Veins -->
                         <Veins name='boplPeridot0HintVeins' block='BiomesOPlenty:gemOre:4' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -543,9 +569,11 @@ Amber
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplPeridotSize * _default_' range=':= 1 * 0.8 * boplPeridotSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Peridot Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Peridot Strategic Cloud) Settings -->
                     <Cloud name='boplPeridot1Cloud' block='BiomesOPlenty:gemOre:4' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -566,6 +594,8 @@ Amber
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplPeridotSize * _default_' range=':= 1 * 1 * 0.8 * boplPeridotSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Peridot Strategic Cloud Hint Veins -->
                         <Veins name='boplPeridot1HintVeins' block='BiomesOPlenty:gemOre:4' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -579,11 +609,16 @@ Amber
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Peridot Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Peridot Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Peridot -->
                 
-                <!--  Vanilla distribution of Peridot. -->
+                
+                <!-- Begin  Vanilla distribution of Peridot -->
                 <IfCondition condition=':= boplPeridotDist = "vanillaStdGen"'>
                 
                     <StandardGen name='boplPeridot0Standard' block='BiomesOPlenty:gemOre:4' inherits='PresetStandardGen'>
@@ -598,7 +633,7 @@ Amber
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Peridot Vanilla) Settings -->
                     <StandardGen name='boplPeridot1Standard' block='BiomesOPlenty:gemOre:4' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -612,12 +647,17 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Peridot Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Peridot -->
                 
-                <!-- Topaz Generation. --> 
+                <!-- End Peridot Generation --> 
+
                 
-                <!-- Sparse Veins distribution of Topaz. -->
+                <!-- Begin Topaz Generation --> 
+                
+                <!-- Begin Sparse Veins distribution of Topaz -->
                 <IfCondition condition=':= boplTopazDist = "sparseVeins"'>
                 
                     <Veins name='boplTopaz0Veins' block='BiomesOPlenty:gemOre:6' inherits='PresetSparseVeins'>
@@ -637,7 +677,7 @@ Amber
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Topaz Sparse Veins) Settings -->
                     <Veins name='boplTopaz1Veins' block='BiomesOPlenty:gemOre:6' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
@@ -656,10 +696,13 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Topaz Sparse Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Sparse Veins distribution of Topaz -->
                 
-                <!--  Strategic Cloud distribution of Topaz. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Topaz -->
                 <IfCondition condition=':= boplTopazDist = "strategicCloud"'>
                 
                     <Cloud name='boplTopaz0Cloud' block='BiomesOPlenty:gemOre:6' inherits='PresetStrategicCloud'>
@@ -680,6 +723,8 @@ Amber
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplTopazSize * _default_' range=':= 1 * 1 * 0.8 * boplTopazSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Topaz Strategic Cloud Hint Veins -->
                         <Veins name='boplTopaz0HintVeins' block='BiomesOPlenty:gemOre:6' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -691,9 +736,11 @@ Amber
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplTopazSize * _default_' range=':= 1 * 0.8 * boplTopazSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Topaz Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Topaz Strategic Cloud) Settings -->
                     <Cloud name='boplTopaz1Cloud' block='BiomesOPlenty:gemOre:6' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -714,6 +761,8 @@ Amber
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplTopazSize * _default_' range=':= 1 * 1 * 0.8 * boplTopazSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Topaz Strategic Cloud Hint Veins -->
                         <Veins name='boplTopaz1HintVeins' block='BiomesOPlenty:gemOre:6' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -727,11 +776,16 @@ Amber
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Topaz Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Topaz Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Topaz -->
                 
-                <!--  Vanilla distribution of Topaz. -->
+                
+                <!-- Begin  Vanilla distribution of Topaz -->
                 <IfCondition condition=':= boplTopazDist = "vanillaStdGen"'>
                 
                     <StandardGen name='boplTopaz0Standard' block='BiomesOPlenty:gemOre:6' inherits='PresetStandardGen'>
@@ -746,7 +800,7 @@ Amber
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Topaz Vanilla) Settings -->
                     <StandardGen name='boplTopaz1Standard' block='BiomesOPlenty:gemOre:6' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -760,12 +814,17 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Topaz Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Topaz -->
                 
-                <!-- Tanzanite Generation. --> 
+                <!-- End Topaz Generation --> 
+
                 
-                <!-- Sparse Veins distribution of Tanzanite. -->
+                <!-- Begin Tanzanite Generation --> 
+                
+                <!-- Begin Sparse Veins distribution of Tanzanite -->
                 <IfCondition condition=':= boplTanzaniteDist = "sparseVeins"'>
                 
                     <Veins name='boplTanzanite0Veins' block='BiomesOPlenty:gemOre:8' inherits='PresetSparseVeins'>
@@ -785,7 +844,7 @@ Amber
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Tanzanite Sparse Veins) Settings -->
                     <Veins name='boplTanzanite1Veins' block='BiomesOPlenty:gemOre:8' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
@@ -804,10 +863,13 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Tanzanite Sparse Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Sparse Veins distribution of Tanzanite -->
                 
-                <!--  Strategic Cloud distribution of Tanzanite. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Tanzanite -->
                 <IfCondition condition=':= boplTanzaniteDist = "strategicCloud"'>
                 
                     <Cloud name='boplTanzanite0Cloud' block='BiomesOPlenty:gemOre:8' inherits='PresetStrategicCloud'>
@@ -828,6 +890,8 @@ Amber
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplTanzaniteSize * _default_' range=':= 1 * 1 * 0.8 * boplTanzaniteSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Tanzanite Strategic Cloud Hint Veins -->
                         <Veins name='boplTanzanite0HintVeins' block='BiomesOPlenty:gemOre:8' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -839,9 +903,11 @@ Amber
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplTanzaniteSize * _default_' range=':= 1 * 0.8 * boplTanzaniteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Tanzanite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Tanzanite Strategic Cloud) Settings -->
                     <Cloud name='boplTanzanite1Cloud' block='BiomesOPlenty:gemOre:8' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -862,6 +928,8 @@ Amber
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplTanzaniteSize * _default_' range=':= 1 * 1 * 0.8 * boplTanzaniteSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Tanzanite Strategic Cloud Hint Veins -->
                         <Veins name='boplTanzanite1HintVeins' block='BiomesOPlenty:gemOre:8' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -875,11 +943,16 @@ Amber
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Tanzanite Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Tanzanite Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Tanzanite -->
                 
-                <!--  Vanilla distribution of Tanzanite. -->
+                
+                <!-- Begin  Vanilla distribution of Tanzanite -->
                 <IfCondition condition=':= boplTanzaniteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='boplTanzanite0Standard' block='BiomesOPlenty:gemOre:8' inherits='PresetStandardGen'>
@@ -894,7 +967,7 @@ Amber
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Tanzanite Vanilla) Settings -->
                     <StandardGen name='boplTanzanite1Standard' block='BiomesOPlenty:gemOre:8' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -908,12 +981,17 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Tanzanite Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Tanzanite -->
                 
-                <!-- Malachite Generation. --> 
+                <!-- End Tanzanite Generation --> 
+
                 
-                <!-- Sparse Veins distribution of Malachite. -->
+                <!-- Begin Malachite Generation --> 
+                
+                <!-- Begin Sparse Veins distribution of Malachite -->
                 <IfCondition condition=':= boplMalachiteDist = "sparseVeins"'>
                 
                     <Veins name='boplMalachite0Veins' block='BiomesOPlenty:gemOre:10' inherits='PresetSparseVeins'>
@@ -933,7 +1011,7 @@ Amber
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Malachite Sparse Veins) Settings -->
                     <Veins name='boplMalachite1Veins' block='BiomesOPlenty:gemOre:10' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
@@ -952,10 +1030,13 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Malachite Sparse Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Sparse Veins distribution of Malachite -->
                 
-                <!--  Strategic Cloud distribution of Malachite. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Malachite -->
                 <IfCondition condition=':= boplMalachiteDist = "strategicCloud"'>
                 
                     <Cloud name='boplMalachite0Cloud' block='BiomesOPlenty:gemOre:10' inherits='PresetStrategicCloud'>
@@ -976,6 +1057,8 @@ Amber
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplMalachiteSize * _default_' range=':= 1 * 1 * 0.8 * boplMalachiteSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Malachite Strategic Cloud Hint Veins -->
                         <Veins name='boplMalachite0HintVeins' block='BiomesOPlenty:gemOre:10' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -987,9 +1070,11 @@ Amber
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplMalachiteSize * _default_' range=':= 1 * 0.8 * boplMalachiteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Malachite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Malachite Strategic Cloud) Settings -->
                     <Cloud name='boplMalachite1Cloud' block='BiomesOPlenty:gemOre:10' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1010,6 +1095,8 @@ Amber
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplMalachiteSize * _default_' range=':= 1 * 1 * 0.8 * boplMalachiteSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Malachite Strategic Cloud Hint Veins -->
                         <Veins name='boplMalachite1HintVeins' block='BiomesOPlenty:gemOre:10' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1023,11 +1110,16 @@ Amber
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Malachite Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Malachite Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Malachite -->
                 
-                <!--  Vanilla distribution of Malachite. -->
+                
+                <!-- Begin  Vanilla distribution of Malachite -->
                 <IfCondition condition=':= boplMalachiteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='boplMalachite0Standard' block='BiomesOPlenty:gemOre:10' inherits='PresetStandardGen'>
@@ -1042,7 +1134,7 @@ Amber
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Malachite Vanilla) Settings -->
                     <StandardGen name='boplMalachite1Standard' block='BiomesOPlenty:gemOre:10' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -1056,12 +1148,17 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Malachite Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Malachite -->
                 
-                <!-- Sapphire Generation. --> 
+                <!-- End Malachite Generation --> 
+
                 
-                <!-- Sparse Veins distribution of Sapphire. -->
+                <!-- Begin Sapphire Generation --> 
+                
+                <!-- Begin Sparse Veins distribution of Sapphire -->
                 <IfCondition condition=':= boplSapphireDist = "sparseVeins"'>
                 
                     <Veins name='boplSapphire0Veins' block='BiomesOPlenty:gemOre:12' inherits='PresetSparseVeins'>
@@ -1081,7 +1178,7 @@ Amber
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Sapphire Sparse Veins) Settings -->
                     <Veins name='boplSapphire1Veins' block='BiomesOPlenty:gemOre:12' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
@@ -1100,10 +1197,13 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Sapphire Sparse Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Sparse Veins distribution of Sapphire -->
                 
-                <!--  Strategic Cloud distribution of Sapphire. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Sapphire -->
                 <IfCondition condition=':= boplSapphireDist = "strategicCloud"'>
                 
                     <Cloud name='boplSapphire0Cloud' block='BiomesOPlenty:gemOre:12' inherits='PresetStrategicCloud'>
@@ -1124,6 +1224,8 @@ Amber
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplSapphireSize * _default_' range=':= 1 * 1 * 0.8 * boplSapphireSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Sapphire Strategic Cloud Hint Veins -->
                         <Veins name='boplSapphire0HintVeins' block='BiomesOPlenty:gemOre:12' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1135,9 +1237,11 @@ Amber
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplSapphireSize * _default_' range=':= 1 * 0.8 * boplSapphireSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Sapphire Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Sapphire Strategic Cloud) Settings -->
                     <Cloud name='boplSapphire1Cloud' block='BiomesOPlenty:gemOre:12' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1158,6 +1262,8 @@ Amber
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplSapphireSize * _default_' range=':= 1 * 1 * 0.8 * boplSapphireSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Sapphire Strategic Cloud Hint Veins -->
                         <Veins name='boplSapphire1HintVeins' block='BiomesOPlenty:gemOre:12' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1171,11 +1277,16 @@ Amber
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Sapphire Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Sapphire Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Sapphire -->
                 
-                <!--  Vanilla distribution of Sapphire. -->
+                
+                <!-- Begin  Vanilla distribution of Sapphire -->
                 <IfCondition condition=':= boplSapphireDist = "vanillaStdGen"'>
                 
                     <StandardGen name='boplSapphire0Standard' block='BiomesOPlenty:gemOre:12' inherits='PresetStandardGen'>
@@ -1190,7 +1301,7 @@ Amber
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Sapphire Vanilla) Settings -->
                     <StandardGen name='boplSapphire1Standard' block='BiomesOPlenty:gemOre:12' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -1204,12 +1315,17 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Sapphire Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Sapphire -->
                 
-                <!-- Amber Generation. --> 
+                <!-- End Sapphire Generation --> 
+
                 
-                <!-- Sparse Veins distribution of Amber. -->
+                <!-- Begin Amber Generation --> 
+                
+                <!-- Begin Sparse Veins distribution of Amber -->
                 <IfCondition condition=':= boplAmberDist = "sparseVeins"'>
                 
                     <Veins name='boplAmber0Veins' block='BiomesOPlenty:gemOre:14' inherits='PresetSparseVeins'>
@@ -1229,7 +1345,7 @@ Amber
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Amber Sparse Veins) Settings -->
                     <Veins name='boplAmber1Veins' block='BiomesOPlenty:gemOre:14' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
@@ -1248,10 +1364,13 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Amber Sparse Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Sparse Veins distribution of Amber -->
                 
-                <!--  Strategic Cloud distribution of Amber. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Amber -->
                 <IfCondition condition=':= boplAmberDist = "strategicCloud"'>
                 
                     <Cloud name='boplAmber0Cloud' block='BiomesOPlenty:gemOre:14' inherits='PresetStrategicCloud'>
@@ -1272,6 +1391,8 @@ Amber
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplAmberSize * _default_' range=':= 1 * 1 * 0.8 * boplAmberSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Amber Strategic Cloud Hint Veins -->
                         <Veins name='boplAmber0HintVeins' block='BiomesOPlenty:gemOre:14' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1283,9 +1404,11 @@ Amber
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplAmberSize * _default_' range=':= 1 * 0.8 * boplAmberSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Amber Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Amber Strategic Cloud) Settings -->
                     <Cloud name='boplAmber1Cloud' block='BiomesOPlenty:gemOre:14' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1306,6 +1429,8 @@ Amber
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplAmberSize * _default_' range=':= 1 * 1 * 0.8 * boplAmberSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Amber Strategic Cloud Hint Veins -->
                         <Veins name='boplAmber1HintVeins' block='BiomesOPlenty:gemOre:14' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1319,11 +1444,16 @@ Amber
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Amber Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Amber Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Amber -->
                 
-                <!--  Vanilla distribution of Amber. -->
+                
+                <!-- Begin  Vanilla distribution of Amber -->
                 <IfCondition condition=':= boplAmberDist = "vanillaStdGen"'>
                 
                     <StandardGen name='boplAmber0Standard' block='BiomesOPlenty:gemOre:14' inherits='PresetStandardGen'>
@@ -1338,7 +1468,7 @@ Amber
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Amber Vanilla) Settings -->
                     <StandardGen name='boplAmber1Standard' block='BiomesOPlenty:gemOre:14' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -1352,8 +1482,13 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Amber Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Amber -->
+                
+                <!-- End Amber Generation --> 
+
                 <!-- Done adding ores -->
             
             </IfCondition>
@@ -1363,7 +1498,8 @@ Amber
  
             <!-- Setup End -->
             <IfCondition condition=':= dimension.generator = "EndRandomLevelSource"'>
-                <!-- **********   Vanilla Deposit Removal   ************* -->
+                
+                <!-- Starting Original End Ore Removal -->
                 <Substitute name='boplEndOreSubstitute0' block='minecraft:end_stone'>
                     <Description>
                         Replace vanilla-generated ore clusters.
@@ -1373,12 +1509,13 @@ Amber
                     </Comment>
                     <Replaces block='BiomesOPlenty:gemOre:0' />
                 </Substitute>
+                <!-- Original End Ore Removal Complete -->
                 
                 <!-- Adding ores --> 
                 
                 <!-- EnderAmathyst Generation. --> 
                 
-                <!-- Layered Veins distribution of EnderAmathyst. -->
+                <!-- Begin Layered Veins distribution of EnderAmathyst -->
                 <IfCondition condition=':= boplEnderAmathystDist = "layeredVeins"'>
                 
                     <Veins name='boplEnderAmathyst0Veins' block='BiomesOPlenty:gemOre' inherits='PresetLayeredVeins'>
@@ -1395,7 +1532,7 @@ Amber
                         <Replaces block='minecraft:end_stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (EnderAmathyst Layered Veins) Settings -->
                     <Veins name='boplEnderAmathyst1Veins' block='BiomesOPlenty:gemOre' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1411,10 +1548,13 @@ Amber
                         <Replaces block='minecraft:end_stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (EnderAmathyst Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of EnderAmathyst -->
                 
-                <!--  Strategic Cloud distribution of EnderAmathyst. -->
+                
+                <!-- Begin  Strategic Cloud distribution of EnderAmathyst -->
                 <IfCondition condition=':= boplEnderAmathystDist = "strategicCloud"'>
                 
                     <Cloud name='boplEnderAmathyst0Cloud' block='BiomesOPlenty:gemOre' inherits='PresetStrategicCloud'>
@@ -1435,6 +1575,8 @@ Amber
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 1 * 0.8 * boplEnderAmathystSize  * _default_'/>
                         <Replaces block='minecraft:end_stone'/>
+                        
+                        <!-- Begin EnderAmathyst Strategic Cloud Hint Veins -->
                         <Veins name='boplEnderAmathyst0HintVeins' block='BiomesOPlenty:gemOre' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1446,9 +1588,11 @@ Amber
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 0.8 * boplEnderAmathystSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End EnderAmathyst Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (EnderAmathyst Strategic Cloud) Settings -->
                     <Cloud name='boplEnderAmathyst1Cloud' block='BiomesOPlenty:gemOre' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1469,6 +1613,8 @@ Amber
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 1 * 0.8 * boplEnderAmathystSize  * _default_'/>
                         <Replaces block='minecraft:end_stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin EnderAmathyst Strategic Cloud Hint Veins -->
                         <Veins name='boplEnderAmathyst1HintVeins' block='BiomesOPlenty:gemOre' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1482,11 +1628,16 @@ Amber
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End EnderAmathyst Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (EnderAmathyst Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of EnderAmathyst -->
                 
-                <!--  Vanilla distribution of EnderAmathyst. -->
+                
+                <!-- Begin  Vanilla distribution of EnderAmathyst -->
                 <IfCondition condition=':= boplEnderAmathystDist = "vanillaStdGen"'>
                 
                     <StandardGen name='boplEnderAmathyst0Standard' block='BiomesOPlenty:gemOre' inherits='PresetStandardGen'>
@@ -1501,7 +1652,7 @@ Amber
                         <Replaces block='minecraft:end_stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (EnderAmathyst Vanilla) Settings -->
                     <StandardGen name='boplEnderAmathyst1Standard' block='BiomesOPlenty:gemOre' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -1515,8 +1666,11 @@ Amber
                         <Replaces block='minecraft:end_stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (EnderAmathyst Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of EnderAmathyst -->
+                
                 <!-- Done adding ores -->
             
             </IfCondition>

@@ -340,7 +340,8 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
 
             <!-- Setup Overworld -->
             <IfCondition condition=':= ?COGActive'>
-                <!-- **********   Vanilla Deposit Removal   ************* -->
+                
+                <!-- Starting Original Overworld Ore Removal -->
                 <Substitute name='thm4OverworldOreSubstitute0' block='minecraft:stone'>
                     <Description>
                         Replace vanilla-generated ore clusters.
@@ -357,12 +358,13 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     <Replaces block='Thaumcraft:blockCustomOre:6' />
                     <Replaces block='Thaumcraft:blockCustomOre:7' />
                 </Substitute>
+                <!-- Original Overworld Ore Removal Complete -->
                 
                 <!-- Adding ores --> 
                 
-                <!-- Cinnabar Generation. --> 
+                <!-- Begin Cinnabar Generation --> 
                 
-                <!-- SparseVeins distribution of Cinnabar. -->
+                <!-- Begin SparseVeins distribution of Cinnabar -->
                 <IfCondition condition=':= thm4CinnabarDist = "sparseVeins"'>
                 
                     <Veins name='thm4Cinnabar0Veins' block='Thaumcraft:blockCustomOre' inherits='PresetSparseVeins'>
@@ -383,8 +385,10 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </Veins>
                 
                 </IfCondition>
+                <!-- End SparseVeins distribution of Cinnabar -->
                 
-                <!--  Small Deposits distribution of Cinnabar. -->
+                
+                <!-- Begin  Small Deposits distribution of Cinnabar -->
                 <IfCondition condition=':= thm4CinnabarDist = "smallDeposits"'>
                 
                     <Veins name='thm4Cinnabar0Veins' block='Thaumcraft:blockCustomOre' inherits='PresetSmallDeposits'>
@@ -402,8 +406,10 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </Veins>
                 
                 </IfCondition>
+                <!-- End  Small Deposits distribution of Cinnabar -->
                 
-                <!--  StrategicCloud distribution of Cinnabar. -->
+                
+                <!-- Begin  StrategicCloud distribution of Cinnabar -->
                 <IfCondition condition=':= thm4CinnabarDist = "strategicCloud"'>
                 
                     <Cloud name='thm4Cinnabar0Cloud' block='Thaumcraft:blockCustomOre' inherits='PresetStrategicCloud'>
@@ -424,6 +430,8 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.2 * 0.4 * thm4CinnabarSize * _default_' range=':= 1 * 0.2 * 0.4 * thm4CinnabarSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Cinnabar Strategic Cloud Hint Veins -->
                         <Veins name='thm4Cinnabar0HintVeins' block='Thaumcraft:blockCustomOre' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -435,11 +443,15 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.4 * thm4CinnabarSize * _default_' range=':= 1 * 0.4 * thm4CinnabarSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Cinnabar Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Cinnabar -->
                 
-                <!--  Vanilla distribution of Cinnabar. -->
+                
+                <!-- Begin  Vanilla distribution of Cinnabar -->
                 <IfCondition condition=':= thm4CinnabarDist = "vanillaStdGen"'>
                 
                     <StandardGen name='thm4Cinnabar0Standard' block='Thaumcraft:blockCustomOre' inherits='PresetStandardGen'>
@@ -455,10 +467,14 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Cinnabar -->
                 
-                <!-- Air Infused Stone Generation. --> 
+                <!-- End Cinnabar Generation --> 
+
                 
-                <!-- SparseVeins distribution of Air Infused Stone. -->
+                <!-- Begin Air Infused Stone Generation --> 
+                
+                <!-- Begin SparseVeins distribution of Air Infused Stone -->
                 <IfCondition condition=':= thm4AirInfusedStoneDist = "sparseVeins"'>
                 
                     <Veins name='thm4AirInfusedStone0Veins' block='Thaumcraft:blockCustomOre:1' inherits='PresetSparseVeins'>
@@ -479,8 +495,10 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </Veins>
                 
                 </IfCondition>
+                <!-- End SparseVeins distribution of Air Infused Stone -->
                 
-                <!--  Small Deposits distribution of Air Infused Stone. -->
+                
+                <!-- Begin  Small Deposits distribution of Air Infused Stone -->
                 <IfCondition condition=':= thm4AirInfusedStoneDist = "smallDeposits"'>
                 
                     <Veins name='thm4AirInfusedStone0Veins' block='Thaumcraft:blockCustomOre:1' inherits='PresetSmallDeposits'>
@@ -498,8 +516,10 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </Veins>
                 
                 </IfCondition>
+                <!-- End  Small Deposits distribution of Air Infused Stone -->
                 
-                <!--  StrategicCloud distribution of Air Infused Stone. -->
+                
+                <!-- Begin  StrategicCloud distribution of Air Infused Stone -->
                 <IfCondition condition=':= thm4AirInfusedStoneDist = "strategicCloud"'>
                 
                     <Cloud name='thm4AirInfusedStone0Cloud' block='Thaumcraft:blockCustomOre:1' inherits='PresetStrategicCloud'>
@@ -520,6 +540,8 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * thm4AirInfusedStoneSize * _default_' range=':= 1 * 1 * 1 * thm4AirInfusedStoneSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Air Infused Stone Strategic Cloud Hint Veins -->
                         <Veins name='thm4AirInfusedStone0HintVeins' block='Thaumcraft:blockCustomOre:1' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -531,11 +553,15 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thm4AirInfusedStoneSize * _default_' range=':= 1 * 1 * thm4AirInfusedStoneSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Air Infused Stone Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Air Infused Stone -->
                 
-                <!--  Vanilla distribution of Air Infused Stone. -->
+                
+                <!-- Begin  Vanilla distribution of Air Infused Stone -->
                 <IfCondition condition=':= thm4AirInfusedStoneDist = "vanillaStdGen"'>
                 
                     <StandardGen name='thm4AirInfusedStone0Standard' block='Thaumcraft:blockCustomOre:1' inherits='PresetStandardGen'>
@@ -551,10 +577,14 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Air Infused Stone -->
                 
-                <!-- Fire Infused Stone Generation. --> 
+                <!-- End Air Infused Stone Generation --> 
+
                 
-                <!-- SparseVeins distribution of Fire Infused Stone. -->
+                <!-- Begin Fire Infused Stone Generation --> 
+                
+                <!-- Begin SparseVeins distribution of Fire Infused Stone -->
                 <IfCondition condition=':= thm4FireInfusedStoneDist = "sparseVeins"'>
                 
                     <Veins name='thm4FireInfusedStone0Veins' block='Thaumcraft:blockCustomOre:2' inherits='PresetSparseVeins'>
@@ -575,8 +605,10 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </Veins>
                 
                 </IfCondition>
+                <!-- End SparseVeins distribution of Fire Infused Stone -->
                 
-                <!--  Small Deposits distribution of Fire Infused Stone. -->
+                
+                <!-- Begin  Small Deposits distribution of Fire Infused Stone -->
                 <IfCondition condition=':= thm4FireInfusedStoneDist = "smallDeposits"'>
                 
                     <Veins name='thm4FireInfusedStone0Veins' block='Thaumcraft:blockCustomOre:2' inherits='PresetSmallDeposits'>
@@ -594,8 +626,10 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </Veins>
                 
                 </IfCondition>
+                <!-- End  Small Deposits distribution of Fire Infused Stone -->
                 
-                <!--  StrategicCloud distribution of Fire Infused Stone. -->
+                
+                <!-- Begin  StrategicCloud distribution of Fire Infused Stone -->
                 <IfCondition condition=':= thm4FireInfusedStoneDist = "strategicCloud"'>
                 
                     <Cloud name='thm4FireInfusedStone0Cloud' block='Thaumcraft:blockCustomOre:2' inherits='PresetStrategicCloud'>
@@ -616,6 +650,8 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * thm4FireInfusedStoneSize * _default_' range=':= 1 * 1 * 1 * thm4FireInfusedStoneSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Fire Infused Stone Strategic Cloud Hint Veins -->
                         <Veins name='thm4FireInfusedStone0HintVeins' block='Thaumcraft:blockCustomOre:2' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -627,11 +663,15 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thm4FireInfusedStoneSize * _default_' range=':= 1 * 1 * thm4FireInfusedStoneSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Fire Infused Stone Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Fire Infused Stone -->
                 
-                <!--  Vanilla distribution of Fire Infused Stone. -->
+                
+                <!-- Begin  Vanilla distribution of Fire Infused Stone -->
                 <IfCondition condition=':= thm4FireInfusedStoneDist = "vanillaStdGen"'>
                 
                     <StandardGen name='thm4FireInfusedStone0Standard' block='Thaumcraft:blockCustomOre:2' inherits='PresetStandardGen'>
@@ -647,10 +687,14 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Fire Infused Stone -->
                 
-                <!-- Water Infused Stone Generation. --> 
+                <!-- End Fire Infused Stone Generation --> 
+
                 
-                <!-- SparseVeins distribution of Water Infused Stone. -->
+                <!-- Begin Water Infused Stone Generation --> 
+                
+                <!-- Begin SparseVeins distribution of Water Infused Stone -->
                 <IfCondition condition=':= thm4WaterInfusedStoneDist = "sparseVeins"'>
                 
                     <Veins name='thm4WaterInfusedStone0Veins' block='Thaumcraft:blockCustomOre:3' inherits='PresetSparseVeins'>
@@ -671,8 +715,10 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </Veins>
                 
                 </IfCondition>
+                <!-- End SparseVeins distribution of Water Infused Stone -->
                 
-                <!--  Small Deposits distribution of Water Infused Stone. -->
+                
+                <!-- Begin  Small Deposits distribution of Water Infused Stone -->
                 <IfCondition condition=':= thm4WaterInfusedStoneDist = "smallDeposits"'>
                 
                     <Veins name='thm4WaterInfusedStone0Veins' block='Thaumcraft:blockCustomOre:3' inherits='PresetSmallDeposits'>
@@ -690,8 +736,10 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </Veins>
                 
                 </IfCondition>
+                <!-- End  Small Deposits distribution of Water Infused Stone -->
                 
-                <!--  StrategicCloud distribution of Water Infused Stone. -->
+                
+                <!-- Begin  StrategicCloud distribution of Water Infused Stone -->
                 <IfCondition condition=':= thm4WaterInfusedStoneDist = "strategicCloud"'>
                 
                     <Cloud name='thm4WaterInfusedStone0Cloud' block='Thaumcraft:blockCustomOre:3' inherits='PresetStrategicCloud'>
@@ -712,6 +760,8 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * thm4WaterInfusedStoneSize * _default_' range=':= 1 * 1 * 1 * thm4WaterInfusedStoneSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Water Infused Stone Strategic Cloud Hint Veins -->
                         <Veins name='thm4WaterInfusedStone0HintVeins' block='Thaumcraft:blockCustomOre:3' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -723,11 +773,15 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thm4WaterInfusedStoneSize * _default_' range=':= 1 * 1 * thm4WaterInfusedStoneSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Water Infused Stone Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Water Infused Stone -->
                 
-                <!--  Vanilla distribution of Water Infused Stone. -->
+                
+                <!-- Begin  Vanilla distribution of Water Infused Stone -->
                 <IfCondition condition=':= thm4WaterInfusedStoneDist = "vanillaStdGen"'>
                 
                     <StandardGen name='thm4WaterInfusedStone0Standard' block='Thaumcraft:blockCustomOre:3' inherits='PresetStandardGen'>
@@ -743,10 +797,14 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Water Infused Stone -->
                 
-                <!-- Earth Infused Stone Generation. --> 
+                <!-- End Water Infused Stone Generation --> 
+
                 
-                <!-- SparseVeins distribution of Earth Infused Stone. -->
+                <!-- Begin Earth Infused Stone Generation --> 
+                
+                <!-- Begin SparseVeins distribution of Earth Infused Stone -->
                 <IfCondition condition=':= thm4EarthInfusedStoneDist = "sparseVeins"'>
                 
                     <Veins name='thm4EarthInfusedStone0Veins' block='Thaumcraft:blockCustomOre:4' inherits='PresetSparseVeins'>
@@ -767,8 +825,10 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </Veins>
                 
                 </IfCondition>
+                <!-- End SparseVeins distribution of Earth Infused Stone -->
                 
-                <!--  Small Deposits distribution of Earth Infused Stone. -->
+                
+                <!-- Begin  Small Deposits distribution of Earth Infused Stone -->
                 <IfCondition condition=':= thm4EarthInfusedStoneDist = "smallDeposits"'>
                 
                     <Veins name='thm4EarthInfusedStone0Veins' block='Thaumcraft:blockCustomOre:4' inherits='PresetSmallDeposits'>
@@ -786,8 +846,10 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </Veins>
                 
                 </IfCondition>
+                <!-- End  Small Deposits distribution of Earth Infused Stone -->
                 
-                <!--  StrategicCloud distribution of Earth Infused Stone. -->
+                
+                <!-- Begin  StrategicCloud distribution of Earth Infused Stone -->
                 <IfCondition condition=':= thm4EarthInfusedStoneDist = "strategicCloud"'>
                 
                     <Cloud name='thm4EarthInfusedStone0Cloud' block='Thaumcraft:blockCustomOre:4' inherits='PresetStrategicCloud'>
@@ -808,6 +870,8 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * thm4EarthInfusedStoneSize * _default_' range=':= 1 * 1 * 1 * thm4EarthInfusedStoneSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Earth Infused Stone Strategic Cloud Hint Veins -->
                         <Veins name='thm4EarthInfusedStone0HintVeins' block='Thaumcraft:blockCustomOre:4' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -819,11 +883,15 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thm4EarthInfusedStoneSize * _default_' range=':= 1 * 1 * thm4EarthInfusedStoneSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Earth Infused Stone Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Earth Infused Stone -->
                 
-                <!--  Vanilla distribution of Earth Infused Stone. -->
+                
+                <!-- Begin  Vanilla distribution of Earth Infused Stone -->
                 <IfCondition condition=':= thm4EarthInfusedStoneDist = "vanillaStdGen"'>
                 
                     <StandardGen name='thm4EarthInfusedStone0Standard' block='Thaumcraft:blockCustomOre:4' inherits='PresetStandardGen'>
@@ -839,10 +907,14 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Earth Infused Stone -->
                 
-                <!-- Order Infused Stone Generation. --> 
+                <!-- End Earth Infused Stone Generation --> 
+
                 
-                <!-- SparseVeins distribution of Order Infused Stone. -->
+                <!-- Begin Order Infused Stone Generation --> 
+                
+                <!-- Begin SparseVeins distribution of Order Infused Stone -->
                 <IfCondition condition=':= thm4OrderInfusedStoneDist = "sparseVeins"'>
                 
                     <Veins name='thm4OrderInfusedStone0Veins' block='Thaumcraft:blockCustomOre:5' inherits='PresetSparseVeins'>
@@ -863,8 +935,10 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </Veins>
                 
                 </IfCondition>
+                <!-- End SparseVeins distribution of Order Infused Stone -->
                 
-                <!--  Small Deposits distribution of Order Infused Stone. -->
+                
+                <!-- Begin  Small Deposits distribution of Order Infused Stone -->
                 <IfCondition condition=':= thm4OrderInfusedStoneDist = "smallDeposits"'>
                 
                     <Veins name='thm4OrderInfusedStone0Veins' block='Thaumcraft:blockCustomOre:5' inherits='PresetSmallDeposits'>
@@ -882,8 +956,10 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </Veins>
                 
                 </IfCondition>
+                <!-- End  Small Deposits distribution of Order Infused Stone -->
                 
-                <!--  StrategicCloud distribution of Order Infused Stone. -->
+                
+                <!-- Begin  StrategicCloud distribution of Order Infused Stone -->
                 <IfCondition condition=':= thm4OrderInfusedStoneDist = "strategicCloud"'>
                 
                     <Cloud name='thm4OrderInfusedStone0Cloud' block='Thaumcraft:blockCustomOre:5' inherits='PresetStrategicCloud'>
@@ -904,6 +980,8 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * thm4OrderInfusedStoneSize * _default_' range=':= 1 * 1 * 1 * thm4OrderInfusedStoneSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Order Infused Stone Strategic Cloud Hint Veins -->
                         <Veins name='thm4OrderInfusedStone0HintVeins' block='Thaumcraft:blockCustomOre:5' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -915,11 +993,15 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thm4OrderInfusedStoneSize * _default_' range=':= 1 * 1 * thm4OrderInfusedStoneSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Order Infused Stone Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Order Infused Stone -->
                 
-                <!--  Vanilla distribution of Order Infused Stone. -->
+                
+                <!-- Begin  Vanilla distribution of Order Infused Stone -->
                 <IfCondition condition=':= thm4OrderInfusedStoneDist = "vanillaStdGen"'>
                 
                     <StandardGen name='thm4OrderInfusedStone0Standard' block='Thaumcraft:blockCustomOre:5' inherits='PresetStandardGen'>
@@ -935,10 +1017,14 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Order Infused Stone -->
                 
-                <!-- Entropy Infused Stone Generation. --> 
+                <!-- End Order Infused Stone Generation --> 
+
                 
-                <!-- SparseVeins distribution of Entropy Infused Stone. -->
+                <!-- Begin Entropy Infused Stone Generation --> 
+                
+                <!-- Begin SparseVeins distribution of Entropy Infused Stone -->
                 <IfCondition condition=':= thm4EntropyInfusedStoneDist = "sparseVeins"'>
                 
                     <Veins name='thm4EntropyInfusedStone0Veins' block='Thaumcraft:blockCustomOre:6' inherits='PresetSparseVeins'>
@@ -959,8 +1045,10 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </Veins>
                 
                 </IfCondition>
+                <!-- End SparseVeins distribution of Entropy Infused Stone -->
                 
-                <!--  Small Deposits distribution of Entropy Infused Stone. -->
+                
+                <!-- Begin  Small Deposits distribution of Entropy Infused Stone -->
                 <IfCondition condition=':= thm4EntropyInfusedStoneDist = "smallDeposits"'>
                 
                     <Veins name='thm4EntropyInfusedStone0Veins' block='Thaumcraft:blockCustomOre:6' inherits='PresetSmallDeposits'>
@@ -978,8 +1066,10 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </Veins>
                 
                 </IfCondition>
+                <!-- End  Small Deposits distribution of Entropy Infused Stone -->
                 
-                <!--  StrategicCloud distribution of Entropy Infused Stone. -->
+                
+                <!-- Begin  StrategicCloud distribution of Entropy Infused Stone -->
                 <IfCondition condition=':= thm4EntropyInfusedStoneDist = "strategicCloud"'>
                 
                     <Cloud name='thm4EntropyInfusedStone0Cloud' block='Thaumcraft:blockCustomOre:6' inherits='PresetStrategicCloud'>
@@ -1000,6 +1090,8 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * thm4EntropyInfusedStoneSize * _default_' range=':= 1 * 1 * 1 * thm4EntropyInfusedStoneSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Entropy Infused Stone Strategic Cloud Hint Veins -->
                         <Veins name='thm4EntropyInfusedStone0HintVeins' block='Thaumcraft:blockCustomOre:6' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1011,11 +1103,15 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thm4EntropyInfusedStoneSize * _default_' range=':= 1 * 1 * thm4EntropyInfusedStoneSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Entropy Infused Stone Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Entropy Infused Stone -->
                 
-                <!--  Vanilla distribution of Entropy Infused Stone. -->
+                
+                <!-- Begin  Vanilla distribution of Entropy Infused Stone -->
                 <IfCondition condition=':= thm4EntropyInfusedStoneDist = "vanillaStdGen"'>
                 
                     <StandardGen name='thm4EntropyInfusedStone0Standard' block='Thaumcraft:blockCustomOre:6' inherits='PresetStandardGen'>
@@ -1031,10 +1127,14 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Entropy Infused Stone -->
                 
-                <!-- Amber Generation. --> 
+                <!-- End Entropy Infused Stone Generation --> 
+
                 
-                <!-- SparseVeins distribution of Amber. -->
+                <!-- Begin Amber Generation --> 
+                
+                <!-- Begin SparseVeins distribution of Amber -->
                 <IfCondition condition=':= thm4AmberDist = "sparseVeins"'>
                 
                     <Veins name='thm4Amber0Veins' block='Thaumcraft:blockCustomOre:7' inherits='PresetSparseVeins'>
@@ -1055,8 +1155,10 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </Veins>
                 
                 </IfCondition>
+                <!-- End SparseVeins distribution of Amber -->
                 
-                <!--  Small Deposits distribution of Amber. -->
+                
+                <!-- Begin  Small Deposits distribution of Amber -->
                 <IfCondition condition=':= thm4AmberDist = "smallDeposits"'>
                 
                     <Veins name='thm4Amber0Veins' block='Thaumcraft:blockCustomOre:7' inherits='PresetSmallDeposits'>
@@ -1074,8 +1176,10 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </Veins>
                 
                 </IfCondition>
+                <!-- End  Small Deposits distribution of Amber -->
                 
-                <!--  StrategicCloud distribution of Amber. -->
+                
+                <!-- Begin  StrategicCloud distribution of Amber -->
                 <IfCondition condition=':= thm4AmberDist = "strategicCloud"'>
                 
                     <Cloud name='thm4Amber0Cloud' block='Thaumcraft:blockCustomOre:7' inherits='PresetStrategicCloud'>
@@ -1096,6 +1200,8 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                         <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.2 * 0.4 * thm4AmberSize * _default_' range=':= 1 * 0.2 * 0.4 * thm4AmberSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Amber Strategic Cloud Hint Veins -->
                         <Veins name='thm4Amber0HintVeins' block='Thaumcraft:blockCustomOre:7' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1107,11 +1213,15 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.4 * thm4AmberSize * _default_' range=':= 1 * 0.4 * thm4AmberSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Amber Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Amber -->
                 
-                <!--  Vanilla distribution of Amber. -->
+                
+                <!-- Begin  Vanilla distribution of Amber -->
                 <IfCondition condition=':= thm4AmberDist = "vanillaStdGen"'>
                 
                     <StandardGen name='thm4Amber0Standard' block='Thaumcraft:blockCustomOre:7' inherits='PresetStandardGen'>
@@ -1127,6 +1237,10 @@ Earth Infused Stone, Order Infused Stone, Entropy Infused Stone, Amber
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Amber -->
+                
+                <!-- End Amber Generation --> 
+
                 <!-- Done adding ores -->
             
             </IfCondition>

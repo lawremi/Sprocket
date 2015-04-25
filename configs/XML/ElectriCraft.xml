@@ -231,7 +231,8 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
 
             <!-- Setup Overworld -->
             <IfCondition condition=':= ?COGActive'>
-                <!-- **********   Vanilla Deposit Removal   ************* -->
+                
+                <!-- Starting Original Overworld Ore Removal -->
                 <Substitute name='elcrOverworldOreSubstitute0' block='minecraft:stone'>
                     <Description>
                         Replace vanilla-generated ore clusters.
@@ -246,12 +247,13 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                     <Replaces block='ElectriCraft:electricraft_block_ore:4' />
                     <Replaces block='ElectriCraft:electricraft_block_ore:5' />
                 </Substitute>
+                <!-- Original Overworld Ore Removal Complete -->
                 
                 <!-- Adding ores --> 
                 
-                <!-- Copper Generation. --> 
+                <!-- Begin Copper Generation --> 
                 
-                <!-- LayeredVeins distribution of Copper. -->
+                <!-- Begin LayeredVeins distribution of Copper -->
                 <IfCondition condition=':= elcrCopperDist = "layeredVeins"'>
                 
                     <Veins name='elcrCopper0Veins' block='ElectriCraft:electricraft_block_ore' inherits='PresetLayeredVeins'>
@@ -259,7 +261,7 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * elcrCopperSize * _default_' range=':= 1 * 1 * elcrCopperSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * elcrCopperFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
@@ -268,14 +270,14 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Copper Layered Veins) Settings -->
                     <Veins name='elcrCopper1Veins' block='ElectriCraft:electricraft_block_ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * elcrCopperSize * _default_' range=':= 1 * 1 * elcrCopperSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * elcrCopperFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
@@ -284,10 +286,13 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Copper Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Copper -->
                 
-                <!--  StrategicCloud distribution of Copper. -->
+                
+                <!-- Begin  StrategicCloud distribution of Copper -->
                 <IfCondition condition=':= elcrCopperDist = "strategicCloud"'>
                 
                     <Cloud name='elcrCopper0Cloud' block='ElectriCraft:electricraft_block_ore' inherits='PresetStrategicCloud'>
@@ -300,7 +305,7 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 2.5 * elcrCopperFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * elcrCopperSize * _default_' range=':= 1 * 1 * elcrCopperSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * elcrCopperSize * _default_' range=':= 1 * 1 * elcrCopperSize * _default_'/>
@@ -308,20 +313,24 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * elcrCopperSize * _default_' range=':= 1 * 1 * 1 * elcrCopperSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Copper Strategic Cloud Hint Veins -->
                         <Veins name='elcrCopper0HintVeins' block='ElectriCraft:electricraft_block_ore' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x602FF255</WireframeColor>
+                            <WireframeColor>0x60D61EA3</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 2.5 * elcrCopperFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * elcrCopperSize * _default_' range=':= 1 * 1 * elcrCopperSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Copper Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Copper Strategic Cloud) Settings -->
                     <Cloud name='elcrCopper1Cloud' block='ElectriCraft:electricraft_block_ore' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -333,7 +342,7 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * elcrCopperFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * elcrCopperSize * _default_' range=':= 1 * 1 * elcrCopperSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * elcrCopperSize * _default_' range=':= 1 * 1 * elcrCopperSize * _default_'/>
@@ -342,24 +351,31 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * elcrCopperSize * _default_' range=':= 1 * 1 * 1 * elcrCopperSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Copper Strategic Cloud Hint Veins -->
                         <Veins name='elcrCopper1HintVeins' block='ElectriCraft:electricraft_block_ore' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x602FF255</WireframeColor>
+                            <WireframeColor>0x60D61EA3</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 2.5 * elcrCopperFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * elcrCopperSize * _default_' range=':= 1 * 1 * elcrCopperSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
+                        <!-- End Copper Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Copper Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Copper -->
                 
-                <!--  Vanilla distribution of Copper. -->
+                
+                <!-- Begin  Vanilla distribution of Copper -->
                 <IfCondition condition=':= elcrCopperDist = "vanillaStdGen"'>
                 
                     <StandardGen name='elcrCopper0Standard' block='ElectriCraft:electricraft_block_ore' inherits='PresetStandardGen'>
@@ -367,33 +383,38 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * elcrCopperSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * elcrCopperFreq * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Copper Vanilla) Settings -->
                     <StandardGen name='elcrCopper1Standard' block='ElectriCraft:electricraft_block_ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * elcrCopperSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * elcrCopperFreq * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Copper Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Copper -->
                 
-                <!-- Tin Generation. --> 
+                <!-- End Copper Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Tin. -->
+                <!-- Begin Tin Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Tin -->
                 <IfCondition condition=':= elcrTinDist = "layeredVeins"'>
                 
                     <Veins name='elcrTin0Veins' block='ElectriCraft:electricraft_block_ore:1' inherits='PresetLayeredVeins'>
@@ -401,7 +422,7 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * elcrTinSize * _default_' range=':= 1 * 1 * elcrTinSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * elcrTinFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
@@ -410,14 +431,14 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Tin Layered Veins) Settings -->
                     <Veins name='elcrTin1Veins' block='ElectriCraft:electricraft_block_ore:1' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * elcrTinSize * _default_' range=':= 1 * 1 * elcrTinSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * elcrTinFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
@@ -426,10 +447,13 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Tin Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Tin -->
                 
-                <!--  StrategicCloud distribution of Tin. -->
+                
+                <!-- Begin  StrategicCloud distribution of Tin -->
                 <IfCondition condition=':= elcrTinDist = "strategicCloud"'>
                 
                     <Cloud name='elcrTin0Cloud' block='ElectriCraft:electricraft_block_ore:1' inherits='PresetStrategicCloud'>
@@ -442,7 +466,7 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 2.5 * elcrTinFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * elcrTinSize * _default_' range=':= 1 * 1 * elcrTinSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * elcrTinSize * _default_' range=':= 1 * 1 * elcrTinSize * _default_'/>
@@ -450,20 +474,24 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * elcrTinSize * _default_' range=':= 1 * 1 * 1 * elcrTinSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Tin Strategic Cloud Hint Veins -->
                         <Veins name='elcrTin0HintVeins' block='ElectriCraft:electricraft_block_ore:1' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x602FF255</WireframeColor>
+                            <WireframeColor>0x60D61EA3</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 2.5 * elcrTinFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * elcrTinSize * _default_' range=':= 1 * 1 * elcrTinSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Tin Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Tin Strategic Cloud) Settings -->
                     <Cloud name='elcrTin1Cloud' block='ElectriCraft:electricraft_block_ore:1' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -475,7 +503,7 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * elcrTinFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * elcrTinSize * _default_' range=':= 1 * 1 * elcrTinSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * elcrTinSize * _default_' range=':= 1 * 1 * elcrTinSize * _default_'/>
@@ -484,24 +512,31 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * elcrTinSize * _default_' range=':= 1 * 1 * 1 * elcrTinSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Tin Strategic Cloud Hint Veins -->
                         <Veins name='elcrTin1HintVeins' block='ElectriCraft:electricraft_block_ore:1' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x602FF255</WireframeColor>
+                            <WireframeColor>0x60D61EA3</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 2.5 * elcrTinFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * elcrTinSize * _default_' range=':= 1 * 1 * elcrTinSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
+                        <!-- End Tin Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Tin Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Tin -->
                 
-                <!--  Vanilla distribution of Tin. -->
+                
+                <!-- Begin  Vanilla distribution of Tin -->
                 <IfCondition condition=':= elcrTinDist = "vanillaStdGen"'>
                 
                     <StandardGen name='elcrTin0Standard' block='ElectriCraft:electricraft_block_ore:1' inherits='PresetStandardGen'>
@@ -509,33 +544,38 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * elcrTinSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * elcrTinFreq * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Tin Vanilla) Settings -->
                     <StandardGen name='elcrTin1Standard' block='ElectriCraft:electricraft_block_ore:1' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * elcrTinSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * elcrTinFreq * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Tin Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Tin -->
                 
-                <!-- Silver Generation. --> 
+                <!-- End Tin Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Silver. -->
+                <!-- Begin Silver Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Silver -->
                 <IfCondition condition=':= elcrSilverDist = "layeredVeins"'>
                 
                     <Veins name='elcrSilver0Veins' block='ElectriCraft:electricraft_block_ore:2' inherits='PresetLayeredVeins'>
@@ -543,7 +583,7 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * elcrSilverSize * _default_' range=':= 1 * 0.8 * elcrSilverSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * elcrSilverFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -552,14 +592,14 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Silver Layered Veins) Settings -->
                     <Veins name='elcrSilver1Veins' block='ElectriCraft:electricraft_block_ore:2' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * elcrSilverSize * _default_' range=':= 1 * 0.8 * elcrSilverSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * elcrSilverFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -568,10 +608,13 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Silver Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Silver -->
                 
-                <!--  StrategicCloud distribution of Silver. -->
+                
+                <!-- Begin  StrategicCloud distribution of Silver -->
                 <IfCondition condition=':= elcrSilverDist = "strategicCloud"'>
                 
                     <Cloud name='elcrSilver0Cloud' block='ElectriCraft:electricraft_block_ore:2' inherits='PresetStrategicCloud'>
@@ -584,7 +627,7 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * elcrSilverFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * elcrSilverSize * _default_' range=':= 1 * 0.8 * elcrSilverSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * elcrSilverSize * _default_' range=':= 1 * 0.8 * elcrSilverSize * _default_'/>
@@ -592,20 +635,24 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * elcrSilverSize * _default_' range=':= 1 * 1 * 0.8 * elcrSilverSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Silver Strategic Cloud Hint Veins -->
                         <Veins name='elcrSilver0HintVeins' block='ElectriCraft:electricraft_block_ore:2' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x602FF255</WireframeColor>
+                            <WireframeColor>0x60D61EA3</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * elcrSilverFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * elcrSilverSize * _default_' range=':= 1 * 0.8 * elcrSilverSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Silver Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Silver Strategic Cloud) Settings -->
                     <Cloud name='elcrSilver1Cloud' block='ElectriCraft:electricraft_block_ore:2' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -617,7 +664,7 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * elcrSilverFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * elcrSilverSize * _default_' range=':= 1 * 0.8 * elcrSilverSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * elcrSilverSize * _default_' range=':= 1 * 0.8 * elcrSilverSize * _default_'/>
@@ -626,24 +673,31 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * elcrSilverSize * _default_' range=':= 1 * 1 * 0.8 * elcrSilverSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Silver Strategic Cloud Hint Veins -->
                         <Veins name='elcrSilver1HintVeins' block='ElectriCraft:electricraft_block_ore:2' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x602FF255</WireframeColor>
+                            <WireframeColor>0x60D61EA3</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * elcrSilverFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * elcrSilverSize * _default_' range=':= 1 * 0.8 * elcrSilverSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Silver Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Silver Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Silver -->
                 
-                <!--  Vanilla distribution of Silver. -->
+                
+                <!-- Begin  Vanilla distribution of Silver -->
                 <IfCondition condition=':= elcrSilverDist = "vanillaStdGen"'>
                 
                     <StandardGen name='elcrSilver0Standard' block='ElectriCraft:electricraft_block_ore:2' inherits='PresetStandardGen'>
@@ -651,33 +705,38 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * elcrSilverSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * elcrSilverFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Silver Vanilla) Settings -->
                     <StandardGen name='elcrSilver1Standard' block='ElectriCraft:electricraft_block_ore:2' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * elcrSilverSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * elcrSilverFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Silver Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Silver -->
                 
-                <!-- Nickel Generation. --> 
+                <!-- End Silver Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Nickel. -->
+                <!-- Begin Nickel Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Nickel -->
                 <IfCondition condition=':= elcrNickelDist = "layeredVeins"'>
                 
                     <Veins name='elcrNickel0Veins' block='ElectriCraft:electricraft_block_ore:3' inherits='PresetLayeredVeins'>
@@ -685,7 +744,7 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * elcrNickelSize * _default_' range=':= 1 * 1 * elcrNickelSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * elcrNickelFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
@@ -694,14 +753,14 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Nickel Layered Veins) Settings -->
                     <Veins name='elcrNickel1Veins' block='ElectriCraft:electricraft_block_ore:3' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * elcrNickelSize * _default_' range=':= 1 * 1 * elcrNickelSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * elcrNickelFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
@@ -710,10 +769,13 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Nickel Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Nickel -->
                 
-                <!--  StrategicCloud distribution of Nickel. -->
+                
+                <!-- Begin  StrategicCloud distribution of Nickel -->
                 <IfCondition condition=':= elcrNickelDist = "strategicCloud"'>
                 
                     <Cloud name='elcrNickel0Cloud' block='ElectriCraft:electricraft_block_ore:3' inherits='PresetStrategicCloud'>
@@ -726,7 +788,7 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 2.5 * elcrNickelFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * elcrNickelSize * _default_' range=':= 1 * 1 * elcrNickelSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * elcrNickelSize * _default_' range=':= 1 * 1 * elcrNickelSize * _default_'/>
@@ -734,20 +796,24 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * elcrNickelSize * _default_' range=':= 1 * 1 * 1 * elcrNickelSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Nickel Strategic Cloud Hint Veins -->
                         <Veins name='elcrNickel0HintVeins' block='ElectriCraft:electricraft_block_ore:3' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x602FF255</WireframeColor>
+                            <WireframeColor>0x60D61EA3</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 2.5 * elcrNickelFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * elcrNickelSize * _default_' range=':= 1 * 1 * elcrNickelSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Nickel Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Nickel Strategic Cloud) Settings -->
                     <Cloud name='elcrNickel1Cloud' block='ElectriCraft:electricraft_block_ore:3' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -759,7 +825,7 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * elcrNickelFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * elcrNickelSize * _default_' range=':= 1 * 1 * elcrNickelSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * elcrNickelSize * _default_' range=':= 1 * 1 * elcrNickelSize * _default_'/>
@@ -768,24 +834,31 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * elcrNickelSize * _default_' range=':= 1 * 1 * 1 * elcrNickelSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Nickel Strategic Cloud Hint Veins -->
                         <Veins name='elcrNickel1HintVeins' block='ElectriCraft:electricraft_block_ore:3' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x602FF255</WireframeColor>
+                            <WireframeColor>0x60D61EA3</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 2.5 * elcrNickelFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * elcrNickelSize * _default_' range=':= 1 * 1 * elcrNickelSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
+                        <!-- End Nickel Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Nickel Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Nickel -->
                 
-                <!--  Vanilla distribution of Nickel. -->
+                
+                <!-- Begin  Vanilla distribution of Nickel -->
                 <IfCondition condition=':= elcrNickelDist = "vanillaStdGen"'>
                 
                     <StandardGen name='elcrNickel0Standard' block='ElectriCraft:electricraft_block_ore:3' inherits='PresetStandardGen'>
@@ -793,33 +866,38 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * elcrNickelSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * elcrNickelFreq * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Nickel Vanilla) Settings -->
                     <StandardGen name='elcrNickel1Standard' block='ElectriCraft:electricraft_block_ore:3' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * elcrNickelSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * elcrNickelFreq * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Nickel Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Nickel -->
                 
-                <!-- Aluminum Generation. --> 
+                <!-- End Nickel Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Aluminum. -->
+                <!-- Begin Aluminum Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Aluminum -->
                 <IfCondition condition=':= elcrAluminumDist = "layeredVeins"'>
                 
                     <Veins name='elcrAluminum0Veins' block='ElectriCraft:electricraft_block_ore:4' inherits='PresetLayeredVeins'>
@@ -827,7 +905,7 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * elcrAluminumSize * _default_' range=':= 1 * 1 * elcrAluminumSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 0.9 * elcrAluminumFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
@@ -836,14 +914,14 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Aluminum Layered Veins) Settings -->
                     <Veins name='elcrAluminum1Veins' block='ElectriCraft:electricraft_block_ore:4' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * elcrAluminumSize * _default_' range=':= 1 * 1 * elcrAluminumSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 0.9 * elcrAluminumFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
@@ -852,10 +930,13 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Aluminum Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Aluminum -->
                 
-                <!--  StrategicCloud distribution of Aluminum. -->
+                
+                <!-- Begin  StrategicCloud distribution of Aluminum -->
                 <IfCondition condition=':= elcrAluminumDist = "strategicCloud"'>
                 
                     <Cloud name='elcrAluminum0Cloud' block='ElectriCraft:electricraft_block_ore:4' inherits='PresetStrategicCloud'>
@@ -868,7 +949,7 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 3 * 2.5 * elcrAluminumFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * elcrAluminumSize * _default_' range=':= 1 * 1 * elcrAluminumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * elcrAluminumSize * _default_' range=':= 1 * 1 * elcrAluminumSize * _default_'/>
@@ -876,20 +957,24 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * elcrAluminumSize * _default_' range=':= 1 * 1 * 1 * elcrAluminumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Aluminum Strategic Cloud Hint Veins -->
                         <Veins name='elcrAluminum0HintVeins' block='ElectriCraft:electricraft_block_ore:4' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x602FF255</WireframeColor>
+                            <WireframeColor>0x60D61EA3</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 2.5 * elcrAluminumFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * elcrAluminumSize * _default_' range=':= 1 * 1 * elcrAluminumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Aluminum Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Aluminum Strategic Cloud) Settings -->
                     <Cloud name='elcrAluminum1Cloud' block='ElectriCraft:electricraft_block_ore:4' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -901,7 +986,7 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 3 * 2.5 * elcrAluminumFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * elcrAluminumSize * _default_' range=':= 1 * 1 * elcrAluminumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * elcrAluminumSize * _default_' range=':= 1 * 1 * elcrAluminumSize * _default_'/>
@@ -910,24 +995,31 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * elcrAluminumSize * _default_' range=':= 1 * 1 * 1 * elcrAluminumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Aluminum Strategic Cloud Hint Veins -->
                         <Veins name='elcrAluminum1HintVeins' block='ElectriCraft:electricraft_block_ore:4' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x602FF255</WireframeColor>
+                            <WireframeColor>0x60D61EA3</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 3 * 2.5 * elcrAluminumFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * elcrAluminumSize * _default_' range=':= 1 * 1 * elcrAluminumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
+                        <!-- End Aluminum Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Aluminum Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Aluminum -->
                 
-                <!--  Vanilla distribution of Aluminum. -->
+                
+                <!-- Begin  Vanilla distribution of Aluminum -->
                 <IfCondition condition=':= elcrAluminumDist = "vanillaStdGen"'>
                 
                     <StandardGen name='elcrAluminum0Standard' block='ElectriCraft:electricraft_block_ore:4' inherits='PresetStandardGen'>
@@ -935,33 +1027,38 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * elcrAluminumSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 3 * 1 * elcrAluminumFreq * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Aluminum Vanilla) Settings -->
                     <StandardGen name='elcrAluminum1Standard' block='ElectriCraft:electricraft_block_ore:4' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * elcrAluminumSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 3 * 1 * elcrAluminumFreq * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Aluminum Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Aluminum -->
                 
-                <!-- Platinum Generation. --> 
+                <!-- End Aluminum Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Platinum. -->
+                <!-- Begin Platinum Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Platinum -->
                 <IfCondition condition=':= elcrPlatinumDist = "layeredVeins"'>
                 
                     <Veins name='elcrPlatinum0Veins' block='ElectriCraft:electricraft_block_ore:5' inherits='PresetLayeredVeins'>
@@ -969,7 +1066,7 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * elcrPlatinumSize * _default_' range=':= 1 * 0.8 * elcrPlatinumSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * elcrPlatinumFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -978,14 +1075,14 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Platinum Layered Veins) Settings -->
                     <Veins name='elcrPlatinum1Veins' block='ElectriCraft:electricraft_block_ore:5' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * elcrPlatinumSize * _default_' range=':= 1 * 0.8 * elcrPlatinumSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * elcrPlatinumFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
@@ -994,10 +1091,13 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Platinum Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Platinum -->
                 
-                <!--  StrategicCloud distribution of Platinum. -->
+                
+                <!-- Begin  StrategicCloud distribution of Platinum -->
                 <IfCondition condition=':= elcrPlatinumDist = "strategicCloud"'>
                 
                     <Cloud name='elcrPlatinum0Cloud' block='ElectriCraft:electricraft_block_ore:5' inherits='PresetStrategicCloud'>
@@ -1010,7 +1110,7 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * elcrPlatinumFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * elcrPlatinumSize * _default_' range=':= 1 * 0.8 * elcrPlatinumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * elcrPlatinumSize * _default_' range=':= 1 * 0.8 * elcrPlatinumSize * _default_'/>
@@ -1018,20 +1118,24 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * elcrPlatinumSize * _default_' range=':= 1 * 1 * 0.8 * elcrPlatinumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Platinum Strategic Cloud Hint Veins -->
                         <Veins name='elcrPlatinum0HintVeins' block='ElectriCraft:electricraft_block_ore:5' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x602FF255</WireframeColor>
+                            <WireframeColor>0x60D61EA3</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * elcrPlatinumFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * elcrPlatinumSize * _default_' range=':= 1 * 0.8 * elcrPlatinumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Platinum Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Platinum Strategic Cloud) Settings -->
                     <Cloud name='elcrPlatinum1Cloud' block='ElectriCraft:electricraft_block_ore:5' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1043,7 +1147,7 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * elcrPlatinumFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * elcrPlatinumSize * _default_' range=':= 1 * 0.8 * elcrPlatinumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * elcrPlatinumSize * _default_' range=':= 1 * 0.8 * elcrPlatinumSize * _default_'/>
@@ -1052,24 +1156,31 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * elcrPlatinumSize * _default_' range=':= 1 * 1 * 0.8 * elcrPlatinumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Platinum Strategic Cloud Hint Veins -->
                         <Veins name='elcrPlatinum1HintVeins' block='ElectriCraft:electricraft_block_ore:5' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x602FF255</WireframeColor>
+                            <WireframeColor>0x60D61EA3</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * elcrPlatinumFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * elcrPlatinumSize * _default_' range=':= 1 * 0.8 * elcrPlatinumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Platinum Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Platinum Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Platinum -->
                 
-                <!--  Vanilla distribution of Platinum. -->
+                
+                <!-- Begin  Vanilla distribution of Platinum -->
                 <IfCondition condition=':= elcrPlatinumDist = "vanillaStdGen"'>
                 
                     <StandardGen name='elcrPlatinum0Standard' block='ElectriCraft:electricraft_block_ore:5' inherits='PresetStandardGen'>
@@ -1077,29 +1188,34 @@ Generates: Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * elcrPlatinumSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * elcrPlatinumFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Platinum Vanilla) Settings -->
                     <StandardGen name='elcrPlatinum1Standard' block='ElectriCraft:electricraft_block_ore:5' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x602FF255</WireframeColor>
+                        <WireframeColor>0x60D61EA3</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * elcrPlatinumSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * elcrPlatinumFreq * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Platinum Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Platinum -->
+                
+                <!-- End Platinum Generation --> 
+
                 <!-- Done adding ores -->
             
             </IfCondition>

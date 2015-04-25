@@ -574,7 +574,8 @@ Fluorite, Yellow Fluorite
 
             <!-- Setup Overworld -->
             <IfCondition condition=':= ?COGActive'>
-                <!-- **********   Vanilla Deposit Removal   ************* -->
+                
+                <!-- Starting Original Overworld Ore Removal -->
                 <Substitute name='recrOverworldOreSubstitute0' block='minecraft:stone'>
                     <Description>
                         Replace vanilla-generated ore clusters.
@@ -597,12 +598,13 @@ Fluorite, Yellow Fluorite
                     <Replaces block='ReactorCraft:reactorcraft_block_fluoriteore:6' />
                     <Replaces block='ReactorCraft:reactorcraft_block_fluoriteore:7' />
                 </Substitute>
+                <!-- Original Overworld Ore Removal Complete -->
                 
                 <!-- Adding ores --> 
                 
-                <!-- Pitchblende Generation. --> 
+                <!-- Begin Pitchblende Generation --> 
                 
-                <!-- LayeredVeins distribution of Pitchblende. -->
+                <!-- Begin LayeredVeins distribution of Pitchblende -->
                 <IfCondition condition=':= recrPitchblendeDist = "layeredVeins"'>
                 
                     <Veins name='recrPitchblende0Veins' block='ReactorCraft:reactorcraft_block_ore:1' inherits='PresetLayeredVeins'>
@@ -620,8 +622,10 @@ Fluorite, Yellow Fluorite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Pitchblende -->
                 
-                <!--  StrategicCloud distribution of Pitchblende. -->
+                
+                <!-- Begin  StrategicCloud distribution of Pitchblende -->
                 <IfCondition condition=':= recrPitchblendeDist = "strategicCloud"'>
                 
                     <Cloud name='recrPitchblende0Cloud' block='ReactorCraft:reactorcraft_block_ore:1' inherits='PresetStrategicCloud'>
@@ -642,6 +646,8 @@ Fluorite, Yellow Fluorite
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * recrPitchblendeSize * _default_' range=':= 1 * 1 * 0.8 * recrPitchblendeSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Pitchblende Strategic Cloud Hint Veins -->
                         <Veins name='recrPitchblende0HintVeins' block='ReactorCraft:reactorcraft_block_ore:1' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -653,11 +659,15 @@ Fluorite, Yellow Fluorite
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrPitchblendeSize * _default_' range=':= 1 * 0.8 * recrPitchblendeSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Pitchblende Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Pitchblende -->
                 
-                <!--  Vanilla distribution of Pitchblende. -->
+                
+                <!-- Begin  Vanilla distribution of Pitchblende -->
                 <IfCondition condition=':= recrPitchblendeDist = "vanillaStdGen"'>
                 
                     <StandardGen name='recrPitchblende0Standard' block='ReactorCraft:reactorcraft_block_ore:1' inherits='PresetStandardGen'>
@@ -673,10 +683,14 @@ Fluorite, Yellow Fluorite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Pitchblende -->
                 
-                <!-- Cadmium Generation. --> 
+                <!-- End Pitchblende Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Cadmium. -->
+                <!-- Begin Cadmium Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Cadmium -->
                 <IfCondition condition=':= recrCadmiumDist = "layeredVeins"'>
                 
                     <Veins name='recrCadmium0Veins' block='ReactorCraft:reactorcraft_block_ore:2' inherits='PresetLayeredVeins'>
@@ -694,8 +708,10 @@ Fluorite, Yellow Fluorite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Cadmium -->
                 
-                <!--  StrategicCloud distribution of Cadmium. -->
+                
+                <!-- Begin  StrategicCloud distribution of Cadmium -->
                 <IfCondition condition=':= recrCadmiumDist = "strategicCloud"'>
                 
                     <Cloud name='recrCadmium0Cloud' block='ReactorCraft:reactorcraft_block_ore:2' inherits='PresetStrategicCloud'>
@@ -716,6 +732,8 @@ Fluorite, Yellow Fluorite
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * recrCadmiumSize * _default_' range=':= 1 * 1 * 0.8 * recrCadmiumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Cadmium Strategic Cloud Hint Veins -->
                         <Veins name='recrCadmium0HintVeins' block='ReactorCraft:reactorcraft_block_ore:2' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -727,11 +745,15 @@ Fluorite, Yellow Fluorite
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrCadmiumSize * _default_' range=':= 1 * 0.8 * recrCadmiumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Cadmium Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Cadmium -->
                 
-                <!--  Vanilla distribution of Cadmium. -->
+                
+                <!-- Begin  Vanilla distribution of Cadmium -->
                 <IfCondition condition=':= recrCadmiumDist = "vanillaStdGen"'>
                 
                     <StandardGen name='recrCadmium0Standard' block='ReactorCraft:reactorcraft_block_ore:2' inherits='PresetStandardGen'>
@@ -747,10 +769,14 @@ Fluorite, Yellow Fluorite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Cadmium -->
                 
-                <!-- Indium Generation. --> 
+                <!-- End Cadmium Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Indium. -->
+                <!-- Begin Indium Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Indium -->
                 <IfCondition condition=':= recrIndiumDist = "layeredVeins"'>
                 
                     <Veins name='recrIndium0Veins' block='ReactorCraft:reactorcraft_block_ore:3' inherits='PresetLayeredVeins'>
@@ -768,8 +794,10 @@ Fluorite, Yellow Fluorite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Indium -->
                 
-                <!--  StrategicCloud distribution of Indium. -->
+                
+                <!-- Begin  StrategicCloud distribution of Indium -->
                 <IfCondition condition=':= recrIndiumDist = "strategicCloud"'>
                 
                     <Cloud name='recrIndium0Cloud' block='ReactorCraft:reactorcraft_block_ore:3' inherits='PresetStrategicCloud'>
@@ -790,6 +818,8 @@ Fluorite, Yellow Fluorite
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * recrIndiumSize * _default_' range=':= 1 * 1 * 0.8 * recrIndiumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Indium Strategic Cloud Hint Veins -->
                         <Veins name='recrIndium0HintVeins' block='ReactorCraft:reactorcraft_block_ore:3' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -801,11 +831,15 @@ Fluorite, Yellow Fluorite
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrIndiumSize * _default_' range=':= 1 * 0.8 * recrIndiumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Indium Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Indium -->
                 
-                <!--  Vanilla distribution of Indium. -->
+                
+                <!-- Begin  Vanilla distribution of Indium -->
                 <IfCondition condition=':= recrIndiumDist = "vanillaStdGen"'>
                 
                     <StandardGen name='recrIndium0Standard' block='ReactorCraft:reactorcraft_block_ore:3' inherits='PresetStandardGen'>
@@ -821,10 +855,14 @@ Fluorite, Yellow Fluorite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Indium -->
                 
-                <!-- Silver Generation. --> 
+                <!-- End Indium Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Silver. -->
+                <!-- Begin Silver Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Silver -->
                 <IfCondition condition=':= recrSilverDist = "layeredVeins"'>
                 
                     <Veins name='recrSilver0Veins' block='ReactorCraft:reactorcraft_block_ore:4' inherits='PresetLayeredVeins'>
@@ -842,8 +880,10 @@ Fluorite, Yellow Fluorite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Silver -->
                 
-                <!--  StrategicCloud distribution of Silver. -->
+                
+                <!-- Begin  StrategicCloud distribution of Silver -->
                 <IfCondition condition=':= recrSilverDist = "strategicCloud"'>
                 
                     <Cloud name='recrSilver0Cloud' block='ReactorCraft:reactorcraft_block_ore:4' inherits='PresetStrategicCloud'>
@@ -864,6 +904,8 @@ Fluorite, Yellow Fluorite
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * recrSilverSize * _default_' range=':= 1 * 1 * 0.8 * recrSilverSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Silver Strategic Cloud Hint Veins -->
                         <Veins name='recrSilver0HintVeins' block='ReactorCraft:reactorcraft_block_ore:4' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -875,11 +917,15 @@ Fluorite, Yellow Fluorite
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrSilverSize * _default_' range=':= 1 * 0.8 * recrSilverSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Silver Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Silver -->
                 
-                <!--  Vanilla distribution of Silver. -->
+                
+                <!-- Begin  Vanilla distribution of Silver -->
                 <IfCondition condition=':= recrSilverDist = "vanillaStdGen"'>
                 
                     <StandardGen name='recrSilver0Standard' block='ReactorCraft:reactorcraft_block_ore:4' inherits='PresetStandardGen'>
@@ -895,10 +941,14 @@ Fluorite, Yellow Fluorite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Silver -->
                 
-                <!-- Calcite Generation. --> 
+                <!-- End Silver Generation --> 
+
                 
-                <!-- Sparse Veins distribution of Calcite. -->
+                <!-- Begin Calcite Generation --> 
+                
+                <!-- Begin Sparse Veins distribution of Calcite -->
                 <IfCondition condition=':= recrCalciteDist = "sparseVeins"'>
                 
                     <Veins name='recrCalcite0Veins' block='ReactorCraft:reactorcraft_block_ore:7' inherits='PresetSparseVeins'>
@@ -919,8 +969,10 @@ Fluorite, Yellow Fluorite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End Sparse Veins distribution of Calcite -->
                 
-                <!--  StrategicCloud distribution of Calcite. -->
+                
+                <!-- Begin  StrategicCloud distribution of Calcite -->
                 <IfCondition condition=':= recrCalciteDist = "strategicCloud"'>
                 
                     <Cloud name='recrCalcite0Cloud' block='ReactorCraft:reactorcraft_block_ore:7' inherits='PresetStrategicCloud'>
@@ -941,6 +993,8 @@ Fluorite, Yellow Fluorite
                         <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * recrCalciteSize * _default_' range=':= 1 * 1 * 0.8 * recrCalciteSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Calcite Strategic Cloud Hint Veins -->
                         <Veins name='recrCalcite0HintVeins' block='ReactorCraft:reactorcraft_block_ore:7' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -952,11 +1006,15 @@ Fluorite, Yellow Fluorite
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrCalciteSize * _default_' range=':= 1 * 0.8 * recrCalciteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Calcite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Calcite -->
                 
-                <!--  Vanilla distribution of Calcite. -->
+                
+                <!-- Begin  Vanilla distribution of Calcite -->
                 <IfCondition condition=':= recrCalciteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='recrCalcite0Standard' block='ReactorCraft:reactorcraft_block_ore:7' inherits='PresetStandardGen'>
@@ -972,10 +1030,14 @@ Fluorite, Yellow Fluorite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Calcite -->
                 
-                <!-- Magnetite Generation. --> 
+                <!-- End Calcite Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Magnetite. -->
+                <!-- Begin Magnetite Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Magnetite -->
                 <IfCondition condition=':= recrMagnetiteDist = "layeredVeins"'>
                 
                     <Veins name='recrMagnetite0Veins' block='ReactorCraft:reactorcraft_block_ore:8' inherits='PresetLayeredVeins'>
@@ -993,8 +1055,10 @@ Fluorite, Yellow Fluorite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Magnetite -->
                 
-                <!--  StrategicCloud distribution of Magnetite. -->
+                
+                <!-- Begin  StrategicCloud distribution of Magnetite -->
                 <IfCondition condition=':= recrMagnetiteDist = "strategicCloud"'>
                 
                     <Cloud name='recrMagnetite0Cloud' block='ReactorCraft:reactorcraft_block_ore:8' inherits='PresetStrategicCloud'>
@@ -1015,6 +1079,8 @@ Fluorite, Yellow Fluorite
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * recrMagnetiteSize * _default_' range=':= 1 * 1 * 0.8 * recrMagnetiteSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Magnetite Strategic Cloud Hint Veins -->
                         <Veins name='recrMagnetite0HintVeins' block='ReactorCraft:reactorcraft_block_ore:8' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1026,11 +1092,15 @@ Fluorite, Yellow Fluorite
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrMagnetiteSize * _default_' range=':= 1 * 0.8 * recrMagnetiteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Magnetite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Magnetite -->
                 
-                <!--  Vanilla distribution of Magnetite. -->
+                
+                <!-- Begin  Vanilla distribution of Magnetite -->
                 <IfCondition condition=':= recrMagnetiteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='recrMagnetite0Standard' block='ReactorCraft:reactorcraft_block_ore:8' inherits='PresetStandardGen'>
@@ -1046,10 +1116,14 @@ Fluorite, Yellow Fluorite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Magnetite -->
                 
-                <!-- Blue Fluorite Generation. --> 
+                <!-- End Magnetite Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Blue Fluorite. -->
+                <!-- Begin Blue Fluorite Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Blue Fluorite -->
                 <IfCondition condition=':= recrBlueFluoriteDist = "layeredVeins"'>
                 
                     <Veins name='recrBlueFluorite0Veins' block='ReactorCraft:reactorcraft_block_fluoriteore' inherits='PresetLayeredVeins'>
@@ -1067,8 +1141,10 @@ Fluorite, Yellow Fluorite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Blue Fluorite -->
                 
-                <!--  StrategicCloud distribution of Blue Fluorite. -->
+                
+                <!-- Begin  StrategicCloud distribution of Blue Fluorite -->
                 <IfCondition condition=':= recrBlueFluoriteDist = "strategicCloud"'>
                 
                     <Cloud name='recrBlueFluorite0Cloud' block='ReactorCraft:reactorcraft_block_fluoriteore' inherits='PresetStrategicCloud'>
@@ -1089,6 +1165,8 @@ Fluorite, Yellow Fluorite
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * recrBlueFluoriteSize * _default_' range=':= 1 * 1 * 0.8 * recrBlueFluoriteSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Blue Fluorite Strategic Cloud Hint Veins -->
                         <Veins name='recrBlueFluorite0HintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1100,11 +1178,15 @@ Fluorite, Yellow Fluorite
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrBlueFluoriteSize * _default_' range=':= 1 * 0.8 * recrBlueFluoriteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Blue Fluorite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Blue Fluorite -->
                 
-                <!--  Vanilla distribution of Blue Fluorite. -->
+                
+                <!-- Begin  Vanilla distribution of Blue Fluorite -->
                 <IfCondition condition=':= recrBlueFluoriteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='recrBlueFluorite0Standard' block='ReactorCraft:reactorcraft_block_fluoriteore' inherits='PresetStandardGen'>
@@ -1120,10 +1202,14 @@ Fluorite, Yellow Fluorite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Blue Fluorite -->
                 
-                <!-- Pink Fluorite Generation. --> 
+                <!-- End Blue Fluorite Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Pink Fluorite. -->
+                <!-- Begin Pink Fluorite Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Pink Fluorite -->
                 <IfCondition condition=':= recrPinkFluoriteDist = "layeredVeins"'>
                 
                     <Veins name='recrPinkFluorite0Veins' block='ReactorCraft:reactorcraft_block_fluoriteore:1' inherits='PresetLayeredVeins'>
@@ -1141,8 +1227,10 @@ Fluorite, Yellow Fluorite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Pink Fluorite -->
                 
-                <!--  StrategicCloud distribution of Pink Fluorite. -->
+                
+                <!-- Begin  StrategicCloud distribution of Pink Fluorite -->
                 <IfCondition condition=':= recrPinkFluoriteDist = "strategicCloud"'>
                 
                     <Cloud name='recrPinkFluorite0Cloud' block='ReactorCraft:reactorcraft_block_fluoriteore:1' inherits='PresetStrategicCloud'>
@@ -1163,6 +1251,8 @@ Fluorite, Yellow Fluorite
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * recrPinkFluoriteSize * _default_' range=':= 1 * 1 * 0.8 * recrPinkFluoriteSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Pink Fluorite Strategic Cloud Hint Veins -->
                         <Veins name='recrPinkFluorite0HintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:1' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1174,11 +1264,15 @@ Fluorite, Yellow Fluorite
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrPinkFluoriteSize * _default_' range=':= 1 * 0.8 * recrPinkFluoriteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Pink Fluorite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Pink Fluorite -->
                 
-                <!--  Vanilla distribution of Pink Fluorite. -->
+                
+                <!-- Begin  Vanilla distribution of Pink Fluorite -->
                 <IfCondition condition=':= recrPinkFluoriteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='recrPinkFluorite0Standard' block='ReactorCraft:reactorcraft_block_fluoriteore:1' inherits='PresetStandardGen'>
@@ -1194,10 +1288,14 @@ Fluorite, Yellow Fluorite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Pink Fluorite -->
                 
-                <!-- Orange Fluorite Generation. --> 
+                <!-- End Pink Fluorite Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Orange Fluorite. -->
+                <!-- Begin Orange Fluorite Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Orange Fluorite -->
                 <IfCondition condition=':= recrOrangeFluoriteDist = "layeredVeins"'>
                 
                     <Veins name='recrOrangeFluorite0Veins' block='ReactorCraft:reactorcraft_block_fluoriteore:2' inherits='PresetLayeredVeins'>
@@ -1215,8 +1313,10 @@ Fluorite, Yellow Fluorite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Orange Fluorite -->
                 
-                <!--  StrategicCloud distribution of Orange Fluorite. -->
+                
+                <!-- Begin  StrategicCloud distribution of Orange Fluorite -->
                 <IfCondition condition=':= recrOrangeFluoriteDist = "strategicCloud"'>
                 
                     <Cloud name='recrOrangeFluorite0Cloud' block='ReactorCraft:reactorcraft_block_fluoriteore:2' inherits='PresetStrategicCloud'>
@@ -1237,6 +1337,8 @@ Fluorite, Yellow Fluorite
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * recrOrangeFluoriteSize * _default_' range=':= 1 * 1 * 0.8 * recrOrangeFluoriteSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Orange Fluorite Strategic Cloud Hint Veins -->
                         <Veins name='recrOrangeFluorite0HintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:2' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1248,11 +1350,15 @@ Fluorite, Yellow Fluorite
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrOrangeFluoriteSize * _default_' range=':= 1 * 0.8 * recrOrangeFluoriteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Orange Fluorite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Orange Fluorite -->
                 
-                <!--  Vanilla distribution of Orange Fluorite. -->
+                
+                <!-- Begin  Vanilla distribution of Orange Fluorite -->
                 <IfCondition condition=':= recrOrangeFluoriteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='recrOrangeFluorite0Standard' block='ReactorCraft:reactorcraft_block_fluoriteore:2' inherits='PresetStandardGen'>
@@ -1268,10 +1374,14 @@ Fluorite, Yellow Fluorite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Orange Fluorite -->
                 
-                <!-- Magenta Fluorite Generation. --> 
+                <!-- End Orange Fluorite Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Magenta Fluorite. -->
+                <!-- Begin Magenta Fluorite Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Magenta Fluorite -->
                 <IfCondition condition=':= recrMagentaFluoriteDist = "layeredVeins"'>
                 
                     <Veins name='recrMagentaFluorite0Veins' block='ReactorCraft:reactorcraft_block_fluoriteore:3' inherits='PresetLayeredVeins'>
@@ -1289,8 +1399,10 @@ Fluorite, Yellow Fluorite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Magenta Fluorite -->
                 
-                <!--  StrategicCloud distribution of Magenta Fluorite. -->
+                
+                <!-- Begin  StrategicCloud distribution of Magenta Fluorite -->
                 <IfCondition condition=':= recrMagentaFluoriteDist = "strategicCloud"'>
                 
                     <Cloud name='recrMagentaFluorite0Cloud' block='ReactorCraft:reactorcraft_block_fluoriteore:3' inherits='PresetStrategicCloud'>
@@ -1311,6 +1423,8 @@ Fluorite, Yellow Fluorite
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * recrMagentaFluoriteSize * _default_' range=':= 1 * 1 * 0.8 * recrMagentaFluoriteSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Magenta Fluorite Strategic Cloud Hint Veins -->
                         <Veins name='recrMagentaFluorite0HintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:3' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1322,11 +1436,15 @@ Fluorite, Yellow Fluorite
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrMagentaFluoriteSize * _default_' range=':= 1 * 0.8 * recrMagentaFluoriteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Magenta Fluorite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Magenta Fluorite -->
                 
-                <!--  Vanilla distribution of Magenta Fluorite. -->
+                
+                <!-- Begin  Vanilla distribution of Magenta Fluorite -->
                 <IfCondition condition=':= recrMagentaFluoriteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='recrMagentaFluorite0Standard' block='ReactorCraft:reactorcraft_block_fluoriteore:3' inherits='PresetStandardGen'>
@@ -1342,10 +1460,14 @@ Fluorite, Yellow Fluorite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Magenta Fluorite -->
                 
-                <!-- Green Fluorite Generation. --> 
+                <!-- End Magenta Fluorite Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Green Fluorite. -->
+                <!-- Begin Green Fluorite Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Green Fluorite -->
                 <IfCondition condition=':= recrGreenFluoriteDist = "layeredVeins"'>
                 
                     <Veins name='recrGreenFluorite0Veins' block='ReactorCraft:reactorcraft_block_fluoriteore:4' inherits='PresetLayeredVeins'>
@@ -1363,8 +1485,10 @@ Fluorite, Yellow Fluorite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Green Fluorite -->
                 
-                <!--  StrategicCloud distribution of Green Fluorite. -->
+                
+                <!-- Begin  StrategicCloud distribution of Green Fluorite -->
                 <IfCondition condition=':= recrGreenFluoriteDist = "strategicCloud"'>
                 
                     <Cloud name='recrGreenFluorite0Cloud' block='ReactorCraft:reactorcraft_block_fluoriteore:4' inherits='PresetStrategicCloud'>
@@ -1385,6 +1509,8 @@ Fluorite, Yellow Fluorite
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * recrGreenFluoriteSize * _default_' range=':= 1 * 1 * 0.8 * recrGreenFluoriteSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Green Fluorite Strategic Cloud Hint Veins -->
                         <Veins name='recrGreenFluorite0HintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:4' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1396,11 +1522,15 @@ Fluorite, Yellow Fluorite
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrGreenFluoriteSize * _default_' range=':= 1 * 0.8 * recrGreenFluoriteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Green Fluorite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Green Fluorite -->
                 
-                <!--  Vanilla distribution of Green Fluorite. -->
+                
+                <!-- Begin  Vanilla distribution of Green Fluorite -->
                 <IfCondition condition=':= recrGreenFluoriteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='recrGreenFluorite0Standard' block='ReactorCraft:reactorcraft_block_fluoriteore:4' inherits='PresetStandardGen'>
@@ -1416,10 +1546,14 @@ Fluorite, Yellow Fluorite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Green Fluorite -->
                 
-                <!-- Red Fluorite Generation. --> 
+                <!-- End Green Fluorite Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Red Fluorite. -->
+                <!-- Begin Red Fluorite Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Red Fluorite -->
                 <IfCondition condition=':= recrRedFluoriteDist = "layeredVeins"'>
                 
                     <Veins name='recrRedFluorite0Veins' block='ReactorCraft:reactorcraft_block_fluoriteore:5' inherits='PresetLayeredVeins'>
@@ -1437,8 +1571,10 @@ Fluorite, Yellow Fluorite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Red Fluorite -->
                 
-                <!--  StrategicCloud distribution of Red Fluorite. -->
+                
+                <!-- Begin  StrategicCloud distribution of Red Fluorite -->
                 <IfCondition condition=':= recrRedFluoriteDist = "strategicCloud"'>
                 
                     <Cloud name='recrRedFluorite0Cloud' block='ReactorCraft:reactorcraft_block_fluoriteore:5' inherits='PresetStrategicCloud'>
@@ -1459,6 +1595,8 @@ Fluorite, Yellow Fluorite
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * recrRedFluoriteSize * _default_' range=':= 1 * 1 * 0.8 * recrRedFluoriteSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Red Fluorite Strategic Cloud Hint Veins -->
                         <Veins name='recrRedFluorite0HintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:5' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1470,11 +1608,15 @@ Fluorite, Yellow Fluorite
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrRedFluoriteSize * _default_' range=':= 1 * 0.8 * recrRedFluoriteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Red Fluorite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Red Fluorite -->
                 
-                <!--  Vanilla distribution of Red Fluorite. -->
+                
+                <!-- Begin  Vanilla distribution of Red Fluorite -->
                 <IfCondition condition=':= recrRedFluoriteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='recrRedFluorite0Standard' block='ReactorCraft:reactorcraft_block_fluoriteore:5' inherits='PresetStandardGen'>
@@ -1490,10 +1632,14 @@ Fluorite, Yellow Fluorite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Red Fluorite -->
                 
-                <!-- White Fluorite Generation. --> 
+                <!-- End Red Fluorite Generation --> 
+
                 
-                <!-- LayeredVeins distribution of White Fluorite. -->
+                <!-- Begin White Fluorite Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of White Fluorite -->
                 <IfCondition condition=':= recrWhiteFluoriteDist = "layeredVeins"'>
                 
                     <Veins name='recrWhiteFluorite0Veins' block='ReactorCraft:reactorcraft_block_fluoriteore:6' inherits='PresetLayeredVeins'>
@@ -1511,8 +1657,10 @@ Fluorite, Yellow Fluorite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of White Fluorite -->
                 
-                <!--  StrategicCloud distribution of White Fluorite. -->
+                
+                <!-- Begin  StrategicCloud distribution of White Fluorite -->
                 <IfCondition condition=':= recrWhiteFluoriteDist = "strategicCloud"'>
                 
                     <Cloud name='recrWhiteFluorite0Cloud' block='ReactorCraft:reactorcraft_block_fluoriteore:6' inherits='PresetStrategicCloud'>
@@ -1533,6 +1681,8 @@ Fluorite, Yellow Fluorite
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * recrWhiteFluoriteSize * _default_' range=':= 1 * 1 * 0.8 * recrWhiteFluoriteSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin White Fluorite Strategic Cloud Hint Veins -->
                         <Veins name='recrWhiteFluorite0HintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:6' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1544,11 +1694,15 @@ Fluorite, Yellow Fluorite
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrWhiteFluoriteSize * _default_' range=':= 1 * 0.8 * recrWhiteFluoriteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End White Fluorite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of White Fluorite -->
                 
-                <!--  Vanilla distribution of White Fluorite. -->
+                
+                <!-- Begin  Vanilla distribution of White Fluorite -->
                 <IfCondition condition=':= recrWhiteFluoriteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='recrWhiteFluorite0Standard' block='ReactorCraft:reactorcraft_block_fluoriteore:6' inherits='PresetStandardGen'>
@@ -1564,10 +1718,14 @@ Fluorite, Yellow Fluorite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of White Fluorite -->
                 
-                <!-- Yellow Fluorite Generation. --> 
+                <!-- End White Fluorite Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Yellow Fluorite. -->
+                <!-- Begin Yellow Fluorite Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Yellow Fluorite -->
                 <IfCondition condition=':= recrYellowFluoriteDist = "layeredVeins"'>
                 
                     <Veins name='recrYellowFluorite0Veins' block='ReactorCraft:reactorcraft_block_fluoriteore:7' inherits='PresetLayeredVeins'>
@@ -1585,8 +1743,10 @@ Fluorite, Yellow Fluorite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Yellow Fluorite -->
                 
-                <!--  StrategicCloud distribution of Yellow Fluorite. -->
+                
+                <!-- Begin  StrategicCloud distribution of Yellow Fluorite -->
                 <IfCondition condition=':= recrYellowFluoriteDist = "strategicCloud"'>
                 
                     <Cloud name='recrYellowFluorite0Cloud' block='ReactorCraft:reactorcraft_block_fluoriteore:7' inherits='PresetStrategicCloud'>
@@ -1607,6 +1767,8 @@ Fluorite, Yellow Fluorite
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * recrYellowFluoriteSize * _default_' range=':= 1 * 1 * 0.8 * recrYellowFluoriteSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Yellow Fluorite Strategic Cloud Hint Veins -->
                         <Veins name='recrYellowFluorite0HintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:7' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1618,11 +1780,15 @@ Fluorite, Yellow Fluorite
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrYellowFluoriteSize * _default_' range=':= 1 * 0.8 * recrYellowFluoriteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Yellow Fluorite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Yellow Fluorite -->
                 
-                <!--  Vanilla distribution of Yellow Fluorite. -->
+                
+                <!-- Begin  Vanilla distribution of Yellow Fluorite -->
                 <IfCondition condition=':= recrYellowFluoriteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='recrYellowFluorite0Standard' block='ReactorCraft:reactorcraft_block_fluoriteore:7' inherits='PresetStandardGen'>
@@ -1638,6 +1804,10 @@ Fluorite, Yellow Fluorite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Yellow Fluorite -->
+                
+                <!-- End Yellow Fluorite Generation --> 
+
                 <!-- Done adding ores -->
             
             </IfCondition>
@@ -1646,7 +1816,8 @@ Fluorite, Yellow Fluorite
 
             <!-- Setup Nether -->
             <IfCondition condition=':= dimension.generator = "HellRandomLevelSource"'>
-                <!-- **********   Vanilla Deposit Removal   ************* -->
+                
+                <!-- Starting Original Nether Ore Removal -->
                 <Substitute name='recrNetherOreSubstitute0' block='minecraft:netherrack'>
                     <Description>
                         Replace vanilla-generated ore clusters.
@@ -1656,12 +1827,13 @@ Fluorite, Yellow Fluorite
                     </Comment>
                     <Replaces block='ReactorCraft:reactorcraft_block_ore:6' />
                 </Substitute>
+                <!-- Original Nether Ore Removal Complete -->
                 
                 <!-- Adding ores --> 
                 
                 <!-- Ammonium Chloride Generation. --> 
                 
-                <!-- LayeredVeins distribution of Ammonium Chloride. -->
+                <!-- Begin LayeredVeins distribution of Ammonium Chloride -->
                 <IfCondition condition=':= recrAmmoniumChlorideDist = "layeredVeins"'>
                 
                     <Veins name='recrAmmoniumChloride0Veins' block='ReactorCraft:reactorcraft_block_ore:6' inherits='PresetLayeredVeins'>
@@ -1679,8 +1851,10 @@ Fluorite, Yellow Fluorite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Ammonium Chloride -->
                 
-                <!--  StrategicCloud distribution of Ammonium Chloride. -->
+                
+                <!-- Begin  StrategicCloud distribution of Ammonium Chloride -->
                 <IfCondition condition=':= recrAmmoniumChlorideDist = "strategicCloud"'>
                 
                     <Cloud name='recrAmmoniumChloride0Cloud' block='ReactorCraft:reactorcraft_block_ore:6' inherits='PresetStrategicCloud'>
@@ -1701,6 +1875,8 @@ Fluorite, Yellow Fluorite
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 1 * 1 * recrAmmoniumChlorideSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Ammonium Chloride Strategic Cloud Hint Veins -->
                         <Veins name='recrAmmoniumChloride0HintVeins' block='ReactorCraft:reactorcraft_block_ore:6' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1712,11 +1888,15 @@ Fluorite, Yellow Fluorite
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 1 * recrAmmoniumChlorideSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Ammonium Chloride Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Ammonium Chloride -->
                 
-                <!--  Vanilla distribution of Ammonium Chloride. -->
+                
+                <!-- Begin  Vanilla distribution of Ammonium Chloride -->
                 <IfCondition condition=':= recrAmmoniumChlorideDist = "vanillaStdGen"'>
                 
                     <StandardGen name='recrAmmoniumChloride0Standard' block='ReactorCraft:reactorcraft_block_ore:6' inherits='PresetStandardGen'>
@@ -1732,6 +1912,8 @@ Fluorite, Yellow Fluorite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Ammonium Chloride -->
+                
                 <!-- Done adding ores -->
             
             </IfCondition>
@@ -1740,7 +1922,8 @@ Fluorite, Yellow Fluorite
 
             <!-- Setup End -->
             <IfCondition condition=':= dimension.generator = "EndRandomLevelSource"'>
-                <!-- **********   Vanilla Deposit Removal   ************* -->
+                
+                <!-- Starting Original End Ore Removal -->
                 <Substitute name='recrEndOreSubstitute0' block='minecraft:end_stone'>
                     <Description>
                         Replace vanilla-generated ore clusters.
@@ -1750,12 +1933,13 @@ Fluorite, Yellow Fluorite
                     </Comment>
                     <Replaces block='ReactorCraft:reactorcraft_block_ore:5' />
                 </Substitute>
+                <!-- Original End Ore Removal Complete -->
                 
                 <!-- Adding ores --> 
                 
                 <!-- End Pitchblende Generation. --> 
                 
-                <!-- LayeredVeins distribution of End Pitchblende. -->
+                <!-- Begin LayeredVeins distribution of End Pitchblende -->
                 <IfCondition condition=':= recrEndPitchblendeDist = "layeredVeins"'>
                 
                     <Veins name='recrEndPitchblende0Veins' block='ReactorCraft:reactorcraft_block_ore:5' inherits='PresetLayeredVeins'>
@@ -1773,8 +1957,10 @@ Fluorite, Yellow Fluorite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of End Pitchblende -->
                 
-                <!--  StrategicCloud distribution of End Pitchblende. -->
+                
+                <!-- Begin  StrategicCloud distribution of End Pitchblende -->
                 <IfCondition condition=':= recrEndPitchblendeDist = "strategicCloud"'>
                 
                     <Cloud name='recrEndPitchblende0Cloud' block='ReactorCraft:reactorcraft_block_ore:5' inherits='PresetStrategicCloud'>
@@ -1795,6 +1981,8 @@ Fluorite, Yellow Fluorite
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * recrEndPitchblendeSize * _default_' range=':= 1 * 1 * 1 * recrEndPitchblendeSize  * _default_'/>
                         <Replaces block='minecraft:end_stone'/>
+                        
+                        <!-- Begin End Pitchblende Strategic Cloud Hint Veins -->
                         <Veins name='recrEndPitchblende0HintVeins' block='ReactorCraft:reactorcraft_block_ore:5' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1806,11 +1994,15 @@ Fluorite, Yellow Fluorite
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * recrEndPitchblendeSize * _default_' range=':= 1 * 1 * recrEndPitchblendeSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End End Pitchblende Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of End Pitchblende -->
                 
-                <!--  Vanilla distribution of End Pitchblende. -->
+                
+                <!-- Begin  Vanilla distribution of End Pitchblende -->
                 <IfCondition condition=':= recrEndPitchblendeDist = "vanillaStdGen"'>
                 
                     <StandardGen name='recrEndPitchblende0Standard' block='ReactorCraft:reactorcraft_block_ore:5' inherits='PresetStandardGen'>
@@ -1826,6 +2018,8 @@ Fluorite, Yellow Fluorite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of End Pitchblende -->
+                
                 <!-- Done adding ores -->
             
             </IfCondition>

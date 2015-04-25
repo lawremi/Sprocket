@@ -368,7 +368,9 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
 
             <!-- Setup Overworld -->
             <IfCondition condition=':= ?COGActive'>
-                <!-- **********   Vanilla Deposit Removal   ************* -->
+                
+                <!-- Starting Original Overworld Ore Removal -->
+                <!-- Original Overworld Ore Removal Complete -->
                 
                 <!-- Adding ores --> 
                 <!-- Done adding ores -->
@@ -379,7 +381,8 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
 
             <!-- Setup Nether -->
             <IfCondition condition=':= dimension.generator = "HellRandomLevelSource"'>
-                <!-- **********   Vanilla Deposit Removal   ************* -->
+                
+                <!-- Starting Original Nether Ore Removal -->
                 <Substitute name='mtlnNetherOreSubstitute0' block='minecraft:netherrack'>
                     <Description>
                         Replace vanilla-generated ore clusters.
@@ -398,12 +401,13 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     <Replaces block='Metallurgy:nether.ore:8' />
                     <Replaces block='Metallurgy:nether.ore:9' />
                 </Substitute>
+                <!-- Original Nether Ore Removal Complete -->
                 
                 <!-- Adding ores --> 
                 
                 <!-- Ignatius Generation. --> 
                 
-                <!-- Layered Veins distribution of Ignatius. -->
+                <!-- Begin Layered Veins distribution of Ignatius -->
                 <IfCondition condition=':= mtlnIgnatiusDist = "layeredVeins"'>
                 
                     <Veins name='mtlnIgnatius0Veins' block='Metallurgy:nether.ore' inherits='PresetLayeredVeins'>
@@ -411,7 +415,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlnIgnatiusSize * _default_' range=':= 1 * 1 * mtlnIgnatiusSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * mtlnIgnatiusFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
@@ -421,8 +425,10 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Ignatius -->
                 
-                <!--  Strategic Cloud distribution of Ignatius. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Ignatius -->
                 <IfCondition condition=':= mtlnIgnatiusDist = "strategicCloud"'>
                 
                     <Cloud name='mtlnIgnatius0Cloud' block='Metallurgy:nether.ore' inherits='PresetStrategicCloud'>
@@ -435,7 +441,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 3 * 1 * mtlnIgnatiusFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtlnIgnatiusSize * _default_' range=':= 1 * 1 * mtlnIgnatiusSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtlnIgnatiusSize * _default_' range=':= 1 * 1 * mtlnIgnatiusSize * _default_'/>
@@ -443,22 +449,28 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlnIgnatiusSize * _default_' range=':= 1 * 1 * 1 * mtlnIgnatiusSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Ignatius Strategic Cloud Hint Veins -->
                         <Veins name='mtlnIgnatius0HintVeins' block='Metallurgy:nether.ore' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60829754</WireframeColor>
+                            <WireframeColor>0x60567311</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 1 * mtlnIgnatiusFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlnIgnatiusSize * _default_' range=':= 1 * 1 * mtlnIgnatiusSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Ignatius Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Ignatius -->
                 
-                <!--  Vanilla distribution of Ignatius. -->
+                
+                <!-- Begin  Vanilla distribution of Ignatius -->
                 <IfCondition condition=':= mtlnIgnatiusDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlnIgnatius0Standard' block='Metallurgy:nether.ore' inherits='PresetStandardGen'>
@@ -466,7 +478,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlnIgnatiusSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 3 * 1 * mtlnIgnatiusFreq * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
@@ -474,10 +486,12 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Ignatius -->
+                
                 
                 <!-- Shadow Iron Generation. --> 
                 
-                <!-- Layered Veins distribution of Shadow Iron. -->
+                <!-- Begin Layered Veins distribution of Shadow Iron -->
                 <IfCondition condition=':= mtlnShadowIronDist = "layeredVeins"'>
                 
                     <Veins name='mtlnShadowIron0Veins' block='Metallurgy:nether.ore:1' inherits='PresetLayeredVeins'>
@@ -485,7 +499,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlnShadowIronSize * _default_' range=':= 1 * 1 * mtlnShadowIronSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * mtlnShadowIronFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
@@ -495,8 +509,10 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Shadow Iron -->
                 
-                <!--  Strategic Cloud distribution of Shadow Iron. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Shadow Iron -->
                 <IfCondition condition=':= mtlnShadowIronDist = "strategicCloud"'>
                 
                     <Cloud name='mtlnShadowIron0Cloud' block='Metallurgy:nether.ore:1' inherits='PresetStrategicCloud'>
@@ -509,7 +525,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 3 * 1 * mtlnShadowIronFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtlnShadowIronSize * _default_' range=':= 1 * 1 * mtlnShadowIronSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtlnShadowIronSize * _default_' range=':= 1 * 1 * mtlnShadowIronSize * _default_'/>
@@ -517,22 +533,28 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlnShadowIronSize * _default_' range=':= 1 * 1 * 1 * mtlnShadowIronSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Shadow Iron Strategic Cloud Hint Veins -->
                         <Veins name='mtlnShadowIron0HintVeins' block='Metallurgy:nether.ore:1' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60829754</WireframeColor>
+                            <WireframeColor>0x60567311</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 1 * mtlnShadowIronFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlnShadowIronSize * _default_' range=':= 1 * 1 * mtlnShadowIronSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Shadow Iron Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Shadow Iron -->
                 
-                <!--  Vanilla distribution of Shadow Iron. -->
+                
+                <!-- Begin  Vanilla distribution of Shadow Iron -->
                 <IfCondition condition=':= mtlnShadowIronDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlnShadowIron0Standard' block='Metallurgy:nether.ore:1' inherits='PresetStandardGen'>
@@ -540,7 +562,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlnShadowIronSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 3 * 1 * mtlnShadowIronFreq * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
@@ -548,10 +570,12 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Shadow Iron -->
+                
                 
                 <!-- Lemurite Generation. --> 
                 
-                <!-- Layered Veins distribution of Lemurite. -->
+                <!-- Begin Layered Veins distribution of Lemurite -->
                 <IfCondition condition=':= mtlnLemuriteDist = "layeredVeins"'>
                 
                     <Veins name='mtlnLemurite0Veins' block='Metallurgy:nether.ore:2' inherits='PresetLayeredVeins'>
@@ -559,7 +583,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlnLemuriteSize * _default_' range=':= 1 * 1 * mtlnLemuriteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * mtlnLemuriteFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
@@ -569,8 +593,10 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Lemurite -->
                 
-                <!--  Strategic Cloud distribution of Lemurite. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Lemurite -->
                 <IfCondition condition=':= mtlnLemuriteDist = "strategicCloud"'>
                 
                     <Cloud name='mtlnLemurite0Cloud' block='Metallurgy:nether.ore:2' inherits='PresetStrategicCloud'>
@@ -583,7 +609,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 3 * 1 * mtlnLemuriteFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtlnLemuriteSize * _default_' range=':= 1 * 1 * mtlnLemuriteSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtlnLemuriteSize * _default_' range=':= 1 * 1 * mtlnLemuriteSize * _default_'/>
@@ -591,22 +617,28 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlnLemuriteSize * _default_' range=':= 1 * 1 * 1 * mtlnLemuriteSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Lemurite Strategic Cloud Hint Veins -->
                         <Veins name='mtlnLemurite0HintVeins' block='Metallurgy:nether.ore:2' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60829754</WireframeColor>
+                            <WireframeColor>0x60567311</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 1 * mtlnLemuriteFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlnLemuriteSize * _default_' range=':= 1 * 1 * mtlnLemuriteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Lemurite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Lemurite -->
                 
-                <!--  Vanilla distribution of Lemurite. -->
+                
+                <!-- Begin  Vanilla distribution of Lemurite -->
                 <IfCondition condition=':= mtlnLemuriteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlnLemurite0Standard' block='Metallurgy:nether.ore:2' inherits='PresetStandardGen'>
@@ -614,7 +646,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlnLemuriteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 3 * 1 * mtlnLemuriteFreq * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
@@ -622,10 +654,12 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Lemurite -->
+                
                 
                 <!-- Midasium Generation. --> 
                 
-                <!-- Layered Veins distribution of Midasium. -->
+                <!-- Begin Layered Veins distribution of Midasium -->
                 <IfCondition condition=':= mtlnMidasiumDist = "layeredVeins"'>
                 
                     <Veins name='mtlnMidasium0Veins' block='Metallurgy:nether.ore:3' inherits='PresetLayeredVeins'>
@@ -633,7 +667,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlnMidasiumSize * _default_' range=':= 1 * 1 * mtlnMidasiumSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * mtlnMidasiumFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
@@ -643,8 +677,10 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Midasium -->
                 
-                <!--  Strategic Cloud distribution of Midasium. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Midasium -->
                 <IfCondition condition=':= mtlnMidasiumDist = "strategicCloud"'>
                 
                     <Cloud name='mtlnMidasium0Cloud' block='Metallurgy:nether.ore:3' inherits='PresetStrategicCloud'>
@@ -657,7 +693,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 3 * 1 * mtlnMidasiumFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtlnMidasiumSize * _default_' range=':= 1 * 1 * mtlnMidasiumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtlnMidasiumSize * _default_' range=':= 1 * 1 * mtlnMidasiumSize * _default_'/>
@@ -665,22 +701,28 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlnMidasiumSize * _default_' range=':= 1 * 1 * 1 * mtlnMidasiumSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Midasium Strategic Cloud Hint Veins -->
                         <Veins name='mtlnMidasium0HintVeins' block='Metallurgy:nether.ore:3' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60829754</WireframeColor>
+                            <WireframeColor>0x60567311</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 1 * mtlnMidasiumFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlnMidasiumSize * _default_' range=':= 1 * 1 * mtlnMidasiumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Midasium Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Midasium -->
                 
-                <!--  Vanilla distribution of Midasium. -->
+                
+                <!-- Begin  Vanilla distribution of Midasium -->
                 <IfCondition condition=':= mtlnMidasiumDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlnMidasium0Standard' block='Metallurgy:nether.ore:3' inherits='PresetStandardGen'>
@@ -688,7 +730,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlnMidasiumSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 3 * 1 * mtlnMidasiumFreq * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
@@ -696,10 +738,12 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Midasium -->
+                
                 
                 <!-- Vyroxeres Generation. --> 
                 
-                <!-- Layered Veins distribution of Vyroxeres. -->
+                <!-- Begin Layered Veins distribution of Vyroxeres -->
                 <IfCondition condition=':= mtlnVyroxeresDist = "layeredVeins"'>
                 
                     <Veins name='mtlnVyroxeres0Veins' block='Metallurgy:nether.ore:4' inherits='PresetLayeredVeins'>
@@ -707,7 +751,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlnVyroxeresSize * _default_' range=':= 1 * 1 * mtlnVyroxeresSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * mtlnVyroxeresFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
@@ -717,8 +761,10 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Vyroxeres -->
                 
-                <!--  Strategic Cloud distribution of Vyroxeres. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Vyroxeres -->
                 <IfCondition condition=':= mtlnVyroxeresDist = "strategicCloud"'>
                 
                     <Cloud name='mtlnVyroxeres0Cloud' block='Metallurgy:nether.ore:4' inherits='PresetStrategicCloud'>
@@ -731,7 +777,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 3 * 1 * mtlnVyroxeresFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtlnVyroxeresSize * _default_' range=':= 1 * 1 * mtlnVyroxeresSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtlnVyroxeresSize * _default_' range=':= 1 * 1 * mtlnVyroxeresSize * _default_'/>
@@ -739,22 +785,28 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlnVyroxeresSize * _default_' range=':= 1 * 1 * 1 * mtlnVyroxeresSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Vyroxeres Strategic Cloud Hint Veins -->
                         <Veins name='mtlnVyroxeres0HintVeins' block='Metallurgy:nether.ore:4' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60829754</WireframeColor>
+                            <WireframeColor>0x60567311</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 1 * mtlnVyroxeresFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlnVyroxeresSize * _default_' range=':= 1 * 1 * mtlnVyroxeresSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Vyroxeres Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Vyroxeres -->
                 
-                <!--  Vanilla distribution of Vyroxeres. -->
+                
+                <!-- Begin  Vanilla distribution of Vyroxeres -->
                 <IfCondition condition=':= mtlnVyroxeresDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlnVyroxeres0Standard' block='Metallurgy:nether.ore:4' inherits='PresetStandardGen'>
@@ -762,7 +814,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlnVyroxeresSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 3 * 1 * mtlnVyroxeresFreq * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
@@ -770,10 +822,12 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Vyroxeres -->
+                
                 
                 <!-- Ceruclase Generation. --> 
                 
-                <!-- Layered Veins distribution of Ceruclase. -->
+                <!-- Begin Layered Veins distribution of Ceruclase -->
                 <IfCondition condition=':= mtlnCeruclaseDist = "layeredVeins"'>
                 
                     <Veins name='mtlnCeruclase0Veins' block='Metallurgy:nether.ore:5' inherits='PresetLayeredVeins'>
@@ -781,7 +835,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlnCeruclaseSize * _default_' range=':= 1 * 1 * mtlnCeruclaseSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * mtlnCeruclaseFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
@@ -791,8 +845,10 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Ceruclase -->
                 
-                <!--  Strategic Cloud distribution of Ceruclase. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Ceruclase -->
                 <IfCondition condition=':= mtlnCeruclaseDist = "strategicCloud"'>
                 
                     <Cloud name='mtlnCeruclase0Cloud' block='Metallurgy:nether.ore:5' inherits='PresetStrategicCloud'>
@@ -805,7 +861,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 3 * 1 * mtlnCeruclaseFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtlnCeruclaseSize * _default_' range=':= 1 * 1 * mtlnCeruclaseSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtlnCeruclaseSize * _default_' range=':= 1 * 1 * mtlnCeruclaseSize * _default_'/>
@@ -813,22 +869,28 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlnCeruclaseSize * _default_' range=':= 1 * 1 * 1 * mtlnCeruclaseSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Ceruclase Strategic Cloud Hint Veins -->
                         <Veins name='mtlnCeruclase0HintVeins' block='Metallurgy:nether.ore:5' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60829754</WireframeColor>
+                            <WireframeColor>0x60567311</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 1 * mtlnCeruclaseFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlnCeruclaseSize * _default_' range=':= 1 * 1 * mtlnCeruclaseSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Ceruclase Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Ceruclase -->
                 
-                <!--  Vanilla distribution of Ceruclase. -->
+                
+                <!-- Begin  Vanilla distribution of Ceruclase -->
                 <IfCondition condition=':= mtlnCeruclaseDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlnCeruclase0Standard' block='Metallurgy:nether.ore:5' inherits='PresetStandardGen'>
@@ -836,7 +898,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlnCeruclaseSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 3 * 1 * mtlnCeruclaseFreq * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
@@ -844,10 +906,12 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Ceruclase -->
+                
                 
                 <!-- Alduorite Generation. --> 
                 
-                <!-- Layered Veins distribution of Alduorite. -->
+                <!-- Begin Layered Veins distribution of Alduorite -->
                 <IfCondition condition=':= mtlnAlduoriteDist = "layeredVeins"'>
                 
                     <Veins name='mtlnAlduorite0Veins' block='Metallurgy:nether.ore:6' inherits='PresetLayeredVeins'>
@@ -855,7 +919,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlnAlduoriteSize * _default_' range=':= 1 * 1 * mtlnAlduoriteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * mtlnAlduoriteFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
@@ -865,8 +929,10 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Alduorite -->
                 
-                <!--  Strategic Cloud distribution of Alduorite. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Alduorite -->
                 <IfCondition condition=':= mtlnAlduoriteDist = "strategicCloud"'>
                 
                     <Cloud name='mtlnAlduorite0Cloud' block='Metallurgy:nether.ore:6' inherits='PresetStrategicCloud'>
@@ -879,7 +945,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 3 * 1 * mtlnAlduoriteFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtlnAlduoriteSize * _default_' range=':= 1 * 1 * mtlnAlduoriteSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtlnAlduoriteSize * _default_' range=':= 1 * 1 * mtlnAlduoriteSize * _default_'/>
@@ -887,22 +953,28 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlnAlduoriteSize * _default_' range=':= 1 * 1 * 1 * mtlnAlduoriteSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Alduorite Strategic Cloud Hint Veins -->
                         <Veins name='mtlnAlduorite0HintVeins' block='Metallurgy:nether.ore:6' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60829754</WireframeColor>
+                            <WireframeColor>0x60567311</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 1 * mtlnAlduoriteFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlnAlduoriteSize * _default_' range=':= 1 * 1 * mtlnAlduoriteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Alduorite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Alduorite -->
                 
-                <!--  Vanilla distribution of Alduorite. -->
+                
+                <!-- Begin  Vanilla distribution of Alduorite -->
                 <IfCondition condition=':= mtlnAlduoriteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlnAlduorite0Standard' block='Metallurgy:nether.ore:6' inherits='PresetStandardGen'>
@@ -910,7 +982,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlnAlduoriteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 3 * 1 * mtlnAlduoriteFreq * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
@@ -918,10 +990,12 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Alduorite -->
+                
                 
                 <!-- Kalendrite Generation. --> 
                 
-                <!-- Layered Veins distribution of Kalendrite. -->
+                <!-- Begin Layered Veins distribution of Kalendrite -->
                 <IfCondition condition=':= mtlnKalendriteDist = "layeredVeins"'>
                 
                     <Veins name='mtlnKalendrite0Veins' block='Metallurgy:nether.ore:7' inherits='PresetLayeredVeins'>
@@ -929,7 +1003,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlnKalendriteSize * _default_' range=':= 1 * 1 * mtlnKalendriteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * mtlnKalendriteFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
@@ -939,8 +1013,10 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Kalendrite -->
                 
-                <!--  Strategic Cloud distribution of Kalendrite. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Kalendrite -->
                 <IfCondition condition=':= mtlnKalendriteDist = "strategicCloud"'>
                 
                     <Cloud name='mtlnKalendrite0Cloud' block='Metallurgy:nether.ore:7' inherits='PresetStrategicCloud'>
@@ -953,7 +1029,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 3 * 1 * mtlnKalendriteFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtlnKalendriteSize * _default_' range=':= 1 * 1 * mtlnKalendriteSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtlnKalendriteSize * _default_' range=':= 1 * 1 * mtlnKalendriteSize * _default_'/>
@@ -961,22 +1037,28 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlnKalendriteSize * _default_' range=':= 1 * 1 * 1 * mtlnKalendriteSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Kalendrite Strategic Cloud Hint Veins -->
                         <Veins name='mtlnKalendrite0HintVeins' block='Metallurgy:nether.ore:7' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60829754</WireframeColor>
+                            <WireframeColor>0x60567311</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 1 * mtlnKalendriteFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlnKalendriteSize * _default_' range=':= 1 * 1 * mtlnKalendriteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Kalendrite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Kalendrite -->
                 
-                <!--  Vanilla distribution of Kalendrite. -->
+                
+                <!-- Begin  Vanilla distribution of Kalendrite -->
                 <IfCondition condition=':= mtlnKalendriteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlnKalendrite0Standard' block='Metallurgy:nether.ore:7' inherits='PresetStandardGen'>
@@ -984,7 +1066,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlnKalendriteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 3 * 1 * mtlnKalendriteFreq * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
@@ -992,10 +1074,12 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Kalendrite -->
+                
                 
                 <!-- Vulcanite Generation. --> 
                 
-                <!-- Layered Veins distribution of Vulcanite. -->
+                <!-- Begin Layered Veins distribution of Vulcanite -->
                 <IfCondition condition=':= mtlnVulcaniteDist = "layeredVeins"'>
                 
                     <Veins name='mtlnVulcanite0Veins' block='Metallurgy:nether.ore:8' inherits='PresetLayeredVeins'>
@@ -1003,7 +1087,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlnVulcaniteSize * _default_' range=':= 1 * 1 * mtlnVulcaniteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * mtlnVulcaniteFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
@@ -1013,8 +1097,10 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Vulcanite -->
                 
-                <!--  Strategic Cloud distribution of Vulcanite. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Vulcanite -->
                 <IfCondition condition=':= mtlnVulcaniteDist = "strategicCloud"'>
                 
                     <Cloud name='mtlnVulcanite0Cloud' block='Metallurgy:nether.ore:8' inherits='PresetStrategicCloud'>
@@ -1027,7 +1113,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 3 * 1 * mtlnVulcaniteFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtlnVulcaniteSize * _default_' range=':= 1 * 1 * mtlnVulcaniteSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtlnVulcaniteSize * _default_' range=':= 1 * 1 * mtlnVulcaniteSize * _default_'/>
@@ -1035,22 +1121,28 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlnVulcaniteSize * _default_' range=':= 1 * 1 * 1 * mtlnVulcaniteSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Vulcanite Strategic Cloud Hint Veins -->
                         <Veins name='mtlnVulcanite0HintVeins' block='Metallurgy:nether.ore:8' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60829754</WireframeColor>
+                            <WireframeColor>0x60567311</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 1 * mtlnVulcaniteFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlnVulcaniteSize * _default_' range=':= 1 * 1 * mtlnVulcaniteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Vulcanite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Vulcanite -->
                 
-                <!--  Vanilla distribution of Vulcanite. -->
+                
+                <!-- Begin  Vanilla distribution of Vulcanite -->
                 <IfCondition condition=':= mtlnVulcaniteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlnVulcanite0Standard' block='Metallurgy:nether.ore:8' inherits='PresetStandardGen'>
@@ -1058,7 +1150,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlnVulcaniteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 3 * 1 * mtlnVulcaniteFreq * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
@@ -1066,10 +1158,12 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Vulcanite -->
+                
                 
                 <!-- Sanguinite Generation. --> 
                 
-                <!-- Layered Veins distribution of Sanguinite. -->
+                <!-- Begin Layered Veins distribution of Sanguinite -->
                 <IfCondition condition=':= mtlnSanguiniteDist = "layeredVeins"'>
                 
                     <Veins name='mtlnSanguinite0Veins' block='Metallurgy:nether.ore:9' inherits='PresetLayeredVeins'>
@@ -1077,7 +1171,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlnSanguiniteSize * _default_' range=':= 1 * 1 * mtlnSanguiniteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * mtlnSanguiniteFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
@@ -1087,8 +1181,10 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </Veins>
                 
                 </IfCondition>
+                <!-- End Layered Veins distribution of Sanguinite -->
                 
-                <!--  Strategic Cloud distribution of Sanguinite. -->
+                
+                <!-- Begin  Strategic Cloud distribution of Sanguinite -->
                 <IfCondition condition=':= mtlnSanguiniteDist = "strategicCloud"'>
                 
                     <Cloud name='mtlnSanguinite0Cloud' block='Metallurgy:nether.ore:9' inherits='PresetStrategicCloud'>
@@ -1101,7 +1197,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 3 * 1 * mtlnSanguiniteFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtlnSanguiniteSize * _default_' range=':= 1 * 1 * mtlnSanguiniteSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtlnSanguiniteSize * _default_' range=':= 1 * 1 * mtlnSanguiniteSize * _default_'/>
@@ -1109,22 +1205,28 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlnSanguiniteSize * _default_' range=':= 1 * 1 * 1 * mtlnSanguiniteSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Sanguinite Strategic Cloud Hint Veins -->
                         <Veins name='mtlnSanguinite0HintVeins' block='Metallurgy:nether.ore:9' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60829754</WireframeColor>
+                            <WireframeColor>0x60567311</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 1 * mtlnSanguiniteFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlnSanguiniteSize * _default_' range=':= 1 * 1 * mtlnSanguiniteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Sanguinite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  Strategic Cloud distribution of Sanguinite -->
                 
-                <!--  Vanilla distribution of Sanguinite. -->
+                
+                <!-- Begin  Vanilla distribution of Sanguinite -->
                 <IfCondition condition=':= mtlnSanguiniteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='mtlnSanguinite0Standard' block='Metallurgy:nether.ore:9' inherits='PresetStandardGen'>
@@ -1132,7 +1234,7 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60829754</WireframeColor>
+                        <WireframeColor>0x60567311</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlnSanguiniteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 3 * 1 * mtlnSanguiniteFreq * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
@@ -1140,6 +1242,8 @@ Alduorite, Kalendrite, Vulcanite, Sanguinite
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Sanguinite -->
+                
                 <!-- Done adding ores -->
             
             </IfCondition>

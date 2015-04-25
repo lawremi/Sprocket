@@ -1119,7 +1119,9 @@ Saltpeter, Magnesium
 
             <!-- Setup Overworld -->
             <IfCondition condition=':= ?COGActive'>
-                <!-- **********   Vanilla Deposit Removal   ************* -->
+                
+                <!-- Starting Original Overworld Ore Removal -->
+                <!-- Original Overworld Ore Removal Complete -->
                 
                 <!-- Adding ores --> 
                 <!-- Done adding ores -->
@@ -1130,7 +1132,8 @@ Saltpeter, Magnesium
 
             <!-- Setup Nether -->
             <IfCondition condition=':= dimension.generator = "HellRandomLevelSource"'>
-                <!-- **********   Vanilla Deposit Removal   ************* -->
+                
+                <!-- Starting Original Nether Ore Removal -->
                 <Substitute name='nthoNetherOreSubstitute0' block='minecraft:netherrack'>
                     <Description>
                         Replace vanilla-generated ore clusters.
@@ -1171,12 +1174,13 @@ Saltpeter, Magnesium
                     <Replaces block='NetherOres:tile.netherores.ore.1:14' />
                     <Replaces block='NetherOres:tile.netherores.ore.1:15' />
                 </Substitute>
+                <!-- Original Nether Ore Removal Complete -->
                 
                 <!-- Adding ores --> 
                 
                 <!-- Coal Generation. --> 
                 
-                <!-- LayeredVeins distribution of Coal. -->
+                <!-- Begin LayeredVeins distribution of Coal -->
                 <IfCondition condition=':= nthoCoalDist = "layeredVeins"'>
                 
                     <Veins name='nthoCoal0Veins' block='NetherOres:tile.netherores.ore.0' inherits='PresetLayeredVeins'>
@@ -1194,8 +1198,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Coal -->
                 
-                <!--  StrategicCloud distribution of Coal. -->
+                
+                <!-- Begin  StrategicCloud distribution of Coal -->
                 <IfCondition condition=':= nthoCoalDist = "strategicCloud"'>
                 
                     <Cloud name='nthoCoal0Cloud' block='NetherOres:tile.netherores.ore.0' inherits='PresetStrategicCloud'>
@@ -1216,6 +1222,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoCoalSize * _default_' range=':= 3 * 1 * 1 * nthoCoalSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Coal Strategic Cloud Hint Veins -->
                         <Veins name='nthoCoal0HintVeins' block='NetherOres:tile.netherores.ore.0' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1227,11 +1235,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoCoalSize * _default_' range=':= 3 * 1 * nthoCoalSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Coal Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Coal -->
                 
-                <!--  Vanilla distribution of Coal. -->
+                
+                <!-- Begin  Vanilla distribution of Coal -->
                 <IfCondition condition=':= nthoCoalDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoCoal0Standard' block='NetherOres:tile.netherores.ore.0' inherits='PresetStandardGen'>
@@ -1247,10 +1259,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Coal -->
+                
                 
                 <!-- Diamond Generation. --> 
                 
-                <!-- LayeredVeins distribution of Diamond. -->
+                <!-- Begin LayeredVeins distribution of Diamond -->
                 <IfCondition condition=':= nthoDiamondDist = "layeredVeins"'>
                 
                     <Veins name='nthoDiamond0Veins' block='NetherOres:tile.netherores.ore.0:1' inherits='PresetLayeredVeins'>
@@ -1268,8 +1282,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Diamond -->
                 
-                <!--  StrategicCloud distribution of Diamond. -->
+                
+                <!-- Begin  StrategicCloud distribution of Diamond -->
                 <IfCondition condition=':= nthoDiamondDist = "strategicCloud"'>
                 
                     <Cloud name='nthoDiamond0Cloud' block='NetherOres:tile.netherores.ore.0:1' inherits='PresetStrategicCloud'>
@@ -1290,6 +1306,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoDiamondSize * _default_' range=':= 3 * 1 * 1 * nthoDiamondSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Diamond Strategic Cloud Hint Veins -->
                         <Veins name='nthoDiamond0HintVeins' block='NetherOres:tile.netherores.ore.0:1' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1301,11 +1319,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoDiamondSize * _default_' range=':= 3 * 1 * nthoDiamondSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Diamond Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Diamond -->
                 
-                <!--  Vanilla distribution of Diamond. -->
+                
+                <!-- Begin  Vanilla distribution of Diamond -->
                 <IfCondition condition=':= nthoDiamondDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoDiamond0Standard' block='NetherOres:tile.netherores.ore.0:1' inherits='PresetStandardGen'>
@@ -1321,10 +1343,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Diamond -->
+                
                 
                 <!-- Gold Generation. --> 
                 
-                <!-- LayeredVeins distribution of Gold. -->
+                <!-- Begin LayeredVeins distribution of Gold -->
                 <IfCondition condition=':= nthoGoldDist = "layeredVeins"'>
                 
                     <Veins name='nthoGold0Veins' block='NetherOres:tile.netherores.ore.0:2' inherits='PresetLayeredVeins'>
@@ -1342,8 +1366,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Gold -->
                 
-                <!--  StrategicCloud distribution of Gold. -->
+                
+                <!-- Begin  StrategicCloud distribution of Gold -->
                 <IfCondition condition=':= nthoGoldDist = "strategicCloud"'>
                 
                     <Cloud name='nthoGold0Cloud' block='NetherOres:tile.netherores.ore.0:2' inherits='PresetStrategicCloud'>
@@ -1364,6 +1390,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoGoldSize * _default_' range=':= 3 * 1 * 1 * nthoGoldSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Gold Strategic Cloud Hint Veins -->
                         <Veins name='nthoGold0HintVeins' block='NetherOres:tile.netherores.ore.0:2' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1375,11 +1403,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoGoldSize * _default_' range=':= 3 * 1 * nthoGoldSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Gold Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Gold -->
                 
-                <!--  Vanilla distribution of Gold. -->
+                
+                <!-- Begin  Vanilla distribution of Gold -->
                 <IfCondition condition=':= nthoGoldDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoGold0Standard' block='NetherOres:tile.netherores.ore.0:2' inherits='PresetStandardGen'>
@@ -1395,10 +1427,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Gold -->
+                
                 
                 <!-- Iron Generation. --> 
                 
-                <!-- LayeredVeins distribution of Iron. -->
+                <!-- Begin LayeredVeins distribution of Iron -->
                 <IfCondition condition=':= nthoIronDist = "layeredVeins"'>
                 
                     <Veins name='nthoIron0Veins' block='NetherOres:tile.netherores.ore.0:3' inherits='PresetLayeredVeins'>
@@ -1416,8 +1450,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Iron -->
                 
-                <!--  StrategicCloud distribution of Iron. -->
+                
+                <!-- Begin  StrategicCloud distribution of Iron -->
                 <IfCondition condition=':= nthoIronDist = "strategicCloud"'>
                 
                     <Cloud name='nthoIron0Cloud' block='NetherOres:tile.netherores.ore.0:3' inherits='PresetStrategicCloud'>
@@ -1438,6 +1474,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoIronSize * _default_' range=':= 3 * 1 * 1 * nthoIronSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Iron Strategic Cloud Hint Veins -->
                         <Veins name='nthoIron0HintVeins' block='NetherOres:tile.netherores.ore.0:3' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1449,11 +1487,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoIronSize * _default_' range=':= 3 * 1 * nthoIronSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Iron Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Iron -->
                 
-                <!--  Vanilla distribution of Iron. -->
+                
+                <!-- Begin  Vanilla distribution of Iron -->
                 <IfCondition condition=':= nthoIronDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoIron0Standard' block='NetherOres:tile.netherores.ore.0:3' inherits='PresetStandardGen'>
@@ -1469,10 +1511,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Iron -->
+                
                 
                 <!-- Lapis Lazuli Generation. --> 
                 
-                <!-- LayeredVeins distribution of Lapis Lazuli. -->
+                <!-- Begin LayeredVeins distribution of Lapis Lazuli -->
                 <IfCondition condition=':= nthoLapisLazuliDist = "layeredVeins"'>
                 
                     <Veins name='nthoLapisLazuli0Veins' block='NetherOres:tile.netherores.ore.0:4' inherits='PresetLayeredVeins'>
@@ -1490,8 +1534,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Lapis Lazuli -->
                 
-                <!--  StrategicCloud distribution of Lapis Lazuli. -->
+                
+                <!-- Begin  StrategicCloud distribution of Lapis Lazuli -->
                 <IfCondition condition=':= nthoLapisLazuliDist = "strategicCloud"'>
                 
                     <Cloud name='nthoLapisLazuli0Cloud' block='NetherOres:tile.netherores.ore.0:4' inherits='PresetStrategicCloud'>
@@ -1512,6 +1558,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoLapisLazuliSize * _default_' range=':= 3 * 1 * 1 * nthoLapisLazuliSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Lapis Lazuli Strategic Cloud Hint Veins -->
                         <Veins name='nthoLapisLazuli0HintVeins' block='NetherOres:tile.netherores.ore.0:4' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1523,11 +1571,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoLapisLazuliSize * _default_' range=':= 3 * 1 * nthoLapisLazuliSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Lapis Lazuli Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Lapis Lazuli -->
                 
-                <!--  Vanilla distribution of Lapis Lazuli. -->
+                
+                <!-- Begin  Vanilla distribution of Lapis Lazuli -->
                 <IfCondition condition=':= nthoLapisLazuliDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoLapisLazuli0Standard' block='NetherOres:tile.netherores.ore.0:4' inherits='PresetStandardGen'>
@@ -1543,10 +1595,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Lapis Lazuli -->
+                
                 
                 <!-- Redstone Generation. --> 
                 
-                <!-- LayeredVeins distribution of Redstone. -->
+                <!-- Begin LayeredVeins distribution of Redstone -->
                 <IfCondition condition=':= nthoRedstoneDist = "layeredVeins"'>
                 
                     <Veins name='nthoRedstone0Veins' block='NetherOres:tile.netherores.ore.0:5' inherits='PresetLayeredVeins'>
@@ -1564,8 +1618,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Redstone -->
                 
-                <!--  StrategicCloud distribution of Redstone. -->
+                
+                <!-- Begin  StrategicCloud distribution of Redstone -->
                 <IfCondition condition=':= nthoRedstoneDist = "strategicCloud"'>
                 
                     <Cloud name='nthoRedstone0Cloud' block='NetherOres:tile.netherores.ore.0:5' inherits='PresetStrategicCloud'>
@@ -1586,6 +1642,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoRedstoneSize * _default_' range=':= 3 * 1 * 1 * nthoRedstoneSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Redstone Strategic Cloud Hint Veins -->
                         <Veins name='nthoRedstone0HintVeins' block='NetherOres:tile.netherores.ore.0:5' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1597,11 +1655,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoRedstoneSize * _default_' range=':= 3 * 1 * nthoRedstoneSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Redstone Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Redstone -->
                 
-                <!--  Vanilla distribution of Redstone. -->
+                
+                <!-- Begin  Vanilla distribution of Redstone -->
                 <IfCondition condition=':= nthoRedstoneDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoRedstone0Standard' block='NetherOres:tile.netherores.ore.0:5' inherits='PresetStandardGen'>
@@ -1617,10 +1679,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Redstone -->
+                
                 
                 <!-- Copper Generation. --> 
                 
-                <!-- LayeredVeins distribution of Copper. -->
+                <!-- Begin LayeredVeins distribution of Copper -->
                 <IfCondition condition=':= nthoCopperDist = "layeredVeins"'>
                 
                     <Veins name='nthoCopper0Veins' block='NetherOres:tile.netherores.ore.0:6' inherits='PresetLayeredVeins'>
@@ -1638,8 +1702,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Copper -->
                 
-                <!--  StrategicCloud distribution of Copper. -->
+                
+                <!-- Begin  StrategicCloud distribution of Copper -->
                 <IfCondition condition=':= nthoCopperDist = "strategicCloud"'>
                 
                     <Cloud name='nthoCopper0Cloud' block='NetherOres:tile.netherores.ore.0:6' inherits='PresetStrategicCloud'>
@@ -1660,6 +1726,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoCopperSize * _default_' range=':= 3 * 1 * 1 * nthoCopperSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Copper Strategic Cloud Hint Veins -->
                         <Veins name='nthoCopper0HintVeins' block='NetherOres:tile.netherores.ore.0:6' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1671,11 +1739,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoCopperSize * _default_' range=':= 3 * 1 * nthoCopperSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Copper Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Copper -->
                 
-                <!--  Vanilla distribution of Copper. -->
+                
+                <!-- Begin  Vanilla distribution of Copper -->
                 <IfCondition condition=':= nthoCopperDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoCopper0Standard' block='NetherOres:tile.netherores.ore.0:6' inherits='PresetStandardGen'>
@@ -1691,10 +1763,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Copper -->
+                
                 
                 <!-- Tin Generation. --> 
                 
-                <!-- LayeredVeins distribution of Tin. -->
+                <!-- Begin LayeredVeins distribution of Tin -->
                 <IfCondition condition=':= nthoTinDist = "layeredVeins"'>
                 
                     <Veins name='nthoTin0Veins' block='NetherOres:tile.netherores.ore.0:7' inherits='PresetLayeredVeins'>
@@ -1712,8 +1786,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Tin -->
                 
-                <!--  StrategicCloud distribution of Tin. -->
+                
+                <!-- Begin  StrategicCloud distribution of Tin -->
                 <IfCondition condition=':= nthoTinDist = "strategicCloud"'>
                 
                     <Cloud name='nthoTin0Cloud' block='NetherOres:tile.netherores.ore.0:7' inherits='PresetStrategicCloud'>
@@ -1734,6 +1810,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoTinSize * _default_' range=':= 3 * 1 * 1 * nthoTinSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Tin Strategic Cloud Hint Veins -->
                         <Veins name='nthoTin0HintVeins' block='NetherOres:tile.netherores.ore.0:7' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1745,11 +1823,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoTinSize * _default_' range=':= 3 * 1 * nthoTinSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Tin Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Tin -->
                 
-                <!--  Vanilla distribution of Tin. -->
+                
+                <!-- Begin  Vanilla distribution of Tin -->
                 <IfCondition condition=':= nthoTinDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoTin0Standard' block='NetherOres:tile.netherores.ore.0:7' inherits='PresetStandardGen'>
@@ -1765,10 +1847,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Tin -->
+                
                 
                 <!-- Emerald Generation. --> 
                 
-                <!-- LayeredVeins distribution of Emerald. -->
+                <!-- Begin LayeredVeins distribution of Emerald -->
                 <IfCondition condition=':= nthoEmeraldDist = "layeredVeins"'>
                 
                     <Veins name='nthoEmerald0Veins' block='NetherOres:tile.netherores.ore.0:8' inherits='PresetLayeredVeins'>
@@ -1786,8 +1870,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Emerald -->
                 
-                <!--  StrategicCloud distribution of Emerald. -->
+                
+                <!-- Begin  StrategicCloud distribution of Emerald -->
                 <IfCondition condition=':= nthoEmeraldDist = "strategicCloud"'>
                 
                     <Cloud name='nthoEmerald0Cloud' block='NetherOres:tile.netherores.ore.0:8' inherits='PresetStrategicCloud'>
@@ -1808,6 +1894,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoEmeraldSize * _default_' range=':= 3 * 1 * 1 * nthoEmeraldSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Emerald Strategic Cloud Hint Veins -->
                         <Veins name='nthoEmerald0HintVeins' block='NetherOres:tile.netherores.ore.0:8' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1819,11 +1907,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoEmeraldSize * _default_' range=':= 3 * 1 * nthoEmeraldSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Emerald Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Emerald -->
                 
-                <!--  Vanilla distribution of Emerald. -->
+                
+                <!-- Begin  Vanilla distribution of Emerald -->
                 <IfCondition condition=':= nthoEmeraldDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoEmerald0Standard' block='NetherOres:tile.netherores.ore.0:8' inherits='PresetStandardGen'>
@@ -1839,10 +1931,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Emerald -->
+                
                 
                 <!-- Silver Generation. --> 
                 
-                <!-- LayeredVeins distribution of Silver. -->
+                <!-- Begin LayeredVeins distribution of Silver -->
                 <IfCondition condition=':= nthoSilverDist = "layeredVeins"'>
                 
                     <Veins name='nthoSilver0Veins' block='NetherOres:tile.netherores.ore.0:9' inherits='PresetLayeredVeins'>
@@ -1860,8 +1954,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Silver -->
                 
-                <!--  StrategicCloud distribution of Silver. -->
+                
+                <!-- Begin  StrategicCloud distribution of Silver -->
                 <IfCondition condition=':= nthoSilverDist = "strategicCloud"'>
                 
                     <Cloud name='nthoSilver0Cloud' block='NetherOres:tile.netherores.ore.0:9' inherits='PresetStrategicCloud'>
@@ -1882,6 +1978,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoSilverSize * _default_' range=':= 3 * 1 * 1 * nthoSilverSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Silver Strategic Cloud Hint Veins -->
                         <Veins name='nthoSilver0HintVeins' block='NetherOres:tile.netherores.ore.0:9' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1893,11 +1991,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoSilverSize * _default_' range=':= 3 * 1 * nthoSilverSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Silver Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Silver -->
                 
-                <!--  Vanilla distribution of Silver. -->
+                
+                <!-- Begin  Vanilla distribution of Silver -->
                 <IfCondition condition=':= nthoSilverDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoSilver0Standard' block='NetherOres:tile.netherores.ore.0:9' inherits='PresetStandardGen'>
@@ -1913,10 +2015,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Silver -->
+                
                 
                 <!-- Lead Generation. --> 
                 
-                <!-- LayeredVeins distribution of Lead. -->
+                <!-- Begin LayeredVeins distribution of Lead -->
                 <IfCondition condition=':= nthoLeadDist = "layeredVeins"'>
                 
                     <Veins name='nthoLead0Veins' block='NetherOres:tile.netherores.ore.0:10' inherits='PresetLayeredVeins'>
@@ -1934,8 +2038,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Lead -->
                 
-                <!--  StrategicCloud distribution of Lead. -->
+                
+                <!-- Begin  StrategicCloud distribution of Lead -->
                 <IfCondition condition=':= nthoLeadDist = "strategicCloud"'>
                 
                     <Cloud name='nthoLead0Cloud' block='NetherOres:tile.netherores.ore.0:10' inherits='PresetStrategicCloud'>
@@ -1956,6 +2062,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoLeadSize * _default_' range=':= 3 * 1 * 1 * nthoLeadSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Lead Strategic Cloud Hint Veins -->
                         <Veins name='nthoLead0HintVeins' block='NetherOres:tile.netherores.ore.0:10' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1967,11 +2075,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoLeadSize * _default_' range=':= 3 * 1 * nthoLeadSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Lead Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Lead -->
                 
-                <!--  Vanilla distribution of Lead. -->
+                
+                <!-- Begin  Vanilla distribution of Lead -->
                 <IfCondition condition=':= nthoLeadDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoLead0Standard' block='NetherOres:tile.netherores.ore.0:10' inherits='PresetStandardGen'>
@@ -1987,10 +2099,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Lead -->
+                
                 
                 <!-- Uranium Generation. --> 
                 
-                <!-- LayeredVeins distribution of Uranium. -->
+                <!-- Begin LayeredVeins distribution of Uranium -->
                 <IfCondition condition=':= nthoUraniumDist = "layeredVeins"'>
                 
                     <Veins name='nthoUranium0Veins' block='NetherOres:tile.netherores.ore.0:11' inherits='PresetLayeredVeins'>
@@ -2008,8 +2122,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Uranium -->
                 
-                <!--  StrategicCloud distribution of Uranium. -->
+                
+                <!-- Begin  StrategicCloud distribution of Uranium -->
                 <IfCondition condition=':= nthoUraniumDist = "strategicCloud"'>
                 
                     <Cloud name='nthoUranium0Cloud' block='NetherOres:tile.netherores.ore.0:11' inherits='PresetStrategicCloud'>
@@ -2030,6 +2146,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoUraniumSize * _default_' range=':= 3 * 1 * 1 * nthoUraniumSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Uranium Strategic Cloud Hint Veins -->
                         <Veins name='nthoUranium0HintVeins' block='NetherOres:tile.netherores.ore.0:11' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -2041,11 +2159,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoUraniumSize * _default_' range=':= 3 * 1 * nthoUraniumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Uranium Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Uranium -->
                 
-                <!--  Vanilla distribution of Uranium. -->
+                
+                <!-- Begin  Vanilla distribution of Uranium -->
                 <IfCondition condition=':= nthoUraniumDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoUranium0Standard' block='NetherOres:tile.netherores.ore.0:11' inherits='PresetStandardGen'>
@@ -2061,10 +2183,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Uranium -->
+                
                 
                 <!-- Nikolite Generation. --> 
                 
-                <!-- LayeredVeins distribution of Nikolite. -->
+                <!-- Begin LayeredVeins distribution of Nikolite -->
                 <IfCondition condition=':= nthoNikoliteDist = "layeredVeins"'>
                 
                     <Veins name='nthoNikolite0Veins' block='NetherOres:tile.netherores.ore.0:12' inherits='PresetLayeredVeins'>
@@ -2082,8 +2206,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Nikolite -->
                 
-                <!--  StrategicCloud distribution of Nikolite. -->
+                
+                <!-- Begin  StrategicCloud distribution of Nikolite -->
                 <IfCondition condition=':= nthoNikoliteDist = "strategicCloud"'>
                 
                     <Cloud name='nthoNikolite0Cloud' block='NetherOres:tile.netherores.ore.0:12' inherits='PresetStrategicCloud'>
@@ -2104,6 +2230,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoNikoliteSize * _default_' range=':= 3 * 1 * 1 * nthoNikoliteSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Nikolite Strategic Cloud Hint Veins -->
                         <Veins name='nthoNikolite0HintVeins' block='NetherOres:tile.netherores.ore.0:12' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -2115,11 +2243,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoNikoliteSize * _default_' range=':= 3 * 1 * nthoNikoliteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Nikolite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Nikolite -->
                 
-                <!--  Vanilla distribution of Nikolite. -->
+                
+                <!-- Begin  Vanilla distribution of Nikolite -->
                 <IfCondition condition=':= nthoNikoliteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoNikolite0Standard' block='NetherOres:tile.netherores.ore.0:12' inherits='PresetStandardGen'>
@@ -2135,10 +2267,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Nikolite -->
+                
                 
                 <!-- Ruby Generation. --> 
                 
-                <!-- LayeredVeins distribution of Ruby. -->
+                <!-- Begin LayeredVeins distribution of Ruby -->
                 <IfCondition condition=':= nthoRubyDist = "layeredVeins"'>
                 
                     <Veins name='nthoRuby0Veins' block='NetherOres:tile.netherores.ore.0:13' inherits='PresetLayeredVeins'>
@@ -2156,8 +2290,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Ruby -->
                 
-                <!--  StrategicCloud distribution of Ruby. -->
+                
+                <!-- Begin  StrategicCloud distribution of Ruby -->
                 <IfCondition condition=':= nthoRubyDist = "strategicCloud"'>
                 
                     <Cloud name='nthoRuby0Cloud' block='NetherOres:tile.netherores.ore.0:13' inherits='PresetStrategicCloud'>
@@ -2178,6 +2314,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoRubySize * _default_' range=':= 3 * 1 * 1 * nthoRubySize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Ruby Strategic Cloud Hint Veins -->
                         <Veins name='nthoRuby0HintVeins' block='NetherOres:tile.netherores.ore.0:13' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -2189,11 +2327,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoRubySize * _default_' range=':= 3 * 1 * nthoRubySize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Ruby Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Ruby -->
                 
-                <!--  Vanilla distribution of Ruby. -->
+                
+                <!-- Begin  Vanilla distribution of Ruby -->
                 <IfCondition condition=':= nthoRubyDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoRuby0Standard' block='NetherOres:tile.netherores.ore.0:13' inherits='PresetStandardGen'>
@@ -2209,10 +2351,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Ruby -->
+                
                 
                 <!-- Peridot Generation. --> 
                 
-                <!-- LayeredVeins distribution of Peridot. -->
+                <!-- Begin LayeredVeins distribution of Peridot -->
                 <IfCondition condition=':= nthoPeridotDist = "layeredVeins"'>
                 
                     <Veins name='nthoPeridot0Veins' block='NetherOres:tile.netherores.ore.0:14' inherits='PresetLayeredVeins'>
@@ -2230,8 +2374,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Peridot -->
                 
-                <!--  StrategicCloud distribution of Peridot. -->
+                
+                <!-- Begin  StrategicCloud distribution of Peridot -->
                 <IfCondition condition=':= nthoPeridotDist = "strategicCloud"'>
                 
                     <Cloud name='nthoPeridot0Cloud' block='NetherOres:tile.netherores.ore.0:14' inherits='PresetStrategicCloud'>
@@ -2252,6 +2398,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoPeridotSize * _default_' range=':= 3 * 1 * 1 * nthoPeridotSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Peridot Strategic Cloud Hint Veins -->
                         <Veins name='nthoPeridot0HintVeins' block='NetherOres:tile.netherores.ore.0:14' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -2263,11 +2411,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoPeridotSize * _default_' range=':= 3 * 1 * nthoPeridotSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Peridot Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Peridot -->
                 
-                <!--  Vanilla distribution of Peridot. -->
+                
+                <!-- Begin  Vanilla distribution of Peridot -->
                 <IfCondition condition=':= nthoPeridotDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoPeridot0Standard' block='NetherOres:tile.netherores.ore.0:14' inherits='PresetStandardGen'>
@@ -2283,10 +2435,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Peridot -->
+                
                 
                 <!-- Sapphire Generation. --> 
                 
-                <!-- LayeredVeins distribution of Sapphire. -->
+                <!-- Begin LayeredVeins distribution of Sapphire -->
                 <IfCondition condition=':= nthoSapphireDist = "layeredVeins"'>
                 
                     <Veins name='nthoSapphire0Veins' block='NetherOres:tile.netherores.ore.0:15' inherits='PresetLayeredVeins'>
@@ -2304,8 +2458,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Sapphire -->
                 
-                <!--  StrategicCloud distribution of Sapphire. -->
+                
+                <!-- Begin  StrategicCloud distribution of Sapphire -->
                 <IfCondition condition=':= nthoSapphireDist = "strategicCloud"'>
                 
                     <Cloud name='nthoSapphire0Cloud' block='NetherOres:tile.netherores.ore.0:15' inherits='PresetStrategicCloud'>
@@ -2326,6 +2482,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoSapphireSize * _default_' range=':= 3 * 1 * 1 * nthoSapphireSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Sapphire Strategic Cloud Hint Veins -->
                         <Veins name='nthoSapphire0HintVeins' block='NetherOres:tile.netherores.ore.0:15' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -2337,11 +2495,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoSapphireSize * _default_' range=':= 3 * 1 * nthoSapphireSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Sapphire Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Sapphire -->
                 
-                <!--  Vanilla distribution of Sapphire. -->
+                
+                <!-- Begin  Vanilla distribution of Sapphire -->
                 <IfCondition condition=':= nthoSapphireDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoSapphire0Standard' block='NetherOres:tile.netherores.ore.0:15' inherits='PresetStandardGen'>
@@ -2357,10 +2519,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Sapphire -->
+                
                 
                 <!-- Platinum Generation. --> 
                 
-                <!-- LayeredVeins distribution of Platinum. -->
+                <!-- Begin LayeredVeins distribution of Platinum -->
                 <IfCondition condition=':= nthoPlatinumDist = "layeredVeins"'>
                 
                     <Veins name='nthoPlatinum0Veins' block='NetherOres:tile.netherores.ore.1' inherits='PresetLayeredVeins'>
@@ -2378,8 +2542,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Platinum -->
                 
-                <!--  StrategicCloud distribution of Platinum. -->
+                
+                <!-- Begin  StrategicCloud distribution of Platinum -->
                 <IfCondition condition=':= nthoPlatinumDist = "strategicCloud"'>
                 
                     <Cloud name='nthoPlatinum0Cloud' block='NetherOres:tile.netherores.ore.1' inherits='PresetStrategicCloud'>
@@ -2400,6 +2566,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoPlatinumSize * _default_' range=':= 3 * 1 * 1 * nthoPlatinumSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Platinum Strategic Cloud Hint Veins -->
                         <Veins name='nthoPlatinum0HintVeins' block='NetherOres:tile.netherores.ore.1' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -2411,11 +2579,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoPlatinumSize * _default_' range=':= 3 * 1 * nthoPlatinumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Platinum Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Platinum -->
                 
-                <!--  Vanilla distribution of Platinum. -->
+                
+                <!-- Begin  Vanilla distribution of Platinum -->
                 <IfCondition condition=':= nthoPlatinumDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoPlatinum0Standard' block='NetherOres:tile.netherores.ore.1' inherits='PresetStandardGen'>
@@ -2431,10 +2603,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Platinum -->
+                
                 
                 <!-- Ferrous Generation. --> 
                 
-                <!-- LayeredVeins distribution of Ferrous. -->
+                <!-- Begin LayeredVeins distribution of Ferrous -->
                 <IfCondition condition=':= nthoFerrousDist = "layeredVeins"'>
                 
                     <Veins name='nthoFerrous0Veins' block='NetherOres:tile.netherores.ore.1:1' inherits='PresetLayeredVeins'>
@@ -2452,8 +2626,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Ferrous -->
                 
-                <!--  StrategicCloud distribution of Ferrous. -->
+                
+                <!-- Begin  StrategicCloud distribution of Ferrous -->
                 <IfCondition condition=':= nthoFerrousDist = "strategicCloud"'>
                 
                     <Cloud name='nthoFerrous0Cloud' block='NetherOres:tile.netherores.ore.1:1' inherits='PresetStrategicCloud'>
@@ -2474,6 +2650,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoFerrousSize * _default_' range=':= 3 * 1 * 1 * nthoFerrousSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Ferrous Strategic Cloud Hint Veins -->
                         <Veins name='nthoFerrous0HintVeins' block='NetherOres:tile.netherores.ore.1:1' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -2485,11 +2663,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoFerrousSize * _default_' range=':= 3 * 1 * nthoFerrousSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Ferrous Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Ferrous -->
                 
-                <!--  Vanilla distribution of Ferrous. -->
+                
+                <!-- Begin  Vanilla distribution of Ferrous -->
                 <IfCondition condition=':= nthoFerrousDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoFerrous0Standard' block='NetherOres:tile.netherores.ore.1:1' inherits='PresetStandardGen'>
@@ -2505,10 +2687,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Ferrous -->
+                
                 
                 <!-- Pig Iron Generation. --> 
                 
-                <!-- LayeredVeins distribution of Pig Iron. -->
+                <!-- Begin LayeredVeins distribution of Pig Iron -->
                 <IfCondition condition=':= nthoPigIronDist = "layeredVeins"'>
                 
                     <Veins name='nthoPigIron0Veins' block='NetherOres:tile.netherores.ore.1:2' inherits='PresetLayeredVeins'>
@@ -2526,8 +2710,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Pig Iron -->
                 
-                <!--  StrategicCloud distribution of Pig Iron. -->
+                
+                <!-- Begin  StrategicCloud distribution of Pig Iron -->
                 <IfCondition condition=':= nthoPigIronDist = "strategicCloud"'>
                 
                     <Cloud name='nthoPigIron0Cloud' block='NetherOres:tile.netherores.ore.1:2' inherits='PresetStrategicCloud'>
@@ -2548,6 +2734,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoPigIronSize * _default_' range=':= 3 * 1 * 1 * nthoPigIronSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Pig Iron Strategic Cloud Hint Veins -->
                         <Veins name='nthoPigIron0HintVeins' block='NetherOres:tile.netherores.ore.1:2' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -2559,11 +2747,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoPigIronSize * _default_' range=':= 3 * 1 * nthoPigIronSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Pig Iron Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Pig Iron -->
                 
-                <!--  Vanilla distribution of Pig Iron. -->
+                
+                <!-- Begin  Vanilla distribution of Pig Iron -->
                 <IfCondition condition=':= nthoPigIronDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoPigIron0Standard' block='NetherOres:tile.netherores.ore.1:2' inherits='PresetStandardGen'>
@@ -2579,10 +2771,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Pig Iron -->
+                
                 
                 <!-- Iridium Generation. --> 
                 
-                <!-- LayeredVeins distribution of Iridium. -->
+                <!-- Begin LayeredVeins distribution of Iridium -->
                 <IfCondition condition=':= nthoIridiumDist = "layeredVeins"'>
                 
                     <Veins name='nthoIridium0Veins' block='NetherOres:tile.netherores.ore.1:3' inherits='PresetLayeredVeins'>
@@ -2600,8 +2794,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Iridium -->
                 
-                <!--  StrategicCloud distribution of Iridium. -->
+                
+                <!-- Begin  StrategicCloud distribution of Iridium -->
                 <IfCondition condition=':= nthoIridiumDist = "strategicCloud"'>
                 
                     <Cloud name='nthoIridium0Cloud' block='NetherOres:tile.netherores.ore.1:3' inherits='PresetStrategicCloud'>
@@ -2622,6 +2818,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoIridiumSize * _default_' range=':= 3 * 1 * 1 * nthoIridiumSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Iridium Strategic Cloud Hint Veins -->
                         <Veins name='nthoIridium0HintVeins' block='NetherOres:tile.netherores.ore.1:3' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -2633,11 +2831,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoIridiumSize * _default_' range=':= 3 * 1 * nthoIridiumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Iridium Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Iridium -->
                 
-                <!--  Vanilla distribution of Iridium. -->
+                
+                <!-- Begin  Vanilla distribution of Iridium -->
                 <IfCondition condition=':= nthoIridiumDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoIridium0Standard' block='NetherOres:tile.netherores.ore.1:3' inherits='PresetStandardGen'>
@@ -2653,10 +2855,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Iridium -->
+                
                 
                 <!-- Osmium Generation. --> 
                 
-                <!-- LayeredVeins distribution of Osmium. -->
+                <!-- Begin LayeredVeins distribution of Osmium -->
                 <IfCondition condition=':= nthoOsmiumDist = "layeredVeins"'>
                 
                     <Veins name='nthoOsmium0Veins' block='NetherOres:tile.netherores.ore.1:4' inherits='PresetLayeredVeins'>
@@ -2674,8 +2878,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Osmium -->
                 
-                <!--  StrategicCloud distribution of Osmium. -->
+                
+                <!-- Begin  StrategicCloud distribution of Osmium -->
                 <IfCondition condition=':= nthoOsmiumDist = "strategicCloud"'>
                 
                     <Cloud name='nthoOsmium0Cloud' block='NetherOres:tile.netherores.ore.1:4' inherits='PresetStrategicCloud'>
@@ -2696,6 +2902,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoOsmiumSize * _default_' range=':= 3 * 1 * 1 * nthoOsmiumSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Osmium Strategic Cloud Hint Veins -->
                         <Veins name='nthoOsmium0HintVeins' block='NetherOres:tile.netherores.ore.1:4' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -2707,11 +2915,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoOsmiumSize * _default_' range=':= 3 * 1 * nthoOsmiumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Osmium Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Osmium -->
                 
-                <!--  Vanilla distribution of Osmium. -->
+                
+                <!-- Begin  Vanilla distribution of Osmium -->
                 <IfCondition condition=':= nthoOsmiumDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoOsmium0Standard' block='NetherOres:tile.netherores.ore.1:4' inherits='PresetStandardGen'>
@@ -2727,10 +2939,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Osmium -->
+                
                 
                 <!-- Sulphur Generation. --> 
                 
-                <!-- LayeredVeins distribution of Sulphur. -->
+                <!-- Begin LayeredVeins distribution of Sulphur -->
                 <IfCondition condition=':= nthoSulphurDist = "layeredVeins"'>
                 
                     <Veins name='nthoSulphur0Veins' block='NetherOres:tile.netherores.ore.1:5' inherits='PresetLayeredVeins'>
@@ -2748,8 +2962,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Sulphur -->
                 
-                <!--  StrategicCloud distribution of Sulphur. -->
+                
+                <!-- Begin  StrategicCloud distribution of Sulphur -->
                 <IfCondition condition=':= nthoSulphurDist = "strategicCloud"'>
                 
                     <Cloud name='nthoSulphur0Cloud' block='NetherOres:tile.netherores.ore.1:5' inherits='PresetStrategicCloud'>
@@ -2770,6 +2986,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoSulphurSize * _default_' range=':= 3 * 1 * 1 * nthoSulphurSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Sulphur Strategic Cloud Hint Veins -->
                         <Veins name='nthoSulphur0HintVeins' block='NetherOres:tile.netherores.ore.1:5' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -2781,11 +2999,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoSulphurSize * _default_' range=':= 3 * 1 * nthoSulphurSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Sulphur Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Sulphur -->
                 
-                <!--  Vanilla distribution of Sulphur. -->
+                
+                <!-- Begin  Vanilla distribution of Sulphur -->
                 <IfCondition condition=':= nthoSulphurDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoSulphur0Standard' block='NetherOres:tile.netherores.ore.1:5' inherits='PresetStandardGen'>
@@ -2801,10 +3023,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Sulphur -->
+                
                 
                 <!-- Titanium Generation. --> 
                 
-                <!-- LayeredVeins distribution of Titanium. -->
+                <!-- Begin LayeredVeins distribution of Titanium -->
                 <IfCondition condition=':= nthoTitaniumDist = "layeredVeins"'>
                 
                     <Veins name='nthoTitanium0Veins' block='NetherOres:tile.netherores.ore.1:6' inherits='PresetLayeredVeins'>
@@ -2822,8 +3046,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Titanium -->
                 
-                <!--  StrategicCloud distribution of Titanium. -->
+                
+                <!-- Begin  StrategicCloud distribution of Titanium -->
                 <IfCondition condition=':= nthoTitaniumDist = "strategicCloud"'>
                 
                     <Cloud name='nthoTitanium0Cloud' block='NetherOres:tile.netherores.ore.1:6' inherits='PresetStrategicCloud'>
@@ -2844,6 +3070,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoTitaniumSize * _default_' range=':= 3 * 1 * 1 * nthoTitaniumSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Titanium Strategic Cloud Hint Veins -->
                         <Veins name='nthoTitanium0HintVeins' block='NetherOres:tile.netherores.ore.1:6' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -2855,11 +3083,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoTitaniumSize * _default_' range=':= 3 * 1 * nthoTitaniumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Titanium Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Titanium -->
                 
-                <!--  Vanilla distribution of Titanium. -->
+                
+                <!-- Begin  Vanilla distribution of Titanium -->
                 <IfCondition condition=':= nthoTitaniumDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoTitanium0Standard' block='NetherOres:tile.netherores.ore.1:6' inherits='PresetStandardGen'>
@@ -2875,10 +3107,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Titanium -->
+                
                 
                 <!-- Mithril Generation. --> 
                 
-                <!-- LayeredVeins distribution of Mithril. -->
+                <!-- Begin LayeredVeins distribution of Mithril -->
                 <IfCondition condition=':= nthoMithrilDist = "layeredVeins"'>
                 
                     <Veins name='nthoMithril0Veins' block='NetherOres:tile.netherores.ore.1:7' inherits='PresetLayeredVeins'>
@@ -2896,8 +3130,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Mithril -->
                 
-                <!--  StrategicCloud distribution of Mithril. -->
+                
+                <!-- Begin  StrategicCloud distribution of Mithril -->
                 <IfCondition condition=':= nthoMithrilDist = "strategicCloud"'>
                 
                     <Cloud name='nthoMithril0Cloud' block='NetherOres:tile.netherores.ore.1:7' inherits='PresetStrategicCloud'>
@@ -2918,6 +3154,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoMithrilSize * _default_' range=':= 3 * 1 * 1 * nthoMithrilSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Mithril Strategic Cloud Hint Veins -->
                         <Veins name='nthoMithril0HintVeins' block='NetherOres:tile.netherores.ore.1:7' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -2929,11 +3167,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoMithrilSize * _default_' range=':= 3 * 1 * nthoMithrilSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Mithril Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Mithril -->
                 
-                <!--  Vanilla distribution of Mithril. -->
+                
+                <!-- Begin  Vanilla distribution of Mithril -->
                 <IfCondition condition=':= nthoMithrilDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoMithril0Standard' block='NetherOres:tile.netherores.ore.1:7' inherits='PresetStandardGen'>
@@ -2949,10 +3191,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Mithril -->
+                
                 
                 <!-- Adamantium Generation. --> 
                 
-                <!-- LayeredVeins distribution of Adamantium. -->
+                <!-- Begin LayeredVeins distribution of Adamantium -->
                 <IfCondition condition=':= nthoAdamantiumDist = "layeredVeins"'>
                 
                     <Veins name='nthoAdamantium0Veins' block='NetherOres:tile.netherores.ore.1:8' inherits='PresetLayeredVeins'>
@@ -2970,8 +3214,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Adamantium -->
                 
-                <!--  StrategicCloud distribution of Adamantium. -->
+                
+                <!-- Begin  StrategicCloud distribution of Adamantium -->
                 <IfCondition condition=':= nthoAdamantiumDist = "strategicCloud"'>
                 
                     <Cloud name='nthoAdamantium0Cloud' block='NetherOres:tile.netherores.ore.1:8' inherits='PresetStrategicCloud'>
@@ -2992,6 +3238,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoAdamantiumSize * _default_' range=':= 3 * 1 * 1 * nthoAdamantiumSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Adamantium Strategic Cloud Hint Veins -->
                         <Veins name='nthoAdamantium0HintVeins' block='NetherOres:tile.netherores.ore.1:8' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -3003,11 +3251,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoAdamantiumSize * _default_' range=':= 3 * 1 * nthoAdamantiumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Adamantium Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Adamantium -->
                 
-                <!--  Vanilla distribution of Adamantium. -->
+                
+                <!-- Begin  Vanilla distribution of Adamantium -->
                 <IfCondition condition=':= nthoAdamantiumDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoAdamantium0Standard' block='NetherOres:tile.netherores.ore.1:8' inherits='PresetStandardGen'>
@@ -3023,10 +3275,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Adamantium -->
+                
                 
                 <!-- Rutile Generation. --> 
                 
-                <!-- LayeredVeins distribution of Rutile. -->
+                <!-- Begin LayeredVeins distribution of Rutile -->
                 <IfCondition condition=':= nthoRutileDist = "layeredVeins"'>
                 
                     <Veins name='nthoRutile0Veins' block='NetherOres:tile.netherores.ore.1:9' inherits='PresetLayeredVeins'>
@@ -3044,8 +3298,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Rutile -->
                 
-                <!--  StrategicCloud distribution of Rutile. -->
+                
+                <!-- Begin  StrategicCloud distribution of Rutile -->
                 <IfCondition condition=':= nthoRutileDist = "strategicCloud"'>
                 
                     <Cloud name='nthoRutile0Cloud' block='NetherOres:tile.netherores.ore.1:9' inherits='PresetStrategicCloud'>
@@ -3066,6 +3322,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoRutileSize * _default_' range=':= 3 * 1 * 1 * nthoRutileSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Rutile Strategic Cloud Hint Veins -->
                         <Veins name='nthoRutile0HintVeins' block='NetherOres:tile.netherores.ore.1:9' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -3077,11 +3335,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoRutileSize * _default_' range=':= 3 * 1 * nthoRutileSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Rutile Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Rutile -->
                 
-                <!--  Vanilla distribution of Rutile. -->
+                
+                <!-- Begin  Vanilla distribution of Rutile -->
                 <IfCondition condition=':= nthoRutileDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoRutile0Standard' block='NetherOres:tile.netherores.ore.1:9' inherits='PresetStandardGen'>
@@ -3097,10 +3359,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Rutile -->
+                
                 
                 <!-- Tungsten Generation. --> 
                 
-                <!-- LayeredVeins distribution of Tungsten. -->
+                <!-- Begin LayeredVeins distribution of Tungsten -->
                 <IfCondition condition=':= nthoTungstenDist = "layeredVeins"'>
                 
                     <Veins name='nthoTungsten0Veins' block='NetherOres:tile.netherores.ore.1:10' inherits='PresetLayeredVeins'>
@@ -3118,8 +3382,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Tungsten -->
                 
-                <!--  StrategicCloud distribution of Tungsten. -->
+                
+                <!-- Begin  StrategicCloud distribution of Tungsten -->
                 <IfCondition condition=':= nthoTungstenDist = "strategicCloud"'>
                 
                     <Cloud name='nthoTungsten0Cloud' block='NetherOres:tile.netherores.ore.1:10' inherits='PresetStrategicCloud'>
@@ -3140,6 +3406,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoTungstenSize * _default_' range=':= 3 * 1 * 1 * nthoTungstenSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Tungsten Strategic Cloud Hint Veins -->
                         <Veins name='nthoTungsten0HintVeins' block='NetherOres:tile.netherores.ore.1:10' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -3151,11 +3419,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoTungstenSize * _default_' range=':= 3 * 1 * nthoTungstenSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Tungsten Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Tungsten -->
                 
-                <!--  Vanilla distribution of Tungsten. -->
+                
+                <!-- Begin  Vanilla distribution of Tungsten -->
                 <IfCondition condition=':= nthoTungstenDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoTungsten0Standard' block='NetherOres:tile.netherores.ore.1:10' inherits='PresetStandardGen'>
@@ -3171,10 +3443,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Tungsten -->
+                
                 
                 <!-- Amber Generation. --> 
                 
-                <!-- LayeredVeins distribution of Amber. -->
+                <!-- Begin LayeredVeins distribution of Amber -->
                 <IfCondition condition=':= nthoAmberDist = "layeredVeins"'>
                 
                     <Veins name='nthoAmber0Veins' block='NetherOres:tile.netherores.ore.1:11' inherits='PresetLayeredVeins'>
@@ -3192,8 +3466,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Amber -->
                 
-                <!--  StrategicCloud distribution of Amber. -->
+                
+                <!-- Begin  StrategicCloud distribution of Amber -->
                 <IfCondition condition=':= nthoAmberDist = "strategicCloud"'>
                 
                     <Cloud name='nthoAmber0Cloud' block='NetherOres:tile.netherores.ore.1:11' inherits='PresetStrategicCloud'>
@@ -3214,6 +3490,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoAmberSize * _default_' range=':= 3 * 1 * 1 * nthoAmberSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Amber Strategic Cloud Hint Veins -->
                         <Veins name='nthoAmber0HintVeins' block='NetherOres:tile.netherores.ore.1:11' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -3225,11 +3503,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoAmberSize * _default_' range=':= 3 * 1 * nthoAmberSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Amber Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Amber -->
                 
-                <!--  Vanilla distribution of Amber. -->
+                
+                <!-- Begin  Vanilla distribution of Amber -->
                 <IfCondition condition=':= nthoAmberDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoAmber0Standard' block='NetherOres:tile.netherores.ore.1:11' inherits='PresetStandardGen'>
@@ -3245,10 +3527,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Amber -->
+                
                 
                 <!-- Tennantite Generation. --> 
                 
-                <!-- LayeredVeins distribution of Tennantite. -->
+                <!-- Begin LayeredVeins distribution of Tennantite -->
                 <IfCondition condition=':= nthoTennantiteDist = "layeredVeins"'>
                 
                     <Veins name='nthoTennantite0Veins' block='NetherOres:tile.netherores.ore.1:12' inherits='PresetLayeredVeins'>
@@ -3266,8 +3550,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Tennantite -->
                 
-                <!--  StrategicCloud distribution of Tennantite. -->
+                
+                <!-- Begin  StrategicCloud distribution of Tennantite -->
                 <IfCondition condition=':= nthoTennantiteDist = "strategicCloud"'>
                 
                     <Cloud name='nthoTennantite0Cloud' block='NetherOres:tile.netherores.ore.1:12' inherits='PresetStrategicCloud'>
@@ -3288,6 +3574,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoTennantiteSize * _default_' range=':= 3 * 1 * 1 * nthoTennantiteSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Tennantite Strategic Cloud Hint Veins -->
                         <Veins name='nthoTennantite0HintVeins' block='NetherOres:tile.netherores.ore.1:12' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -3299,11 +3587,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoTennantiteSize * _default_' range=':= 3 * 1 * nthoTennantiteSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Tennantite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Tennantite -->
                 
-                <!--  Vanilla distribution of Tennantite. -->
+                
+                <!-- Begin  Vanilla distribution of Tennantite -->
                 <IfCondition condition=':= nthoTennantiteDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoTennantite0Standard' block='NetherOres:tile.netherores.ore.1:12' inherits='PresetStandardGen'>
@@ -3319,10 +3611,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Tennantite -->
+                
                 
                 <!-- Salt Generation. --> 
                 
-                <!-- LayeredVeins distribution of Salt. -->
+                <!-- Begin LayeredVeins distribution of Salt -->
                 <IfCondition condition=':= nthoSaltDist = "layeredVeins"'>
                 
                     <Veins name='nthoSalt0Veins' block='NetherOres:tile.netherores.ore.1:13' inherits='PresetLayeredVeins'>
@@ -3340,8 +3634,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Salt -->
                 
-                <!--  StrategicCloud distribution of Salt. -->
+                
+                <!-- Begin  StrategicCloud distribution of Salt -->
                 <IfCondition condition=':= nthoSaltDist = "strategicCloud"'>
                 
                     <Cloud name='nthoSalt0Cloud' block='NetherOres:tile.netherores.ore.1:13' inherits='PresetStrategicCloud'>
@@ -3362,6 +3658,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoSaltSize * _default_' range=':= 3 * 1 * 1 * nthoSaltSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Salt Strategic Cloud Hint Veins -->
                         <Veins name='nthoSalt0HintVeins' block='NetherOres:tile.netherores.ore.1:13' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -3373,11 +3671,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoSaltSize * _default_' range=':= 3 * 1 * nthoSaltSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Salt Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Salt -->
                 
-                <!--  Vanilla distribution of Salt. -->
+                
+                <!-- Begin  Vanilla distribution of Salt -->
                 <IfCondition condition=':= nthoSaltDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoSalt0Standard' block='NetherOres:tile.netherores.ore.1:13' inherits='PresetStandardGen'>
@@ -3393,10 +3695,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Salt -->
+                
                 
                 <!-- Saltpeter Generation. --> 
                 
-                <!-- LayeredVeins distribution of Saltpeter. -->
+                <!-- Begin LayeredVeins distribution of Saltpeter -->
                 <IfCondition condition=':= nthoSaltpeterDist = "layeredVeins"'>
                 
                     <Veins name='nthoSaltpeter0Veins' block='NetherOres:tile.netherores.ore.1:14' inherits='PresetLayeredVeins'>
@@ -3414,8 +3718,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Saltpeter -->
                 
-                <!--  StrategicCloud distribution of Saltpeter. -->
+                
+                <!-- Begin  StrategicCloud distribution of Saltpeter -->
                 <IfCondition condition=':= nthoSaltpeterDist = "strategicCloud"'>
                 
                     <Cloud name='nthoSaltpeter0Cloud' block='NetherOres:tile.netherores.ore.1:14' inherits='PresetStrategicCloud'>
@@ -3436,6 +3742,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoSaltpeterSize * _default_' range=':= 3 * 1 * 1 * nthoSaltpeterSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Saltpeter Strategic Cloud Hint Veins -->
                         <Veins name='nthoSaltpeter0HintVeins' block='NetherOres:tile.netherores.ore.1:14' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -3447,11 +3755,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoSaltpeterSize * _default_' range=':= 3 * 1 * nthoSaltpeterSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Saltpeter Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Saltpeter -->
                 
-                <!--  Vanilla distribution of Saltpeter. -->
+                
+                <!-- Begin  Vanilla distribution of Saltpeter -->
                 <IfCondition condition=':= nthoSaltpeterDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoSaltpeter0Standard' block='NetherOres:tile.netherores.ore.1:14' inherits='PresetStandardGen'>
@@ -3467,10 +3779,12 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Saltpeter -->
+                
                 
                 <!-- Magnesium Generation. --> 
                 
-                <!-- LayeredVeins distribution of Magnesium. -->
+                <!-- Begin LayeredVeins distribution of Magnesium -->
                 <IfCondition condition=':= nthoMagnesiumDist = "layeredVeins"'>
                 
                     <Veins name='nthoMagnesium0Veins' block='NetherOres:tile.netherores.ore.1:15' inherits='PresetLayeredVeins'>
@@ -3488,8 +3802,10 @@ Saltpeter, Magnesium
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Magnesium -->
                 
-                <!--  StrategicCloud distribution of Magnesium. -->
+                
+                <!-- Begin  StrategicCloud distribution of Magnesium -->
                 <IfCondition condition=':= nthoMagnesiumDist = "strategicCloud"'>
                 
                     <Cloud name='nthoMagnesium0Cloud' block='NetherOres:tile.netherores.ore.1:15' inherits='PresetStrategicCloud'>
@@ -3510,6 +3826,8 @@ Saltpeter, Magnesium
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * nthoMagnesiumSize * _default_' range=':= 3 * 1 * 1 * nthoMagnesiumSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Magnesium Strategic Cloud Hint Veins -->
                         <Veins name='nthoMagnesium0HintVeins' block='NetherOres:tile.netherores.ore.1:15' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -3521,11 +3839,15 @@ Saltpeter, Magnesium
                             <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * nthoMagnesiumSize * _default_' range=':= 3 * 1 * nthoMagnesiumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Magnesium Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Magnesium -->
                 
-                <!--  Vanilla distribution of Magnesium. -->
+                
+                <!-- Begin  Vanilla distribution of Magnesium -->
                 <IfCondition condition=':= nthoMagnesiumDist = "vanillaStdGen"'>
                 
                     <StandardGen name='nthoMagnesium0Standard' block='NetherOres:tile.netherores.ore.1:15' inherits='PresetStandardGen'>
@@ -3541,6 +3863,8 @@ Saltpeter, Magnesium
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Magnesium -->
+                
                 <!-- Done adding ores -->
             
             </IfCondition>

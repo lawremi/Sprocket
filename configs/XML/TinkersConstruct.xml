@@ -437,7 +437,8 @@ Gravel
 
             <!-- Setup Overworld -->
             <IfCondition condition=':= ?COGActive'>
-                <!-- **********   Vanilla Deposit Removal   ************* -->
+                
+                <!-- Starting Original Overworld Ore Removal -->
                 <Substitute name='ticoOverworldOreSubstitute0' block='minecraft:gravel'>
                     <Description>
                         Replace vanilla-generated ore clusters.
@@ -464,12 +465,13 @@ Gravel
                     <Replaces block='TConstruct:SearedBrick:4' />
                     <Replaces block='TConstruct:SearedBrick:5' />
                 </Substitute>
+                <!-- Original Overworld Ore Removal Complete -->
                 
                 <!-- Adding ores --> 
                 
-                <!-- Copper Generation. --> 
+                <!-- Begin Copper Generation --> 
                 
-                <!-- LayeredVeins distribution of Copper. -->
+                <!-- Begin LayeredVeins distribution of Copper -->
                 <IfCondition condition=':= ticoCopperDist = "layeredVeins"'>
                 
                     <Veins name='ticoCopper0Veins' block='TConstruct:SearedBrick:3' inherits='PresetLayeredVeins'>
@@ -486,7 +488,7 @@ Gravel
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Copper Layered Veins) Settings -->
                     <Veins name='ticoCopper1Veins' block='TConstruct:SearedBrick:3' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -502,10 +504,13 @@ Gravel
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Copper Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Copper -->
                 
-                <!--  StrategicCloud distribution of Copper. -->
+                
+                <!-- Begin  StrategicCloud distribution of Copper -->
                 <IfCondition condition=':= ticoCopperDist = "strategicCloud"'>
                 
                     <Cloud name='ticoCopper0Cloud' block='TConstruct:SearedBrick:3' inherits='PresetStrategicCloud'>
@@ -526,6 +531,8 @@ Gravel
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoCopperSize * _default_' range=':= 1 * 1 * 1 * ticoCopperSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Copper Strategic Cloud Hint Veins -->
                         <Veins name='ticoCopper0HintVeins' block='TConstruct:SearedBrick:3' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -537,9 +544,11 @@ Gravel
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * ticoCopperSize * _default_' range=':= 1 * 1 * ticoCopperSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Copper Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Copper Strategic Cloud) Settings -->
                     <Cloud name='ticoCopper1Cloud' block='TConstruct:SearedBrick:3' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -560,6 +569,8 @@ Gravel
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoCopperSize * _default_' range=':= 1 * 1 * 1 * ticoCopperSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Copper Strategic Cloud Hint Veins -->
                         <Veins name='ticoCopper1HintVeins' block='TConstruct:SearedBrick:3' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -573,11 +584,16 @@ Gravel
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
+                        <!-- End Copper Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Copper Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Copper -->
                 
-                <!--  Vanilla distribution of Copper. -->
+                
+                <!-- Begin  Vanilla distribution of Copper -->
                 <IfCondition condition=':= ticoCopperDist = "vanillaStdGen"'>
                 
                     <StandardGen name='ticoCopper0Standard' block='TConstruct:SearedBrick:3' inherits='PresetStandardGen'>
@@ -592,7 +608,7 @@ Gravel
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Copper Vanilla) Settings -->
                     <StandardGen name='ticoCopper1Standard' block='TConstruct:SearedBrick:3' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -606,12 +622,17 @@ Gravel
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Copper Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Copper -->
                 
-                <!-- Tin Generation. --> 
+                <!-- End Copper Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Tin. -->
+                <!-- Begin Tin Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Tin -->
                 <IfCondition condition=':= ticoTinDist = "layeredVeins"'>
                 
                     <Veins name='ticoTin0Veins' block='TConstruct:SearedBrick:4' inherits='PresetLayeredVeins'>
@@ -628,7 +649,7 @@ Gravel
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Tin Layered Veins) Settings -->
                     <Veins name='ticoTin1Veins' block='TConstruct:SearedBrick:4' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -644,10 +665,13 @@ Gravel
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Tin Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Tin -->
                 
-                <!--  StrategicCloud distribution of Tin. -->
+                
+                <!-- Begin  StrategicCloud distribution of Tin -->
                 <IfCondition condition=':= ticoTinDist = "strategicCloud"'>
                 
                     <Cloud name='ticoTin0Cloud' block='TConstruct:SearedBrick:4' inherits='PresetStrategicCloud'>
@@ -668,6 +692,8 @@ Gravel
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoTinSize * _default_' range=':= 1 * 1 * 1 * ticoTinSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Tin Strategic Cloud Hint Veins -->
                         <Veins name='ticoTin0HintVeins' block='TConstruct:SearedBrick:4' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -679,9 +705,11 @@ Gravel
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * ticoTinSize * _default_' range=':= 1 * 1 * ticoTinSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Tin Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Tin Strategic Cloud) Settings -->
                     <Cloud name='ticoTin1Cloud' block='TConstruct:SearedBrick:4' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -702,6 +730,8 @@ Gravel
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoTinSize * _default_' range=':= 1 * 1 * 1 * ticoTinSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Tin Strategic Cloud Hint Veins -->
                         <Veins name='ticoTin1HintVeins' block='TConstruct:SearedBrick:4' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -715,11 +745,16 @@ Gravel
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
+                        <!-- End Tin Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Tin Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Tin -->
                 
-                <!--  Vanilla distribution of Tin. -->
+                
+                <!-- Begin  Vanilla distribution of Tin -->
                 <IfCondition condition=':= ticoTinDist = "vanillaStdGen"'>
                 
                     <StandardGen name='ticoTin0Standard' block='TConstruct:SearedBrick:4' inherits='PresetStandardGen'>
@@ -734,7 +769,7 @@ Gravel
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Tin Vanilla) Settings -->
                     <StandardGen name='ticoTin1Standard' block='TConstruct:SearedBrick:4' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -748,12 +783,17 @@ Gravel
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Tin Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Tin -->
                 
-                <!-- Aluminum Generation. --> 
+                <!-- End Tin Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Aluminum. -->
+                <!-- Begin Aluminum Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Aluminum -->
                 <IfCondition condition=':= ticoAluminumDist = "layeredVeins"'>
                 
                     <Veins name='ticoAluminum0Veins' block='TConstruct:SearedBrick:5' inherits='PresetLayeredVeins'>
@@ -770,7 +810,7 @@ Gravel
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Aluminum Layered Veins) Settings -->
                     <Veins name='ticoAluminum1Veins' block='TConstruct:SearedBrick:5' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -786,10 +826,13 @@ Gravel
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Aluminum Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Aluminum -->
                 
-                <!--  StrategicCloud distribution of Aluminum. -->
+                
+                <!-- Begin  StrategicCloud distribution of Aluminum -->
                 <IfCondition condition=':= ticoAluminumDist = "strategicCloud"'>
                 
                     <Cloud name='ticoAluminum0Cloud' block='TConstruct:SearedBrick:5' inherits='PresetStrategicCloud'>
@@ -810,6 +853,8 @@ Gravel
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoAluminumSize * _default_' range=':= 1 * 1 * 1 * ticoAluminumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Aluminum Strategic Cloud Hint Veins -->
                         <Veins name='ticoAluminum0HintVeins' block='TConstruct:SearedBrick:5' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -821,9 +866,11 @@ Gravel
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * ticoAluminumSize * _default_' range=':= 1 * 1 * ticoAluminumSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Aluminum Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Aluminum Strategic Cloud) Settings -->
                     <Cloud name='ticoAluminum1Cloud' block='TConstruct:SearedBrick:5' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -844,6 +891,8 @@ Gravel
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoAluminumSize * _default_' range=':= 1 * 1 * 1 * ticoAluminumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Aluminum Strategic Cloud Hint Veins -->
                         <Veins name='ticoAluminum1HintVeins' block='TConstruct:SearedBrick:5' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -857,11 +906,16 @@ Gravel
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
+                        <!-- End Aluminum Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Aluminum Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Aluminum -->
                 
-                <!--  Vanilla distribution of Aluminum. -->
+                
+                <!-- Begin  Vanilla distribution of Aluminum -->
                 <IfCondition condition=':= ticoAluminumDist = "vanillaStdGen"'>
                 
                     <StandardGen name='ticoAluminum0Standard' block='TConstruct:SearedBrick:5' inherits='PresetStandardGen'>
@@ -876,7 +930,7 @@ Gravel
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Aluminum Vanilla) Settings -->
                     <StandardGen name='ticoAluminum1Standard' block='TConstruct:SearedBrick:5' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -890,12 +944,17 @@ Gravel
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Aluminum Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Aluminum -->
                 
-                <!-- Iron Gravel Generation. --> 
+                <!-- End Aluminum Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Iron Gravel. -->
+                <!-- Begin Iron Gravel Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Iron Gravel -->
                 <IfCondition condition=':= ticoIronGravelDist = "layeredVeins"'>
                 
                     <Veins name='ticoIronGravel0Veins' block='TConstruct:GravelOre' inherits='PresetLayeredVeins'>
@@ -912,7 +971,7 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Iron Gravel Layered Veins) Settings -->
                     <Veins name='ticoIronGravel1Veins' block='TConstruct:GravelOre' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -928,10 +987,13 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                         <BiomeType name='Cold'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Iron Gravel Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Iron Gravel -->
                 
-                <!--  StrategicCloud distribution of Iron Gravel. -->
+                
+                <!-- Begin  StrategicCloud distribution of Iron Gravel -->
                 <IfCondition condition=':= ticoIronGravelDist = "strategicCloud"'>
                 
                     <Cloud name='ticoIronGravel0Cloud' block='TConstruct:GravelOre' inherits='PresetStrategicCloud'>
@@ -952,6 +1014,8 @@ Gravel
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoIronGravelSize * _default_' range=':= 1 * 1 * 1 * ticoIronGravelSize  * _default_'/>
                         <Replaces block='minecraft:gravel'/>
+                        
+                        <!-- Begin Iron Gravel Strategic Cloud Hint Veins -->
                         <Veins name='ticoIronGravel0HintVeins' block='TConstruct:GravelOre' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -963,9 +1027,11 @@ Gravel
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * ticoIronGravelSize * _default_' range=':= 1 * 1 * ticoIronGravelSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Iron Gravel Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Iron Gravel Strategic Cloud) Settings -->
                     <Cloud name='ticoIronGravel1Cloud' block='TConstruct:GravelOre' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -986,6 +1052,8 @@ Gravel
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoIronGravelSize * _default_' range=':= 1 * 1 * 1 * ticoIronGravelSize  * _default_'/>
                         <Replaces block='minecraft:gravel'/>
                         <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Iron Gravel Strategic Cloud Hint Veins -->
                         <Veins name='ticoIronGravel1HintVeins' block='TConstruct:GravelOre' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -999,11 +1067,16 @@ Gravel
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
+                        <!-- End Iron Gravel Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Iron Gravel Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Iron Gravel -->
                 
-                <!--  Vanilla distribution of Iron Gravel. -->
+                
+                <!-- Begin  Vanilla distribution of Iron Gravel -->
                 <IfCondition condition=':= ticoIronGravelDist = "vanillaStdGen"'>
                 
                     <StandardGen name='ticoIronGravel0Standard' block='TConstruct:GravelOre' inherits='PresetStandardGen'>
@@ -1018,7 +1091,7 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Iron Gravel Vanilla) Settings -->
                     <StandardGen name='ticoIronGravel1Standard' block='TConstruct:GravelOre' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -1032,12 +1105,17 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Iron Gravel Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Iron Gravel -->
                 
-                <!-- Gold Gravel Generation. --> 
+                <!-- End Iron Gravel Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Gold Gravel. -->
+                <!-- Begin Gold Gravel Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Gold Gravel -->
                 <IfCondition condition=':= ticoGoldGravelDist = "layeredVeins"'>
                 
                     <Veins name='ticoGoldGravel0Veins' block='TConstruct:GravelOre:1' inherits='PresetLayeredVeins'>
@@ -1054,7 +1132,7 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Gold Gravel Layered Veins) Settings -->
                     <Veins name='ticoGoldGravel1Veins' block='TConstruct:GravelOre:1' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1070,10 +1148,13 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Gold Gravel Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Gold Gravel -->
                 
-                <!--  StrategicCloud distribution of Gold Gravel. -->
+                
+                <!-- Begin  StrategicCloud distribution of Gold Gravel -->
                 <IfCondition condition=':= ticoGoldGravelDist = "strategicCloud"'>
                 
                     <Cloud name='ticoGoldGravel0Cloud' block='TConstruct:GravelOre:1' inherits='PresetStrategicCloud'>
@@ -1094,6 +1175,8 @@ Gravel
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * ticoGoldGravelSize * _default_' range=':= 1 * 1 * 0.8 * ticoGoldGravelSize  * _default_'/>
                         <Replaces block='minecraft:gravel'/>
+                        
+                        <!-- Begin Gold Gravel Strategic Cloud Hint Veins -->
                         <Veins name='ticoGoldGravel0HintVeins' block='TConstruct:GravelOre:1' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1105,9 +1188,11 @@ Gravel
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * ticoGoldGravelSize * _default_' range=':= 1 * 0.8 * ticoGoldGravelSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Gold Gravel Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Gold Gravel Strategic Cloud) Settings -->
                     <Cloud name='ticoGoldGravel1Cloud' block='TConstruct:GravelOre:1' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1128,6 +1213,8 @@ Gravel
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * ticoGoldGravelSize * _default_' range=':= 1 * 1 * 0.8 * ticoGoldGravelSize  * _default_'/>
                         <Replaces block='minecraft:gravel'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Gold Gravel Strategic Cloud Hint Veins -->
                         <Veins name='ticoGoldGravel1HintVeins' block='TConstruct:GravelOre:1' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1141,11 +1228,16 @@ Gravel
                             <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
+                        <!-- End Gold Gravel Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Gold Gravel Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Gold Gravel -->
                 
-                <!--  Vanilla distribution of Gold Gravel. -->
+                
+                <!-- Begin  Vanilla distribution of Gold Gravel -->
                 <IfCondition condition=':= ticoGoldGravelDist = "vanillaStdGen"'>
                 
                     <StandardGen name='ticoGoldGravel0Standard' block='TConstruct:GravelOre:1' inherits='PresetStandardGen'>
@@ -1160,7 +1252,7 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Gold Gravel Vanilla) Settings -->
                     <StandardGen name='ticoGoldGravel1Standard' block='TConstruct:GravelOre:1' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -1174,12 +1266,17 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Gold Gravel Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Gold Gravel -->
                 
-                <!-- Copper Gravel Generation. --> 
+                <!-- End Gold Gravel Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Copper Gravel. -->
+                <!-- Begin Copper Gravel Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Copper Gravel -->
                 <IfCondition condition=':= ticoCopperGravelDist = "layeredVeins"'>
                 
                     <Veins name='ticoCopperGravel0Veins' block='TConstruct:GravelOre:2' inherits='PresetLayeredVeins'>
@@ -1196,7 +1293,7 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Copper Gravel Layered Veins) Settings -->
                     <Veins name='ticoCopperGravel1Veins' block='TConstruct:GravelOre:2' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1212,10 +1309,13 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                         <BiomeType name='Cold'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Copper Gravel Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Copper Gravel -->
                 
-                <!--  StrategicCloud distribution of Copper Gravel. -->
+                
+                <!-- Begin  StrategicCloud distribution of Copper Gravel -->
                 <IfCondition condition=':= ticoCopperGravelDist = "strategicCloud"'>
                 
                     <Cloud name='ticoCopperGravel0Cloud' block='TConstruct:GravelOre:2' inherits='PresetStrategicCloud'>
@@ -1236,6 +1336,8 @@ Gravel
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoCopperGravelSize * _default_' range=':= 1 * 1 * 1 * ticoCopperGravelSize  * _default_'/>
                         <Replaces block='minecraft:gravel'/>
+                        
+                        <!-- Begin Copper Gravel Strategic Cloud Hint Veins -->
                         <Veins name='ticoCopperGravel0HintVeins' block='TConstruct:GravelOre:2' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1247,9 +1349,11 @@ Gravel
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * ticoCopperGravelSize * _default_' range=':= 1 * 1 * ticoCopperGravelSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Copper Gravel Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Copper Gravel Strategic Cloud) Settings -->
                     <Cloud name='ticoCopperGravel1Cloud' block='TConstruct:GravelOre:2' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1270,6 +1374,8 @@ Gravel
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoCopperGravelSize * _default_' range=':= 1 * 1 * 1 * ticoCopperGravelSize  * _default_'/>
                         <Replaces block='minecraft:gravel'/>
                         <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Copper Gravel Strategic Cloud Hint Veins -->
                         <Veins name='ticoCopperGravel1HintVeins' block='TConstruct:GravelOre:2' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1283,11 +1389,16 @@ Gravel
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
+                        <!-- End Copper Gravel Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Copper Gravel Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Copper Gravel -->
                 
-                <!--  Vanilla distribution of Copper Gravel. -->
+                
+                <!-- Begin  Vanilla distribution of Copper Gravel -->
                 <IfCondition condition=':= ticoCopperGravelDist = "vanillaStdGen"'>
                 
                     <StandardGen name='ticoCopperGravel0Standard' block='TConstruct:GravelOre:2' inherits='PresetStandardGen'>
@@ -1302,7 +1413,7 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Copper Gravel Vanilla) Settings -->
                     <StandardGen name='ticoCopperGravel1Standard' block='TConstruct:GravelOre:2' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -1316,12 +1427,17 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Copper Gravel Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Copper Gravel -->
                 
-                <!-- Tin Gravel Generation. --> 
+                <!-- End Copper Gravel Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Tin Gravel. -->
+                <!-- Begin Tin Gravel Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Tin Gravel -->
                 <IfCondition condition=':= ticoTinGravelDist = "layeredVeins"'>
                 
                     <Veins name='ticoTinGravel0Veins' block='TConstruct:GravelOre:3' inherits='PresetLayeredVeins'>
@@ -1338,7 +1454,7 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Tin Gravel Layered Veins) Settings -->
                     <Veins name='ticoTinGravel1Veins' block='TConstruct:GravelOre:3' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1354,10 +1470,13 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                         <BiomeType name='Cold'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Tin Gravel Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Tin Gravel -->
                 
-                <!--  StrategicCloud distribution of Tin Gravel. -->
+                
+                <!-- Begin  StrategicCloud distribution of Tin Gravel -->
                 <IfCondition condition=':= ticoTinGravelDist = "strategicCloud"'>
                 
                     <Cloud name='ticoTinGravel0Cloud' block='TConstruct:GravelOre:3' inherits='PresetStrategicCloud'>
@@ -1378,6 +1497,8 @@ Gravel
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoTinGravelSize * _default_' range=':= 1 * 1 * 1 * ticoTinGravelSize  * _default_'/>
                         <Replaces block='minecraft:gravel'/>
+                        
+                        <!-- Begin Tin Gravel Strategic Cloud Hint Veins -->
                         <Veins name='ticoTinGravel0HintVeins' block='TConstruct:GravelOre:3' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1389,9 +1510,11 @@ Gravel
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * ticoTinGravelSize * _default_' range=':= 1 * 1 * ticoTinGravelSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Tin Gravel Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Tin Gravel Strategic Cloud) Settings -->
                     <Cloud name='ticoTinGravel1Cloud' block='TConstruct:GravelOre:3' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1412,6 +1535,8 @@ Gravel
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoTinGravelSize * _default_' range=':= 1 * 1 * 1 * ticoTinGravelSize  * _default_'/>
                         <Replaces block='minecraft:gravel'/>
                         <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Tin Gravel Strategic Cloud Hint Veins -->
                         <Veins name='ticoTinGravel1HintVeins' block='TConstruct:GravelOre:3' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1425,11 +1550,16 @@ Gravel
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
+                        <!-- End Tin Gravel Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Tin Gravel Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Tin Gravel -->
                 
-                <!--  Vanilla distribution of Tin Gravel. -->
+                
+                <!-- Begin  Vanilla distribution of Tin Gravel -->
                 <IfCondition condition=':= ticoTinGravelDist = "vanillaStdGen"'>
                 
                     <StandardGen name='ticoTinGravel0Standard' block='TConstruct:GravelOre:3' inherits='PresetStandardGen'>
@@ -1444,7 +1574,7 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Tin Gravel Vanilla) Settings -->
                     <StandardGen name='ticoTinGravel1Standard' block='TConstruct:GravelOre:3' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -1458,12 +1588,17 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Tin Gravel Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Tin Gravel -->
                 
-                <!-- Aluminum Gravel Generation. --> 
+                <!-- End Tin Gravel Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Aluminum Gravel. -->
+                <!-- Begin Aluminum Gravel Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Aluminum Gravel -->
                 <IfCondition condition=':= ticoAluminumGravelDist = "layeredVeins"'>
                 
                     <Veins name='ticoAluminumGravel0Veins' block='TConstruct:GravelOre:4' inherits='PresetLayeredVeins'>
@@ -1480,7 +1615,7 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Aluminum Gravel Layered Veins) Settings -->
                     <Veins name='ticoAluminumGravel1Veins' block='TConstruct:GravelOre:4' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1496,10 +1631,13 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                         <BiomeType name='Cold'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Aluminum Gravel Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Aluminum Gravel -->
                 
-                <!--  StrategicCloud distribution of Aluminum Gravel. -->
+                
+                <!-- Begin  StrategicCloud distribution of Aluminum Gravel -->
                 <IfCondition condition=':= ticoAluminumGravelDist = "strategicCloud"'>
                 
                     <Cloud name='ticoAluminumGravel0Cloud' block='TConstruct:GravelOre:4' inherits='PresetStrategicCloud'>
@@ -1520,6 +1658,8 @@ Gravel
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoAluminumGravelSize * _default_' range=':= 1 * 1 * 1 * ticoAluminumGravelSize  * _default_'/>
                         <Replaces block='minecraft:gravel'/>
+                        
+                        <!-- Begin Aluminum Gravel Strategic Cloud Hint Veins -->
                         <Veins name='ticoAluminumGravel0HintVeins' block='TConstruct:GravelOre:4' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1531,9 +1671,11 @@ Gravel
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * ticoAluminumGravelSize * _default_' range=':= 1 * 1 * ticoAluminumGravelSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Aluminum Gravel Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Aluminum Gravel Strategic Cloud) Settings -->
                     <Cloud name='ticoAluminumGravel1Cloud' block='TConstruct:GravelOre:4' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1554,6 +1696,8 @@ Gravel
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoAluminumGravelSize * _default_' range=':= 1 * 1 * 1 * ticoAluminumGravelSize  * _default_'/>
                         <Replaces block='minecraft:gravel'/>
                         <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Aluminum Gravel Strategic Cloud Hint Veins -->
                         <Veins name='ticoAluminumGravel1HintVeins' block='TConstruct:GravelOre:4' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1567,11 +1711,16 @@ Gravel
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
+                        <!-- End Aluminum Gravel Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Aluminum Gravel Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Aluminum Gravel -->
                 
-                <!--  Vanilla distribution of Aluminum Gravel. -->
+                
+                <!-- Begin  Vanilla distribution of Aluminum Gravel -->
                 <IfCondition condition=':= ticoAluminumGravelDist = "vanillaStdGen"'>
                 
                     <StandardGen name='ticoAluminumGravel0Standard' block='TConstruct:GravelOre:4' inherits='PresetStandardGen'>
@@ -1586,7 +1735,7 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Aluminum Gravel Vanilla) Settings -->
                     <StandardGen name='ticoAluminumGravel1Standard' block='TConstruct:GravelOre:4' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -1600,12 +1749,17 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Aluminum Gravel Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Aluminum Gravel -->
                 
-                <!-- Cobalt Gravel Generation. --> 
+                <!-- End Aluminum Gravel Generation --> 
+
                 
-                <!-- LayeredVeins distribution of Cobalt Gravel. -->
+                <!-- Begin Cobalt Gravel Generation --> 
+                
+                <!-- Begin LayeredVeins distribution of Cobalt Gravel -->
                 <IfCondition condition=':= ticoCobaltGravelDist = "layeredVeins"'>
                 
                     <Veins name='ticoCobaltGravel0Veins' block='TConstruct:GravelOre:5' inherits='PresetLayeredVeins'>
@@ -1622,7 +1776,7 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                     </Veins>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Cobalt Gravel Layered Veins) Settings -->
                     <Veins name='ticoCobaltGravel1Veins' block='TConstruct:GravelOre:5' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1638,10 +1792,13 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                         <BiomeType name='mountain'/>
                     </Veins>
+                    <!-- End Preferred Biome Distribution (Cobalt Gravel Layered Veins) Settings -->
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Cobalt Gravel -->
                 
-                <!--  StrategicCloud distribution of Cobalt Gravel. -->
+                
+                <!-- Begin  StrategicCloud distribution of Cobalt Gravel -->
                 <IfCondition condition=':= ticoCobaltGravelDist = "strategicCloud"'>
                 
                     <Cloud name='ticoCobaltGravel0Cloud' block='TConstruct:GravelOre:5' inherits='PresetStrategicCloud'>
@@ -1662,6 +1819,8 @@ Gravel
                         <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.2 * 0.4 * ticoCobaltGravelSize * _default_' range=':= 1 * 0.2 * 0.4 * ticoCobaltGravelSize  * _default_'/>
                         <Replaces block='minecraft:gravel'/>
+                        
+                        <!-- Begin Cobalt Gravel Strategic Cloud Hint Veins -->
                         <Veins name='ticoCobaltGravel0HintVeins' block='TConstruct:GravelOre:5' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1673,9 +1832,11 @@ Gravel
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.4 * ticoCobaltGravelSize * _default_' range=':= 1 * 0.4 * ticoCobaltGravelSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Cobalt Gravel Strategic Cloud Hint Veins -->
+
                     </Cloud>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Cobalt Gravel Strategic Cloud) Settings -->
                     <Cloud name='ticoCobaltGravel1Cloud' block='TConstruct:GravelOre:5' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1696,6 +1857,8 @@ Gravel
                         <Setting name='CloudThickness' avg=':= 1 * 0.2 * 0.4 * ticoCobaltGravelSize * _default_' range=':= 1 * 0.2 * 0.4 * ticoCobaltGravelSize  * _default_'/>
                         <Replaces block='minecraft:gravel'/>
                         <BiomeType name='mountain'/>
+                        
+                        <!-- Begin Cobalt Gravel Strategic Cloud Hint Veins -->
                         <Veins name='ticoCobaltGravel1HintVeins' block='TConstruct:GravelOre:5' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1709,11 +1872,16 @@ Gravel
                             <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
                             <BiomeType name='mountain'/>
                         </Veins>
+                        <!-- End Cobalt Gravel Strategic Cloud Hint Veins -->
+
                     </Cloud>
+                    <!-- End Preferred Biome Distribution (Cobalt Gravel Strategic Cloud) Settings -->
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Cobalt Gravel -->
                 
-                <!--  Vanilla distribution of Cobalt Gravel. -->
+                
+                <!-- Begin  Vanilla distribution of Cobalt Gravel -->
                 <IfCondition condition=':= ticoCobaltGravelDist = "vanillaStdGen"'>
                 
                     <StandardGen name='ticoCobaltGravel0Standard' block='TConstruct:GravelOre:5' inherits='PresetStandardGen'>
@@ -1728,7 +1896,7 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                     </StandardGen>
                     
-                    <!-- Preferred Biome Distribution Settings -->
+                    <!-- Begin Preferred Biome Distribution (Cobalt Gravel Vanilla) Settings -->
                     <StandardGen name='ticoCobaltGravel1Standard' block='TConstruct:GravelOre:5' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -1742,8 +1910,13 @@ Gravel
                         <Replaces block='minecraft:gravel'/>
                         <BiomeType name='mountain'/>
                     </StandardGen>
+                    <!-- End Preferred Biome Distribution (Cobalt Gravel Vanilla) Settings -->
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Cobalt Gravel -->
+                
+                <!-- End Cobalt Gravel Generation --> 
+
                 <!-- Done adding ores -->
             
             </IfCondition>
@@ -1752,7 +1925,8 @@ Gravel
 
             <!-- Setup Nether -->
             <IfCondition condition=':= dimension.generator = "HellRandomLevelSource"'>
-                <!-- **********   Vanilla Deposit Removal   ************* -->
+                
+                <!-- Starting Original Nether Ore Removal -->
                 <Substitute name='ticoNetherOreSubstitute0' block='minecraft:gravel'>
                     <Description>
                         Replace vanilla-generated ore clusters.
@@ -1778,12 +1952,13 @@ Gravel
                     <Replaces block='TConstruct:SearedBrick:1' />
                     <Replaces block='TConstruct:SearedBrick:2' />
                 </Substitute>
+                <!-- Original Nether Ore Removal Complete -->
                 
                 <!-- Adding ores --> 
                 
                 <!-- Cobalt Generation. --> 
                 
-                <!-- LayeredVeins distribution of Cobalt. -->
+                <!-- Begin LayeredVeins distribution of Cobalt -->
                 <IfCondition condition=':= ticoCobaltDist = "layeredVeins"'>
                 
                     <Veins name='ticoCobalt0Veins' block='TConstruct:SearedBrick:1' inherits='PresetLayeredVeins'>
@@ -1801,8 +1976,10 @@ Gravel
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Cobalt -->
                 
-                <!--  StrategicCloud distribution of Cobalt. -->
+                
+                <!-- Begin  StrategicCloud distribution of Cobalt -->
                 <IfCondition condition=':= ticoCobaltDist = "strategicCloud"'>
                 
                     <Cloud name='ticoCobalt0Cloud' block='TConstruct:SearedBrick:1' inherits='PresetStrategicCloud'>
@@ -1823,6 +2000,8 @@ Gravel
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 0.5 * 1 * 1 * ticoCobaltSize * _default_' range=':= 0.5 * 1 * 1 * ticoCobaltSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Cobalt Strategic Cloud Hint Veins -->
                         <Veins name='ticoCobalt0HintVeins' block='TConstruct:SearedBrick:1' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1834,11 +2013,15 @@ Gravel
                             <Setting name='MotherlodeRangeLimit' avg=':= 0.5 * 1 * ticoCobaltSize * _default_' range=':= 0.5 * 1 * ticoCobaltSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Cobalt Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Cobalt -->
                 
-                <!--  Vanilla distribution of Cobalt. -->
+                
+                <!-- Begin  Vanilla distribution of Cobalt -->
                 <IfCondition condition=':= ticoCobaltDist = "vanillaStdGen"'>
                 
                     <StandardGen name='ticoCobalt0Standard' block='TConstruct:SearedBrick:1' inherits='PresetStandardGen'>
@@ -1854,10 +2037,12 @@ Gravel
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Cobalt -->
+                
                 
                 <!-- Ardite Generation. --> 
                 
-                <!-- LayeredVeins distribution of Ardite. -->
+                <!-- Begin LayeredVeins distribution of Ardite -->
                 <IfCondition condition=':= ticoArditeDist = "layeredVeins"'>
                 
                     <Veins name='ticoArdite0Veins' block='TConstruct:SearedBrick:2' inherits='PresetLayeredVeins'>
@@ -1875,8 +2060,10 @@ Gravel
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Ardite -->
                 
-                <!--  StrategicCloud distribution of Ardite. -->
+                
+                <!-- Begin  StrategicCloud distribution of Ardite -->
                 <IfCondition condition=':= ticoArditeDist = "strategicCloud"'>
                 
                     <Cloud name='ticoArdite0Cloud' block='TConstruct:SearedBrick:2' inherits='PresetStrategicCloud'>
@@ -1897,6 +2084,8 @@ Gravel
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 0.5 * 1 * 1 * ticoArditeSize * _default_' range=':= 0.5 * 1 * 1 * ticoArditeSize  * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Ardite Strategic Cloud Hint Veins -->
                         <Veins name='ticoArdite0HintVeins' block='TConstruct:SearedBrick:2' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1908,11 +2097,15 @@ Gravel
                             <Setting name='MotherlodeRangeLimit' avg=':= 0.5 * 1 * ticoArditeSize * _default_' range=':= 0.5 * 1 * ticoArditeSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Ardite Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Ardite -->
                 
-                <!--  Vanilla distribution of Ardite. -->
+                
+                <!-- Begin  Vanilla distribution of Ardite -->
                 <IfCondition condition=':= ticoArditeDist = "vanillaStdGen"'>
                 
                     <StandardGen name='ticoArdite0Standard' block='TConstruct:SearedBrick:2' inherits='PresetStandardGen'>
@@ -1928,10 +2121,12 @@ Gravel
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Ardite -->
+                
                 
                 <!-- Nether Cobalt Gravel Generation. --> 
                 
-                <!-- LayeredVeins distribution of Nether Cobalt Gravel. -->
+                <!-- Begin LayeredVeins distribution of Nether Cobalt Gravel -->
                 <IfCondition condition=':= ticoNetherCobaltGravelDist = "layeredVeins"'>
                 
                     <Veins name='ticoNetherCobaltGravel0Veins' block='TConstruct:GravelOre:5' inherits='PresetLayeredVeins'>
@@ -1949,8 +2144,10 @@ Gravel
                     </Veins>
                 
                 </IfCondition>
+                <!-- End LayeredVeins distribution of Nether Cobalt Gravel -->
                 
-                <!--  StrategicCloud distribution of Nether Cobalt Gravel. -->
+                
+                <!-- Begin  StrategicCloud distribution of Nether Cobalt Gravel -->
                 <IfCondition condition=':= ticoNetherCobaltGravelDist = "strategicCloud"'>
                 
                     <Cloud name='ticoNetherCobaltGravel0Cloud' block='TConstruct:GravelOre:5' inherits='PresetStrategicCloud'>
@@ -1971,6 +2168,8 @@ Gravel
                         <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.2 * 0.4 * ticoNetherCobaltGravelSize * _default_' range=':= 1 * 0.2 * 0.4 * ticoNetherCobaltGravelSize  * _default_'/>
                         <Replaces block='minecraft:gravel'/>
+                        
+                        <!-- Begin Nether Cobalt Gravel Strategic Cloud Hint Veins -->
                         <Veins name='ticoNetherCobaltGravel0HintVeins' block='TConstruct:GravelOre:5' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1982,11 +2181,15 @@ Gravel
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.4 * ticoNetherCobaltGravelSize * _default_' range=':= 1 * 0.4 * ticoNetherCobaltGravelSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
                         </Veins>
+                        <!-- End Nether Cobalt Gravel Strategic Cloud Hint Veins -->
+
                     </Cloud>
                 
                 </IfCondition>
+                <!-- End  StrategicCloud distribution of Nether Cobalt Gravel -->
                 
-                <!--  Vanilla distribution of Nether Cobalt Gravel. -->
+                
+                <!-- Begin  Vanilla distribution of Nether Cobalt Gravel -->
                 <IfCondition condition=':= ticoNetherCobaltGravelDist = "vanillaStdGen"'>
                 
                     <StandardGen name='ticoNetherCobaltGravel0Standard' block='TConstruct:GravelOre:5' inherits='PresetStandardGen'>
@@ -2002,6 +2205,8 @@ Gravel
                     </StandardGen>
                 
                 </IfCondition>
+                <!-- End  Vanilla distribution of Nether Cobalt Gravel -->
+                
                 <!-- Done adding ores -->
             
             </IfCondition>

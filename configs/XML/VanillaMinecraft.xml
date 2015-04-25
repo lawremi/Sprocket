@@ -376,7 +376,8 @@ Nether Quartz
 
         <!-- Setup Overworld -->
         <IfCondition condition=':= ?COGActive'>
-            <!-- **********   Vanilla Deposit Removal   ************* -->
+            
+            <!-- Starting Original Overworld Ore Removal -->
             <Substitute name='vnlaOverworldOreSubstitute0' block='minecraft:sand'>
                 <Description>
                     Replace vanilla-generated ore clusters.
@@ -401,12 +402,13 @@ Nether Quartz
                 <Replaces block='minecraft:lapis_ore:0' />
                 <Replaces block='minecraft:emerald_ore:0' />
             </Substitute>
+            <!-- Original Overworld Ore Removal Complete -->
             
             <!-- Adding ores --> 
             
-            <!-- Clay Generation. --> 
+            <!-- Begin Clay Generation --> 
             
-            <!-- LayeredVeins distribution of Clay. -->
+            <!-- Begin LayeredVeins distribution of Clay -->
             <IfCondition condition=':= vnlaClayDist = "layeredVeins"'>
             
                 <Veins name='vnlaClay0Veins' block='minecraft:clay' inherits='PresetLayeredVeins'>
@@ -424,8 +426,10 @@ Nether Quartz
                 </Veins>
             
             </IfCondition>
+            <!-- End LayeredVeins distribution of Clay -->
             
-            <!--  Small Deposits distribution of Clay. -->
+            
+            <!-- Begin  Small Deposits distribution of Clay -->
             <IfCondition condition=':= vnlaClayDist = "smallDeposits"'>
             
                 <Veins name='vnlaClay0Veins' block='minecraft:clay' inherits='PresetSmallDeposits'>
@@ -443,8 +447,10 @@ Nether Quartz
                 </Veins>
             
             </IfCondition>
+            <!-- End  Small Deposits distribution of Clay -->
             
-            <!--  StrategicCloud distribution of Clay. -->
+            
+            <!-- Begin  StrategicCloud distribution of Clay -->
             <IfCondition condition=':= vnlaClayDist = "strategicCloud"'>
             
                 <Cloud name='vnlaClay0Cloud' block='minecraft:clay' inherits='PresetStrategicCloud'>
@@ -465,6 +471,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Setting name='CloudThickness' avg=':= 3 * 1 * 1 * vnlaClaySize * _default_' range=':= 3 * 1 * 1 * vnlaClaySize  * _default_'/>
                     <Replaces block='minecraft:sand'/>
+                    
+                    <!-- Begin Clay Strategic Cloud Hint Veins -->
                     <Veins name='vnlaClay0HintVeins' block='minecraft:clay' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -476,11 +484,15 @@ Nether Quartz
                         <Setting name='MotherlodeRangeLimit' avg=':= 3 * 1 * vnlaClaySize * _default_' range=':= 3 * 1 * vnlaClaySize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     </Veins>
+                    <!-- End Clay Strategic Cloud Hint Veins -->
+
                 </Cloud>
             
             </IfCondition>
+            <!-- End  StrategicCloud distribution of Clay -->
             
-            <!--  Vanilla distribution of Clay. -->
+            
+            <!-- Begin  Vanilla distribution of Clay -->
             <IfCondition condition=':= vnlaClayDist = "vanillaStdGen"'>
             
                 <StandardGen name='vnlaClay0Standard' block='minecraft:clay' inherits='PresetStandardGen'>
@@ -496,10 +508,14 @@ Nether Quartz
                 </StandardGen>
             
             </IfCondition>
+            <!-- End  Vanilla distribution of Clay -->
             
-            <!-- Coal Generation. --> 
+            <!-- End Clay Generation --> 
+
             
-            <!-- SparseVeins distribution of Coal. -->
+            <!-- Begin Coal Generation --> 
+            
+            <!-- Begin SparseVeins distribution of Coal -->
             <IfCondition condition=':= vnlaCoalDist = "sparseVeins"'>
             
                 <Veins name='vnlaCoal0Veins' block='minecraft:coal_ore' inherits='PresetSparseVeins'>
@@ -519,7 +535,7 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                 </Veins>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Coal Sparse Veins) Settings -->
                 <Veins name='vnlaCoal1Veins' block='minecraft:coal_ore' inherits='PresetSparseVeins'>
                     <Description>
                         Large veins filled very lightly with ore.  Because they contain less ore per volume, 
@@ -538,10 +554,13 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Swamp'/>
                 </Veins>
+                <!-- End Preferred Biome Distribution (Coal Sparse Veins) Settings -->
             
             </IfCondition>
+            <!-- End SparseVeins distribution of Coal -->
             
-            <!--  Small Deposits distribution of Coal. -->
+            
+            <!-- Begin  Small Deposits distribution of Coal -->
             <IfCondition condition=':= vnlaCoalDist = "smallDeposits"'>
             
                 <Veins name='vnlaCoal0Veins' block='minecraft:coal_ore' inherits='PresetSmallDeposits'>
@@ -558,7 +577,7 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                 </Veins>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Coal Small Deposits) Settings -->
                 <Veins name='vnlaCoal1Veins' block='minecraft:coal_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -574,10 +593,13 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Swamp'/>
                 </Veins>
+                <!-- End Preferred Biome Distribution (Coal Small Deposits) Settings -->
             
             </IfCondition>
+            <!-- End  Small Deposits distribution of Coal -->
             
-            <!--  StrategicCloud distribution of Coal. -->
+            
+            <!-- Begin  StrategicCloud distribution of Coal -->
             <IfCondition condition=':= vnlaCoalDist = "strategicCloud"'>
             
                 <Cloud name='vnlaCoal0Cloud' block='minecraft:coal_ore' inherits='PresetStrategicCloud'>
@@ -598,6 +620,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
                     <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * vnlaCoalSize * _default_' range=':= 1 * 1 * 1 * vnlaCoalSize  * _default_'/>
                     <Replaces block='minecraft:stone'/>
+                    
+                    <!-- Begin Coal Strategic Cloud Hint Veins -->
                     <Veins name='vnlaCoal0HintVeins' block='minecraft:coal_ore' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -609,9 +633,11 @@ Nether Quartz
                         <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * vnlaCoalSize * _default_' range=':= 1 * 1 * vnlaCoalSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
                     </Veins>
+                    <!-- End Coal Strategic Cloud Hint Veins -->
+
                 </Cloud>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Coal Strategic Cloud) Settings -->
                 <Cloud name='vnlaCoal1Cloud' block='minecraft:coal_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -632,6 +658,8 @@ Nether Quartz
                     <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * vnlaCoalSize * _default_' range=':= 1 * 1 * 1 * vnlaCoalSize  * _default_'/>
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Swamp'/>
+                    
+                    <!-- Begin Coal Strategic Cloud Hint Veins -->
                     <Veins name='vnlaCoal1HintVeins' block='minecraft:coal_ore' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -645,11 +673,16 @@ Nether Quartz
                         <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
                         <BiomeType name='Swamp'/>
                     </Veins>
+                    <!-- End Coal Strategic Cloud Hint Veins -->
+
                 </Cloud>
+                <!-- End Preferred Biome Distribution (Coal Strategic Cloud) Settings -->
             
             </IfCondition>
+            <!-- End  StrategicCloud distribution of Coal -->
             
-            <!--  Vanilla distribution of Coal. -->
+            
+            <!-- Begin  Vanilla distribution of Coal -->
             <IfCondition condition=':= vnlaCoalDist = "vanillaStdGen"'>
             
                 <StandardGen name='vnlaCoal0Standard' block='minecraft:coal_ore' inherits='PresetStandardGen'>
@@ -664,7 +697,7 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                 </StandardGen>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Coal Vanilla) Settings -->
                 <StandardGen name='vnlaCoal1Standard' block='minecraft:coal_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -678,12 +711,17 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Swamp'/>
                 </StandardGen>
+                <!-- End Preferred Biome Distribution (Coal Vanilla) Settings -->
             
             </IfCondition>
+            <!-- End  Vanilla distribution of Coal -->
             
-            <!-- Iron Generation. --> 
+            <!-- End Coal Generation --> 
+
             
-            <!-- LayeredVeins distribution of Iron. -->
+            <!-- Begin Iron Generation --> 
+            
+            <!-- Begin LayeredVeins distribution of Iron -->
             <IfCondition condition=':= vnlaIronDist = "layeredVeins"'>
             
                 <Veins name='vnlaIron0Veins' block='minecraft:iron_ore' inherits='PresetLayeredVeins'>
@@ -700,7 +738,7 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                 </Veins>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Iron Layered Veins) Settings -->
                 <Veins name='vnlaIron1Veins' block='minecraft:iron_ore' inherits='PresetLayeredVeins'>
                     <Description>
                         Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -716,10 +754,13 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Cold'/>
                 </Veins>
+                <!-- End Preferred Biome Distribution (Iron Layered Veins) Settings -->
             
             </IfCondition>
+            <!-- End LayeredVeins distribution of Iron -->
             
-            <!--  Small Deposits distribution of Iron. -->
+            
+            <!-- Begin  Small Deposits distribution of Iron -->
             <IfCondition condition=':= vnlaIronDist = "smallDeposits"'>
             
                 <Veins name='vnlaIron0Veins' block='minecraft:iron_ore' inherits='PresetSmallDeposits'>
@@ -736,7 +777,7 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                 </Veins>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Iron Small Deposits) Settings -->
                 <Veins name='vnlaIron1Veins' block='minecraft:iron_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -752,10 +793,13 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Cold'/>
                 </Veins>
+                <!-- End Preferred Biome Distribution (Iron Small Deposits) Settings -->
             
             </IfCondition>
+            <!-- End  Small Deposits distribution of Iron -->
             
-            <!--  StrategicCloud distribution of Iron. -->
+            
+            <!-- Begin  StrategicCloud distribution of Iron -->
             <IfCondition condition=':= vnlaIronDist = "strategicCloud"'>
             
                 <Cloud name='vnlaIron0Cloud' block='minecraft:iron_ore' inherits='PresetStrategicCloud'>
@@ -776,6 +820,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * vnlaIronSize * _default_' range=':= 1 * 1 * 1 * vnlaIronSize  * _default_'/>
                     <Replaces block='minecraft:stone'/>
+                    
+                    <!-- Begin Iron Strategic Cloud Hint Veins -->
                     <Veins name='vnlaIron0HintVeins' block='minecraft:iron_ore' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -787,9 +833,11 @@ Nether Quartz
                         <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * vnlaIronSize * _default_' range=':= 1 * 1 * vnlaIronSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     </Veins>
+                    <!-- End Iron Strategic Cloud Hint Veins -->
+
                 </Cloud>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Iron Strategic Cloud) Settings -->
                 <Cloud name='vnlaIron1Cloud' block='minecraft:iron_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -810,6 +858,8 @@ Nether Quartz
                     <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * vnlaIronSize * _default_' range=':= 1 * 1 * 1 * vnlaIronSize  * _default_'/>
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Cold'/>
+                    
+                    <!-- Begin Iron Strategic Cloud Hint Veins -->
                     <Veins name='vnlaIron1HintVeins' block='minecraft:iron_ore' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -823,11 +873,16 @@ Nether Quartz
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <BiomeType name='Cold'/>
                     </Veins>
+                    <!-- End Iron Strategic Cloud Hint Veins -->
+
                 </Cloud>
+                <!-- End Preferred Biome Distribution (Iron Strategic Cloud) Settings -->
             
             </IfCondition>
+            <!-- End  StrategicCloud distribution of Iron -->
             
-            <!--  Vanilla distribution of Iron. -->
+            
+            <!-- Begin  Vanilla distribution of Iron -->
             <IfCondition condition=':= vnlaIronDist = "vanillaStdGen"'>
             
                 <StandardGen name='vnlaIron0Standard' block='minecraft:iron_ore' inherits='PresetStandardGen'>
@@ -842,7 +897,7 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                 </StandardGen>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Iron Vanilla) Settings -->
                 <StandardGen name='vnlaIron1Standard' block='minecraft:iron_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -856,12 +911,17 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Cold'/>
                 </StandardGen>
+                <!-- End Preferred Biome Distribution (Iron Vanilla) Settings -->
             
             </IfCondition>
+            <!-- End  Vanilla distribution of Iron -->
             
-            <!-- Gold Generation. --> 
+            <!-- End Iron Generation --> 
+
             
-            <!-- LayeredVeins distribution of Gold. -->
+            <!-- Begin Gold Generation --> 
+            
+            <!-- Begin LayeredVeins distribution of Gold -->
             <IfCondition condition=':= vnlaGoldDist = "layeredVeins"'>
             
                 <Veins name='vnlaGold0Veins' block='minecraft:gold_ore' inherits='PresetLayeredVeins'>
@@ -878,7 +938,7 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                 </Veins>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Gold Layered Veins) Settings -->
                 <Veins name='vnlaGold1Veins' block='minecraft:gold_ore' inherits='PresetLayeredVeins'>
                     <Description>
                         Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -894,10 +954,13 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Forest'/>
                 </Veins>
+                <!-- End Preferred Biome Distribution (Gold Layered Veins) Settings -->
             
             </IfCondition>
+            <!-- End LayeredVeins distribution of Gold -->
             
-            <!--  Small Deposits distribution of Gold. -->
+            
+            <!-- Begin  Small Deposits distribution of Gold -->
             <IfCondition condition=':= vnlaGoldDist = "smallDeposits"'>
             
                 <Veins name='vnlaGold0Veins' block='minecraft:gold_ore' inherits='PresetSmallDeposits'>
@@ -914,7 +977,7 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                 </Veins>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Gold Small Deposits) Settings -->
                 <Veins name='vnlaGold1Veins' block='minecraft:gold_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -930,10 +993,13 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Forest'/>
                 </Veins>
+                <!-- End Preferred Biome Distribution (Gold Small Deposits) Settings -->
             
             </IfCondition>
+            <!-- End  Small Deposits distribution of Gold -->
             
-            <!--  StrategicCloud distribution of Gold. -->
+            
+            <!-- Begin  StrategicCloud distribution of Gold -->
             <IfCondition condition=':= vnlaGoldDist = "strategicCloud"'>
             
                 <Cloud name='vnlaGold0Cloud' block='minecraft:gold_ore' inherits='PresetStrategicCloud'>
@@ -954,6 +1020,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                     <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * vnlaGoldSize * _default_' range=':= 1 * 1 * 0.8 * vnlaGoldSize  * _default_'/>
                     <Replaces block='minecraft:stone'/>
+                    
+                    <!-- Begin Gold Strategic Cloud Hint Veins -->
                     <Veins name='vnlaGold0HintVeins' block='minecraft:gold_ore' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -965,9 +1033,11 @@ Nether Quartz
                         <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * vnlaGoldSize * _default_' range=':= 1 * 0.8 * vnlaGoldSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                     </Veins>
+                    <!-- End Gold Strategic Cloud Hint Veins -->
+
                 </Cloud>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Gold Strategic Cloud) Settings -->
                 <Cloud name='vnlaGold1Cloud' block='minecraft:gold_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -988,6 +1058,8 @@ Nether Quartz
                     <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * vnlaGoldSize * _default_' range=':= 1 * 1 * 0.8 * vnlaGoldSize  * _default_'/>
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Forest'/>
+                    
+                    <!-- Begin Gold Strategic Cloud Hint Veins -->
                     <Veins name='vnlaGold1HintVeins' block='minecraft:gold_ore' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1001,11 +1073,16 @@ Nether Quartz
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <BiomeType name='Forest'/>
                     </Veins>
+                    <!-- End Gold Strategic Cloud Hint Veins -->
+
                 </Cloud>
+                <!-- End Preferred Biome Distribution (Gold Strategic Cloud) Settings -->
             
             </IfCondition>
+            <!-- End  StrategicCloud distribution of Gold -->
             
-            <!--  Vanilla distribution of Gold. -->
+            
+            <!-- Begin  Vanilla distribution of Gold -->
             <IfCondition condition=':= vnlaGoldDist = "vanillaStdGen"'>
             
                 <StandardGen name='vnlaGold0Standard' block='minecraft:gold_ore' inherits='PresetStandardGen'>
@@ -1020,7 +1097,7 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                 </StandardGen>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Gold Vanilla) Settings -->
                 <StandardGen name='vnlaGold1Standard' block='minecraft:gold_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -1034,12 +1111,17 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Forest'/>
                 </StandardGen>
+                <!-- End Preferred Biome Distribution (Gold Vanilla) Settings -->
             
             </IfCondition>
+            <!-- End  Vanilla distribution of Gold -->
             
-            <!-- Redstone Generation. --> 
+            <!-- End Gold Generation --> 
+
             
-            <!-- VerticalVeins distribution of Redstone. -->
+            <!-- Begin Redstone Generation --> 
+            
+            <!-- Begin VerticalVeins distribution of Redstone -->
             <IfCondition condition=':= vnlaRedstoneDist = "verticalVeins"'>
             
                 <Veins name='vnlaRedstone0Veins' block='minecraft:redstone_ore' inherits='PresetVerticalVeins'>
@@ -1055,7 +1137,7 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                 </Veins>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Redstone Vertical Veins) Settings -->
                 <Veins name='vnlaRedstone1Veins' block='minecraft:redstone_ore' inherits='PresetVerticalVeins'>
                     <Description>
                         Single vertical veins that occur with no motherlodes.
@@ -1070,10 +1152,13 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Desert'/>
                 </Veins>
+                <!-- End Preferred Biome Distribution (Redstone Vertical Veins) Settings -->
             
             </IfCondition>
+            <!-- End VerticalVeins distribution of Redstone -->
             
-            <!--  Small Deposits distribution of Redstone. -->
+            
+            <!-- Begin  Small Deposits distribution of Redstone -->
             <IfCondition condition=':= vnlaRedstoneDist = "smallDeposits"'>
             
                 <Veins name='vnlaRedstone0Veins' block='minecraft:redstone_ore' inherits='PresetSmallDeposits'>
@@ -1090,7 +1175,7 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                 </Veins>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Redstone Small Deposits) Settings -->
                 <Veins name='vnlaRedstone1Veins' block='minecraft:redstone_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -1106,10 +1191,13 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Desert'/>
                 </Veins>
+                <!-- End Preferred Biome Distribution (Redstone Small Deposits) Settings -->
             
             </IfCondition>
+            <!-- End  Small Deposits distribution of Redstone -->
             
-            <!--  StrategicCloud distribution of Redstone. -->
+            
+            <!-- Begin  StrategicCloud distribution of Redstone -->
             <IfCondition condition=':= vnlaRedstoneDist = "strategicCloud"'>
             
                 <Cloud name='vnlaRedstone0Cloud' block='minecraft:redstone_ore' inherits='PresetStrategicCloud'>
@@ -1130,6 +1218,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Setting name='CloudThickness' avg=':= 1 * 0.7 * 1 * vnlaRedstoneSize * _default_' range=':= 1 * 0.7 * 1 * vnlaRedstoneSize  * _default_'/>
                     <Replaces block='minecraft:stone'/>
+                    
+                    <!-- Begin Redstone Strategic Cloud Hint Veins -->
                     <Veins name='vnlaRedstone0HintVeins' block='minecraft:redstone_ore' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1141,9 +1231,11 @@ Nether Quartz
                         <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * vnlaRedstoneSize * _default_' range=':= 1 * 1 * vnlaRedstoneSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     </Veins>
+                    <!-- End Redstone Strategic Cloud Hint Veins -->
+
                 </Cloud>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Redstone Strategic Cloud) Settings -->
                 <Cloud name='vnlaRedstone1Cloud' block='minecraft:redstone_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1164,6 +1256,8 @@ Nether Quartz
                     <Setting name='CloudThickness' avg=':= 1 * 0.7 * 1 * vnlaRedstoneSize * _default_' range=':= 1 * 0.7 * 1 * vnlaRedstoneSize  * _default_'/>
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Desert'/>
+                    
+                    <!-- Begin Redstone Strategic Cloud Hint Veins -->
                     <Veins name='vnlaRedstone1HintVeins' block='minecraft:redstone_ore' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1177,11 +1271,16 @@ Nether Quartz
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <BiomeType name='Desert'/>
                     </Veins>
+                    <!-- End Redstone Strategic Cloud Hint Veins -->
+
                 </Cloud>
+                <!-- End Preferred Biome Distribution (Redstone Strategic Cloud) Settings -->
             
             </IfCondition>
+            <!-- End  StrategicCloud distribution of Redstone -->
             
-            <!--  Vanilla distribution of Redstone. -->
+            
+            <!-- Begin  Vanilla distribution of Redstone -->
             <IfCondition condition=':= vnlaRedstoneDist = "vanillaStdGen"'>
             
                 <StandardGen name='vnlaRedstone0Standard' block='minecraft:redstone_ore' inherits='PresetStandardGen'>
@@ -1196,7 +1295,7 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                 </StandardGen>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Redstone Vanilla) Settings -->
                 <StandardGen name='vnlaRedstone1Standard' block='minecraft:redstone_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -1210,15 +1309,22 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Desert'/>
                 </StandardGen>
+                <!-- End Preferred Biome Distribution (Redstone Vanilla) Settings -->
             
             </IfCondition>
+            <!-- End  Vanilla distribution of Redstone -->
             
-            <!-- Diamond Generation. --> 
+            <!-- End Redstone Generation --> 
+
             
-            <!-- PipeVeins distribution of Diamond. -->
+            <!-- Begin Diamond Generation --> 
+            
+            <!-- Begin PipeVeins distribution of Diamond -->
             <IfCondition condition=':= vnlaDiamondDist = "pipeVeins"'>
             
-                <Veins name='vnlaDiamond0Veins' block='minecraft:diamond_ore' inherits='PresetPipeVeins' seed='0xD417'>
+                
+                <!-- Begin Diamond Ore Configuration -->
+                <Veins name='vnlaDiamond0Veins' block='minecraft:diamond_ore' inherits='PresetPipeVeins' seed='0xFD2F'>
                     <Description>
                         Short sparsely filled veins sloping up from near the bottom of the map.
                     </Description>
@@ -1231,7 +1337,11 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
-                <Veins name= 'vnlaDiamond0Pipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0xD417'>
+                <!-- End Diamond Ore Configuration -->
+                
+                
+                <!-- Begin Diamond Pipe Configuration -->
+                <Veins name= 'vnlaDiamond0Pipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0xFD2F'>
                     <Description>
                         Fills center of each tube with Pipe material.
                     </Description>
@@ -1249,10 +1359,14 @@ Nether Quartz
                     <Replaces block='minecraft:end_stone'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
+                <!-- End Diamond Pipe Configuration -->
+                
             
             </IfCondition>
+            <!-- End PipeVeins distribution of Diamond -->
             
-            <!--  Small Deposits distribution of Diamond. -->
+            
+            <!-- Begin  Small Deposits distribution of Diamond -->
             <IfCondition condition=':= vnlaDiamondDist = "smallDeposits"'>
             
                 <Veins name='vnlaDiamond0Veins' block='minecraft:diamond_ore' inherits='PresetSmallDeposits'>
@@ -1270,8 +1384,10 @@ Nether Quartz
                 </Veins>
             
             </IfCondition>
+            <!-- End  Small Deposits distribution of Diamond -->
             
-            <!--  StrategicCloud distribution of Diamond. -->
+            
+            <!-- Begin  StrategicCloud distribution of Diamond -->
             <IfCondition condition=':= vnlaDiamondDist = "strategicCloud"'>
             
                 <Cloud name='vnlaDiamond0Cloud' block='minecraft:diamond_ore' inherits='PresetStrategicCloud'>
@@ -1292,6 +1408,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
                     <Setting name='CloudThickness' avg=':= 1 * 0.2 * 0.5 * vnlaDiamondSize * _default_' range=':= 1 * 0.2 * 0.5 * vnlaDiamondSize  * _default_'/>
                     <Replaces block='minecraft:stone'/>
+                    
+                    <!-- Begin Diamond Strategic Cloud Hint Veins -->
                     <Veins name='vnlaDiamond0HintVeins' block='minecraft:diamond_ore' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1303,11 +1421,15 @@ Nether Quartz
                         <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.5 * vnlaDiamondSize * _default_' range=':= 1 * 0.5 * vnlaDiamondSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
                     </Veins>
+                    <!-- End Diamond Strategic Cloud Hint Veins -->
+
                 </Cloud>
             
             </IfCondition>
+            <!-- End  StrategicCloud distribution of Diamond -->
             
-            <!--  Vanilla distribution of Diamond. -->
+            
+            <!-- Begin  Vanilla distribution of Diamond -->
             <IfCondition condition=':= vnlaDiamondDist = "vanillaStdGen"'>
             
                 <StandardGen name='vnlaDiamond0Standard' block='minecraft:diamond_ore' inherits='PresetStandardGen'>
@@ -1323,10 +1445,14 @@ Nether Quartz
                 </StandardGen>
             
             </IfCondition>
+            <!-- End  Vanilla distribution of Diamond -->
             
-            <!-- Lapis Lazuli Generation. --> 
+            <!-- End Diamond Generation --> 
+
             
-            <!-- VerticalVeins distribution of Lapis Lazuli. -->
+            <!-- Begin Lapis Lazuli Generation --> 
+            
+            <!-- Begin VerticalVeins distribution of Lapis Lazuli -->
             <IfCondition condition=':= vnlaLapisLazuliDist = "verticalVeins"'>
             
                 <Veins name='vnlaLapisLazuli0Veins' block='minecraft:lapis_ore' inherits='PresetVerticalVeins'>
@@ -1342,7 +1468,7 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                 </Veins>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Lapis Lazuli Vertical Veins) Settings -->
                 <Veins name='vnlaLapisLazuli1Veins' block='minecraft:lapis_ore' inherits='PresetVerticalVeins'>
                     <Description>
                         Single vertical veins that occur with no motherlodes.
@@ -1357,10 +1483,13 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='ocean'/>
                 </Veins>
+                <!-- End Preferred Biome Distribution (Lapis Lazuli Vertical Veins) Settings -->
             
             </IfCondition>
+            <!-- End VerticalVeins distribution of Lapis Lazuli -->
             
-            <!--  Small Deposits distribution of Lapis Lazuli. -->
+            
+            <!-- Begin  Small Deposits distribution of Lapis Lazuli -->
             <IfCondition condition=':= vnlaLapisLazuliDist = "smallDeposits"'>
             
                 <Veins name='vnlaLapisLazuli0Veins' block='minecraft:lapis_ore' inherits='PresetSmallDeposits'>
@@ -1377,7 +1506,7 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                 </Veins>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Lapis Lazuli Small Deposits) Settings -->
                 <Veins name='vnlaLapisLazuli1Veins' block='minecraft:lapis_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -1393,10 +1522,13 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='ocean'/>
                 </Veins>
+                <!-- End Preferred Biome Distribution (Lapis Lazuli Small Deposits) Settings -->
             
             </IfCondition>
+            <!-- End  Small Deposits distribution of Lapis Lazuli -->
             
-            <!--  StrategicCloud distribution of Lapis Lazuli. -->
+            
+            <!-- Begin  StrategicCloud distribution of Lapis Lazuli -->
             <IfCondition condition=':= vnlaLapisLazuliDist = "strategicCloud"'>
             
                 <Cloud name='vnlaLapisLazuli0Cloud' block='minecraft:lapis_ore' inherits='PresetStrategicCloud'>
@@ -1417,6 +1549,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Setting name='CloudThickness' avg=':= 1 * 0.7 * 0.65 * vnlaLapisLazuliSize * _default_' range=':= 1 * 0.7 * 0.65 * vnlaLapisLazuliSize  * _default_'/>
                     <Replaces block='minecraft:stone'/>
+                    
+                    <!-- Begin Lapis Lazuli Strategic Cloud Hint Veins -->
                     <Veins name='vnlaLapisLazuli0HintVeins' block='minecraft:lapis_ore' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1428,9 +1562,11 @@ Nether Quartz
                         <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.65 * vnlaLapisLazuliSize * _default_' range=':= 1 * 0.65 * vnlaLapisLazuliSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     </Veins>
+                    <!-- End Lapis Lazuli Strategic Cloud Hint Veins -->
+
                 </Cloud>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Lapis Lazuli Strategic Cloud) Settings -->
                 <Cloud name='vnlaLapisLazuli1Cloud' block='minecraft:lapis_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1451,6 +1587,8 @@ Nether Quartz
                     <Setting name='CloudThickness' avg=':= 1 * 0.7 * 0.65 * vnlaLapisLazuliSize * _default_' range=':= 1 * 0.7 * 0.65 * vnlaLapisLazuliSize  * _default_'/>
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='ocean'/>
+                    
+                    <!-- Begin Lapis Lazuli Strategic Cloud Hint Veins -->
                     <Veins name='vnlaLapisLazuli1HintVeins' block='minecraft:lapis_ore' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1464,11 +1602,16 @@ Nether Quartz
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <BiomeType name='ocean'/>
                     </Veins>
+                    <!-- End Lapis Lazuli Strategic Cloud Hint Veins -->
+
                 </Cloud>
+                <!-- End Preferred Biome Distribution (Lapis Lazuli Strategic Cloud) Settings -->
             
             </IfCondition>
+            <!-- End  StrategicCloud distribution of Lapis Lazuli -->
             
-            <!--  Vanilla distribution of Lapis Lazuli. -->
+            
+            <!-- Begin  Vanilla distribution of Lapis Lazuli -->
             <IfCondition condition=':= vnlaLapisLazuliDist = "vanillaStdGen"'>
             
                 <StandardGen name='vnlaLapisLazuli0Standard' block='minecraft:lapis_ore' inherits='PresetStandardGen'>
@@ -1483,7 +1626,7 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                 </StandardGen>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Lapis Lazuli Vanilla) Settings -->
                 <StandardGen name='vnlaLapisLazuli1Standard' block='minecraft:lapis_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -1497,48 +1640,63 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='ocean'/>
                 </StandardGen>
+                <!-- End Preferred Biome Distribution (Lapis Lazuli Vanilla) Settings -->
             
             </IfCondition>
+            <!-- End  Vanilla distribution of Lapis Lazuli -->
             
-            <!-- Emerald Generation. --> 
+            <!-- End Lapis Lazuli Generation --> 
+
             
-            <!-- PipeVeins distribution of Emerald. -->
+            <!-- Begin Emerald Generation --> 
+            
+            <!-- Begin PipeVeins distribution of Emerald -->
             <IfCondition condition=':= vnlaEmeraldDist = "pipeVeins"'>
             
-                <Veins name='vnlaEmerald0Veins' block='minecraft:emerald_ore' inherits='PresetPipeVeins' seed='0x2E8D'>
-                    <Description>
-                        Short sparsely filled veins sloping up from near the bottom of the map.
-                    </Description>
-                    <DrawWireframe>:=drawWireframes</DrawWireframe>
-                    <WireframeColor>0x60e25d21</WireframeColor>
-                    <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * vnlaEmeraldFreq * _default_'/>
-                    <Setting name='MotherlodeSize' avg=':= 1 * 0.85 * vnlaEmeraldSize * _default_' range=':= 1 * 0.85 * vnlaEmeraldSize * _default_'/>
-                    <Setting name='MotherlodeHeight' avg=':= 18' range=':= 14' type='normal' scaleTo='sealevel' />
-                    <Setting name='SegmentRadius' avg=':= 1 * 0.85 * vnlaEmeraldSize * _default_' range=':= 1 * 0.85 * vnlaEmeraldSize * _default_'/>
-                    <Setting name='OreDensity' avg=':= 1 * 1.2 * _default_' range=':= _default_'/>
-                    <Replaces block='minecraft:stone'/>
-                </Veins>
-                <Veins name= 'vnlaEmerald0Pipe' block='minecraft:monster_egg' inherits='PresetPipeVeins' seed='0x2E8D'>
-                    <Description>
-                        Fills center of each tube with Pipe material.
-                    </Description>
-                    <DrawWireframe>:=drawWireframes</DrawWireframe>
-                    <WireframeColor>0x60e25d21</WireframeColor>
-                    <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * 0.85 * vnlaEmeraldSize * _default_' range=':= 0.5 * 1 * 0.85 * vnlaEmeraldSize * _default_'/>
-                    <Setting name='MotherlodeHeight' avg=':= 18' range=':= 14' type='normal' scaleTo='sealevel' />
-                    <Setting name='SegmentRadius' avg=':= 0.5 * 1 * 0.85 * vnlaEmeraldSize * _default_' range=':= 0.5 * 1 * 0.85 * vnlaEmeraldSize * _default_'/>
-                    <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * vnlaEmeraldFreq * _default_'/>
-                    <Setting name='OreDensity' avg=':= 1 * 1.2 * _default_' range=':= _default_'/>
-                    <Replaces block='minecraft:dirt'/>
-                    <Replaces block='minecraft:stone'/>
-                    <Replaces block='minecraft:gravel'/>
-                    <Replaces block='minecraft:netherrack'/>
-                    <Replaces block='minecraft:end_stone'/>
-                    <Replaces block='minecraft:stone'/>
-                </Veins>
                 
-                <!-- Preferred Biome Distribution Settings -->
-                <Veins name='vnlaEmerald1Veins' block='minecraft:emerald_ore' inherits='PresetPipeVeins' seed='0xD424'>
+                <!-- Begin Emerald Ore Configuration -->
+                <Veins name='vnlaEmerald0Veins' block='minecraft:emerald_ore' inherits='PresetPipeVeins' seed='0xAC9B'>
+                    <Description>
+                        Short sparsely filled veins sloping up from near the bottom of the map.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * vnlaEmeraldFreq * _default_'/>
+                    <Setting name='MotherlodeSize' avg=':= 1 * 0.85 * vnlaEmeraldSize * _default_' range=':= 1 * 0.85 * vnlaEmeraldSize * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 18' range=':= 14' type='normal' scaleTo='sealevel' />
+                    <Setting name='SegmentRadius' avg=':= 1 * 0.85 * vnlaEmeraldSize * _default_' range=':= 1 * 0.85 * vnlaEmeraldSize * _default_'/>
+                    <Setting name='OreDensity' avg=':= 1 * 1.2 * _default_' range=':= _default_'/>
+                    <Replaces block='minecraft:stone'/>
+                </Veins>
+                <!-- End Emerald Ore Configuration -->
+                
+                
+                <!-- Begin Emerald Pipe Configuration -->
+                <Veins name= 'vnlaEmerald0Pipe' block='minecraft:monster_egg' inherits='PresetPipeVeins' seed='0xAC9B'>
+                    <Description>
+                        Fills center of each tube with Pipe material.
+                    </Description>
+                    <DrawWireframe>:=drawWireframes</DrawWireframe>
+                    <WireframeColor>0x60e25d21</WireframeColor>
+                    <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * 0.85 * vnlaEmeraldSize * _default_' range=':= 0.5 * 1 * 0.85 * vnlaEmeraldSize * _default_'/>
+                    <Setting name='MotherlodeHeight' avg=':= 18' range=':= 14' type='normal' scaleTo='sealevel' />
+                    <Setting name='SegmentRadius' avg=':= 0.5 * 1 * 0.85 * vnlaEmeraldSize * _default_' range=':= 0.5 * 1 * 0.85 * vnlaEmeraldSize * _default_'/>
+                    <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * vnlaEmeraldFreq * _default_'/>
+                    <Setting name='OreDensity' avg=':= 1 * 1.2 * _default_' range=':= _default_'/>
+                    <Replaces block='minecraft:dirt'/>
+                    <Replaces block='minecraft:stone'/>
+                    <Replaces block='minecraft:gravel'/>
+                    <Replaces block='minecraft:netherrack'/>
+                    <Replaces block='minecraft:end_stone'/>
+                    <Replaces block='minecraft:stone'/>
+                </Veins>
+                <!-- End Emerald Pipe Configuration -->
+                
+                
+                <!-- Begin Preferred Biome Distribution (Emerald Pipe Veins) Settings -->
+                
+                <!-- Begin Emerald Ore Configuration -->
+                <Veins name='vnlaEmerald1Veins' block='minecraft:emerald_ore' inherits='PresetPipeVeins' seed='0x1685'>
                     <Description>
                         Short sparsely filled veins sloping up from near the bottom of the map.
                         2 times as likely in preferred biomes.
@@ -1553,7 +1711,11 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='mountain'/>
                 </Veins>
-                <Veins name= 'vnlaEmerald1Pipe' block='minecraft:monster_egg' inherits='PresetPipeVeins' seed='0xD424'>
+                <!-- End Emerald Ore Configuration -->
+                
+                
+                <!-- Begin Emerald Pipe Configuration -->
+                <Veins name= 'vnlaEmerald1Pipe' block='minecraft:monster_egg' inherits='PresetPipeVeins' seed='0x1685'>
                     <Description>
                         Fills center of each tube with Pipe material.
                         2 times as likely in preferred biomes.
@@ -1573,10 +1735,15 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='mountain'/>
                 </Veins>
+                <!-- End Emerald Pipe Configuration -->
+                
+                <!-- End Preferred Biome Distribution (Emerald Pipe Veins) Settings -->
             
             </IfCondition>
+            <!-- End PipeVeins distribution of Emerald -->
             
-            <!--  Small Deposits distribution of Emerald. -->
+            
+            <!-- Begin  Small Deposits distribution of Emerald -->
             <IfCondition condition=':= vnlaEmeraldDist = "smallDeposits"'>
             
                 <Veins name='vnlaEmerald0Veins' block='minecraft:emerald_ore' inherits='PresetSmallDeposits'>
@@ -1593,7 +1760,7 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                 </Veins>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Emerald Small Deposits) Settings -->
                 <Veins name='vnlaEmerald1Veins' block='minecraft:emerald_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -1609,10 +1776,13 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='mountain'/>
                 </Veins>
+                <!-- End Preferred Biome Distribution (Emerald Small Deposits) Settings -->
             
             </IfCondition>
+            <!-- End  Small Deposits distribution of Emerald -->
             
-            <!--  StrategicCloud distribution of Emerald. -->
+            
+            <!-- Begin  StrategicCloud distribution of Emerald -->
             <IfCondition condition=':= vnlaEmeraldDist = "strategicCloud"'>
             
                 <Cloud name='vnlaEmerald0Cloud' block='minecraft:emerald_ore' inherits='PresetStrategicCloud'>
@@ -1633,6 +1803,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
                     <Setting name='CloudThickness' avg=':= 1 * 0.2 * 0.4 * vnlaEmeraldSize * _default_' range=':= 1 * 0.2 * 0.4 * vnlaEmeraldSize  * _default_'/>
                     <Replaces block='minecraft:stone'/>
+                    
+                    <!-- Begin Emerald Strategic Cloud Hint Veins -->
                     <Veins name='vnlaEmerald0HintVeins' block='minecraft:emerald_ore' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1644,9 +1816,11 @@ Nether Quartz
                         <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.4 * vnlaEmeraldSize * _default_' range=':= 1 * 0.4 * vnlaEmeraldSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
                     </Veins>
+                    <!-- End Emerald Strategic Cloud Hint Veins -->
+
                 </Cloud>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Emerald Strategic Cloud) Settings -->
                 <Cloud name='vnlaEmerald1Cloud' block='minecraft:emerald_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1667,6 +1841,8 @@ Nether Quartz
                     <Setting name='CloudThickness' avg=':= 1 * 0.2 * 0.4 * vnlaEmeraldSize * _default_' range=':= 1 * 0.2 * 0.4 * vnlaEmeraldSize  * _default_'/>
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='mountain'/>
+                    
+                    <!-- Begin Emerald Strategic Cloud Hint Veins -->
                     <Veins name='vnlaEmerald1HintVeins' block='minecraft:emerald_ore' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1680,11 +1856,16 @@ Nether Quartz
                         <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
                         <BiomeType name='mountain'/>
                     </Veins>
+                    <!-- End Emerald Strategic Cloud Hint Veins -->
+
                 </Cloud>
+                <!-- End Preferred Biome Distribution (Emerald Strategic Cloud) Settings -->
             
             </IfCondition>
+            <!-- End  StrategicCloud distribution of Emerald -->
             
-            <!--  Vanilla distribution of Emerald. -->
+            
+            <!-- Begin  Vanilla distribution of Emerald -->
             <IfCondition condition=':= vnlaEmeraldDist = "vanillaStdGen"'>
             
                 <StandardGen name='vnlaEmerald0Standard' block='minecraft:emerald_ore' inherits='PresetStandardGen'>
@@ -1699,7 +1880,7 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                 </StandardGen>
                 
-                <!-- Preferred Biome Distribution Settings -->
+                <!-- Begin Preferred Biome Distribution (Emerald Vanilla) Settings -->
                 <StandardGen name='vnlaEmerald1Standard' block='minecraft:emerald_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -1713,8 +1894,13 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='mountain'/>
                 </StandardGen>
+                <!-- End Preferred Biome Distribution (Emerald Vanilla) Settings -->
             
             </IfCondition>
+            <!-- End  Vanilla distribution of Emerald -->
+            
+            <!-- End Emerald Generation --> 
+
             <!-- Done adding ores -->
         
         </IfCondition>
@@ -1723,7 +1909,8 @@ Nether Quartz
 
         <!-- Setup Nether -->
         <IfCondition condition=':= dimension.generator = "HellRandomLevelSource"'>
-            <!-- **********   Vanilla Deposit Removal   ************* -->
+            
+            <!-- Starting Original Nether Ore Removal -->
             <Substitute name='vnlaNetherOreSubstitute0' block='minecraft:netherrack'>
                 <Description>
                     Replace vanilla-generated ore clusters.
@@ -1733,12 +1920,13 @@ Nether Quartz
                 </Comment>
                 <Replaces block='minecraft:quartz_ore:0' />
             </Substitute>
+            <!-- Original Nether Ore Removal Complete -->
             
             <!-- Adding ores --> 
             
             <!-- Nether Quartz Generation. --> 
             
-            <!-- LayeredVeins distribution of Nether Quartz. -->
+            <!-- Begin LayeredVeins distribution of Nether Quartz -->
             <IfCondition condition=':= vnlaNetherQuartzDist = "layeredVeins"'>
             
                 <Veins name='vnlaNetherQuartz0Veins' block='minecraft:quartz_ore' inherits='PresetLayeredVeins'>
@@ -1756,8 +1944,10 @@ Nether Quartz
                 </Veins>
             
             </IfCondition>
+            <!-- End LayeredVeins distribution of Nether Quartz -->
             
-            <!--  Small Deposits distribution of Nether Quartz. -->
+            
+            <!-- Begin  Small Deposits distribution of Nether Quartz -->
             <IfCondition condition=':= vnlaNetherQuartzDist = "smallDeposits"'>
             
                 <Veins name='vnlaNetherQuartz0Veins' block='minecraft:quartz_ore' inherits='PresetSmallDeposits'>
@@ -1775,8 +1965,10 @@ Nether Quartz
                 </Veins>
             
             </IfCondition>
+            <!-- End  Small Deposits distribution of Nether Quartz -->
             
-            <!--  StrategicCloud distribution of Nether Quartz. -->
+            
+            <!-- Begin  StrategicCloud distribution of Nether Quartz -->
             <IfCondition condition=':= vnlaNetherQuartzDist = "strategicCloud"'>
             
                 <Cloud name='vnlaNetherQuartz0Cloud' block='minecraft:quartz_ore' inherits='PresetStrategicCloud'>
@@ -1797,6 +1989,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * vnlaNetherQuartzSize * _default_' range=':= 1 * 1 * 1 * vnlaNetherQuartzSize  * _default_'/>
                     <Replaces block='minecraft:netherrack'/>
+                    
+                    <!-- Begin Nether Quartz Strategic Cloud Hint Veins -->
                     <Veins name='vnlaNetherQuartz0HintVeins' block='minecraft:quartz_ore' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1808,11 +2002,15 @@ Nether Quartz
                         <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * vnlaNetherQuartzSize * _default_' range=':= 1 * 1 * vnlaNetherQuartzSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     </Veins>
+                    <!-- End Nether Quartz Strategic Cloud Hint Veins -->
+
                 </Cloud>
             
             </IfCondition>
+            <!-- End  StrategicCloud distribution of Nether Quartz -->
             
-            <!--  Vanilla distribution of Nether Quartz. -->
+            
+            <!-- Begin  Vanilla distribution of Nether Quartz -->
             <IfCondition condition=':= vnlaNetherQuartzDist = "vanillaStdGen"'>
             
                 <StandardGen name='vnlaNetherQuartz0Standard' block='minecraft:quartz_ore' inherits='PresetStandardGen'>
@@ -1828,6 +2026,8 @@ Nether Quartz
                 </StandardGen>
             
             </IfCondition>
+            <!-- End  Vanilla distribution of Nether Quartz -->
+            
             <!-- Done adding ores -->
         
         </IfCondition>
