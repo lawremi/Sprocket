@@ -7,20 +7,23 @@ Generates: Uranium
 
 ================================================================ -->
 
+    <!-- Mod detection -->
     <IfModInstalled name="minechem">
-
+        
+        <!-- Starting Custom Ore Gen Configuration. -->
         <ConfigSection>
+        
+            
             <!-- Setup Screen Configuration -->
-
             <ConfigSection>
                 <OptionDisplayGroup name='groupMineChem' displayName='MineChem' displayState='shown'> 
                     <Description>
                         Distribution options for MineChem Ores.
                     </Description>
                 </OptionDisplayGroup>
-
+                
+                <!-- Uranium Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- Uranium Configuration UI -->
                     <OptionChoice name='mchmUraniumDist'  displayState='shown' displayGroup='groupMineChem'> 
                         <Description> Controls how Uranium is generated </Description> 
                         <DisplayName>MineChem Uranium</DisplayName>
@@ -50,7 +53,10 @@ Generates: Uranium
                         <DisplayName>MineChem Uranium Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- Uranium Configuration UI Complete -->
+                
             </ConfigSection>
+            <!-- Setup Screen Complete -->
 
 
             <!-- Setup Overworld -->
@@ -65,33 +71,37 @@ Generates: Uranium
                     </Comment>
                     <Replaces block='minechem:tile.oreUranium:0' />
                 </Substitute>
+                
                 <!-- Adding ores --> 
                 
                 <!-- Uranium Generation. --> 
+                
+                <!-- PipeVeins distribution of Uranium. -->
                 <IfCondition condition=':= mchmUraniumDist = "pipeVeins"'>
-                    <Veins name='mchmUranium0Veins' block='minechem:tile.oreUranium' inherits='PresetPipeVeins' seed='0x0641'>
+                
+                    <Veins name='mchmUranium0Veins' block='minechem:tile.oreUranium' inherits='PresetPipeVeins' seed='0xBCE8'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6a989</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * mchmUraniumFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mchmUraniumSize * _default_' range=':= 1 * 1 * mchmUraniumSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='Base' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mchmUraniumSize * _default_' range=':= 1 * 1 * mchmUraniumSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * mchmUraniumFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mchmUraniumSize * _default_' range=':= 1 * 0.8 * mchmUraniumSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * mchmUraniumSize * _default_' range=':= 1 * 0.8 * mchmUraniumSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    <Veins name= 'mchmUranium0Pipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0x0641'>
+                    <Veins name= 'mchmUranium0Pipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0xBCE8'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6a989</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * 1 * mchmUraniumSize * _default_' range=':= 0.5 * 1 * 1 * mchmUraniumSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='Base' />
-                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * 1 * mchmUraniumSize * _default_' range=':= 0.5 * 1 * 1 * mchmUraniumSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * mchmUraniumFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * 0.8 * mchmUraniumSize * _default_' range=':= 0.5 * 1 * 0.8 * mchmUraniumSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * 0.8 * mchmUraniumSize * _default_' range=':= 0.5 * 1 * 0.8 * mchmUraniumSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * mchmUraniumFreq * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:dirt'/>
                         <Replaces block='minecraft:stone'/>
@@ -100,8 +110,49 @@ Generates: Uranium
                         <Replaces block='minecraft:end_stone'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Veins name='mchmUranium1Veins' block='minechem:tile.oreUranium' inherits='PresetPipeVeins' seed='0x3CE9'>
+                        <Description>
+                            Short sparsely filled veins sloping up from near the bottom of the map.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60d6a989</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * mchmUraniumFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mchmUraniumSize * _default_' range=':= 1 * 0.8 * mchmUraniumSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * mchmUraniumSize * _default_' range=':= 1 * 0.8 * mchmUraniumSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Mountain'/>
+                    </Veins>
+                    <Veins name= 'mchmUranium1Pipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0x3CE9'>
+                        <Description>
+                            Fills center of each tube with Pipe material.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60d6a989</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * 0.8 * mchmUraniumSize * _default_' range=':= 0.5 * 1 * 0.8 * mchmUraniumSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' />
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * 0.8 * mchmUraniumSize * _default_' range=':= 0.5 * 1 * 0.8 * mchmUraniumSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * mchmUraniumFreq * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:dirt'/>
+                        <Replaces block='minecraft:stone'/>
+                        <Replaces block='minecraft:gravel'/>
+                        <Replaces block='minecraft:netherrack'/>
+                        <Replaces block='minecraft:end_stone'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Mountain'/>
+                    </Veins>
+                
                 </IfCondition>
+                
+                <!--  StrategicCloud distribution of Uranium. -->
                 <IfCondition condition=':= mchmUraniumDist = "strategicCloud"'>
+                
                     <Cloud name='mchmUranium0Cloud' block='minechem:tile.oreUranium' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -113,12 +164,12 @@ Generates: Uranium
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6a989</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mchmUraniumFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * mchmUraniumSize * _default_' range=':= 1 * 1 * mchmUraniumSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * mchmUraniumSize * _default_' range=':= 1 * 1 * mchmUraniumSize * _default_'/>
-                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mchmUraniumSize * _default_' range=':= 1 * 1 * 1 * mchmUraniumSize  * _default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * mchmUraniumFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * mchmUraniumSize * _default_' range=':= 1 * 0.8 * mchmUraniumSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * mchmUraniumSize * _default_' range=':= 1 * 0.8 * mchmUraniumSize * _default_'/>
+                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mchmUraniumSize * _default_' range=':= 1 * 1 * 0.8 * mchmUraniumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <Veins name='mchmUranium0HintVeins' block='minechem:tile.oreUranium' inherits='PresetHintVeins'>
                             <Description>
@@ -126,14 +177,54 @@ Generates: Uranium
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6a989</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mchmUraniumFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mchmUraniumSize * _default_' range=':= 1 * 1 * mchmUraniumSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * mchmUraniumFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mchmUraniumSize * _default_' range=':= 1 * 0.8 * mchmUraniumSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                     </Cloud>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Cloud name='mchmUranium1Cloud' block='minechem:tile.oreUranium' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60d6a989</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * mchmUraniumFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * mchmUraniumSize * _default_' range=':= 1 * 0.8 * mchmUraniumSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * mchmUraniumSize * _default_' range=':= 1 * 0.8 * mchmUraniumSize * _default_'/>
+                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mchmUraniumSize * _default_' range=':= 1 * 1 * 0.8 * mchmUraniumSize  * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Mountain'/>
+                        <Veins name='mchmUranium1HintVeins' block='minechem:tile.oreUranium' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                2 times as likely in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60d6a989</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * mchmUraniumFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mchmUraniumSize * _default_' range=':= 1 * 0.8 * mchmUraniumSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                            <BiomeType name='Mountain'/>
+                        </Veins>
+                    </Cloud>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of Uranium. -->
                 <IfCondition condition=':= mchmUraniumDist = "vanillaStdGen"'>
+                
                     <StandardGen name='mchmUranium0Standard' block='minechem:tile.oreUranium' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -141,17 +232,39 @@ Generates: Uranium
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6a989</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mchmUraniumSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * mchmUraniumFreq * _default_'/>
-                        <Setting name='Height' avg=':= 16' range=':= 16'/> 
+                        <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * mchmUraniumFreq * _default_'/>
+                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <StandardGen name='mchmUranium1Standard' block='minechem:tile.oreUranium' inherits='PresetStandardGen'>
+                        <Description>
+                            This mimics vanilla ore generation.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60d6a989</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * mchmUraniumSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * mchmUraniumFreq * _default_'/>
+                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Mountain'/>
+                    </StandardGen>
+                
                 </IfCondition>
+                <!-- Done adding ores -->
+            
             </IfCondition>
+            <!-- Overworld Setup Complete -->
 
 
  
  
+        
         </ConfigSection>
+        <!-- Custom Ore Gen Configuration Complete! -->
+    
     </IfModInstalled> 
  
 

@@ -7,20 +7,23 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
 
 ================================================================ -->
 
+    <!-- Mod detection -->
     <IfModInstalled name="simpleores">
-
+        
+        <!-- Starting Custom Ore Gen Configuration. -->
         <ConfigSection>
+        
+            
             <!-- Setup Screen Configuration -->
-
             <ConfigSection>
                 <OptionDisplayGroup name='groupSimpleOres' displayName='Simple Ores' displayState='shown'> 
                     <Description>
                         Distribution options for Simple Ores Ores.
                     </Description>
                 </OptionDisplayGroup>
-
+                
+                <!-- Copper Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- Copper Configuration UI -->
                     <OptionChoice name='smpoCopperDist'  displayState='shown' displayGroup='groupSimpleOres'> 
                         <Description> Controls how Copper is generated </Description> 
                         <DisplayName>Simple Ores Copper</DisplayName>
@@ -50,8 +53,11 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                         <DisplayName>Simple Ores Copper Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- Copper Configuration UI Complete -->
+                
+                
+                <!-- Tin Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- Tin Configuration UI -->
                     <OptionChoice name='smpoTinDist'  displayState='shown' displayGroup='groupSimpleOres'> 
                         <Description> Controls how Tin is generated </Description> 
                         <DisplayName>Simple Ores Tin</DisplayName>
@@ -81,8 +87,11 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                         <DisplayName>Simple Ores Tin Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- Tin Configuration UI Complete -->
+                
+                
+                <!-- Mythril Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- Mythril Configuration UI -->
                     <OptionChoice name='smpoMythrilDist'  displayState='shown' displayGroup='groupSimpleOres'> 
                         <Description> Controls how Mythril is generated </Description> 
                         <DisplayName>Simple Ores Mythril</DisplayName>
@@ -112,8 +121,11 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                         <DisplayName>Simple Ores Mythril Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- Mythril Configuration UI Complete -->
+                
+                
+                <!-- Adamantium Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- Adamantium Configuration UI -->
                     <OptionChoice name='smpoAdamantiumDist'  displayState='shown' displayGroup='groupSimpleOres'> 
                         <Description> Controls how Adamantium is generated </Description> 
                         <DisplayName>Simple Ores Adamantium</DisplayName>
@@ -143,8 +155,11 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                         <DisplayName>Simple Ores Adamantium Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- Adamantium Configuration UI Complete -->
+                
+                
+                <!-- Onyx Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- Onyx Configuration UI -->
                     <OptionChoice name='smpoOnyxDist'  displayState='shown' displayGroup='groupSimpleOres'> 
                         <Description> Controls how Onyx is generated </Description> 
                         <DisplayName>Simple Ores Onyx</DisplayName>
@@ -174,7 +189,10 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                         <DisplayName>Simple Ores Onyx Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- Onyx Configuration UI Complete -->
+                
             </ConfigSection>
+            <!-- Setup Screen Complete -->
 
 
             <!-- Setup Overworld -->
@@ -192,16 +210,20 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                     <Replaces block='simpleores:mythril_ore:0' />
                     <Replaces block='simpleores:adamantium_ore:0' />
                 </Substitute>
+                
                 <!-- Adding ores --> 
                 
                 <!-- Copper Generation. --> 
+                
+                <!-- Layered Veins distribution of Copper. -->
                 <IfCondition condition=':= smpoCopperDist = "layeredVeins"'>
+                
                     <Veins name='smpoCopper0Veins' block='simpleores:copper_ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
+                        <WireframeColor>0x607870C5</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * smpoCopperSize * _default_' range=':= 1 * 1 * smpoCopperSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * smpoCopperFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
@@ -209,13 +231,15 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
                     <Veins name='smpoCopper1Veins' block='simpleores:copper_ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
+                        <WireframeColor>0x607870C5</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * smpoCopperSize * _default_' range=':= 1 * 1 * smpoCopperSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * smpoCopperFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
@@ -224,8 +248,12 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
+                
                 </IfCondition>
+                
+                <!--  Strategic Cloud distribution of Copper. -->
                 <IfCondition condition=':= smpoCopperDist = "strategicCloud"'>
+                
                     <Cloud name='smpoCopper0Cloud' block='simpleores:copper_ore' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -236,7 +264,7 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
+                        <WireframeColor>0x607870C5</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 2.5 * smpoCopperFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * smpoCopperSize * _default_' range=':= 1 * 1 * smpoCopperSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * smpoCopperSize * _default_' range=':= 1 * 1 * smpoCopperSize * _default_'/>
@@ -249,13 +277,15 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60698C2E</WireframeColor>
+                            <WireframeColor>0x607870C5</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 2.5 * smpoCopperFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * smpoCopperSize * _default_' range=':= 1 * 1 * smpoCopperSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                     </Cloud>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
                     <Cloud name='smpoCopper1Cloud' block='simpleores:copper_ore' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -267,7 +297,7 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
+                        <WireframeColor>0x607870C5</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * smpoCopperFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * smpoCopperSize * _default_' range=':= 1 * 1 * smpoCopperSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * smpoCopperSize * _default_' range=':= 1 * 1 * smpoCopperSize * _default_'/>
@@ -282,7 +312,7 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60698C2E</WireframeColor>
+                            <WireframeColor>0x607870C5</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 2.5 * smpoCopperFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * smpoCopperSize * _default_' range=':= 1 * 1 * smpoCopperSize * _default_'/>
@@ -290,42 +320,52 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                             <BiomeType name='Cold'/>
                         </Veins>
                     </Cloud>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of Copper. -->
                 <IfCondition condition=':= smpoCopperDist = "vanillaStdGen"'>
+                
                     <StandardGen name='smpoCopper0Standard' block='simpleores:copper_ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
+                        <WireframeColor>0x607870C5</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * smpoCopperSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * smpoCopperFreq * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
                     <StandardGen name='smpoCopper1Standard' block='simpleores:copper_ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
+                        <WireframeColor>0x607870C5</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * smpoCopperSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * smpoCopperFreq * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
+                
                 </IfCondition>
                 
                 <!-- Tin Generation. --> 
+                
+                <!-- Layered Veins distribution of Tin. -->
                 <IfCondition condition=':= smpoTinDist = "layeredVeins"'>
+                
                     <Veins name='smpoTin0Veins' block='simpleores:tin_ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
+                        <WireframeColor>0x607870C5</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * smpoTinSize * _default_' range=':= 1 * 1 * smpoTinSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * smpoTinFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
@@ -333,13 +373,15 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
                     <Veins name='smpoTin1Veins' block='simpleores:tin_ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
+                        <WireframeColor>0x607870C5</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * smpoTinSize * _default_' range=':= 1 * 1 * smpoTinSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * smpoTinFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
@@ -348,8 +390,12 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
+                
                 </IfCondition>
+                
+                <!--  Strategic Cloud distribution of Tin. -->
                 <IfCondition condition=':= smpoTinDist = "strategicCloud"'>
+                
                     <Cloud name='smpoTin0Cloud' block='simpleores:tin_ore' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -360,7 +406,7 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
+                        <WireframeColor>0x607870C5</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 2.5 * smpoTinFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * smpoTinSize * _default_' range=':= 1 * 1 * smpoTinSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * smpoTinSize * _default_' range=':= 1 * 1 * smpoTinSize * _default_'/>
@@ -373,13 +419,15 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60698C2E</WireframeColor>
+                            <WireframeColor>0x607870C5</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 2.5 * smpoTinFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * smpoTinSize * _default_' range=':= 1 * 1 * smpoTinSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                     </Cloud>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
                     <Cloud name='smpoTin1Cloud' block='simpleores:tin_ore' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -391,7 +439,7 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
+                        <WireframeColor>0x607870C5</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * smpoTinFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * smpoTinSize * _default_' range=':= 1 * 1 * smpoTinSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * smpoTinSize * _default_' range=':= 1 * 1 * smpoTinSize * _default_'/>
@@ -406,7 +454,7 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                                 2 times as likely in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60698C2E</WireframeColor>
+                            <WireframeColor>0x607870C5</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 2.5 * smpoTinFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * smpoTinSize * _default_' range=':= 1 * 1 * smpoTinSize * _default_'/>
@@ -414,51 +462,82 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                             <BiomeType name='Cold'/>
                         </Veins>
                     </Cloud>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of Tin. -->
                 <IfCondition condition=':= smpoTinDist = "vanillaStdGen"'>
+                
                     <StandardGen name='smpoTin0Standard' block='simpleores:tin_ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
+                        <WireframeColor>0x607870C5</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * smpoTinSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * smpoTinFreq * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
                     <StandardGen name='smpoTin1Standard' block='simpleores:tin_ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
+                        <WireframeColor>0x607870C5</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * smpoTinSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * smpoTinFreq * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
+                
                 </IfCondition>
                 
                 <!-- Mythril Generation. --> 
+                
+                <!-- Layered Veins distribution of Mythril. -->
                 <IfCondition condition=':= smpoMythrilDist = "layeredVeins"'>
+                
                     <Veins name='smpoMythril0Veins' block='simpleores:mythril_ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * smpoMythrilSize * _default_' range=':= 1 * 1 * smpoMythrilSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * smpoMythrilFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * smpoMythrilSize * _default_' range=':= 1 * 1 * smpoMythrilSize * _default_'/>
+                        <WireframeColor>0x607870C5</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * smpoMythrilSize * _default_' range=':= 1 * 0.8 * smpoMythrilSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * smpoMythrilFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * smpoMythrilSize * _default_' range=':= 1 * 0.8 * smpoMythrilSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Veins name='smpoMythril1Veins' block='simpleores:mythril_ore' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x607870C5</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * smpoMythrilSize * _default_' range=':= 1 * 0.8 * smpoMythrilSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * smpoMythrilFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * smpoMythrilSize * _default_' range=':= 1 * 0.8 * smpoMythrilSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Forest'/>
+                    </Veins>
+                
                 </IfCondition>
+                
+                <!--  Strategic Cloud distribution of Mythril. -->
                 <IfCondition condition=':= smpoMythrilDist = "strategicCloud"'>
+                
                     <Cloud name='smpoMythril0Cloud' block='simpleores:mythril_ore' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -469,58 +548,138 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * smpoMythrilFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * smpoMythrilSize * _default_' range=':= 1 * 1 * smpoMythrilSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * smpoMythrilSize * _default_' range=':= 1 * 1 * smpoMythrilSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * smpoMythrilSize * _default_' range=':= 1 * 1 * 1 * smpoMythrilSize  * _default_'/>
+                        <WireframeColor>0x607870C5</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * smpoMythrilFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * smpoMythrilSize * _default_' range=':= 1 * 0.8 * smpoMythrilSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * smpoMythrilSize * _default_' range=':= 1 * 0.8 * smpoMythrilSize * _default_'/>
+                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * smpoMythrilSize * _default_' range=':= 1 * 1 * 0.8 * smpoMythrilSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <Veins name='smpoMythril0HintVeins' block='simpleores:mythril_ore' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60698C2E</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * smpoMythrilFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * smpoMythrilSize * _default_' range=':= 1 * 1 * smpoMythrilSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x607870C5</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * smpoMythrilFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * smpoMythrilSize * _default_' range=':= 1 * 0.8 * smpoMythrilSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                     </Cloud>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Cloud name='smpoMythril1Cloud' block='simpleores:mythril_ore' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x607870C5</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * smpoMythrilFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * smpoMythrilSize * _default_' range=':= 1 * 0.8 * smpoMythrilSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * smpoMythrilSize * _default_' range=':= 1 * 0.8 * smpoMythrilSize * _default_'/>
+                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * smpoMythrilSize * _default_' range=':= 1 * 1 * 0.8 * smpoMythrilSize  * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Forest'/>
+                        <Veins name='smpoMythril1HintVeins' block='simpleores:mythril_ore' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                2 times as likely in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x607870C5</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * smpoMythrilFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * smpoMythrilSize * _default_' range=':= 1 * 0.8 * smpoMythrilSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                            <BiomeType name='Forest'/>
+                        </Veins>
+                    </Cloud>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of Mythril. -->
                 <IfCondition condition=':= smpoMythrilDist = "vanillaStdGen"'>
+                
                     <StandardGen name='smpoMythril0Standard' block='simpleores:mythril_ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
+                        <WireframeColor>0x607870C5</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * smpoMythrilSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * smpoMythrilFreq * _default_'/>
-                        <Setting name='Height' avg=':= 64' range=':= 64'/> 
+                        <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * smpoMythrilFreq * _default_'/>
+                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <StandardGen name='smpoMythril1Standard' block='simpleores:mythril_ore' inherits='PresetStandardGen'>
+                        <Description>
+                            This mimics vanilla ore generation.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x607870C5</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * smpoMythrilSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * smpoMythrilFreq * _default_'/>
+                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Forest'/>
+                    </StandardGen>
+                
                 </IfCondition>
                 
                 <!-- Adamantium Generation. --> 
+                
+                <!-- Layered Veins distribution of Adamantium. -->
                 <IfCondition condition=':= smpoAdamantiumDist = "layeredVeins"'>
+                
                     <Veins name='smpoAdamantium0Veins' block='simpleores:adamantium_ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * smpoAdamantiumSize * _default_' range=':= 1 * 1 * smpoAdamantiumSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * smpoAdamantiumFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * smpoAdamantiumSize * _default_' range=':= 1 * 1 * smpoAdamantiumSize * _default_'/>
+                        <WireframeColor>0x607870C5</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * smpoAdamantiumSize * _default_' range=':= 1 * 0.8 * smpoAdamantiumSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * smpoAdamantiumFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * smpoAdamantiumSize * _default_' range=':= 1 * 0.8 * smpoAdamantiumSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Veins name='smpoAdamantium1Veins' block='simpleores:adamantium_ore' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x607870C5</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * smpoAdamantiumSize * _default_' range=':= 1 * 0.8 * smpoAdamantiumSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * smpoAdamantiumFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * smpoAdamantiumSize * _default_' range=':= 1 * 0.8 * smpoAdamantiumSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Forest'/>
+                    </Veins>
+                
                 </IfCondition>
+                
+                <!--  Strategic Cloud distribution of Adamantium. -->
                 <IfCondition condition=':= smpoAdamantiumDist = "strategicCloud"'>
+                
                     <Cloud name='smpoAdamantium0Cloud' block='simpleores:adamantium_ore' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -531,43 +690,100 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * smpoAdamantiumFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * smpoAdamantiumSize * _default_' range=':= 1 * 1 * smpoAdamantiumSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * smpoAdamantiumSize * _default_' range=':= 1 * 1 * smpoAdamantiumSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * smpoAdamantiumSize * _default_' range=':= 1 * 1 * 1 * smpoAdamantiumSize  * _default_'/>
+                        <WireframeColor>0x607870C5</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * smpoAdamantiumFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * smpoAdamantiumSize * _default_' range=':= 1 * 0.8 * smpoAdamantiumSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * smpoAdamantiumSize * _default_' range=':= 1 * 0.8 * smpoAdamantiumSize * _default_'/>
+                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * smpoAdamantiumSize * _default_' range=':= 1 * 1 * 0.8 * smpoAdamantiumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <Veins name='smpoAdamantium0HintVeins' block='simpleores:adamantium_ore' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60698C2E</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * smpoAdamantiumFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * smpoAdamantiumSize * _default_' range=':= 1 * 1 * smpoAdamantiumSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x607870C5</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * smpoAdamantiumFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * smpoAdamantiumSize * _default_' range=':= 1 * 0.8 * smpoAdamantiumSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                     </Cloud>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Cloud name='smpoAdamantium1Cloud' block='simpleores:adamantium_ore' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x607870C5</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * smpoAdamantiumFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * smpoAdamantiumSize * _default_' range=':= 1 * 0.8 * smpoAdamantiumSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * smpoAdamantiumSize * _default_' range=':= 1 * 0.8 * smpoAdamantiumSize * _default_'/>
+                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * smpoAdamantiumSize * _default_' range=':= 1 * 1 * 0.8 * smpoAdamantiumSize  * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Forest'/>
+                        <Veins name='smpoAdamantium1HintVeins' block='simpleores:adamantium_ore' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                2 times as likely in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x607870C5</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * smpoAdamantiumFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * smpoAdamantiumSize * _default_' range=':= 1 * 0.8 * smpoAdamantiumSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                            <BiomeType name='Forest'/>
+                        </Veins>
+                    </Cloud>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of Adamantium. -->
                 <IfCondition condition=':= smpoAdamantiumDist = "vanillaStdGen"'>
+                
                     <StandardGen name='smpoAdamantium0Standard' block='simpleores:adamantium_ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
+                        <WireframeColor>0x607870C5</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * smpoAdamantiumSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * smpoAdamantiumFreq * _default_'/>
-                        <Setting name='Height' avg=':= 64' range=':= 64'/> 
+                        <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * smpoAdamantiumFreq * _default_'/>
+                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
-                </IfCondition>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <StandardGen name='smpoAdamantium1Standard' block='simpleores:adamantium_ore' inherits='PresetStandardGen'>
+                        <Description>
+                            This mimics vanilla ore generation.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x607870C5</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * smpoAdamantiumSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * smpoAdamantiumFreq * _default_'/>
+                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Forest'/>
+                    </StandardGen>
                 
-                <!-- Onyx Generation. --> 
+                </IfCondition>
+                <!-- Done adding ores -->
+            
             </IfCondition>
+            <!-- Overworld Setup Complete -->
 
 
             <!-- Setup Nether -->
@@ -582,14 +798,20 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                     </Comment>
                     <Replaces block='simpleores:onyx_ore:0' />
                 </Substitute>
+                
                 <!-- Adding ores --> 
+                
+                <!-- Onyx Generation. --> 
+                
+                <!-- Layered Veins distribution of Onyx. -->
                 <IfCondition condition=':= smpoOnyxDist = "layeredVeins"'>
+                
                     <Veins name='smpoOnyx0Veins' block='simpleores:onyx_ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
+                        <WireframeColor>0x607870C5</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * smpoOnyxSize * _default_' range=':= 1 * 1 * smpoOnyxSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * 1 * smpoOnyxFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
@@ -597,8 +819,12 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:netherrack'/>
                     </Veins>
+                
                 </IfCondition>
+                
+                <!--  Strategic Cloud distribution of Onyx. -->
                 <IfCondition condition=':= smpoOnyxDist = "strategicCloud"'>
+                
                     <Cloud name='smpoOnyx0Cloud' block='simpleores:onyx_ore' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -609,7 +835,7 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
+                        <WireframeColor>0x607870C5</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 2 * 1 * smpoOnyxFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * smpoOnyxSize * _default_' range=':= 1 * 1 * smpoOnyxSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * smpoOnyxSize * _default_' range=':= 1 * 1 * smpoOnyxSize * _default_'/>
@@ -622,32 +848,43 @@ Generates: Copper, Tin, Mythril, Adamantium, Onyx
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60698C2E</WireframeColor>
+                            <WireframeColor>0x607870C5</WireframeColor>
                             <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 2 * 1 * smpoOnyxFreq * _default_' range=':= _default_'/> 
                             <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * smpoOnyxSize * _default_' range=':= 1 * 1 * smpoOnyxSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                     </Cloud>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of Onyx. -->
                 <IfCondition condition=':= smpoOnyxDist = "vanillaStdGen"'>
+                
                     <StandardGen name='smpoOnyx0Standard' block='simpleores:onyx_ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60698C2E</WireframeColor>
+                        <WireframeColor>0x607870C5</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * smpoOnyxSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 2 * 1 * smpoOnyxFreq * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:netherrack'/>
                     </StandardGen>
+                
                 </IfCondition>
+                <!-- Done adding ores -->
+            
             </IfCondition>
+            <!-- Nether Setup Complete -->
 
 
  
+        
         </ConfigSection>
+        <!-- Custom Ore Gen Configuration Complete! -->
+    
     </IfModInstalled> 
  
 

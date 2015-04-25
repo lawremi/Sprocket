@@ -7,20 +7,23 @@ Generates: Zinc, Silver, Platinum
 
 ================================================================ -->
 
+    <!-- Mod detection -->
     <IfModInstalled name="Metallurgy">
-
+        
+        <!-- Starting Custom Ore Gen Configuration. -->
         <ConfigSection>
+        
+            
             <!-- Setup Screen Configuration -->
-
             <ConfigSection>
                 <OptionDisplayGroup name='groupMetallurgy4Precious' displayName='Metallurgy 4 Precious' displayState='shown'> 
                     <Description>
                         Distribution options for Metallurgy 4 Precious Ores.
                     </Description>
                 </OptionDisplayGroup>
-
+                
+                <!-- Zinc Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- Zinc Configuration UI -->
                     <OptionChoice name='mtlpZincDist'  displayState='shown' displayGroup='groupMetallurgy4Precious'> 
                         <Description> Controls how Zinc is generated </Description> 
                         <DisplayName>Metallurgy 4 Precious Zinc</DisplayName>
@@ -50,8 +53,11 @@ Generates: Zinc, Silver, Platinum
                         <DisplayName>Metallurgy 4 Precious Zinc Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- Zinc Configuration UI Complete -->
+                
+                
+                <!-- Silver Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- Silver Configuration UI -->
                     <OptionChoice name='mtlpSilverDist'  displayState='shown' displayGroup='groupMetallurgy4Precious'> 
                         <Description> Controls how Silver is generated </Description> 
                         <DisplayName>Metallurgy 4 Precious Silver</DisplayName>
@@ -81,8 +87,11 @@ Generates: Zinc, Silver, Platinum
                         <DisplayName>Metallurgy 4 Precious Silver Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- Silver Configuration UI Complete -->
+                
+                
+                <!-- Platinum Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- Platinum Configuration UI -->
                     <OptionChoice name='mtlpPlatinumDist'  displayState='shown' displayGroup='groupMetallurgy4Precious'> 
                         <Description> Controls how Platinum is generated </Description> 
                         <DisplayName>Metallurgy 4 Precious Platinum</DisplayName>
@@ -112,7 +121,10 @@ Generates: Zinc, Silver, Platinum
                         <DisplayName>Metallurgy 4 Precious Platinum Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- Platinum Configuration UI Complete -->
+                
             </ConfigSection>
+            <!-- Setup Screen Complete -->
 
 
             <!-- Setup Overworld -->
@@ -129,25 +141,50 @@ Generates: Zinc, Silver, Platinum
                     <Replaces block='Metallurgy:precious.ore:1' />
                     <Replaces block='Metallurgy:precious.ore:2' />
                 </Substitute>
+                
                 <!-- Adding ores --> 
                 
                 <!-- Zinc Generation. --> 
+                
+                <!-- Layered Veins distribution of Zinc. -->
                 <IfCondition condition=':= mtlpZincDist = "layeredVeins"'>
+                
                     <Veins name='mtlpZinc0Veins' block='Metallurgy:precious.ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60D1C0D1</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlpZincSize * _default_' range=':= 1 * 1 * mtlpZincSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * mtlpZincFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 32' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mtlpZincSize * _default_' range=':= 1 * 1 * mtlpZincSize * _default_'/>
+                        <WireframeColor>0x60BE29ED</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlpZincSize * _default_' range=':= 1 * 0.8 * mtlpZincSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * mtlpZincFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * mtlpZincSize * _default_' range=':= 1 * 0.8 * mtlpZincSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Veins name='mtlpZinc1Veins' block='Metallurgy:precious.ore' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60BE29ED</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlpZincSize * _default_' range=':= 1 * 0.8 * mtlpZincSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * mtlpZincFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * mtlpZincSize * _default_' range=':= 1 * 0.8 * mtlpZincSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Forest'/>
+                    </Veins>
+                
                 </IfCondition>
+                
+                <!--  Strategic Cloud distribution of Zinc. -->
                 <IfCondition condition=':= mtlpZincDist = "strategicCloud"'>
+                
                     <Cloud name='mtlpZinc0Cloud' block='Metallurgy:precious.ore' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -158,58 +195,138 @@ Generates: Zinc, Silver, Platinum
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60D1C0D1</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mtlpZincFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * mtlpZincSize * _default_' range=':= 1 * 1 * mtlpZincSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * mtlpZincSize * _default_' range=':= 1 * 1 * mtlpZincSize * _default_'/>
-                        <Setting name='CloudHeight' avg='32' range='32' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlpZincSize * _default_' range=':= 1 * 1 * 1 * mtlpZincSize  * _default_'/>
+                        <WireframeColor>0x60BE29ED</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * mtlpZincFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlpZincSize * _default_' range=':= 1 * 0.8 * mtlpZincSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlpZincSize * _default_' range=':= 1 * 0.8 * mtlpZincSize * _default_'/>
+                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlpZincSize * _default_' range=':= 1 * 1 * 0.8 * mtlpZincSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <Veins name='mtlpZinc0HintVeins' block='Metallurgy:precious.ore' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60D1C0D1</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mtlpZincFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 32' range=':= 32' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlpZincSize * _default_' range=':= 1 * 1 * mtlpZincSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x60BE29ED</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * mtlpZincFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlpZincSize * _default_' range=':= 1 * 0.8 * mtlpZincSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                     </Cloud>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Cloud name='mtlpZinc1Cloud' block='Metallurgy:precious.ore' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60BE29ED</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * mtlpZincFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlpZincSize * _default_' range=':= 1 * 0.8 * mtlpZincSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlpZincSize * _default_' range=':= 1 * 0.8 * mtlpZincSize * _default_'/>
+                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlpZincSize * _default_' range=':= 1 * 1 * 0.8 * mtlpZincSize  * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Forest'/>
+                        <Veins name='mtlpZinc1HintVeins' block='Metallurgy:precious.ore' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                2 times as likely in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60BE29ED</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * mtlpZincFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlpZincSize * _default_' range=':= 1 * 0.8 * mtlpZincSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                            <BiomeType name='Forest'/>
+                        </Veins>
+                    </Cloud>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of Zinc. -->
                 <IfCondition condition=':= mtlpZincDist = "vanillaStdGen"'>
+                
                     <StandardGen name='mtlpZinc0Standard' block='Metallurgy:precious.ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60D1C0D1</WireframeColor>
+                        <WireframeColor>0x60BE29ED</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlpZincSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * mtlpZincFreq * _default_'/>
-                        <Setting name='Height' avg=':= 32' range=':= 32'/> 
+                        <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * mtlpZincFreq * _default_'/>
+                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <StandardGen name='mtlpZinc1Standard' block='Metallurgy:precious.ore' inherits='PresetStandardGen'>
+                        <Description>
+                            This mimics vanilla ore generation.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60BE29ED</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * mtlpZincSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * mtlpZincFreq * _default_'/>
+                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Forest'/>
+                    </StandardGen>
+                
                 </IfCondition>
                 
                 <!-- Silver Generation. --> 
+                
+                <!-- Layered Veins distribution of Silver. -->
                 <IfCondition condition=':= mtlpSilverDist = "layeredVeins"'>
+                
                     <Veins name='mtlpSilver0Veins' block='Metallurgy:precious.ore:1' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60D1C0D1</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlpSilverSize * _default_' range=':= 1 * 1 * mtlpSilverSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * mtlpSilverFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 32' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mtlpSilverSize * _default_' range=':= 1 * 1 * mtlpSilverSize * _default_'/>
+                        <WireframeColor>0x60BE29ED</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlpSilverSize * _default_' range=':= 1 * 0.8 * mtlpSilverSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * mtlpSilverFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * mtlpSilverSize * _default_' range=':= 1 * 0.8 * mtlpSilverSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Veins name='mtlpSilver1Veins' block='Metallurgy:precious.ore:1' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60BE29ED</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlpSilverSize * _default_' range=':= 1 * 0.8 * mtlpSilverSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * mtlpSilverFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * mtlpSilverSize * _default_' range=':= 1 * 0.8 * mtlpSilverSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Forest'/>
+                    </Veins>
+                
                 </IfCondition>
+                
+                <!--  Strategic Cloud distribution of Silver. -->
                 <IfCondition condition=':= mtlpSilverDist = "strategicCloud"'>
+                
                     <Cloud name='mtlpSilver0Cloud' block='Metallurgy:precious.ore:1' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -220,58 +337,138 @@ Generates: Zinc, Silver, Platinum
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60D1C0D1</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mtlpSilverFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * mtlpSilverSize * _default_' range=':= 1 * 1 * mtlpSilverSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * mtlpSilverSize * _default_' range=':= 1 * 1 * mtlpSilverSize * _default_'/>
-                        <Setting name='CloudHeight' avg='32' range='32' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlpSilverSize * _default_' range=':= 1 * 1 * 1 * mtlpSilverSize  * _default_'/>
+                        <WireframeColor>0x60BE29ED</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * mtlpSilverFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlpSilverSize * _default_' range=':= 1 * 0.8 * mtlpSilverSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlpSilverSize * _default_' range=':= 1 * 0.8 * mtlpSilverSize * _default_'/>
+                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlpSilverSize * _default_' range=':= 1 * 1 * 0.8 * mtlpSilverSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <Veins name='mtlpSilver0HintVeins' block='Metallurgy:precious.ore:1' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60D1C0D1</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mtlpSilverFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 32' range=':= 32' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlpSilverSize * _default_' range=':= 1 * 1 * mtlpSilverSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x60BE29ED</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * mtlpSilverFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlpSilverSize * _default_' range=':= 1 * 0.8 * mtlpSilverSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                     </Cloud>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Cloud name='mtlpSilver1Cloud' block='Metallurgy:precious.ore:1' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60BE29ED</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * mtlpSilverFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlpSilverSize * _default_' range=':= 1 * 0.8 * mtlpSilverSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlpSilverSize * _default_' range=':= 1 * 0.8 * mtlpSilverSize * _default_'/>
+                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlpSilverSize * _default_' range=':= 1 * 1 * 0.8 * mtlpSilverSize  * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Forest'/>
+                        <Veins name='mtlpSilver1HintVeins' block='Metallurgy:precious.ore:1' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                2 times as likely in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60BE29ED</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * mtlpSilverFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlpSilverSize * _default_' range=':= 1 * 0.8 * mtlpSilverSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                            <BiomeType name='Forest'/>
+                        </Veins>
+                    </Cloud>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of Silver. -->
                 <IfCondition condition=':= mtlpSilverDist = "vanillaStdGen"'>
+                
                     <StandardGen name='mtlpSilver0Standard' block='Metallurgy:precious.ore:1' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60D1C0D1</WireframeColor>
+                        <WireframeColor>0x60BE29ED</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlpSilverSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * mtlpSilverFreq * _default_'/>
-                        <Setting name='Height' avg=':= 32' range=':= 32'/> 
+                        <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * mtlpSilverFreq * _default_'/>
+                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <StandardGen name='mtlpSilver1Standard' block='Metallurgy:precious.ore:1' inherits='PresetStandardGen'>
+                        <Description>
+                            This mimics vanilla ore generation.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60BE29ED</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * mtlpSilverSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * mtlpSilverFreq * _default_'/>
+                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Forest'/>
+                    </StandardGen>
+                
                 </IfCondition>
                 
                 <!-- Platinum Generation. --> 
+                
+                <!-- Layered Veins distribution of Platinum. -->
                 <IfCondition condition=':= mtlpPlatinumDist = "layeredVeins"'>
+                
                     <Veins name='mtlpPlatinum0Veins' block='Metallurgy:precious.ore:2' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60D1C0D1</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlpPlatinumSize * _default_' range=':= 1 * 1 * mtlpPlatinumSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * mtlpPlatinumFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 32' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mtlpPlatinumSize * _default_' range=':= 1 * 1 * mtlpPlatinumSize * _default_'/>
+                        <WireframeColor>0x60BE29ED</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlpPlatinumSize * _default_' range=':= 1 * 0.8 * mtlpPlatinumSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * mtlpPlatinumFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * mtlpPlatinumSize * _default_' range=':= 1 * 0.8 * mtlpPlatinumSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Veins name='mtlpPlatinum1Veins' block='Metallurgy:precious.ore:2' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60BE29ED</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * mtlpPlatinumSize * _default_' range=':= 1 * 0.8 * mtlpPlatinumSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * mtlpPlatinumFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * mtlpPlatinumSize * _default_' range=':= 1 * 0.8 * mtlpPlatinumSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Forest'/>
+                    </Veins>
+                
                 </IfCondition>
+                
+                <!--  Strategic Cloud distribution of Platinum. -->
                 <IfCondition condition=':= mtlpPlatinumDist = "strategicCloud"'>
+                
                     <Cloud name='mtlpPlatinum0Cloud' block='Metallurgy:precious.ore:2' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -282,46 +479,108 @@ Generates: Zinc, Silver, Platinum
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60D1C0D1</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mtlpPlatinumFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * mtlpPlatinumSize * _default_' range=':= 1 * 1 * mtlpPlatinumSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * mtlpPlatinumSize * _default_' range=':= 1 * 1 * mtlpPlatinumSize * _default_'/>
-                        <Setting name='CloudHeight' avg='32' range='32' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlpPlatinumSize * _default_' range=':= 1 * 1 * 1 * mtlpPlatinumSize  * _default_'/>
+                        <WireframeColor>0x60BE29ED</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * mtlpPlatinumFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlpPlatinumSize * _default_' range=':= 1 * 0.8 * mtlpPlatinumSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlpPlatinumSize * _default_' range=':= 1 * 0.8 * mtlpPlatinumSize * _default_'/>
+                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlpPlatinumSize * _default_' range=':= 1 * 1 * 0.8 * mtlpPlatinumSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         <Veins name='mtlpPlatinum0HintVeins' block='Metallurgy:precious.ore:2' inherits='PresetHintVeins'>
                             <Description>
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60D1C0D1</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mtlpPlatinumFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 32' range=':= 32' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlpPlatinumSize * _default_' range=':= 1 * 1 * mtlpPlatinumSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x60BE29ED</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * mtlpPlatinumFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlpPlatinumSize * _default_' range=':= 1 * 0.8 * mtlpPlatinumSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                     </Cloud>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Cloud name='mtlpPlatinum1Cloud' block='Metallurgy:precious.ore:2' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60BE29ED</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * mtlpPlatinumFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * mtlpPlatinumSize * _default_' range=':= 1 * 0.8 * mtlpPlatinumSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * mtlpPlatinumSize * _default_' range=':= 1 * 0.8 * mtlpPlatinumSize * _default_'/>
+                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * mtlpPlatinumSize * _default_' range=':= 1 * 1 * 0.8 * mtlpPlatinumSize  * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Forest'/>
+                        <Veins name='mtlpPlatinum1HintVeins' block='Metallurgy:precious.ore:2' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                2 times as likely in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60BE29ED</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * mtlpPlatinumFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * mtlpPlatinumSize * _default_' range=':= 1 * 0.8 * mtlpPlatinumSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                            <BiomeType name='Forest'/>
+                        </Veins>
+                    </Cloud>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of Platinum. -->
                 <IfCondition condition=':= mtlpPlatinumDist = "vanillaStdGen"'>
+                
                     <StandardGen name='mtlpPlatinum0Standard' block='Metallurgy:precious.ore:2' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60D1C0D1</WireframeColor>
+                        <WireframeColor>0x60BE29ED</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlpPlatinumSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * mtlpPlatinumFreq * _default_'/>
-                        <Setting name='Height' avg=':= 32' range=':= 32'/> 
+                        <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * mtlpPlatinumFreq * _default_'/>
+                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <StandardGen name='mtlpPlatinum1Standard' block='Metallurgy:precious.ore:2' inherits='PresetStandardGen'>
+                        <Description>
+                            This mimics vanilla ore generation.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60BE29ED</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * mtlpPlatinumSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * mtlpPlatinumFreq * _default_'/>
+                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Forest'/>
+                    </StandardGen>
+                
                 </IfCondition>
+                <!-- Done adding ores -->
+            
             </IfCondition>
+            <!-- Overworld Setup Complete -->
 
 
  
  
+        
         </ConfigSection>
+        <!-- Custom Ore Gen Configuration Complete! -->
+    
     </IfModInstalled> 
  
 

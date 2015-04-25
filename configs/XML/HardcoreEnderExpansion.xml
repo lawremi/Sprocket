@@ -7,20 +7,23 @@ Generates: Stardust, Instability Orb, Endium, Igneous Rock, End Powder
 
 ================================================================ -->
 
+    <!-- Mod detection -->
     <IfModInstalled name="HardcoreEnderExpansion">
-
+        
+        <!-- Starting Custom Ore Gen Configuration. -->
         <ConfigSection>
+        
+            
             <!-- Setup Screen Configuration -->
-
             <ConfigSection>
                 <OptionDisplayGroup name='groupHardcoreEnderExpansion' displayName='Hardcore Ender Expansion' displayState='shown'> 
                     <Description>
                         Distribution options for Hardcore Ender Expansion Ores.
                     </Description>
                 </OptionDisplayGroup>
-
+                
+                <!-- Stardust Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- Stardust Configuration UI -->
                     <OptionChoice name='heexStardustDist'  displayState='shown' displayGroup='groupHardcoreEnderExpansion'> 
                         <Description> Controls how Stardust is generated </Description> 
                         <DisplayName>Hardcore Ender Expansion Stardust</DisplayName>
@@ -45,8 +48,11 @@ Generates: Stardust, Instability Orb, Endium, Igneous Rock, End Powder
                         <DisplayName>Hardcore Ender Expansion Stardust Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- Stardust Configuration UI Complete -->
+                
+                
+                <!-- Instability Orb Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- Instability Orb Configuration UI -->
                     <OptionChoice name='heexInstabilityOrbDist'  displayState='shown' displayGroup='groupHardcoreEnderExpansion'> 
                         <Description> Controls how Instability Orb is generated </Description> 
                         <DisplayName>Hardcore Ender Expansion Instability Orb</DisplayName>
@@ -71,8 +77,11 @@ Generates: Stardust, Instability Orb, Endium, Igneous Rock, End Powder
                         <DisplayName>Hardcore Ender Expansion Instability Orb Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- Instability Orb Configuration UI Complete -->
+                
+                
+                <!-- Endium Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- Endium Configuration UI -->
                     <OptionChoice name='heexEndiumDist'  displayState='shown' displayGroup='groupHardcoreEnderExpansion'> 
                         <Description> Controls how Endium is generated </Description> 
                         <DisplayName>Hardcore Ender Expansion Endium</DisplayName>
@@ -97,8 +106,11 @@ Generates: Stardust, Instability Orb, Endium, Igneous Rock, End Powder
                         <DisplayName>Hardcore Ender Expansion Endium Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- Endium Configuration UI Complete -->
+                
+                
+                <!-- Igneous Rock Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- Igneous Rock Configuration UI -->
                     <OptionChoice name='heexIgneousRockDist'  displayState='shown' displayGroup='groupHardcoreEnderExpansion'> 
                         <Description> Controls how Igneous Rock is generated </Description> 
                         <DisplayName>Hardcore Ender Expansion Igneous Rock</DisplayName>
@@ -123,8 +135,11 @@ Generates: Stardust, Instability Orb, Endium, Igneous Rock, End Powder
                         <DisplayName>Hardcore Ender Expansion Igneous Rock Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- Igneous Rock Configuration UI Complete -->
+                
+                
+                <!-- End Powder Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- End Powder Configuration UI -->
                     <OptionChoice name='heexEndPowderDist'  displayState='shown' displayGroup='groupHardcoreEnderExpansion'> 
                         <Description> Controls how End Powder is generated </Description> 
                         <DisplayName>Hardcore Ender Expansion End Powder</DisplayName>
@@ -149,24 +164,21 @@ Generates: Stardust, Instability Orb, Endium, Igneous Rock, End Powder
                         <DisplayName>Hardcore Ender Expansion End Powder Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- End Powder Configuration UI Complete -->
+                
             </ConfigSection>
+            <!-- Setup Screen Complete -->
 
 
             <!-- Setup Overworld -->
             <IfCondition condition=':= ?COGActive'>
                 <!-- **********   Vanilla Deposit Removal   ************* -->
+                
                 <!-- Adding ores --> 
-                
-                <!-- Stardust Generation. --> 
-                
-                <!-- Instability Orb Generation. --> 
-                
-                <!-- Endium Generation. --> 
-                
-                <!-- Igneous Rock Generation. --> 
-                
-                <!-- End Powder Generation. --> 
+                <!-- Done adding ores -->
+            
             </IfCondition>
+            <!-- Overworld Setup Complete -->
 
 
  
@@ -186,8 +198,14 @@ Generates: Stardust, Instability Orb, Endium, Igneous Rock, End Powder
                     <Replaces block='HardcoreEnderExpansion:igneous_rock_ore:0' />
                     <Replaces block='HardcoreEnderExpansion:end_powder_ore:0' />
                 </Substitute>
+                
                 <!-- Adding ores --> 
+                
+                <!-- Stardust Generation. --> 
+                
+                <!-- LayeredVeins distribution of Stardust. -->
                 <IfCondition condition=':= heexStardustDist = "layeredVeins"'>
+                
                     <Veins name='heexStardust0Veins' block='HardcoreEnderExpansion:stardust_ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -195,14 +213,18 @@ Generates: Stardust, Instability Orb, Endium, Igneous Rock, End Powder
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60018f22</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * heexStardustSize * _default_' range=':= 1 * 1 * heexStardustSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * heexStardustFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * heexStardustFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * heexStardustSize * _default_' range=':= 1 * 1 * heexStardustSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:end_stone'/>
                     </Veins>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of Stardust. -->
                 <IfCondition condition=':= heexStardustDist = "vanillaStdGen"'>
+                
                     <StandardGen name='heexStardust0Standard' block='HardcoreEnderExpansion:stardust_ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -210,12 +232,18 @@ Generates: Stardust, Instability Orb, Endium, Igneous Rock, End Powder
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60018f22</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * heexStardustSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * heexStardustFreq * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 3 * 1 * heexStardustFreq * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:end_stone'/>
                     </StandardGen>
+                
                 </IfCondition>
+                
+                <!-- Instability Orb Generation. --> 
+                
+                <!-- LayeredVeins distribution of Instability Orb. -->
                 <IfCondition condition=':= heexInstabilityOrbDist = "layeredVeins"'>
+                
                     <Veins name='heexInstabilityOrb0Veins' block='HardcoreEnderExpansion:instability_orb_ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -223,14 +251,18 @@ Generates: Stardust, Instability Orb, Endium, Igneous Rock, End Powder
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60018f22</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * heexInstabilityOrbSize * _default_' range=':= 1 * 1 * heexInstabilityOrbSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * heexInstabilityOrbFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * heexInstabilityOrbFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * heexInstabilityOrbSize * _default_' range=':= 1 * 1 * heexInstabilityOrbSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:end_stone'/>
                     </Veins>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of Instability Orb. -->
                 <IfCondition condition=':= heexInstabilityOrbDist = "vanillaStdGen"'>
+                
                     <StandardGen name='heexInstabilityOrb0Standard' block='HardcoreEnderExpansion:instability_orb_ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -238,12 +270,18 @@ Generates: Stardust, Instability Orb, Endium, Igneous Rock, End Powder
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60018f22</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * heexInstabilityOrbSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * heexInstabilityOrbFreq * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 3 * 1 * heexInstabilityOrbFreq * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:end_stone'/>
                     </StandardGen>
+                
                 </IfCondition>
+                
+                <!-- Endium Generation. --> 
+                
+                <!-- LayeredVeins distribution of Endium. -->
                 <IfCondition condition=':= heexEndiumDist = "layeredVeins"'>
+                
                     <Veins name='heexEndium0Veins' block='HardcoreEnderExpansion:endium_ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -251,14 +289,18 @@ Generates: Stardust, Instability Orb, Endium, Igneous Rock, End Powder
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60018f22</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * heexEndiumSize * _default_' range=':= 1 * 1 * heexEndiumSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * heexEndiumFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * heexEndiumFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * heexEndiumSize * _default_' range=':= 1 * 1 * heexEndiumSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:end_stone'/>
                     </Veins>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of Endium. -->
                 <IfCondition condition=':= heexEndiumDist = "vanillaStdGen"'>
+                
                     <StandardGen name='heexEndium0Standard' block='HardcoreEnderExpansion:endium_ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -266,12 +308,18 @@ Generates: Stardust, Instability Orb, Endium, Igneous Rock, End Powder
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60018f22</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * heexEndiumSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * heexEndiumFreq * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 3 * 1 * heexEndiumFreq * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:end_stone'/>
                     </StandardGen>
+                
                 </IfCondition>
+                
+                <!-- Igneous Rock Generation. --> 
+                
+                <!-- LayeredVeins distribution of Igneous Rock. -->
                 <IfCondition condition=':= heexIgneousRockDist = "layeredVeins"'>
+                
                     <Veins name='heexIgneousRock0Veins' block='HardcoreEnderExpansion:igneous_rock_ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -279,14 +327,18 @@ Generates: Stardust, Instability Orb, Endium, Igneous Rock, End Powder
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60018f22</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * heexIgneousRockSize * _default_' range=':= 1 * 1 * heexIgneousRockSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * heexIgneousRockFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * heexIgneousRockFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * heexIgneousRockSize * _default_' range=':= 1 * 1 * heexIgneousRockSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:end_stone'/>
                     </Veins>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of Igneous Rock. -->
                 <IfCondition condition=':= heexIgneousRockDist = "vanillaStdGen"'>
+                
                     <StandardGen name='heexIgneousRock0Standard' block='HardcoreEnderExpansion:igneous_rock_ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -294,12 +346,18 @@ Generates: Stardust, Instability Orb, Endium, Igneous Rock, End Powder
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60018f22</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * heexIgneousRockSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * heexIgneousRockFreq * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 3 * 1 * heexIgneousRockFreq * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:end_stone'/>
                     </StandardGen>
+                
                 </IfCondition>
+                
+                <!-- End Powder Generation. --> 
+                
+                <!-- LayeredVeins distribution of End Powder. -->
                 <IfCondition condition=':= heexEndPowderDist = "layeredVeins"'>
+                
                     <Veins name='heexEndPowder0Veins' block='HardcoreEnderExpansion:end_powder_ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -307,14 +365,18 @@ Generates: Stardust, Instability Orb, Endium, Igneous Rock, End Powder
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60018f22</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * heexEndPowderSize * _default_' range=':= 1 * 1 * heexEndPowderSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * heexEndPowderFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * heexEndPowderFreq * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * heexEndPowderSize * _default_' range=':= 1 * 1 * heexEndPowderSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:end_stone'/>
                     </Veins>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of End Powder. -->
                 <IfCondition condition=':= heexEndPowderDist = "vanillaStdGen"'>
+                
                     <StandardGen name='heexEndPowder0Standard' block='HardcoreEnderExpansion:end_powder_ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -322,15 +384,22 @@ Generates: Stardust, Instability Orb, Endium, Igneous Rock, End Powder
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60018f22</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * heexEndPowderSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * heexEndPowderFreq * _default_'/>
+                        <Setting name='Frequency' avg=':= 1 * 3 * 1 * heexEndPowderFreq * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:end_stone'/>
                     </StandardGen>
+                
                 </IfCondition>
+                <!-- Done adding ores -->
+            
             </IfCondition>
+            <!-- End Setup Complete -->
 
 
+        
         </ConfigSection>
+        <!-- Custom Ore Gen Configuration Complete! -->
+    
     </IfModInstalled> 
  
 

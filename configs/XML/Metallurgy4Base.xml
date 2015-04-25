@@ -7,20 +7,23 @@ Generates: Copper, Tin, Manganese
 
 ================================================================ -->
 
+    <!-- Mod detection -->
     <IfModInstalled name="Metallurgy">
-
+        
+        <!-- Starting Custom Ore Gen Configuration. -->
         <ConfigSection>
+        
+            
             <!-- Setup Screen Configuration -->
-
             <ConfigSection>
                 <OptionDisplayGroup name='groupMetallurgy4Base' displayName='Metallurgy 4 Base' displayState='shown'> 
                     <Description>
                         Distribution options for Metallurgy 4 Base Ores.
                     </Description>
                 </OptionDisplayGroup>
-
+                
+                <!-- Copper Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- Copper Configuration UI -->
                     <OptionChoice name='mtlbCopperDist'  displayState='shown' displayGroup='groupMetallurgy4Base'> 
                         <Description> Controls how Copper is generated </Description> 
                         <DisplayName>Metallurgy 4 Base Copper</DisplayName>
@@ -50,8 +53,11 @@ Generates: Copper, Tin, Manganese
                         <DisplayName>Metallurgy 4 Base Copper Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- Copper Configuration UI Complete -->
+                
+                
+                <!-- Tin Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- Tin Configuration UI -->
                     <OptionChoice name='mtlbTinDist'  displayState='shown' displayGroup='groupMetallurgy4Base'> 
                         <Description> Controls how Tin is generated </Description> 
                         <DisplayName>Metallurgy 4 Base Tin</DisplayName>
@@ -81,8 +87,11 @@ Generates: Copper, Tin, Manganese
                         <DisplayName>Metallurgy 4 Base Tin Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- Tin Configuration UI Complete -->
+                
+                
+                <!-- Manganese Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- Manganese Configuration UI -->
                     <OptionChoice name='mtlbManganeseDist'  displayState='shown' displayGroup='groupMetallurgy4Base'> 
                         <Description> Controls how Manganese is generated </Description> 
                         <DisplayName>Metallurgy 4 Base Manganese</DisplayName>
@@ -112,7 +121,10 @@ Generates: Copper, Tin, Manganese
                         <DisplayName>Metallurgy 4 Base Manganese Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- Manganese Configuration UI Complete -->
+                
             </ConfigSection>
+            <!-- Setup Screen Complete -->
 
 
             <!-- Setup Overworld -->
@@ -129,25 +141,50 @@ Generates: Copper, Tin, Manganese
                     <Replaces block='Metallurgy:base.ore:1' />
                     <Replaces block='Metallurgy:base.ore:2' />
                 </Substitute>
+                
                 <!-- Adding ores --> 
                 
                 <!-- Copper Generation. --> 
+                
+                <!-- Layered Veins distribution of Copper. -->
                 <IfCondition condition=':= mtlbCopperDist = "layeredVeins"'>
+                
                     <Veins name='mtlbCopper0Veins' block='Metallurgy:base.ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x605CADF2</WireframeColor>
+                        <WireframeColor>0x60997CFA</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlbCopperSize * _default_' range=':= 1 * 1 * mtlbCopperSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * mtlbCopperFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * mtlbCopperFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * mtlbCopperSize * _default_' range=':= 1 * 1 * mtlbCopperSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Veins name='mtlbCopper1Veins' block='Metallurgy:base.ore' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60997CFA</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlbCopperSize * _default_' range=':= 1 * 1 * mtlbCopperSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * mtlbCopperFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mtlbCopperSize * _default_' range=':= 1 * 1 * mtlbCopperSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Cold'/>
+                    </Veins>
+                
                 </IfCondition>
+                
+                <!--  Strategic Cloud distribution of Copper. -->
                 <IfCondition condition=':= mtlbCopperDist = "strategicCloud"'>
+                
                     <Cloud name='mtlbCopper0Cloud' block='Metallurgy:base.ore' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -158,11 +195,11 @@ Generates: Copper, Tin, Manganese
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x605CADF2</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mtlbCopperFreq *_default_'/>
+                        <WireframeColor>0x60997CFA</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 2.5 * mtlbCopperFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtlbCopperSize * _default_' range=':= 1 * 1 * mtlbCopperSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtlbCopperSize * _default_' range=':= 1 * 1 * mtlbCopperSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Base'/>
+                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlbCopperSize * _default_' range=':= 1 * 1 * 1 * mtlbCopperSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
@@ -171,45 +208,125 @@ Generates: Copper, Tin, Manganese
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x605CADF2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mtlbCopperFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base' /> 
+                            <WireframeColor>0x60997CFA</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 2.5 * mtlbCopperFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlbCopperSize * _default_' range=':= 1 * 1 * mtlbCopperSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                     </Cloud>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Cloud name='mtlbCopper1Cloud' block='Metallurgy:base.ore' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60997CFA</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * mtlbCopperFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * mtlbCopperSize * _default_' range=':= 1 * 1 * mtlbCopperSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * mtlbCopperSize * _default_' range=':= 1 * 1 * mtlbCopperSize * _default_'/>
+                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlbCopperSize * _default_' range=':= 1 * 1 * 1 * mtlbCopperSize  * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Cold'/>
+                        <Veins name='mtlbCopper1HintVeins' block='Metallurgy:base.ore' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                2 times as likely in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60997CFA</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 2.5 * mtlbCopperFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlbCopperSize * _default_' range=':= 1 * 1 * mtlbCopperSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                            <BiomeType name='Cold'/>
+                        </Veins>
+                    </Cloud>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of Copper. -->
                 <IfCondition condition=':= mtlbCopperDist = "vanillaStdGen"'>
+                
                     <StandardGen name='mtlbCopper0Standard' block='Metallurgy:base.ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x605CADF2</WireframeColor>
+                        <WireframeColor>0x60997CFA</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlbCopperSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * mtlbCopperFreq * _default_'/>
-                        <Setting name='Height' avg=':= 64' range=':= 64'/> 
+                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <StandardGen name='mtlbCopper1Standard' block='Metallurgy:base.ore' inherits='PresetStandardGen'>
+                        <Description>
+                            This mimics vanilla ore generation.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60997CFA</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * mtlbCopperSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * 1 * 1 * mtlbCopperFreq * _default_'/>
+                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Cold'/>
+                    </StandardGen>
+                
                 </IfCondition>
                 
                 <!-- Tin Generation. --> 
+                
+                <!-- Layered Veins distribution of Tin. -->
                 <IfCondition condition=':= mtlbTinDist = "layeredVeins"'>
+                
                     <Veins name='mtlbTin0Veins' block='Metallurgy:base.ore:1' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x605CADF2</WireframeColor>
+                        <WireframeColor>0x60997CFA</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlbTinSize * _default_' range=':= 1 * 1 * mtlbTinSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * mtlbTinFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * mtlbTinFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * mtlbTinSize * _default_' range=':= 1 * 1 * mtlbTinSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Veins name='mtlbTin1Veins' block='Metallurgy:base.ore:1' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60997CFA</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlbTinSize * _default_' range=':= 1 * 1 * mtlbTinSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * mtlbTinFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mtlbTinSize * _default_' range=':= 1 * 1 * mtlbTinSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Cold'/>
+                    </Veins>
+                
                 </IfCondition>
+                
+                <!--  Strategic Cloud distribution of Tin. -->
                 <IfCondition condition=':= mtlbTinDist = "strategicCloud"'>
+                
                     <Cloud name='mtlbTin0Cloud' block='Metallurgy:base.ore:1' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -220,11 +337,11 @@ Generates: Copper, Tin, Manganese
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x605CADF2</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mtlbTinFreq *_default_'/>
+                        <WireframeColor>0x60997CFA</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 2.5 * mtlbTinFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtlbTinSize * _default_' range=':= 1 * 1 * mtlbTinSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtlbTinSize * _default_' range=':= 1 * 1 * mtlbTinSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Base'/>
+                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlbTinSize * _default_' range=':= 1 * 1 * 1 * mtlbTinSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
@@ -233,45 +350,125 @@ Generates: Copper, Tin, Manganese
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x605CADF2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mtlbTinFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base' /> 
+                            <WireframeColor>0x60997CFA</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 2.5 * mtlbTinFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlbTinSize * _default_' range=':= 1 * 1 * mtlbTinSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                     </Cloud>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Cloud name='mtlbTin1Cloud' block='Metallurgy:base.ore:1' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60997CFA</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * mtlbTinFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * mtlbTinSize * _default_' range=':= 1 * 1 * mtlbTinSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * mtlbTinSize * _default_' range=':= 1 * 1 * mtlbTinSize * _default_'/>
+                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlbTinSize * _default_' range=':= 1 * 1 * 1 * mtlbTinSize  * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Cold'/>
+                        <Veins name='mtlbTin1HintVeins' block='Metallurgy:base.ore:1' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                2 times as likely in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60997CFA</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 2.5 * mtlbTinFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlbTinSize * _default_' range=':= 1 * 1 * mtlbTinSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                            <BiomeType name='Cold'/>
+                        </Veins>
+                    </Cloud>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of Tin. -->
                 <IfCondition condition=':= mtlbTinDist = "vanillaStdGen"'>
+                
                     <StandardGen name='mtlbTin0Standard' block='Metallurgy:base.ore:1' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x605CADF2</WireframeColor>
+                        <WireframeColor>0x60997CFA</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlbTinSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * mtlbTinFreq * _default_'/>
-                        <Setting name='Height' avg=':= 64' range=':= 64'/> 
+                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <StandardGen name='mtlbTin1Standard' block='Metallurgy:base.ore:1' inherits='PresetStandardGen'>
+                        <Description>
+                            This mimics vanilla ore generation.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60997CFA</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * mtlbTinSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * 1 * 1 * mtlbTinFreq * _default_'/>
+                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Cold'/>
+                    </StandardGen>
+                
                 </IfCondition>
                 
                 <!-- Manganese Generation. --> 
+                
+                <!-- Layered Veins distribution of Manganese. -->
                 <IfCondition condition=':= mtlbManganeseDist = "layeredVeins"'>
+                
                     <Veins name='mtlbManganese0Veins' block='Metallurgy:base.ore:2' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x605CADF2</WireframeColor>
+                        <WireframeColor>0x60997CFA</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlbManganeseSize * _default_' range=':= 1 * 1 * mtlbManganeseSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * mtlbManganeseFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * mtlbManganeseFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * mtlbManganeseSize * _default_' range=':= 1 * 1 * mtlbManganeseSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Veins name='mtlbManganese1Veins' block='Metallurgy:base.ore:2' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60997CFA</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtlbManganeseSize * _default_' range=':= 1 * 1 * mtlbManganeseSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * mtlbManganeseFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mtlbManganeseSize * _default_' range=':= 1 * 1 * mtlbManganeseSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Cold'/>
+                    </Veins>
+                
                 </IfCondition>
+                
+                <!--  Strategic Cloud distribution of Manganese. -->
                 <IfCondition condition=':= mtlbManganeseDist = "strategicCloud"'>
+                
                     <Cloud name='mtlbManganese0Cloud' block='Metallurgy:base.ore:2' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -282,11 +479,11 @@ Generates: Copper, Tin, Manganese
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x605CADF2</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mtlbManganeseFreq *_default_'/>
+                        <WireframeColor>0x60997CFA</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 2.5 * mtlbManganeseFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtlbManganeseSize * _default_' range=':= 1 * 1 * mtlbManganeseSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtlbManganeseSize * _default_' range=':= 1 * 1 * mtlbManganeseSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Base'/>
+                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlbManganeseSize * _default_' range=':= 1 * 1 * 1 * mtlbManganeseSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
@@ -295,33 +492,95 @@ Generates: Copper, Tin, Manganese
                                 Small, fairly rare motherlodes with 2-4 horizontal veins each.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x605CADF2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mtlbManganeseFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base' /> 
+                            <WireframeColor>0x60997CFA</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 2.5 * mtlbManganeseFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlbManganeseSize * _default_' range=':= 1 * 1 * mtlbManganeseSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                     </Cloud>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Cloud name='mtlbManganese1Cloud' block='Metallurgy:base.ore:2' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60997CFA</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * mtlbManganeseFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * mtlbManganeseSize * _default_' range=':= 1 * 1 * mtlbManganeseSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * mtlbManganeseSize * _default_' range=':= 1 * 1 * mtlbManganeseSize * _default_'/>
+                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtlbManganeseSize * _default_' range=':= 1 * 1 * 1 * mtlbManganeseSize  * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Cold'/>
+                        <Veins name='mtlbManganese1HintVeins' block='Metallurgy:base.ore:2' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                2 times as likely in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60997CFA</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 2.5 * mtlbManganeseFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtlbManganeseSize * _default_' range=':= 1 * 1 * mtlbManganeseSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                            <BiomeType name='Cold'/>
+                        </Veins>
+                    </Cloud>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of Manganese. -->
                 <IfCondition condition=':= mtlbManganeseDist = "vanillaStdGen"'>
+                
                     <StandardGen name='mtlbManganese0Standard' block='Metallurgy:base.ore:2' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x605CADF2</WireframeColor>
+                        <WireframeColor>0x60997CFA</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * mtlbManganeseSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * mtlbManganeseFreq * _default_'/>
-                        <Setting name='Height' avg=':= 64' range=':= 64'/> 
+                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <StandardGen name='mtlbManganese1Standard' block='Metallurgy:base.ore:2' inherits='PresetStandardGen'>
+                        <Description>
+                            This mimics vanilla ore generation.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60997CFA</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * mtlbManganeseSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * 1 * 1 * mtlbManganeseFreq * _default_'/>
+                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Cold'/>
+                    </StandardGen>
+                
                 </IfCondition>
+                <!-- Done adding ores -->
+            
             </IfCondition>
+            <!-- Overworld Setup Complete -->
 
 
  
  
+        
         </ConfigSection>
+        <!-- Custom Ore Gen Configuration Complete! -->
+    
     </IfModInstalled> 
  
 

@@ -7,20 +7,23 @@ Generates: Quartz, Charged Quartz
 
 ================================================================ -->
 
+    <!-- Mod detection -->
     <IfModInstalled name="appliedenergistics2">
-
+        
+        <!-- Starting Custom Ore Gen Configuration. -->
         <ConfigSection>
+        
+            
             <!-- Setup Screen Configuration -->
-
             <ConfigSection>
                 <OptionDisplayGroup name='groupAppliedEnergistics' displayName='Applied Energistics' displayState='shown'> 
                     <Description>
                         Distribution options for Applied Energistics Ores.
                     </Description>
                 </OptionDisplayGroup>
-
+                
+                <!-- Quartz Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- Quartz Configuration UI -->
                     <OptionChoice name='apenQuartzDist'  displayState='shown' displayGroup='groupAppliedEnergistics'> 
                         <Description> Controls how Quartz is generated </Description> 
                         <DisplayName>Applied Energistics Quartz</DisplayName>
@@ -55,8 +58,11 @@ Generates: Quartz, Charged Quartz
                         <DisplayName>Applied Energistics Quartz Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- Quartz Configuration UI Complete -->
+                
+                
+                <!-- Charged Quartz Configuration UI Starting -->
                 <ConfigSection>
-                    <!-- Charged Quartz Configuration UI -->
                     <OptionChoice name='apenChargedQuartzDist'  displayState='shown' displayGroup='groupAppliedEnergistics'> 
                         <Description> Controls how Charged Quartz is generated </Description> 
                         <DisplayName>Applied Energistics Charged Quartz</DisplayName>
@@ -91,7 +97,10 @@ Generates: Quartz, Charged Quartz
                         <DisplayName>Applied Energistics Charged Quartz Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
+                <!-- Charged Quartz Configuration UI Complete -->
+                
             </ConfigSection>
+            <!-- Setup Screen Complete -->
 
 
             <!-- Setup Overworld -->
@@ -107,10 +116,14 @@ Generates: Quartz, Charged Quartz
                     <Replaces block='appliedenergistics2:tile.OreQuartz:0' />
                     <Replaces block='appliedenergistics2:tile.OreQuartzCharged:0' />
                 </Substitute>
+                
                 <!-- Adding ores --> 
                 
                 <!-- Quartz Generation. --> 
+                
+                <!-- LayeredVeins distribution of Quartz. -->
                 <IfCondition condition=':= apenQuartzDist = "layeredVeins"'>
+                
                     <Veins name='apenQuartz0Veins' block='appliedenergistics2:tile.OreQuartz' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -118,14 +131,35 @@ Generates: Quartz, Charged Quartz
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e25d21</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * apenQuartzSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * apenQuartzFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='Base'/> 
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * apenQuartzFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * apenQuartzSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Veins name='apenQuartz1Veins' block='appliedenergistics2:tile.OreQuartz' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * apenQuartzSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * apenQuartzFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * apenQuartzSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Desert'/>
+                    </Veins>
+                
                 </IfCondition>
+                
+                <!--  Small Deposits distribution of Quartz. -->
                 <IfCondition condition=':= apenQuartzDist = "smallDeposits"'>
+                
                     <Veins name='apenQuartz0Veins' block='appliedenergistics2:tile.OreQuartz' inherits='PresetSmallDeposits'>
                         <Description>
                             Small motherlodes without any branches.
@@ -133,14 +167,35 @@ Generates: Quartz, Charged Quartz
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * apenQuartzFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='Base' /> 
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * apenQuartzFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * apenQuartzSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Veins name='apenQuartz1Veins' block='appliedenergistics2:tile.OreQuartz' inherits='PresetSmallDeposits'>
+                        <Description>
+                            Small motherlodes without any branches.
+                            Similar to the deposits produced by StandardGen distributions.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * apenQuartzFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * apenQuartzSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Desert'/>
+                    </Veins>
+                
                 </IfCondition>
+                
+                <!--  StrategicCloud distribution of Quartz. -->
                 <IfCondition condition=':= apenQuartzDist = "strategicCloud"'>
+                
                     <Cloud name='apenQuartz0Cloud' block='appliedenergistics2:tile.OreQuartz' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -152,10 +207,10 @@ Generates: Quartz, Charged Quartz
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 3 * 1 * apenQuartzFreq *_default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 2.5 * apenQuartzFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * apenQuartzSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * apenQuartzSize * _default_'/>
-                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='Base'/>
+                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * 1 * apenQuartzSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
@@ -165,14 +220,54 @@ Generates: Quartz, Charged Quartz
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60e25d21</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 1 * apenQuartzFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 2.5 * apenQuartzFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * apenQuartzSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                     </Cloud>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Cloud name='apenQuartz1Cloud' block='appliedenergistics2:tile.OreQuartz' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * apenQuartzFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * apenQuartzSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * apenQuartzSize * _default_'/>
+                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * 1 * apenQuartzSize  * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Desert'/>
+                        <Veins name='apenQuartz1HintVeins' block='appliedenergistics2:tile.OreQuartz' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                2 times as likely in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60e25d21</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 2.5 * apenQuartzFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * apenQuartzSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                            <BiomeType name='Desert'/>
+                        </Veins>
+                    </Cloud>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of Quartz. -->
                 <IfCondition condition=':= apenQuartzDist = "vanillaStdGen"'>
+                
                     <StandardGen name='apenQuartz0Standard' block='appliedenergistics2:tile.OreQuartz' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -180,14 +275,33 @@ Generates: Quartz, Charged Quartz
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e25d21</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * apenQuartzSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * 3 * 1 * apenQuartzFreq * _default_'/>
-                        <Setting name='Height' avg=':= 16' range=':= 16'/> 
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * apenQuartzFreq * _default_'/>
+                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <StandardGen name='apenQuartz1Standard' block='appliedenergistics2:tile.OreQuartz' inherits='PresetStandardGen'>
+                        <Description>
+                            This mimics vanilla ore generation.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * apenQuartzSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * 1 * 1 * apenQuartzFreq * _default_'/>
+                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Desert'/>
+                    </StandardGen>
+                
                 </IfCondition>
                 
                 <!-- Charged Quartz Generation. --> 
+                
+                <!-- LayeredVeins distribution of Charged Quartz. -->
                 <IfCondition condition=':= apenChargedQuartzDist = "layeredVeins"'>
+                
                     <Veins name='apenChargedQuartz0Veins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -195,14 +309,35 @@ Generates: Quartz, Charged Quartz
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e25d21</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * apenChargedQuartzSize * _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * apenChargedQuartzFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='Base'/> 
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * apenChargedQuartzFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * apenChargedQuartzSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Veins name='apenChargedQuartz1Veins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * apenChargedQuartzSize * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * apenChargedQuartzFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * apenChargedQuartzSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Desert'/>
+                    </Veins>
+                
                 </IfCondition>
+                
+                <!--  Small Deposits distribution of Charged Quartz. -->
                 <IfCondition condition=':= apenChargedQuartzDist = "smallDeposits"'>
+                
                     <Veins name='apenChargedQuartz0Veins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetSmallDeposits'>
                         <Description>
                             Small motherlodes without any branches.
@@ -210,14 +345,35 @@ Generates: Quartz, Charged Quartz
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * apenChargedQuartzFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='Base' /> 
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * apenChargedQuartzFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * apenChargedQuartzSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Veins name='apenChargedQuartz1Veins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetSmallDeposits'>
+                        <Description>
+                            Small motherlodes without any branches.
+                            Similar to the deposits produced by StandardGen distributions.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * apenChargedQuartzFreq * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * apenChargedQuartzSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Desert'/>
+                    </Veins>
+                
                 </IfCondition>
+                
+                <!--  StrategicCloud distribution of Charged Quartz. -->
                 <IfCondition condition=':= apenChargedQuartzDist = "strategicCloud"'>
+                
                     <Cloud name='apenChargedQuartz0Cloud' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -229,10 +385,10 @@ Generates: Quartz, Charged Quartz
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e25d21</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 3 * 1 * apenChargedQuartzFreq *_default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 2.5 * apenChargedQuartzFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * apenChargedQuartzSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * apenChargedQuartzSize * _default_'/>
-                        <Setting name='CloudHeight' avg='16' range='16' type='normal' scaleTo='Base'/>
+                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * 1 * apenChargedQuartzSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
@@ -242,14 +398,54 @@ Generates: Quartz, Charged Quartz
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60e25d21</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 1 * apenChargedQuartzFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 2.5 * apenChargedQuartzFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
                             <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * apenChargedQuartzSize * _default_'/>
                             <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                     </Cloud>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <Cloud name='apenChargedQuartz1Cloud' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetStrategicCloud'>
+                        <Description>
+                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
+                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
+                            ore, but it takes some time and effort to mine due to low density.
+                            The intent for strategic clouds is that the player will need to actively search for
+                            one and then set up a semi-permanent mining base and spend some time actually mining
+                            the ore.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * apenChargedQuartzFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * apenChargedQuartzSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * apenChargedQuartzSize * _default_'/>
+                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * 1 * apenChargedQuartzSize  * _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Desert'/>
+                        <Veins name='apenChargedQuartz1HintVeins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetHintVeins'>
+                            <Description>
+                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                2 times as likely in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60e25d21</WireframeColor>
+                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 2.5 * apenChargedQuartzFreq * _default_' range=':= _default_'/> 
+                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * apenChargedQuartzSize * _default_'/>
+                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                            <BiomeType name='Desert'/>
+                        </Veins>
+                    </Cloud>
+                
                 </IfCondition>
+                
+                <!--  Vanilla distribution of Charged Quartz. -->
                 <IfCondition condition=':= apenChargedQuartzDist = "vanillaStdGen"'>
+                
                     <StandardGen name='apenChargedQuartz0Standard' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
@@ -257,17 +453,39 @@ Generates: Quartz, Charged Quartz
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e25d21</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * apenChargedQuartzSize * _default_'/>
-                        <Setting name='Frequency' avg=':= 1 * 3 * 1 * apenChargedQuartzFreq * _default_'/>
-                        <Setting name='Height' avg=':= 16' range=':= 16'/> 
+                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * apenChargedQuartzFreq * _default_'/>
+                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
+                    
+                    <!-- Preferred Biome Distribution Settings -->
+                    <StandardGen name='apenChargedQuartz1Standard' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetStandardGen'>
+                        <Description>
+                            This mimics vanilla ore generation.
+                            2 times as likely in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * apenChargedQuartzSize * _default_'/>
+                        <Setting name='Frequency' avg=':= 2 * 1 * 1 * apenChargedQuartzFreq * _default_'/>
+                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
+                        <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Desert'/>
+                    </StandardGen>
+                
                 </IfCondition>
+                <!-- Done adding ores -->
+            
             </IfCondition>
+            <!-- Overworld Setup Complete -->
 
 
  
  
+        
         </ConfigSection>
+        <!-- Custom Ore Gen Configuration Complete! -->
+    
     </IfModInstalled> 
  
 

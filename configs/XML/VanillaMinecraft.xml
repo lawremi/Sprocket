@@ -8,18 +8,20 @@ Nether Quartz
 
 ================================================================ -->
 
+    
+    <!-- Starting Custom Ore Gen Configuration. -->
     <ConfigSection>
-         <!-- Setup Screen Configuration -->
-
+         
+        <!-- Setup Screen Configuration -->
         <ConfigSection>
             <OptionDisplayGroup name='groupVanillaMinecraft' displayName='Vanilla Minecraft' displayState='shown'> 
                 <Description>
                     Distribution options for Vanilla Minecraft Ores.
                 </Description>
             </OptionDisplayGroup>
-
+            
+            <!-- Clay Configuration UI Starting -->
             <ConfigSection>
-                <!-- Clay Configuration UI -->
                 <OptionChoice name='vnlaClayDist'  displayState='shown' displayGroup='groupVanillaMinecraft'> 
                     <Description> Controls how Clay is generated </Description> 
                     <DisplayName>Vanilla Minecraft Clay</DisplayName>
@@ -54,8 +56,11 @@ Nether Quartz
                     <DisplayName>Vanilla Minecraft Clay Size</DisplayName>
                 </OptionNumeric>
             </ConfigSection> 
+            <!-- Clay Configuration UI Complete -->
+            
+            
+            <!-- Coal Configuration UI Starting -->
             <ConfigSection>
-                <!-- Coal Configuration UI -->
                 <OptionChoice name='vnlaCoalDist'  displayState='shown' displayGroup='groupVanillaMinecraft'> 
                     <Description> Controls how Coal is generated </Description> 
                     <DisplayName>Vanilla Minecraft Coal</DisplayName>
@@ -90,8 +95,11 @@ Nether Quartz
                     <DisplayName>Vanilla Minecraft Coal Size</DisplayName>
                 </OptionNumeric>
             </ConfigSection> 
+            <!-- Coal Configuration UI Complete -->
+            
+            
+            <!-- Iron Configuration UI Starting -->
             <ConfigSection>
-                <!-- Iron Configuration UI -->
                 <OptionChoice name='vnlaIronDist'  displayState='shown' displayGroup='groupVanillaMinecraft'> 
                     <Description> Controls how Iron is generated </Description> 
                     <DisplayName>Vanilla Minecraft Iron</DisplayName>
@@ -126,8 +134,11 @@ Nether Quartz
                     <DisplayName>Vanilla Minecraft Iron Size</DisplayName>
                 </OptionNumeric>
             </ConfigSection> 
+            <!-- Iron Configuration UI Complete -->
+            
+            
+            <!-- Gold Configuration UI Starting -->
             <ConfigSection>
-                <!-- Gold Configuration UI -->
                 <OptionChoice name='vnlaGoldDist'  displayState='shown' displayGroup='groupVanillaMinecraft'> 
                     <Description> Controls how Gold is generated </Description> 
                     <DisplayName>Vanilla Minecraft Gold</DisplayName>
@@ -162,8 +173,11 @@ Nether Quartz
                     <DisplayName>Vanilla Minecraft Gold Size</DisplayName>
                 </OptionNumeric>
             </ConfigSection> 
+            <!-- Gold Configuration UI Complete -->
+            
+            
+            <!-- Redstone Configuration UI Starting -->
             <ConfigSection>
-                <!-- Redstone Configuration UI -->
                 <OptionChoice name='vnlaRedstoneDist'  displayState='shown' displayGroup='groupVanillaMinecraft'> 
                     <Description> Controls how Redstone is generated </Description> 
                     <DisplayName>Vanilla Minecraft Redstone</DisplayName>
@@ -198,8 +212,11 @@ Nether Quartz
                     <DisplayName>Vanilla Minecraft Redstone Size</DisplayName>
                 </OptionNumeric>
             </ConfigSection> 
+            <!-- Redstone Configuration UI Complete -->
+            
+            
+            <!-- Diamond Configuration UI Starting -->
             <ConfigSection>
-                <!-- Diamond Configuration UI -->
                 <OptionChoice name='vnlaDiamondDist'  displayState='shown' displayGroup='groupVanillaMinecraft'> 
                     <Description> Controls how Diamond is generated </Description> 
                     <DisplayName>Vanilla Minecraft Diamond</DisplayName>
@@ -234,8 +251,11 @@ Nether Quartz
                     <DisplayName>Vanilla Minecraft Diamond Size</DisplayName>
                 </OptionNumeric>
             </ConfigSection> 
+            <!-- Diamond Configuration UI Complete -->
+            
+            
+            <!-- Lapis Lazuli Configuration UI Starting -->
             <ConfigSection>
-                <!-- Lapis Lazuli Configuration UI -->
                 <OptionChoice name='vnlaLapisLazuliDist'  displayState='shown' displayGroup='groupVanillaMinecraft'> 
                     <Description> Controls how Lapis Lazuli is generated </Description> 
                     <DisplayName>Vanilla Minecraft Lapis Lazuli</DisplayName>
@@ -270,8 +290,11 @@ Nether Quartz
                     <DisplayName>Vanilla Minecraft Lapis Lazuli Size</DisplayName>
                 </OptionNumeric>
             </ConfigSection> 
+            <!-- Lapis Lazuli Configuration UI Complete -->
+            
+            
+            <!-- Emerald Configuration UI Starting -->
             <ConfigSection>
-                <!-- Emerald Configuration UI -->
                 <OptionChoice name='vnlaEmeraldDist'  displayState='shown' displayGroup='groupVanillaMinecraft'> 
                     <Description> Controls how Emerald is generated </Description> 
                     <DisplayName>Vanilla Minecraft Emerald</DisplayName>
@@ -306,8 +329,11 @@ Nether Quartz
                     <DisplayName>Vanilla Minecraft Emerald Size</DisplayName>
                 </OptionNumeric>
             </ConfigSection> 
+            <!-- Emerald Configuration UI Complete -->
+            
+            
+            <!-- Nether Quartz Configuration UI Starting -->
             <ConfigSection>
-                <!-- Nether Quartz Configuration UI -->
                 <OptionChoice name='vnlaNetherQuartzDist'  displayState='shown' displayGroup='groupVanillaMinecraft'> 
                     <Description> Controls how Nether Quartz is generated </Description> 
                     <DisplayName>Vanilla Minecraft Nether Quartz</DisplayName>
@@ -342,7 +368,10 @@ Nether Quartz
                     <DisplayName>Vanilla Minecraft Nether Quartz Size</DisplayName>
                 </OptionNumeric>
             </ConfigSection> 
+            <!-- Nether Quartz Configuration UI Complete -->
+            
         </ConfigSection>
+        <!-- Setup Screen Complete -->
 
 
         <!-- Setup Overworld -->
@@ -372,10 +401,14 @@ Nether Quartz
                 <Replaces block='minecraft:lapis_ore:0' />
                 <Replaces block='minecraft:emerald_ore:0' />
             </Substitute>
+            
             <!-- Adding ores --> 
             
             <!-- Clay Generation. --> 
+            
+            <!-- LayeredVeins distribution of Clay. -->
             <IfCondition condition=':= vnlaClayDist = "layeredVeins"'>
+            
                 <Veins name='vnlaClay0Veins' block='minecraft:clay' inherits='PresetLayeredVeins'>
                     <Description>
                         Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -389,8 +422,12 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:sand'/>
                 </Veins>
+            
             </IfCondition>
+            
+            <!--  Small Deposits distribution of Clay. -->
             <IfCondition condition=':= vnlaClayDist = "smallDeposits"'>
+            
                 <Veins name='vnlaClay0Veins' block='minecraft:clay' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -404,8 +441,12 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:sand'/>
                 </Veins>
+            
             </IfCondition>
+            
+            <!--  StrategicCloud distribution of Clay. -->
             <IfCondition condition=':= vnlaClayDist = "strategicCloud"'>
+            
                 <Cloud name='vnlaClay0Cloud' block='minecraft:clay' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -436,8 +477,12 @@ Nether Quartz
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     </Veins>
                 </Cloud>
+            
             </IfCondition>
+            
+            <!--  Vanilla distribution of Clay. -->
             <IfCondition condition=':= vnlaClayDist = "vanillaStdGen"'>
+            
                 <StandardGen name='vnlaClay0Standard' block='minecraft:clay' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -449,10 +494,14 @@ Nether Quartz
                     <Setting name='Height' avg=':= 64' range=':= 64'/> 
                     <Replaces block='minecraft:sand'/>
                 </StandardGen>
+            
             </IfCondition>
             
             <!-- Coal Generation. --> 
+            
+            <!-- SparseVeins distribution of Coal. -->
             <IfCondition condition=':= vnlaCoalDist = "sparseVeins"'>
+            
                 <Veins name='vnlaCoal0Veins' block='minecraft:coal_ore' inherits='PresetSparseVeins'>
                     <Description>
                         Large veins filled very lightly with ore.  Because they contain less ore per volume, 
@@ -469,6 +518,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1.75 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <Veins name='vnlaCoal1Veins' block='minecraft:coal_ore' inherits='PresetSparseVeins'>
                     <Description>
                         Large veins filled very lightly with ore.  Because they contain less ore per volume, 
@@ -487,8 +538,12 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Swamp'/>
                 </Veins>
+            
             </IfCondition>
+            
+            <!--  Small Deposits distribution of Coal. -->
             <IfCondition condition=':= vnlaCoalDist = "smallDeposits"'>
+            
                 <Veins name='vnlaCoal0Veins' block='minecraft:coal_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -502,6 +557,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1.75 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <Veins name='vnlaCoal1Veins' block='minecraft:coal_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -517,8 +574,12 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Swamp'/>
                 </Veins>
+            
             </IfCondition>
+            
+            <!--  StrategicCloud distribution of Coal. -->
             <IfCondition condition=':= vnlaCoalDist = "strategicCloud"'>
+            
                 <Cloud name='vnlaCoal0Cloud' block='minecraft:coal_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -549,6 +610,8 @@ Nether Quartz
                         <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
                     </Veins>
                 </Cloud>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <Cloud name='vnlaCoal1Cloud' block='minecraft:coal_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -583,8 +646,12 @@ Nether Quartz
                         <BiomeType name='Swamp'/>
                     </Veins>
                 </Cloud>
+            
             </IfCondition>
+            
+            <!--  Vanilla distribution of Coal. -->
             <IfCondition condition=':= vnlaCoalDist = "vanillaStdGen"'>
+            
                 <StandardGen name='vnlaCoal0Standard' block='minecraft:coal_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -596,6 +663,8 @@ Nether Quartz
                     <Setting name='Height' avg=':= 60' range=':= 10'/> 
                     <Replaces block='minecraft:stone'/>
                 </StandardGen>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <StandardGen name='vnlaCoal1Standard' block='minecraft:coal_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -609,10 +678,14 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Swamp'/>
                 </StandardGen>
+            
             </IfCondition>
             
             <!-- Iron Generation. --> 
+            
+            <!-- LayeredVeins distribution of Iron. -->
             <IfCondition condition=':= vnlaIronDist = "layeredVeins"'>
+            
                 <Veins name='vnlaIron0Veins' block='minecraft:iron_ore' inherits='PresetLayeredVeins'>
                     <Description>
                         Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -626,6 +699,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <Veins name='vnlaIron1Veins' block='minecraft:iron_ore' inherits='PresetLayeredVeins'>
                     <Description>
                         Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -641,8 +716,12 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Cold'/>
                 </Veins>
+            
             </IfCondition>
+            
+            <!--  Small Deposits distribution of Iron. -->
             <IfCondition condition=':= vnlaIronDist = "smallDeposits"'>
+            
                 <Veins name='vnlaIron0Veins' block='minecraft:iron_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -656,6 +735,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <Veins name='vnlaIron1Veins' block='minecraft:iron_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -671,8 +752,12 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Cold'/>
                 </Veins>
+            
             </IfCondition>
+            
+            <!--  StrategicCloud distribution of Iron. -->
             <IfCondition condition=':= vnlaIronDist = "strategicCloud"'>
+            
                 <Cloud name='vnlaIron0Cloud' block='minecraft:iron_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -703,6 +788,8 @@ Nether Quartz
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     </Veins>
                 </Cloud>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <Cloud name='vnlaIron1Cloud' block='minecraft:iron_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -737,8 +824,12 @@ Nether Quartz
                         <BiomeType name='Cold'/>
                     </Veins>
                 </Cloud>
+            
             </IfCondition>
+            
+            <!--  Vanilla distribution of Iron. -->
             <IfCondition condition=':= vnlaIronDist = "vanillaStdGen"'>
+            
                 <StandardGen name='vnlaIron0Standard' block='minecraft:iron_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -750,6 +841,8 @@ Nether Quartz
                     <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                     <Replaces block='minecraft:stone'/>
                 </StandardGen>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <StandardGen name='vnlaIron1Standard' block='minecraft:iron_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -763,10 +856,14 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Cold'/>
                 </StandardGen>
+            
             </IfCondition>
             
             <!-- Gold Generation. --> 
+            
+            <!-- LayeredVeins distribution of Gold. -->
             <IfCondition condition=':= vnlaGoldDist = "layeredVeins"'>
+            
                 <Veins name='vnlaGold0Veins' block='minecraft:gold_ore' inherits='PresetLayeredVeins'>
                     <Description>
                         Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -780,6 +877,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <Veins name='vnlaGold1Veins' block='minecraft:gold_ore' inherits='PresetLayeredVeins'>
                     <Description>
                         Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -795,8 +894,12 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Forest'/>
                 </Veins>
+            
             </IfCondition>
+            
+            <!--  Small Deposits distribution of Gold. -->
             <IfCondition condition=':= vnlaGoldDist = "smallDeposits"'>
+            
                 <Veins name='vnlaGold0Veins' block='minecraft:gold_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -810,6 +913,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <Veins name='vnlaGold1Veins' block='minecraft:gold_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -825,8 +930,12 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Forest'/>
                 </Veins>
+            
             </IfCondition>
+            
+            <!--  StrategicCloud distribution of Gold. -->
             <IfCondition condition=':= vnlaGoldDist = "strategicCloud"'>
+            
                 <Cloud name='vnlaGold0Cloud' block='minecraft:gold_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -857,6 +966,8 @@ Nether Quartz
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                     </Veins>
                 </Cloud>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <Cloud name='vnlaGold1Cloud' block='minecraft:gold_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -891,8 +1002,12 @@ Nether Quartz
                         <BiomeType name='Forest'/>
                     </Veins>
                 </Cloud>
+            
             </IfCondition>
+            
+            <!--  Vanilla distribution of Gold. -->
             <IfCondition condition=':= vnlaGoldDist = "vanillaStdGen"'>
+            
                 <StandardGen name='vnlaGold0Standard' block='minecraft:gold_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -904,6 +1019,8 @@ Nether Quartz
                     <Setting name='Height' avg=':= 20' range=':= 10'/> 
                     <Replaces block='minecraft:stone'/>
                 </StandardGen>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <StandardGen name='vnlaGold1Standard' block='minecraft:gold_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -917,10 +1034,14 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='Forest'/>
                 </StandardGen>
+            
             </IfCondition>
             
             <!-- Redstone Generation. --> 
+            
+            <!-- VerticalVeins distribution of Redstone. -->
             <IfCondition condition=':= vnlaRedstoneDist = "verticalVeins"'>
+            
                 <Veins name='vnlaRedstone0Veins' block='minecraft:redstone_ore' inherits='PresetVerticalVeins'>
                     <Description>
                         Single vertical veins that occur with no motherlodes.
@@ -933,6 +1054,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <Veins name='vnlaRedstone1Veins' block='minecraft:redstone_ore' inherits='PresetVerticalVeins'>
                     <Description>
                         Single vertical veins that occur with no motherlodes.
@@ -945,10 +1068,14 @@ Nether Quartz
                     <Setting name='SegmentRadius' avg=':= 1 * 1 * vnlaRedstoneSize * _default_' range=':= 1 * 1 * vnlaRedstoneSize * _default_'/>
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:stone'/>
-                    <BiomeType name='sandy'/>
+                    <BiomeType name='Desert'/>
                 </Veins>
+            
             </IfCondition>
+            
+            <!--  Small Deposits distribution of Redstone. -->
             <IfCondition condition=':= vnlaRedstoneDist = "smallDeposits"'>
+            
                 <Veins name='vnlaRedstone0Veins' block='minecraft:redstone_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -962,6 +1089,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <Veins name='vnlaRedstone1Veins' block='minecraft:redstone_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -975,10 +1104,14 @@ Nether Quartz
                     <Setting name='MotherlodeSize' avg=':= 1 * 1 * vnlaRedstoneSize * _default_' range=':= 1 * 1 * vnlaRedstoneSize * _default_'/>
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:stone'/>
-                    <BiomeType name='sandy'/>
+                    <BiomeType name='Desert'/>
                 </Veins>
+            
             </IfCondition>
+            
+            <!--  StrategicCloud distribution of Redstone. -->
             <IfCondition condition=':= vnlaRedstoneDist = "strategicCloud"'>
+            
                 <Cloud name='vnlaRedstone0Cloud' block='minecraft:redstone_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1009,6 +1142,8 @@ Nether Quartz
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     </Veins>
                 </Cloud>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <Cloud name='vnlaRedstone1Cloud' block='minecraft:redstone_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1028,7 +1163,7 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Setting name='CloudThickness' avg=':= 1 * 0.7 * 1 * vnlaRedstoneSize * _default_' range=':= 1 * 0.7 * 1 * vnlaRedstoneSize  * _default_'/>
                     <Replaces block='minecraft:stone'/>
-                    <BiomeType name='sandy'/>
+                    <BiomeType name='Desert'/>
                     <Veins name='vnlaRedstone1HintVeins' block='minecraft:redstone_ore' inherits='PresetHintVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1040,11 +1175,15 @@ Nether Quartz
                         <Setting name='MotherlodeHeight' avg=':= 8' range=':= 8' type='normal' scaleTo='sealevel' /> 
                         <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * vnlaRedstoneSize * _default_' range=':= 1 * 1 * vnlaRedstoneSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <BiomeType name='sandy'/>
+                        <BiomeType name='Desert'/>
                     </Veins>
                 </Cloud>
+            
             </IfCondition>
+            
+            <!--  Vanilla distribution of Redstone. -->
             <IfCondition condition=':= vnlaRedstoneDist = "vanillaStdGen"'>
+            
                 <StandardGen name='vnlaRedstone0Standard' block='minecraft:redstone_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -1056,6 +1195,8 @@ Nether Quartz
                     <Setting name='Height' avg=':= 8' range=':= 8'/> 
                     <Replaces block='minecraft:stone'/>
                 </StandardGen>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <StandardGen name='vnlaRedstone1Standard' block='minecraft:redstone_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -1067,13 +1208,17 @@ Nether Quartz
                     <Setting name='Frequency' avg=':= 2 * 1 * 0.4 * vnlaRedstoneFreq * _default_'/>
                     <Setting name='Height' avg=':= 8' range=':= 8'/> 
                     <Replaces block='minecraft:stone'/>
-                    <BiomeType name='sandy'/>
+                    <BiomeType name='Desert'/>
                 </StandardGen>
+            
             </IfCondition>
             
             <!-- Diamond Generation. --> 
+            
+            <!-- PipeVeins distribution of Diamond. -->
             <IfCondition condition=':= vnlaDiamondDist = "pipeVeins"'>
-                <Veins name='vnlaDiamond0Veins' block='minecraft:diamond_ore' inherits='PresetPipeVeins' seed='0xD47F'>
+            
+                <Veins name='vnlaDiamond0Veins' block='minecraft:diamond_ore' inherits='PresetPipeVeins' seed='0xD417'>
                     <Description>
                         Short sparsely filled veins sloping up from near the bottom of the map.
                     </Description>
@@ -1086,7 +1231,7 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
-                <Veins name= 'vnlaDiamond0Pipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0xD47F'>
+                <Veins name= 'vnlaDiamond0Pipe' block='minecraft:lava' inherits='PresetPipeVeins' seed='0xD417'>
                     <Description>
                         Fills center of each tube with Pipe material.
                     </Description>
@@ -1104,8 +1249,12 @@ Nether Quartz
                     <Replaces block='minecraft:end_stone'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
+            
             </IfCondition>
+            
+            <!--  Small Deposits distribution of Diamond. -->
             <IfCondition condition=':= vnlaDiamondDist = "smallDeposits"'>
+            
                 <Veins name='vnlaDiamond0Veins' block='minecraft:diamond_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -1119,8 +1268,12 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
+            
             </IfCondition>
+            
+            <!--  StrategicCloud distribution of Diamond. -->
             <IfCondition condition=':= vnlaDiamondDist = "strategicCloud"'>
+            
                 <Cloud name='vnlaDiamond0Cloud' block='minecraft:diamond_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1151,8 +1304,12 @@ Nether Quartz
                         <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
                     </Veins>
                 </Cloud>
+            
             </IfCondition>
+            
+            <!--  Vanilla distribution of Diamond. -->
             <IfCondition condition=':= vnlaDiamondDist = "vanillaStdGen"'>
+            
                 <StandardGen name='vnlaDiamond0Standard' block='minecraft:diamond_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -1164,10 +1321,14 @@ Nether Quartz
                     <Setting name='Height' avg=':= 8' range=':= 8'/> 
                     <Replaces block='minecraft:stone'/>
                 </StandardGen>
+            
             </IfCondition>
             
             <!-- Lapis Lazuli Generation. --> 
+            
+            <!-- VerticalVeins distribution of Lapis Lazuli. -->
             <IfCondition condition=':= vnlaLapisLazuliDist = "verticalVeins"'>
+            
                 <Veins name='vnlaLapisLazuli0Veins' block='minecraft:lapis_ore' inherits='PresetVerticalVeins'>
                     <Description>
                         Single vertical veins that occur with no motherlodes.
@@ -1180,6 +1341,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <Veins name='vnlaLapisLazuli1Veins' block='minecraft:lapis_ore' inherits='PresetVerticalVeins'>
                     <Description>
                         Single vertical veins that occur with no motherlodes.
@@ -1194,8 +1357,12 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='ocean'/>
                 </Veins>
+            
             </IfCondition>
+            
+            <!--  Small Deposits distribution of Lapis Lazuli. -->
             <IfCondition condition=':= vnlaLapisLazuliDist = "smallDeposits"'>
+            
                 <Veins name='vnlaLapisLazuli0Veins' block='minecraft:lapis_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -1209,6 +1376,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <Veins name='vnlaLapisLazuli1Veins' block='minecraft:lapis_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -1224,8 +1393,12 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='ocean'/>
                 </Veins>
+            
             </IfCondition>
+            
+            <!--  StrategicCloud distribution of Lapis Lazuli. -->
             <IfCondition condition=':= vnlaLapisLazuliDist = "strategicCloud"'>
+            
                 <Cloud name='vnlaLapisLazuli0Cloud' block='minecraft:lapis_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1256,6 +1429,8 @@ Nether Quartz
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     </Veins>
                 </Cloud>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <Cloud name='vnlaLapisLazuli1Cloud' block='minecraft:lapis_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1290,8 +1465,12 @@ Nether Quartz
                         <BiomeType name='ocean'/>
                     </Veins>
                 </Cloud>
+            
             </IfCondition>
+            
+            <!--  Vanilla distribution of Lapis Lazuli. -->
             <IfCondition condition=':= vnlaLapisLazuliDist = "vanillaStdGen"'>
+            
                 <StandardGen name='vnlaLapisLazuli0Standard' block='minecraft:lapis_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -1303,6 +1482,8 @@ Nether Quartz
                     <Setting name='Height' avg=':= 16' range=':= 16'/> 
                     <Replaces block='minecraft:stone'/>
                 </StandardGen>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <StandardGen name='vnlaLapisLazuli1Standard' block='minecraft:lapis_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -1316,11 +1497,15 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='ocean'/>
                 </StandardGen>
+            
             </IfCondition>
             
             <!-- Emerald Generation. --> 
+            
+            <!-- PipeVeins distribution of Emerald. -->
             <IfCondition condition=':= vnlaEmeraldDist = "pipeVeins"'>
-                <Veins name='vnlaEmerald0Veins' block='minecraft:emerald_ore' inherits='PresetPipeVeins' seed='0x520B'>
+            
+                <Veins name='vnlaEmerald0Veins' block='minecraft:emerald_ore' inherits='PresetPipeVeins' seed='0x2E8D'>
                     <Description>
                         Short sparsely filled veins sloping up from near the bottom of the map.
                     </Description>
@@ -1333,7 +1518,7 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1.2 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
-                <Veins name= 'vnlaEmerald0Pipe' block='minecraft:monster_egg' inherits='PresetPipeVeins' seed='0x520B'>
+                <Veins name= 'vnlaEmerald0Pipe' block='minecraft:monster_egg' inherits='PresetPipeVeins' seed='0x2E8D'>
                     <Description>
                         Fills center of each tube with Pipe material.
                     </Description>
@@ -1351,7 +1536,9 @@ Nether Quartz
                     <Replaces block='minecraft:end_stone'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
-                <Veins name='vnlaEmerald1Veins' block='minecraft:emerald_ore' inherits='PresetPipeVeins' seed='0xE22C'>
+                
+                <!-- Preferred Biome Distribution Settings -->
+                <Veins name='vnlaEmerald1Veins' block='minecraft:emerald_ore' inherits='PresetPipeVeins' seed='0xD424'>
                     <Description>
                         Short sparsely filled veins sloping up from near the bottom of the map.
                         2 times as likely in preferred biomes.
@@ -1366,7 +1553,7 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='mountain'/>
                 </Veins>
-                <Veins name= 'vnlaEmerald1Pipe' block='minecraft:monster_egg' inherits='PresetPipeVeins' seed='0xE22C'>
+                <Veins name= 'vnlaEmerald1Pipe' block='minecraft:monster_egg' inherits='PresetPipeVeins' seed='0xD424'>
                     <Description>
                         Fills center of each tube with Pipe material.
                         2 times as likely in preferred biomes.
@@ -1386,8 +1573,12 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='mountain'/>
                 </Veins>
+            
             </IfCondition>
+            
+            <!--  Small Deposits distribution of Emerald. -->
             <IfCondition condition=':= vnlaEmeraldDist = "smallDeposits"'>
+            
                 <Veins name='vnlaEmerald0Veins' block='minecraft:emerald_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -1401,6 +1592,8 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1.2 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:stone'/>
                 </Veins>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <Veins name='vnlaEmerald1Veins' block='minecraft:emerald_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -1416,8 +1609,12 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='mountain'/>
                 </Veins>
+            
             </IfCondition>
+            
+            <!--  StrategicCloud distribution of Emerald. -->
             <IfCondition condition=':= vnlaEmeraldDist = "strategicCloud"'>
+            
                 <Cloud name='vnlaEmerald0Cloud' block='minecraft:emerald_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1448,6 +1645,8 @@ Nether Quartz
                         <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
                     </Veins>
                 </Cloud>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <Cloud name='vnlaEmerald1Cloud' block='minecraft:emerald_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1482,8 +1681,12 @@ Nether Quartz
                         <BiomeType name='mountain'/>
                     </Veins>
                 </Cloud>
+            
             </IfCondition>
+            
+            <!--  Vanilla distribution of Emerald. -->
             <IfCondition condition=':= vnlaEmeraldDist = "vanillaStdGen"'>
+            
                 <StandardGen name='vnlaEmerald0Standard' block='minecraft:emerald_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -1495,6 +1698,8 @@ Nether Quartz
                     <Setting name='Height' avg=':= 18' range=':= 14'/> 
                     <Replaces block='minecraft:stone'/>
                 </StandardGen>
+                
+                <!-- Preferred Biome Distribution Settings -->
                 <StandardGen name='vnlaEmerald1Standard' block='minecraft:emerald_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -1508,10 +1713,12 @@ Nether Quartz
                     <Replaces block='minecraft:stone'/>
                     <BiomeType name='mountain'/>
                 </StandardGen>
-            </IfCondition>
             
-            <!-- Nether Quartz Generation. --> 
+            </IfCondition>
+            <!-- Done adding ores -->
+        
         </IfCondition>
+        <!-- Overworld Setup Complete -->
 
 
         <!-- Setup Nether -->
@@ -1526,8 +1733,14 @@ Nether Quartz
                 </Comment>
                 <Replaces block='minecraft:quartz_ore:0' />
             </Substitute>
+            
             <!-- Adding ores --> 
+            
+            <!-- Nether Quartz Generation. --> 
+            
+            <!-- LayeredVeins distribution of Nether Quartz. -->
             <IfCondition condition=':= vnlaNetherQuartzDist = "layeredVeins"'>
+            
                 <Veins name='vnlaNetherQuartz0Veins' block='minecraft:quartz_ore' inherits='PresetLayeredVeins'>
                     <Description>
                         Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1541,8 +1754,12 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:netherrack'/>
                 </Veins>
+            
             </IfCondition>
+            
+            <!--  Small Deposits distribution of Nether Quartz. -->
             <IfCondition condition=':= vnlaNetherQuartzDist = "smallDeposits"'>
+            
                 <Veins name='vnlaNetherQuartz0Veins' block='minecraft:quartz_ore' inherits='PresetSmallDeposits'>
                     <Description>
                         Small motherlodes without any branches.
@@ -1556,8 +1773,12 @@ Nether Quartz
                     <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     <Replaces block='minecraft:netherrack'/>
                 </Veins>
+            
             </IfCondition>
+            
+            <!--  StrategicCloud distribution of Nether Quartz. -->
             <IfCondition condition=':= vnlaNetherQuartzDist = "strategicCloud"'>
+            
                 <Cloud name='vnlaNetherQuartz0Cloud' block='minecraft:quartz_ore' inherits='PresetStrategicCloud'>
                     <Description>
                         Large irregular clouds filled lightly with ore.  These are huge, spanning several 
@@ -1588,8 +1809,12 @@ Nether Quartz
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                     </Veins>
                 </Cloud>
+            
             </IfCondition>
+            
+            <!--  Vanilla distribution of Nether Quartz. -->
             <IfCondition condition=':= vnlaNetherQuartzDist = "vanillaStdGen"'>
+            
                 <StandardGen name='vnlaNetherQuartz0Standard' block='minecraft:quartz_ore' inherits='PresetStandardGen'>
                     <Description>
                         This mimics vanilla ore generation.
@@ -1601,14 +1826,18 @@ Nether Quartz
                     <Setting name='Height' avg=':= 120' range=':= 120'/> 
                     <Replaces block='minecraft:netherrack'/>
                 </StandardGen>
+            
             </IfCondition>
+            <!-- Done adding ores -->
+        
         </IfCondition>
+        <!-- Nether Setup Complete -->
 
 
  
 
     </ConfigSection>
-
+    <!-- Custom Ore Gen Configuration Complete! -->
 
 
 

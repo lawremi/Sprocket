@@ -363,8 +363,7 @@ def controlsGen(currentOreGen):
     oreConfigName=oreConfigName.replace(" ", "")
     
     # Opening
-    configScriptOpen = indentText(indentLine)+"<!-- "+oreName[currentOreGen]+" Configuration UI -->\n"
-    configScriptOpen += indentText(indentLine)+"<OptionChoice name='"+oreConfigName+"Dist'"+ifDistActive(currentOreGen)+" displayState='shown' displayGroup='group"+modConfigName+"'> \n"
+    configScriptOpen = indentText(indentLine)+"<OptionChoice name='"+oreConfigName+"Dist'"+ifDistActive(currentOreGen)+" displayState='shown' displayGroup='group"+modConfigName+"'> \n"
     indentLine += 1
     configScriptOpen += indentText(indentLine)+"<Description> Controls how "+oreName[currentOreGen]+" is generated </Description> \n"
     configScriptOpen += indentText(indentLine)+"<DisplayName>"+modName+" "+oreName[currentOreGen]+"</DisplayName>\n"
@@ -475,6 +474,8 @@ def vanillaDist(currentOreGen,level):
         
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == 0 :
+            distText += indentText(indentLine)+"\n"
+            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
             distText += vanillaDist(currentOreGen, 1)    
     return distText
 
@@ -522,6 +523,8 @@ def layeredVeinsDist(currentOreGen,level):
         
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == 0 :
+            distText += indentText(indentLine)+"\n"
+            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
             distText += layeredVeinsDist(currentOreGen, 1)    
     return distText
 
@@ -568,6 +571,8 @@ def verticalVeinsDist(currentOreGen,level):
         
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == 0 :
+            distText += indentText(indentLine)+"\n"
+            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
             distText += verticalVeinsDist(currentOreGen, 1)    
     return distText
 
@@ -615,6 +620,8 @@ def smallDepositsDist(currentOreGen,level):
         
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == 0 :
+            distText += indentText(indentLine)+"\n"
+            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
             distText += smallDepositsDist(currentOreGen, 1)    
     return distText
 
@@ -720,6 +727,8 @@ def geodesDist(currentOreGen,level):
         
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == 0 :
+            distText += indentText(indentLine)+"\n"
+            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
             distText += geodesDist(currentOreGen, 1) 
       
     return distText
@@ -775,6 +784,8 @@ def hugeVeinsDist(currentOreGen,level):
         
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == 0 :
+            distText += indentText(indentLine)+"\n"
+            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
             distText += hugeVeinsDist(currentOreGen, 1)    
     return distText
 
@@ -825,6 +836,8 @@ def sparseVeinsDist(currentOreGen,level):
         
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == 0 :
+            distText += indentText(indentLine)+"\n"
+            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
             distText += sparseVeinsDist(currentOreGen, 1)    
     return distText
 
@@ -908,6 +921,8 @@ def pipeVeinsDist(currentOreGen,level):
         
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == 0 :
+            distText += indentText(indentLine)+"\n"
+            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
             distText += pipeVeinsDist(currentOreGen, 1)    
     return distText
 
@@ -982,6 +997,8 @@ def pipeVeinsDist(currentOreGen,level):
 #        
 #    if orePreferBiomes[currentOreGen] != "NONE":
 #        if level == 0 :
+#            distText += indentText(indentLine)+"\n"
+#            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
 #            distText += compoundVeinsDist(currentOreGen, 1)    
 #    return distText
 
@@ -1063,6 +1080,8 @@ def strategicCloudsDist(currentOreGen,level):
         
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == 0 :
+            distText += indentText(indentLine)+"\n"
+            distText += indentText(indentLine)+"<!-- Preferred Biome Distribution Settings -->\n"
             distText += strategicCloudsDist(currentOreGen, 1)    
     return distText
 
@@ -1079,80 +1098,105 @@ def distributionGen(currentOreGen, currentOrePreDist):
     oreConfigName=orePreConfigName.replace(" ", "")
     currentOreDist=currentOrePreDist.replace(" ", "")
     
+    distributionText = indentText(indentLine)+"\n"
+    distributionText += indentText(indentLine)+"<!-- "+currentOrePreDist+" distribution of "+oreName[currentOreGen]+". -->\n"
+        
     if currentOreDist == 'Substitute':
-        distributionText = indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"substituteGen\"'>\n"
+        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"substituteGen\"'>\n"
+        distributionText += indentText(indentLine)+"\n"
         indentLine += 1
         distributionText += substituteDist(currentOreGen, 0)
         indentLine -= 1
+        distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
     elif currentOreDist == 'Vanilla':
-        distributionText = indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"vanillaStdGen\"'>\n"
+        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"vanillaStdGen\"'>\n"
+        distributionText += indentText(indentLine)+"\n"
         indentLine += 1
         distributionText += vanillaDist(currentOreGen, 0)
         indentLine -= 1
+        distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
         
     elif currentOreDist == 'LayeredVeins':
-        distributionText = indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"layeredVeins\"'>\n"
+        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"layeredVeins\"'>\n"
+        distributionText += indentText(indentLine)+"\n"
         indentLine += 1
         distributionText +=  layeredVeinsDist(currentOreGen, 0)
         indentLine -= 1
+        distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
         
     elif currentOreDist == 'VerticalVeins':
-        distributionText = indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"verticalVeins\"'>\n"
+        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"verticalVeins\"'>\n"
+        distributionText += indentText(indentLine)+"\n"
         indentLine += 1
         distributionText +=  verticalVeinsDist(currentOreGen, 0)
         indentLine -= 1
+        distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
 
     elif currentOreDist == 'SmallDeposits':
-        distributionText = indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"smallDeposits\"'>\n"
+        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"smallDeposits\"'>\n"
+        distributionText += indentText(indentLine)+"\n"
         indentLine += 1
         distributionText +=  smallDepositsDist(currentOreGen, 0)
         indentLine -= 1
+        distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
 
     elif currentOreDist == 'Geodes':
-        distributionText = indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"geodes\"'>\n"
+        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"geodes\"'>\n"
+        distributionText += indentText(indentLine)+"\n"
         indentLine += 1
         distributionText +=  geodesDist(currentOreGen, 0)
         indentLine -= 1
+        distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
 
     elif currentOreDist == 'HugeVeins':
-        distributionText = indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"hugeVeins\"'>\n"
+        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"hugeVeins\"'>\n"
+        distributionText += indentText(indentLine)+"\n"
         indentLine += 1
         distributionText +=   hugeVeinsDist(currentOreGen, 0)
         indentLine -= 1
+        distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
 
     elif currentOreDist == 'SparseVeins':
-        distributionText = indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"sparseVeins\"'>\n"
+        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"sparseVeins\"'>\n"
+        distributionText += indentText(indentLine)+"\n"
         indentLine += 1
         distributionText +=   sparseVeinsDist(currentOreGen, 0)
         indentLine -= 1
+        distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
 
     elif currentOreDist == 'PipeVeins':
-        distributionText = indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"pipeVeins\"'>\n"
+        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"pipeVeins\"'>\n"
+        distributionText += indentText(indentLine)+"\n"
         indentLine += 1
         distributionText +=  pipeVeinsDist(currentOreGen, 0)
         indentLine -= 1
+        distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
 
 #    elif currentOreDist == 'CompoundVeins':
-#        distributionText = indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"compoundVeins\"'>\n"
+#        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"compoundVeins\"'>\n"
+#        distributionText += indentText(indentLine)+"\n"
 #        indentLine += 1
 #        distributionText += compoundVeinsDist(currentOreGen, 0)
 #        indentLine -= 1
+#        distributionText += indentText(indentLine)+"\n"
 #        distributionText += indentText(indentLine)+"</IfCondition>\n"
 
     elif currentOreDist == 'StrategicCloud':
-        distributionText = indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"strategicCloud\"'>\n"
+        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"strategicCloud\"'>\n"
+        distributionText += indentText(indentLine)+"\n"
         indentLine += 1
         distributionText +=  strategicCloudsDist(currentOreGen, 0)
         indentLine -= 1
+        distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
         
     return distributionText
@@ -1268,29 +1312,39 @@ def modDetectLevel():
     indentLine=1
 
     if modDetect != "minecraft":
-        outConfig = indentText(indentLine)+"<IfModInstalled name=\""+modDetect+"\">\n\n"
+        outConfig = indentText(indentLine)+"<!-- Mod detection -->\n"
+        outConfig += indentText(indentLine)+"<IfModInstalled name=\""+modDetect+"\">\n"
         indentLine += 1
+        outConfig += indentText(indentLine)+"\n"
+        outConfig += indentText(indentLine)+"<!-- Starting Custom Ore Gen Configuration. -->\n"
         outConfig += indentText(indentLine)+"<ConfigSection>\n"
+        outConfig += indentText(indentLine)+"\n"
         indentLine += 1
         outConfig += configSetupSection()+"\n"
         outConfig += overworldSetupSection()+"\n"
         outConfig += netherSetupSection()+"\n"
         outConfig += endSetupSection()+"\n"
         indentLine -= 1
+        outConfig += indentText(indentLine)+"\n"
         outConfig += indentText(indentLine)+"</ConfigSection>\n"
+        outConfig += indentText(indentLine)+"<!-- Custom Ore Gen Configuration Complete! -->\n"
         indentLine -= 1
+        outConfig += indentText(indentLine)+"\n"
         outConfig += indentText(indentLine)+"</IfModInstalled> \n "
 
         return outConfig
     else:
-        outConfig = indentText(indentLine)+"<ConfigSection>\n "
+        outConfig = indentText(indentLine)+"\n"
+        outConfig += indentText(indentLine)+"<!-- Starting Custom Ore Gen Configuration. -->\n"
+        outConfig += indentText(indentLine)+"<ConfigSection>\n "
         indentLine += 1
         outConfig += configSetupSection()+"\n"
         outConfig += overworldSetupSection()+"\n"
         outConfig += netherSetupSection()+"\n"
         outConfig += endSetupSection()+"\n\n"
         indentLine -= 1
-        outConfig += indentText(indentLine)+"</ConfigSection>\n\n"
+        outConfig += indentText(indentLine)+"</ConfigSection>\n"
+        outConfig += indentText(indentLine)+"<!-- Custom Ore Gen Configuration Complete! -->\n"
         
         return outConfig
 
@@ -1300,7 +1354,8 @@ def modDetectLevel():
 def configSetupSection():
     global indentLine
     
-    setupConfig = indentText(indentLine)+"<!-- Setup Screen Configuration -->\n\n"
+    setupConfig = indentText(indentLine)+"\n"
+    setupConfig += indentText(indentLine)+"<!-- Setup Screen Configuration -->\n"
     setupConfig += indentText(indentLine)+"<ConfigSection>\n"
     indentLine += 1
     setupConfig += indentText(indentLine)+"<OptionDisplayGroup name='group"+modConfigName+"' displayName='"+modName+"' displayState='shown'> \n"
@@ -1311,17 +1366,23 @@ def configSetupSection():
     indentLine -= 1
     setupConfig += indentText(indentLine)+"</Description>\n"
     indentLine -= 1
-    setupConfig += indentText(indentLine)+"</OptionDisplayGroup>\n\n"
+    setupConfig += indentText(indentLine)+"</OptionDisplayGroup>\n"
     
     for oreSelect in range (0, len(oreName)):
+        
+        setupConfig += indentText(indentLine)+"\n"
+        setupConfig += indentText(indentLine)+"<!-- "+oreName[oreSelect]+" Configuration UI Starting -->\n"
         setupConfig += indentText(indentLine)+"<ConfigSection>\n"
         indentLine += 1
         setupConfig += controlsGen(oreSelect)
         indentLine -= 1
         setupConfig += indentText(indentLine)+"</ConfigSection> \n"
+        setupConfig += indentText(indentLine)+"<!-- "+oreName[oreSelect]+" Configuration UI Complete -->\n"
+        setupConfig += indentText(indentLine)+"\n"
     
     indentLine -= 1
-    setupConfig += indentText(indentLine)+"</ConfigSection>\n\n"
+    setupConfig += indentText(indentLine)+"</ConfigSection>\n"
+    setupConfig += indentText(indentLine)+"<!-- Setup Screen Complete -->\n\n"
     
     return setupConfig
 
@@ -1336,15 +1397,20 @@ def overworldSetupSection():
     setupConfig += indentText(indentLine)+"<IfCondition condition=':= ?COGActive'>\n"
     indentLine += 1
     setupConfig += depositRemoval("Overworld")
+    setupConfig += indentText(indentLine)+"\n"
     setupConfig += indentText(indentLine)+"<!-- Adding ores --> \n"
                
     for oreSelect in range(0,len(oreName)):
-        setupConfig += indentText(indentLine)+"\n"
-        setupConfig += indentText(indentLine)+"<!-- "+oreName[oreSelect]+" Generation. --> \n"
+        if oreWorld[oreSelect] == "Overworld":
+            setupConfig += indentText(indentLine)+"\n"
+            setupConfig += indentText(indentLine)+"<!-- "+oreName[oreSelect]+" Generation. --> \n"
         setupConfig+=distConfigGen(oreSelect, "Overworld")
     
+    setupConfig += indentText(indentLine)+"<!-- Done adding ores -->\n"
     indentLine -= 1
-    setupConfig += indentText(indentLine)+"</IfCondition>\n\n"
+    setupConfig += indentText(indentLine)+"\n"
+    setupConfig += indentText(indentLine)+"</IfCondition>\n"
+    setupConfig += indentText(indentLine)+"<!-- Overworld Setup Complete -->\n\n"
     
     return setupConfig
     
@@ -1368,13 +1434,20 @@ def netherSetupSection():
     setupConfig += indentText(indentLine)+"<IfCondition condition=':= dimension.generator = \"HellRandomLevelSource\"'>\n"
     indentLine += 1
     setupConfig += depositRemoval("Nether")
+    setupConfig += indentText(indentLine)+"\n"
     setupConfig += indentText(indentLine)+"<!-- Adding ores --> \n"
                
     for oreSelect in range(0,len(oreName)):
+        if oreWorld[oreSelect] == "Nether":
+            setupConfig += indentText(indentLine)+"\n"
+            setupConfig += indentText(indentLine)+"<!-- "+oreName[oreSelect]+" Generation. --> \n"
         setupConfig+=distConfigGen(oreSelect, "Nether")
     
+    setupConfig += indentText(indentLine)+"<!-- Done adding ores -->\n"
     indentLine -= 1
-    setupConfig += indentText(indentLine)+"</IfCondition>\n\n"
+    setupConfig += indentText(indentLine)+"\n"
+    setupConfig += indentText(indentLine)+"</IfCondition>\n"
+    setupConfig += indentText(indentLine)+"<!-- Nether Setup Complete -->\n\n"
     
     return setupConfig
 
@@ -1396,13 +1469,20 @@ def endSetupSection():
     setupConfig += indentText(indentLine)+"<IfCondition condition=':= dimension.generator = \"EndRandomLevelSource\"'>\n"
     indentLine += 1
     setupConfig += depositRemoval("End")
+    setupConfig += indentText(indentLine)+"\n"
     setupConfig += indentText(indentLine)+"<!-- Adding ores --> \n"
                
     for oreSelect in range(0,len(oreName)):
+        if oreWorld[oreSelect] == "End":
+            setupConfig += indentText(indentLine)+"\n"
+            setupConfig += indentText(indentLine)+"<!-- "+oreName[oreSelect]+" Generation. --> \n"
         setupConfig+=distConfigGen(oreSelect, "End")
     
+    setupConfig += indentText(indentLine)+"<!-- Done adding ores -->\n"
     indentLine -= 1
-    setupConfig += indentText(indentLine)+"</IfCondition>\n\n"
+    setupConfig += indentText(indentLine)+"\n"
+    setupConfig += indentText(indentLine)+"</IfCondition>\n"
+    setupConfig += indentText(indentLine)+"<!-- End Setup Complete -->\n\n"
     
     return setupConfig
     
