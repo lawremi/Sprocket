@@ -63,7 +63,9 @@ oreCloudDensity = []    # Density Multiplier for Clouds
 oreVeinDensity = []     # Density Multiplier for Veins
 oreCloudThickness = []  # Thickness Multiplier for Clouds
 oreBiomes = []          # Ores only spawn in these biomes
+oreAvoid = []          # Ores will not spawn in these biomes
 orePreferBiomes = []    # Ores spawn extra in these biomes
+oreNoPreferBiomes = []  # Ores won't spawn extra in these biomes
 orePreMultiplier = []   # "Prefers" Multiplier
 oreScale = []           # COG Surface Scaling
 oreActive= []           # Is ore distribution active by default?
@@ -95,7 +97,9 @@ Config = ConfigParser.SafeConfigParser(
               'Cloud Density':'1',
               'Cloud Thickness':'1',
               'Biomes':'ALL',
+              'Avoid':'NONE',
               'Prefers':'NONE',
+              'Prefers Not':'NONE',
               'Prefers Multiplier':'2',
               'Scale':'Base',
               'Active':'Yes'
@@ -146,7 +150,9 @@ for currentOre in oreName:
     oreVeinDensity.append(Config.get(currentOre, 'Vein Density'))
     oreCloudThickness.append(Config.get(currentOre, 'Cloud Thickness'))
     oreBiomes.append(Config.get(currentOre, 'Biomes'))
+    oreAvoid.append(Config.get(currentOre, 'Avoid'))
     orePreferBiomes.append(Config.get(currentOre, 'Prefers'))
+    oreNoPreferBiomes.append(Config.get(currentOre, 'Prefers Not'))
     orePreMultiplier.append(Config.get(currentOre, 'Prefers Multiplier'))
     oreScale.append(Config.get(currentOre, 'Scale'))
     oreActive.append(Config.get(currentOre, 'Active'))
@@ -200,7 +206,12 @@ def biomeSet(biome):
     biomeCommand = indentText(indentLine)+"<BiomeType name='"+biome+"'/>\n"
     
     return biomeCommand
+
+def biomeAvoid(biome):
+    biomeCommand = indentText(indentLine)+"<BiomeType name='"+biome+"' weight='-1'/>\n"
     
+    return biomeCommand
+
 
 def biomeList(currentBiomeList):
     biomeList = currentBiomeList.split(',')
@@ -209,6 +220,18 @@ def biomeList(currentBiomeList):
     for biomeSelect in range (0, len(biomeList)):
         biomeCommandList += biomeSet(biomeList[biomeSelect])
         if biomeList[biomeSelect] == "ALL":
+            biomeCommandList = ""
+    
+    return biomeCommandList
+
+
+def biomeAvoidList(currentBiomeList):
+    biomeList = currentBiomeList.split(',')
+    biomeCommandList = ""
+    
+    for biomeSelect in range (0, len(biomeList)):
+        biomeCommandList += biomeAvoid(biomeList[biomeSelect])
+        if biomeList[biomeSelect] == "NONE":
             biomeCommandList = ""
     
     return biomeCommandList
@@ -417,10 +440,14 @@ def metaGen(currentMeta):
 def substituteDist(currentOreGen,level):
     orePreConfigName=modPrefix+oreName[currentOreGen]
     orePreBiomeName=oreBiomes[currentOreGen]
+    orePreAvoidName=oreAvoid[currentOreGen]
     orePrePreferName=orePreferBiomes[currentOreGen]
+    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     oreConfigName=orePreConfigName.replace(" ", "")
     oreBiomeName=orePreBiomeName.replace(" ", "")
+    oreAvoidName=orePreAvoidName.replace(" ", "")
     orePreferName=orePrePreferName.replace(" ", "")
+    oreNoPreferName=orePreNoPreferName.replace(" ", "")
     global indentLine
     
     distText = indentText(indentLine)+"<Substitute name='"+oreConfigName+str(level)+"Substitute' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'>\n"
@@ -437,10 +464,14 @@ def substituteDist(currentOreGen,level):
 def vanillaDist(currentOreGen,level):
     orePreConfigName=modPrefix+oreName[currentOreGen]
     orePreBiomeName=oreBiomes[currentOreGen]
+    orePreAvoidName=oreAvoid[currentOreGen]
     orePrePreferName=orePreferBiomes[currentOreGen]
+    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     oreConfigName=orePreConfigName.replace(" ", "")
     oreBiomeName=orePreBiomeName.replace(" ", "")
+    oreAvoidName=orePreAvoidName.replace(" ", "")
     orePreferName=orePrePreferName.replace(" ", "")
+    oreNoPreferName=orePreNoPreferName.replace(" ", "")
     preferMultiplier = ""
     global indentLine
     
@@ -476,9 +507,11 @@ def vanillaDist(currentOreGen,level):
     
     if level == "Prefers":
         distText += biomeList(orePreferName)
+        distText += biomeAvoidList(oreNoPreferName)
     else:
-        distText += biomeList(oreBiomeName)
-    
+        distText += biomeList(oreBiomeName) 
+        distText += biomeAvoidList(oreAvoidName)
+        
     indentLine -= 1
     distText += indentText(indentLine)+"</StandardGen>\n"
         
@@ -495,10 +528,14 @@ def vanillaDist(currentOreGen,level):
 def layeredVeinsDist(currentOreGen,level):
     orePreConfigName=modPrefix+oreName[currentOreGen]
     orePreBiomeName=oreBiomes[currentOreGen]
+    orePreAvoidName=oreAvoid[currentOreGen]
     orePrePreferName=orePreferBiomes[currentOreGen]
+    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     oreConfigName=orePreConfigName.replace(" ", "")
     oreBiomeName=orePreBiomeName.replace(" ", "")
+    oreAvoidName=orePreAvoidName.replace(" ", "")
     orePreferName=orePrePreferName.replace(" ", "")
+    oreNoPreferName=orePreNoPreferName.replace(" ", "")
     preferMultiplier = ""
     global indentLine
     if level == "Prefers":
@@ -537,8 +574,10 @@ def layeredVeinsDist(currentOreGen,level):
     
     if level == "Prefers":
         distText += biomeList(orePreferName)
+        distText += biomeAvoidList(oreNoPreferName)
     else:
-        distText += biomeList(oreBiomeName)
+        distText += biomeList(oreBiomeName)    
+        distText += biomeAvoidList(oreAvoidName)
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
@@ -556,10 +595,14 @@ def layeredVeinsDist(currentOreGen,level):
 def verticalVeinsDist(currentOreGen,level):
     orePreConfigName=modPrefix+oreName[currentOreGen]
     orePreBiomeName=oreBiomes[currentOreGen]
+    orePreAvoidName=oreAvoid[currentOreGen]
     orePrePreferName=orePreferBiomes[currentOreGen]
+    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     oreConfigName=orePreConfigName.replace(" ", "")
     oreBiomeName=orePreBiomeName.replace(" ", "")
+    oreAvoidName=orePreAvoidName.replace(" ", "")
     orePreferName=orePrePreferName.replace(" ", "")
+    oreNoPreferName=orePreNoPreferName.replace(" ", "")
     preferMultiplier = ""
     global indentLine
     if level == "Prefers":
@@ -595,8 +638,10 @@ def verticalVeinsDist(currentOreGen,level):
     
     if level == "Prefers":
         distText += biomeList(orePreferName)
+        distText += biomeAvoidList(oreNoPreferName)
     else:
-        distText += biomeList(oreBiomeName)
+        distText += biomeList(oreBiomeName)    
+        distText += biomeAvoidList(oreAvoidName)
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
@@ -614,10 +659,14 @@ def verticalVeinsDist(currentOreGen,level):
 def smallDepositsDist(currentOreGen,level):
     orePreConfigName=modPrefix+oreName[currentOreGen]
     orePreBiomeName=oreBiomes[currentOreGen]
+    orePreAvoidName=oreAvoid[currentOreGen]
     orePrePreferName=orePreferBiomes[currentOreGen]
+    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     oreConfigName=orePreConfigName.replace(" ", "")
     oreBiomeName=orePreBiomeName.replace(" ", "")
+    oreAvoidName=orePreAvoidName.replace(" ", "")
     orePreferName=orePrePreferName.replace(" ", "")
+    oreNoPreferName=orePreNoPreferName.replace(" ", "")
     preferMultiplier = ""
     global indentLine
     if level == "Prefers":
@@ -654,8 +703,10 @@ def smallDepositsDist(currentOreGen,level):
     
     if level == "Prefers":
         distText += biomeList(orePreferName)
+        distText += biomeAvoidList(oreNoPreferName)
     else:
-        distText += biomeList(oreBiomeName)
+        distText += biomeList(oreBiomeName)    
+        distText += biomeAvoidList(oreAvoidName)
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
@@ -673,10 +724,14 @@ def smallDepositsDist(currentOreGen,level):
 def geodesDist(currentOreGen,level):
     orePreConfigName=modPrefix+oreName[currentOreGen]
     orePreBiomeName=oreBiomes[currentOreGen]
+    orePreAvoidName=oreAvoid[currentOreGen]
     orePrePreferName=orePreferBiomes[currentOreGen]
+    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     oreConfigName=orePreConfigName.replace(" ", "")
     oreBiomeName=orePreBiomeName.replace(" ", "")
+    oreAvoidName=orePreAvoidName.replace(" ", "")
     orePreferName=orePrePreferName.replace(" ", "")
+    oreNoPreferName=orePreNoPreferName.replace(" ", "")
     preferMultiplier = ""
     global indentLine
     geodeSeed = "'0x"+randomHexNumber(4)+"'"
@@ -715,11 +770,13 @@ def geodesDist(currentOreGen,level):
         distText += indentText(indentLine)+"<Replaces block='minecraft:water'/>\n"
         distText += indentText(indentLine)+"<Replaces block='minecraft:lava'/>\n"
         distText += indentText(indentLine)+"<Replaces block='"+oreReplace[currentOreGen]+"'/>\n"
- 
+    
     if level == "Prefers":
         distText += biomeList(orePreferName)
+        distText += biomeAvoidList(oreNoPreferName)
     else:
-        distText += biomeList(oreBiomeName)
+        distText += biomeList(oreBiomeName)    
+        distText += biomeAvoidList(oreAvoidName)
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
@@ -756,8 +813,10 @@ def geodesDist(currentOreGen,level):
     
     if level == "Prefers":
         distText += biomeList(orePreferName)
+        distText += biomeAvoidList(oreNoPreferName)
     else:
-        distText += biomeList(oreBiomeName)
+        distText += biomeList(oreBiomeName)    
+        distText += biomeAvoidList(oreAvoidName)
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
@@ -794,8 +853,10 @@ def geodesDist(currentOreGen,level):
     
     if level == "Prefers":
         distText += biomeList(orePreferName)
+        distText += biomeAvoidList(oreNoPreferName)
     else:
-        distText += biomeList(oreBiomeName)
+        distText += biomeList(oreBiomeName)    
+        distText += biomeAvoidList(oreAvoidName)
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
@@ -816,10 +877,14 @@ def geodesDist(currentOreGen,level):
 def hugeVeinsDist(currentOreGen,level):
     orePreConfigName=modPrefix+oreName[currentOreGen]
     orePreBiomeName=oreBiomes[currentOreGen]
+    orePreAvoidName=oreAvoid[currentOreGen]
     orePrePreferName=orePreferBiomes[currentOreGen]
+    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     oreConfigName=orePreConfigName.replace(" ", "")
     oreBiomeName=orePreBiomeName.replace(" ", "")
+    oreAvoidName=orePreAvoidName.replace(" ", "")
     orePreferName=orePrePreferName.replace(" ", "")
+    oreNoPreferName=orePreNoPreferName.replace(" ", "")
     preferMultiplier = ""
     global indentLine
     if level == "Prefers":
@@ -863,8 +928,10 @@ def hugeVeinsDist(currentOreGen,level):
     
     if level == "Prefers":
         distText += biomeList(orePreferName)
+        distText += biomeAvoidList(oreNoPreferName)
     else:
-        distText += biomeList(oreBiomeName)
+        distText += biomeList(oreBiomeName)    
+        distText += biomeAvoidList(oreAvoidName)
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
@@ -882,10 +949,14 @@ def hugeVeinsDist(currentOreGen,level):
 def sparseVeinsDist(currentOreGen,level):
     orePreConfigName=modPrefix+oreName[currentOreGen]
     orePreBiomeName=oreBiomes[currentOreGen]
+    orePreAvoidName=oreAvoid[currentOreGen]
     orePrePreferName=orePreferBiomes[currentOreGen]
+    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     oreConfigName=orePreConfigName.replace(" ", "")
     oreBiomeName=orePreBiomeName.replace(" ", "")
+    oreAvoidName=orePreAvoidName.replace(" ", "")
     orePreferName=orePrePreferName.replace(" ", "")
+    oreNoPreferName=orePreNoPreferName.replace(" ", "")
     preferMultiplier = ""
     global indentLine
     if level == "Prefers":
@@ -925,8 +996,10 @@ def sparseVeinsDist(currentOreGen,level):
     
     if level == "Prefers":
         distText += biomeList(orePreferName)
+        distText += biomeAvoidList(oreNoPreferName)
     else:
-        distText += biomeList(oreBiomeName)
+        distText += biomeList(oreBiomeName)    
+        distText += biomeAvoidList(oreAvoidName)
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
@@ -944,10 +1017,14 @@ def sparseVeinsDist(currentOreGen,level):
 def pipeVeinsDist(currentOreGen,level):
     orePreConfigName=modPrefix+oreName[currentOreGen]
     orePreBiomeName=oreBiomes[currentOreGen]
+    orePreAvoidName=oreAvoid[currentOreGen]
     orePrePreferName=orePreferBiomes[currentOreGen]
+    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     oreConfigName=orePreConfigName.replace(" ", "")
     oreBiomeName=orePreBiomeName.replace(" ", "")
+    oreAvoidName=orePreAvoidName.replace(" ", "")
     orePreferName=orePrePreferName.replace(" ", "")
+    oreNoPreferName=orePreNoPreferName.replace(" ", "")
     preferMultiplier = ""
     global indentLine
     pipeSeed = "'0x"+randomHexNumber(4)+"'"
@@ -989,8 +1066,10 @@ def pipeVeinsDist(currentOreGen,level):
     
     if level == "Prefers":
         distText += biomeList(orePreferName)
+        distText += biomeAvoidList(oreNoPreferName)
     else:
-        distText += biomeList(oreBiomeName)
+        distText += biomeList(oreBiomeName)    
+        distText += biomeAvoidList(oreAvoidName)
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
@@ -1033,8 +1112,10 @@ def pipeVeinsDist(currentOreGen,level):
     
     if level == "Prefers":
         distText += biomeList(orePreferName)
+        distText += biomeAvoidList(oreNoPreferName)
     else:
-        distText += biomeList(oreBiomeName)
+        distText += biomeList(oreBiomeName)    
+        distText += biomeAvoidList(oreAvoidName)
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
@@ -1054,10 +1135,14 @@ def pipeVeinsDist(currentOreGen,level):
 #def compoundVeinsDist(currentOreGen,level):
 #    orePreConfigName=modPrefix+oreName[currentOreGen]
 #    orePreBiomeName=oreBiomes[currentOreGen]
+#    orePreAvoidName=oreAvoid[currentOreGen]
 #    orePrePreferName=orePreferBiomes[currentOreGen]
+#    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
 #    oreConfigName=orePreConfigName.replace(" ", "")
 #    oreBiomeName=orePreBiomeName.replace(" ", "")
+#    oreAvoidName=orePreAvoidName.replace(" ", "")
 #    orePreferName=orePrePreferName.replace(" ", "")
+#    oreNoPreferName=orePreNoPreferName.replace(" ", "")
 #    preferMultiplier = ""
 #    global indentLineif level == "Prefers":
 #        preferMultiplier = orePreMultiplier[currentOreGen]
@@ -1093,8 +1178,10 @@ def pipeVeinsDist(currentOreGen,level):
 #    
 #    if level == "Prefers":
 #        distText += biomeList(orePreferName)
+#        distText += biomeAvoidList(oreNoPreferName)
 #    else:
-#        distText += biomeList(oreBiomeName)
+#        distText += biomeList(oreBiomeName)    
+#        distText += biomeAvoidList(oreAvoidName)
 #    
 #    indentLine -= 1
 #    distText += indentText(indentLine)+"</Veins>\n"
@@ -1126,8 +1213,10 @@ def pipeVeinsDist(currentOreGen,level):
 #    
 #    if level == "Prefers":
 #        distText += biomeList(orePreferName)
+#        distText += biomeAvoidList(oreNoPreferName)
 #    else:
-#        distText += biomeList(oreBiomeName)
+#        distText += biomeList(oreBiomeName)    
+#        distText += biomeAvoidList(oreAvoidName)
 #    
 #    indentLine -= 1
 #    distText += indentText(indentLine)+"</Veins>\n"
@@ -1145,10 +1234,14 @@ def pipeVeinsDist(currentOreGen,level):
 def strategicCloudsDist(currentOreGen,level):
     orePreConfigName=modPrefix+oreName[currentOreGen]
     orePreBiomeName=oreBiomes[currentOreGen]
+    orePreAvoidName=oreAvoid[currentOreGen]
     orePrePreferName=orePreferBiomes[currentOreGen]
+    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     oreConfigName=orePreConfigName.replace(" ", "")
     oreBiomeName=orePreBiomeName.replace(" ", "")
+    oreAvoidName=orePreAvoidName.replace(" ", "")
     orePreferName=orePrePreferName.replace(" ", "")
+    oreNoPreferName=orePreNoPreferName.replace(" ", "")
     preferMultiplier = ""
     global indentLine
     if level == "Prefers":
@@ -1193,8 +1286,10 @@ def strategicCloudsDist(currentOreGen,level):
     
     if level == "Prefers":
         distText += biomeList(orePreferName)
+        distText += biomeAvoidList(oreNoPreferName)
     else:
-        distText += biomeList(oreBiomeName)
+        distText += biomeList(oreBiomeName)    
+        distText += biomeAvoidList(oreAvoidName)
 
     if level == "Prefers":
         preferMultiplier = orePreMultiplier[currentOreGen]
@@ -1227,11 +1322,13 @@ def strategicCloudsDist(currentOreGen,level):
     distText += indentText(indentLine)+"</Description>\n"
     distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
     distText += indentText(indentLine)+"<WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
-
+    
     if level == "Prefers":
         distText += biomeList(orePreferName)
+        distText += biomeAvoidList(oreNoPreferName)
     else:
-        distText += biomeList(oreBiomeName)
+        distText += biomeList(oreBiomeName)    
+        distText += biomeAvoidList(oreAvoidName)
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
