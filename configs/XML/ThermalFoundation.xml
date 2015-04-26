@@ -296,14 +296,14 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin LayeredVeins distribution of Copper -->
                 <IfCondition condition=':= thfoCopperDist = "layeredVeins"'>
                 
-                    <Veins name='thfoCopper0Veins' block='ThermalFoundation:Ore' inherits='PresetLayeredVeins'>
+                    <Veins name='thfoCopperBaseVeins' block='ThermalFoundation:Ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thfoCopperSize * _default_' range=':= 1 * 1 * thfoCopperSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * thfoCopperFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thfoCopperSize * _default_' range=':= 1 * 1 * thfoCopperSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * thfoCopperSize * _default_' range=':= 1 * 1 * thfoCopperSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -311,19 +311,14 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Copper Layered Veins) Settings -->
-                    <Veins name='thfoCopper1Veins' block='ThermalFoundation:Ore' inherits='PresetLayeredVeins'>
+                    <Veins name='thfoCopperPrefersVeins' block='ThermalFoundation:Ore' inherits='thfoCopperBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thfoCopperSize * _default_' range=':= 1 * 1 * thfoCopperSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * thfoCopperFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * thfoCopperSize * _default_' range=':= 1 * 1 * thfoCopperSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Copper Layered Veins) Settings -->
@@ -335,7 +330,7 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin  StrategicCloud distribution of Copper -->
                 <IfCondition condition=':= thfoCopperDist = "strategicCloud"'>
                 
-                    <Cloud name='thfoCopper0Cloud' block='ThermalFoundation:Ore' inherits='PresetStrategicCloud'>
+                    <Cloud name='thfoCopperBaseCloud' block='ThermalFoundation:Ore' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -355,55 +350,37 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Copper Strategic Cloud Hint Veins -->
-                        <Veins name='thfoCopper0HintVeins' block='ThermalFoundation:Ore' inherits='PresetHintVeins'>
+                        <Veins name='thfoCopperBaseHintVeins' block='ThermalFoundation:Ore' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x604a330c</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 2.5 * thfoCopperFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thfoCopperSize * _default_' range=':= 1 * 1 * thfoCopperSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Copper Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Copper Strategic Cloud) Settings -->
-                    <Cloud name='thfoCopper1Cloud' block='ThermalFoundation:Ore' inherits='PresetStrategicCloud'>
+                    <Cloud name='thfoCopperPrefersCloud' block='ThermalFoundation:Ore' inherits='thfoCopperBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * thfoCopperFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * thfoCopperSize * _default_' range=':= 1 * 1 * thfoCopperSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * thfoCopperSize * _default_' range=':= 1 * 1 * thfoCopperSize * _default_'/>
-                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * thfoCopperSize * _default_' range=':= 1 * 1 * 1 * thfoCopperSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                         
                         <!-- Begin Copper Strategic Cloud Hint Veins -->
-                        <Veins name='thfoCopper1HintVeins' block='ThermalFoundation:Ore' inherits='PresetHintVeins'>
+                        <Veins name='thfoCopperPrefersHintVeins' block='ThermalFoundation:Ore' inherits='thfoCopperBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x604a330c</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 2.5 * thfoCopperFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thfoCopperSize * _default_' range=':= 1 * 1 * thfoCopperSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
                         <!-- End Copper Strategic Cloud Hint Veins -->
@@ -418,30 +395,26 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin  Vanilla distribution of Copper -->
                 <IfCondition condition=':= thfoCopperDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='thfoCopper0Standard' block='ThermalFoundation:Ore' inherits='PresetStandardGen'>
+                    <StandardGen name='thfoCopperBaseStandard' block='ThermalFoundation:Ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * thfoCopperSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * thfoCopperFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * thfoCopperSize * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Copper Vanilla) Settings -->
-                    <StandardGen name='thfoCopper1Standard' block='ThermalFoundation:Ore' inherits='PresetStandardGen'>
+                    <StandardGen name='thfoCopperPrefersStandard' block='ThermalFoundation:Ore' inherits='thfoCopperBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * thfoCopperSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * thfoCopperFreq * _default_'/>
-                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Copper Vanilla) Settings -->
@@ -457,14 +430,14 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin LayeredVeins distribution of Tin -->
                 <IfCondition condition=':= thfoTinDist = "layeredVeins"'>
                 
-                    <Veins name='thfoTin0Veins' block='ThermalFoundation:Ore:1' inherits='PresetLayeredVeins'>
+                    <Veins name='thfoTinBaseVeins' block='ThermalFoundation:Ore:1' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thfoTinSize * _default_' range=':= 1 * 1 * thfoTinSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * thfoTinFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thfoTinSize * _default_' range=':= 1 * 1 * thfoTinSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * thfoTinSize * _default_' range=':= 1 * 1 * thfoTinSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -472,19 +445,14 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Tin Layered Veins) Settings -->
-                    <Veins name='thfoTin1Veins' block='ThermalFoundation:Ore:1' inherits='PresetLayeredVeins'>
+                    <Veins name='thfoTinPrefersVeins' block='ThermalFoundation:Ore:1' inherits='thfoTinBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thfoTinSize * _default_' range=':= 1 * 1 * thfoTinSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * thfoTinFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * thfoTinSize * _default_' range=':= 1 * 1 * thfoTinSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Tin Layered Veins) Settings -->
@@ -496,7 +464,7 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin  StrategicCloud distribution of Tin -->
                 <IfCondition condition=':= thfoTinDist = "strategicCloud"'>
                 
-                    <Cloud name='thfoTin0Cloud' block='ThermalFoundation:Ore:1' inherits='PresetStrategicCloud'>
+                    <Cloud name='thfoTinBaseCloud' block='ThermalFoundation:Ore:1' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -516,55 +484,37 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Tin Strategic Cloud Hint Veins -->
-                        <Veins name='thfoTin0HintVeins' block='ThermalFoundation:Ore:1' inherits='PresetHintVeins'>
+                        <Veins name='thfoTinBaseHintVeins' block='ThermalFoundation:Ore:1' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x604a330c</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 2.5 * thfoTinFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thfoTinSize * _default_' range=':= 1 * 1 * thfoTinSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Tin Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Tin Strategic Cloud) Settings -->
-                    <Cloud name='thfoTin1Cloud' block='ThermalFoundation:Ore:1' inherits='PresetStrategicCloud'>
+                    <Cloud name='thfoTinPrefersCloud' block='ThermalFoundation:Ore:1' inherits='thfoTinBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * thfoTinFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * thfoTinSize * _default_' range=':= 1 * 1 * thfoTinSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * thfoTinSize * _default_' range=':= 1 * 1 * thfoTinSize * _default_'/>
-                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * thfoTinSize * _default_' range=':= 1 * 1 * 1 * thfoTinSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                         
                         <!-- Begin Tin Strategic Cloud Hint Veins -->
-                        <Veins name='thfoTin1HintVeins' block='ThermalFoundation:Ore:1' inherits='PresetHintVeins'>
+                        <Veins name='thfoTinPrefersHintVeins' block='ThermalFoundation:Ore:1' inherits='thfoTinBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x604a330c</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 2.5 * thfoTinFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thfoTinSize * _default_' range=':= 1 * 1 * thfoTinSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
                         <!-- End Tin Strategic Cloud Hint Veins -->
@@ -579,30 +529,26 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin  Vanilla distribution of Tin -->
                 <IfCondition condition=':= thfoTinDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='thfoTin0Standard' block='ThermalFoundation:Ore:1' inherits='PresetStandardGen'>
+                    <StandardGen name='thfoTinBaseStandard' block='ThermalFoundation:Ore:1' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * thfoTinSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * thfoTinFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * thfoTinSize * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Tin Vanilla) Settings -->
-                    <StandardGen name='thfoTin1Standard' block='ThermalFoundation:Ore:1' inherits='PresetStandardGen'>
+                    <StandardGen name='thfoTinPrefersStandard' block='ThermalFoundation:Ore:1' inherits='thfoTinBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * thfoTinSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * thfoTinFreq * _default_'/>
-                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Tin Vanilla) Settings -->
@@ -618,14 +564,14 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin LayeredVeins distribution of Silver -->
                 <IfCondition condition=':= thfoSilverDist = "layeredVeins"'>
                 
-                    <Veins name='thfoSilver0Veins' block='ThermalFoundation:Ore:2' inherits='PresetLayeredVeins'>
+                    <Veins name='thfoSilverBaseVeins' block='ThermalFoundation:Ore:2' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * thfoSilverSize * _default_' range=':= 1 * 0.8 * thfoSilverSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * thfoSilverFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * thfoSilverSize * _default_' range=':= 1 * 0.8 * thfoSilverSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * thfoSilverSize * _default_' range=':= 1 * 0.8 * thfoSilverSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -633,19 +579,14 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Silver Layered Veins) Settings -->
-                    <Veins name='thfoSilver1Veins' block='ThermalFoundation:Ore:2' inherits='PresetLayeredVeins'>
+                    <Veins name='thfoSilverPrefersVeins' block='ThermalFoundation:Ore:2' inherits='thfoSilverBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * thfoSilverSize * _default_' range=':= 1 * 0.8 * thfoSilverSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * thfoSilverFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * thfoSilverSize * _default_' range=':= 1 * 0.8 * thfoSilverSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Silver Layered Veins) Settings -->
@@ -657,7 +598,7 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin  StrategicCloud distribution of Silver -->
                 <IfCondition condition=':= thfoSilverDist = "strategicCloud"'>
                 
-                    <Cloud name='thfoSilver0Cloud' block='ThermalFoundation:Ore:2' inherits='PresetStrategicCloud'>
+                    <Cloud name='thfoSilverBaseCloud' block='ThermalFoundation:Ore:2' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -677,55 +618,37 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Silver Strategic Cloud Hint Veins -->
-                        <Veins name='thfoSilver0HintVeins' block='ThermalFoundation:Ore:2' inherits='PresetHintVeins'>
+                        <Veins name='thfoSilverBaseHintVeins' block='ThermalFoundation:Ore:2' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x604a330c</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * thfoSilverFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * thfoSilverSize * _default_' range=':= 1 * 0.8 * thfoSilverSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Silver Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Silver Strategic Cloud) Settings -->
-                    <Cloud name='thfoSilver1Cloud' block='ThermalFoundation:Ore:2' inherits='PresetStrategicCloud'>
+                    <Cloud name='thfoSilverPrefersCloud' block='ThermalFoundation:Ore:2' inherits='thfoSilverBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * thfoSilverFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * thfoSilverSize * _default_' range=':= 1 * 0.8 * thfoSilverSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * thfoSilverSize * _default_' range=':= 1 * 0.8 * thfoSilverSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * thfoSilverSize * _default_' range=':= 1 * 1 * 0.8 * thfoSilverSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                         
                         <!-- Begin Silver Strategic Cloud Hint Veins -->
-                        <Veins name='thfoSilver1HintVeins' block='ThermalFoundation:Ore:2' inherits='PresetHintVeins'>
+                        <Veins name='thfoSilverPrefersHintVeins' block='ThermalFoundation:Ore:2' inherits='thfoSilverBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x604a330c</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * thfoSilverFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * thfoSilverSize * _default_' range=':= 1 * 0.8 * thfoSilverSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
                         <!-- End Silver Strategic Cloud Hint Veins -->
@@ -740,30 +663,26 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin  Vanilla distribution of Silver -->
                 <IfCondition condition=':= thfoSilverDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='thfoSilver0Standard' block='ThermalFoundation:Ore:2' inherits='PresetStandardGen'>
+                    <StandardGen name='thfoSilverBaseStandard' block='ThermalFoundation:Ore:2' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * thfoSilverSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * thfoSilverFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * thfoSilverSize * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Silver Vanilla) Settings -->
-                    <StandardGen name='thfoSilver1Standard' block='ThermalFoundation:Ore:2' inherits='PresetStandardGen'>
+                    <StandardGen name='thfoSilverPrefersStandard' block='ThermalFoundation:Ore:2' inherits='thfoSilverBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * thfoSilverSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * thfoSilverFreq * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Silver Vanilla) Settings -->
@@ -779,14 +698,14 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin LayeredVeins distribution of Lead -->
                 <IfCondition condition=':= thfoLeadDist = "layeredVeins"'>
                 
-                    <Veins name='thfoLead0Veins' block='ThermalFoundation:Ore:3' inherits='PresetLayeredVeins'>
+                    <Veins name='thfoLeadBaseVeins' block='ThermalFoundation:Ore:3' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thfoLeadSize * _default_' range=':= 1 * 1 * thfoLeadSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * thfoLeadFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thfoLeadSize * _default_' range=':= 1 * 1 * thfoLeadSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * thfoLeadSize * _default_' range=':= 1 * 1 * thfoLeadSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -794,19 +713,14 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Lead Layered Veins) Settings -->
-                    <Veins name='thfoLead1Veins' block='ThermalFoundation:Ore:3' inherits='PresetLayeredVeins'>
+                    <Veins name='thfoLeadPrefersVeins' block='ThermalFoundation:Ore:3' inherits='thfoLeadBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thfoLeadSize * _default_' range=':= 1 * 1 * thfoLeadSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * thfoLeadFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * thfoLeadSize * _default_' range=':= 1 * 1 * thfoLeadSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Lead Layered Veins) Settings -->
@@ -818,7 +732,7 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin  StrategicCloud distribution of Lead -->
                 <IfCondition condition=':= thfoLeadDist = "strategicCloud"'>
                 
-                    <Cloud name='thfoLead0Cloud' block='ThermalFoundation:Ore:3' inherits='PresetStrategicCloud'>
+                    <Cloud name='thfoLeadBaseCloud' block='ThermalFoundation:Ore:3' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -838,55 +752,37 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Lead Strategic Cloud Hint Veins -->
-                        <Veins name='thfoLead0HintVeins' block='ThermalFoundation:Ore:3' inherits='PresetHintVeins'>
+                        <Veins name='thfoLeadBaseHintVeins' block='ThermalFoundation:Ore:3' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x604a330c</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 2.5 * thfoLeadFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thfoLeadSize * _default_' range=':= 1 * 1 * thfoLeadSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Lead Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Lead Strategic Cloud) Settings -->
-                    <Cloud name='thfoLead1Cloud' block='ThermalFoundation:Ore:3' inherits='PresetStrategicCloud'>
+                    <Cloud name='thfoLeadPrefersCloud' block='ThermalFoundation:Ore:3' inherits='thfoLeadBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * thfoLeadFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * thfoLeadSize * _default_' range=':= 1 * 1 * thfoLeadSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * thfoLeadSize * _default_' range=':= 1 * 1 * thfoLeadSize * _default_'/>
-                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * thfoLeadSize * _default_' range=':= 1 * 1 * 1 * thfoLeadSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                         
                         <!-- Begin Lead Strategic Cloud Hint Veins -->
-                        <Veins name='thfoLead1HintVeins' block='ThermalFoundation:Ore:3' inherits='PresetHintVeins'>
+                        <Veins name='thfoLeadPrefersHintVeins' block='ThermalFoundation:Ore:3' inherits='thfoLeadBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x604a330c</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 2.5 * thfoLeadFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thfoLeadSize * _default_' range=':= 1 * 1 * thfoLeadSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
                         <!-- End Lead Strategic Cloud Hint Veins -->
@@ -901,30 +797,26 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin  Vanilla distribution of Lead -->
                 <IfCondition condition=':= thfoLeadDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='thfoLead0Standard' block='ThermalFoundation:Ore:3' inherits='PresetStandardGen'>
+                    <StandardGen name='thfoLeadBaseStandard' block='ThermalFoundation:Ore:3' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * thfoLeadSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * thfoLeadFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * thfoLeadSize * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Lead Vanilla) Settings -->
-                    <StandardGen name='thfoLead1Standard' block='ThermalFoundation:Ore:3' inherits='PresetStandardGen'>
+                    <StandardGen name='thfoLeadPrefersStandard' block='ThermalFoundation:Ore:3' inherits='thfoLeadBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * thfoLeadSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * thfoLeadFreq * _default_'/>
-                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Lead Vanilla) Settings -->
@@ -940,14 +832,14 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin LayeredVeins distribution of Ferrous -->
                 <IfCondition condition=':= thfoFerrousDist = "layeredVeins"'>
                 
-                    <Veins name='thfoFerrous0Veins' block='ThermalFoundation:Ore:4' inherits='PresetLayeredVeins'>
+                    <Veins name='thfoFerrousBaseVeins' block='ThermalFoundation:Ore:4' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thfoFerrousSize * _default_' range=':= 1 * 1 * thfoFerrousSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * thfoFerrousFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thfoFerrousSize * _default_' range=':= 1 * 1 * thfoFerrousSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * thfoFerrousSize * _default_' range=':= 1 * 1 * thfoFerrousSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -955,19 +847,14 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Ferrous Layered Veins) Settings -->
-                    <Veins name='thfoFerrous1Veins' block='ThermalFoundation:Ore:4' inherits='PresetLayeredVeins'>
+                    <Veins name='thfoFerrousPrefersVeins' block='ThermalFoundation:Ore:4' inherits='thfoFerrousBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * thfoFerrousSize * _default_' range=':= 1 * 1 * thfoFerrousSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * thfoFerrousFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * thfoFerrousSize * _default_' range=':= 1 * 1 * thfoFerrousSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Ferrous Layered Veins) Settings -->
@@ -979,7 +866,7 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin  StrategicCloud distribution of Ferrous -->
                 <IfCondition condition=':= thfoFerrousDist = "strategicCloud"'>
                 
-                    <Cloud name='thfoFerrous0Cloud' block='ThermalFoundation:Ore:4' inherits='PresetStrategicCloud'>
+                    <Cloud name='thfoFerrousBaseCloud' block='ThermalFoundation:Ore:4' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -999,55 +886,37 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Ferrous Strategic Cloud Hint Veins -->
-                        <Veins name='thfoFerrous0HintVeins' block='ThermalFoundation:Ore:4' inherits='PresetHintVeins'>
+                        <Veins name='thfoFerrousBaseHintVeins' block='ThermalFoundation:Ore:4' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x604a330c</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 2.5 * thfoFerrousFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thfoFerrousSize * _default_' range=':= 1 * 1 * thfoFerrousSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Ferrous Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Ferrous Strategic Cloud) Settings -->
-                    <Cloud name='thfoFerrous1Cloud' block='ThermalFoundation:Ore:4' inherits='PresetStrategicCloud'>
+                    <Cloud name='thfoFerrousPrefersCloud' block='ThermalFoundation:Ore:4' inherits='thfoFerrousBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * thfoFerrousFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * thfoFerrousSize * _default_' range=':= 1 * 1 * thfoFerrousSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * thfoFerrousSize * _default_' range=':= 1 * 1 * thfoFerrousSize * _default_'/>
-                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * thfoFerrousSize * _default_' range=':= 1 * 1 * 1 * thfoFerrousSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                         
                         <!-- Begin Ferrous Strategic Cloud Hint Veins -->
-                        <Veins name='thfoFerrous1HintVeins' block='ThermalFoundation:Ore:4' inherits='PresetHintVeins'>
+                        <Veins name='thfoFerrousPrefersHintVeins' block='ThermalFoundation:Ore:4' inherits='thfoFerrousBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x604a330c</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 2.5 * thfoFerrousFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thfoFerrousSize * _default_' range=':= 1 * 1 * thfoFerrousSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
                         <!-- End Ferrous Strategic Cloud Hint Veins -->
@@ -1062,30 +931,26 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin  Vanilla distribution of Ferrous -->
                 <IfCondition condition=':= thfoFerrousDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='thfoFerrous0Standard' block='ThermalFoundation:Ore:4' inherits='PresetStandardGen'>
+                    <StandardGen name='thfoFerrousBaseStandard' block='ThermalFoundation:Ore:4' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * thfoFerrousSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * thfoFerrousFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * thfoFerrousSize * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Ferrous Vanilla) Settings -->
-                    <StandardGen name='thfoFerrous1Standard' block='ThermalFoundation:Ore:4' inherits='PresetStandardGen'>
+                    <StandardGen name='thfoFerrousPrefersStandard' block='ThermalFoundation:Ore:4' inherits='thfoFerrousBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * thfoFerrousSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * thfoFerrousFreq * _default_'/>
-                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Ferrous Vanilla) Settings -->
@@ -1101,14 +966,14 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin LayeredVeins distribution of Shiny -->
                 <IfCondition condition=':= thfoShinyDist = "layeredVeins"'>
                 
-                    <Veins name='thfoShiny0Veins' block='ThermalFoundation:Ore:5' inherits='PresetLayeredVeins'>
+                    <Veins name='thfoShinyBaseVeins' block='ThermalFoundation:Ore:5' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * thfoShinySize * _default_' range=':= 1 * 0.8 * thfoShinySize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * thfoShinyFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * thfoShinySize * _default_' range=':= 1 * 0.8 * thfoShinySize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * thfoShinySize * _default_' range=':= 1 * 0.8 * thfoShinySize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -1116,19 +981,14 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Shiny Layered Veins) Settings -->
-                    <Veins name='thfoShiny1Veins' block='ThermalFoundation:Ore:5' inherits='PresetLayeredVeins'>
+                    <Veins name='thfoShinyPrefersVeins' block='ThermalFoundation:Ore:5' inherits='thfoShinyBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * thfoShinySize * _default_' range=':= 1 * 0.8 * thfoShinySize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * thfoShinyFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * thfoShinySize * _default_' range=':= 1 * 0.8 * thfoShinySize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Shiny Layered Veins) Settings -->
@@ -1140,7 +1000,7 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin  StrategicCloud distribution of Shiny -->
                 <IfCondition condition=':= thfoShinyDist = "strategicCloud"'>
                 
-                    <Cloud name='thfoShiny0Cloud' block='ThermalFoundation:Ore:5' inherits='PresetStrategicCloud'>
+                    <Cloud name='thfoShinyBaseCloud' block='ThermalFoundation:Ore:5' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1160,55 +1020,37 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Shiny Strategic Cloud Hint Veins -->
-                        <Veins name='thfoShiny0HintVeins' block='ThermalFoundation:Ore:5' inherits='PresetHintVeins'>
+                        <Veins name='thfoShinyBaseHintVeins' block='ThermalFoundation:Ore:5' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x604a330c</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * thfoShinyFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * thfoShinySize * _default_' range=':= 1 * 0.8 * thfoShinySize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Shiny Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Shiny Strategic Cloud) Settings -->
-                    <Cloud name='thfoShiny1Cloud' block='ThermalFoundation:Ore:5' inherits='PresetStrategicCloud'>
+                    <Cloud name='thfoShinyPrefersCloud' block='ThermalFoundation:Ore:5' inherits='thfoShinyBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * thfoShinyFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * thfoShinySize * _default_' range=':= 1 * 0.8 * thfoShinySize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * thfoShinySize * _default_' range=':= 1 * 0.8 * thfoShinySize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * thfoShinySize * _default_' range=':= 1 * 1 * 0.8 * thfoShinySize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                         
                         <!-- Begin Shiny Strategic Cloud Hint Veins -->
-                        <Veins name='thfoShiny1HintVeins' block='ThermalFoundation:Ore:5' inherits='PresetHintVeins'>
+                        <Veins name='thfoShinyPrefersHintVeins' block='ThermalFoundation:Ore:5' inherits='thfoShinyBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x604a330c</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * thfoShinyFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * thfoShinySize * _default_' range=':= 1 * 0.8 * thfoShinySize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
                         <!-- End Shiny Strategic Cloud Hint Veins -->
@@ -1223,30 +1065,26 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin  Vanilla distribution of Shiny -->
                 <IfCondition condition=':= thfoShinyDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='thfoShiny0Standard' block='ThermalFoundation:Ore:5' inherits='PresetStandardGen'>
+                    <StandardGen name='thfoShinyBaseStandard' block='ThermalFoundation:Ore:5' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * thfoShinySize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * thfoShinyFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * thfoShinySize * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Shiny Vanilla) Settings -->
-                    <StandardGen name='thfoShiny1Standard' block='ThermalFoundation:Ore:5' inherits='PresetStandardGen'>
+                    <StandardGen name='thfoShinyPrefersStandard' block='ThermalFoundation:Ore:5' inherits='thfoShinyBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * thfoShinySize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * thfoShinyFreq * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Shiny Vanilla) Settings -->
@@ -1262,7 +1100,7 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin SparseVeins distribution of Mana Infused -->
                 <IfCondition condition=':= thfoManaInfusedDist = "sparseVeins"'>
                 
-                    <Veins name='thfoManaInfused0Veins' block='ThermalFoundation:Ore:5' inherits='PresetSparseVeins'>
+                    <Veins name='thfoManaInfusedBaseVeins' block='ThermalFoundation:Ore:5' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
                             these veins are relatively wide and long.  Mining the ore from them is time consuming 
@@ -1286,7 +1124,7 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin  Small Deposits distribution of Mana Infused -->
                 <IfCondition condition=':= thfoManaInfusedDist = "smallDeposits"'>
                 
-                    <Veins name='thfoManaInfused0Veins' block='ThermalFoundation:Ore:5' inherits='PresetSmallDeposits'>
+                    <Veins name='thfoManaInfusedBaseVeins' block='ThermalFoundation:Ore:5' inherits='PresetSmallDeposits'>
                         <Description>
                             Small motherlodes without any branches.
                             Similar to the deposits produced by StandardGen distributions.
@@ -1307,7 +1145,7 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin  StrategicCloud distribution of Mana Infused -->
                 <IfCondition condition=':= thfoManaInfusedDist = "strategicCloud"'>
                 
-                    <Cloud name='thfoManaInfused0Cloud' block='ThermalFoundation:Ore:5' inherits='PresetStrategicCloud'>
+                    <Cloud name='thfoManaInfusedBaseCloud' block='ThermalFoundation:Ore:5' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1327,16 +1165,15 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Mana Infused Strategic Cloud Hint Veins -->
-                        <Veins name='thfoManaInfused0HintVeins' block='ThermalFoundation:Ore:5' inherits='PresetHintVeins'>
+                        <Veins name='thfoManaInfusedBaseHintVeins' block='ThermalFoundation:Ore:5' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x604a330c</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * thfoManaInfusedFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 32' range=':= 32' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * thfoManaInfusedSize * _default_' range=':= 1 * 1 * thfoManaInfusedSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Mana Infused Strategic Cloud Hint Veins -->
 
@@ -1349,14 +1186,14 @@ Generates: Copper, Tin, Silver, Lead, Ferrous, Shiny, Mana Infused
                 <!-- Begin  Vanilla distribution of Mana Infused -->
                 <IfCondition condition=':= thfoManaInfusedDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='thfoManaInfused0Standard' block='ThermalFoundation:Ore:5' inherits='PresetStandardGen'>
+                    <StandardGen name='thfoManaInfusedBaseStandard' block='ThermalFoundation:Ore:5' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x604a330c</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * thfoManaInfusedSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * thfoManaInfusedFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * thfoManaInfusedSize * _default_'/>
                         <Setting name='Height' avg=':= 32' range=':= 32'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>

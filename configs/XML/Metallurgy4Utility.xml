@@ -256,7 +256,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 <!-- Begin Sparse Veins distribution of Sulfur -->
                 <IfCondition condition=':= mtluSulfurDist = "sparseVeins"'>
                 
-                    <Veins name='mtluSulfur0Veins' block='Metallurgy:utility.ore' inherits='PresetSparseVeins'>
+                    <Veins name='mtluSulfurBaseVeins' block='Metallurgy:utility.ore' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
                             these veins are relatively wide and long.  Mining the ore from them is time consuming 
@@ -264,7 +264,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 10.7 * mtluSulfurFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtluSulfurSize * _default_' range=':= 1 * 1 * mtluSulfurSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' />
@@ -274,22 +274,13 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Sulfur Sparse Veins) Settings -->
-                    <Veins name='mtluSulfur1Veins' block='Metallurgy:utility.ore' inherits='PresetSparseVeins'>
+                    <Veins name='mtluSulfurPrefersVeins' block='Metallurgy:utility.ore' inherits='mtluSulfurBaseVeins'>
                         <Description>
-                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
-                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
-                            compared to solid ore veins.  They are also more difficult to follow, since it is 
-                            harder to get an idea of their direction while mining.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 10.7 * mtluSulfurFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtluSulfurSize * _default_' range=':= 1 * 1 * mtluSulfurSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mtluSulfurSize * _default_' range=':= 1 * 1 * mtluSulfurSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1.75 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Sulfur Sparse Veins) Settings -->
@@ -301,7 +292,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 <!-- Begin  Strategic Cloud distribution of Sulfur -->
                 <IfCondition condition=':= mtluSulfurDist = "strategicCloud"'>
                 
-                    <Cloud name='mtluSulfur0Cloud' block='Metallurgy:utility.ore' inherits='PresetStrategicCloud'>
+                    <Cloud name='mtluSulfurBaseCloud' block='Metallurgy:utility.ore' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -311,7 +302,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mtluSulfurFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtluSulfurSize * _default_' range=':= 1 * 1 * mtluSulfurSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtluSulfurSize * _default_' range=':= 1 * 1 * mtluSulfurSize * _default_'/>
@@ -321,55 +312,37 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Sulfur Strategic Cloud Hint Veins -->
-                        <Veins name='mtluSulfur0HintVeins' block='Metallurgy:utility.ore' inherits='PresetHintVeins'>
+                        <Veins name='mtluSulfurBaseHintVeins' block='Metallurgy:utility.ore' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x607CF3A5</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mtluSulfurFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtluSulfurSize * _default_' range=':= 1 * 1 * mtluSulfurSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x60C3218A</WireframeColor>
                         </Veins>
                         <!-- End Sulfur Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Sulfur Strategic Cloud) Settings -->
-                    <Cloud name='mtluSulfur1Cloud' block='Metallurgy:utility.ore' inherits='PresetStrategicCloud'>
+                    <Cloud name='mtluSulfurPrefersCloud' block='Metallurgy:utility.ore' inherits='mtluSulfurBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 1 * mtluSulfurFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * mtluSulfurSize * _default_' range=':= 1 * 1 * mtluSulfurSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * mtluSulfurSize * _default_' range=':= 1 * 1 * mtluSulfurSize * _default_'/>
-                        <Setting name='CloudHeight' avg='60' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtluSulfurSize * _default_' range=':= 1 * 1 * 1 * mtluSulfurSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                         
                         <!-- Begin Sulfur Strategic Cloud Hint Veins -->
-                        <Veins name='mtluSulfur1HintVeins' block='Metallurgy:utility.ore' inherits='PresetHintVeins'>
+                        <Veins name='mtluSulfurPrefersHintVeins' block='Metallurgy:utility.ore' inherits='mtluSulfurBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x607CF3A5</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 1 * mtluSulfurFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtluSulfurSize * _default_' range=':= 1 * 1 * mtluSulfurSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x60C3218A</WireframeColor>
                             <BiomeType name='Swamp'/>
                         </Veins>
                         <!-- End Sulfur Strategic Cloud Hint Veins -->
@@ -384,30 +357,26 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 <!-- Begin  Vanilla distribution of Sulfur -->
                 <IfCondition condition=':= mtluSulfurDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='mtluSulfur0Standard' block='Metallurgy:utility.ore' inherits='PresetStandardGen'>
+                    <StandardGen name='mtluSulfurBaseStandard' block='Metallurgy:utility.ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * mtluSulfurSize * _default_'/>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * mtluSulfurFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 2 * mtluSulfurSize * _default_'/>
                         <Setting name='Height' avg=':= 60' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Sulfur Vanilla) Settings -->
-                    <StandardGen name='mtluSulfur1Standard' block='Metallurgy:utility.ore' inherits='PresetStandardGen'>
+                    <StandardGen name='mtluSulfurPrefersStandard' block='Metallurgy:utility.ore' inherits='mtluSulfurBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * mtluSulfurSize * _default_'/>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * mtluSulfurFreq * _default_'/>
-                        <Setting name='Height' avg=':= 60' range=':= 10'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Sulfur Vanilla) Settings -->
@@ -423,7 +392,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 <!-- Begin Sparse Veins distribution of Phosphorite -->
                 <IfCondition condition=':= mtluPhosphoriteDist = "sparseVeins"'>
                 
-                    <Veins name='mtluPhosphorite0Veins' block='Metallurgy:utility.ore:1' inherits='PresetSparseVeins'>
+                    <Veins name='mtluPhosphoriteBaseVeins' block='Metallurgy:utility.ore:1' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
                             these veins are relatively wide and long.  Mining the ore from them is time consuming 
@@ -431,7 +400,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 10.7 * mtluPhosphoriteFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtluPhosphoriteSize * _default_' range=':= 1 * 1 * mtluPhosphoriteSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' />
@@ -441,22 +410,13 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Phosphorite Sparse Veins) Settings -->
-                    <Veins name='mtluPhosphorite1Veins' block='Metallurgy:utility.ore:1' inherits='PresetSparseVeins'>
+                    <Veins name='mtluPhosphoritePrefersVeins' block='Metallurgy:utility.ore:1' inherits='mtluPhosphoriteBaseVeins'>
                         <Description>
-                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
-                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
-                            compared to solid ore veins.  They are also more difficult to follow, since it is 
-                            harder to get an idea of their direction while mining.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 10.7 * mtluPhosphoriteFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtluPhosphoriteSize * _default_' range=':= 1 * 1 * mtluPhosphoriteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mtluPhosphoriteSize * _default_' range=':= 1 * 1 * mtluPhosphoriteSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1.75 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Phosphorite Sparse Veins) Settings -->
@@ -468,7 +428,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 <!-- Begin  Strategic Cloud distribution of Phosphorite -->
                 <IfCondition condition=':= mtluPhosphoriteDist = "strategicCloud"'>
                 
-                    <Cloud name='mtluPhosphorite0Cloud' block='Metallurgy:utility.ore:1' inherits='PresetStrategicCloud'>
+                    <Cloud name='mtluPhosphoriteBaseCloud' block='Metallurgy:utility.ore:1' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -478,7 +438,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mtluPhosphoriteFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtluPhosphoriteSize * _default_' range=':= 1 * 1 * mtluPhosphoriteSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtluPhosphoriteSize * _default_' range=':= 1 * 1 * mtluPhosphoriteSize * _default_'/>
@@ -488,55 +448,37 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Phosphorite Strategic Cloud Hint Veins -->
-                        <Veins name='mtluPhosphorite0HintVeins' block='Metallurgy:utility.ore:1' inherits='PresetHintVeins'>
+                        <Veins name='mtluPhosphoriteBaseHintVeins' block='Metallurgy:utility.ore:1' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x607CF3A5</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mtluPhosphoriteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtluPhosphoriteSize * _default_' range=':= 1 * 1 * mtluPhosphoriteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x60C3218A</WireframeColor>
                         </Veins>
                         <!-- End Phosphorite Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Phosphorite Strategic Cloud) Settings -->
-                    <Cloud name='mtluPhosphorite1Cloud' block='Metallurgy:utility.ore:1' inherits='PresetStrategicCloud'>
+                    <Cloud name='mtluPhosphoritePrefersCloud' block='Metallurgy:utility.ore:1' inherits='mtluPhosphoriteBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 1 * mtluPhosphoriteFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * mtluPhosphoriteSize * _default_' range=':= 1 * 1 * mtluPhosphoriteSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * mtluPhosphoriteSize * _default_' range=':= 1 * 1 * mtluPhosphoriteSize * _default_'/>
-                        <Setting name='CloudHeight' avg='60' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtluPhosphoriteSize * _default_' range=':= 1 * 1 * 1 * mtluPhosphoriteSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                         
                         <!-- Begin Phosphorite Strategic Cloud Hint Veins -->
-                        <Veins name='mtluPhosphorite1HintVeins' block='Metallurgy:utility.ore:1' inherits='PresetHintVeins'>
+                        <Veins name='mtluPhosphoritePrefersHintVeins' block='Metallurgy:utility.ore:1' inherits='mtluPhosphoriteBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x607CF3A5</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 1 * mtluPhosphoriteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtluPhosphoriteSize * _default_' range=':= 1 * 1 * mtluPhosphoriteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x60C3218A</WireframeColor>
                             <BiomeType name='Swamp'/>
                         </Veins>
                         <!-- End Phosphorite Strategic Cloud Hint Veins -->
@@ -551,30 +493,26 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 <!-- Begin  Vanilla distribution of Phosphorite -->
                 <IfCondition condition=':= mtluPhosphoriteDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='mtluPhosphorite0Standard' block='Metallurgy:utility.ore:1' inherits='PresetStandardGen'>
+                    <StandardGen name='mtluPhosphoriteBaseStandard' block='Metallurgy:utility.ore:1' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * mtluPhosphoriteSize * _default_'/>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * mtluPhosphoriteFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 2 * mtluPhosphoriteSize * _default_'/>
                         <Setting name='Height' avg=':= 60' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Phosphorite Vanilla) Settings -->
-                    <StandardGen name='mtluPhosphorite1Standard' block='Metallurgy:utility.ore:1' inherits='PresetStandardGen'>
+                    <StandardGen name='mtluPhosphoritePrefersStandard' block='Metallurgy:utility.ore:1' inherits='mtluPhosphoriteBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * mtluPhosphoriteSize * _default_'/>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * mtluPhosphoriteFreq * _default_'/>
-                        <Setting name='Height' avg=':= 60' range=':= 10'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Phosphorite Vanilla) Settings -->
@@ -590,7 +528,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 <!-- Begin Sparse Veins distribution of Saltpeter -->
                 <IfCondition condition=':= mtluSaltpeterDist = "sparseVeins"'>
                 
-                    <Veins name='mtluSaltpeter0Veins' block='Metallurgy:utility.ore:2' inherits='PresetSparseVeins'>
+                    <Veins name='mtluSaltpeterBaseVeins' block='Metallurgy:utility.ore:2' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
                             these veins are relatively wide and long.  Mining the ore from them is time consuming 
@@ -598,7 +536,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 10.7 * mtluSaltpeterFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtluSaltpeterSize * _default_' range=':= 1 * 1 * mtluSaltpeterSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' />
@@ -608,22 +546,13 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Saltpeter Sparse Veins) Settings -->
-                    <Veins name='mtluSaltpeter1Veins' block='Metallurgy:utility.ore:2' inherits='PresetSparseVeins'>
+                    <Veins name='mtluSaltpeterPrefersVeins' block='Metallurgy:utility.ore:2' inherits='mtluSaltpeterBaseVeins'>
                         <Description>
-                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
-                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
-                            compared to solid ore veins.  They are also more difficult to follow, since it is 
-                            harder to get an idea of their direction while mining.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 10.7 * mtluSaltpeterFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtluSaltpeterSize * _default_' range=':= 1 * 1 * mtluSaltpeterSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mtluSaltpeterSize * _default_' range=':= 1 * 1 * mtluSaltpeterSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1.75 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Saltpeter Sparse Veins) Settings -->
@@ -635,7 +564,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 <!-- Begin  Strategic Cloud distribution of Saltpeter -->
                 <IfCondition condition=':= mtluSaltpeterDist = "strategicCloud"'>
                 
-                    <Cloud name='mtluSaltpeter0Cloud' block='Metallurgy:utility.ore:2' inherits='PresetStrategicCloud'>
+                    <Cloud name='mtluSaltpeterBaseCloud' block='Metallurgy:utility.ore:2' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -645,7 +574,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mtluSaltpeterFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtluSaltpeterSize * _default_' range=':= 1 * 1 * mtluSaltpeterSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtluSaltpeterSize * _default_' range=':= 1 * 1 * mtluSaltpeterSize * _default_'/>
@@ -655,55 +584,37 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Saltpeter Strategic Cloud Hint Veins -->
-                        <Veins name='mtluSaltpeter0HintVeins' block='Metallurgy:utility.ore:2' inherits='PresetHintVeins'>
+                        <Veins name='mtluSaltpeterBaseHintVeins' block='Metallurgy:utility.ore:2' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x607CF3A5</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mtluSaltpeterFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtluSaltpeterSize * _default_' range=':= 1 * 1 * mtluSaltpeterSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x60C3218A</WireframeColor>
                         </Veins>
                         <!-- End Saltpeter Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Saltpeter Strategic Cloud) Settings -->
-                    <Cloud name='mtluSaltpeter1Cloud' block='Metallurgy:utility.ore:2' inherits='PresetStrategicCloud'>
+                    <Cloud name='mtluSaltpeterPrefersCloud' block='Metallurgy:utility.ore:2' inherits='mtluSaltpeterBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 1 * mtluSaltpeterFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * mtluSaltpeterSize * _default_' range=':= 1 * 1 * mtluSaltpeterSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * mtluSaltpeterSize * _default_' range=':= 1 * 1 * mtluSaltpeterSize * _default_'/>
-                        <Setting name='CloudHeight' avg='60' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtluSaltpeterSize * _default_' range=':= 1 * 1 * 1 * mtluSaltpeterSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                         
                         <!-- Begin Saltpeter Strategic Cloud Hint Veins -->
-                        <Veins name='mtluSaltpeter1HintVeins' block='Metallurgy:utility.ore:2' inherits='PresetHintVeins'>
+                        <Veins name='mtluSaltpeterPrefersHintVeins' block='Metallurgy:utility.ore:2' inherits='mtluSaltpeterBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x607CF3A5</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 1 * mtluSaltpeterFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtluSaltpeterSize * _default_' range=':= 1 * 1 * mtluSaltpeterSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x60C3218A</WireframeColor>
                             <BiomeType name='Swamp'/>
                         </Veins>
                         <!-- End Saltpeter Strategic Cloud Hint Veins -->
@@ -718,30 +629,26 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 <!-- Begin  Vanilla distribution of Saltpeter -->
                 <IfCondition condition=':= mtluSaltpeterDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='mtluSaltpeter0Standard' block='Metallurgy:utility.ore:2' inherits='PresetStandardGen'>
+                    <StandardGen name='mtluSaltpeterBaseStandard' block='Metallurgy:utility.ore:2' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * mtluSaltpeterSize * _default_'/>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * mtluSaltpeterFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 2 * mtluSaltpeterSize * _default_'/>
                         <Setting name='Height' avg=':= 60' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Saltpeter Vanilla) Settings -->
-                    <StandardGen name='mtluSaltpeter1Standard' block='Metallurgy:utility.ore:2' inherits='PresetStandardGen'>
+                    <StandardGen name='mtluSaltpeterPrefersStandard' block='Metallurgy:utility.ore:2' inherits='mtluSaltpeterBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * mtluSaltpeterSize * _default_'/>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * mtluSaltpeterFreq * _default_'/>
-                        <Setting name='Height' avg=':= 60' range=':= 10'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Saltpeter Vanilla) Settings -->
@@ -757,7 +664,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 <!-- Begin Sparse Veins distribution of Magnesium -->
                 <IfCondition condition=':= mtluMagnesiumDist = "sparseVeins"'>
                 
-                    <Veins name='mtluMagnesium0Veins' block='Metallurgy:utility.ore:3' inherits='PresetSparseVeins'>
+                    <Veins name='mtluMagnesiumBaseVeins' block='Metallurgy:utility.ore:3' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
                             these veins are relatively wide and long.  Mining the ore from them is time consuming 
@@ -765,7 +672,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 10.7 * mtluMagnesiumFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtluMagnesiumSize * _default_' range=':= 1 * 1 * mtluMagnesiumSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' />
@@ -775,22 +682,13 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Magnesium Sparse Veins) Settings -->
-                    <Veins name='mtluMagnesium1Veins' block='Metallurgy:utility.ore:3' inherits='PresetSparseVeins'>
+                    <Veins name='mtluMagnesiumPrefersVeins' block='Metallurgy:utility.ore:3' inherits='mtluMagnesiumBaseVeins'>
                         <Description>
-                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
-                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
-                            compared to solid ore veins.  They are also more difficult to follow, since it is 
-                            harder to get an idea of their direction while mining.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 10.7 * mtluMagnesiumFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtluMagnesiumSize * _default_' range=':= 1 * 1 * mtluMagnesiumSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mtluMagnesiumSize * _default_' range=':= 1 * 1 * mtluMagnesiumSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1.75 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Magnesium Sparse Veins) Settings -->
@@ -802,7 +700,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 <!-- Begin  Strategic Cloud distribution of Magnesium -->
                 <IfCondition condition=':= mtluMagnesiumDist = "strategicCloud"'>
                 
-                    <Cloud name='mtluMagnesium0Cloud' block='Metallurgy:utility.ore:3' inherits='PresetStrategicCloud'>
+                    <Cloud name='mtluMagnesiumBaseCloud' block='Metallurgy:utility.ore:3' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -812,7 +710,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mtluMagnesiumFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtluMagnesiumSize * _default_' range=':= 1 * 1 * mtluMagnesiumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtluMagnesiumSize * _default_' range=':= 1 * 1 * mtluMagnesiumSize * _default_'/>
@@ -822,55 +720,37 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Magnesium Strategic Cloud Hint Veins -->
-                        <Veins name='mtluMagnesium0HintVeins' block='Metallurgy:utility.ore:3' inherits='PresetHintVeins'>
+                        <Veins name='mtluMagnesiumBaseHintVeins' block='Metallurgy:utility.ore:3' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x607CF3A5</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mtluMagnesiumFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtluMagnesiumSize * _default_' range=':= 1 * 1 * mtluMagnesiumSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x60C3218A</WireframeColor>
                         </Veins>
                         <!-- End Magnesium Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Magnesium Strategic Cloud) Settings -->
-                    <Cloud name='mtluMagnesium1Cloud' block='Metallurgy:utility.ore:3' inherits='PresetStrategicCloud'>
+                    <Cloud name='mtluMagnesiumPrefersCloud' block='Metallurgy:utility.ore:3' inherits='mtluMagnesiumBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 1 * mtluMagnesiumFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * mtluMagnesiumSize * _default_' range=':= 1 * 1 * mtluMagnesiumSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * mtluMagnesiumSize * _default_' range=':= 1 * 1 * mtluMagnesiumSize * _default_'/>
-                        <Setting name='CloudHeight' avg='60' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtluMagnesiumSize * _default_' range=':= 1 * 1 * 1 * mtluMagnesiumSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                         
                         <!-- Begin Magnesium Strategic Cloud Hint Veins -->
-                        <Veins name='mtluMagnesium1HintVeins' block='Metallurgy:utility.ore:3' inherits='PresetHintVeins'>
+                        <Veins name='mtluMagnesiumPrefersHintVeins' block='Metallurgy:utility.ore:3' inherits='mtluMagnesiumBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x607CF3A5</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 1 * mtluMagnesiumFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtluMagnesiumSize * _default_' range=':= 1 * 1 * mtluMagnesiumSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x60C3218A</WireframeColor>
                             <BiomeType name='Swamp'/>
                         </Veins>
                         <!-- End Magnesium Strategic Cloud Hint Veins -->
@@ -885,30 +765,26 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 <!-- Begin  Vanilla distribution of Magnesium -->
                 <IfCondition condition=':= mtluMagnesiumDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='mtluMagnesium0Standard' block='Metallurgy:utility.ore:3' inherits='PresetStandardGen'>
+                    <StandardGen name='mtluMagnesiumBaseStandard' block='Metallurgy:utility.ore:3' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * mtluMagnesiumSize * _default_'/>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * mtluMagnesiumFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 2 * mtluMagnesiumSize * _default_'/>
                         <Setting name='Height' avg=':= 60' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Magnesium Vanilla) Settings -->
-                    <StandardGen name='mtluMagnesium1Standard' block='Metallurgy:utility.ore:3' inherits='PresetStandardGen'>
+                    <StandardGen name='mtluMagnesiumPrefersStandard' block='Metallurgy:utility.ore:3' inherits='mtluMagnesiumBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * mtluMagnesiumSize * _default_'/>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * mtluMagnesiumFreq * _default_'/>
-                        <Setting name='Height' avg=':= 60' range=':= 10'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Magnesium Vanilla) Settings -->
@@ -924,7 +800,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 <!-- Begin Sparse Veins distribution of Bitumen -->
                 <IfCondition condition=':= mtluBitumenDist = "sparseVeins"'>
                 
-                    <Veins name='mtluBitumen0Veins' block='Metallurgy:utility.ore:4' inherits='PresetSparseVeins'>
+                    <Veins name='mtluBitumenBaseVeins' block='Metallurgy:utility.ore:4' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
                             these veins are relatively wide and long.  Mining the ore from them is time consuming 
@@ -932,7 +808,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 10.7 * mtluBitumenFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtluBitumenSize * _default_' range=':= 1 * 1 * mtluBitumenSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' />
@@ -942,22 +818,13 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Bitumen Sparse Veins) Settings -->
-                    <Veins name='mtluBitumen1Veins' block='Metallurgy:utility.ore:4' inherits='PresetSparseVeins'>
+                    <Veins name='mtluBitumenPrefersVeins' block='Metallurgy:utility.ore:4' inherits='mtluBitumenBaseVeins'>
                         <Description>
-                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
-                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
-                            compared to solid ore veins.  They are also more difficult to follow, since it is 
-                            harder to get an idea of their direction while mining.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 10.7 * mtluBitumenFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtluBitumenSize * _default_' range=':= 1 * 1 * mtluBitumenSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mtluBitumenSize * _default_' range=':= 1 * 1 * mtluBitumenSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1.75 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Bitumen Sparse Veins) Settings -->
@@ -969,7 +836,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 <!-- Begin  Strategic Cloud distribution of Bitumen -->
                 <IfCondition condition=':= mtluBitumenDist = "strategicCloud"'>
                 
-                    <Cloud name='mtluBitumen0Cloud' block='Metallurgy:utility.ore:4' inherits='PresetStrategicCloud'>
+                    <Cloud name='mtluBitumenBaseCloud' block='Metallurgy:utility.ore:4' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -979,7 +846,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mtluBitumenFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtluBitumenSize * _default_' range=':= 1 * 1 * mtluBitumenSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtluBitumenSize * _default_' range=':= 1 * 1 * mtluBitumenSize * _default_'/>
@@ -989,55 +856,37 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Bitumen Strategic Cloud Hint Veins -->
-                        <Veins name='mtluBitumen0HintVeins' block='Metallurgy:utility.ore:4' inherits='PresetHintVeins'>
+                        <Veins name='mtluBitumenBaseHintVeins' block='Metallurgy:utility.ore:4' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x607CF3A5</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mtluBitumenFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtluBitumenSize * _default_' range=':= 1 * 1 * mtluBitumenSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x60C3218A</WireframeColor>
                         </Veins>
                         <!-- End Bitumen Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Bitumen Strategic Cloud) Settings -->
-                    <Cloud name='mtluBitumen1Cloud' block='Metallurgy:utility.ore:4' inherits='PresetStrategicCloud'>
+                    <Cloud name='mtluBitumenPrefersCloud' block='Metallurgy:utility.ore:4' inherits='mtluBitumenBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 1 * mtluBitumenFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * mtluBitumenSize * _default_' range=':= 1 * 1 * mtluBitumenSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * mtluBitumenSize * _default_' range=':= 1 * 1 * mtluBitumenSize * _default_'/>
-                        <Setting name='CloudHeight' avg='60' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtluBitumenSize * _default_' range=':= 1 * 1 * 1 * mtluBitumenSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                         
                         <!-- Begin Bitumen Strategic Cloud Hint Veins -->
-                        <Veins name='mtluBitumen1HintVeins' block='Metallurgy:utility.ore:4' inherits='PresetHintVeins'>
+                        <Veins name='mtluBitumenPrefersHintVeins' block='Metallurgy:utility.ore:4' inherits='mtluBitumenBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x607CF3A5</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 1 * mtluBitumenFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtluBitumenSize * _default_' range=':= 1 * 1 * mtluBitumenSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x60C3218A</WireframeColor>
                             <BiomeType name='Swamp'/>
                         </Veins>
                         <!-- End Bitumen Strategic Cloud Hint Veins -->
@@ -1052,30 +901,26 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 <!-- Begin  Vanilla distribution of Bitumen -->
                 <IfCondition condition=':= mtluBitumenDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='mtluBitumen0Standard' block='Metallurgy:utility.ore:4' inherits='PresetStandardGen'>
+                    <StandardGen name='mtluBitumenBaseStandard' block='Metallurgy:utility.ore:4' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * mtluBitumenSize * _default_'/>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * mtluBitumenFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 2 * mtluBitumenSize * _default_'/>
                         <Setting name='Height' avg=':= 60' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Bitumen Vanilla) Settings -->
-                    <StandardGen name='mtluBitumen1Standard' block='Metallurgy:utility.ore:4' inherits='PresetStandardGen'>
+                    <StandardGen name='mtluBitumenPrefersStandard' block='Metallurgy:utility.ore:4' inherits='mtluBitumenBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * mtluBitumenSize * _default_'/>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * mtluBitumenFreq * _default_'/>
-                        <Setting name='Height' avg=':= 60' range=':= 10'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Bitumen Vanilla) Settings -->
@@ -1091,7 +936,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 <!-- Begin Sparse Veins distribution of Potash -->
                 <IfCondition condition=':= mtluPotashDist = "sparseVeins"'>
                 
-                    <Veins name='mtluPotash0Veins' block='Metallurgy:utility.ore:5' inherits='PresetSparseVeins'>
+                    <Veins name='mtluPotashBaseVeins' block='Metallurgy:utility.ore:5' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
                             these veins are relatively wide and long.  Mining the ore from them is time consuming 
@@ -1099,7 +944,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 10.7 * mtluPotashFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtluPotashSize * _default_' range=':= 1 * 1 * mtluPotashSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' />
@@ -1109,22 +954,13 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Potash Sparse Veins) Settings -->
-                    <Veins name='mtluPotash1Veins' block='Metallurgy:utility.ore:5' inherits='PresetSparseVeins'>
+                    <Veins name='mtluPotashPrefersVeins' block='Metallurgy:utility.ore:5' inherits='mtluPotashBaseVeins'>
                         <Description>
-                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
-                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
-                            compared to solid ore veins.  They are also more difficult to follow, since it is 
-                            harder to get an idea of their direction while mining.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 10.7 * mtluPotashFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtluPotashSize * _default_' range=':= 1 * 1 * mtluPotashSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * mtluPotashSize * _default_' range=':= 1 * 1 * mtluPotashSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1.75 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Potash Sparse Veins) Settings -->
@@ -1136,7 +972,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 <!-- Begin  Strategic Cloud distribution of Potash -->
                 <IfCondition condition=':= mtluPotashDist = "strategicCloud"'>
                 
-                    <Cloud name='mtluPotash0Cloud' block='Metallurgy:utility.ore:5' inherits='PresetStrategicCloud'>
+                    <Cloud name='mtluPotashBaseCloud' block='Metallurgy:utility.ore:5' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1146,7 +982,7 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 1 * 1 * mtluPotashFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtluPotashSize * _default_' range=':= 1 * 1 * mtluPotashSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtluPotashSize * _default_' range=':= 1 * 1 * mtluPotashSize * _default_'/>
@@ -1156,55 +992,37 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Potash Strategic Cloud Hint Veins -->
-                        <Veins name='mtluPotash0HintVeins' block='Metallurgy:utility.ore:5' inherits='PresetHintVeins'>
+                        <Veins name='mtluPotashBaseHintVeins' block='Metallurgy:utility.ore:5' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x607CF3A5</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * mtluPotashFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtluPotashSize * _default_' range=':= 1 * 1 * mtluPotashSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x60C3218A</WireframeColor>
                         </Veins>
                         <!-- End Potash Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Potash Strategic Cloud) Settings -->
-                    <Cloud name='mtluPotash1Cloud' block='Metallurgy:utility.ore:5' inherits='PresetStrategicCloud'>
+                    <Cloud name='mtluPotashPrefersCloud' block='Metallurgy:utility.ore:5' inherits='mtluPotashBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 1 * mtluPotashFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * mtluPotashSize * _default_' range=':= 1 * 1 * mtluPotashSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * mtluPotashSize * _default_' range=':= 1 * 1 * mtluPotashSize * _default_'/>
-                        <Setting name='CloudHeight' avg='60' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * mtluPotashSize * _default_' range=':= 1 * 1 * 1 * mtluPotashSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                         
                         <!-- Begin Potash Strategic Cloud Hint Veins -->
-                        <Veins name='mtluPotash1HintVeins' block='Metallurgy:utility.ore:5' inherits='PresetHintVeins'>
+                        <Veins name='mtluPotashPrefersHintVeins' block='Metallurgy:utility.ore:5' inherits='mtluPotashBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x607CF3A5</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 1 * mtluPotashFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtluPotashSize * _default_' range=':= 1 * 1 * mtluPotashSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x60C3218A</WireframeColor>
                             <BiomeType name='Swamp'/>
                         </Veins>
                         <!-- End Potash Strategic Cloud Hint Veins -->
@@ -1219,30 +1037,26 @@ Generates: Sulfur, Phosphorite, Saltpeter, Magnesium, Bitumen, Potash
                 <!-- Begin  Vanilla distribution of Potash -->
                 <IfCondition condition=':= mtluPotashDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='mtluPotash0Standard' block='Metallurgy:utility.ore:5' inherits='PresetStandardGen'>
+                    <StandardGen name='mtluPotashBaseStandard' block='Metallurgy:utility.ore:5' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * mtluPotashSize * _default_'/>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * mtluPotashFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 2 * mtluPotashSize * _default_'/>
                         <Setting name='Height' avg=':= 60' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Potash Vanilla) Settings -->
-                    <StandardGen name='mtluPotash1Standard' block='Metallurgy:utility.ore:5' inherits='PresetStandardGen'>
+                    <StandardGen name='mtluPotashPrefersStandard' block='Metallurgy:utility.ore:5' inherits='mtluPotashBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x607CF3A5</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * mtluPotashSize * _default_'/>
+                        <WireframeColor>0x60C3218A</WireframeColor>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * mtluPotashFreq * _default_'/>
-                        <Setting name='Height' avg=':= 60' range=':= 10'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Potash Vanilla) Settings -->

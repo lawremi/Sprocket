@@ -607,14 +607,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin LayeredVeins distribution of Pitchblende -->
                 <IfCondition condition=':= recrPitchblendeDist = "layeredVeins"'>
                 
-                    <Veins name='recrPitchblende0Veins' block='ReactorCraft:reactorcraft_block_ore:1' inherits='PresetLayeredVeins'>
+                    <Veins name='recrPitchblendeBaseVeins' block='ReactorCraft:reactorcraft_block_ore:1' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrPitchblendeSize * _default_' range=':= 1 * 0.8 * recrPitchblendeSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * recrPitchblendeFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrPitchblendeSize * _default_' range=':= 1 * 0.8 * recrPitchblendeSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrPitchblendeSize * _default_' range=':= 1 * 0.8 * recrPitchblendeSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -628,7 +628,7 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  StrategicCloud distribution of Pitchblende -->
                 <IfCondition condition=':= recrPitchblendeDist = "strategicCloud"'>
                 
-                    <Cloud name='recrPitchblende0Cloud' block='ReactorCraft:reactorcraft_block_ore:1' inherits='PresetStrategicCloud'>
+                    <Cloud name='recrPitchblendeBaseCloud' block='ReactorCraft:reactorcraft_block_ore:1' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -648,16 +648,15 @@ Fluorite, Yellow Fluorite
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Pitchblende Strategic Cloud Hint Veins -->
-                        <Veins name='recrPitchblende0HintVeins' block='ReactorCraft:reactorcraft_block_ore:1' inherits='PresetHintVeins'>
+                        <Veins name='recrPitchblendeBaseHintVeins' block='ReactorCraft:reactorcraft_block_ore:1' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60e9f8d2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * recrPitchblendeFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrPitchblendeSize * _default_' range=':= 1 * 0.8 * recrPitchblendeSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Pitchblende Strategic Cloud Hint Veins -->
 
@@ -670,14 +669,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  Vanilla distribution of Pitchblende -->
                 <IfCondition condition=':= recrPitchblendeDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='recrPitchblende0Standard' block='ReactorCraft:reactorcraft_block_ore:1' inherits='PresetStandardGen'>
+                    <StandardGen name='recrPitchblendeBaseStandard' block='ReactorCraft:reactorcraft_block_ore:1' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * recrPitchblendeSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * recrPitchblendeFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * recrPitchblendeSize * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
@@ -693,14 +692,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin LayeredVeins distribution of Cadmium -->
                 <IfCondition condition=':= recrCadmiumDist = "layeredVeins"'>
                 
-                    <Veins name='recrCadmium0Veins' block='ReactorCraft:reactorcraft_block_ore:2' inherits='PresetLayeredVeins'>
+                    <Veins name='recrCadmiumBaseVeins' block='ReactorCraft:reactorcraft_block_ore:2' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrCadmiumSize * _default_' range=':= 1 * 0.8 * recrCadmiumSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 0.5 * 0.85 * recrCadmiumFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrCadmiumSize * _default_' range=':= 1 * 0.8 * recrCadmiumSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrCadmiumSize * _default_' range=':= 1 * 0.8 * recrCadmiumSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -714,7 +713,7 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  StrategicCloud distribution of Cadmium -->
                 <IfCondition condition=':= recrCadmiumDist = "strategicCloud"'>
                 
-                    <Cloud name='recrCadmium0Cloud' block='ReactorCraft:reactorcraft_block_ore:2' inherits='PresetStrategicCloud'>
+                    <Cloud name='recrCadmiumBaseCloud' block='ReactorCraft:reactorcraft_block_ore:2' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -734,16 +733,15 @@ Fluorite, Yellow Fluorite
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Cadmium Strategic Cloud Hint Veins -->
-                        <Veins name='recrCadmium0HintVeins' block='ReactorCraft:reactorcraft_block_ore:2' inherits='PresetHintVeins'>
+                        <Veins name='recrCadmiumBaseHintVeins' block='ReactorCraft:reactorcraft_block_ore:2' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60e9f8d2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 0.5 * 4.5 * recrCadmiumFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrCadmiumSize * _default_' range=':= 1 * 0.8 * recrCadmiumSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Cadmium Strategic Cloud Hint Veins -->
 
@@ -756,14 +754,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  Vanilla distribution of Cadmium -->
                 <IfCondition condition=':= recrCadmiumDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='recrCadmium0Standard' block='ReactorCraft:reactorcraft_block_ore:2' inherits='PresetStandardGen'>
+                    <StandardGen name='recrCadmiumBaseStandard' block='ReactorCraft:reactorcraft_block_ore:2' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * recrCadmiumSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 0.5 * 0.1 * recrCadmiumFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * recrCadmiumSize * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
@@ -779,14 +777,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin LayeredVeins distribution of Indium -->
                 <IfCondition condition=':= recrIndiumDist = "layeredVeins"'>
                 
-                    <Veins name='recrIndium0Veins' block='ReactorCraft:reactorcraft_block_ore:3' inherits='PresetLayeredVeins'>
+                    <Veins name='recrIndiumBaseVeins' block='ReactorCraft:reactorcraft_block_ore:3' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrIndiumSize * _default_' range=':= 1 * 0.8 * recrIndiumSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 0.5 * 0.85 * recrIndiumFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrIndiumSize * _default_' range=':= 1 * 0.8 * recrIndiumSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrIndiumSize * _default_' range=':= 1 * 0.8 * recrIndiumSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -800,7 +798,7 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  StrategicCloud distribution of Indium -->
                 <IfCondition condition=':= recrIndiumDist = "strategicCloud"'>
                 
-                    <Cloud name='recrIndium0Cloud' block='ReactorCraft:reactorcraft_block_ore:3' inherits='PresetStrategicCloud'>
+                    <Cloud name='recrIndiumBaseCloud' block='ReactorCraft:reactorcraft_block_ore:3' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -820,16 +818,15 @@ Fluorite, Yellow Fluorite
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Indium Strategic Cloud Hint Veins -->
-                        <Veins name='recrIndium0HintVeins' block='ReactorCraft:reactorcraft_block_ore:3' inherits='PresetHintVeins'>
+                        <Veins name='recrIndiumBaseHintVeins' block='ReactorCraft:reactorcraft_block_ore:3' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60e9f8d2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 0.5 * 4.5 * recrIndiumFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrIndiumSize * _default_' range=':= 1 * 0.8 * recrIndiumSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Indium Strategic Cloud Hint Veins -->
 
@@ -842,14 +839,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  Vanilla distribution of Indium -->
                 <IfCondition condition=':= recrIndiumDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='recrIndium0Standard' block='ReactorCraft:reactorcraft_block_ore:3' inherits='PresetStandardGen'>
+                    <StandardGen name='recrIndiumBaseStandard' block='ReactorCraft:reactorcraft_block_ore:3' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * recrIndiumSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 0.5 * 0.1 * recrIndiumFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * recrIndiumSize * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
@@ -865,14 +862,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin LayeredVeins distribution of Silver -->
                 <IfCondition condition=':= recrSilverDist = "layeredVeins"'>
                 
-                    <Veins name='recrSilver0Veins' block='ReactorCraft:reactorcraft_block_ore:4' inherits='PresetLayeredVeins'>
+                    <Veins name='recrSilverBaseVeins' block='ReactorCraft:reactorcraft_block_ore:4' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrSilverSize * _default_' range=':= 1 * 0.8 * recrSilverSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 0.5 * 0.85 * recrSilverFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrSilverSize * _default_' range=':= 1 * 0.8 * recrSilverSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrSilverSize * _default_' range=':= 1 * 0.8 * recrSilverSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -886,7 +883,7 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  StrategicCloud distribution of Silver -->
                 <IfCondition condition=':= recrSilverDist = "strategicCloud"'>
                 
-                    <Cloud name='recrSilver0Cloud' block='ReactorCraft:reactorcraft_block_ore:4' inherits='PresetStrategicCloud'>
+                    <Cloud name='recrSilverBaseCloud' block='ReactorCraft:reactorcraft_block_ore:4' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -906,16 +903,15 @@ Fluorite, Yellow Fluorite
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Silver Strategic Cloud Hint Veins -->
-                        <Veins name='recrSilver0HintVeins' block='ReactorCraft:reactorcraft_block_ore:4' inherits='PresetHintVeins'>
+                        <Veins name='recrSilverBaseHintVeins' block='ReactorCraft:reactorcraft_block_ore:4' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60e9f8d2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 0.5 * 4.5 * recrSilverFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrSilverSize * _default_' range=':= 1 * 0.8 * recrSilverSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Silver Strategic Cloud Hint Veins -->
 
@@ -928,14 +924,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  Vanilla distribution of Silver -->
                 <IfCondition condition=':= recrSilverDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='recrSilver0Standard' block='ReactorCraft:reactorcraft_block_ore:4' inherits='PresetStandardGen'>
+                    <StandardGen name='recrSilverBaseStandard' block='ReactorCraft:reactorcraft_block_ore:4' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * recrSilverSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 0.5 * 0.1 * recrSilverFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * recrSilverSize * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
@@ -951,7 +947,7 @@ Fluorite, Yellow Fluorite
                 <!-- Begin Sparse Veins distribution of Calcite -->
                 <IfCondition condition=':= recrCalciteDist = "sparseVeins"'>
                 
-                    <Veins name='recrCalcite0Veins' block='ReactorCraft:reactorcraft_block_ore:7' inherits='PresetSparseVeins'>
+                    <Veins name='recrCalciteBaseVeins' block='ReactorCraft:reactorcraft_block_ore:7' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
                             these veins are relatively wide and long.  Mining the ore from them is time consuming 
@@ -975,7 +971,7 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  StrategicCloud distribution of Calcite -->
                 <IfCondition condition=':= recrCalciteDist = "strategicCloud"'>
                 
-                    <Cloud name='recrCalcite0Cloud' block='ReactorCraft:reactorcraft_block_ore:7' inherits='PresetStrategicCloud'>
+                    <Cloud name='recrCalciteBaseCloud' block='ReactorCraft:reactorcraft_block_ore:7' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -995,16 +991,15 @@ Fluorite, Yellow Fluorite
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Calcite Strategic Cloud Hint Veins -->
-                        <Veins name='recrCalcite0HintVeins' block='ReactorCraft:reactorcraft_block_ore:7' inherits='PresetHintVeins'>
+                        <Veins name='recrCalciteBaseHintVeins' block='ReactorCraft:reactorcraft_block_ore:7' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60e9f8d2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 1 * recrCalciteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrCalciteSize * _default_' range=':= 1 * 0.8 * recrCalciteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Calcite Strategic Cloud Hint Veins -->
 
@@ -1017,14 +1012,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  Vanilla distribution of Calcite -->
                 <IfCondition condition=':= recrCalciteDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='recrCalcite0Standard' block='ReactorCraft:reactorcraft_block_ore:7' inherits='PresetStandardGen'>
+                    <StandardGen name='recrCalciteBaseStandard' block='ReactorCraft:reactorcraft_block_ore:7' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * recrCalciteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 3 * 1 * recrCalciteFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 2 * recrCalciteSize * _default_'/>
                         <Setting name='Height' avg=':= 60' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
@@ -1040,14 +1035,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin LayeredVeins distribution of Magnetite -->
                 <IfCondition condition=':= recrMagnetiteDist = "layeredVeins"'>
                 
-                    <Veins name='recrMagnetite0Veins' block='ReactorCraft:reactorcraft_block_ore:8' inherits='PresetLayeredVeins'>
+                    <Veins name='recrMagnetiteBaseVeins' block='ReactorCraft:reactorcraft_block_ore:8' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrMagnetiteSize * _default_' range=':= 1 * 0.8 * recrMagnetiteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * recrMagnetiteFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrMagnetiteSize * _default_' range=':= 1 * 0.8 * recrMagnetiteSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrMagnetiteSize * _default_' range=':= 1 * 0.8 * recrMagnetiteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -1061,7 +1056,7 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  StrategicCloud distribution of Magnetite -->
                 <IfCondition condition=':= recrMagnetiteDist = "strategicCloud"'>
                 
-                    <Cloud name='recrMagnetite0Cloud' block='ReactorCraft:reactorcraft_block_ore:8' inherits='PresetStrategicCloud'>
+                    <Cloud name='recrMagnetiteBaseCloud' block='ReactorCraft:reactorcraft_block_ore:8' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1081,16 +1076,15 @@ Fluorite, Yellow Fluorite
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Magnetite Strategic Cloud Hint Veins -->
-                        <Veins name='recrMagnetite0HintVeins' block='ReactorCraft:reactorcraft_block_ore:8' inherits='PresetHintVeins'>
+                        <Veins name='recrMagnetiteBaseHintVeins' block='ReactorCraft:reactorcraft_block_ore:8' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60e9f8d2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * recrMagnetiteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrMagnetiteSize * _default_' range=':= 1 * 0.8 * recrMagnetiteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Magnetite Strategic Cloud Hint Veins -->
 
@@ -1103,14 +1097,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  Vanilla distribution of Magnetite -->
                 <IfCondition condition=':= recrMagnetiteDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='recrMagnetite0Standard' block='ReactorCraft:reactorcraft_block_ore:8' inherits='PresetStandardGen'>
+                    <StandardGen name='recrMagnetiteBaseStandard' block='ReactorCraft:reactorcraft_block_ore:8' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * recrMagnetiteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * recrMagnetiteFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * recrMagnetiteSize * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
@@ -1126,14 +1120,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin LayeredVeins distribution of Blue Fluorite -->
                 <IfCondition condition=':= recrBlueFluoriteDist = "layeredVeins"'>
                 
-                    <Veins name='recrBlueFluorite0Veins' block='ReactorCraft:reactorcraft_block_fluoriteore' inherits='PresetLayeredVeins'>
+                    <Veins name='recrBlueFluoriteBaseVeins' block='ReactorCraft:reactorcraft_block_fluoriteore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrBlueFluoriteSize * _default_' range=':= 1 * 0.8 * recrBlueFluoriteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 0.5 * 0.85 * recrBlueFluoriteFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrBlueFluoriteSize * _default_' range=':= 1 * 0.8 * recrBlueFluoriteSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 46' range=':= 28' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrBlueFluoriteSize * _default_' range=':= 1 * 0.8 * recrBlueFluoriteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -1147,7 +1141,7 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  StrategicCloud distribution of Blue Fluorite -->
                 <IfCondition condition=':= recrBlueFluoriteDist = "strategicCloud"'>
                 
-                    <Cloud name='recrBlueFluorite0Cloud' block='ReactorCraft:reactorcraft_block_fluoriteore' inherits='PresetStrategicCloud'>
+                    <Cloud name='recrBlueFluoriteBaseCloud' block='ReactorCraft:reactorcraft_block_fluoriteore' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1167,16 +1161,15 @@ Fluorite, Yellow Fluorite
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Blue Fluorite Strategic Cloud Hint Veins -->
-                        <Veins name='recrBlueFluorite0HintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore' inherits='PresetHintVeins'>
+                        <Veins name='recrBlueFluoriteBaseHintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60e9f8d2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 0.5 * 4.5 * recrBlueFluoriteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 46' range=':= 28' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrBlueFluoriteSize * _default_' range=':= 1 * 0.8 * recrBlueFluoriteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Blue Fluorite Strategic Cloud Hint Veins -->
 
@@ -1189,14 +1182,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  Vanilla distribution of Blue Fluorite -->
                 <IfCondition condition=':= recrBlueFluoriteDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='recrBlueFluorite0Standard' block='ReactorCraft:reactorcraft_block_fluoriteore' inherits='PresetStandardGen'>
+                    <StandardGen name='recrBlueFluoriteBaseStandard' block='ReactorCraft:reactorcraft_block_fluoriteore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * recrBlueFluoriteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 0.5 * 0.1 * recrBlueFluoriteFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * recrBlueFluoriteSize * _default_'/>
                         <Setting name='Height' avg=':= 46' range=':= 28'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
@@ -1212,14 +1205,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin LayeredVeins distribution of Pink Fluorite -->
                 <IfCondition condition=':= recrPinkFluoriteDist = "layeredVeins"'>
                 
-                    <Veins name='recrPinkFluorite0Veins' block='ReactorCraft:reactorcraft_block_fluoriteore:1' inherits='PresetLayeredVeins'>
+                    <Veins name='recrPinkFluoriteBaseVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:1' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrPinkFluoriteSize * _default_' range=':= 1 * 0.8 * recrPinkFluoriteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 0.5 * 0.85 * recrPinkFluoriteFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrPinkFluoriteSize * _default_' range=':= 1 * 0.8 * recrPinkFluoriteSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 46' range=':= 28' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrPinkFluoriteSize * _default_' range=':= 1 * 0.8 * recrPinkFluoriteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -1233,7 +1226,7 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  StrategicCloud distribution of Pink Fluorite -->
                 <IfCondition condition=':= recrPinkFluoriteDist = "strategicCloud"'>
                 
-                    <Cloud name='recrPinkFluorite0Cloud' block='ReactorCraft:reactorcraft_block_fluoriteore:1' inherits='PresetStrategicCloud'>
+                    <Cloud name='recrPinkFluoriteBaseCloud' block='ReactorCraft:reactorcraft_block_fluoriteore:1' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1253,16 +1246,15 @@ Fluorite, Yellow Fluorite
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Pink Fluorite Strategic Cloud Hint Veins -->
-                        <Veins name='recrPinkFluorite0HintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:1' inherits='PresetHintVeins'>
+                        <Veins name='recrPinkFluoriteBaseHintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:1' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60e9f8d2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 0.5 * 4.5 * recrPinkFluoriteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 46' range=':= 28' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrPinkFluoriteSize * _default_' range=':= 1 * 0.8 * recrPinkFluoriteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Pink Fluorite Strategic Cloud Hint Veins -->
 
@@ -1275,14 +1267,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  Vanilla distribution of Pink Fluorite -->
                 <IfCondition condition=':= recrPinkFluoriteDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='recrPinkFluorite0Standard' block='ReactorCraft:reactorcraft_block_fluoriteore:1' inherits='PresetStandardGen'>
+                    <StandardGen name='recrPinkFluoriteBaseStandard' block='ReactorCraft:reactorcraft_block_fluoriteore:1' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * recrPinkFluoriteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 0.5 * 0.1 * recrPinkFluoriteFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * recrPinkFluoriteSize * _default_'/>
                         <Setting name='Height' avg=':= 46' range=':= 28'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
@@ -1298,14 +1290,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin LayeredVeins distribution of Orange Fluorite -->
                 <IfCondition condition=':= recrOrangeFluoriteDist = "layeredVeins"'>
                 
-                    <Veins name='recrOrangeFluorite0Veins' block='ReactorCraft:reactorcraft_block_fluoriteore:2' inherits='PresetLayeredVeins'>
+                    <Veins name='recrOrangeFluoriteBaseVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:2' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrOrangeFluoriteSize * _default_' range=':= 1 * 0.8 * recrOrangeFluoriteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 0.5 * 0.85 * recrOrangeFluoriteFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrOrangeFluoriteSize * _default_' range=':= 1 * 0.8 * recrOrangeFluoriteSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 46' range=':= 28' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrOrangeFluoriteSize * _default_' range=':= 1 * 0.8 * recrOrangeFluoriteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -1319,7 +1311,7 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  StrategicCloud distribution of Orange Fluorite -->
                 <IfCondition condition=':= recrOrangeFluoriteDist = "strategicCloud"'>
                 
-                    <Cloud name='recrOrangeFluorite0Cloud' block='ReactorCraft:reactorcraft_block_fluoriteore:2' inherits='PresetStrategicCloud'>
+                    <Cloud name='recrOrangeFluoriteBaseCloud' block='ReactorCraft:reactorcraft_block_fluoriteore:2' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1339,16 +1331,15 @@ Fluorite, Yellow Fluorite
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Orange Fluorite Strategic Cloud Hint Veins -->
-                        <Veins name='recrOrangeFluorite0HintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:2' inherits='PresetHintVeins'>
+                        <Veins name='recrOrangeFluoriteBaseHintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:2' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60e9f8d2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 0.5 * 4.5 * recrOrangeFluoriteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 46' range=':= 28' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrOrangeFluoriteSize * _default_' range=':= 1 * 0.8 * recrOrangeFluoriteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Orange Fluorite Strategic Cloud Hint Veins -->
 
@@ -1361,14 +1352,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  Vanilla distribution of Orange Fluorite -->
                 <IfCondition condition=':= recrOrangeFluoriteDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='recrOrangeFluorite0Standard' block='ReactorCraft:reactorcraft_block_fluoriteore:2' inherits='PresetStandardGen'>
+                    <StandardGen name='recrOrangeFluoriteBaseStandard' block='ReactorCraft:reactorcraft_block_fluoriteore:2' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * recrOrangeFluoriteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 0.5 * 0.1 * recrOrangeFluoriteFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * recrOrangeFluoriteSize * _default_'/>
                         <Setting name='Height' avg=':= 46' range=':= 28'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
@@ -1384,14 +1375,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin LayeredVeins distribution of Magenta Fluorite -->
                 <IfCondition condition=':= recrMagentaFluoriteDist = "layeredVeins"'>
                 
-                    <Veins name='recrMagentaFluorite0Veins' block='ReactorCraft:reactorcraft_block_fluoriteore:3' inherits='PresetLayeredVeins'>
+                    <Veins name='recrMagentaFluoriteBaseVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:3' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrMagentaFluoriteSize * _default_' range=':= 1 * 0.8 * recrMagentaFluoriteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 0.5 * 0.85 * recrMagentaFluoriteFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrMagentaFluoriteSize * _default_' range=':= 1 * 0.8 * recrMagentaFluoriteSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 46' range=':= 28' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrMagentaFluoriteSize * _default_' range=':= 1 * 0.8 * recrMagentaFluoriteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -1405,7 +1396,7 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  StrategicCloud distribution of Magenta Fluorite -->
                 <IfCondition condition=':= recrMagentaFluoriteDist = "strategicCloud"'>
                 
-                    <Cloud name='recrMagentaFluorite0Cloud' block='ReactorCraft:reactorcraft_block_fluoriteore:3' inherits='PresetStrategicCloud'>
+                    <Cloud name='recrMagentaFluoriteBaseCloud' block='ReactorCraft:reactorcraft_block_fluoriteore:3' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1425,16 +1416,15 @@ Fluorite, Yellow Fluorite
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Magenta Fluorite Strategic Cloud Hint Veins -->
-                        <Veins name='recrMagentaFluorite0HintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:3' inherits='PresetHintVeins'>
+                        <Veins name='recrMagentaFluoriteBaseHintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:3' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60e9f8d2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 0.5 * 4.5 * recrMagentaFluoriteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 46' range=':= 28' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrMagentaFluoriteSize * _default_' range=':= 1 * 0.8 * recrMagentaFluoriteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Magenta Fluorite Strategic Cloud Hint Veins -->
 
@@ -1447,14 +1437,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  Vanilla distribution of Magenta Fluorite -->
                 <IfCondition condition=':= recrMagentaFluoriteDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='recrMagentaFluorite0Standard' block='ReactorCraft:reactorcraft_block_fluoriteore:3' inherits='PresetStandardGen'>
+                    <StandardGen name='recrMagentaFluoriteBaseStandard' block='ReactorCraft:reactorcraft_block_fluoriteore:3' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * recrMagentaFluoriteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 0.5 * 0.1 * recrMagentaFluoriteFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * recrMagentaFluoriteSize * _default_'/>
                         <Setting name='Height' avg=':= 46' range=':= 28'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
@@ -1470,14 +1460,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin LayeredVeins distribution of Green Fluorite -->
                 <IfCondition condition=':= recrGreenFluoriteDist = "layeredVeins"'>
                 
-                    <Veins name='recrGreenFluorite0Veins' block='ReactorCraft:reactorcraft_block_fluoriteore:4' inherits='PresetLayeredVeins'>
+                    <Veins name='recrGreenFluoriteBaseVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:4' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrGreenFluoriteSize * _default_' range=':= 1 * 0.8 * recrGreenFluoriteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 0.5 * 0.85 * recrGreenFluoriteFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrGreenFluoriteSize * _default_' range=':= 1 * 0.8 * recrGreenFluoriteSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 46' range=':= 28' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrGreenFluoriteSize * _default_' range=':= 1 * 0.8 * recrGreenFluoriteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -1491,7 +1481,7 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  StrategicCloud distribution of Green Fluorite -->
                 <IfCondition condition=':= recrGreenFluoriteDist = "strategicCloud"'>
                 
-                    <Cloud name='recrGreenFluorite0Cloud' block='ReactorCraft:reactorcraft_block_fluoriteore:4' inherits='PresetStrategicCloud'>
+                    <Cloud name='recrGreenFluoriteBaseCloud' block='ReactorCraft:reactorcraft_block_fluoriteore:4' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1511,16 +1501,15 @@ Fluorite, Yellow Fluorite
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Green Fluorite Strategic Cloud Hint Veins -->
-                        <Veins name='recrGreenFluorite0HintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:4' inherits='PresetHintVeins'>
+                        <Veins name='recrGreenFluoriteBaseHintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:4' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60e9f8d2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 0.5 * 4.5 * recrGreenFluoriteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 46' range=':= 28' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrGreenFluoriteSize * _default_' range=':= 1 * 0.8 * recrGreenFluoriteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Green Fluorite Strategic Cloud Hint Veins -->
 
@@ -1533,14 +1522,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  Vanilla distribution of Green Fluorite -->
                 <IfCondition condition=':= recrGreenFluoriteDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='recrGreenFluorite0Standard' block='ReactorCraft:reactorcraft_block_fluoriteore:4' inherits='PresetStandardGen'>
+                    <StandardGen name='recrGreenFluoriteBaseStandard' block='ReactorCraft:reactorcraft_block_fluoriteore:4' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * recrGreenFluoriteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 0.5 * 0.1 * recrGreenFluoriteFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * recrGreenFluoriteSize * _default_'/>
                         <Setting name='Height' avg=':= 46' range=':= 28'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
@@ -1556,14 +1545,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin LayeredVeins distribution of Red Fluorite -->
                 <IfCondition condition=':= recrRedFluoriteDist = "layeredVeins"'>
                 
-                    <Veins name='recrRedFluorite0Veins' block='ReactorCraft:reactorcraft_block_fluoriteore:5' inherits='PresetLayeredVeins'>
+                    <Veins name='recrRedFluoriteBaseVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:5' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrRedFluoriteSize * _default_' range=':= 1 * 0.8 * recrRedFluoriteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 0.5 * 0.85 * recrRedFluoriteFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrRedFluoriteSize * _default_' range=':= 1 * 0.8 * recrRedFluoriteSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 46' range=':= 28' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrRedFluoriteSize * _default_' range=':= 1 * 0.8 * recrRedFluoriteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -1577,7 +1566,7 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  StrategicCloud distribution of Red Fluorite -->
                 <IfCondition condition=':= recrRedFluoriteDist = "strategicCloud"'>
                 
-                    <Cloud name='recrRedFluorite0Cloud' block='ReactorCraft:reactorcraft_block_fluoriteore:5' inherits='PresetStrategicCloud'>
+                    <Cloud name='recrRedFluoriteBaseCloud' block='ReactorCraft:reactorcraft_block_fluoriteore:5' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1597,16 +1586,15 @@ Fluorite, Yellow Fluorite
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Red Fluorite Strategic Cloud Hint Veins -->
-                        <Veins name='recrRedFluorite0HintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:5' inherits='PresetHintVeins'>
+                        <Veins name='recrRedFluoriteBaseHintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:5' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60e9f8d2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 0.5 * 4.5 * recrRedFluoriteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 46' range=':= 28' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrRedFluoriteSize * _default_' range=':= 1 * 0.8 * recrRedFluoriteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Red Fluorite Strategic Cloud Hint Veins -->
 
@@ -1619,14 +1607,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  Vanilla distribution of Red Fluorite -->
                 <IfCondition condition=':= recrRedFluoriteDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='recrRedFluorite0Standard' block='ReactorCraft:reactorcraft_block_fluoriteore:5' inherits='PresetStandardGen'>
+                    <StandardGen name='recrRedFluoriteBaseStandard' block='ReactorCraft:reactorcraft_block_fluoriteore:5' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * recrRedFluoriteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 0.5 * 0.1 * recrRedFluoriteFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * recrRedFluoriteSize * _default_'/>
                         <Setting name='Height' avg=':= 46' range=':= 28'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
@@ -1642,14 +1630,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin LayeredVeins distribution of White Fluorite -->
                 <IfCondition condition=':= recrWhiteFluoriteDist = "layeredVeins"'>
                 
-                    <Veins name='recrWhiteFluorite0Veins' block='ReactorCraft:reactorcraft_block_fluoriteore:6' inherits='PresetLayeredVeins'>
+                    <Veins name='recrWhiteFluoriteBaseVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:6' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrWhiteFluoriteSize * _default_' range=':= 1 * 0.8 * recrWhiteFluoriteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 0.5 * 0.85 * recrWhiteFluoriteFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrWhiteFluoriteSize * _default_' range=':= 1 * 0.8 * recrWhiteFluoriteSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 46' range=':= 28' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrWhiteFluoriteSize * _default_' range=':= 1 * 0.8 * recrWhiteFluoriteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -1663,7 +1651,7 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  StrategicCloud distribution of White Fluorite -->
                 <IfCondition condition=':= recrWhiteFluoriteDist = "strategicCloud"'>
                 
-                    <Cloud name='recrWhiteFluorite0Cloud' block='ReactorCraft:reactorcraft_block_fluoriteore:6' inherits='PresetStrategicCloud'>
+                    <Cloud name='recrWhiteFluoriteBaseCloud' block='ReactorCraft:reactorcraft_block_fluoriteore:6' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1683,16 +1671,15 @@ Fluorite, Yellow Fluorite
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin White Fluorite Strategic Cloud Hint Veins -->
-                        <Veins name='recrWhiteFluorite0HintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:6' inherits='PresetHintVeins'>
+                        <Veins name='recrWhiteFluoriteBaseHintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:6' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60e9f8d2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 0.5 * 4.5 * recrWhiteFluoriteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 46' range=':= 28' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrWhiteFluoriteSize * _default_' range=':= 1 * 0.8 * recrWhiteFluoriteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End White Fluorite Strategic Cloud Hint Veins -->
 
@@ -1705,14 +1692,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  Vanilla distribution of White Fluorite -->
                 <IfCondition condition=':= recrWhiteFluoriteDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='recrWhiteFluorite0Standard' block='ReactorCraft:reactorcraft_block_fluoriteore:6' inherits='PresetStandardGen'>
+                    <StandardGen name='recrWhiteFluoriteBaseStandard' block='ReactorCraft:reactorcraft_block_fluoriteore:6' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * recrWhiteFluoriteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 0.5 * 0.1 * recrWhiteFluoriteFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * recrWhiteFluoriteSize * _default_'/>
                         <Setting name='Height' avg=':= 46' range=':= 28'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
@@ -1728,14 +1715,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin LayeredVeins distribution of Yellow Fluorite -->
                 <IfCondition condition=':= recrYellowFluoriteDist = "layeredVeins"'>
                 
-                    <Veins name='recrYellowFluorite0Veins' block='ReactorCraft:reactorcraft_block_fluoriteore:7' inherits='PresetLayeredVeins'>
+                    <Veins name='recrYellowFluoriteBaseVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:7' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrYellowFluoriteSize * _default_' range=':= 1 * 0.8 * recrYellowFluoriteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 0.5 * 0.85 * recrYellowFluoriteFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrYellowFluoriteSize * _default_' range=':= 1 * 0.8 * recrYellowFluoriteSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 46' range=':= 28' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrYellowFluoriteSize * _default_' range=':= 1 * 0.8 * recrYellowFluoriteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -1749,7 +1736,7 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  StrategicCloud distribution of Yellow Fluorite -->
                 <IfCondition condition=':= recrYellowFluoriteDist = "strategicCloud"'>
                 
-                    <Cloud name='recrYellowFluorite0Cloud' block='ReactorCraft:reactorcraft_block_fluoriteore:7' inherits='PresetStrategicCloud'>
+                    <Cloud name='recrYellowFluoriteBaseCloud' block='ReactorCraft:reactorcraft_block_fluoriteore:7' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1769,16 +1756,15 @@ Fluorite, Yellow Fluorite
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Yellow Fluorite Strategic Cloud Hint Veins -->
-                        <Veins name='recrYellowFluorite0HintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:7' inherits='PresetHintVeins'>
+                        <Veins name='recrYellowFluoriteBaseHintVeins' block='ReactorCraft:reactorcraft_block_fluoriteore:7' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60e9f8d2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 0.5 * 4.5 * recrYellowFluoriteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 46' range=':= 28' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * recrYellowFluoriteSize * _default_' range=':= 1 * 0.8 * recrYellowFluoriteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Yellow Fluorite Strategic Cloud Hint Veins -->
 
@@ -1791,14 +1777,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  Vanilla distribution of Yellow Fluorite -->
                 <IfCondition condition=':= recrYellowFluoriteDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='recrYellowFluorite0Standard' block='ReactorCraft:reactorcraft_block_fluoriteore:7' inherits='PresetStandardGen'>
+                    <StandardGen name='recrYellowFluoriteBaseStandard' block='ReactorCraft:reactorcraft_block_fluoriteore:7' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * recrYellowFluoriteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 0.5 * 0.1 * recrYellowFluoriteFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * recrYellowFluoriteSize * _default_'/>
                         <Setting name='Height' avg=':= 46' range=':= 28'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
@@ -1836,14 +1822,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin LayeredVeins distribution of Ammonium Chloride -->
                 <IfCondition condition=':= recrAmmoniumChlorideDist = "layeredVeins"'>
                 
-                    <Veins name='recrAmmoniumChloride0Veins' block='ReactorCraft:reactorcraft_block_ore:6' inherits='PresetLayeredVeins'>
+                    <Veins name='recrAmmoniumChlorideBaseVeins' block='ReactorCraft:reactorcraft_block_ore:6' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 1 * recrAmmoniumChlorideSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * recrAmmoniumChlorideFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 1 * recrAmmoniumChlorideSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 1 * recrAmmoniumChlorideSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -1857,7 +1843,7 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  StrategicCloud distribution of Ammonium Chloride -->
                 <IfCondition condition=':= recrAmmoniumChlorideDist = "strategicCloud"'>
                 
-                    <Cloud name='recrAmmoniumChloride0Cloud' block='ReactorCraft:reactorcraft_block_ore:6' inherits='PresetStrategicCloud'>
+                    <Cloud name='recrAmmoniumChlorideBaseCloud' block='ReactorCraft:reactorcraft_block_ore:6' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1877,16 +1863,15 @@ Fluorite, Yellow Fluorite
                         <Replaces block='minecraft:netherrack'/>
                         
                         <!-- Begin Ammonium Chloride Strategic Cloud Hint Veins -->
-                        <Veins name='recrAmmoniumChloride0HintVeins' block='ReactorCraft:reactorcraft_block_ore:6' inherits='PresetHintVeins'>
+                        <Veins name='recrAmmoniumChlorideBaseHintVeins' block='ReactorCraft:reactorcraft_block_ore:6' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60e9f8d2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * recrAmmoniumChlorideFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 1 * recrAmmoniumChlorideSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Ammonium Chloride Strategic Cloud Hint Veins -->
 
@@ -1899,14 +1884,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  Vanilla distribution of Ammonium Chloride -->
                 <IfCondition condition=':= recrAmmoniumChlorideDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='recrAmmoniumChloride0Standard' block='ReactorCraft:reactorcraft_block_ore:6' inherits='PresetStandardGen'>
+                    <StandardGen name='recrAmmoniumChlorideBaseStandard' block='ReactorCraft:reactorcraft_block_ore:6' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * recrAmmoniumChlorideSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * recrAmmoniumChlorideFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * recrAmmoniumChlorideSize * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:netherrack'/>
                     </StandardGen>
@@ -1942,14 +1927,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin LayeredVeins distribution of End Pitchblende -->
                 <IfCondition condition=':= recrEndPitchblendeDist = "layeredVeins"'>
                 
-                    <Veins name='recrEndPitchblende0Veins' block='ReactorCraft:reactorcraft_block_ore:5' inherits='PresetLayeredVeins'>
+                    <Veins name='recrEndPitchblendeBaseVeins' block='ReactorCraft:reactorcraft_block_ore:5' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrEndPitchblendeSize * _default_' range=':= 1 * 1 * recrEndPitchblendeSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * recrEndPitchblendeFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrEndPitchblendeSize * _default_' range=':= 1 * 1 * recrEndPitchblendeSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * recrEndPitchblendeSize * _default_' range=':= 1 * 1 * recrEndPitchblendeSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -1963,7 +1948,7 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  StrategicCloud distribution of End Pitchblende -->
                 <IfCondition condition=':= recrEndPitchblendeDist = "strategicCloud"'>
                 
-                    <Cloud name='recrEndPitchblende0Cloud' block='ReactorCraft:reactorcraft_block_ore:5' inherits='PresetStrategicCloud'>
+                    <Cloud name='recrEndPitchblendeBaseCloud' block='ReactorCraft:reactorcraft_block_ore:5' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1983,16 +1968,15 @@ Fluorite, Yellow Fluorite
                         <Replaces block='minecraft:end_stone'/>
                         
                         <!-- Begin End Pitchblende Strategic Cloud Hint Veins -->
-                        <Veins name='recrEndPitchblende0HintVeins' block='ReactorCraft:reactorcraft_block_ore:5' inherits='PresetHintVeins'>
+                        <Veins name='recrEndPitchblendeBaseHintVeins' block='ReactorCraft:reactorcraft_block_ore:5' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60e9f8d2</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * recrEndPitchblendeFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * recrEndPitchblendeSize * _default_' range=':= 1 * 1 * recrEndPitchblendeSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End End Pitchblende Strategic Cloud Hint Veins -->
 
@@ -2005,14 +1989,14 @@ Fluorite, Yellow Fluorite
                 <!-- Begin  Vanilla distribution of End Pitchblende -->
                 <IfCondition condition=':= recrEndPitchblendeDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='recrEndPitchblende0Standard' block='ReactorCraft:reactorcraft_block_ore:5' inherits='PresetStandardGen'>
+                    <StandardGen name='recrEndPitchblendeBaseStandard' block='ReactorCraft:reactorcraft_block_ore:5' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60e9f8d2</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * recrEndPitchblendeSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * recrEndPitchblendeFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * recrEndPitchblendeSize * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:end_stone'/>
                     </StandardGen>

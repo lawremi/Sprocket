@@ -130,14 +130,14 @@ Generates: Eximite, Meutoite
                 <!-- Begin Layered Veins distribution of Eximite -->
                 <IfCondition condition=':= mtleEximiteDist = "layeredVeins"'>
                 
-                    <Veins name='mtleEximite0Veins' block='Metallurgy:ender.ore' inherits='PresetLayeredVeins'>
+                    <Veins name='mtleEximiteBaseVeins' block='Metallurgy:ender.ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6032FFD0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtleEximiteSize * _default_' range=':= 1 * 1 * mtleEximiteSize * _default_'/>
+                        <WireframeColor>0x6073D43F</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * mtleEximiteFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtleEximiteSize * _default_' range=':= 1 * 1 * mtleEximiteSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * mtleEximiteSize * _default_' range=':= 1 * 1 * mtleEximiteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -151,7 +151,7 @@ Generates: Eximite, Meutoite
                 <!-- Begin  Strategic Cloud distribution of Eximite -->
                 <IfCondition condition=':= mtleEximiteDist = "strategicCloud"'>
                 
-                    <Cloud name='mtleEximite0Cloud' block='Metallurgy:ender.ore' inherits='PresetStrategicCloud'>
+                    <Cloud name='mtleEximiteBaseCloud' block='Metallurgy:ender.ore' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -161,7 +161,7 @@ Generates: Eximite, Meutoite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6032FFD0</WireframeColor>
+                        <WireframeColor>0x6073D43F</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 3 * 1 * mtleEximiteFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtleEximiteSize * _default_' range=':= 1 * 1 * mtleEximiteSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtleEximiteSize * _default_' range=':= 1 * 1 * mtleEximiteSize * _default_'/>
@@ -171,16 +171,15 @@ Generates: Eximite, Meutoite
                         <Replaces block='minecraft:end_stone'/>
                         
                         <!-- Begin Eximite Strategic Cloud Hint Veins -->
-                        <Veins name='mtleEximite0HintVeins' block='Metallurgy:ender.ore' inherits='PresetHintVeins'>
+                        <Veins name='mtleEximiteBaseHintVeins' block='Metallurgy:ender.ore' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x6032FFD0</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 1 * mtleEximiteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtleEximiteSize * _default_' range=':= 1 * 1 * mtleEximiteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x6073D43F</WireframeColor>
                         </Veins>
                         <!-- End Eximite Strategic Cloud Hint Veins -->
 
@@ -193,14 +192,14 @@ Generates: Eximite, Meutoite
                 <!-- Begin  Vanilla distribution of Eximite -->
                 <IfCondition condition=':= mtleEximiteDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='mtleEximite0Standard' block='Metallurgy:ender.ore' inherits='PresetStandardGen'>
+                    <StandardGen name='mtleEximiteBaseStandard' block='Metallurgy:ender.ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6032FFD0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * mtleEximiteSize * _default_'/>
+                        <WireframeColor>0x6073D43F</WireframeColor>
                         <Setting name='Frequency' avg=':= 1 * 3 * 1 * mtleEximiteFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * mtleEximiteSize * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:end_stone'/>
                     </StandardGen>
@@ -214,14 +213,14 @@ Generates: Eximite, Meutoite
                 <!-- Begin Layered Veins distribution of Meutoite -->
                 <IfCondition condition=':= mtleMeutoiteDist = "layeredVeins"'>
                 
-                    <Veins name='mtleMeutoite0Veins' block='Metallurgy:ender.ore:1' inherits='PresetLayeredVeins'>
+                    <Veins name='mtleMeutoiteBaseVeins' block='Metallurgy:ender.ore:1' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6032FFD0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtleMeutoiteSize * _default_' range=':= 1 * 1 * mtleMeutoiteSize * _default_'/>
+                        <WireframeColor>0x6073D43F</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * mtleMeutoiteFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * mtleMeutoiteSize * _default_' range=':= 1 * 1 * mtleMeutoiteSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * mtleMeutoiteSize * _default_' range=':= 1 * 1 * mtleMeutoiteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -235,7 +234,7 @@ Generates: Eximite, Meutoite
                 <!-- Begin  Strategic Cloud distribution of Meutoite -->
                 <IfCondition condition=':= mtleMeutoiteDist = "strategicCloud"'>
                 
-                    <Cloud name='mtleMeutoite0Cloud' block='Metallurgy:ender.ore:1' inherits='PresetStrategicCloud'>
+                    <Cloud name='mtleMeutoiteBaseCloud' block='Metallurgy:ender.ore:1' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -245,7 +244,7 @@ Generates: Eximite, Meutoite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6032FFD0</WireframeColor>
+                        <WireframeColor>0x6073D43F</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 3 * 1 * mtleMeutoiteFreq *_default_'/>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * mtleMeutoiteSize * _default_' range=':= 1 * 1 * mtleMeutoiteSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * mtleMeutoiteSize * _default_' range=':= 1 * 1 * mtleMeutoiteSize * _default_'/>
@@ -255,16 +254,15 @@ Generates: Eximite, Meutoite
                         <Replaces block='minecraft:end_stone'/>
                         
                         <!-- Begin Meutoite Strategic Cloud Hint Veins -->
-                        <Veins name='mtleMeutoite0HintVeins' block='Metallurgy:ender.ore:1' inherits='PresetHintVeins'>
+                        <Veins name='mtleMeutoiteBaseHintVeins' block='Metallurgy:ender.ore:1' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x6032FFD0</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 1 * mtleMeutoiteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * mtleMeutoiteSize * _default_' range=':= 1 * 1 * mtleMeutoiteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                            <WireframeColor>0x6073D43F</WireframeColor>
                         </Veins>
                         <!-- End Meutoite Strategic Cloud Hint Veins -->
 
@@ -277,14 +275,14 @@ Generates: Eximite, Meutoite
                 <!-- Begin  Vanilla distribution of Meutoite -->
                 <IfCondition condition=':= mtleMeutoiteDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='mtleMeutoite0Standard' block='Metallurgy:ender.ore:1' inherits='PresetStandardGen'>
+                    <StandardGen name='mtleMeutoiteBaseStandard' block='Metallurgy:ender.ore:1' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x6032FFD0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * mtleMeutoiteSize * _default_'/>
+                        <WireframeColor>0x6073D43F</WireframeColor>
                         <Setting name='Frequency' avg=':= 1 * 3 * 1 * mtleMeutoiteFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * mtleMeutoiteSize * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:end_stone'/>
                     </StandardGen>

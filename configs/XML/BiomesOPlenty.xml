@@ -326,7 +326,7 @@ Amber
                 <!-- Begin Sparse Veins distribution of Ruby -->
                 <IfCondition condition=':= boplRubyDist = "sparseVeins"'>
                 
-                    <Veins name='boplRuby0Veins' block='BiomesOPlenty:gemOre:2' inherits='PresetSparseVeins'>
+                    <Veins name='boplRubyBaseVeins' block='BiomesOPlenty:gemOre:2' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
                             these veins are relatively wide and long.  Mining the ore from them is time consuming 
@@ -344,22 +344,13 @@ Amber
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Ruby Sparse Veins) Settings -->
-                    <Veins name='boplRuby1Veins' block='BiomesOPlenty:gemOre:2' inherits='PresetSparseVeins'>
+                    <Veins name='boplRubyPrefersVeins' block='BiomesOPlenty:gemOre:2' inherits='boplRubyBaseVeins'>
                         <Description>
-                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
-                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
-                            compared to solid ore veins.  They are also more difficult to follow, since it is 
-                            harder to get an idea of their direction while mining.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * boplRubyFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplRubySize * _default_' range=':= 1 * 0.8 * boplRubySize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * boplRubySize * _default_' range=':= 1 * 0.8 * boplRubySize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Ruby Sparse Veins) Settings -->
@@ -371,7 +362,7 @@ Amber
                 <!-- Begin  Strategic Cloud distribution of Ruby -->
                 <IfCondition condition=':= boplRubyDist = "strategicCloud"'>
                 
-                    <Cloud name='boplRuby0Cloud' block='BiomesOPlenty:gemOre:2' inherits='PresetStrategicCloud'>
+                    <Cloud name='boplRubyBaseCloud' block='BiomesOPlenty:gemOre:2' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -391,55 +382,37 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Ruby Strategic Cloud Hint Veins -->
-                        <Veins name='boplRuby0HintVeins' block='BiomesOPlenty:gemOre:2' inherits='PresetHintVeins'>
+                        <Veins name='boplRubyBaseHintVeins' block='BiomesOPlenty:gemOre:2' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6c2d6</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * boplRubyFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplRubySize * _default_' range=':= 1 * 0.8 * boplRubySize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Ruby Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Ruby Strategic Cloud) Settings -->
-                    <Cloud name='boplRuby1Cloud' block='BiomesOPlenty:gemOre:2' inherits='PresetStrategicCloud'>
+                    <Cloud name='boplRubyPrefersCloud' block='BiomesOPlenty:gemOre:2' inherits='boplRubyBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * boplRubyFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * boplRubySize * _default_' range=':= 1 * 0.8 * boplRubySize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * boplRubySize * _default_' range=':= 1 * 0.8 * boplRubySize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplRubySize * _default_' range=':= 1 * 1 * 0.8 * boplRubySize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                         
                         <!-- Begin Ruby Strategic Cloud Hint Veins -->
-                        <Veins name='boplRuby1HintVeins' block='BiomesOPlenty:gemOre:2' inherits='PresetHintVeins'>
+                        <Veins name='boplRubyPrefersHintVeins' block='BiomesOPlenty:gemOre:2' inherits='boplRubyBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6c2d6</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * boplRubyFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplRubySize * _default_' range=':= 1 * 0.8 * boplRubySize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
                         <!-- End Ruby Strategic Cloud Hint Veins -->
@@ -454,30 +427,26 @@ Amber
                 <!-- Begin  Vanilla distribution of Ruby -->
                 <IfCondition condition=':= boplRubyDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='boplRuby0Standard' block='BiomesOPlenty:gemOre:2' inherits='PresetStandardGen'>
+                    <StandardGen name='boplRubyBaseStandard' block='BiomesOPlenty:gemOre:2' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * boplRubySize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * boplRubyFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * boplRubySize * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Ruby Vanilla) Settings -->
-                    <StandardGen name='boplRuby1Standard' block='BiomesOPlenty:gemOre:2' inherits='PresetStandardGen'>
+                    <StandardGen name='boplRubyPrefersStandard' block='BiomesOPlenty:gemOre:2' inherits='boplRubyBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * boplRubySize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * boplRubyFreq * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Ruby Vanilla) Settings -->
@@ -493,7 +462,7 @@ Amber
                 <!-- Begin Sparse Veins distribution of Peridot -->
                 <IfCondition condition=':= boplPeridotDist = "sparseVeins"'>
                 
-                    <Veins name='boplPeridot0Veins' block='BiomesOPlenty:gemOre:4' inherits='PresetSparseVeins'>
+                    <Veins name='boplPeridotBaseVeins' block='BiomesOPlenty:gemOre:4' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
                             these veins are relatively wide and long.  Mining the ore from them is time consuming 
@@ -511,22 +480,13 @@ Amber
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Peridot Sparse Veins) Settings -->
-                    <Veins name='boplPeridot1Veins' block='BiomesOPlenty:gemOre:4' inherits='PresetSparseVeins'>
+                    <Veins name='boplPeridotPrefersVeins' block='BiomesOPlenty:gemOre:4' inherits='boplPeridotBaseVeins'>
                         <Description>
-                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
-                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
-                            compared to solid ore veins.  They are also more difficult to follow, since it is 
-                            harder to get an idea of their direction while mining.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * boplPeridotFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplPeridotSize * _default_' range=':= 1 * 0.8 * boplPeridotSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * boplPeridotSize * _default_' range=':= 1 * 0.8 * boplPeridotSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Peridot Sparse Veins) Settings -->
@@ -538,7 +498,7 @@ Amber
                 <!-- Begin  Strategic Cloud distribution of Peridot -->
                 <IfCondition condition=':= boplPeridotDist = "strategicCloud"'>
                 
-                    <Cloud name='boplPeridot0Cloud' block='BiomesOPlenty:gemOre:4' inherits='PresetStrategicCloud'>
+                    <Cloud name='boplPeridotBaseCloud' block='BiomesOPlenty:gemOre:4' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -558,55 +518,37 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Peridot Strategic Cloud Hint Veins -->
-                        <Veins name='boplPeridot0HintVeins' block='BiomesOPlenty:gemOre:4' inherits='PresetHintVeins'>
+                        <Veins name='boplPeridotBaseHintVeins' block='BiomesOPlenty:gemOre:4' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6c2d6</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * boplPeridotFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplPeridotSize * _default_' range=':= 1 * 0.8 * boplPeridotSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Peridot Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Peridot Strategic Cloud) Settings -->
-                    <Cloud name='boplPeridot1Cloud' block='BiomesOPlenty:gemOre:4' inherits='PresetStrategicCloud'>
+                    <Cloud name='boplPeridotPrefersCloud' block='BiomesOPlenty:gemOre:4' inherits='boplPeridotBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * boplPeridotFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * boplPeridotSize * _default_' range=':= 1 * 0.8 * boplPeridotSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * boplPeridotSize * _default_' range=':= 1 * 0.8 * boplPeridotSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplPeridotSize * _default_' range=':= 1 * 1 * 0.8 * boplPeridotSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                         
                         <!-- Begin Peridot Strategic Cloud Hint Veins -->
-                        <Veins name='boplPeridot1HintVeins' block='BiomesOPlenty:gemOre:4' inherits='PresetHintVeins'>
+                        <Veins name='boplPeridotPrefersHintVeins' block='BiomesOPlenty:gemOre:4' inherits='boplPeridotBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6c2d6</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * boplPeridotFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplPeridotSize * _default_' range=':= 1 * 0.8 * boplPeridotSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
                         <!-- End Peridot Strategic Cloud Hint Veins -->
@@ -621,30 +563,26 @@ Amber
                 <!-- Begin  Vanilla distribution of Peridot -->
                 <IfCondition condition=':= boplPeridotDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='boplPeridot0Standard' block='BiomesOPlenty:gemOre:4' inherits='PresetStandardGen'>
+                    <StandardGen name='boplPeridotBaseStandard' block='BiomesOPlenty:gemOre:4' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * boplPeridotSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * boplPeridotFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * boplPeridotSize * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Peridot Vanilla) Settings -->
-                    <StandardGen name='boplPeridot1Standard' block='BiomesOPlenty:gemOre:4' inherits='PresetStandardGen'>
+                    <StandardGen name='boplPeridotPrefersStandard' block='BiomesOPlenty:gemOre:4' inherits='boplPeridotBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * boplPeridotSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * boplPeridotFreq * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Peridot Vanilla) Settings -->
@@ -660,7 +598,7 @@ Amber
                 <!-- Begin Sparse Veins distribution of Topaz -->
                 <IfCondition condition=':= boplTopazDist = "sparseVeins"'>
                 
-                    <Veins name='boplTopaz0Veins' block='BiomesOPlenty:gemOre:6' inherits='PresetSparseVeins'>
+                    <Veins name='boplTopazBaseVeins' block='BiomesOPlenty:gemOre:6' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
                             these veins are relatively wide and long.  Mining the ore from them is time consuming 
@@ -678,22 +616,13 @@ Amber
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Topaz Sparse Veins) Settings -->
-                    <Veins name='boplTopaz1Veins' block='BiomesOPlenty:gemOre:6' inherits='PresetSparseVeins'>
+                    <Veins name='boplTopazPrefersVeins' block='BiomesOPlenty:gemOre:6' inherits='boplTopazBaseVeins'>
                         <Description>
-                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
-                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
-                            compared to solid ore veins.  They are also more difficult to follow, since it is 
-                            harder to get an idea of their direction while mining.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * boplTopazFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplTopazSize * _default_' range=':= 1 * 0.8 * boplTopazSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * boplTopazSize * _default_' range=':= 1 * 0.8 * boplTopazSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Topaz Sparse Veins) Settings -->
@@ -705,7 +634,7 @@ Amber
                 <!-- Begin  Strategic Cloud distribution of Topaz -->
                 <IfCondition condition=':= boplTopazDist = "strategicCloud"'>
                 
-                    <Cloud name='boplTopaz0Cloud' block='BiomesOPlenty:gemOre:6' inherits='PresetStrategicCloud'>
+                    <Cloud name='boplTopazBaseCloud' block='BiomesOPlenty:gemOre:6' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -725,55 +654,37 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Topaz Strategic Cloud Hint Veins -->
-                        <Veins name='boplTopaz0HintVeins' block='BiomesOPlenty:gemOre:6' inherits='PresetHintVeins'>
+                        <Veins name='boplTopazBaseHintVeins' block='BiomesOPlenty:gemOre:6' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6c2d6</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * boplTopazFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplTopazSize * _default_' range=':= 1 * 0.8 * boplTopazSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Topaz Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Topaz Strategic Cloud) Settings -->
-                    <Cloud name='boplTopaz1Cloud' block='BiomesOPlenty:gemOre:6' inherits='PresetStrategicCloud'>
+                    <Cloud name='boplTopazPrefersCloud' block='BiomesOPlenty:gemOre:6' inherits='boplTopazBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * boplTopazFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * boplTopazSize * _default_' range=':= 1 * 0.8 * boplTopazSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * boplTopazSize * _default_' range=':= 1 * 0.8 * boplTopazSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplTopazSize * _default_' range=':= 1 * 1 * 0.8 * boplTopazSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                         
                         <!-- Begin Topaz Strategic Cloud Hint Veins -->
-                        <Veins name='boplTopaz1HintVeins' block='BiomesOPlenty:gemOre:6' inherits='PresetHintVeins'>
+                        <Veins name='boplTopazPrefersHintVeins' block='BiomesOPlenty:gemOre:6' inherits='boplTopazBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6c2d6</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * boplTopazFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplTopazSize * _default_' range=':= 1 * 0.8 * boplTopazSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
                         <!-- End Topaz Strategic Cloud Hint Veins -->
@@ -788,30 +699,26 @@ Amber
                 <!-- Begin  Vanilla distribution of Topaz -->
                 <IfCondition condition=':= boplTopazDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='boplTopaz0Standard' block='BiomesOPlenty:gemOre:6' inherits='PresetStandardGen'>
+                    <StandardGen name='boplTopazBaseStandard' block='BiomesOPlenty:gemOre:6' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * boplTopazSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * boplTopazFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * boplTopazSize * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Topaz Vanilla) Settings -->
-                    <StandardGen name='boplTopaz1Standard' block='BiomesOPlenty:gemOre:6' inherits='PresetStandardGen'>
+                    <StandardGen name='boplTopazPrefersStandard' block='BiomesOPlenty:gemOre:6' inherits='boplTopazBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * boplTopazSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * boplTopazFreq * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Topaz Vanilla) Settings -->
@@ -827,7 +734,7 @@ Amber
                 <!-- Begin Sparse Veins distribution of Tanzanite -->
                 <IfCondition condition=':= boplTanzaniteDist = "sparseVeins"'>
                 
-                    <Veins name='boplTanzanite0Veins' block='BiomesOPlenty:gemOre:8' inherits='PresetSparseVeins'>
+                    <Veins name='boplTanzaniteBaseVeins' block='BiomesOPlenty:gemOre:8' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
                             these veins are relatively wide and long.  Mining the ore from them is time consuming 
@@ -845,22 +752,13 @@ Amber
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Tanzanite Sparse Veins) Settings -->
-                    <Veins name='boplTanzanite1Veins' block='BiomesOPlenty:gemOre:8' inherits='PresetSparseVeins'>
+                    <Veins name='boplTanzanitePrefersVeins' block='BiomesOPlenty:gemOre:8' inherits='boplTanzaniteBaseVeins'>
                         <Description>
-                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
-                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
-                            compared to solid ore veins.  They are also more difficult to follow, since it is 
-                            harder to get an idea of their direction while mining.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * boplTanzaniteFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplTanzaniteSize * _default_' range=':= 1 * 0.8 * boplTanzaniteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * boplTanzaniteSize * _default_' range=':= 1 * 0.8 * boplTanzaniteSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Tanzanite Sparse Veins) Settings -->
@@ -872,7 +770,7 @@ Amber
                 <!-- Begin  Strategic Cloud distribution of Tanzanite -->
                 <IfCondition condition=':= boplTanzaniteDist = "strategicCloud"'>
                 
-                    <Cloud name='boplTanzanite0Cloud' block='BiomesOPlenty:gemOre:8' inherits='PresetStrategicCloud'>
+                    <Cloud name='boplTanzaniteBaseCloud' block='BiomesOPlenty:gemOre:8' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -892,55 +790,37 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Tanzanite Strategic Cloud Hint Veins -->
-                        <Veins name='boplTanzanite0HintVeins' block='BiomesOPlenty:gemOre:8' inherits='PresetHintVeins'>
+                        <Veins name='boplTanzaniteBaseHintVeins' block='BiomesOPlenty:gemOre:8' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6c2d6</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * boplTanzaniteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplTanzaniteSize * _default_' range=':= 1 * 0.8 * boplTanzaniteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Tanzanite Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Tanzanite Strategic Cloud) Settings -->
-                    <Cloud name='boplTanzanite1Cloud' block='BiomesOPlenty:gemOre:8' inherits='PresetStrategicCloud'>
+                    <Cloud name='boplTanzanitePrefersCloud' block='BiomesOPlenty:gemOre:8' inherits='boplTanzaniteBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * boplTanzaniteFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * boplTanzaniteSize * _default_' range=':= 1 * 0.8 * boplTanzaniteSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * boplTanzaniteSize * _default_' range=':= 1 * 0.8 * boplTanzaniteSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplTanzaniteSize * _default_' range=':= 1 * 1 * 0.8 * boplTanzaniteSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                         
                         <!-- Begin Tanzanite Strategic Cloud Hint Veins -->
-                        <Veins name='boplTanzanite1HintVeins' block='BiomesOPlenty:gemOre:8' inherits='PresetHintVeins'>
+                        <Veins name='boplTanzanitePrefersHintVeins' block='BiomesOPlenty:gemOre:8' inherits='boplTanzaniteBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6c2d6</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * boplTanzaniteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplTanzaniteSize * _default_' range=':= 1 * 0.8 * boplTanzaniteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
                         <!-- End Tanzanite Strategic Cloud Hint Veins -->
@@ -955,30 +835,26 @@ Amber
                 <!-- Begin  Vanilla distribution of Tanzanite -->
                 <IfCondition condition=':= boplTanzaniteDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='boplTanzanite0Standard' block='BiomesOPlenty:gemOre:8' inherits='PresetStandardGen'>
+                    <StandardGen name='boplTanzaniteBaseStandard' block='BiomesOPlenty:gemOre:8' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * boplTanzaniteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * boplTanzaniteFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * boplTanzaniteSize * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Tanzanite Vanilla) Settings -->
-                    <StandardGen name='boplTanzanite1Standard' block='BiomesOPlenty:gemOre:8' inherits='PresetStandardGen'>
+                    <StandardGen name='boplTanzanitePrefersStandard' block='BiomesOPlenty:gemOre:8' inherits='boplTanzaniteBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * boplTanzaniteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * boplTanzaniteFreq * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Tanzanite Vanilla) Settings -->
@@ -994,7 +870,7 @@ Amber
                 <!-- Begin Sparse Veins distribution of Malachite -->
                 <IfCondition condition=':= boplMalachiteDist = "sparseVeins"'>
                 
-                    <Veins name='boplMalachite0Veins' block='BiomesOPlenty:gemOre:10' inherits='PresetSparseVeins'>
+                    <Veins name='boplMalachiteBaseVeins' block='BiomesOPlenty:gemOre:10' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
                             these veins are relatively wide and long.  Mining the ore from them is time consuming 
@@ -1012,22 +888,13 @@ Amber
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Malachite Sparse Veins) Settings -->
-                    <Veins name='boplMalachite1Veins' block='BiomesOPlenty:gemOre:10' inherits='PresetSparseVeins'>
+                    <Veins name='boplMalachitePrefersVeins' block='BiomesOPlenty:gemOre:10' inherits='boplMalachiteBaseVeins'>
                         <Description>
-                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
-                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
-                            compared to solid ore veins.  They are also more difficult to follow, since it is 
-                            harder to get an idea of their direction while mining.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * boplMalachiteFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplMalachiteSize * _default_' range=':= 1 * 0.8 * boplMalachiteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * boplMalachiteSize * _default_' range=':= 1 * 0.8 * boplMalachiteSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Malachite Sparse Veins) Settings -->
@@ -1039,7 +906,7 @@ Amber
                 <!-- Begin  Strategic Cloud distribution of Malachite -->
                 <IfCondition condition=':= boplMalachiteDist = "strategicCloud"'>
                 
-                    <Cloud name='boplMalachite0Cloud' block='BiomesOPlenty:gemOre:10' inherits='PresetStrategicCloud'>
+                    <Cloud name='boplMalachiteBaseCloud' block='BiomesOPlenty:gemOre:10' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1059,55 +926,37 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Malachite Strategic Cloud Hint Veins -->
-                        <Veins name='boplMalachite0HintVeins' block='BiomesOPlenty:gemOre:10' inherits='PresetHintVeins'>
+                        <Veins name='boplMalachiteBaseHintVeins' block='BiomesOPlenty:gemOre:10' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6c2d6</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * boplMalachiteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplMalachiteSize * _default_' range=':= 1 * 0.8 * boplMalachiteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Malachite Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Malachite Strategic Cloud) Settings -->
-                    <Cloud name='boplMalachite1Cloud' block='BiomesOPlenty:gemOre:10' inherits='PresetStrategicCloud'>
+                    <Cloud name='boplMalachitePrefersCloud' block='BiomesOPlenty:gemOre:10' inherits='boplMalachiteBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * boplMalachiteFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * boplMalachiteSize * _default_' range=':= 1 * 0.8 * boplMalachiteSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * boplMalachiteSize * _default_' range=':= 1 * 0.8 * boplMalachiteSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplMalachiteSize * _default_' range=':= 1 * 1 * 0.8 * boplMalachiteSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                         
                         <!-- Begin Malachite Strategic Cloud Hint Veins -->
-                        <Veins name='boplMalachite1HintVeins' block='BiomesOPlenty:gemOre:10' inherits='PresetHintVeins'>
+                        <Veins name='boplMalachitePrefersHintVeins' block='BiomesOPlenty:gemOre:10' inherits='boplMalachiteBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6c2d6</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * boplMalachiteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplMalachiteSize * _default_' range=':= 1 * 0.8 * boplMalachiteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
                         <!-- End Malachite Strategic Cloud Hint Veins -->
@@ -1122,30 +971,26 @@ Amber
                 <!-- Begin  Vanilla distribution of Malachite -->
                 <IfCondition condition=':= boplMalachiteDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='boplMalachite0Standard' block='BiomesOPlenty:gemOre:10' inherits='PresetStandardGen'>
+                    <StandardGen name='boplMalachiteBaseStandard' block='BiomesOPlenty:gemOre:10' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * boplMalachiteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * boplMalachiteFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * boplMalachiteSize * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Malachite Vanilla) Settings -->
-                    <StandardGen name='boplMalachite1Standard' block='BiomesOPlenty:gemOre:10' inherits='PresetStandardGen'>
+                    <StandardGen name='boplMalachitePrefersStandard' block='BiomesOPlenty:gemOre:10' inherits='boplMalachiteBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * boplMalachiteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * boplMalachiteFreq * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Malachite Vanilla) Settings -->
@@ -1161,7 +1006,7 @@ Amber
                 <!-- Begin Sparse Veins distribution of Sapphire -->
                 <IfCondition condition=':= boplSapphireDist = "sparseVeins"'>
                 
-                    <Veins name='boplSapphire0Veins' block='BiomesOPlenty:gemOre:12' inherits='PresetSparseVeins'>
+                    <Veins name='boplSapphireBaseVeins' block='BiomesOPlenty:gemOre:12' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
                             these veins are relatively wide and long.  Mining the ore from them is time consuming 
@@ -1179,22 +1024,13 @@ Amber
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Sapphire Sparse Veins) Settings -->
-                    <Veins name='boplSapphire1Veins' block='BiomesOPlenty:gemOre:12' inherits='PresetSparseVeins'>
+                    <Veins name='boplSapphirePrefersVeins' block='BiomesOPlenty:gemOre:12' inherits='boplSapphireBaseVeins'>
                         <Description>
-                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
-                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
-                            compared to solid ore veins.  They are also more difficult to follow, since it is 
-                            harder to get an idea of their direction while mining.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * boplSapphireFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplSapphireSize * _default_' range=':= 1 * 0.8 * boplSapphireSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * boplSapphireSize * _default_' range=':= 1 * 0.8 * boplSapphireSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Sapphire Sparse Veins) Settings -->
@@ -1206,7 +1042,7 @@ Amber
                 <!-- Begin  Strategic Cloud distribution of Sapphire -->
                 <IfCondition condition=':= boplSapphireDist = "strategicCloud"'>
                 
-                    <Cloud name='boplSapphire0Cloud' block='BiomesOPlenty:gemOre:12' inherits='PresetStrategicCloud'>
+                    <Cloud name='boplSapphireBaseCloud' block='BiomesOPlenty:gemOre:12' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1226,55 +1062,37 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Sapphire Strategic Cloud Hint Veins -->
-                        <Veins name='boplSapphire0HintVeins' block='BiomesOPlenty:gemOre:12' inherits='PresetHintVeins'>
+                        <Veins name='boplSapphireBaseHintVeins' block='BiomesOPlenty:gemOre:12' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6c2d6</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * boplSapphireFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplSapphireSize * _default_' range=':= 1 * 0.8 * boplSapphireSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Sapphire Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Sapphire Strategic Cloud) Settings -->
-                    <Cloud name='boplSapphire1Cloud' block='BiomesOPlenty:gemOre:12' inherits='PresetStrategicCloud'>
+                    <Cloud name='boplSapphirePrefersCloud' block='BiomesOPlenty:gemOre:12' inherits='boplSapphireBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * boplSapphireFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * boplSapphireSize * _default_' range=':= 1 * 0.8 * boplSapphireSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * boplSapphireSize * _default_' range=':= 1 * 0.8 * boplSapphireSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplSapphireSize * _default_' range=':= 1 * 1 * 0.8 * boplSapphireSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                         
                         <!-- Begin Sapphire Strategic Cloud Hint Veins -->
-                        <Veins name='boplSapphire1HintVeins' block='BiomesOPlenty:gemOre:12' inherits='PresetHintVeins'>
+                        <Veins name='boplSapphirePrefersHintVeins' block='BiomesOPlenty:gemOre:12' inherits='boplSapphireBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6c2d6</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * boplSapphireFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplSapphireSize * _default_' range=':= 1 * 0.8 * boplSapphireSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
                         <!-- End Sapphire Strategic Cloud Hint Veins -->
@@ -1289,30 +1107,26 @@ Amber
                 <!-- Begin  Vanilla distribution of Sapphire -->
                 <IfCondition condition=':= boplSapphireDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='boplSapphire0Standard' block='BiomesOPlenty:gemOre:12' inherits='PresetStandardGen'>
+                    <StandardGen name='boplSapphireBaseStandard' block='BiomesOPlenty:gemOre:12' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * boplSapphireSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * boplSapphireFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * boplSapphireSize * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Sapphire Vanilla) Settings -->
-                    <StandardGen name='boplSapphire1Standard' block='BiomesOPlenty:gemOre:12' inherits='PresetStandardGen'>
+                    <StandardGen name='boplSapphirePrefersStandard' block='BiomesOPlenty:gemOre:12' inherits='boplSapphireBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * boplSapphireSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * boplSapphireFreq * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Sapphire Vanilla) Settings -->
@@ -1328,7 +1142,7 @@ Amber
                 <!-- Begin Sparse Veins distribution of Amber -->
                 <IfCondition condition=':= boplAmberDist = "sparseVeins"'>
                 
-                    <Veins name='boplAmber0Veins' block='BiomesOPlenty:gemOre:14' inherits='PresetSparseVeins'>
+                    <Veins name='boplAmberBaseVeins' block='BiomesOPlenty:gemOre:14' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
                             these veins are relatively wide and long.  Mining the ore from them is time consuming 
@@ -1346,22 +1160,13 @@ Amber
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Amber Sparse Veins) Settings -->
-                    <Veins name='boplAmber1Veins' block='BiomesOPlenty:gemOre:14' inherits='PresetSparseVeins'>
+                    <Veins name='boplAmberPrefersVeins' block='BiomesOPlenty:gemOre:14' inherits='boplAmberBaseVeins'>
                         <Description>
-                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
-                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
-                            compared to solid ore veins.  They are also more difficult to follow, since it is 
-                            harder to get an idea of their direction while mining.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * boplAmberFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplAmberSize * _default_' range=':= 1 * 0.8 * boplAmberSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * boplAmberSize * _default_' range=':= 1 * 0.8 * boplAmberSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Amber Sparse Veins) Settings -->
@@ -1373,7 +1178,7 @@ Amber
                 <!-- Begin  Strategic Cloud distribution of Amber -->
                 <IfCondition condition=':= boplAmberDist = "strategicCloud"'>
                 
-                    <Cloud name='boplAmber0Cloud' block='BiomesOPlenty:gemOre:14' inherits='PresetStrategicCloud'>
+                    <Cloud name='boplAmberBaseCloud' block='BiomesOPlenty:gemOre:14' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1393,55 +1198,37 @@ Amber
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Amber Strategic Cloud Hint Veins -->
-                        <Veins name='boplAmber0HintVeins' block='BiomesOPlenty:gemOre:14' inherits='PresetHintVeins'>
+                        <Veins name='boplAmberBaseHintVeins' block='BiomesOPlenty:gemOre:14' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6c2d6</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 4.5 * boplAmberFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplAmberSize * _default_' range=':= 1 * 0.8 * boplAmberSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Amber Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Amber Strategic Cloud) Settings -->
-                    <Cloud name='boplAmber1Cloud' block='BiomesOPlenty:gemOre:14' inherits='PresetStrategicCloud'>
+                    <Cloud name='boplAmberPrefersCloud' block='BiomesOPlenty:gemOre:14' inherits='boplAmberBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * boplAmberFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * boplAmberSize * _default_' range=':= 1 * 0.8 * boplAmberSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * boplAmberSize * _default_' range=':= 1 * 0.8 * boplAmberSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplAmberSize * _default_' range=':= 1 * 1 * 0.8 * boplAmberSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                         
                         <!-- Begin Amber Strategic Cloud Hint Veins -->
-                        <Veins name='boplAmber1HintVeins' block='BiomesOPlenty:gemOre:14' inherits='PresetHintVeins'>
+                        <Veins name='boplAmberPrefersHintVeins' block='BiomesOPlenty:gemOre:14' inherits='boplAmberBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6c2d6</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 4.5 * boplAmberFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplAmberSize * _default_' range=':= 1 * 0.8 * boplAmberSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
                         <!-- End Amber Strategic Cloud Hint Veins -->
@@ -1456,30 +1243,26 @@ Amber
                 <!-- Begin  Vanilla distribution of Amber -->
                 <IfCondition condition=':= boplAmberDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='boplAmber0Standard' block='BiomesOPlenty:gemOre:14' inherits='PresetStandardGen'>
+                    <StandardGen name='boplAmberBaseStandard' block='BiomesOPlenty:gemOre:14' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * boplAmberSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * boplAmberFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * boplAmberSize * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Amber Vanilla) Settings -->
-                    <StandardGen name='boplAmber1Standard' block='BiomesOPlenty:gemOre:14' inherits='PresetStandardGen'>
+                    <StandardGen name='boplAmberPrefersStandard' block='BiomesOPlenty:gemOre:14' inherits='boplAmberBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * boplAmberSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * boplAmberFreq * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Amber Vanilla) Settings -->
@@ -1518,14 +1301,14 @@ Amber
                 <!-- Begin Layered Veins distribution of EnderAmathyst -->
                 <IfCondition condition=':= boplEnderAmathystDist = "layeredVeins"'>
                 
-                    <Veins name='boplEnderAmathyst0Veins' block='BiomesOPlenty:gemOre' inherits='PresetLayeredVeins'>
+                    <Veins name='boplEnderAmathystBaseVeins' block='BiomesOPlenty:gemOre' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 0.8 * boplEnderAmathystSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 0.85 * boplEnderAmathystFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 0.8 * boplEnderAmathystSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 0.8 * boplEnderAmathystSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -1533,19 +1316,14 @@ Amber
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (EnderAmathyst Layered Veins) Settings -->
-                    <Veins name='boplEnderAmathyst1Veins' block='BiomesOPlenty:gemOre' inherits='PresetLayeredVeins'>
+                    <Veins name='boplEnderAmathystPrefersVeins' block='BiomesOPlenty:gemOre' inherits='boplEnderAmathystBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 0.8 * boplEnderAmathystSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 0.85 * boplEnderAmathystFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 0.8 * boplEnderAmathystSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:end_stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (EnderAmathyst Layered Veins) Settings -->
@@ -1557,7 +1335,7 @@ Amber
                 <!-- Begin  Strategic Cloud distribution of EnderAmathyst -->
                 <IfCondition condition=':= boplEnderAmathystDist = "strategicCloud"'>
                 
-                    <Cloud name='boplEnderAmathyst0Cloud' block='BiomesOPlenty:gemOre' inherits='PresetStrategicCloud'>
+                    <Cloud name='boplEnderAmathystBaseCloud' block='BiomesOPlenty:gemOre' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1577,55 +1355,37 @@ Amber
                         <Replaces block='minecraft:end_stone'/>
                         
                         <!-- Begin EnderAmathyst Strategic Cloud Hint Veins -->
-                        <Veins name='boplEnderAmathyst0HintVeins' block='BiomesOPlenty:gemOre' inherits='PresetHintVeins'>
+                        <Veins name='boplEnderAmathystBaseHintVeins' block='BiomesOPlenty:gemOre' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6c2d6</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 4.5 * boplEnderAmathystFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 0.8 * boplEnderAmathystSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End EnderAmathyst Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (EnderAmathyst Strategic Cloud) Settings -->
-                    <Cloud name='boplEnderAmathyst1Cloud' block='BiomesOPlenty:gemOre' inherits='PresetStrategicCloud'>
+                    <Cloud name='boplEnderAmathystPrefersCloud' block='BiomesOPlenty:gemOre' inherits='boplEnderAmathystBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 3 * 4.5 * boplEnderAmathystFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 0.8 * boplEnderAmathystSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 0.8 * boplEnderAmathystSize * _default_'/>
-                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 1 * 0.8 * boplEnderAmathystSize  * _default_'/>
-                        <Replaces block='minecraft:end_stone'/>
                         <BiomeType name='Forest'/>
                         
                         <!-- Begin EnderAmathyst Strategic Cloud Hint Veins -->
-                        <Veins name='boplEnderAmathyst1HintVeins' block='BiomesOPlenty:gemOre' inherits='PresetHintVeins'>
+                        <Veins name='boplEnderAmathystPrefersHintVeins' block='BiomesOPlenty:gemOre' inherits='boplEnderAmathystBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6c2d6</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 3 * 4.5 * boplEnderAmathystFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 0.8 * boplEnderAmathystSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
                         <!-- End EnderAmathyst Strategic Cloud Hint Veins -->
@@ -1640,30 +1400,26 @@ Amber
                 <!-- Begin  Vanilla distribution of EnderAmathyst -->
                 <IfCondition condition=':= boplEnderAmathystDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='boplEnderAmathyst0Standard' block='BiomesOPlenty:gemOre' inherits='PresetStandardGen'>
+                    <StandardGen name='boplEnderAmathystBaseStandard' block='BiomesOPlenty:gemOre' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * boplEnderAmathystSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 3 * 0.1 * boplEnderAmathystFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * boplEnderAmathystSize * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:end_stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (EnderAmathyst Vanilla) Settings -->
-                    <StandardGen name='boplEnderAmathyst1Standard' block='BiomesOPlenty:gemOre' inherits='PresetStandardGen'>
+                    <StandardGen name='boplEnderAmathystPrefersStandard' block='BiomesOPlenty:gemOre' inherits='boplEnderAmathystBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6c2d6</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * boplEnderAmathystSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 3 * 0.1 * boplEnderAmathystFreq * _default_'/>
-                        <Setting name='Height' avg=':= 120' range=':= 120'/> 
-                        <Replaces block='minecraft:end_stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (EnderAmathyst Vanilla) Settings -->

@@ -151,7 +151,7 @@ Generates: Apatite, Copper, Tin
                 <!-- Begin SparseVeins distribution of Apatite -->
                 <IfCondition condition=':= frstApatiteDist = "sparseVeins"'>
                 
-                    <Veins name='frstApatite0Veins' block='Forestry:resources' inherits='PresetSparseVeins'>
+                    <Veins name='frstApatiteBaseVeins' block='Forestry:resources' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
                             these veins are relatively wide and long.  Mining the ore from them is time consuming 
@@ -169,22 +169,13 @@ Generates: Apatite, Copper, Tin
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Apatite Sparse Veins) Settings -->
-                    <Veins name='frstApatite1Veins' block='Forestry:resources' inherits='PresetSparseVeins'>
+                    <Veins name='frstApatitePrefersVeins' block='Forestry:resources' inherits='frstApatiteBaseVeins'>
                         <Description>
-                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
-                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
-                            compared to solid ore veins.  They are also more difficult to follow, since it is 
-                            harder to get an idea of their direction while mining.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60592ab4</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 10.7 * frstApatiteFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * frstApatiteSize * _default_' range=':= 1 * 1 * frstApatiteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * frstApatiteSize * _default_' range=':= 1 * 1 * frstApatiteSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1.75 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Apatite Sparse Veins) Settings -->
@@ -196,7 +187,7 @@ Generates: Apatite, Copper, Tin
                 <!-- Begin  StrategicCloud distribution of Apatite -->
                 <IfCondition condition=':= frstApatiteDist = "strategicCloud"'>
                 
-                    <Cloud name='frstApatite0Cloud' block='Forestry:resources' inherits='PresetStrategicCloud'>
+                    <Cloud name='frstApatiteBaseCloud' block='Forestry:resources' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -216,55 +207,37 @@ Generates: Apatite, Copper, Tin
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Apatite Strategic Cloud Hint Veins -->
-                        <Veins name='frstApatite0HintVeins' block='Forestry:resources' inherits='PresetHintVeins'>
+                        <Veins name='frstApatiteBaseHintVeins' block='Forestry:resources' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60592ab4</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * frstApatiteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * frstApatiteSize * _default_' range=':= 1 * 1 * frstApatiteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Apatite Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Apatite Strategic Cloud) Settings -->
-                    <Cloud name='frstApatite1Cloud' block='Forestry:resources' inherits='PresetStrategicCloud'>
+                    <Cloud name='frstApatitePrefersCloud' block='Forestry:resources' inherits='frstApatiteBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60592ab4</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 1 * frstApatiteFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * frstApatiteSize * _default_' range=':= 1 * 1 * frstApatiteSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * frstApatiteSize * _default_' range=':= 1 * 1 * frstApatiteSize * _default_'/>
-                        <Setting name='CloudHeight' avg='60' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * frstApatiteSize * _default_' range=':= 1 * 1 * 1 * frstApatiteSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                         
                         <!-- Begin Apatite Strategic Cloud Hint Veins -->
-                        <Veins name='frstApatite1HintVeins' block='Forestry:resources' inherits='PresetHintVeins'>
+                        <Veins name='frstApatitePrefersHintVeins' block='Forestry:resources' inherits='frstApatiteBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60592ab4</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 1 * frstApatiteFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * frstApatiteSize * _default_' range=':= 1 * 1 * frstApatiteSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
                         <!-- End Apatite Strategic Cloud Hint Veins -->
@@ -279,30 +252,26 @@ Generates: Apatite, Copper, Tin
                 <!-- Begin  Vanilla distribution of Apatite -->
                 <IfCondition condition=':= frstApatiteDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='frstApatite0Standard' block='Forestry:resources' inherits='PresetStandardGen'>
+                    <StandardGen name='frstApatiteBaseStandard' block='Forestry:resources' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60592ab4</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * frstApatiteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * frstApatiteFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 2 * frstApatiteSize * _default_'/>
                         <Setting name='Height' avg=':= 60' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Apatite Vanilla) Settings -->
-                    <StandardGen name='frstApatite1Standard' block='Forestry:resources' inherits='PresetStandardGen'>
+                    <StandardGen name='frstApatitePrefersStandard' block='Forestry:resources' inherits='frstApatiteBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60592ab4</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * frstApatiteSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * frstApatiteFreq * _default_'/>
-                        <Setting name='Height' avg=':= 60' range=':= 10'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Apatite Vanilla) Settings -->
@@ -318,14 +287,14 @@ Generates: Apatite, Copper, Tin
                 <!-- Begin LayeredVeins distribution of Copper -->
                 <IfCondition condition=':= frstCopperDist = "layeredVeins"'>
                 
-                    <Veins name='frstCopper0Veins' block='Forestry:resources:1' inherits='PresetLayeredVeins'>
+                    <Veins name='frstCopperBaseVeins' block='Forestry:resources:1' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60592ab4</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * frstCopperSize * _default_' range=':= 1 * 1 * frstCopperSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * frstCopperFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * frstCopperSize * _default_' range=':= 1 * 1 * frstCopperSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * frstCopperSize * _default_' range=':= 1 * 1 * frstCopperSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -333,19 +302,14 @@ Generates: Apatite, Copper, Tin
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Copper Layered Veins) Settings -->
-                    <Veins name='frstCopper1Veins' block='Forestry:resources:1' inherits='PresetLayeredVeins'>
+                    <Veins name='frstCopperPrefersVeins' block='Forestry:resources:1' inherits='frstCopperBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60592ab4</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * frstCopperSize * _default_' range=':= 1 * 1 * frstCopperSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * frstCopperFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * frstCopperSize * _default_' range=':= 1 * 1 * frstCopperSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Copper Layered Veins) Settings -->
@@ -357,7 +321,7 @@ Generates: Apatite, Copper, Tin
                 <!-- Begin  StrategicCloud distribution of Copper -->
                 <IfCondition condition=':= frstCopperDist = "strategicCloud"'>
                 
-                    <Cloud name='frstCopper0Cloud' block='Forestry:resources:1' inherits='PresetStrategicCloud'>
+                    <Cloud name='frstCopperBaseCloud' block='Forestry:resources:1' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -377,55 +341,37 @@ Generates: Apatite, Copper, Tin
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Copper Strategic Cloud Hint Veins -->
-                        <Veins name='frstCopper0HintVeins' block='Forestry:resources:1' inherits='PresetHintVeins'>
+                        <Veins name='frstCopperBaseHintVeins' block='Forestry:resources:1' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60592ab4</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 2.5 * frstCopperFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * frstCopperSize * _default_' range=':= 1 * 1 * frstCopperSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Copper Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Copper Strategic Cloud) Settings -->
-                    <Cloud name='frstCopper1Cloud' block='Forestry:resources:1' inherits='PresetStrategicCloud'>
+                    <Cloud name='frstCopperPrefersCloud' block='Forestry:resources:1' inherits='frstCopperBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60592ab4</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * frstCopperFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * frstCopperSize * _default_' range=':= 1 * 1 * frstCopperSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * frstCopperSize * _default_' range=':= 1 * 1 * frstCopperSize * _default_'/>
-                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * frstCopperSize * _default_' range=':= 1 * 1 * 1 * frstCopperSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                         
                         <!-- Begin Copper Strategic Cloud Hint Veins -->
-                        <Veins name='frstCopper1HintVeins' block='Forestry:resources:1' inherits='PresetHintVeins'>
+                        <Veins name='frstCopperPrefersHintVeins' block='Forestry:resources:1' inherits='frstCopperBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60592ab4</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 2.5 * frstCopperFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * frstCopperSize * _default_' range=':= 1 * 1 * frstCopperSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
                         <!-- End Copper Strategic Cloud Hint Veins -->
@@ -440,30 +386,26 @@ Generates: Apatite, Copper, Tin
                 <!-- Begin  Vanilla distribution of Copper -->
                 <IfCondition condition=':= frstCopperDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='frstCopper0Standard' block='Forestry:resources:1' inherits='PresetStandardGen'>
+                    <StandardGen name='frstCopperBaseStandard' block='Forestry:resources:1' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60592ab4</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * frstCopperSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * frstCopperFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * frstCopperSize * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Copper Vanilla) Settings -->
-                    <StandardGen name='frstCopper1Standard' block='Forestry:resources:1' inherits='PresetStandardGen'>
+                    <StandardGen name='frstCopperPrefersStandard' block='Forestry:resources:1' inherits='frstCopperBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60592ab4</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * frstCopperSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * frstCopperFreq * _default_'/>
-                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Copper Vanilla) Settings -->
@@ -479,14 +421,14 @@ Generates: Apatite, Copper, Tin
                 <!-- Begin LayeredVeins distribution of Tin -->
                 <IfCondition condition=':= frstTinDist = "layeredVeins"'>
                 
-                    <Veins name='frstTin0Veins' block='Forestry:resources' inherits='PresetLayeredVeins'>
+                    <Veins name='frstTinBaseVeins' block='Forestry:resources' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60592ab4</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * frstTinSize * _default_' range=':= 1 * 1 * frstTinSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * frstTinFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * frstTinSize * _default_' range=':= 1 * 1 * frstTinSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * frstTinSize * _default_' range=':= 1 * 1 * frstTinSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -494,19 +436,14 @@ Generates: Apatite, Copper, Tin
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Tin Layered Veins) Settings -->
-                    <Veins name='frstTin1Veins' block='Forestry:resources' inherits='PresetLayeredVeins'>
+                    <Veins name='frstTinPrefersVeins' block='Forestry:resources' inherits='frstTinBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60592ab4</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * frstTinSize * _default_' range=':= 1 * 1 * frstTinSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * frstTinFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * frstTinSize * _default_' range=':= 1 * 1 * frstTinSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Tin Layered Veins) Settings -->
@@ -518,7 +455,7 @@ Generates: Apatite, Copper, Tin
                 <!-- Begin  StrategicCloud distribution of Tin -->
                 <IfCondition condition=':= frstTinDist = "strategicCloud"'>
                 
-                    <Cloud name='frstTin0Cloud' block='Forestry:resources' inherits='PresetStrategicCloud'>
+                    <Cloud name='frstTinBaseCloud' block='Forestry:resources' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -538,55 +475,37 @@ Generates: Apatite, Copper, Tin
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Tin Strategic Cloud Hint Veins -->
-                        <Veins name='frstTin0HintVeins' block='Forestry:resources' inherits='PresetHintVeins'>
+                        <Veins name='frstTinBaseHintVeins' block='Forestry:resources' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60592ab4</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 2.5 * frstTinFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * frstTinSize * _default_' range=':= 1 * 1 * frstTinSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Tin Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Tin Strategic Cloud) Settings -->
-                    <Cloud name='frstTin1Cloud' block='Forestry:resources' inherits='PresetStrategicCloud'>
+                    <Cloud name='frstTinPrefersCloud' block='Forestry:resources' inherits='frstTinBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60592ab4</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * frstTinFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * frstTinSize * _default_' range=':= 1 * 1 * frstTinSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * frstTinSize * _default_' range=':= 1 * 1 * frstTinSize * _default_'/>
-                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * frstTinSize * _default_' range=':= 1 * 1 * 1 * frstTinSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                         
                         <!-- Begin Tin Strategic Cloud Hint Veins -->
-                        <Veins name='frstTin1HintVeins' block='Forestry:resources' inherits='PresetHintVeins'>
+                        <Veins name='frstTinPrefersHintVeins' block='Forestry:resources' inherits='frstTinBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60592ab4</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 2.5 * frstTinFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * frstTinSize * _default_' range=':= 1 * 1 * frstTinSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
                         <!-- End Tin Strategic Cloud Hint Veins -->
@@ -601,30 +520,26 @@ Generates: Apatite, Copper, Tin
                 <!-- Begin  Vanilla distribution of Tin -->
                 <IfCondition condition=':= frstTinDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='frstTin0Standard' block='Forestry:resources' inherits='PresetStandardGen'>
+                    <StandardGen name='frstTinBaseStandard' block='Forestry:resources' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60592ab4</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * frstTinSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * frstTinFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * frstTinSize * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Tin Vanilla) Settings -->
-                    <StandardGen name='frstTin1Standard' block='Forestry:resources' inherits='PresetStandardGen'>
+                    <StandardGen name='frstTinPrefersStandard' block='Forestry:resources' inherits='frstTinBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60592ab4</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * frstTinSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * frstTinFreq * _default_'/>
-                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Tin Vanilla) Settings -->

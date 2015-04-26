@@ -171,14 +171,14 @@ Generates: Andesite, Diorite, Granite, Limestone, Marble
                 <!-- Begin Layered Veins distribution of Andesite -->
                 <IfCondition condition=':= chslAndesiteDist = "layeredVeins"'>
                 
-                    <Veins name='chslAndesite0Veins' block='chisel:andesite' inherits='PresetLayeredVeins'>
+                    <Veins name='chslAndesiteBaseVeins' block='chisel:andesite' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x6087930d</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 3 * 1 * chslAndesiteSize * _default_' range=':= 3 * 1 * chslAndesiteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * chslAndesiteFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 3 * 1 * chslAndesiteSize * _default_' range=':= 3 * 1 * chslAndesiteSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 3 * 1 * chslAndesiteSize * _default_' range=':= 3 * 1 * chslAndesiteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -186,19 +186,14 @@ Generates: Andesite, Diorite, Granite, Limestone, Marble
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Andesite Layered Veins) Settings -->
-                    <Veins name='chslAndesite1Veins' block='chisel:andesite' inherits='PresetLayeredVeins'>
+                    <Veins name='chslAndesitePrefersVeins' block='chisel:andesite' inherits='chslAndesiteBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x6087930d</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 3 * 1 * chslAndesiteSize * _default_' range=':= 3 * 1 * chslAndesiteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 1 * chslAndesiteFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 3 * 1 * chslAndesiteSize * _default_' range=':= 3 * 1 * chslAndesiteSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Mountain'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Andesite Layered Veins) Settings -->
@@ -214,14 +209,14 @@ Generates: Andesite, Diorite, Granite, Limestone, Marble
                 <!-- Begin Layered Veins distribution of Diorite -->
                 <IfCondition condition=':= chslDioriteDist = "layeredVeins"'>
                 
-                    <Veins name='chslDiorite0Veins' block='chisel:diorite' inherits='PresetLayeredVeins'>
+                    <Veins name='chslDioriteBaseVeins' block='chisel:diorite' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x6087930d</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 3 * 1 * chslDioriteSize * _default_' range=':= 3 * 1 * chslDioriteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * chslDioriteFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 3 * 1 * chslDioriteSize * _default_' range=':= 3 * 1 * chslDioriteSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 3 * 1 * chslDioriteSize * _default_' range=':= 3 * 1 * chslDioriteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -229,19 +224,14 @@ Generates: Andesite, Diorite, Granite, Limestone, Marble
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Diorite Layered Veins) Settings -->
-                    <Veins name='chslDiorite1Veins' block='chisel:diorite' inherits='PresetLayeredVeins'>
+                    <Veins name='chslDioritePrefersVeins' block='chisel:diorite' inherits='chslDioriteBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x6087930d</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 3 * 1 * chslDioriteSize * _default_' range=':= 3 * 1 * chslDioriteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 1 * chslDioriteFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 3 * 1 * chslDioriteSize * _default_' range=':= 3 * 1 * chslDioriteSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Mountain'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Diorite Layered Veins) Settings -->
@@ -257,14 +247,14 @@ Generates: Andesite, Diorite, Granite, Limestone, Marble
                 <!-- Begin Layered Veins distribution of Granite -->
                 <IfCondition condition=':= chslGraniteDist = "layeredVeins"'>
                 
-                    <Veins name='chslGranite0Veins' block='chisel:granite' inherits='PresetLayeredVeins'>
+                    <Veins name='chslGraniteBaseVeins' block='chisel:granite' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x6087930d</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 3 * 1 * chslGraniteSize * _default_' range=':= 3 * 1 * chslGraniteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * chslGraniteFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 3 * 1 * chslGraniteSize * _default_' range=':= 3 * 1 * chslGraniteSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 3 * 1 * chslGraniteSize * _default_' range=':= 3 * 1 * chslGraniteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -272,19 +262,14 @@ Generates: Andesite, Diorite, Granite, Limestone, Marble
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Granite Layered Veins) Settings -->
-                    <Veins name='chslGranite1Veins' block='chisel:granite' inherits='PresetLayeredVeins'>
+                    <Veins name='chslGranitePrefersVeins' block='chisel:granite' inherits='chslGraniteBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x6087930d</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 3 * 1 * chslGraniteSize * _default_' range=':= 3 * 1 * chslGraniteSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 1 * chslGraniteFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 3 * 1 * chslGraniteSize * _default_' range=':= 3 * 1 * chslGraniteSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Mountain'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Granite Layered Veins) Settings -->
@@ -300,14 +285,14 @@ Generates: Andesite, Diorite, Granite, Limestone, Marble
                 <!-- Begin Layered Veins distribution of Limestone -->
                 <IfCondition condition=':= chslLimestoneDist = "layeredVeins"'>
                 
-                    <Veins name='chslLimestone0Veins' block='chisel:limestone' inherits='PresetLayeredVeins'>
+                    <Veins name='chslLimestoneBaseVeins' block='chisel:limestone' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x6087930d</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 3 * 1 * chslLimestoneSize * _default_' range=':= 3 * 1 * chslLimestoneSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * chslLimestoneFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 3 * 1 * chslLimestoneSize * _default_' range=':= 3 * 1 * chslLimestoneSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 3 * 1 * chslLimestoneSize * _default_' range=':= 3 * 1 * chslLimestoneSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -315,19 +300,14 @@ Generates: Andesite, Diorite, Granite, Limestone, Marble
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Limestone Layered Veins) Settings -->
-                    <Veins name='chslLimestone1Veins' block='chisel:limestone' inherits='PresetLayeredVeins'>
+                    <Veins name='chslLimestonePrefersVeins' block='chisel:limestone' inherits='chslLimestoneBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x6087930d</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 3 * 1 * chslLimestoneSize * _default_' range=':= 3 * 1 * chslLimestoneSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 1 * chslLimestoneFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 3 * 1 * chslLimestoneSize * _default_' range=':= 3 * 1 * chslLimestoneSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Mountain'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Limestone Layered Veins) Settings -->
@@ -343,14 +323,14 @@ Generates: Andesite, Diorite, Granite, Limestone, Marble
                 <!-- Begin Layered Veins distribution of Marble -->
                 <IfCondition condition=':= chslMarbleDist = "layeredVeins"'>
                 
-                    <Veins name='chslMarble0Veins' block='chisel:marble' inherits='PresetLayeredVeins'>
+                    <Veins name='chslMarbleBaseVeins' block='chisel:marble' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x6087930d</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 3 * 1 * chslMarbleSize * _default_' range=':= 3 * 1 * chslMarbleSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 1 * chslMarbleFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 3 * 1 * chslMarbleSize * _default_' range=':= 3 * 1 * chslMarbleSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 3 * 1 * chslMarbleSize * _default_' range=':= 3 * 1 * chslMarbleSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -358,19 +338,14 @@ Generates: Andesite, Diorite, Granite, Limestone, Marble
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Marble Layered Veins) Settings -->
-                    <Veins name='chslMarble1Veins' block='chisel:marble' inherits='PresetLayeredVeins'>
+                    <Veins name='chslMarblePrefersVeins' block='chisel:marble' inherits='chslMarbleBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x6087930d</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 3 * 1 * chslMarbleSize * _default_' range=':= 3 * 1 * chslMarbleSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 1 * chslMarbleFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 3 * 1 * chslMarbleSize * _default_' range=':= 3 * 1 * chslMarbleSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Mountain'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Marble Layered Veins) Settings -->

@@ -445,14 +445,14 @@ Lazuli, Firestone
                 <!-- Begin LayeredVeins distribution of Quarry Stone -->
                 <IfCondition condition=':= rlcrQuarryStoneDist = "layeredVeins"'>
                 
-                    <Veins name='rlcrQuarryStone0Veins' block='Railcraft:cube:7' inherits='PresetLayeredVeins'>
+                    <Veins name='rlcrQuarryStoneBaseVeins' block='Railcraft:cube:7' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrQuarryStoneSize * _default_' range=':= 1 * 1 * rlcrQuarryStoneSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * rlcrQuarryStoneFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrQuarryStoneSize * _default_' range=':= 1 * 1 * rlcrQuarryStoneSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrQuarryStoneSize * _default_' range=':= 1 * 1 * rlcrQuarryStoneSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -466,7 +466,7 @@ Lazuli, Firestone
                 <!-- Begin  StrategicCloud distribution of Quarry Stone -->
                 <IfCondition condition=':= rlcrQuarryStoneDist = "strategicCloud"'>
                 
-                    <Cloud name='rlcrQuarryStone0Cloud' block='Railcraft:cube:7' inherits='PresetStrategicCloud'>
+                    <Cloud name='rlcrQuarryStoneBaseCloud' block='Railcraft:cube:7' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -486,16 +486,15 @@ Lazuli, Firestone
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Quarry Stone Strategic Cloud Hint Veins -->
-                        <Veins name='rlcrQuarryStone0HintVeins' block='Railcraft:cube:7' inherits='PresetHintVeins'>
+                        <Veins name='rlcrQuarryStoneBaseHintVeins' block='Railcraft:cube:7' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60ae6ac0</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * rlcrQuarryStoneFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * rlcrQuarryStoneSize * _default_' range=':= 1 * 1 * rlcrQuarryStoneSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Quarry Stone Strategic Cloud Hint Veins -->
 
@@ -508,14 +507,14 @@ Lazuli, Firestone
                 <!-- Begin  Vanilla distribution of Quarry Stone -->
                 <IfCondition condition=':= rlcrQuarryStoneDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='rlcrQuarryStone0Standard' block='Railcraft:cube:7' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrQuarryStoneBaseStandard' block='Railcraft:cube:7' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * rlcrQuarryStoneSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * rlcrQuarryStoneFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * rlcrQuarryStoneSize * _default_'/>
                         <Setting name='Height' avg=':= 64' range=':= 64'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
@@ -531,14 +530,14 @@ Lazuli, Firestone
                 <!-- Begin LayeredVeins distribution of Sulfur -->
                 <IfCondition condition=':= rlcrSulfurDist = "layeredVeins"'>
                 
-                    <Veins name='rlcrSulfur0Veins' block='Railcraft:ore' inherits='PresetLayeredVeins'>
+                    <Veins name='rlcrSulfurBaseVeins' block='Railcraft:ore' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrSulfurSize * _default_' range=':= 1 * 1 * rlcrSulfurSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 10.7 * rlcrSulfurFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrSulfurSize * _default_' range=':= 1 * 1 * rlcrSulfurSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrSulfurSize * _default_' range=':= 1 * 1 * rlcrSulfurSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1.75 * _default_' range=':= _default_'/>
@@ -546,19 +545,14 @@ Lazuli, Firestone
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Sulfur Layered Veins) Settings -->
-                    <Veins name='rlcrSulfur1Veins' block='Railcraft:ore' inherits='PresetLayeredVeins'>
+                    <Veins name='rlcrSulfurPrefersVeins' block='Railcraft:ore' inherits='rlcrSulfurBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrSulfurSize * _default_' range=':= 1 * 1 * rlcrSulfurSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 10.7 * rlcrSulfurFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrSulfurSize * _default_' range=':= 1 * 1 * rlcrSulfurSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1.75 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Sulfur Layered Veins) Settings -->
@@ -570,7 +564,7 @@ Lazuli, Firestone
                 <!-- Begin  StrategicCloud distribution of Sulfur -->
                 <IfCondition condition=':= rlcrSulfurDist = "strategicCloud"'>
                 
-                    <Cloud name='rlcrSulfur0Cloud' block='Railcraft:ore' inherits='PresetStrategicCloud'>
+                    <Cloud name='rlcrSulfurBaseCloud' block='Railcraft:ore' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -590,55 +584,37 @@ Lazuli, Firestone
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Sulfur Strategic Cloud Hint Veins -->
-                        <Veins name='rlcrSulfur0HintVeins' block='Railcraft:ore' inherits='PresetHintVeins'>
+                        <Veins name='rlcrSulfurBaseHintVeins' block='Railcraft:ore' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60ae6ac0</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 1 * rlcrSulfurFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * rlcrSulfurSize * _default_' range=':= 1 * 1 * rlcrSulfurSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Sulfur Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Sulfur Strategic Cloud) Settings -->
-                    <Cloud name='rlcrSulfur1Cloud' block='Railcraft:ore' inherits='PresetStrategicCloud'>
+                    <Cloud name='rlcrSulfurPrefersCloud' block='Railcraft:ore' inherits='rlcrSulfurBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 3 * 1 * rlcrSulfurFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * rlcrSulfurSize * _default_' range=':= 1 * 1 * rlcrSulfurSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * rlcrSulfurSize * _default_' range=':= 1 * 1 * rlcrSulfurSize * _default_'/>
-                        <Setting name='CloudHeight' avg='60' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * rlcrSulfurSize * _default_' range=':= 1 * 1 * 1 * rlcrSulfurSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                         
                         <!-- Begin Sulfur Strategic Cloud Hint Veins -->
-                        <Veins name='rlcrSulfur1HintVeins' block='Railcraft:ore' inherits='PresetHintVeins'>
+                        <Veins name='rlcrSulfurPrefersHintVeins' block='Railcraft:ore' inherits='rlcrSulfurBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60ae6ac0</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 3 * 1 * rlcrSulfurFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * rlcrSulfurSize * _default_' range=':= 1 * 1 * rlcrSulfurSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
                             <BiomeType name='Swamp'/>
                         </Veins>
                         <!-- End Sulfur Strategic Cloud Hint Veins -->
@@ -653,30 +629,26 @@ Lazuli, Firestone
                 <!-- Begin  Vanilla distribution of Sulfur -->
                 <IfCondition condition=':= rlcrSulfurDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='rlcrSulfur0Standard' block='Railcraft:ore' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrSulfurBaseStandard' block='Railcraft:ore' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * rlcrSulfurSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 3 * 1 * rlcrSulfurFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 2 * rlcrSulfurSize * _default_'/>
                         <Setting name='Height' avg=':= 60' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Sulfur Vanilla) Settings -->
-                    <StandardGen name='rlcrSulfur1Standard' block='Railcraft:ore' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrSulfurPrefersStandard' block='Railcraft:ore' inherits='rlcrSulfurBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * rlcrSulfurSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 3 * 1 * rlcrSulfurFreq * _default_'/>
-                        <Setting name='Height' avg=':= 60' range=':= 10'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Swamp'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Sulfur Vanilla) Settings -->
@@ -692,14 +664,14 @@ Lazuli, Firestone
                 <!-- Begin LayeredVeins distribution of Poor Iron -->
                 <IfCondition condition=':= rlcrPoorIronDist = "layeredVeins"'>
                 
-                    <Veins name='rlcrPoorIron0Veins' block='minecraft:iron_ore:7' inherits='PresetLayeredVeins'>
+                    <Veins name='rlcrPoorIronBaseVeins' block='minecraft:iron_ore:7' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrPoorIronSize * _default_' range=':= 1 * 1 * rlcrPoorIronSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 0.9 * rlcrPoorIronFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrPoorIronSize * _default_' range=':= 1 * 1 * rlcrPoorIronSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrPoorIronSize * _default_' range=':= 1 * 1 * rlcrPoorIronSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -707,19 +679,14 @@ Lazuli, Firestone
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Poor Iron Layered Veins) Settings -->
-                    <Veins name='rlcrPoorIron1Veins' block='minecraft:iron_ore:7' inherits='PresetLayeredVeins'>
+                    <Veins name='rlcrPoorIronPrefersVeins' block='minecraft:iron_ore:7' inherits='rlcrPoorIronBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrPoorIronSize * _default_' range=':= 1 * 1 * rlcrPoorIronSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 0.9 * rlcrPoorIronFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrPoorIronSize * _default_' range=':= 1 * 1 * rlcrPoorIronSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Poor Iron Layered Veins) Settings -->
@@ -731,7 +698,7 @@ Lazuli, Firestone
                 <!-- Begin  StrategicCloud distribution of Poor Iron -->
                 <IfCondition condition=':= rlcrPoorIronDist = "strategicCloud"'>
                 
-                    <Cloud name='rlcrPoorIron0Cloud' block='minecraft:iron_ore:7' inherits='PresetStrategicCloud'>
+                    <Cloud name='rlcrPoorIronBaseCloud' block='minecraft:iron_ore:7' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -751,55 +718,37 @@ Lazuli, Firestone
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Poor Iron Strategic Cloud Hint Veins -->
-                        <Veins name='rlcrPoorIron0HintVeins' block='minecraft:iron_ore:7' inherits='PresetHintVeins'>
+                        <Veins name='rlcrPoorIronBaseHintVeins' block='minecraft:iron_ore:7' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60ae6ac0</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 2.5 * rlcrPoorIronFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * rlcrPoorIronSize * _default_' range=':= 1 * 1 * rlcrPoorIronSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Poor Iron Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Poor Iron Strategic Cloud) Settings -->
-                    <Cloud name='rlcrPoorIron1Cloud' block='minecraft:iron_ore:7' inherits='PresetStrategicCloud'>
+                    <Cloud name='rlcrPoorIronPrefersCloud' block='minecraft:iron_ore:7' inherits='rlcrPoorIronBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 3 * 2.5 * rlcrPoorIronFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * rlcrPoorIronSize * _default_' range=':= 1 * 1 * rlcrPoorIronSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * rlcrPoorIronSize * _default_' range=':= 1 * 1 * rlcrPoorIronSize * _default_'/>
-                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * rlcrPoorIronSize * _default_' range=':= 1 * 1 * 1 * rlcrPoorIronSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                         
                         <!-- Begin Poor Iron Strategic Cloud Hint Veins -->
-                        <Veins name='rlcrPoorIron1HintVeins' block='minecraft:iron_ore:7' inherits='PresetHintVeins'>
+                        <Veins name='rlcrPoorIronPrefersHintVeins' block='minecraft:iron_ore:7' inherits='rlcrPoorIronBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60ae6ac0</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 3 * 2.5 * rlcrPoorIronFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * rlcrPoorIronSize * _default_' range=':= 1 * 1 * rlcrPoorIronSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
                         <!-- End Poor Iron Strategic Cloud Hint Veins -->
@@ -814,30 +763,26 @@ Lazuli, Firestone
                 <!-- Begin  Vanilla distribution of Poor Iron -->
                 <IfCondition condition=':= rlcrPoorIronDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='rlcrPoorIron0Standard' block='minecraft:iron_ore:7' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrPoorIronBaseStandard' block='minecraft:iron_ore:7' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * rlcrPoorIronSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 3 * 1 * rlcrPoorIronFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * rlcrPoorIronSize * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Poor Iron Vanilla) Settings -->
-                    <StandardGen name='rlcrPoorIron1Standard' block='minecraft:iron_ore:7' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrPoorIronPrefersStandard' block='minecraft:iron_ore:7' inherits='rlcrPoorIronBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * rlcrPoorIronSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 3 * 1 * rlcrPoorIronFreq * _default_'/>
-                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Poor Iron Vanilla) Settings -->
@@ -853,14 +798,14 @@ Lazuli, Firestone
                 <!-- Begin LayeredVeins distribution of Poor Gold -->
                 <IfCondition condition=':= rlcrPoorGoldDist = "layeredVeins"'>
                 
-                    <Veins name='rlcrPoorGold0Veins' block='Railcraft:ore:8' inherits='PresetLayeredVeins'>
+                    <Veins name='rlcrPoorGoldBaseVeins' block='Railcraft:ore:8' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * rlcrPoorGoldSize * _default_' range=':= 1 * 0.8 * rlcrPoorGoldSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 0.85 * rlcrPoorGoldFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * rlcrPoorGoldSize * _default_' range=':= 1 * 0.8 * rlcrPoorGoldSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * rlcrPoorGoldSize * _default_' range=':= 1 * 0.8 * rlcrPoorGoldSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -868,19 +813,14 @@ Lazuli, Firestone
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Poor Gold Layered Veins) Settings -->
-                    <Veins name='rlcrPoorGold1Veins' block='Railcraft:ore:8' inherits='PresetLayeredVeins'>
+                    <Veins name='rlcrPoorGoldPrefersVeins' block='Railcraft:ore:8' inherits='rlcrPoorGoldBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * rlcrPoorGoldSize * _default_' range=':= 1 * 0.8 * rlcrPoorGoldSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 0.85 * rlcrPoorGoldFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * rlcrPoorGoldSize * _default_' range=':= 1 * 0.8 * rlcrPoorGoldSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Poor Gold Layered Veins) Settings -->
@@ -892,7 +832,7 @@ Lazuli, Firestone
                 <!-- Begin  StrategicCloud distribution of Poor Gold -->
                 <IfCondition condition=':= rlcrPoorGoldDist = "strategicCloud"'>
                 
-                    <Cloud name='rlcrPoorGold0Cloud' block='Railcraft:ore:8' inherits='PresetStrategicCloud'>
+                    <Cloud name='rlcrPoorGoldBaseCloud' block='Railcraft:ore:8' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -912,55 +852,37 @@ Lazuli, Firestone
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Poor Gold Strategic Cloud Hint Veins -->
-                        <Veins name='rlcrPoorGold0HintVeins' block='Railcraft:ore:8' inherits='PresetHintVeins'>
+                        <Veins name='rlcrPoorGoldBaseHintVeins' block='Railcraft:ore:8' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60ae6ac0</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 4.5 * rlcrPoorGoldFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * rlcrPoorGoldSize * _default_' range=':= 1 * 0.8 * rlcrPoorGoldSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Poor Gold Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Poor Gold Strategic Cloud) Settings -->
-                    <Cloud name='rlcrPoorGold1Cloud' block='Railcraft:ore:8' inherits='PresetStrategicCloud'>
+                    <Cloud name='rlcrPoorGoldPrefersCloud' block='Railcraft:ore:8' inherits='rlcrPoorGoldBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 3 * 4.5 * rlcrPoorGoldFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * rlcrPoorGoldSize * _default_' range=':= 1 * 0.8 * rlcrPoorGoldSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * rlcrPoorGoldSize * _default_' range=':= 1 * 0.8 * rlcrPoorGoldSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * rlcrPoorGoldSize * _default_' range=':= 1 * 1 * 0.8 * rlcrPoorGoldSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                         
                         <!-- Begin Poor Gold Strategic Cloud Hint Veins -->
-                        <Veins name='rlcrPoorGold1HintVeins' block='Railcraft:ore:8' inherits='PresetHintVeins'>
+                        <Veins name='rlcrPoorGoldPrefersHintVeins' block='Railcraft:ore:8' inherits='rlcrPoorGoldBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60ae6ac0</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 3 * 4.5 * rlcrPoorGoldFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 0.8 * rlcrPoorGoldSize * _default_' range=':= 1 * 0.8 * rlcrPoorGoldSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                             <BiomeType name='Forest'/>
                         </Veins>
                         <!-- End Poor Gold Strategic Cloud Hint Veins -->
@@ -975,30 +897,26 @@ Lazuli, Firestone
                 <!-- Begin  Vanilla distribution of Poor Gold -->
                 <IfCondition condition=':= rlcrPoorGoldDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='rlcrPoorGold0Standard' block='Railcraft:ore:8' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrPoorGoldBaseStandard' block='Railcraft:ore:8' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * rlcrPoorGoldSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 3 * 0.1 * rlcrPoorGoldFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * rlcrPoorGoldSize * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Poor Gold Vanilla) Settings -->
-                    <StandardGen name='rlcrPoorGold1Standard' block='Railcraft:ore:8' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrPoorGoldPrefersStandard' block='Railcraft:ore:8' inherits='rlcrPoorGoldBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * rlcrPoorGoldSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 3 * 0.1 * rlcrPoorGoldFreq * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Poor Gold Vanilla) Settings -->
@@ -1014,14 +932,14 @@ Lazuli, Firestone
                 <!-- Begin LayeredVeins distribution of Poor Copper -->
                 <IfCondition condition=':= rlcrPoorCopperDist = "layeredVeins"'>
                 
-                    <Veins name='rlcrPoorCopper0Veins' block='Railcraft:ore:9' inherits='PresetLayeredVeins'>
+                    <Veins name='rlcrPoorCopperBaseVeins' block='Railcraft:ore:9' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrPoorCopperSize * _default_' range=':= 1 * 1 * rlcrPoorCopperSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 0.9 * rlcrPoorCopperFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrPoorCopperSize * _default_' range=':= 1 * 1 * rlcrPoorCopperSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrPoorCopperSize * _default_' range=':= 1 * 1 * rlcrPoorCopperSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -1029,19 +947,14 @@ Lazuli, Firestone
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Poor Copper Layered Veins) Settings -->
-                    <Veins name='rlcrPoorCopper1Veins' block='Railcraft:ore:9' inherits='PresetLayeredVeins'>
+                    <Veins name='rlcrPoorCopperPrefersVeins' block='Railcraft:ore:9' inherits='rlcrPoorCopperBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrPoorCopperSize * _default_' range=':= 1 * 1 * rlcrPoorCopperSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 0.9 * rlcrPoorCopperFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrPoorCopperSize * _default_' range=':= 1 * 1 * rlcrPoorCopperSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Poor Copper Layered Veins) Settings -->
@@ -1053,7 +966,7 @@ Lazuli, Firestone
                 <!-- Begin  StrategicCloud distribution of Poor Copper -->
                 <IfCondition condition=':= rlcrPoorCopperDist = "strategicCloud"'>
                 
-                    <Cloud name='rlcrPoorCopper0Cloud' block='Railcraft:ore:9' inherits='PresetStrategicCloud'>
+                    <Cloud name='rlcrPoorCopperBaseCloud' block='Railcraft:ore:9' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1073,55 +986,37 @@ Lazuli, Firestone
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Poor Copper Strategic Cloud Hint Veins -->
-                        <Veins name='rlcrPoorCopper0HintVeins' block='Railcraft:ore:9' inherits='PresetHintVeins'>
+                        <Veins name='rlcrPoorCopperBaseHintVeins' block='Railcraft:ore:9' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60ae6ac0</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 3 * 2.5 * rlcrPoorCopperFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * rlcrPoorCopperSize * _default_' range=':= 1 * 1 * rlcrPoorCopperSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Poor Copper Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Poor Copper Strategic Cloud) Settings -->
-                    <Cloud name='rlcrPoorCopper1Cloud' block='Railcraft:ore:9' inherits='PresetStrategicCloud'>
+                    <Cloud name='rlcrPoorCopperPrefersCloud' block='Railcraft:ore:9' inherits='rlcrPoorCopperBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 3 * 2.5 * rlcrPoorCopperFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * rlcrPoorCopperSize * _default_' range=':= 1 * 1 * rlcrPoorCopperSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * rlcrPoorCopperSize * _default_' range=':= 1 * 1 * rlcrPoorCopperSize * _default_'/>
-                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * rlcrPoorCopperSize * _default_' range=':= 1 * 1 * 1 * rlcrPoorCopperSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                         
                         <!-- Begin Poor Copper Strategic Cloud Hint Veins -->
-                        <Veins name='rlcrPoorCopper1HintVeins' block='Railcraft:ore:9' inherits='PresetHintVeins'>
+                        <Veins name='rlcrPoorCopperPrefersHintVeins' block='Railcraft:ore:9' inherits='rlcrPoorCopperBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60ae6ac0</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 3 * 2.5 * rlcrPoorCopperFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * rlcrPoorCopperSize * _default_' range=':= 1 * 1 * rlcrPoorCopperSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
                         <!-- End Poor Copper Strategic Cloud Hint Veins -->
@@ -1136,30 +1031,26 @@ Lazuli, Firestone
                 <!-- Begin  Vanilla distribution of Poor Copper -->
                 <IfCondition condition=':= rlcrPoorCopperDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='rlcrPoorCopper0Standard' block='Railcraft:ore:9' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrPoorCopperBaseStandard' block='Railcraft:ore:9' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * rlcrPoorCopperSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 3 * 1 * rlcrPoorCopperFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * rlcrPoorCopperSize * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Poor Copper Vanilla) Settings -->
-                    <StandardGen name='rlcrPoorCopper1Standard' block='Railcraft:ore:9' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrPoorCopperPrefersStandard' block='Railcraft:ore:9' inherits='rlcrPoorCopperBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * rlcrPoorCopperSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 3 * 1 * rlcrPoorCopperFreq * _default_'/>
-                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Poor Copper Vanilla) Settings -->
@@ -1175,14 +1066,14 @@ Lazuli, Firestone
                 <!-- Begin LayeredVeins distribution of Poor Tin -->
                 <IfCondition condition=':= rlcrPoorTinDist = "layeredVeins"'>
                 
-                    <Veins name='rlcrPoorTin0Veins' block='Railcraft:ore:10' inherits='PresetLayeredVeins'>
+                    <Veins name='rlcrPoorTinBaseVeins' block='Railcraft:ore:10' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrPoorTinSize * _default_' range=':= 1 * 1 * rlcrPoorTinSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * rlcrPoorTinFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrPoorTinSize * _default_' range=':= 1 * 1 * rlcrPoorTinSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrPoorTinSize * _default_' range=':= 1 * 1 * rlcrPoorTinSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -1190,19 +1081,14 @@ Lazuli, Firestone
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Poor Tin Layered Veins) Settings -->
-                    <Veins name='rlcrPoorTin1Veins' block='Railcraft:ore:10' inherits='PresetLayeredVeins'>
+                    <Veins name='rlcrPoorTinPrefersVeins' block='Railcraft:ore:10' inherits='rlcrPoorTinBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrPoorTinSize * _default_' range=':= 1 * 1 * rlcrPoorTinSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * rlcrPoorTinFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrPoorTinSize * _default_' range=':= 1 * 1 * rlcrPoorTinSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Poor Tin Layered Veins) Settings -->
@@ -1214,7 +1100,7 @@ Lazuli, Firestone
                 <!-- Begin  StrategicCloud distribution of Poor Tin -->
                 <IfCondition condition=':= rlcrPoorTinDist = "strategicCloud"'>
                 
-                    <Cloud name='rlcrPoorTin0Cloud' block='Railcraft:ore:10' inherits='PresetStrategicCloud'>
+                    <Cloud name='rlcrPoorTinBaseCloud' block='Railcraft:ore:10' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1234,55 +1120,37 @@ Lazuli, Firestone
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Poor Tin Strategic Cloud Hint Veins -->
-                        <Veins name='rlcrPoorTin0HintVeins' block='Railcraft:ore:10' inherits='PresetHintVeins'>
+                        <Veins name='rlcrPoorTinBaseHintVeins' block='Railcraft:ore:10' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60ae6ac0</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 2.5 * rlcrPoorTinFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * rlcrPoorTinSize * _default_' range=':= 1 * 1 * rlcrPoorTinSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Poor Tin Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Poor Tin Strategic Cloud) Settings -->
-                    <Cloud name='rlcrPoorTin1Cloud' block='Railcraft:ore:10' inherits='PresetStrategicCloud'>
+                    <Cloud name='rlcrPoorTinPrefersCloud' block='Railcraft:ore:10' inherits='rlcrPoorTinBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * rlcrPoorTinFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * rlcrPoorTinSize * _default_' range=':= 1 * 1 * rlcrPoorTinSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * rlcrPoorTinSize * _default_' range=':= 1 * 1 * rlcrPoorTinSize * _default_'/>
-                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * rlcrPoorTinSize * _default_' range=':= 1 * 1 * 1 * rlcrPoorTinSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                         
                         <!-- Begin Poor Tin Strategic Cloud Hint Veins -->
-                        <Veins name='rlcrPoorTin1HintVeins' block='Railcraft:ore:10' inherits='PresetHintVeins'>
+                        <Veins name='rlcrPoorTinPrefersHintVeins' block='Railcraft:ore:10' inherits='rlcrPoorTinBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60ae6ac0</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 1 * 2.5 * rlcrPoorTinFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * rlcrPoorTinSize * _default_' range=':= 1 * 1 * rlcrPoorTinSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
                         <!-- End Poor Tin Strategic Cloud Hint Veins -->
@@ -1297,30 +1165,26 @@ Lazuli, Firestone
                 <!-- Begin  Vanilla distribution of Poor Tin -->
                 <IfCondition condition=':= rlcrPoorTinDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='rlcrPoorTin0Standard' block='Railcraft:ore:10' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrPoorTinBaseStandard' block='Railcraft:ore:10' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * rlcrPoorTinSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * rlcrPoorTinFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * rlcrPoorTinSize * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Poor Tin Vanilla) Settings -->
-                    <StandardGen name='rlcrPoorTin1Standard' block='Railcraft:ore:10' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrPoorTinPrefersStandard' block='Railcraft:ore:10' inherits='rlcrPoorTinBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * rlcrPoorTinSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 1 * 1 * rlcrPoorTinFreq * _default_'/>
-                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Poor Tin Vanilla) Settings -->
@@ -1336,14 +1200,14 @@ Lazuli, Firestone
                 <!-- Begin LayeredVeins distribution of Poor Lead -->
                 <IfCondition condition=':= rlcrPoorLeadDist = "layeredVeins"'>
                 
-                    <Veins name='rlcrPoorLead0Veins' block='Railcraft:ore:11' inherits='PresetLayeredVeins'>
+                    <Veins name='rlcrPoorLeadBaseVeins' block='Railcraft:ore:11' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrPoorLeadSize * _default_' range=':= 1 * 1 * rlcrPoorLeadSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * 0.9 * rlcrPoorLeadFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrPoorLeadSize * _default_' range=':= 1 * 1 * rlcrPoorLeadSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrPoorLeadSize * _default_' range=':= 1 * 1 * rlcrPoorLeadSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -1351,19 +1215,14 @@ Lazuli, Firestone
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Poor Lead Layered Veins) Settings -->
-                    <Veins name='rlcrPoorLead1Veins' block='Railcraft:ore:11' inherits='PresetLayeredVeins'>
+                    <Veins name='rlcrPoorLeadPrefersVeins' block='Railcraft:ore:11' inherits='rlcrPoorLeadBaseVeins'>
                         <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                            Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrPoorLeadSize * _default_' range=':= 1 * 1 * rlcrPoorLeadSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 2 * 0.9 * rlcrPoorLeadFreq * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrPoorLeadSize * _default_' range=':= 1 * 1 * rlcrPoorLeadSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Poor Lead Layered Veins) Settings -->
@@ -1375,7 +1234,7 @@ Lazuli, Firestone
                 <!-- Begin  StrategicCloud distribution of Poor Lead -->
                 <IfCondition condition=':= rlcrPoorLeadDist = "strategicCloud"'>
                 
-                    <Cloud name='rlcrPoorLead0Cloud' block='Railcraft:ore:11' inherits='PresetStrategicCloud'>
+                    <Cloud name='rlcrPoorLeadBaseCloud' block='Railcraft:ore:11' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1395,55 +1254,37 @@ Lazuli, Firestone
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Poor Lead Strategic Cloud Hint Veins -->
-                        <Veins name='rlcrPoorLead0HintVeins' block='Railcraft:ore:11' inherits='PresetHintVeins'>
+                        <Veins name='rlcrPoorLeadBaseHintVeins' block='Railcraft:ore:11' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60ae6ac0</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 2 * 2.5 * rlcrPoorLeadFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * rlcrPoorLeadSize * _default_' range=':= 1 * 1 * rlcrPoorLeadSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Poor Lead Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Poor Lead Strategic Cloud) Settings -->
-                    <Cloud name='rlcrPoorLead1Cloud' block='Railcraft:ore:11' inherits='PresetStrategicCloud'>
+                    <Cloud name='rlcrPoorLeadPrefersCloud' block='Railcraft:ore:11' inherits='rlcrPoorLeadBaseCloud'>
                         <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 2 * 2 * 2.5 * rlcrPoorLeadFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * rlcrPoorLeadSize * _default_' range=':= 1 * 1 * rlcrPoorLeadSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * rlcrPoorLeadSize * _default_' range=':= 1 * 1 * rlcrPoorLeadSize * _default_'/>
-                        <Setting name='CloudHeight' avg='43' range='10.5' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * rlcrPoorLeadSize * _default_' range=':= 1 * 1 * 1 * rlcrPoorLeadSize  * _default_'/>
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                         
                         <!-- Begin Poor Lead Strategic Cloud Hint Veins -->
-                        <Veins name='rlcrPoorLead1HintVeins' block='Railcraft:ore:11' inherits='PresetHintVeins'>
+                        <Veins name='rlcrPoorLeadPrefersHintVeins' block='Railcraft:ore:11' inherits='rlcrPoorLeadBaseHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                                2 times as likely in preferred biomes.
+                                Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60ae6ac0</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 2 * 1.2 * 2 * 2.5 * rlcrPoorLeadFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * rlcrPoorLeadSize * _default_' range=':= 1 * 1 * rlcrPoorLeadSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                             <BiomeType name='Cold'/>
                         </Veins>
                         <!-- End Poor Lead Strategic Cloud Hint Veins -->
@@ -1458,30 +1299,26 @@ Lazuli, Firestone
                 <!-- Begin  Vanilla distribution of Poor Lead -->
                 <IfCondition condition=':= rlcrPoorLeadDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='rlcrPoorLead0Standard' block='Railcraft:ore:11' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrPoorLeadBaseStandard' block='Railcraft:ore:11' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * rlcrPoorLeadSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 2 * 1 * rlcrPoorLeadFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 1 * rlcrPoorLeadSize * _default_'/>
                         <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Poor Lead Vanilla) Settings -->
-                    <StandardGen name='rlcrPoorLead1Standard' block='Railcraft:ore:11' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrPoorLeadPrefersStandard' block='Railcraft:ore:11' inherits='rlcrPoorLeadBaseStandard'>
                         <Description>
-                            This mimics vanilla ore generation.
-                            2 times as likely in preferred biomes.
+                            Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * rlcrPoorLeadSize * _default_'/>
                         <Setting name='Frequency' avg=':= 2 * 2 * 1 * rlcrPoorLeadFreq * _default_'/>
-                        <Setting name='Height' avg=':= 43' range=':= 10.5'/> 
-                        <Replaces block='minecraft:stone'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Poor Lead Vanilla) Settings -->
@@ -1497,14 +1334,14 @@ Lazuli, Firestone
                 <!-- Begin LayeredVeins distribution of Saltpeter -->
                 <IfCondition condition=':= rlcrSaltpeterDist = "layeredVeins"'>
                 
-                    <Veins name='rlcrSaltpeter0Veins' block='Railcraft:ore:1' inherits='PresetLayeredVeins'>
+                    <Veins name='rlcrSaltpeterBaseVeins' block='Railcraft:ore:1' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrSaltpeterSize * _default_' range=':= 1 * 1 * rlcrSaltpeterSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 10.7 * rlcrSaltpeterFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrSaltpeterSize * _default_' range=':= 1 * 1 * rlcrSaltpeterSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrSaltpeterSize * _default_' range=':= 1 * 1 * rlcrSaltpeterSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1.75 * _default_' range=':= _default_'/>
@@ -1518,7 +1355,7 @@ Lazuli, Firestone
                 <!-- Begin  StrategicCloud distribution of Saltpeter -->
                 <IfCondition condition=':= rlcrSaltpeterDist = "strategicCloud"'>
                 
-                    <Cloud name='rlcrSaltpeter0Cloud' block='Railcraft:ore:1' inherits='PresetStrategicCloud'>
+                    <Cloud name='rlcrSaltpeterBaseCloud' block='Railcraft:ore:1' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1538,16 +1375,15 @@ Lazuli, Firestone
                         <Replaces block='minecraft:sandstone'/>
                         
                         <!-- Begin Saltpeter Strategic Cloud Hint Veins -->
-                        <Veins name='rlcrSaltpeter0HintVeins' block='Railcraft:ore:1' inherits='PresetHintVeins'>
+                        <Veins name='rlcrSaltpeterBaseHintVeins' block='Railcraft:ore:1' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60ae6ac0</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 1 * 1 * rlcrSaltpeterFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 1 * 1 * rlcrSaltpeterSize * _default_' range=':= 1 * 1 * rlcrSaltpeterSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Saltpeter Strategic Cloud Hint Veins -->
 
@@ -1560,14 +1396,14 @@ Lazuli, Firestone
                 <!-- Begin  Vanilla distribution of Saltpeter -->
                 <IfCondition condition=':= rlcrSaltpeterDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='rlcrSaltpeter0Standard' block='Railcraft:ore:1' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrSaltpeterBaseStandard' block='Railcraft:ore:1' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * rlcrSaltpeterSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 1 * 1 * rlcrSaltpeterFreq * _default_'/>
+                        <Setting name='Size' avg=':= 1 * 2 * rlcrSaltpeterSize * _default_'/>
                         <Setting name='Height' avg=':= 60' range=':= 10'/> 
                         <Replaces block='minecraft:sandstone'/>
                     </StandardGen>
@@ -1585,7 +1421,7 @@ Lazuli, Firestone
                 
                     
                     <!-- Begin Abyssal Diamond Geode Crust -->
-                    <Veins name='rlcrAbyssalDiamond0Shell' block='Railcraft:cube:6' inherits='PresetSmallDeposits' seed='0x6221'>
+                    <Veins name='rlcrAbyssalDiamondBaseShell' block='Railcraft:cube:6' inherits='PresetSmallDeposits' seed='0xBE41'>
                         <Description>
                             The geode's outer shell, composed of the Pipe material.
                         </Description>
@@ -1604,7 +1440,7 @@ Lazuli, Firestone
                     
                     
                     <!-- Begin Abyssal Diamond Geode Crystals -->
-                    <Veins name='rlcrAbyssalDiamond0Crystal' block='Railcraft:ore:2' inherits='PresetSmallDeposits' seed='0x6221'>
+                    <Veins name='rlcrAbyssalDiamondBaseCrystal' block='Railcraft:ore:2' inherits='PresetSmallDeposits' seed='0xBE41'>
                         <Description>
                             The geode's inner material, usually some form of crystal.
                         </Description>
@@ -1621,7 +1457,7 @@ Lazuli, Firestone
                     
                     
                     <!-- Begin Abyssal Diamond Geode Air Pocket -->
-                    <Veins name='rlcrAbyssalDiamond0AirBubble' block='minecraft:air' inherits='PresetSmallDeposits' seed='0x6221'>
+                    <Veins name='rlcrAbyssalDiamondBaseAirBubble' block='minecraft:air' inherits='PresetSmallDeposits' seed='0xBE41'>
                         <Description>
                             The air pocket within the center of a geode.
                         </Description>
@@ -1650,7 +1486,7 @@ Lazuli, Firestone
                 
                     
                     <!-- Begin Abyssal Emerald Geode Crust -->
-                    <Veins name='rlcrAbyssalEmerald0Shell' block='Railcraft:cube:6' inherits='PresetSmallDeposits' seed='0xC619'>
+                    <Veins name='rlcrAbyssalEmeraldBaseShell' block='Railcraft:cube:6' inherits='PresetSmallDeposits' seed='0x2C56'>
                         <Description>
                             The geode's outer shell, composed of the Pipe material.
                         </Description>
@@ -1669,7 +1505,7 @@ Lazuli, Firestone
                     
                     
                     <!-- Begin Abyssal Emerald Geode Crystals -->
-                    <Veins name='rlcrAbyssalEmerald0Crystal' block='Railcraft:ore:3' inherits='PresetSmallDeposits' seed='0xC619'>
+                    <Veins name='rlcrAbyssalEmeraldBaseCrystal' block='Railcraft:ore:3' inherits='PresetSmallDeposits' seed='0x2C56'>
                         <Description>
                             The geode's inner material, usually some form of crystal.
                         </Description>
@@ -1686,7 +1522,7 @@ Lazuli, Firestone
                     
                     
                     <!-- Begin Abyssal Emerald Geode Air Pocket -->
-                    <Veins name='rlcrAbyssalEmerald0AirBubble' block='minecraft:air' inherits='PresetSmallDeposits' seed='0xC619'>
+                    <Veins name='rlcrAbyssalEmeraldBaseAirBubble' block='minecraft:air' inherits='PresetSmallDeposits' seed='0x2C56'>
                         <Description>
                             The air pocket within the center of a geode.
                         </Description>
@@ -1715,7 +1551,7 @@ Lazuli, Firestone
                 
                     
                     <!-- Begin Abyssal Lapis Lazuli Geode Crust -->
-                    <Veins name='rlcrAbyssalLapisLazuli0Shell' block='Railcraft:cube:6' inherits='PresetSmallDeposits' seed='0x2D1F'>
+                    <Veins name='rlcrAbyssalLapisLazuliBaseShell' block='Railcraft:cube:6' inherits='PresetSmallDeposits' seed='0xA230'>
                         <Description>
                             The geode's outer shell, composed of the Pipe material.
                         </Description>
@@ -1734,7 +1570,7 @@ Lazuli, Firestone
                     
                     
                     <!-- Begin Abyssal Lapis Lazuli Geode Crystals -->
-                    <Veins name='rlcrAbyssalLapisLazuli0Crystal' block='Railcraft:ore:4' inherits='PresetSmallDeposits' seed='0x2D1F'>
+                    <Veins name='rlcrAbyssalLapisLazuliBaseCrystal' block='Railcraft:ore:4' inherits='PresetSmallDeposits' seed='0xA230'>
                         <Description>
                             The geode's inner material, usually some form of crystal.
                         </Description>
@@ -1751,7 +1587,7 @@ Lazuli, Firestone
                     
                     
                     <!-- Begin Abyssal Lapis Lazuli Geode Air Pocket -->
-                    <Veins name='rlcrAbyssalLapisLazuli0AirBubble' block='minecraft:air' inherits='PresetSmallDeposits' seed='0x2D1F'>
+                    <Veins name='rlcrAbyssalLapisLazuliBaseAirBubble' block='minecraft:air' inherits='PresetSmallDeposits' seed='0xA230'>
                         <Description>
                             The air pocket within the center of a geode.
                         </Description>
@@ -1800,14 +1636,14 @@ Lazuli, Firestone
                 <!-- Begin LayeredVeins distribution of Firestone -->
                 <IfCondition condition=':= rlcrFirestoneDist = "layeredVeins"'>
                 
-                    <Veins name='rlcrFirestone0Veins' block='Railcraft:ore:5' inherits='PresetLayeredVeins'>
+                    <Veins name='rlcrFirestoneBaseVeins' block='Railcraft:ore:5' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * rlcrFirestoneSize * _default_' range=':= 0.5 * 1 * rlcrFirestoneSize * _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 0.5 * 1 * rlcrFirestoneFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * rlcrFirestoneSize * _default_' range=':= 0.5 * 1 * rlcrFirestoneSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 0.5 * 1 * rlcrFirestoneSize * _default_' range=':= 0.5 * 1 * rlcrFirestoneSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
@@ -1821,7 +1657,7 @@ Lazuli, Firestone
                 <!-- Begin  StrategicCloud distribution of Firestone -->
                 <IfCondition condition=':= rlcrFirestoneDist = "strategicCloud"'>
                 
-                    <Cloud name='rlcrFirestone0Cloud' block='Railcraft:ore:5' inherits='PresetStrategicCloud'>
+                    <Cloud name='rlcrFirestoneBaseCloud' block='Railcraft:ore:5' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1841,16 +1677,15 @@ Lazuli, Firestone
                         <Replaces block='minecraft:netherrack'/>
                         
                         <!-- Begin Firestone Strategic Cloud Hint Veins -->
-                        <Veins name='rlcrFirestone0HintVeins' block='Railcraft:ore:5' inherits='PresetHintVeins'>
+                        <Veins name='rlcrFirestoneBaseHintVeins' block='Railcraft:ore:5' inherits='PresetHintVeins'>
                             <Description>
-                                Small, fairly rare motherlodes with 2-4 horizontal veins each.
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60ae6ac0</WireframeColor>
-                            <Setting name='MotherlodeFrequency' avg=':= 1 * 1.2 * 0.5 * 1 * rlcrFirestoneFreq * _default_' range=':= _default_'/> 
-                            <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
-                            <Setting name='MotherlodeRangeLimit' avg=':= 0.5 * 1 * rlcrFirestoneSize * _default_' range=':= 0.5 * 1 * rlcrFirestoneSize * _default_'/>
-                            <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         </Veins>
                         <!-- End Firestone Strategic Cloud Hint Veins -->
 
@@ -1863,14 +1698,14 @@ Lazuli, Firestone
                 <!-- Begin  Vanilla distribution of Firestone -->
                 <IfCondition condition=':= rlcrFirestoneDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='rlcrFirestone0Standard' block='Railcraft:ore:5' inherits='PresetStandardGen'>
+                    <StandardGen name='rlcrFirestoneBaseStandard' block='Railcraft:ore:5' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='Size' avg=':= 0.5 * 1 * rlcrFirestoneSize * _default_'/>
                         <Setting name='Frequency' avg=':= 1 * 0.5 * 1 * rlcrFirestoneFreq * _default_'/>
+                        <Setting name='Size' avg=':= 0.5 * 1 * rlcrFirestoneSize * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:netherrack'/>
                     </StandardGen>
