@@ -240,21 +240,27 @@ Options:
 	    
 	The default is 1.
 	
-	Biomes:
+	Biomes: (And "Avoids:")
 	
 	Biome requirements as a comma-separated list of biome dictionary
 	entries.  This means that only those biomes listed will actually
 	spawn the ore.  If the biome is not on this list, the ore will not
-	spawn there.
+	spawn there.  If you want to prevent the ore from spawning in a
+	specific biome (for example, frozen, but not frozen ocean), the
+	Avoid list can select those biome tags the ore will not spawn in.
 	
 	The default is "ALL". (There is no "NONE")
 	
-	Prefers:
+	Prefers: (And "Prefers Not:")
 	
 	Biome preferences as a comma-separated list of biome dictionary
 	entries.  This means that the biomes listed in this option will
-	have double the ores spawning.  This doubling also includes the
-	above multipliers, so be careful to balance the two.
+	have additional ores spawning in those biomes. The additional
+	frequency will be 1 additional spawn, but this can be altered
+	using the "Prefers Multiplier" option.  Additionally, if you
+	want a specific biome to avoid being "preferred," you can add
+	the "Prefer Not" option to prevent that biome from being used
+	(for example, if you want "frozen", but not "frozen ocean").
 	
 	The default value is "NONE". (There is no "ALL")
 	
