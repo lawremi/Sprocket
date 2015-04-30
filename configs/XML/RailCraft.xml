@@ -34,6 +34,11 @@ Lazuli, Firestone
                                 Layered Veins.
                             </Description>
                         </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
+                            </Description>
+                        </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
                             <Description>
                                 Strategic Clouds.
@@ -66,6 +71,11 @@ Lazuli, Firestone
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
                             <Description>
                                 Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
                             </Description>
                         </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
@@ -102,6 +112,11 @@ Lazuli, Firestone
                                 Layered Veins.
                             </Description>
                         </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
+                            </Description>
+                        </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
                             <Description>
                                 Strategic Clouds.
@@ -134,6 +149,11 @@ Lazuli, Firestone
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
                             <Description>
                                 Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
                             </Description>
                         </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
@@ -170,6 +190,11 @@ Lazuli, Firestone
                                 Layered Veins.
                             </Description>
                         </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
+                            </Description>
+                        </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
                             <Description>
                                 Strategic Clouds.
@@ -202,6 +227,11 @@ Lazuli, Firestone
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
                             <Description>
                                 Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
                             </Description>
                         </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
@@ -238,6 +268,11 @@ Lazuli, Firestone
                                 Layered Veins.
                             </Description>
                         </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
+                            </Description>
+                        </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
                             <Description>
                                 Strategic Clouds.
@@ -270,6 +305,11 @@ Lazuli, Firestone
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
                             <Description>
                                 Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
                             </Description>
                         </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
@@ -378,6 +418,11 @@ Lazuli, Firestone
                                 Layered Veins.
                             </Description>
                         </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
+                            </Description>
+                        </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
                             <Description>
                                 Strategic Clouds.
@@ -463,6 +508,48 @@ Lazuli, Firestone
                 <!-- End LayeredVeins distribution of Quarry Stone -->
                 
                 
+                <!-- Begin  Huge Veins distribution of Quarry Stone -->
+                <IfCondition condition=':= rlcrQuarryStoneDist = "hugeVeins"'>
+                
+                    <Veins name='rlcrQuarryStoneBaseVeins' block='Railcraft:cube:7' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 1 * rlcrQuarryStoneFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrQuarryStoneSize * _default_' range=':= 1 * 1 * rlcrQuarryStoneSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrQuarryStoneSize * _default_' range=':= 1 * 1 * rlcrQuarryStoneSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Quarry Stone Huge Vein Hint Veins -->
+                        <Veins name='rlcrQuarryStoneBaseHintVeins' block='Railcraft:cube:7' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ae6ac0</WireframeColor>
+                        </Veins>
+                        <!-- End Quarry Stone Huge Vein Hint Veins -->
+
+                    </Veins>
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Quarry Stone -->
+                
+                
                 <!-- Begin  StrategicCloud distribution of Quarry Stone -->
                 <IfCondition condition=':= rlcrQuarryStoneDist = "strategicCloud"'>
                 
@@ -536,7 +623,7 @@ Lazuli, Firestone
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 10.7 * rlcrSulfurFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 5 * rlcrSulfurFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrSulfurSize * _default_' range=':= 1 * 1 * rlcrSulfurSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrSulfurSize * _default_' range=':= 1 * 1 * rlcrSulfurSize * _default_'/>
@@ -552,13 +639,79 @@ Lazuli, Firestone
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60ae6ac0</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 10.7 * rlcrSulfurFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 5 * rlcrSulfurFreq * _default_'/>
                         <BiomeType name='Swamp'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Sulfur Layered Veins) Settings -->
                 
                 </IfCondition>
                 <!-- End LayeredVeins distribution of Sulfur -->
+                
+                
+                <!-- Begin  Huge Veins distribution of Sulfur -->
+                <IfCondition condition=':= rlcrSulfurDist = "hugeVeins"'>
+                
+                    <Veins name='rlcrSulfurBaseVeins' block='Railcraft:ore' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 5 * rlcrSulfurFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrSulfurSize * _default_' range=':= 1 * 1 * rlcrSulfurSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrSulfurSize * _default_' range=':= 1 * 1 * rlcrSulfurSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1.75 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Sulfur Huge Vein Hint Veins -->
+                        <Veins name='rlcrSulfurBaseHintVeins' block='Railcraft:ore' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ae6ac0</WireframeColor>
+                        </Veins>
+                        <!-- End Sulfur Huge Vein Hint Veins -->
+
+                    </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Sulfur Huge Veins) Settings -->
+                    <Veins name='rlcrSulfurPrefersVeins' block='Railcraft:ore' inherits='rlcrSulfurBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 5 * rlcrSulfurFreq * _default_'/>
+                        <BiomeType name='Swamp'/>
+                        
+                        <!-- Begin Sulfur Huge Vein Hint Veins -->
+                        <Veins name='rlcrSulfurPrefersHintVeins' block='Railcraft:ore' inherits='rlcrSulfurBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ae6ac0</WireframeColor>
+                            <BiomeType name='Swamp'/>
+                        </Veins>
+                        <!-- End Sulfur Huge Vein Hint Veins -->
+
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Sulfur Huge Veins) Settings -->
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Sulfur -->
                 
                 
                 <!-- Begin  StrategicCloud distribution of Sulfur -->
@@ -695,6 +848,72 @@ Lazuli, Firestone
                 <!-- End LayeredVeins distribution of Poor Iron -->
                 
                 
+                <!-- Begin  Huge Veins distribution of Poor Iron -->
+                <IfCondition condition=':= rlcrPoorIronDist = "hugeVeins"'>
+                
+                    <Veins name='rlcrPoorIronBaseVeins' block='minecraft:iron_ore:7' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 0.9 * rlcrPoorIronFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrPoorIronSize * _default_' range=':= 1 * 1 * rlcrPoorIronSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrPoorIronSize * _default_' range=':= 1 * 1 * rlcrPoorIronSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Poor Iron Huge Vein Hint Veins -->
+                        <Veins name='rlcrPoorIronBaseHintVeins' block='minecraft:iron_ore:7' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ae6ac0</WireframeColor>
+                        </Veins>
+                        <!-- End Poor Iron Huge Vein Hint Veins -->
+
+                    </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Poor Iron Huge Veins) Settings -->
+                    <Veins name='rlcrPoorIronPrefersVeins' block='minecraft:iron_ore:7' inherits='rlcrPoorIronBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 0.9 * rlcrPoorIronFreq * _default_'/>
+                        <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Poor Iron Huge Vein Hint Veins -->
+                        <Veins name='rlcrPoorIronPrefersHintVeins' block='minecraft:iron_ore:7' inherits='rlcrPoorIronBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ae6ac0</WireframeColor>
+                            <BiomeType name='Cold'/>
+                        </Veins>
+                        <!-- End Poor Iron Huge Vein Hint Veins -->
+
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Poor Iron Huge Veins) Settings -->
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Poor Iron -->
+                
+                
                 <!-- Begin  StrategicCloud distribution of Poor Iron -->
                 <IfCondition condition=':= rlcrPoorIronDist = "strategicCloud"'>
                 
@@ -827,6 +1046,72 @@ Lazuli, Firestone
                 
                 </IfCondition>
                 <!-- End LayeredVeins distribution of Poor Gold -->
+                
+                
+                <!-- Begin  Huge Veins distribution of Poor Gold -->
+                <IfCondition condition=':= rlcrPoorGoldDist = "hugeVeins"'>
+                
+                    <Veins name='rlcrPoorGoldBaseVeins' block='Railcraft:ore:8' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 0.85 * rlcrPoorGoldFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * rlcrPoorGoldSize * _default_' range=':= 1 * 0.8 * rlcrPoorGoldSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * rlcrPoorGoldSize * _default_' range=':= 1 * 0.8 * rlcrPoorGoldSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Poor Gold Huge Vein Hint Veins -->
+                        <Veins name='rlcrPoorGoldBaseHintVeins' block='Railcraft:ore:8' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ae6ac0</WireframeColor>
+                        </Veins>
+                        <!-- End Poor Gold Huge Vein Hint Veins -->
+
+                    </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Poor Gold Huge Veins) Settings -->
+                    <Veins name='rlcrPoorGoldPrefersVeins' block='Railcraft:ore:8' inherits='rlcrPoorGoldBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 0.85 * rlcrPoorGoldFreq * _default_'/>
+                        <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Poor Gold Huge Vein Hint Veins -->
+                        <Veins name='rlcrPoorGoldPrefersHintVeins' block='Railcraft:ore:8' inherits='rlcrPoorGoldBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ae6ac0</WireframeColor>
+                            <BiomeType name='Forest'/>
+                        </Veins>
+                        <!-- End Poor Gold Huge Vein Hint Veins -->
+
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Poor Gold Huge Veins) Settings -->
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Poor Gold -->
                 
                 
                 <!-- Begin  StrategicCloud distribution of Poor Gold -->
@@ -963,6 +1248,72 @@ Lazuli, Firestone
                 <!-- End LayeredVeins distribution of Poor Copper -->
                 
                 
+                <!-- Begin  Huge Veins distribution of Poor Copper -->
+                <IfCondition condition=':= rlcrPoorCopperDist = "hugeVeins"'>
+                
+                    <Veins name='rlcrPoorCopperBaseVeins' block='Railcraft:ore:9' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 0.9 * rlcrPoorCopperFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrPoorCopperSize * _default_' range=':= 1 * 1 * rlcrPoorCopperSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrPoorCopperSize * _default_' range=':= 1 * 1 * rlcrPoorCopperSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Poor Copper Huge Vein Hint Veins -->
+                        <Veins name='rlcrPoorCopperBaseHintVeins' block='Railcraft:ore:9' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ae6ac0</WireframeColor>
+                        </Veins>
+                        <!-- End Poor Copper Huge Vein Hint Veins -->
+
+                    </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Poor Copper Huge Veins) Settings -->
+                    <Veins name='rlcrPoorCopperPrefersVeins' block='Railcraft:ore:9' inherits='rlcrPoorCopperBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 0.9 * rlcrPoorCopperFreq * _default_'/>
+                        <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Poor Copper Huge Vein Hint Veins -->
+                        <Veins name='rlcrPoorCopperPrefersHintVeins' block='Railcraft:ore:9' inherits='rlcrPoorCopperBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ae6ac0</WireframeColor>
+                            <BiomeType name='Cold'/>
+                        </Veins>
+                        <!-- End Poor Copper Huge Vein Hint Veins -->
+
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Poor Copper Huge Veins) Settings -->
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Poor Copper -->
+                
+                
                 <!-- Begin  StrategicCloud distribution of Poor Copper -->
                 <IfCondition condition=':= rlcrPoorCopperDist = "strategicCloud"'>
                 
@@ -1095,6 +1446,72 @@ Lazuli, Firestone
                 
                 </IfCondition>
                 <!-- End LayeredVeins distribution of Poor Tin -->
+                
+                
+                <!-- Begin  Huge Veins distribution of Poor Tin -->
+                <IfCondition condition=':= rlcrPoorTinDist = "hugeVeins"'>
+                
+                    <Veins name='rlcrPoorTinBaseVeins' block='Railcraft:ore:10' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * rlcrPoorTinFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrPoorTinSize * _default_' range=':= 1 * 1 * rlcrPoorTinSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrPoorTinSize * _default_' range=':= 1 * 1 * rlcrPoorTinSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Poor Tin Huge Vein Hint Veins -->
+                        <Veins name='rlcrPoorTinBaseHintVeins' block='Railcraft:ore:10' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ae6ac0</WireframeColor>
+                        </Veins>
+                        <!-- End Poor Tin Huge Vein Hint Veins -->
+
+                    </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Poor Tin Huge Veins) Settings -->
+                    <Veins name='rlcrPoorTinPrefersVeins' block='Railcraft:ore:10' inherits='rlcrPoorTinBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * rlcrPoorTinFreq * _default_'/>
+                        <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Poor Tin Huge Vein Hint Veins -->
+                        <Veins name='rlcrPoorTinPrefersHintVeins' block='Railcraft:ore:10' inherits='rlcrPoorTinBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ae6ac0</WireframeColor>
+                            <BiomeType name='Cold'/>
+                        </Veins>
+                        <!-- End Poor Tin Huge Vein Hint Veins -->
+
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Poor Tin Huge Veins) Settings -->
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Poor Tin -->
                 
                 
                 <!-- Begin  StrategicCloud distribution of Poor Tin -->
@@ -1231,6 +1648,72 @@ Lazuli, Firestone
                 <!-- End LayeredVeins distribution of Poor Lead -->
                 
                 
+                <!-- Begin  Huge Veins distribution of Poor Lead -->
+                <IfCondition condition=':= rlcrPoorLeadDist = "hugeVeins"'>
+                
+                    <Veins name='rlcrPoorLeadBaseVeins' block='Railcraft:ore:11' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * 0.9 * rlcrPoorLeadFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrPoorLeadSize * _default_' range=':= 1 * 1 * rlcrPoorLeadSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrPoorLeadSize * _default_' range=':= 1 * 1 * rlcrPoorLeadSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Poor Lead Huge Vein Hint Veins -->
+                        <Veins name='rlcrPoorLeadBaseHintVeins' block='Railcraft:ore:11' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ae6ac0</WireframeColor>
+                        </Veins>
+                        <!-- End Poor Lead Huge Vein Hint Veins -->
+
+                    </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Poor Lead Huge Veins) Settings -->
+                    <Veins name='rlcrPoorLeadPrefersVeins' block='Railcraft:ore:11' inherits='rlcrPoorLeadBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 2 * 0.9 * rlcrPoorLeadFreq * _default_'/>
+                        <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Poor Lead Huge Vein Hint Veins -->
+                        <Veins name='rlcrPoorLeadPrefersHintVeins' block='Railcraft:ore:11' inherits='rlcrPoorLeadBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ae6ac0</WireframeColor>
+                            <BiomeType name='Cold'/>
+                        </Veins>
+                        <!-- End Poor Lead Huge Vein Hint Veins -->
+
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Poor Lead Huge Veins) Settings -->
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Poor Lead -->
+                
+                
                 <!-- Begin  StrategicCloud distribution of Poor Lead -->
                 <IfCondition condition=':= rlcrPoorLeadDist = "strategicCloud"'>
                 
@@ -1352,6 +1835,48 @@ Lazuli, Firestone
                 <!-- End LayeredVeins distribution of Saltpeter -->
                 
                 
+                <!-- Begin  Huge Veins distribution of Saltpeter -->
+                <IfCondition condition=':= rlcrSaltpeterDist = "hugeVeins"'>
+                
+                    <Veins name='rlcrSaltpeterBaseVeins' block='Railcraft:ore:1' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 10.7 * rlcrSaltpeterFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * rlcrSaltpeterSize * _default_' range=':= 1 * 1 * rlcrSaltpeterSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * rlcrSaltpeterSize * _default_' range=':= 1 * 1 * rlcrSaltpeterSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1.75 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:sandstone'/>
+                        
+                        <!-- Begin Saltpeter Huge Vein Hint Veins -->
+                        <Veins name='rlcrSaltpeterBaseHintVeins' block='Railcraft:ore:1' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ae6ac0</WireframeColor>
+                        </Veins>
+                        <!-- End Saltpeter Huge Vein Hint Veins -->
+
+                    </Veins>
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Saltpeter -->
+                
+                
                 <!-- Begin  StrategicCloud distribution of Saltpeter -->
                 <IfCondition condition=':= rlcrSaltpeterDist = "strategicCloud"'>
                 
@@ -1421,7 +1946,7 @@ Lazuli, Firestone
                 
                     
                     <!-- Begin Abyssal Diamond Geode Crust -->
-                    <Veins name='rlcrAbyssalDiamondBaseShell' block='Railcraft:cube:6' inherits='PresetSmallDeposits' seed='0x0BAE'>
+                    <Veins name='rlcrAbyssalDiamondBaseShell' block='Railcraft:cube:6' inherits='PresetSmallDeposits' seed='0xF7DD'>
                         <Description>
                             The geode's outer shell, composed of the Pipe material.
                         </Description>
@@ -1440,7 +1965,7 @@ Lazuli, Firestone
                     
                     
                     <!-- Begin Abyssal Diamond Geode Crystals -->
-                    <Veins name='rlcrAbyssalDiamondBaseCrystal' block='Railcraft:ore:2' inherits='PresetSmallDeposits' seed='0x0BAE'>
+                    <Veins name='rlcrAbyssalDiamondBaseCrystal' block='Railcraft:ore:2' inherits='PresetSmallDeposits' seed='0xF7DD'>
                         <Description>
                             The geode's inner material, usually some form of crystal.
                         </Description>
@@ -1457,7 +1982,7 @@ Lazuli, Firestone
                     
                     
                     <!-- Begin Abyssal Diamond Geode Air Pocket -->
-                    <Veins name='rlcrAbyssalDiamondBaseAirBubble' block='minecraft:air' inherits='PresetSmallDeposits' seed='0x0BAE'>
+                    <Veins name='rlcrAbyssalDiamondBaseAirBubble' block='minecraft:air' inherits='PresetSmallDeposits' seed='0xF7DD'>
                         <Description>
                             The air pocket within the center of a geode.
                         </Description>
@@ -1486,7 +2011,7 @@ Lazuli, Firestone
                 
                     
                     <!-- Begin Abyssal Emerald Geode Crust -->
-                    <Veins name='rlcrAbyssalEmeraldBaseShell' block='Railcraft:cube:6' inherits='PresetSmallDeposits' seed='0x5BAB'>
+                    <Veins name='rlcrAbyssalEmeraldBaseShell' block='Railcraft:cube:6' inherits='PresetSmallDeposits' seed='0x2655'>
                         <Description>
                             The geode's outer shell, composed of the Pipe material.
                         </Description>
@@ -1505,7 +2030,7 @@ Lazuli, Firestone
                     
                     
                     <!-- Begin Abyssal Emerald Geode Crystals -->
-                    <Veins name='rlcrAbyssalEmeraldBaseCrystal' block='Railcraft:ore:3' inherits='PresetSmallDeposits' seed='0x5BAB'>
+                    <Veins name='rlcrAbyssalEmeraldBaseCrystal' block='Railcraft:ore:3' inherits='PresetSmallDeposits' seed='0x2655'>
                         <Description>
                             The geode's inner material, usually some form of crystal.
                         </Description>
@@ -1522,7 +2047,7 @@ Lazuli, Firestone
                     
                     
                     <!-- Begin Abyssal Emerald Geode Air Pocket -->
-                    <Veins name='rlcrAbyssalEmeraldBaseAirBubble' block='minecraft:air' inherits='PresetSmallDeposits' seed='0x5BAB'>
+                    <Veins name='rlcrAbyssalEmeraldBaseAirBubble' block='minecraft:air' inherits='PresetSmallDeposits' seed='0x2655'>
                         <Description>
                             The air pocket within the center of a geode.
                         </Description>
@@ -1551,7 +2076,7 @@ Lazuli, Firestone
                 
                     
                     <!-- Begin Abyssal Lapis Lazuli Geode Crust -->
-                    <Veins name='rlcrAbyssalLapisLazuliBaseShell' block='Railcraft:cube:6' inherits='PresetSmallDeposits' seed='0xBB5D'>
+                    <Veins name='rlcrAbyssalLapisLazuliBaseShell' block='Railcraft:cube:6' inherits='PresetSmallDeposits' seed='0x4402'>
                         <Description>
                             The geode's outer shell, composed of the Pipe material.
                         </Description>
@@ -1570,7 +2095,7 @@ Lazuli, Firestone
                     
                     
                     <!-- Begin Abyssal Lapis Lazuli Geode Crystals -->
-                    <Veins name='rlcrAbyssalLapisLazuliBaseCrystal' block='Railcraft:ore:4' inherits='PresetSmallDeposits' seed='0xBB5D'>
+                    <Veins name='rlcrAbyssalLapisLazuliBaseCrystal' block='Railcraft:ore:4' inherits='PresetSmallDeposits' seed='0x4402'>
                         <Description>
                             The geode's inner material, usually some form of crystal.
                         </Description>
@@ -1587,7 +2112,7 @@ Lazuli, Firestone
                     
                     
                     <!-- Begin Abyssal Lapis Lazuli Geode Air Pocket -->
-                    <Veins name='rlcrAbyssalLapisLazuliBaseAirBubble' block='minecraft:air' inherits='PresetSmallDeposits' seed='0xBB5D'>
+                    <Veins name='rlcrAbyssalLapisLazuliBaseAirBubble' block='minecraft:air' inherits='PresetSmallDeposits' seed='0x4402'>
                         <Description>
                             The air pocket within the center of a geode.
                         </Description>
@@ -1652,6 +2177,48 @@ Lazuli, Firestone
                 
                 </IfCondition>
                 <!-- End LayeredVeins distribution of Firestone -->
+                
+                
+                <!-- Begin  Huge Veins distribution of Firestone -->
+                <IfCondition condition=':= rlcrFirestoneDist = "hugeVeins"'>
+                
+                    <Veins name='rlcrFirestoneBaseVeins' block='Railcraft:ore:5' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ae6ac0</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.5 * 1 * rlcrFirestoneFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * rlcrFirestoneSize * _default_' range=':= 0.5 * 1 * rlcrFirestoneSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * rlcrFirestoneSize * _default_' range=':= 0.5 * 1 * rlcrFirestoneSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Firestone Huge Vein Hint Veins -->
+                        <Veins name='rlcrFirestoneBaseHintVeins' block='Railcraft:ore:5' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ae6ac0</WireframeColor>
+                        </Veins>
+                        <!-- End Firestone Huge Vein Hint Veins -->
+
+                    </Veins>
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Firestone -->
                 
                 
                 <!-- Begin  StrategicCloud distribution of Firestone -->

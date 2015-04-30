@@ -37,6 +37,11 @@ Generates: Quartz, Charged Quartz
                                 Small Deposits.
                             </Description>
                         </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
+                            </Description>
+                        </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
                             <Description>
                                 Strategic Clouds.
@@ -74,6 +79,11 @@ Generates: Quartz, Charged Quartz
                         <Choice value='smallDeposits' displayValue='Small Deposits'>
                             <Description>
                                 Small Deposits.
+                            </Description>
+                        </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
                             </Description>
                         </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
@@ -188,6 +198,72 @@ Generates: Quartz, Charged Quartz
                 
                 </IfCondition>
                 <!-- End  Small Deposits distribution of Quartz -->
+                
+                
+                <!-- Begin  Huge Veins distribution of Quartz -->
+                <IfCondition condition=':= apenQuartzDist = "hugeVeins"'>
+                
+                    <Veins name='apenQuartzBaseVeins' block='appliedenergistics2:tile.OreQuartz' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * apenQuartzFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * apenQuartzSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * apenQuartzSize * _default_' range=':= 1 * 1 * apenQuartzSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Quartz Huge Vein Hint Veins -->
+                        <Veins name='apenQuartzBaseHintVeins' block='appliedenergistics2:tile.OreQuartz' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60e25d21</WireframeColor>
+                        </Veins>
+                        <!-- End Quartz Huge Vein Hint Veins -->
+
+                    </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Quartz Huge Veins) Settings -->
+                    <Veins name='apenQuartzPrefersVeins' block='appliedenergistics2:tile.OreQuartz' inherits='apenQuartzBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * apenQuartzFreq * _default_'/>
+                        <BiomeType name='Desert'/>
+                        
+                        <!-- Begin Quartz Huge Vein Hint Veins -->
+                        <Veins name='apenQuartzPrefersHintVeins' block='appliedenergistics2:tile.OreQuartz' inherits='apenQuartzBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60e25d21</WireframeColor>
+                            <BiomeType name='Desert'/>
+                        </Veins>
+                        <!-- End Quartz Huge Vein Hint Veins -->
+
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Quartz Huge Veins) Settings -->
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Quartz -->
                 
                 
                 <!-- Begin  StrategicCloud distribution of Quartz -->
@@ -355,6 +431,72 @@ Generates: Quartz, Charged Quartz
                 
                 </IfCondition>
                 <!-- End  Small Deposits distribution of Charged Quartz -->
+                
+                
+                <!-- Begin  Huge Veins distribution of Charged Quartz -->
+                <IfCondition condition=':= apenChargedQuartzDist = "hugeVeins"'>
+                
+                    <Veins name='apenChargedQuartzBaseVeins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * apenChargedQuartzFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * apenChargedQuartzSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * apenChargedQuartzSize * _default_' range=':= 1 * 1 * apenChargedQuartzSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Charged Quartz Huge Vein Hint Veins -->
+                        <Veins name='apenChargedQuartzBaseHintVeins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60e25d21</WireframeColor>
+                        </Veins>
+                        <!-- End Charged Quartz Huge Vein Hint Veins -->
+
+                    </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Charged Quartz Huge Veins) Settings -->
+                    <Veins name='apenChargedQuartzPrefersVeins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='apenChargedQuartzBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60e25d21</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * apenChargedQuartzFreq * _default_'/>
+                        <BiomeType name='Desert'/>
+                        
+                        <!-- Begin Charged Quartz Huge Vein Hint Veins -->
+                        <Veins name='apenChargedQuartzPrefersHintVeins' block='appliedenergistics2:tile.OreQuartzCharged' inherits='apenChargedQuartzBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60e25d21</WireframeColor>
+                            <BiomeType name='Desert'/>
+                        </Veins>
+                        <!-- End Charged Quartz Huge Vein Hint Veins -->
+
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Charged Quartz Huge Veins) Settings -->
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Charged Quartz -->
                 
                 
                 <!-- Begin  StrategicCloud distribution of Charged Quartz -->

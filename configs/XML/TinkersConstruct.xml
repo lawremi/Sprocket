@@ -34,6 +34,11 @@ Gravel
                                 Layered Veins.
                             </Description>
                         </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
+                            </Description>
+                        </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
                             <Description>
                                 Strategic Clouds.
@@ -66,6 +71,11 @@ Gravel
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
                             <Description>
                                 Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
                             </Description>
                         </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
@@ -102,6 +112,11 @@ Gravel
                                 Layered Veins.
                             </Description>
                         </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
+                            </Description>
+                        </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
                             <Description>
                                 Strategic Clouds.
@@ -134,6 +149,11 @@ Gravel
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
                             <Description>
                                 Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
                             </Description>
                         </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
@@ -170,6 +190,11 @@ Gravel
                                 Layered Veins.
                             </Description>
                         </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
+                            </Description>
+                        </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
                             <Description>
                                 Strategic Clouds.
@@ -202,6 +227,11 @@ Gravel
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
                             <Description>
                                 Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
                             </Description>
                         </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
@@ -238,6 +268,11 @@ Gravel
                                 Layered Veins.
                             </Description>
                         </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
+                            </Description>
+                        </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
                             <Description>
                                 Strategic Clouds.
@@ -270,6 +305,11 @@ Gravel
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
                             <Description>
                                 Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
                             </Description>
                         </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
@@ -306,6 +346,11 @@ Gravel
                                 Layered Veins.
                             </Description>
                         </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
+                            </Description>
+                        </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
                             <Description>
                                 Strategic Clouds.
@@ -338,6 +383,11 @@ Gravel
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
                             <Description>
                                 Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
                             </Description>
                         </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
@@ -374,6 +424,11 @@ Gravel
                                 Layered Veins.
                             </Description>
                         </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
+                            </Description>
+                        </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
                             <Description>
                                 Strategic Clouds.
@@ -406,6 +461,11 @@ Gravel
                         <Choice value='layeredVeins' displayValue='Layered Veins'>
                             <Description>
                                 Layered Veins.
+                            </Description>
+                        </Choice>
+                        <Choice value='hugeVeins' displayValue='Huge Veins'>
+                            <Description>
+                                Huge Veins.
                             </Description>
                         </Choice>
                         <Choice value='strategicCloud' displayValue='Clouds'>
@@ -503,6 +563,72 @@ Gravel
                 
                 </IfCondition>
                 <!-- End LayeredVeins distribution of Copper -->
+                
+                
+                <!-- Begin  Huge Veins distribution of Copper -->
+                <IfCondition condition=':= ticoCopperDist = "hugeVeins"'>
+                
+                    <Veins name='ticoCopperBaseVeins' block='TConstruct:SearedBrick:3' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * ticoCopperFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoCopperSize * _default_' range=':= 1 * 1 * ticoCopperSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoCopperSize * _default_' range=':= 1 * 1 * ticoCopperSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Copper Huge Vein Hint Veins -->
+                        <Veins name='ticoCopperBaseHintVeins' block='TConstruct:SearedBrick:3' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                        </Veins>
+                        <!-- End Copper Huge Vein Hint Veins -->
+
+                    </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Copper Huge Veins) Settings -->
+                    <Veins name='ticoCopperPrefersVeins' block='TConstruct:SearedBrick:3' inherits='ticoCopperBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * ticoCopperFreq * _default_'/>
+                        <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Copper Huge Vein Hint Veins -->
+                        <Veins name='ticoCopperPrefersHintVeins' block='TConstruct:SearedBrick:3' inherits='ticoCopperBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                            <BiomeType name='Cold'/>
+                        </Veins>
+                        <!-- End Copper Huge Vein Hint Veins -->
+
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Copper Huge Veins) Settings -->
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Copper -->
                 
                 
                 <!-- Begin  StrategicCloud distribution of Copper -->
@@ -639,6 +765,72 @@ Gravel
                 <!-- End LayeredVeins distribution of Tin -->
                 
                 
+                <!-- Begin  Huge Veins distribution of Tin -->
+                <IfCondition condition=':= ticoTinDist = "hugeVeins"'>
+                
+                    <Veins name='ticoTinBaseVeins' block='TConstruct:SearedBrick:4' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * ticoTinFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoTinSize * _default_' range=':= 1 * 1 * ticoTinSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoTinSize * _default_' range=':= 1 * 1 * ticoTinSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Tin Huge Vein Hint Veins -->
+                        <Veins name='ticoTinBaseHintVeins' block='TConstruct:SearedBrick:4' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                        </Veins>
+                        <!-- End Tin Huge Vein Hint Veins -->
+
+                    </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Tin Huge Veins) Settings -->
+                    <Veins name='ticoTinPrefersVeins' block='TConstruct:SearedBrick:4' inherits='ticoTinBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * ticoTinFreq * _default_'/>
+                        <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Tin Huge Vein Hint Veins -->
+                        <Veins name='ticoTinPrefersHintVeins' block='TConstruct:SearedBrick:4' inherits='ticoTinBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                            <BiomeType name='Cold'/>
+                        </Veins>
+                        <!-- End Tin Huge Vein Hint Veins -->
+
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Tin Huge Veins) Settings -->
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Tin -->
+                
+                
                 <!-- Begin  StrategicCloud distribution of Tin -->
                 <IfCondition condition=':= ticoTinDist = "strategicCloud"'>
                 
@@ -771,6 +963,72 @@ Gravel
                 
                 </IfCondition>
                 <!-- End LayeredVeins distribution of Aluminum -->
+                
+                
+                <!-- Begin  Huge Veins distribution of Aluminum -->
+                <IfCondition condition=':= ticoAluminumDist = "hugeVeins"'>
+                
+                    <Veins name='ticoAluminumBaseVeins' block='TConstruct:SearedBrick:5' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * ticoAluminumFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoAluminumSize * _default_' range=':= 1 * 1 * ticoAluminumSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoAluminumSize * _default_' range=':= 1 * 1 * ticoAluminumSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Aluminum Huge Vein Hint Veins -->
+                        <Veins name='ticoAluminumBaseHintVeins' block='TConstruct:SearedBrick:5' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                        </Veins>
+                        <!-- End Aluminum Huge Vein Hint Veins -->
+
+                    </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Aluminum Huge Veins) Settings -->
+                    <Veins name='ticoAluminumPrefersVeins' block='TConstruct:SearedBrick:5' inherits='ticoAluminumBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * ticoAluminumFreq * _default_'/>
+                        <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Aluminum Huge Vein Hint Veins -->
+                        <Veins name='ticoAluminumPrefersHintVeins' block='TConstruct:SearedBrick:5' inherits='ticoAluminumBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                            <BiomeType name='Cold'/>
+                        </Veins>
+                        <!-- End Aluminum Huge Vein Hint Veins -->
+
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Aluminum Huge Veins) Settings -->
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Aluminum -->
                 
                 
                 <!-- Begin  StrategicCloud distribution of Aluminum -->
@@ -907,6 +1165,72 @@ Gravel
                 <!-- End LayeredVeins distribution of Iron Gravel -->
                 
                 
+                <!-- Begin  Huge Veins distribution of Iron Gravel -->
+                <IfCondition condition=':= ticoIronGravelDist = "hugeVeins"'>
+                
+                    <Veins name='ticoIronGravelBaseVeins' block='TConstruct:GravelOre' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 0.9 * ticoIronGravelFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoIronGravelSize * _default_' range=':= 1 * 1 * ticoIronGravelSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoIronGravelSize * _default_' range=':= 1 * 1 * ticoIronGravelSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:gravel'/>
+                        
+                        <!-- Begin Iron Gravel Huge Vein Hint Veins -->
+                        <Veins name='ticoIronGravelBaseHintVeins' block='TConstruct:GravelOre' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                        </Veins>
+                        <!-- End Iron Gravel Huge Vein Hint Veins -->
+
+                    </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Iron Gravel Huge Veins) Settings -->
+                    <Veins name='ticoIronGravelPrefersVeins' block='TConstruct:GravelOre' inherits='ticoIronGravelBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 0.9 * ticoIronGravelFreq * _default_'/>
+                        <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Iron Gravel Huge Vein Hint Veins -->
+                        <Veins name='ticoIronGravelPrefersHintVeins' block='TConstruct:GravelOre' inherits='ticoIronGravelBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                            <BiomeType name='Cold'/>
+                        </Veins>
+                        <!-- End Iron Gravel Huge Vein Hint Veins -->
+
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Iron Gravel Huge Veins) Settings -->
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Iron Gravel -->
+                
+                
                 <!-- Begin  StrategicCloud distribution of Iron Gravel -->
                 <IfCondition condition=':= ticoIronGravelDist = "strategicCloud"'>
                 
@@ -1039,6 +1363,72 @@ Gravel
                 
                 </IfCondition>
                 <!-- End LayeredVeins distribution of Gold Gravel -->
+                
+                
+                <!-- Begin  Huge Veins distribution of Gold Gravel -->
+                <IfCondition condition=':= ticoGoldGravelDist = "hugeVeins"'>
+                
+                    <Veins name='ticoGoldGravelBaseVeins' block='TConstruct:GravelOre:1' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 0.85 * ticoGoldGravelFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * ticoGoldGravelSize * _default_' range=':= 1 * 0.8 * ticoGoldGravelSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * ticoGoldGravelSize * _default_' range=':= 1 * 0.8 * ticoGoldGravelSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:gravel'/>
+                        
+                        <!-- Begin Gold Gravel Huge Vein Hint Veins -->
+                        <Veins name='ticoGoldGravelBaseHintVeins' block='TConstruct:GravelOre:1' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                        </Veins>
+                        <!-- End Gold Gravel Huge Vein Hint Veins -->
+
+                    </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Gold Gravel Huge Veins) Settings -->
+                    <Veins name='ticoGoldGravelPrefersVeins' block='TConstruct:GravelOre:1' inherits='ticoGoldGravelBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 0.85 * ticoGoldGravelFreq * _default_'/>
+                        <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Gold Gravel Huge Vein Hint Veins -->
+                        <Veins name='ticoGoldGravelPrefersHintVeins' block='TConstruct:GravelOre:1' inherits='ticoGoldGravelBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                            <BiomeType name='Forest'/>
+                        </Veins>
+                        <!-- End Gold Gravel Huge Vein Hint Veins -->
+
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Gold Gravel Huge Veins) Settings -->
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Gold Gravel -->
                 
                 
                 <!-- Begin  StrategicCloud distribution of Gold Gravel -->
@@ -1175,6 +1565,72 @@ Gravel
                 <!-- End LayeredVeins distribution of Copper Gravel -->
                 
                 
+                <!-- Begin  Huge Veins distribution of Copper Gravel -->
+                <IfCondition condition=':= ticoCopperGravelDist = "hugeVeins"'>
+                
+                    <Veins name='ticoCopperGravelBaseVeins' block='TConstruct:GravelOre:2' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 0.9 * ticoCopperGravelFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoCopperGravelSize * _default_' range=':= 1 * 1 * ticoCopperGravelSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoCopperGravelSize * _default_' range=':= 1 * 1 * ticoCopperGravelSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:gravel'/>
+                        
+                        <!-- Begin Copper Gravel Huge Vein Hint Veins -->
+                        <Veins name='ticoCopperGravelBaseHintVeins' block='TConstruct:GravelOre:2' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                        </Veins>
+                        <!-- End Copper Gravel Huge Vein Hint Veins -->
+
+                    </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Copper Gravel Huge Veins) Settings -->
+                    <Veins name='ticoCopperGravelPrefersVeins' block='TConstruct:GravelOre:2' inherits='ticoCopperGravelBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 0.9 * ticoCopperGravelFreq * _default_'/>
+                        <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Copper Gravel Huge Vein Hint Veins -->
+                        <Veins name='ticoCopperGravelPrefersHintVeins' block='TConstruct:GravelOre:2' inherits='ticoCopperGravelBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                            <BiomeType name='Cold'/>
+                        </Veins>
+                        <!-- End Copper Gravel Huge Vein Hint Veins -->
+
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Copper Gravel Huge Veins) Settings -->
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Copper Gravel -->
+                
+                
                 <!-- Begin  StrategicCloud distribution of Copper Gravel -->
                 <IfCondition condition=':= ticoCopperGravelDist = "strategicCloud"'>
                 
@@ -1307,6 +1763,72 @@ Gravel
                 
                 </IfCondition>
                 <!-- End LayeredVeins distribution of Tin Gravel -->
+                
+                
+                <!-- Begin  Huge Veins distribution of Tin Gravel -->
+                <IfCondition condition=':= ticoTinGravelDist = "hugeVeins"'>
+                
+                    <Veins name='ticoTinGravelBaseVeins' block='TConstruct:GravelOre:3' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 0.9 * ticoTinGravelFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoTinGravelSize * _default_' range=':= 1 * 1 * ticoTinGravelSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoTinGravelSize * _default_' range=':= 1 * 1 * ticoTinGravelSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:gravel'/>
+                        
+                        <!-- Begin Tin Gravel Huge Vein Hint Veins -->
+                        <Veins name='ticoTinGravelBaseHintVeins' block='TConstruct:GravelOre:3' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                        </Veins>
+                        <!-- End Tin Gravel Huge Vein Hint Veins -->
+
+                    </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Tin Gravel Huge Veins) Settings -->
+                    <Veins name='ticoTinGravelPrefersVeins' block='TConstruct:GravelOre:3' inherits='ticoTinGravelBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 0.9 * ticoTinGravelFreq * _default_'/>
+                        <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Tin Gravel Huge Vein Hint Veins -->
+                        <Veins name='ticoTinGravelPrefersHintVeins' block='TConstruct:GravelOre:3' inherits='ticoTinGravelBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                            <BiomeType name='Cold'/>
+                        </Veins>
+                        <!-- End Tin Gravel Huge Vein Hint Veins -->
+
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Tin Gravel Huge Veins) Settings -->
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Tin Gravel -->
                 
                 
                 <!-- Begin  StrategicCloud distribution of Tin Gravel -->
@@ -1443,6 +1965,72 @@ Gravel
                 <!-- End LayeredVeins distribution of Aluminum Gravel -->
                 
                 
+                <!-- Begin  Huge Veins distribution of Aluminum Gravel -->
+                <IfCondition condition=':= ticoAluminumGravelDist = "hugeVeins"'>
+                
+                    <Veins name='ticoAluminumGravelBaseVeins' block='TConstruct:GravelOre:4' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 0.9 * ticoAluminumGravelFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoAluminumGravelSize * _default_' range=':= 1 * 1 * ticoAluminumGravelSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoAluminumGravelSize * _default_' range=':= 1 * 1 * ticoAluminumGravelSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:gravel'/>
+                        
+                        <!-- Begin Aluminum Gravel Huge Vein Hint Veins -->
+                        <Veins name='ticoAluminumGravelBaseHintVeins' block='TConstruct:GravelOre:4' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                        </Veins>
+                        <!-- End Aluminum Gravel Huge Vein Hint Veins -->
+
+                    </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Aluminum Gravel Huge Veins) Settings -->
+                    <Veins name='ticoAluminumGravelPrefersVeins' block='TConstruct:GravelOre:4' inherits='ticoAluminumGravelBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 3 * 0.9 * ticoAluminumGravelFreq * _default_'/>
+                        <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Aluminum Gravel Huge Vein Hint Veins -->
+                        <Veins name='ticoAluminumGravelPrefersHintVeins' block='TConstruct:GravelOre:4' inherits='ticoAluminumGravelBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                            <BiomeType name='Cold'/>
+                        </Veins>
+                        <!-- End Aluminum Gravel Huge Vein Hint Veins -->
+
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Aluminum Gravel Huge Veins) Settings -->
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Aluminum Gravel -->
+                
+                
                 <!-- Begin  StrategicCloud distribution of Aluminum Gravel -->
                 <IfCondition condition=':= ticoAluminumGravelDist = "strategicCloud"'>
                 
@@ -1575,6 +2163,72 @@ Gravel
                 
                 </IfCondition>
                 <!-- End LayeredVeins distribution of Cobalt Gravel -->
+                
+                
+                <!-- Begin  Huge Veins distribution of Cobalt Gravel -->
+                <IfCondition condition=':= ticoCobaltGravelDist = "hugeVeins"'>
+                
+                    <Veins name='ticoCobaltGravelBaseVeins' block='TConstruct:GravelOre:5' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.9 * ticoCobaltGravelFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.85 * ticoCobaltGravelSize * _default_' range=':= 1 * 0.85 * ticoCobaltGravelSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 18' range=':= 14' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.85 * ticoCobaltGravelSize * _default_' range=':= 1 * 0.85 * ticoCobaltGravelSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1.2 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:gravel'/>
+                        
+                        <!-- Begin Cobalt Gravel Huge Vein Hint Veins -->
+                        <Veins name='ticoCobaltGravelBaseHintVeins' block='TConstruct:GravelOre:5' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                        </Veins>
+                        <!-- End Cobalt Gravel Huge Vein Hint Veins -->
+
+                    </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Cobalt Gravel Huge Veins) Settings -->
+                    <Veins name='ticoCobaltGravelPrefersVeins' block='TConstruct:GravelOre:5' inherits='ticoCobaltGravelBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.9 * ticoCobaltGravelFreq * _default_'/>
+                        <BiomeType name='mountain'/>
+                        
+                        <!-- Begin Cobalt Gravel Huge Vein Hint Veins -->
+                        <Veins name='ticoCobaltGravelPrefersHintVeins' block='TConstruct:GravelOre:5' inherits='ticoCobaltGravelBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                            <BiomeType name='mountain'/>
+                        </Veins>
+                        <!-- End Cobalt Gravel Huge Vein Hint Veins -->
+
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Cobalt Gravel Huge Veins) Settings -->
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Cobalt Gravel -->
                 
                 
                 <!-- Begin  StrategicCloud distribution of Cobalt Gravel -->
@@ -1736,6 +2390,48 @@ Gravel
                 <!-- End LayeredVeins distribution of Cobalt -->
                 
                 
+                <!-- Begin  Huge Veins distribution of Cobalt -->
+                <IfCondition condition=':= ticoCobaltDist = "hugeVeins"'>
+                
+                    <Veins name='ticoCobaltBaseVeins' block='TConstruct:SearedBrick:1' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.5 * 1 * ticoCobaltFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * ticoCobaltSize * _default_' range=':= 0.5 * 1 * ticoCobaltSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * ticoCobaltSize * _default_' range=':= 0.5 * 1 * ticoCobaltSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Cobalt Huge Vein Hint Veins -->
+                        <Veins name='ticoCobaltBaseHintVeins' block='TConstruct:SearedBrick:1' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                        </Veins>
+                        <!-- End Cobalt Huge Vein Hint Veins -->
+
+                    </Veins>
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Cobalt -->
+                
+                
                 <!-- Begin  StrategicCloud distribution of Cobalt -->
                 <IfCondition condition=':= ticoCobaltDist = "strategicCloud"'>
                 
@@ -1819,6 +2515,48 @@ Gravel
                 <!-- End LayeredVeins distribution of Ardite -->
                 
                 
+                <!-- Begin  Huge Veins distribution of Ardite -->
+                <IfCondition condition=':= ticoArditeDist = "hugeVeins"'>
+                
+                    <Veins name='ticoArditeBaseVeins' block='TConstruct:SearedBrick:2' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.5 * 1 * ticoArditeFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * ticoArditeSize * _default_' range=':= 0.5 * 1 * ticoArditeSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * ticoArditeSize * _default_' range=':= 0.5 * 1 * ticoArditeSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:netherrack'/>
+                        
+                        <!-- Begin Ardite Huge Vein Hint Veins -->
+                        <Veins name='ticoArditeBaseHintVeins' block='TConstruct:SearedBrick:2' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                        </Veins>
+                        <!-- End Ardite Huge Vein Hint Veins -->
+
+                    </Veins>
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Ardite -->
+                
+                
                 <!-- Begin  StrategicCloud distribution of Ardite -->
                 <IfCondition condition=':= ticoArditeDist = "strategicCloud"'>
                 
@@ -1900,6 +2638,48 @@ Gravel
                 
                 </IfCondition>
                 <!-- End LayeredVeins distribution of Nether Cobalt Gravel -->
+                
+                
+                <!-- Begin  Huge Veins distribution of Nether Cobalt Gravel -->
+                <IfCondition condition=':= ticoNetherCobaltGravelDist = "hugeVeins"'>
+                
+                    <Veins name='ticoNetherCobaltGravelBaseVeins' block='TConstruct:GravelOre:5' inherits='PresetLayeredVeins'>
+                        <Description>
+                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
+                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
+                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
+                            enough ore to keep a player supplied for a very long time.
+                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
+                            could make finding them much easier and the motherlodes are big enough to supply several people without
+                            shortage.  This might be a good way to add challenge to multiplayer worlds.
+                            Credit: based on feedback by dyrewulf from the MC forums.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60ee9ce7</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 3 * 0.9 * ticoNetherCobaltGravelFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.85 * ticoNetherCobaltGravelSize * _default_' range=':= 1 * 0.85 * ticoNetherCobaltGravelSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.85 * ticoNetherCobaltGravelSize * _default_' range=':= 1 * 0.85 * ticoNetherCobaltGravelSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1.2 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:gravel'/>
+                        
+                        <!-- Begin Nether Cobalt Gravel Huge Vein Hint Veins -->
+                        <Veins name='ticoNetherCobaltGravelBaseHintVeins' block='TConstruct:GravelOre:5' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60ee9ce7</WireframeColor>
+                        </Veins>
+                        <!-- End Nether Cobalt Gravel Huge Vein Hint Veins -->
+
+                    </Veins>
+                
+                </IfCondition>
+                <!-- End  Huge Veins distribution of Nether Cobalt Gravel -->
                 
                 
                 <!-- Begin  StrategicCloud distribution of Nether Cobalt Gravel -->
