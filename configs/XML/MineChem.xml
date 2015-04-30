@@ -24,7 +24,7 @@ Generates: Uranium
                 
                 <!-- Uranium Configuration UI Starting -->
                 <ConfigSection>
-                    <OptionChoice name='mchmUraniumDist'  displayState='shown' displayGroup='groupMineChem'> 
+                    <OptionChoice name='mchmUraniumDist' default='none' displayState='shown' displayGroup='groupMineChem'> 
                         <Description> Controls how Uranium is generated </Description> 
                         <DisplayName>MineChem Uranium</DisplayName>
                         <Choice value='pipeVeins' displayValue='Pipe Veins'>
@@ -88,7 +88,7 @@ Generates: Uranium
                 
                     
                     <!-- Begin Uranium Ore Configuration -->
-                    <Veins name='mchmUraniumBaseVeins' block='minechem:tile.oreUranium' inherits='PresetPipeVeins' seed='0xD23D'>
+                    <Veins name='mchmUraniumBaseVeins' block='minechem:tile.oreUranium' inherits='PresetPipeVeins' seed='0x9C0E'>
                         <Description>
                             Short sparsely filled veins sloping up from near the bottom of the map.
                         </Description>
@@ -105,23 +105,21 @@ Generates: Uranium
                     
                     
                     <!-- Begin Uranium Pipe Configuration -->
-                    <Veins name= 'mchmUraniumBasePipe' block='minecraft:lava' inherits='mchmUraniumBaseVeins' seed='0xD23D'>
+                    <Veins name= 'mchmUraniumBasePipe' block='minecraft:lava' inherits='mchmUraniumBaseVeins' seed='0x9C0E'>
                         <Description>
                             Fills center of each tube with Pipe material.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6a989</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * mchmUraniumFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * 0.8 * mchmUraniumSize * _default_' range=':= 0.5 * 1 * 0.8 * mchmUraniumSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' />
                         <Setting name='SegmentRadius' avg=':= 0.5 * 1 * 0.8 * mchmUraniumSize * _default_' range=':= 0.5 * 1 * 0.8 * mchmUraniumSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Replaces block='minecraft:stone'/>
                         <Replaces block='minecraft:dirt'/>
                         <Replaces block='minecraft:stone'/>
                         <Replaces block='minecraft:gravel'/>
                         <Replaces block='minecraft:netherrack'/>
                         <Replaces block='minecraft:end_stone'/>
-                        <Replaces block='minecraft:stone'/>
                     </Veins>
                     <!-- End Uranium Pipe Configuration -->
                     
@@ -129,7 +127,7 @@ Generates: Uranium
                     <!-- Begin Preferred Biome Distribution (Uranium Pipe Veins) Settings -->
                     
                     <!-- Begin Uranium Ore Configuration -->
-                    <Veins name='mchmUraniumPrefersVeins' block='minechem:tile.oreUranium' inherits='mchmUraniumBaseVeins' seed='0xA482'>
+                    <Veins name='mchmUraniumPrefersVeins' block='minechem:tile.oreUranium' inherits='mchmUraniumBaseVeins' seed='0xB741'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                         </Description>
@@ -142,13 +140,12 @@ Generates: Uranium
                     
                     
                     <!-- Begin Uranium Pipe Configuration -->
-                    <Veins name= 'mchmUraniumPrefersPipe' block='minecraft:lava' inherits='mchmUraniumPrefersVeins' seed='0xA482'>
+                    <Veins name= 'mchmUraniumPrefersPipe' block='minecraft:lava' inherits='mchmUraniumPrefersVeins' seed='0xB741'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60d6a989</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * mchmUraniumFreq * _default_'/>
                         <BiomeType name='Mountain'/>
                     </Veins>
                     <!-- End Uranium Pipe Configuration -->
@@ -181,20 +178,6 @@ Generates: Uranium
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * mchmUraniumSize * _default_' range=':= 1 * 0.8 * mchmUraniumSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
-                        
-                        <!-- Begin Uranium Huge Vein Hint Veins -->
-                        <Veins name='mchmUraniumBaseHintVeins' block='minechem:tile.oreUranium' inherits='PresetHintVeins'>
-                            <Description>
-                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
-                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
-                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
-                                deposits that would otherwise be very difficult to find. 
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60d6a989</WireframeColor>
-                        </Veins>
-                        <!-- End Uranium Huge Vein Hint Veins -->
-
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Uranium Huge Veins) Settings -->
@@ -206,18 +189,6 @@ Generates: Uranium
                         <WireframeColor>0x60d6a989</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * mchmUraniumFreq * _default_'/>
                         <BiomeType name='Mountain'/>
-                        
-                        <!-- Begin Uranium Huge Vein Hint Veins -->
-                        <Veins name='mchmUraniumPrefersHintVeins' block='minechem:tile.oreUranium' inherits='mchmUraniumBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60d6a989</WireframeColor>
-                            <BiomeType name='Mountain'/>
-                        </Veins>
-                        <!-- End Uranium Huge Vein Hint Veins -->
-
                     </Veins>
                     <!-- End Preferred Biome Distribution (Uranium Huge Veins) Settings -->
                 
@@ -257,6 +228,8 @@ Generates: Uranium
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6a989</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
                         </Veins>
                         <!-- End Uranium Strategic Cloud Hint Veins -->
 
@@ -279,6 +252,8 @@ Generates: Uranium
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60d6a989</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
                             <BiomeType name='Mountain'/>
                         </Veins>
                         <!-- End Uranium Strategic Cloud Hint Veins -->

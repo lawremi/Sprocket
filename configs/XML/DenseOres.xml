@@ -349,13 +349,13 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                         The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
                     </Comment>
                     <Replaces block='denseores:block0:0' />
-                    <Replaces block='denseores:block0:0' />
-                    <Replaces block='denseores:block0:0' />
-                    <Replaces block='denseores:block0:0' />
-                    <Replaces block='denseores:block0:0' />
-                    <Replaces block='denseores:block0:0' />
-                    <Replaces block='denseores:block0:0' />
-                    <Replaces block='denseores:block0:0' />
+                    <Replaces block='denseores:block0:1' />
+                    <Replaces block='denseores:block0:2' />
+                    <Replaces block='denseores:block0:3' />
+                    <Replaces block='denseores:block0:4' />
+                    <Replaces block='denseores:block0:5' />
+                    <Replaces block='denseores:block0:6' />
+                    <Replaces block='denseores:block0:7' />
                 </Substitute>
                 <!-- Original Overworld Ore Removal Complete -->
                 
@@ -371,11 +371,11 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * dnsoIronFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * dnsoIronSize * _default_' range=':= 1 * 0.8 * dnsoIronSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * dnsoIronSize * _default_' range=':= 1 * 0.8 * dnsoIronSize * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.3 * 0.85 * dnsoIronFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 0.8 * dnsoIronSize * _default_' range=':= 0.5 * 0.8 * dnsoIronSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 10' range=':= 5' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 0.8 * dnsoIronSize * _default_' range=':= 0.5 * 0.8 * dnsoIronSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
@@ -387,8 +387,8 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * dnsoIronFreq * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 0.3 * 0.85 * dnsoIronFreq * _default_'/>
                         <BiomeType name='Cold'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Iron Layered Veins) Settings -->
@@ -412,27 +412,13 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * dnsoIronFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * dnsoIronSize * _default_' range=':= 1 * 0.8 * dnsoIronSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * dnsoIronSize * _default_' range=':= 1 * 0.8 * dnsoIronSize * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.3 * 0.85 * dnsoIronFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 0.8 * dnsoIronSize * _default_' range=':= 0.5 * 0.8 * dnsoIronSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 10' range=':= 5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 0.8 * dnsoIronSize * _default_' range=':= 0.5 * 0.8 * dnsoIronSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
-                        
-                        <!-- Begin Iron Huge Vein Hint Veins -->
-                        <Veins name='dnsoIronBaseHintVeins' block='denseores:block0' inherits='PresetHintVeins'>
-                            <Description>
-                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
-                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
-                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
-                                deposits that would otherwise be very difficult to find. 
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
-                        </Veins>
-                        <!-- End Iron Huge Vein Hint Veins -->
-
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Iron Huge Veins) Settings -->
@@ -441,21 +427,9 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * dnsoIronFreq * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 0.3 * 0.85 * dnsoIronFreq * _default_'/>
                         <BiomeType name='Cold'/>
-                        
-                        <!-- Begin Iron Huge Vein Hint Veins -->
-                        <Veins name='dnsoIronPrefersHintVeins' block='denseores:block0' inherits='dnsoIronBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
-                            <BiomeType name='Cold'/>
-                        </Veins>
-                        <!-- End Iron Huge Vein Hint Veins -->
-
                     </Veins>
                     <!-- End Preferred Biome Distribution (Iron Huge Veins) Settings -->
                 
@@ -476,13 +450,13 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * dnsoIronFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * dnsoIronSize * _default_' range=':= 1 * 0.8 * dnsoIronSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * dnsoIronSize * _default_' range=':= 1 * 0.8 * dnsoIronSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 0.3 * 4.5 * dnsoIronFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 0.5 * 0.8 * dnsoIronSize * _default_' range=':= 0.5 * 0.8 * dnsoIronSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 0.5 * 0.8 * dnsoIronSize * _default_' range=':= 0.5 * 0.8 * dnsoIronSize * _default_'/>
+                        <Setting name='CloudHeight' avg='10' range='5' type='normal' scaleTo='Base'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * dnsoIronSize * _default_' range=':= 1 * 1 * 0.8 * dnsoIronSize  * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 0.5 * 1 * 0.8 * dnsoIronSize * _default_' range=':= 0.5 * 1 * 0.8 * dnsoIronSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Iron Strategic Cloud Hint Veins -->
@@ -494,7 +468,9 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
+                            <WireframeColor>0x607DE33B</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
                         </Veins>
                         <!-- End Iron Strategic Cloud Hint Veins -->
 
@@ -506,8 +482,8 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * dnsoIronFreq *_default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 2 * 0.3 * 4.5 * dnsoIronFreq *_default_'/>
                         <BiomeType name='Cold'/>
                         
                         <!-- Begin Iron Strategic Cloud Hint Veins -->
@@ -516,7 +492,9 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                                 Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
+                            <WireframeColor>0x607DE33B</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
                             <BiomeType name='Cold'/>
                         </Veins>
                         <!-- End Iron Strategic Cloud Hint Veins -->
@@ -536,10 +514,10 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * dnsoIronFreq * _default_'/>
-                        <Setting name='Size' avg=':= 1 * 1 * dnsoIronSize * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='Frequency' avg=':= 1 * 0.3 * 0.1 * dnsoIronFreq * _default_'/>
+                        <Setting name='Size' avg=':= 0.5 * 1 * dnsoIronSize * _default_'/>
+                        <Setting name='Height' avg=':= 10' range=':= 5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
@@ -549,8 +527,8 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * dnsoIronFreq * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='Frequency' avg=':= 2 * 0.3 * 0.1 * dnsoIronFreq * _default_'/>
                         <BiomeType name='Cold'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Iron Vanilla) Settings -->
@@ -566,29 +544,29 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin Layered Veins distribution of Gold -->
                 <IfCondition condition=':= dnsoGoldDist = "layeredVeins"'>
                 
-                    <Veins name='dnsoGoldBaseVeins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                    <Veins name='dnsoGoldBaseVeins' block='denseores:block0:1' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * dnsoGoldFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * dnsoGoldSize * _default_' range=':= 1 * 0.8 * dnsoGoldSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * dnsoGoldSize * _default_' range=':= 1 * 0.8 * dnsoGoldSize * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.3 * 0.85 * dnsoGoldFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 0.8 * dnsoGoldSize * _default_' range=':= 0.5 * 0.8 * dnsoGoldSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 10' range=':= 5' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 0.8 * dnsoGoldSize * _default_' range=':= 0.5 * 0.8 * dnsoGoldSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Gold Layered Veins) Settings -->
-                    <Veins name='dnsoGoldPrefersVeins' block='denseores:block0' inherits='dnsoGoldBaseVeins'>
+                    <Veins name='dnsoGoldPrefersVeins' block='denseores:block0:1' inherits='dnsoGoldBaseVeins'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * dnsoGoldFreq * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 0.3 * 0.85 * dnsoGoldFreq * _default_'/>
                         <BiomeType name='Forest'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Gold Layered Veins) Settings -->
@@ -600,7 +578,7 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Huge Veins distribution of Gold -->
                 <IfCondition condition=':= dnsoGoldDist = "hugeVeins"'>
                 
-                    <Veins name='dnsoGoldBaseVeins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                    <Veins name='dnsoGoldBaseVeins' block='denseores:block0:1' inherits='PresetLayeredVeins'>
                         <Description>
                             Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
                             parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
@@ -612,50 +590,24 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * dnsoGoldFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * dnsoGoldSize * _default_' range=':= 1 * 0.8 * dnsoGoldSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * dnsoGoldSize * _default_' range=':= 1 * 0.8 * dnsoGoldSize * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.3 * 0.85 * dnsoGoldFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 0.8 * dnsoGoldSize * _default_' range=':= 0.5 * 0.8 * dnsoGoldSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 10' range=':= 5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 0.8 * dnsoGoldSize * _default_' range=':= 0.5 * 0.8 * dnsoGoldSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
-                        
-                        <!-- Begin Gold Huge Vein Hint Veins -->
-                        <Veins name='dnsoGoldBaseHintVeins' block='denseores:block0' inherits='PresetHintVeins'>
-                            <Description>
-                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
-                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
-                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
-                                deposits that would otherwise be very difficult to find. 
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
-                        </Veins>
-                        <!-- End Gold Huge Vein Hint Veins -->
-
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Gold Huge Veins) Settings -->
-                    <Veins name='dnsoGoldPrefersVeins' block='denseores:block0' inherits='dnsoGoldBaseVeins'>
+                    <Veins name='dnsoGoldPrefersVeins' block='denseores:block0:1' inherits='dnsoGoldBaseVeins'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * dnsoGoldFreq * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 0.3 * 0.85 * dnsoGoldFreq * _default_'/>
                         <BiomeType name='Forest'/>
-                        
-                        <!-- Begin Gold Huge Vein Hint Veins -->
-                        <Veins name='dnsoGoldPrefersHintVeins' block='denseores:block0' inherits='dnsoGoldBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
-                            <BiomeType name='Forest'/>
-                        </Veins>
-                        <!-- End Gold Huge Vein Hint Veins -->
-
                     </Veins>
                     <!-- End Preferred Biome Distribution (Gold Huge Veins) Settings -->
                 
@@ -666,7 +618,7 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Strategic Cloud distribution of Gold -->
                 <IfCondition condition=':= dnsoGoldDist = "strategicCloud"'>
                 
-                    <Cloud name='dnsoGoldBaseCloud' block='denseores:block0' inherits='PresetStrategicCloud'>
+                    <Cloud name='dnsoGoldBaseCloud' block='denseores:block0:1' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -676,17 +628,17 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * dnsoGoldFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * dnsoGoldSize * _default_' range=':= 1 * 0.8 * dnsoGoldSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * dnsoGoldSize * _default_' range=':= 1 * 0.8 * dnsoGoldSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 0.3 * 4.5 * dnsoGoldFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 0.5 * 0.8 * dnsoGoldSize * _default_' range=':= 0.5 * 0.8 * dnsoGoldSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 0.5 * 0.8 * dnsoGoldSize * _default_' range=':= 0.5 * 0.8 * dnsoGoldSize * _default_'/>
+                        <Setting name='CloudHeight' avg='10' range='5' type='normal' scaleTo='Base'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * dnsoGoldSize * _default_' range=':= 1 * 1 * 0.8 * dnsoGoldSize  * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 0.5 * 1 * 0.8 * dnsoGoldSize * _default_' range=':= 0.5 * 1 * 0.8 * dnsoGoldSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Gold Strategic Cloud Hint Veins -->
-                        <Veins name='dnsoGoldBaseHintVeins' block='denseores:block0' inherits='PresetHintVeins'>
+                        <Veins name='dnsoGoldBaseHintVeins' block='denseores:block0:1' inherits='PresetHintVeins'>
                             <Description>
                                 Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
                                 They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
@@ -694,29 +646,33 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
+                            <WireframeColor>0x607DE33B</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
                         </Veins>
                         <!-- End Gold Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Gold Strategic Cloud) Settings -->
-                    <Cloud name='dnsoGoldPrefersCloud' block='denseores:block0' inherits='dnsoGoldBaseCloud'>
+                    <Cloud name='dnsoGoldPrefersCloud' block='denseores:block0:1' inherits='dnsoGoldBaseCloud'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * dnsoGoldFreq *_default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 2 * 0.3 * 4.5 * dnsoGoldFreq *_default_'/>
                         <BiomeType name='Forest'/>
                         
                         <!-- Begin Gold Strategic Cloud Hint Veins -->
-                        <Veins name='dnsoGoldPrefersHintVeins' block='denseores:block0' inherits='dnsoGoldBaseHintVeins'>
+                        <Veins name='dnsoGoldPrefersHintVeins' block='denseores:block0:1' inherits='dnsoGoldBaseHintVeins'>
                             <Description>
                                 Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
+                            <WireframeColor>0x607DE33B</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
                             <BiomeType name='Forest'/>
                         </Veins>
                         <!-- End Gold Strategic Cloud Hint Veins -->
@@ -731,26 +687,26 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Vanilla distribution of Gold -->
                 <IfCondition condition=':= dnsoGoldDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='dnsoGoldBaseStandard' block='denseores:block0' inherits='PresetStandardGen'>
+                    <StandardGen name='dnsoGoldBaseStandard' block='denseores:block0:1' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * dnsoGoldFreq * _default_'/>
-                        <Setting name='Size' avg=':= 1 * 1 * dnsoGoldSize * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='Frequency' avg=':= 1 * 0.3 * 0.1 * dnsoGoldFreq * _default_'/>
+                        <Setting name='Size' avg=':= 0.5 * 1 * dnsoGoldSize * _default_'/>
+                        <Setting name='Height' avg=':= 10' range=':= 5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Gold Vanilla) Settings -->
-                    <StandardGen name='dnsoGoldPrefersStandard' block='denseores:block0' inherits='dnsoGoldBaseStandard'>
+                    <StandardGen name='dnsoGoldPrefersStandard' block='denseores:block0:1' inherits='dnsoGoldBaseStandard'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * dnsoGoldFreq * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='Frequency' avg=':= 2 * 0.3 * 0.1 * dnsoGoldFreq * _default_'/>
                         <BiomeType name='Forest'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Gold Vanilla) Settings -->
@@ -766,29 +722,29 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin Layered Veins distribution of Lapis -->
                 <IfCondition condition=':= dnsoLapisDist = "layeredVeins"'>
                 
-                    <Veins name='dnsoLapisBaseVeins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                    <Veins name='dnsoLapisBaseVeins' block='denseores:block0:2' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * dnsoLapisFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * dnsoLapisSize * _default_' range=':= 1 * 0.8 * dnsoLapisSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * dnsoLapisSize * _default_' range=':= 1 * 0.8 * dnsoLapisSize * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.3 * 0.85 * dnsoLapisFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 0.8 * dnsoLapisSize * _default_' range=':= 0.5 * 0.8 * dnsoLapisSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 10' range=':= 5' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 0.8 * dnsoLapisSize * _default_' range=':= 0.5 * 0.8 * dnsoLapisSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Lapis Layered Veins) Settings -->
-                    <Veins name='dnsoLapisPrefersVeins' block='denseores:block0' inherits='dnsoLapisBaseVeins'>
+                    <Veins name='dnsoLapisPrefersVeins' block='denseores:block0:2' inherits='dnsoLapisBaseVeins'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * dnsoLapisFreq * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 0.3 * 0.85 * dnsoLapisFreq * _default_'/>
                         <BiomeType name='ocean'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Lapis Layered Veins) Settings -->
@@ -800,7 +756,7 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Huge Veins distribution of Lapis -->
                 <IfCondition condition=':= dnsoLapisDist = "hugeVeins"'>
                 
-                    <Veins name='dnsoLapisBaseVeins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                    <Veins name='dnsoLapisBaseVeins' block='denseores:block0:2' inherits='PresetLayeredVeins'>
                         <Description>
                             Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
                             parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
@@ -812,50 +768,24 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * dnsoLapisFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * dnsoLapisSize * _default_' range=':= 1 * 0.8 * dnsoLapisSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * dnsoLapisSize * _default_' range=':= 1 * 0.8 * dnsoLapisSize * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.3 * 0.85 * dnsoLapisFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 0.8 * dnsoLapisSize * _default_' range=':= 0.5 * 0.8 * dnsoLapisSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 10' range=':= 5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 0.8 * dnsoLapisSize * _default_' range=':= 0.5 * 0.8 * dnsoLapisSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
-                        
-                        <!-- Begin Lapis Huge Vein Hint Veins -->
-                        <Veins name='dnsoLapisBaseHintVeins' block='denseores:block0' inherits='PresetHintVeins'>
-                            <Description>
-                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
-                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
-                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
-                                deposits that would otherwise be very difficult to find. 
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
-                        </Veins>
-                        <!-- End Lapis Huge Vein Hint Veins -->
-
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Lapis Huge Veins) Settings -->
-                    <Veins name='dnsoLapisPrefersVeins' block='denseores:block0' inherits='dnsoLapisBaseVeins'>
+                    <Veins name='dnsoLapisPrefersVeins' block='denseores:block0:2' inherits='dnsoLapisBaseVeins'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * dnsoLapisFreq * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 0.3 * 0.85 * dnsoLapisFreq * _default_'/>
                         <BiomeType name='ocean'/>
-                        
-                        <!-- Begin Lapis Huge Vein Hint Veins -->
-                        <Veins name='dnsoLapisPrefersHintVeins' block='denseores:block0' inherits='dnsoLapisBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
-                            <BiomeType name='ocean'/>
-                        </Veins>
-                        <!-- End Lapis Huge Vein Hint Veins -->
-
                     </Veins>
                     <!-- End Preferred Biome Distribution (Lapis Huge Veins) Settings -->
                 
@@ -866,7 +796,7 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Strategic Cloud distribution of Lapis -->
                 <IfCondition condition=':= dnsoLapisDist = "strategicCloud"'>
                 
-                    <Cloud name='dnsoLapisBaseCloud' block='denseores:block0' inherits='PresetStrategicCloud'>
+                    <Cloud name='dnsoLapisBaseCloud' block='denseores:block0:2' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -876,17 +806,17 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * dnsoLapisFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * dnsoLapisSize * _default_' range=':= 1 * 0.8 * dnsoLapisSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * dnsoLapisSize * _default_' range=':= 1 * 0.8 * dnsoLapisSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 0.3 * 4.5 * dnsoLapisFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 0.5 * 0.8 * dnsoLapisSize * _default_' range=':= 0.5 * 0.8 * dnsoLapisSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 0.5 * 0.8 * dnsoLapisSize * _default_' range=':= 0.5 * 0.8 * dnsoLapisSize * _default_'/>
+                        <Setting name='CloudHeight' avg='10' range='5' type='normal' scaleTo='Base'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * dnsoLapisSize * _default_' range=':= 1 * 1 * 0.8 * dnsoLapisSize  * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 0.5 * 1 * 0.8 * dnsoLapisSize * _default_' range=':= 0.5 * 1 * 0.8 * dnsoLapisSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Lapis Strategic Cloud Hint Veins -->
-                        <Veins name='dnsoLapisBaseHintVeins' block='denseores:block0' inherits='PresetHintVeins'>
+                        <Veins name='dnsoLapisBaseHintVeins' block='denseores:block0:2' inherits='PresetHintVeins'>
                             <Description>
                                 Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
                                 They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
@@ -894,29 +824,33 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
+                            <WireframeColor>0x607DE33B</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
                         </Veins>
                         <!-- End Lapis Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Lapis Strategic Cloud) Settings -->
-                    <Cloud name='dnsoLapisPrefersCloud' block='denseores:block0' inherits='dnsoLapisBaseCloud'>
+                    <Cloud name='dnsoLapisPrefersCloud' block='denseores:block0:2' inherits='dnsoLapisBaseCloud'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * dnsoLapisFreq *_default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 2 * 0.3 * 4.5 * dnsoLapisFreq *_default_'/>
                         <BiomeType name='ocean'/>
                         
                         <!-- Begin Lapis Strategic Cloud Hint Veins -->
-                        <Veins name='dnsoLapisPrefersHintVeins' block='denseores:block0' inherits='dnsoLapisBaseHintVeins'>
+                        <Veins name='dnsoLapisPrefersHintVeins' block='denseores:block0:2' inherits='dnsoLapisBaseHintVeins'>
                             <Description>
                                 Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
+                            <WireframeColor>0x607DE33B</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
                             <BiomeType name='ocean'/>
                         </Veins>
                         <!-- End Lapis Strategic Cloud Hint Veins -->
@@ -931,26 +865,26 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Vanilla distribution of Lapis -->
                 <IfCondition condition=':= dnsoLapisDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='dnsoLapisBaseStandard' block='denseores:block0' inherits='PresetStandardGen'>
+                    <StandardGen name='dnsoLapisBaseStandard' block='denseores:block0:2' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * dnsoLapisFreq * _default_'/>
-                        <Setting name='Size' avg=':= 1 * 1 * dnsoLapisSize * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='Frequency' avg=':= 1 * 0.3 * 0.1 * dnsoLapisFreq * _default_'/>
+                        <Setting name='Size' avg=':= 0.5 * 1 * dnsoLapisSize * _default_'/>
+                        <Setting name='Height' avg=':= 10' range=':= 5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Lapis Vanilla) Settings -->
-                    <StandardGen name='dnsoLapisPrefersStandard' block='denseores:block0' inherits='dnsoLapisBaseStandard'>
+                    <StandardGen name='dnsoLapisPrefersStandard' block='denseores:block0:2' inherits='dnsoLapisBaseStandard'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * dnsoLapisFreq * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='Frequency' avg=':= 2 * 0.3 * 0.1 * dnsoLapisFreq * _default_'/>
                         <BiomeType name='ocean'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Lapis Vanilla) Settings -->
@@ -966,17 +900,17 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin Layered Veins distribution of Diamond -->
                 <IfCondition condition=':= dnsoDiamondDist = "layeredVeins"'>
                 
-                    <Veins name='dnsoDiamondBaseVeins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                    <Veins name='dnsoDiamondBaseVeins' block='denseores:block0:3' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * dnsoDiamondFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * dnsoDiamondSize * _default_' range=':= 1 * 0.8 * dnsoDiamondSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * dnsoDiamondSize * _default_' range=':= 1 * 0.8 * dnsoDiamondSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.3 * 0.85 * dnsoDiamondFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.1 * 0.8 * dnsoDiamondSize * _default_' range=':= 0.1 * 0.8 * dnsoDiamondSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 10' range=':= 5' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 0.1 * 0.8 * dnsoDiamondSize * _default_' range=':= 0.1 * 0.8 * dnsoDiamondSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 0.1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                 
@@ -987,7 +921,7 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Huge Veins distribution of Diamond -->
                 <IfCondition condition=':= dnsoDiamondDist = "hugeVeins"'>
                 
-                    <Veins name='dnsoDiamondBaseVeins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                    <Veins name='dnsoDiamondBaseVeins' block='denseores:block0:3' inherits='PresetLayeredVeins'>
                         <Description>
                             Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
                             parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
@@ -999,27 +933,13 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * dnsoDiamondFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * dnsoDiamondSize * _default_' range=':= 1 * 0.8 * dnsoDiamondSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * dnsoDiamondSize * _default_' range=':= 1 * 0.8 * dnsoDiamondSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.3 * 0.85 * dnsoDiamondFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.1 * 0.8 * dnsoDiamondSize * _default_' range=':= 0.1 * 0.8 * dnsoDiamondSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 10' range=':= 5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 0.1 * 0.8 * dnsoDiamondSize * _default_' range=':= 0.1 * 0.8 * dnsoDiamondSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 0.1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
-                        
-                        <!-- Begin Diamond Huge Vein Hint Veins -->
-                        <Veins name='dnsoDiamondBaseHintVeins' block='denseores:block0' inherits='PresetHintVeins'>
-                            <Description>
-                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
-                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
-                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
-                                deposits that would otherwise be very difficult to find. 
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
-                        </Veins>
-                        <!-- End Diamond Huge Vein Hint Veins -->
-
                     </Veins>
                 
                 </IfCondition>
@@ -1029,7 +949,7 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Strategic Cloud distribution of Diamond -->
                 <IfCondition condition=':= dnsoDiamondDist = "strategicCloud"'>
                 
-                    <Cloud name='dnsoDiamondBaseCloud' block='denseores:block0' inherits='PresetStrategicCloud'>
+                    <Cloud name='dnsoDiamondBaseCloud' block='denseores:block0:3' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1039,17 +959,17 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * dnsoDiamondFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * dnsoDiamondSize * _default_' range=':= 1 * 0.8 * dnsoDiamondSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * dnsoDiamondSize * _default_' range=':= 1 * 0.8 * dnsoDiamondSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * dnsoDiamondSize * _default_' range=':= 1 * 1 * 0.8 * dnsoDiamondSize  * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 0.3 * 4.5 * dnsoDiamondFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 0.1 * 0.8 * dnsoDiamondSize * _default_' range=':= 0.1 * 0.8 * dnsoDiamondSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 0.1 * 0.8 * dnsoDiamondSize * _default_' range=':= 0.1 * 0.8 * dnsoDiamondSize * _default_'/>
+                        <Setting name='CloudHeight' avg='10' range='5' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 0.1 * 0.3 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 0.1 * 1 * 0.8 * dnsoDiamondSize * _default_' range=':= 0.1 * 1 * 0.8 * dnsoDiamondSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Diamond Strategic Cloud Hint Veins -->
-                        <Veins name='dnsoDiamondBaseHintVeins' block='denseores:block0' inherits='PresetHintVeins'>
+                        <Veins name='dnsoDiamondBaseHintVeins' block='denseores:block0:3' inherits='PresetHintVeins'>
                             <Description>
                                 Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
                                 They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
@@ -1057,7 +977,9 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
+                            <WireframeColor>0x607DE33B</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
                         </Veins>
                         <!-- End Diamond Strategic Cloud Hint Veins -->
 
@@ -1070,15 +992,15 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Vanilla distribution of Diamond -->
                 <IfCondition condition=':= dnsoDiamondDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='dnsoDiamondBaseStandard' block='denseores:block0' inherits='PresetStandardGen'>
+                    <StandardGen name='dnsoDiamondBaseStandard' block='denseores:block0:3' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * dnsoDiamondFreq * _default_'/>
-                        <Setting name='Size' avg=':= 1 * 1 * dnsoDiamondSize * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='Frequency' avg=':= 1 * 0.3 * 0.1 * dnsoDiamondFreq * _default_'/>
+                        <Setting name='Size' avg=':= 0.1 * 1 * dnsoDiamondSize * _default_'/>
+                        <Setting name='Height' avg=':= 10' range=':= 5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                 
@@ -1093,29 +1015,29 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin Layered Veins distribution of Emerald -->
                 <IfCondition condition=':= dnsoEmeraldDist = "layeredVeins"'>
                 
-                    <Veins name='dnsoEmeraldBaseVeins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                    <Veins name='dnsoEmeraldBaseVeins' block='denseores:block0:4' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * dnsoEmeraldFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * dnsoEmeraldSize * _default_' range=':= 1 * 0.8 * dnsoEmeraldSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * dnsoEmeraldSize * _default_' range=':= 1 * 0.8 * dnsoEmeraldSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.3 * 0.85 * dnsoEmeraldFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.01 * 0.8 * dnsoEmeraldSize * _default_' range=':= 0.01 * 0.8 * dnsoEmeraldSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 10' range=':= 5' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 0.01 * 0.8 * dnsoEmeraldSize * _default_' range=':= 0.01 * 0.8 * dnsoEmeraldSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 0.01 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Emerald Layered Veins) Settings -->
-                    <Veins name='dnsoEmeraldPrefersVeins' block='denseores:block0' inherits='dnsoEmeraldBaseVeins'>
+                    <Veins name='dnsoEmeraldPrefersVeins' block='denseores:block0:4' inherits='dnsoEmeraldBaseVeins'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * dnsoEmeraldFreq * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 0.3 * 0.85 * dnsoEmeraldFreq * _default_'/>
                         <BiomeType name='mountain'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Emerald Layered Veins) Settings -->
@@ -1127,7 +1049,7 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Huge Veins distribution of Emerald -->
                 <IfCondition condition=':= dnsoEmeraldDist = "hugeVeins"'>
                 
-                    <Veins name='dnsoEmeraldBaseVeins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                    <Veins name='dnsoEmeraldBaseVeins' block='denseores:block0:4' inherits='PresetLayeredVeins'>
                         <Description>
                             Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
                             parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
@@ -1139,50 +1061,24 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * dnsoEmeraldFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * dnsoEmeraldSize * _default_' range=':= 1 * 0.8 * dnsoEmeraldSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * dnsoEmeraldSize * _default_' range=':= 1 * 0.8 * dnsoEmeraldSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.3 * 0.85 * dnsoEmeraldFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.01 * 0.8 * dnsoEmeraldSize * _default_' range=':= 0.01 * 0.8 * dnsoEmeraldSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 10' range=':= 5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 0.01 * 0.8 * dnsoEmeraldSize * _default_' range=':= 0.01 * 0.8 * dnsoEmeraldSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 0.01 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
-                        
-                        <!-- Begin Emerald Huge Vein Hint Veins -->
-                        <Veins name='dnsoEmeraldBaseHintVeins' block='denseores:block0' inherits='PresetHintVeins'>
-                            <Description>
-                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
-                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
-                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
-                                deposits that would otherwise be very difficult to find. 
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
-                        </Veins>
-                        <!-- End Emerald Huge Vein Hint Veins -->
-
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Emerald Huge Veins) Settings -->
-                    <Veins name='dnsoEmeraldPrefersVeins' block='denseores:block0' inherits='dnsoEmeraldBaseVeins'>
+                    <Veins name='dnsoEmeraldPrefersVeins' block='denseores:block0:4' inherits='dnsoEmeraldBaseVeins'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * dnsoEmeraldFreq * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 0.3 * 0.85 * dnsoEmeraldFreq * _default_'/>
                         <BiomeType name='mountain'/>
-                        
-                        <!-- Begin Emerald Huge Vein Hint Veins -->
-                        <Veins name='dnsoEmeraldPrefersHintVeins' block='denseores:block0' inherits='dnsoEmeraldBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
-                            <BiomeType name='mountain'/>
-                        </Veins>
-                        <!-- End Emerald Huge Vein Hint Veins -->
-
                     </Veins>
                     <!-- End Preferred Biome Distribution (Emerald Huge Veins) Settings -->
                 
@@ -1193,7 +1089,7 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Strategic Cloud distribution of Emerald -->
                 <IfCondition condition=':= dnsoEmeraldDist = "strategicCloud"'>
                 
-                    <Cloud name='dnsoEmeraldBaseCloud' block='denseores:block0' inherits='PresetStrategicCloud'>
+                    <Cloud name='dnsoEmeraldBaseCloud' block='denseores:block0:4' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1203,17 +1099,17 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * dnsoEmeraldFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * dnsoEmeraldSize * _default_' range=':= 1 * 0.8 * dnsoEmeraldSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * dnsoEmeraldSize * _default_' range=':= 1 * 0.8 * dnsoEmeraldSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * dnsoEmeraldSize * _default_' range=':= 1 * 1 * 0.8 * dnsoEmeraldSize  * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 0.3 * 4.5 * dnsoEmeraldFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 0.01 * 0.8 * dnsoEmeraldSize * _default_' range=':= 0.01 * 0.8 * dnsoEmeraldSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 0.01 * 0.8 * dnsoEmeraldSize * _default_' range=':= 0.01 * 0.8 * dnsoEmeraldSize * _default_'/>
+                        <Setting name='CloudHeight' avg='10' range='5' type='normal' scaleTo='Base'/>
+                        <Setting name='OreDensity' avg=':= 0.01 * 0.3 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 0.01 * 1 * 0.8 * dnsoEmeraldSize * _default_' range=':= 0.01 * 1 * 0.8 * dnsoEmeraldSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Emerald Strategic Cloud Hint Veins -->
-                        <Veins name='dnsoEmeraldBaseHintVeins' block='denseores:block0' inherits='PresetHintVeins'>
+                        <Veins name='dnsoEmeraldBaseHintVeins' block='denseores:block0:4' inherits='PresetHintVeins'>
                             <Description>
                                 Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
                                 They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
@@ -1221,29 +1117,33 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
+                            <WireframeColor>0x607DE33B</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
                         </Veins>
                         <!-- End Emerald Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Emerald Strategic Cloud) Settings -->
-                    <Cloud name='dnsoEmeraldPrefersCloud' block='denseores:block0' inherits='dnsoEmeraldBaseCloud'>
+                    <Cloud name='dnsoEmeraldPrefersCloud' block='denseores:block0:4' inherits='dnsoEmeraldBaseCloud'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * dnsoEmeraldFreq *_default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 2 * 0.3 * 4.5 * dnsoEmeraldFreq *_default_'/>
                         <BiomeType name='mountain'/>
                         
                         <!-- Begin Emerald Strategic Cloud Hint Veins -->
-                        <Veins name='dnsoEmeraldPrefersHintVeins' block='denseores:block0' inherits='dnsoEmeraldBaseHintVeins'>
+                        <Veins name='dnsoEmeraldPrefersHintVeins' block='denseores:block0:4' inherits='dnsoEmeraldBaseHintVeins'>
                             <Description>
                                 Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
+                            <WireframeColor>0x607DE33B</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
                             <BiomeType name='mountain'/>
                         </Veins>
                         <!-- End Emerald Strategic Cloud Hint Veins -->
@@ -1258,26 +1158,26 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Vanilla distribution of Emerald -->
                 <IfCondition condition=':= dnsoEmeraldDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='dnsoEmeraldBaseStandard' block='denseores:block0' inherits='PresetStandardGen'>
+                    <StandardGen name='dnsoEmeraldBaseStandard' block='denseores:block0:4' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * dnsoEmeraldFreq * _default_'/>
-                        <Setting name='Size' avg=':= 1 * 1 * dnsoEmeraldSize * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='Frequency' avg=':= 1 * 0.3 * 0.1 * dnsoEmeraldFreq * _default_'/>
+                        <Setting name='Size' avg=':= 0.01 * 1 * dnsoEmeraldSize * _default_'/>
+                        <Setting name='Height' avg=':= 10' range=':= 5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Emerald Vanilla) Settings -->
-                    <StandardGen name='dnsoEmeraldPrefersStandard' block='denseores:block0' inherits='dnsoEmeraldBaseStandard'>
+                    <StandardGen name='dnsoEmeraldPrefersStandard' block='denseores:block0:4' inherits='dnsoEmeraldBaseStandard'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * dnsoEmeraldFreq * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='Frequency' avg=':= 2 * 0.3 * 0.1 * dnsoEmeraldFreq * _default_'/>
                         <BiomeType name='mountain'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Emerald Vanilla) Settings -->
@@ -1293,29 +1193,29 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin Layered Veins distribution of Redstone -->
                 <IfCondition condition=':= dnsoRedstoneDist = "layeredVeins"'>
                 
-                    <Veins name='dnsoRedstoneBaseVeins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                    <Veins name='dnsoRedstoneBaseVeins' block='denseores:block0:5' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * dnsoRedstoneFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * dnsoRedstoneSize * _default_' range=':= 1 * 0.8 * dnsoRedstoneSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * dnsoRedstoneSize * _default_' range=':= 1 * 0.8 * dnsoRedstoneSize * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.3 * 0.85 * dnsoRedstoneFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 0.8 * dnsoRedstoneSize * _default_' range=':= 0.5 * 0.8 * dnsoRedstoneSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 10' range=':= 5' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 0.8 * dnsoRedstoneSize * _default_' range=':= 0.5 * 0.8 * dnsoRedstoneSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Redstone Layered Veins) Settings -->
-                    <Veins name='dnsoRedstonePrefersVeins' block='denseores:block0' inherits='dnsoRedstoneBaseVeins'>
+                    <Veins name='dnsoRedstonePrefersVeins' block='denseores:block0:5' inherits='dnsoRedstoneBaseVeins'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * dnsoRedstoneFreq * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 0.3 * 0.85 * dnsoRedstoneFreq * _default_'/>
                         <BiomeType name='Desert'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Redstone Layered Veins) Settings -->
@@ -1327,7 +1227,7 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Huge Veins distribution of Redstone -->
                 <IfCondition condition=':= dnsoRedstoneDist = "hugeVeins"'>
                 
-                    <Veins name='dnsoRedstoneBaseVeins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                    <Veins name='dnsoRedstoneBaseVeins' block='denseores:block0:5' inherits='PresetLayeredVeins'>
                         <Description>
                             Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
                             parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
@@ -1339,50 +1239,24 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * dnsoRedstoneFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * dnsoRedstoneSize * _default_' range=':= 1 * 0.8 * dnsoRedstoneSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * dnsoRedstoneSize * _default_' range=':= 1 * 0.8 * dnsoRedstoneSize * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.3 * 0.85 * dnsoRedstoneFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 0.8 * dnsoRedstoneSize * _default_' range=':= 0.5 * 0.8 * dnsoRedstoneSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 10' range=':= 5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 0.8 * dnsoRedstoneSize * _default_' range=':= 0.5 * 0.8 * dnsoRedstoneSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
-                        
-                        <!-- Begin Redstone Huge Vein Hint Veins -->
-                        <Veins name='dnsoRedstoneBaseHintVeins' block='denseores:block0' inherits='PresetHintVeins'>
-                            <Description>
-                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
-                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
-                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
-                                deposits that would otherwise be very difficult to find. 
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
-                        </Veins>
-                        <!-- End Redstone Huge Vein Hint Veins -->
-
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Redstone Huge Veins) Settings -->
-                    <Veins name='dnsoRedstonePrefersVeins' block='denseores:block0' inherits='dnsoRedstoneBaseVeins'>
+                    <Veins name='dnsoRedstonePrefersVeins' block='denseores:block0:5' inherits='dnsoRedstoneBaseVeins'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * dnsoRedstoneFreq * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 0.3 * 0.85 * dnsoRedstoneFreq * _default_'/>
                         <BiomeType name='Desert'/>
-                        
-                        <!-- Begin Redstone Huge Vein Hint Veins -->
-                        <Veins name='dnsoRedstonePrefersHintVeins' block='denseores:block0' inherits='dnsoRedstoneBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
-                            <BiomeType name='Desert'/>
-                        </Veins>
-                        <!-- End Redstone Huge Vein Hint Veins -->
-
                     </Veins>
                     <!-- End Preferred Biome Distribution (Redstone Huge Veins) Settings -->
                 
@@ -1393,7 +1267,7 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Strategic Cloud distribution of Redstone -->
                 <IfCondition condition=':= dnsoRedstoneDist = "strategicCloud"'>
                 
-                    <Cloud name='dnsoRedstoneBaseCloud' block='denseores:block0' inherits='PresetStrategicCloud'>
+                    <Cloud name='dnsoRedstoneBaseCloud' block='denseores:block0:5' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1403,17 +1277,17 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * dnsoRedstoneFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * dnsoRedstoneSize * _default_' range=':= 1 * 0.8 * dnsoRedstoneSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * dnsoRedstoneSize * _default_' range=':= 1 * 0.8 * dnsoRedstoneSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 0.3 * 4.5 * dnsoRedstoneFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 0.5 * 0.8 * dnsoRedstoneSize * _default_' range=':= 0.5 * 0.8 * dnsoRedstoneSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 0.5 * 0.8 * dnsoRedstoneSize * _default_' range=':= 0.5 * 0.8 * dnsoRedstoneSize * _default_'/>
+                        <Setting name='CloudHeight' avg='10' range='5' type='normal' scaleTo='Base'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * dnsoRedstoneSize * _default_' range=':= 1 * 1 * 0.8 * dnsoRedstoneSize  * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 0.5 * 1 * 0.8 * dnsoRedstoneSize * _default_' range=':= 0.5 * 1 * 0.8 * dnsoRedstoneSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Redstone Strategic Cloud Hint Veins -->
-                        <Veins name='dnsoRedstoneBaseHintVeins' block='denseores:block0' inherits='PresetHintVeins'>
+                        <Veins name='dnsoRedstoneBaseHintVeins' block='denseores:block0:5' inherits='PresetHintVeins'>
                             <Description>
                                 Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
                                 They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
@@ -1421,29 +1295,33 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
+                            <WireframeColor>0x607DE33B</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
                         </Veins>
                         <!-- End Redstone Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Redstone Strategic Cloud) Settings -->
-                    <Cloud name='dnsoRedstonePrefersCloud' block='denseores:block0' inherits='dnsoRedstoneBaseCloud'>
+                    <Cloud name='dnsoRedstonePrefersCloud' block='denseores:block0:5' inherits='dnsoRedstoneBaseCloud'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * dnsoRedstoneFreq *_default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 2 * 0.3 * 4.5 * dnsoRedstoneFreq *_default_'/>
                         <BiomeType name='Desert'/>
                         
                         <!-- Begin Redstone Strategic Cloud Hint Veins -->
-                        <Veins name='dnsoRedstonePrefersHintVeins' block='denseores:block0' inherits='dnsoRedstoneBaseHintVeins'>
+                        <Veins name='dnsoRedstonePrefersHintVeins' block='denseores:block0:5' inherits='dnsoRedstoneBaseHintVeins'>
                             <Description>
                                 Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
+                            <WireframeColor>0x607DE33B</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
                             <BiomeType name='Desert'/>
                         </Veins>
                         <!-- End Redstone Strategic Cloud Hint Veins -->
@@ -1458,26 +1336,26 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Vanilla distribution of Redstone -->
                 <IfCondition condition=':= dnsoRedstoneDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='dnsoRedstoneBaseStandard' block='denseores:block0' inherits='PresetStandardGen'>
+                    <StandardGen name='dnsoRedstoneBaseStandard' block='denseores:block0:5' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * dnsoRedstoneFreq * _default_'/>
-                        <Setting name='Size' avg=':= 1 * 1 * dnsoRedstoneSize * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='Frequency' avg=':= 1 * 0.3 * 0.1 * dnsoRedstoneFreq * _default_'/>
+                        <Setting name='Size' avg=':= 0.5 * 1 * dnsoRedstoneSize * _default_'/>
+                        <Setting name='Height' avg=':= 10' range=':= 5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Redstone Vanilla) Settings -->
-                    <StandardGen name='dnsoRedstonePrefersStandard' block='denseores:block0' inherits='dnsoRedstoneBaseStandard'>
+                    <StandardGen name='dnsoRedstonePrefersStandard' block='denseores:block0:5' inherits='dnsoRedstoneBaseStandard'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * dnsoRedstoneFreq * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='Frequency' avg=':= 2 * 0.3 * 0.1 * dnsoRedstoneFreq * _default_'/>
                         <BiomeType name='Desert'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Redstone Vanilla) Settings -->
@@ -1493,29 +1371,29 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin Layered Veins distribution of Coal -->
                 <IfCondition condition=':= dnsoCoalDist = "layeredVeins"'>
                 
-                    <Veins name='dnsoCoalBaseVeins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                    <Veins name='dnsoCoalBaseVeins' block='denseores:block0:6' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * dnsoCoalFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * dnsoCoalSize * _default_' range=':= 1 * 0.8 * dnsoCoalSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * dnsoCoalSize * _default_' range=':= 1 * 0.8 * dnsoCoalSize * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.3 * 0.85 * dnsoCoalFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 0.8 * dnsoCoalSize * _default_' range=':= 0.5 * 0.8 * dnsoCoalSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 10' range=':= 5' type='normal' scaleTo='Base'/> 
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 0.8 * dnsoCoalSize * _default_' range=':= 0.5 * 0.8 * dnsoCoalSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Coal Layered Veins) Settings -->
-                    <Veins name='dnsoCoalPrefersVeins' block='denseores:block0' inherits='dnsoCoalBaseVeins'>
+                    <Veins name='dnsoCoalPrefersVeins' block='denseores:block0:6' inherits='dnsoCoalBaseVeins'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                             2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * dnsoCoalFreq * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 0.3 * 0.85 * dnsoCoalFreq * _default_'/>
                         <BiomeType name='Swamp'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Coal Layered Veins) Settings -->
@@ -1527,7 +1405,7 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Huge Veins distribution of Coal -->
                 <IfCondition condition=':= dnsoCoalDist = "hugeVeins"'>
                 
-                    <Veins name='dnsoCoalBaseVeins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                    <Veins name='dnsoCoalBaseVeins' block='denseores:block0:6' inherits='PresetLayeredVeins'>
                         <Description>
                             Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
                             parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
@@ -1539,50 +1417,24 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * dnsoCoalFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * dnsoCoalSize * _default_' range=':= 1 * 0.8 * dnsoCoalSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Base' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * dnsoCoalSize * _default_' range=':= 1 * 0.8 * dnsoCoalSize * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.3 * 0.85 * dnsoCoalFreq * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 0.8 * dnsoCoalSize * _default_' range=':= 0.5 * 0.8 * dnsoCoalSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 10' range=':= 5' type='normal' scaleTo='Base' /> 
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 0.8 * dnsoCoalSize * _default_' range=':= 0.5 * 0.8 * dnsoCoalSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
-                        
-                        <!-- Begin Coal Huge Vein Hint Veins -->
-                        <Veins name='dnsoCoalBaseHintVeins' block='denseores:block0' inherits='PresetHintVeins'>
-                            <Description>
-                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
-                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
-                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
-                                deposits that would otherwise be very difficult to find. 
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
-                        </Veins>
-                        <!-- End Coal Huge Vein Hint Veins -->
-
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Coal Huge Veins) Settings -->
-                    <Veins name='dnsoCoalPrefersVeins' block='denseores:block0' inherits='dnsoCoalBaseVeins'>
+                    <Veins name='dnsoCoalPrefersVeins' block='denseores:block0:6' inherits='dnsoCoalBaseVeins'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * dnsoCoalFreq * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 0.3 * 0.85 * dnsoCoalFreq * _default_'/>
                         <BiomeType name='Swamp'/>
-                        
-                        <!-- Begin Coal Huge Vein Hint Veins -->
-                        <Veins name='dnsoCoalPrefersHintVeins' block='denseores:block0' inherits='dnsoCoalBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
-                            <BiomeType name='Swamp'/>
-                        </Veins>
-                        <!-- End Coal Huge Vein Hint Veins -->
-
                     </Veins>
                     <!-- End Preferred Biome Distribution (Coal Huge Veins) Settings -->
                 
@@ -1593,7 +1445,7 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Strategic Cloud distribution of Coal -->
                 <IfCondition condition=':= dnsoCoalDist = "strategicCloud"'>
                 
-                    <Cloud name='dnsoCoalBaseCloud' block='denseores:block0' inherits='PresetStrategicCloud'>
+                    <Cloud name='dnsoCoalBaseCloud' block='denseores:block0:6' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1603,17 +1455,17 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * dnsoCoalFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * dnsoCoalSize * _default_' range=':= 1 * 0.8 * dnsoCoalSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * dnsoCoalSize * _default_' range=':= 1 * 0.8 * dnsoCoalSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Base'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 0.3 * 4.5 * dnsoCoalFreq *_default_'/>
+                        <Setting name='CloudRadius' avg=':= 0.5 * 0.8 * dnsoCoalSize * _default_' range=':= 0.5 * 0.8 * dnsoCoalSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 0.5 * 0.8 * dnsoCoalSize * _default_' range=':= 0.5 * 0.8 * dnsoCoalSize * _default_'/>
+                        <Setting name='CloudHeight' avg='10' range='5' type='normal' scaleTo='Base'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * dnsoCoalSize * _default_' range=':= 1 * 1 * 0.8 * dnsoCoalSize  * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 0.5 * 1 * 0.8 * dnsoCoalSize * _default_' range=':= 0.5 * 1 * 0.8 * dnsoCoalSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Coal Strategic Cloud Hint Veins -->
-                        <Veins name='dnsoCoalBaseHintVeins' block='denseores:block0' inherits='PresetHintVeins'>
+                        <Veins name='dnsoCoalBaseHintVeins' block='denseores:block0:6' inherits='PresetHintVeins'>
                             <Description>
                                 Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
                                 They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
@@ -1621,29 +1473,33 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
+                            <WireframeColor>0x607DE33B</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
                         </Veins>
                         <!-- End Coal Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
                     <!-- Begin Preferred Biome Distribution (Coal Strategic Cloud) Settings -->
-                    <Cloud name='dnsoCoalPrefersCloud' block='denseores:block0' inherits='dnsoCoalBaseCloud'>
+                    <Cloud name='dnsoCoalPrefersCloud' block='denseores:block0:6' inherits='dnsoCoalBaseCloud'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * dnsoCoalFreq *_default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='DistributionFrequency' avg=':= 2 * 0.3 * 4.5 * dnsoCoalFreq *_default_'/>
                         <BiomeType name='Swamp'/>
                         
                         <!-- Begin Coal Strategic Cloud Hint Veins -->
-                        <Veins name='dnsoCoalPrefersHintVeins' block='denseores:block0' inherits='dnsoCoalBaseHintVeins'>
+                        <Veins name='dnsoCoalPrefersHintVeins' block='denseores:block0:6' inherits='dnsoCoalBaseHintVeins'>
                             <Description>
                                 Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
+                            <WireframeColor>0x607DE33B</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
                             <BiomeType name='Swamp'/>
                         </Veins>
                         <!-- End Coal Strategic Cloud Hint Veins -->
@@ -1658,26 +1514,26 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Vanilla distribution of Coal -->
                 <IfCondition condition=':= dnsoCoalDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='dnsoCoalBaseStandard' block='denseores:block0' inherits='PresetStandardGen'>
+                    <StandardGen name='dnsoCoalBaseStandard' block='denseores:block0:6' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * dnsoCoalFreq * _default_'/>
-                        <Setting name='Size' avg=':= 1 * 1 * dnsoCoalSize * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10'/> 
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='Frequency' avg=':= 1 * 0.3 * 0.1 * dnsoCoalFreq * _default_'/>
+                        <Setting name='Size' avg=':= 0.5 * 1 * dnsoCoalSize * _default_'/>
+                        <Setting name='Height' avg=':= 10' range=':= 5'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
                     <!-- Begin Preferred Biome Distribution (Coal Vanilla) Settings -->
-                    <StandardGen name='dnsoCoalPrefersStandard' block='denseores:block0' inherits='dnsoCoalBaseStandard'>
+                    <StandardGen name='dnsoCoalPrefersStandard' block='denseores:block0:6' inherits='dnsoCoalBaseStandard'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
-                        <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * dnsoCoalFreq * _default_'/>
+                        <WireframeColor>0x607DE33B</WireframeColor>
+                        <Setting name='Frequency' avg=':= 2 * 0.3 * 0.1 * dnsoCoalFreq * _default_'/>
                         <BiomeType name='Swamp'/>
                     </StandardGen>
                     <!-- End Preferred Biome Distribution (Coal Vanilla) Settings -->
@@ -1705,13 +1561,13 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                         The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
                     </Comment>
                     <Replaces block='denseores:block0:0' />
-                    <Replaces block='denseores:block0:0' />
-                    <Replaces block='denseores:block0:0' />
-                    <Replaces block='denseores:block0:0' />
-                    <Replaces block='denseores:block0:0' />
-                    <Replaces block='denseores:block0:0' />
-                    <Replaces block='denseores:block0:0' />
-                    <Replaces block='denseores:block0:0' />
+                    <Replaces block='denseores:block0:1' />
+                    <Replaces block='denseores:block0:2' />
+                    <Replaces block='denseores:block0:3' />
+                    <Replaces block='denseores:block0:4' />
+                    <Replaces block='denseores:block0:5' />
+                    <Replaces block='denseores:block0:6' />
+                    <Replaces block='denseores:block0:7' />
                 </Substitute>
                 <!-- Original Nether Ore Removal Complete -->
                 
@@ -1722,16 +1578,16 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin Layered Veins distribution of Nether Quartz -->
                 <IfCondition condition=':= dnsoNetherQuartzDist = "layeredVeins"'>
                 
-                    <Veins name='dnsoNetherQuartzBaseVeins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                    <Veins name='dnsoNetherQuartzBaseVeins' block='denseores:block0:7' inherits='PresetLayeredVeins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
+                        <WireframeColor>0x607DE33B</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * 0.85 * dnsoNetherQuartzFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * dnsoNetherQuartzSize * _default_' range=':= 1 * 0.8 * dnsoNetherQuartzSize * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 0.8 * dnsoNetherQuartzSize * _default_' range=':= 0.5 * 0.8 * dnsoNetherQuartzSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * dnsoNetherQuartzSize * _default_' range=':= 1 * 0.8 * dnsoNetherQuartzSize * _default_'/>
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 0.8 * dnsoNetherQuartzSize * _default_' range=':= 0.5 * 0.8 * dnsoNetherQuartzSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
@@ -1743,7 +1599,7 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Huge Veins distribution of Nether Quartz -->
                 <IfCondition condition=':= dnsoNetherQuartzDist = "hugeVeins"'>
                 
-                    <Veins name='dnsoNetherQuartzBaseVeins' block='denseores:block0' inherits='PresetLayeredVeins'>
+                    <Veins name='dnsoNetherQuartzBaseVeins' block='denseores:block0:7' inherits='PresetLayeredVeins'>
                         <Description>
                             Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
                             parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
@@ -1755,27 +1611,13 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
+                        <WireframeColor>0x607DE33B</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * 0.85 * dnsoNetherQuartzFreq * _default_'/>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * dnsoNetherQuartzSize * _default_' range=':= 1 * 0.8 * dnsoNetherQuartzSize * _default_'/>
+                        <Setting name='MotherlodeSize' avg=':= 0.5 * 0.8 * dnsoNetherQuartzSize * _default_' range=':= 0.5 * 0.8 * dnsoNetherQuartzSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Base' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * dnsoNetherQuartzSize * _default_' range=':= 1 * 0.8 * dnsoNetherQuartzSize * _default_'/>
+                        <Setting name='SegmentRadius' avg=':= 0.5 * 0.8 * dnsoNetherQuartzSize * _default_' range=':= 0.5 * 0.8 * dnsoNetherQuartzSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
-                        
-                        <!-- Begin Nether Quartz Huge Vein Hint Veins -->
-                        <Veins name='dnsoNetherQuartzBaseHintVeins' block='denseores:block0' inherits='PresetHintVeins'>
-                            <Description>
-                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
-                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
-                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
-                                deposits that would otherwise be very difficult to find. 
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
-                        </Veins>
-                        <!-- End Nether Quartz Huge Vein Hint Veins -->
-
                     </Veins>
                 
                 </IfCondition>
@@ -1785,7 +1627,7 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Strategic Cloud distribution of Nether Quartz -->
                 <IfCondition condition=':= dnsoNetherQuartzDist = "strategicCloud"'>
                 
-                    <Cloud name='dnsoNetherQuartzBaseCloud' block='denseores:block0' inherits='PresetStrategicCloud'>
+                    <Cloud name='dnsoNetherQuartzBaseCloud' block='denseores:block0:7' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -1795,17 +1637,17 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
+                        <WireframeColor>0x607DE33B</WireframeColor>
                         <Setting name='DistributionFrequency' avg=':= 1 * 2 * 4.5 * dnsoNetherQuartzFreq *_default_'/>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * dnsoNetherQuartzSize * _default_' range=':= 1 * 0.8 * dnsoNetherQuartzSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * dnsoNetherQuartzSize * _default_' range=':= 1 * 0.8 * dnsoNetherQuartzSize * _default_'/>
+                        <Setting name='CloudRadius' avg=':= 0.5 * 0.8 * dnsoNetherQuartzSize * _default_' range=':= 0.5 * 0.8 * dnsoNetherQuartzSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 0.5 * 0.8 * dnsoNetherQuartzSize * _default_' range=':= 0.5 * 0.8 * dnsoNetherQuartzSize * _default_'/>
                         <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='Base'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * dnsoNetherQuartzSize * _default_' range=':= 1 * 1 * 0.8 * dnsoNetherQuartzSize  * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 0.5 * 1 * 0.8 * dnsoNetherQuartzSize * _default_' range=':= 0.5 * 1 * 0.8 * dnsoNetherQuartzSize  * _default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Nether Quartz Strategic Cloud Hint Veins -->
-                        <Veins name='dnsoNetherQuartzBaseHintVeins' block='denseores:block0' inherits='PresetHintVeins'>
+                        <Veins name='dnsoNetherQuartzBaseHintVeins' block='denseores:block0:7' inherits='PresetHintVeins'>
                             <Description>
                                 Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
                                 They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
@@ -1813,7 +1655,9 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60642248</WireframeColor>
+                            <WireframeColor>0x607DE33B</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
                         </Veins>
                         <!-- End Nether Quartz Strategic Cloud Hint Veins -->
 
@@ -1826,14 +1670,14 @@ Generates: Iron, Gold, Lapis, Diamond, Emerald, Redstone, Coal, Nether Quartz
                 <!-- Begin  Vanilla distribution of Nether Quartz -->
                 <IfCondition condition=':= dnsoNetherQuartzDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='dnsoNetherQuartzBaseStandard' block='denseores:block0' inherits='PresetStandardGen'>
+                    <StandardGen name='dnsoNetherQuartzBaseStandard' block='denseores:block0:7' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60642248</WireframeColor>
+                        <WireframeColor>0x607DE33B</WireframeColor>
                         <Setting name='Frequency' avg=':= 1 * 2 * 0.1 * dnsoNetherQuartzFreq * _default_'/>
-                        <Setting name='Size' avg=':= 1 * 1 * dnsoNetherQuartzSize * _default_'/>
+                        <Setting name='Size' avg=':= 0.5 * 1 * dnsoNetherQuartzSize * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120'/> 
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>

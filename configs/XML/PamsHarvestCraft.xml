@@ -92,7 +92,7 @@ Generates: Salt
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60888888</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 5 * hvstSaltFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 2 * hvstSaltFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * hvstSaltSize * _default_' range=':= 1 * 1 * hvstSaltSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * hvstSaltSize * _default_' range=':= 1 * 1 * hvstSaltSize * _default_'/>
@@ -108,7 +108,7 @@ Generates: Salt
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60888888</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 5 * hvstSaltFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 2 * hvstSaltFreq * _default_'/>
                         <BiomeType name='Ocean'/>
                         <BiomeType name='Beach'/>
                         <BiomeType name='Mountain'/>
@@ -135,26 +135,12 @@ Generates: Salt
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60888888</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 5 * hvstSaltFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 2 * hvstSaltFreq * _default_'/>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * hvstSaltSize * _default_' range=':= 1 * 1 * hvstSaltSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='Base' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * hvstSaltSize * _default_' range=':= 1 * 1 * hvstSaltSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1.75 * _default_' range=':= _default_'/>
                         <Replaces block='minecraft:stone'/>
-                        
-                        <!-- Begin Salt Huge Vein Hint Veins -->
-                        <Veins name='hvstSaltBaseHintVeins' block='harvestcraft:salt' inherits='PresetHintVeins'>
-                            <Description>
-                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
-                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
-                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
-                                deposits that would otherwise be very difficult to find. 
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60888888</WireframeColor>
-                        </Veins>
-                        <!-- End Salt Huge Vein Hint Veins -->
-
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Salt Huge Veins) Settings -->
@@ -164,24 +150,10 @@ Generates: Salt
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
                         <WireframeColor>0x60888888</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 5 * hvstSaltFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 2 * hvstSaltFreq * _default_'/>
                         <BiomeType name='Ocean'/>
                         <BiomeType name='Beach'/>
                         <BiomeType name='Mountain'/>
-                        
-                        <!-- Begin Salt Huge Vein Hint Veins -->
-                        <Veins name='hvstSaltPrefersHintVeins' block='harvestcraft:salt' inherits='hvstSaltBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60888888</WireframeColor>
-                            <BiomeType name='Ocean'/>
-                            <BiomeType name='Beach'/>
-                            <BiomeType name='Mountain'/>
-                        </Veins>
-                        <!-- End Salt Huge Vein Hint Veins -->
-
                     </Veins>
                     <!-- End Preferred Biome Distribution (Salt Huge Veins) Settings -->
                 
@@ -221,6 +193,8 @@ Generates: Salt
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60888888</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
                         </Veins>
                         <!-- End Salt Strategic Cloud Hint Veins -->
 
@@ -245,6 +219,8 @@ Generates: Salt
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
                             <WireframeColor>0x60888888</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
                             <BiomeType name='Ocean'/>
                             <BiomeType name='Beach'/>
                             <BiomeType name='Mountain'/>
