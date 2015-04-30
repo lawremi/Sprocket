@@ -63,12 +63,12 @@ oreCloudDensity = []    # Density Multiplier for Clouds
 oreVeinDensity = []     # Density Multiplier for Veins
 oreCloudThickness = []  # Thickness Multiplier for Clouds
 oreBiomes = []          # Ores only spawn in these biomes
-oreAvoid = []          # Ores will not spawn in these biomes
+oreAvoid = []           # Ores will not spawn in these biomes
 orePreferBiomes = []    # Ores spawn extra in these biomes
 oreNoPreferBiomes = []  # Ores won't spawn extra in these biomes
 orePreMultiplier = []   # "Prefers" Multiplier
 oreScale = []           # COG Surface Scaling
-oreActive= []           # Is ore distribution active by default?
+oreActive = []          # Is ore distribution active by default?
 
 oreList = ""
 indentLine=0
@@ -932,6 +932,49 @@ def hugeVeinsDist(currentOreGen,level):
     else:
         distText += biomeList(oreBiomeName)    
         distText += biomeAvoidList(oreAvoidName)
+        
+    if level == "Prefers":
+        preferMultiplier = orePreMultiplier[currentOreGen]
+        inheritLine = oreConfigName+"BaseHintVeins"
+    else:
+        preferMultiplier = "1"
+        inheritLine = "PresetHintVeins"
+
+    # "Hint" Veins
+    
+    distText += indentText(indentLine)+"\n"
+    distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Huge Vein Hint Veins -->\n"
+    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"HintVeins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"' inherits='"+inheritLine+"'>\n"
+    indentLine += 1
+    distText += indentText(indentLine)+"<Description>\n"
+    indentLine += 1
+    
+    if level == "Base":
+        distText += indentText(indentLine)+"Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). \n"
+        distText += indentText(indentLine)+"They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  \n"
+        distText += indentText(indentLine)+"to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  \n"
+        distText += indentText(indentLine)+"deposits that would otherwise be very difficult to find. \n"
+
+    elif level == "Prefers":
+        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
+    else:
+        distText += indentText(indentLine)+" "
+
+    indentLine -= 1
+    distText += indentText(indentLine)+"</Description>\n"
+    distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
+    distText += indentText(indentLine)+"<WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
+    
+    if level == "Prefers":
+        distText += biomeList(orePreferName)
+        distText += biomeAvoidList(oreNoPreferName)
+    else:
+        distText += biomeList(oreBiomeName)    
+        distText += biomeAvoidList(oreAvoidName)
+    
+    indentLine -= 1
+    distText += indentText(indentLine)+"</Veins>\n"
+    distText += indentText(indentLine)+"<!-- End "+oreName[currentOreGen]+" Huge Vein Hint Veins -->\n\n"
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
