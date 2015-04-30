@@ -179,7 +179,7 @@ oreConfigTemplate = []
 # then "default='none'" will be returned.
 
 def ifDistActive(oreSelect):
-    if (oreActive[oreSelect] == "no"):
+    if (oreActive[oreSelect] == "no") or (oreActive[oreSelect] == "No"):
         return " default='none'"
     else:
         return " "
@@ -932,49 +932,6 @@ def hugeVeinsDist(currentOreGen,level):
     else:
         distText += biomeList(oreBiomeName)    
         distText += biomeAvoidList(oreAvoidName)
-        
-    if level == "Prefers":
-        preferMultiplier = orePreMultiplier[currentOreGen]
-        inheritLine = oreConfigName+"BaseHintVeins"
-    else:
-        preferMultiplier = "1"
-        inheritLine = "PresetHintVeins"
-
-    # "Hint" Veins
-    
-    distText += indentText(indentLine)+"\n"
-    distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Huge Vein Hint Veins -->\n"
-    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"HintVeins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"' inherits='"+inheritLine+"'>\n"
-    indentLine += 1
-    distText += indentText(indentLine)+"<Description>\n"
-    indentLine += 1
-    
-    if level == "Base":
-        distText += indentText(indentLine)+"Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). \n"
-        distText += indentText(indentLine)+"They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  \n"
-        distText += indentText(indentLine)+"to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  \n"
-        distText += indentText(indentLine)+"deposits that would otherwise be very difficult to find. \n"
-
-    elif level == "Prefers":
-        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
-    else:
-        distText += indentText(indentLine)+" "
-
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Description>\n"
-    distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
-    
-    if level == "Prefers":
-        distText += biomeList(orePreferName)
-        distText += biomeAvoidList(oreNoPreferName)
-    else:
-        distText += biomeList(oreBiomeName)    
-        distText += biomeAvoidList(oreAvoidName)
-    
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Veins>\n"
-    distText += indentText(indentLine)+"<!-- End "+oreName[currentOreGen]+" Huge Vein Hint Veins -->\n\n"
     
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
@@ -1139,19 +1096,17 @@ def pipeVeinsDist(currentOreGen,level):
     distText += indentText(indentLine)+"</Description>\n"
     distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
     distText += indentText(indentLine)+"<WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
-    distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
     
     if level == "Base":
         distText += indentText(indentLine)+"<Setting name='MotherlodeSize' avg=':= 0.5 * "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= 0.5 * "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='MotherlodeHeight' avg=':= "+oreHeight[currentOreGen]+"' range=':= "+oreRange[currentOreGen]+"' type='normal' scaleTo='"+oreScale[currentOreGen]+"' />\n"
         distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= 0.5 * "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= 0.5 * "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
         distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
+        distText += indentText(indentLine)+"<Replaces block='"+oreReplace[currentOreGen]+"'/>\n"
         distText += indentText(indentLine)+"<Replaces block='minecraft:dirt'/>\n"
         distText += indentText(indentLine)+"<Replaces block='minecraft:stone'/>\n"
         distText += indentText(indentLine)+"<Replaces block='minecraft:gravel'/>\n"
         distText += indentText(indentLine)+"<Replaces block='minecraft:netherrack'/>\n"
         distText += indentText(indentLine)+"<Replaces block='minecraft:end_stone'/>\n"
-        distText += indentText(indentLine)+"<Replaces block='"+oreReplace[currentOreGen]+"'/>\n"
     
     if level == "Prefers":
         distText += biomeList(orePreferName)
@@ -1334,14 +1289,14 @@ def strategicCloudsDist(currentOreGen,level):
         distText += biomeList(oreBiomeName)    
         distText += biomeAvoidList(oreAvoidName)
 
+    # "Hint" Veins
+    
     if level == "Prefers":
         preferMultiplier = orePreMultiplier[currentOreGen]
         inheritLine = oreConfigName+"BaseHintVeins"
     else:
         preferMultiplier = "1"
         inheritLine = "PresetHintVeins"
-
-    # "Hint" Veins
     
     distText += indentText(indentLine)+"\n"
     distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Strategic Cloud Hint Veins -->\n"
@@ -1365,6 +1320,8 @@ def strategicCloudsDist(currentOreGen,level):
     distText += indentText(indentLine)+"</Description>\n"
     distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
     distText += indentText(indentLine)+"<WireframeColor>"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
+    distText += indentText(indentLine)+"<Replaces block='minecraft:dirt'/>\n"
+    distText += indentText(indentLine)+"<Replaces block='minecraft:sandstone'/>\n"
     
     if level == "Prefers":
         distText += biomeList(orePreferName)
