@@ -562,7 +562,7 @@ def layeredVeinsDist(currentOreGen,level):
     indentLine -= 1
     distText += indentText(indentLine)+"</Description>\n"
     distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"<WireframeColor>\n"
+    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
     distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
     
     if level == "Base":
@@ -627,7 +627,7 @@ def verticalVeinsDist(currentOreGen,level):
     indentLine -= 1
     distText += indentText(indentLine)+"</Description>\n"
     distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"<WireframeColor>\n"
+    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
     distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * 1.3 * "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"    
 
     if level == "Base":
@@ -692,7 +692,7 @@ def smallDepositsDist(currentOreGen,level):
     indentLine -= 1
     distText += indentText(indentLine)+"</Description>\n"
     distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"<WireframeColor>\n"
+    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
     distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
     
     if level == "Base":
@@ -760,7 +760,7 @@ def geodesDist(currentOreGen,level):
     indentLine -= 1
     distText += indentText(indentLine)+"</Description>\n"
     distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"<WireframeColor>\n"
+    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
     distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
     
     if level == "Base":
@@ -802,7 +802,7 @@ def geodesDist(currentOreGen,level):
     indentLine -= 1
     distText += indentText(indentLine)+"</Description>\n"
     distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"<WireframeColor>\n"
+    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
     distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
     
     if level == "Base":
@@ -842,7 +842,7 @@ def geodesDist(currentOreGen,level):
     indentLine -= 1
     distText += indentText(indentLine)+"</Description>\n"
     distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"<WireframeColor>\n"
+    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
     distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
     
     if level == "Base":
@@ -916,7 +916,7 @@ def hugeVeinsDist(currentOreGen,level):
     indentLine -= 1
     distText += indentText(indentLine)+"</Description>\n"
     distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"<WireframeColor>\n"
+    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
     distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
     
     if level == "Base":
@@ -984,7 +984,7 @@ def sparseVeinsDist(currentOreGen,level):
     indentLine -= 1
     distText += indentText(indentLine)+"</Description>\n"
     distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"<WireframeColor>\n"
+    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
     distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"    
     
     if level == "Base":
@@ -1054,7 +1054,7 @@ def pipeVeinsDist(currentOreGen,level):
     indentLine -= 1
     distText += indentText(indentLine)+"</Description>\n"
     distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"<WireframeColor>\n"
+    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
     distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
     
     if level == "Base":
@@ -1095,7 +1095,7 @@ def pipeVeinsDist(currentOreGen,level):
     indentLine -= 1
     distText += indentText(indentLine)+"</Description>\n"
     distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"<WireframeColor>\n"
+    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
     
     if level == "Base":
         distText += indentText(indentLine)+"<Setting name='MotherlodeSize' avg=':= 0.5 * "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= 0.5 * "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
@@ -1164,7 +1164,7 @@ def pipeVeinsDist(currentOreGen,level):
 #    indentLine -= 1
 #    distText += indentText(indentLine)+"</Description>\n"
 #    distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-#    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"<WireframeColor>\n"
+#    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
 #    distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
 #    
 #    if level == "Base":
@@ -1199,7 +1199,7 @@ def pipeVeinsDist(currentOreGen,level):
 #    indentLine -= 1
 #    distText += indentText(indentLine)+"</Description>\n"
 #    distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-#    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"<WireframeColor>\n"
+#    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
 #    distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"    
 #
 #    if level == "Base":
@@ -1271,7 +1271,7 @@ def strategicCloudsDist(currentOreGen,level):
     indentLine -= 1
     distText += indentText(indentLine)+"</Description>\n"
     distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"<WireframeColor>\n"
+    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
     distText += indentText(indentLine)+"<Setting name='DistributionFrequency' avg=':= "+preferMultiplier+" * "+oreFrequency[currentOreGen]+" * "+oreCloudFrequency[currentOreGen]+" * "+oreConfigName+"Freq *_default_'/>\n"
 
     if level == "Base":
@@ -1319,7 +1319,7 @@ def strategicCloudsDist(currentOreGen,level):
     indentLine -= 1
     distText += indentText(indentLine)+"</Description>\n"
     distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"<WireframeColor>\n"
+    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
     distText += indentText(indentLine)+"<Replaces block='minecraft:dirt'/>\n"
     distText += indentText(indentLine)+"<Replaces block='minecraft:sandstone'/>\n"
     
