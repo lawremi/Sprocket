@@ -155,6 +155,16 @@ Options:
 	The default is "Vanilla".  If an invalid distribution is selected,
 	Sprocket will report it, and no configuration file will be written.
 
+    Distribution Type:
+	
+	Determines the randomness of the distribution placement.
+	* normal: prefers placing ores closer to the center of the range.
+	* uniform: prefers perfectly random placement.
+	* inverse: prefers placing ores further from the center of the range.
+	* inverseAbs: prefers placing ores in one direction from center only.
+
+	The default is 'normal'.
+
     Wireframe:
 
 	COG has a feature that will show wireframe outlines of the area
@@ -164,10 +174,12 @@ Options:
 	something's wrong.
 	
 	This option specifically is meant to select the color the wireframe
-	will be.  The code will be written as "0x60", followed by a 6-digit 
-	hexadecimal number (also known as a "hex triplet," or "web color").
+	will be.  This is simply the 6-digit hexadecimal number known as a
+	"hex triplet" (or "web color").  Do not use the hash ("#") mark,
+	however.  For example, "68fa2b" works, but "#68fa2b" doesn't.
 	
-	The default is randomly generated every time Sprocket is run.
+	The default is randomly generated every time Sprocket is run, and
+	is the same for all ores in a configuration file.
 
     Pipe:
         
@@ -186,6 +198,22 @@ Options:
 	Terrain Generation.
 	
 	The default is 64.
+
+    Min Height:
+
+	A function of height clamping; this will limit the lower end of ore
+	generation to a	minimum level.  If this is set to '0', then there is
+	no limit.
+
+	The default is 0.
+
+    Max Height:
+
+	A function of height clamping; this will limit the upper end of ore
+	generation to a maximum level.  If this is set to '0', then there is
+	no limit.
+
+	The default is 0.
 
     Range:
 
