@@ -202,7 +202,7 @@ def headerGen():
 <!-- ================================================================ \n\
 \n\
 Custom Ore Generation:   "+modName+" Module\n\n\
-Generates: "+fmtOreList+"\n\
+Generates: \n"+fmtOreList+"\n\
 \n\
 ================================================================ -->\n\n"
 
@@ -1710,7 +1710,9 @@ def overworldSetupSection():
         if oreWorld[oreSelect] == "Overworld":
             setupConfig += indentText(indentLine)+"\n"
             setupConfig += indentText(indentLine)+"<!-- Begin "+oreName[oreSelect]+" Generation --> \n"
+        
         setupConfig+=distConfigGen(oreSelect, "Overworld")
+        
         if oreWorld[oreSelect] == "Overworld":
             setupConfig += indentText(indentLine)+"<!-- End "+oreName[oreSelect]+" Generation --> \n\n"
         
@@ -1749,8 +1751,12 @@ def netherSetupSection():
     for oreSelect in range(0,len(oreName)):
         if oreWorld[oreSelect] == "Nether":
             setupConfig += indentText(indentLine)+"\n"
-            setupConfig += indentText(indentLine)+"<!-- "+oreName[oreSelect]+" Generation. --> \n"
+            setupConfig += indentText(indentLine)+"<!-- Begin "+oreName[oreSelect]+" Generation --> \n"
+            
         setupConfig+=distConfigGen(oreSelect, "Nether")
+        
+        if oreWorld[oreSelect] == "Nether":
+            setupConfig += indentText(indentLine)+"<!-- End "+oreName[oreSelect]+" Generation --> \n\n"
     
     setupConfig += indentText(indentLine)+"<!-- Done adding ores -->\n"
     indentLine -= 1
@@ -1784,8 +1790,12 @@ def endSetupSection():
     for oreSelect in range(0,len(oreName)):
         if oreWorld[oreSelect] == "End":
             setupConfig += indentText(indentLine)+"\n"
-            setupConfig += indentText(indentLine)+"<!-- "+oreName[oreSelect]+" Generation. --> \n"
+            setupConfig += indentText(indentLine)+"<!-- Begin "+oreName[oreSelect]+" Generation --> \n"
+            
         setupConfig+=distConfigGen(oreSelect, "End")
+        
+        if oreWorld[oreSelect] == "End":
+            setupConfig += indentText(indentLine)+"<!-- End "+oreName[oreSelect]+" Generation --> \n\n"
     
     setupConfig += indentText(indentLine)+"<!-- Done adding ores -->\n"
     indentLine -= 1
