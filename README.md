@@ -120,7 +120,7 @@ Options:
 	"minecraft:end_stone".  Another example would be Tinker's
 	Construct's gravel ores, which would replace 
 	"minecraft:gravel".  Multiple blocks can be selected 
-        (comma-separated list), but only the first one will count
+	(comma-separated list), but only the first one will count
 	to replace vanilla-distributed ore.
 	
 	The default is "minecraft:stone".
