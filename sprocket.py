@@ -33,6 +33,7 @@ def indentText(level):
 
 # Initialize variables
 
+errorCondition = ""
 
 try:
 	configFile = sys.argv[1]
