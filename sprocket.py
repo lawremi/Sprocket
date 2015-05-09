@@ -17,6 +17,7 @@ import random
 import ConfigParser
 import json
 import sys
+import os
 import textwrap
 import string
 
@@ -32,7 +33,19 @@ def indentText(level):
 
 # Initialize variables
 
-configFile = sys.argv[1]
+
+try:
+	configFile = sys.argv[1]
+except IndexError:
+	print "\n  Sprocket is designed to take an INI file and convert it into an"
+	print "  XML file in the current directory.\n"
+	print "USAGE:"
+	print os.path.basename(sys.argv[0])+" <oregen file>\n"
+	print "       or\n"
+	print "python "+os.path.basename(sys.argv[0])+" <oregen file> \n"
+	errorCondition=1
+	sys.exit()
+
 modName = ""        # This is the mod name component for variable names
 modPrefix = ""      # This comes before the ore name in variable names
                     #     (tic, mtlg)
@@ -126,7 +139,6 @@ oreName.pop(0) # The first section is not an ore, it's the mod's
                # settings.  It needs to go.
 
 oreCount = 0
-errorCondition = ""
 
 # Creating a set of lists for the options; memory access is always
 # faster than disk access.
