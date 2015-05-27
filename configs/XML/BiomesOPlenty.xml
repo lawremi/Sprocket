@@ -4,8 +4,7 @@
 Custom Ore Generation:   Biomes O Plenty Module
 
 Generates: 
-EnderAmathyst, Ruby, Peridot, Topaz, Tanzanite, Malachite, Sapphire,
-Amber
+EnderAmathyst, Ruby, Peridot, Topaz, Tanzanite, Apatite, Sapphire
 
 ================================================================ -->
 
@@ -199,11 +198,11 @@ Amber
                 <!-- Tanzanite Configuration UI Complete -->
                 
                 
-                <!-- Malachite Configuration UI Starting -->
+                <!-- Apatite Configuration UI Starting -->
                 <ConfigSection>
-                    <OptionChoice name='boplMalachiteDist'  displayState='shown' displayGroup='groupBiomesOPlenty'> 
-                        <Description> Controls how Malachite is generated </Description> 
-                        <DisplayName>Biomes O Plenty Malachite</DisplayName>
+                    <OptionChoice name='boplApatiteDist'  displayState='shown' displayGroup='groupBiomesOPlenty'> 
+                        <Description> Controls how Apatite is generated </Description> 
+                        <DisplayName>Biomes O Plenty Apatite</DisplayName>
                         <Choice value='sparseVeins' displayValue='Sparse Veins'>
                             <Description>
                                 Sparse Veins.
@@ -219,18 +218,18 @@ Amber
                                 Vanilla-style clusters.
                             </Description>
                         </Choice>
-                        <Choice value='none' displayValue='None' description='Malachite is not generated in the world.'/>
+                        <Choice value='none' displayValue='None' description='Apatite is not generated in the world.'/>
                     </OptionChoice>
-                    <OptionNumeric name='boplMalachiteFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupBiomesOPlenty'>
-                        <Description> Frequency multiplier for Biomes O Plenty Malachite distributions </Description>
-                        <DisplayName>Biomes O Plenty Malachite Freq.</DisplayName>
+                    <OptionNumeric name='boplApatiteFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupBiomesOPlenty'>
+                        <Description> Frequency multiplier for Biomes O Plenty Apatite distributions </Description>
+                        <DisplayName>Biomes O Plenty Apatite Freq.</DisplayName>
                     </OptionNumeric>
-                    <OptionNumeric name='boplMalachiteSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupBiomesOPlenty'>
-                        <Description> Size multiplier for Biomes O Plenty Malachite distributions </Description>
-                        <DisplayName>Biomes O Plenty Malachite Size</DisplayName>
+                    <OptionNumeric name='boplApatiteSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupBiomesOPlenty'>
+                        <Description> Size multiplier for Biomes O Plenty Apatite distributions </Description>
+                        <DisplayName>Biomes O Plenty Apatite Size</DisplayName>
                     </OptionNumeric>
                 </ConfigSection> 
-                <!-- Malachite Configuration UI Complete -->
+                <!-- Apatite Configuration UI Complete -->
                 
                 
                 <!-- Sapphire Configuration UI Starting -->
@@ -266,40 +265,6 @@ Amber
                 </ConfigSection> 
                 <!-- Sapphire Configuration UI Complete -->
                 
-                
-                <!-- Amber Configuration UI Starting -->
-                <ConfigSection>
-                    <OptionChoice name='boplAmberDist'  displayState='shown' displayGroup='groupBiomesOPlenty'> 
-                        <Description> Controls how Amber is generated </Description> 
-                        <DisplayName>Biomes O Plenty Amber</DisplayName>
-                        <Choice value='sparseVeins' displayValue='Sparse Veins'>
-                            <Description>
-                                Sparse Veins.
-                            </Description>
-                        </Choice>
-                        <Choice value='strategicCloud' displayValue='Clouds'>
-                            <Description>
-                                Strategic Clouds.
-                            </Description>
-                        </Choice>
-                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                            <Description>
-                                Vanilla-style clusters.
-                            </Description>
-                        </Choice>
-                        <Choice value='none' displayValue='None' description='Amber is not generated in the world.'/>
-                    </OptionChoice>
-                    <OptionNumeric name='boplAmberFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupBiomesOPlenty'>
-                        <Description> Frequency multiplier for Biomes O Plenty Amber distributions </Description>
-                        <DisplayName>Biomes O Plenty Amber Freq.</DisplayName>
-                    </OptionNumeric>
-                    <OptionNumeric name='boplAmberSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupBiomesOPlenty'>
-                        <Description> Size multiplier for Biomes O Plenty Amber distributions </Description>
-                        <DisplayName>Biomes O Plenty Amber Size</DisplayName>
-                    </OptionNumeric>
-                </ConfigSection> 
-                <!-- Amber Configuration UI Complete -->
-                
             </ConfigSection>
             <!-- Setup Screen Complete -->
 
@@ -321,7 +286,6 @@ Amber
                     <Replaces block='BiomesOPlenty:gemOre:8' />
                     <Replaces block='BiomesOPlenty:gemOre:10' />
                     <Replaces block='BiomesOPlenty:gemOre:12' />
-                    <Replaces block='BiomesOPlenty:gemOre:14' />
                 </Substitute>
                 <!-- Original Overworld Ore Removal Complete -->
                 
@@ -340,26 +304,20 @@ Amber
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplRubySize * _default_' range=':= 1 * 0.8 * boplRubySize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * boplRubySize * _default_' range=':= 1 * 0.8 * boplRubySize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * boplRubyFreq * _default_'/>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.5 * boplRubySize * _default_' range=':= 1 * 0.5 * boplRubySize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 12' type='normal' scaleTo='SeaLevel' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.5 * boplRubySize * _default_' range=':= 1 * 0.5 * boplRubySize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1.5 * boplRubyFreq * _default_'/>
+                        <Setting name='BranchFrequency' avg=':= 0.85 * _default_'/>
+                        <Setting name='BranchLength' avg=':= 0.25 * _default_' range=':= 0.25 * _default_'/>
+                        <Setting name='BranchHeightLimit' avg=':= 10'/>
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.5 * boplRubySize * 0.7 * _default_' range=':= 1 * 0.5 * boplRubySize * 0.5 * _default_'/>
+                        <Setting name='SegmentAngle' avg=':= 0.6' range=':= 0.40'/>
                         <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Sandy'/>
                     </Veins>
-                    
-                    <!-- Begin Preferred Biome Distribution (Ruby Sparse Veins) Settings -->
-                    <Veins name='boplRubyPrefersVeins' block='BiomesOPlenty:gemOre:2' inherits='boplRubyBaseVeins'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Forest'/>
-                    </Veins>
-                    <!-- End Preferred Biome Distribution (Ruby Sparse Veins) Settings -->
                 
                 </IfCondition>
                 <!-- End Sparse Veins distribution of Ruby -->
@@ -378,14 +336,15 @@ Amber
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * boplRubySize * _default_' range=':= 1 * 0.8 * boplRubySize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * boplRubySize * _default_' range=':= 1 * 0.8 * boplRubySize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.5 * boplRubySize * _default_' range=':= 1 * 0.5 * boplRubySize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.5 * boplRubySize * _default_' range=':= 1 * 0.5 * boplRubySize * _default_'/>
+                        <Setting name='CloudHeight' avg=':= 32' range=':= 12' type='normal' scaleTo='SeaLevel'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplRubySize * _default_' range=':= 1 * 1 * 0.8 * boplRubySize  * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.5 * 0.5 * boplRubySize * _default_' range=':= 1 * 0.5 * 0.5 * boplRubySize  * _default_'/>
                         <Setting name='DistributionFrequency' avg=':= 1 * 4.5 * boplRubyFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Sandy'/>
                         
                         <!-- Begin Ruby Strategic Cloud Hint Veins -->
                         <Veins name='boplRubyBaseHintVeins' block='BiomesOPlenty:gemOre:2' inherits='PresetHintVeins'>
@@ -396,15 +355,15 @@ Amber
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60779786</WireframeColor>
+                            <WireframeColor>0x60AC3F82</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
+                            <BiomeType name='Sandy'/>
                         </Veins>
                         <!-- End Ruby Strategic Cloud Hint Veins -->
 
                     </Cloud>
-                    
                 
                 </IfCondition>
                 <!-- End  Strategic Cloud distribution of Ruby -->
@@ -418,13 +377,13 @@ Amber
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * boplRubySize * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10' type='normal'/> 
-                        <Setting name='Frequency' avg=':= 1 * 0.1 * boplRubyFreq * _default_'/>
+                        <Setting name='Height' avg=':= 16' range=':= 12' type='uniform'/> 
+                        <Setting name='Frequency' avg=':= 1 * 2 * boplRubyFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Sandy'/>
                     </StandardGen>
-                    
                 
                 </IfCondition>
                 <!-- End  Vanilla distribution of Ruby -->
@@ -445,26 +404,22 @@ Amber
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplPeridotSize * _default_' range=':= 1 * 0.8 * boplPeridotSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * boplPeridotSize * _default_' range=':= 1 * 0.8 * boplPeridotSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * boplPeridotFreq * _default_'/>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.5 * boplPeridotSize * _default_' range=':= 1 * 0.5 * boplPeridotSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 12' type='normal' scaleTo='SeaLevel' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.5 * boplPeridotSize * _default_' range=':= 1 * 0.5 * boplPeridotSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1.5 * boplPeridotFreq * _default_'/>
+                        <Setting name='BranchFrequency' avg=':= 0.85 * _default_'/>
+                        <Setting name='BranchLength' avg=':= 0.25 * _default_' range=':= 0.25 * _default_'/>
+                        <Setting name='BranchHeightLimit' avg=':= 10'/>
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.5 * boplPeridotSize * 0.7 * _default_' range=':= 1 * 0.5 * boplPeridotSize * 0.5 * _default_'/>
+                        <Setting name='SegmentAngle' avg=':= 0.6' range=':= 0.40'/>
                         <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Plains'/>
+                        <BiomeType name='Cold' weight='-1'/>
+                        <BiomeType name='Dry' weight='-1'/>
                     </Veins>
-                    
-                    <!-- Begin Preferred Biome Distribution (Peridot Sparse Veins) Settings -->
-                    <Veins name='boplPeridotPrefersVeins' block='BiomesOPlenty:gemOre:4' inherits='boplPeridotBaseVeins'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Forest'/>
-                    </Veins>
-                    <!-- End Preferred Biome Distribution (Peridot Sparse Veins) Settings -->
                 
                 </IfCondition>
                 <!-- End Sparse Veins distribution of Peridot -->
@@ -483,14 +438,17 @@ Amber
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * boplPeridotSize * _default_' range=':= 1 * 0.8 * boplPeridotSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * boplPeridotSize * _default_' range=':= 1 * 0.8 * boplPeridotSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.5 * boplPeridotSize * _default_' range=':= 1 * 0.5 * boplPeridotSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.5 * boplPeridotSize * _default_' range=':= 1 * 0.5 * boplPeridotSize * _default_'/>
+                        <Setting name='CloudHeight' avg=':= 16' range=':= 12' type='normal' scaleTo='SeaLevel'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplPeridotSize * _default_' range=':= 1 * 1 * 0.8 * boplPeridotSize  * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.5 * 0.5 * boplPeridotSize * _default_' range=':= 1 * 0.5 * 0.5 * boplPeridotSize  * _default_'/>
                         <Setting name='DistributionFrequency' avg=':= 1 * 4.5 * boplPeridotFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Plains'/>
+                        <BiomeType name='Cold' weight='-1'/>
+                        <BiomeType name='Dry' weight='-1'/>
                         
                         <!-- Begin Peridot Strategic Cloud Hint Veins -->
                         <Veins name='boplPeridotBaseHintVeins' block='BiomesOPlenty:gemOre:4' inherits='PresetHintVeins'>
@@ -501,15 +459,17 @@ Amber
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60779786</WireframeColor>
+                            <WireframeColor>0x60AC3F82</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
+                            <BiomeType name='Plains'/>
+                            <BiomeType name='Cold' weight='-1'/>
+                            <BiomeType name='Dry' weight='-1'/>
                         </Veins>
                         <!-- End Peridot Strategic Cloud Hint Veins -->
 
                     </Cloud>
-                    
                 
                 </IfCondition>
                 <!-- End  Strategic Cloud distribution of Peridot -->
@@ -523,13 +483,15 @@ Amber
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * boplPeridotSize * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10' type='normal'/> 
-                        <Setting name='Frequency' avg=':= 1 * 0.1 * boplPeridotFreq * _default_'/>
+                        <Setting name='Height' avg=':= 16' range=':= 12' type='uniform'/> 
+                        <Setting name='Frequency' avg=':= 1 * 2 * boplPeridotFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Plains'/>
+                        <BiomeType name='Cold' weight='-1'/>
+                        <BiomeType name='Dry' weight='-1'/>
                     </StandardGen>
-                    
                 
                 </IfCondition>
                 <!-- End  Vanilla distribution of Peridot -->
@@ -550,26 +512,20 @@ Amber
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplTopazSize * _default_' range=':= 1 * 0.8 * boplTopazSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * boplTopazSize * _default_' range=':= 1 * 0.8 * boplTopazSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * boplTopazFreq * _default_'/>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.5 * boplTopazSize * _default_' range=':= 1 * 0.5 * boplTopazSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 12' type='normal' scaleTo='SeaLevel' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.5 * boplTopazSize * _default_' range=':= 1 * 0.5 * boplTopazSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1.5 * boplTopazFreq * _default_'/>
+                        <Setting name='BranchFrequency' avg=':= 0.85 * _default_'/>
+                        <Setting name='BranchLength' avg=':= 0.25 * _default_' range=':= 0.25 * _default_'/>
+                        <Setting name='BranchHeightLimit' avg=':= 10'/>
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.5 * boplTopazSize * 0.7 * _default_' range=':= 1 * 0.5 * boplTopazSize * 0.5 * _default_'/>
+                        <Setting name='SegmentAngle' avg=':= 0.6' range=':= 0.40'/>
                         <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Jungle'/>
                     </Veins>
-                    
-                    <!-- Begin Preferred Biome Distribution (Topaz Sparse Veins) Settings -->
-                    <Veins name='boplTopazPrefersVeins' block='BiomesOPlenty:gemOre:6' inherits='boplTopazBaseVeins'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Forest'/>
-                    </Veins>
-                    <!-- End Preferred Biome Distribution (Topaz Sparse Veins) Settings -->
                 
                 </IfCondition>
                 <!-- End Sparse Veins distribution of Topaz -->
@@ -588,14 +544,15 @@ Amber
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * boplTopazSize * _default_' range=':= 1 * 0.8 * boplTopazSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * boplTopazSize * _default_' range=':= 1 * 0.8 * boplTopazSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.5 * boplTopazSize * _default_' range=':= 1 * 0.5 * boplTopazSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.5 * boplTopazSize * _default_' range=':= 1 * 0.5 * boplTopazSize * _default_'/>
+                        <Setting name='CloudHeight' avg=':= 32' range=':= 12' type='normal' scaleTo='SeaLevel'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplTopazSize * _default_' range=':= 1 * 1 * 0.8 * boplTopazSize  * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.4 * 0.5 * boplTopazSize * _default_' range=':= 1 * 0.4 * 0.5 * boplTopazSize  * _default_'/>
                         <Setting name='DistributionFrequency' avg=':= 1 * 4.5 * boplTopazFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Jungle'/>
                         
                         <!-- Begin Topaz Strategic Cloud Hint Veins -->
                         <Veins name='boplTopazBaseHintVeins' block='BiomesOPlenty:gemOre:6' inherits='PresetHintVeins'>
@@ -606,15 +563,15 @@ Amber
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60779786</WireframeColor>
+                            <WireframeColor>0x60AC3F82</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
+                            <BiomeType name='Jungle'/>
                         </Veins>
                         <!-- End Topaz Strategic Cloud Hint Veins -->
 
                     </Cloud>
-                    
                 
                 </IfCondition>
                 <!-- End  Strategic Cloud distribution of Topaz -->
@@ -628,13 +585,13 @@ Amber
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * boplTopazSize * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10' type='normal'/> 
-                        <Setting name='Frequency' avg=':= 1 * 0.1 * boplTopazFreq * _default_'/>
+                        <Setting name='Height' avg=':= 16' range=':= 12' type='uniform'/> 
+                        <Setting name='Frequency' avg=':= 1 * 2 * boplTopazFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Jungle'/>
                     </StandardGen>
-                    
                 
                 </IfCondition>
                 <!-- End  Vanilla distribution of Topaz -->
@@ -655,26 +612,20 @@ Amber
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplTanzaniteSize * _default_' range=':= 1 * 0.8 * boplTanzaniteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * boplTanzaniteSize * _default_' range=':= 1 * 0.8 * boplTanzaniteSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * boplTanzaniteFreq * _default_'/>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.5 * boplTanzaniteSize * _default_' range=':= 1 * 0.5 * boplTanzaniteSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 12' type='normal' scaleTo='SeaLevel' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.5 * boplTanzaniteSize * _default_' range=':= 1 * 0.5 * boplTanzaniteSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1.5 * boplTanzaniteFreq * _default_'/>
+                        <Setting name='BranchFrequency' avg=':= 0.85 * _default_'/>
+                        <Setting name='BranchLength' avg=':= 0.25 * _default_' range=':= 0.25 * _default_'/>
+                        <Setting name='BranchHeightLimit' avg=':= 10'/>
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.5 * boplTanzaniteSize * 0.7 * _default_' range=':= 1 * 0.5 * boplTanzaniteSize * 0.5 * _default_'/>
+                        <Setting name='SegmentAngle' avg=':= 0.6' range=':= 0.40'/>
                         <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Cold'/>
                     </Veins>
-                    
-                    <!-- Begin Preferred Biome Distribution (Tanzanite Sparse Veins) Settings -->
-                    <Veins name='boplTanzanitePrefersVeins' block='BiomesOPlenty:gemOre:8' inherits='boplTanzaniteBaseVeins'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Forest'/>
-                    </Veins>
-                    <!-- End Preferred Biome Distribution (Tanzanite Sparse Veins) Settings -->
                 
                 </IfCondition>
                 <!-- End Sparse Veins distribution of Tanzanite -->
@@ -693,14 +644,15 @@ Amber
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * boplTanzaniteSize * _default_' range=':= 1 * 0.8 * boplTanzaniteSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * boplTanzaniteSize * _default_' range=':= 1 * 0.8 * boplTanzaniteSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.5 * boplTanzaniteSize * _default_' range=':= 1 * 0.5 * boplTanzaniteSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.5 * boplTanzaniteSize * _default_' range=':= 1 * 0.5 * boplTanzaniteSize * _default_'/>
+                        <Setting name='CloudHeight' avg=':= 32' range=':= 12' type='normal' scaleTo='SeaLevel'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplTanzaniteSize * _default_' range=':= 1 * 1 * 0.8 * boplTanzaniteSize  * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.5 * 0.5 * boplTanzaniteSize * _default_' range=':= 1 * 0.5 * 0.5 * boplTanzaniteSize  * _default_'/>
                         <Setting name='DistributionFrequency' avg=':= 1 * 4.5 * boplTanzaniteFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Cold'/>
                         
                         <!-- Begin Tanzanite Strategic Cloud Hint Veins -->
                         <Veins name='boplTanzaniteBaseHintVeins' block='BiomesOPlenty:gemOre:8' inherits='PresetHintVeins'>
@@ -711,15 +663,15 @@ Amber
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60779786</WireframeColor>
+                            <WireframeColor>0x60AC3F82</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
+                            <BiomeType name='Cold'/>
                         </Veins>
                         <!-- End Tanzanite Strategic Cloud Hint Veins -->
 
                     </Cloud>
-                    
                 
                 </IfCondition>
                 <!-- End  Strategic Cloud distribution of Tanzanite -->
@@ -733,13 +685,13 @@ Amber
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * boplTanzaniteSize * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10' type='normal'/> 
-                        <Setting name='Frequency' avg=':= 1 * 0.1 * boplTanzaniteFreq * _default_'/>
+                        <Setting name='Height' avg=':= 16' range=':= 12' type='uniform'/> 
+                        <Setting name='Frequency' avg=':= 1 * 2 * boplTanzaniteFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Cold'/>
                     </StandardGen>
-                    
                 
                 </IfCondition>
                 <!-- End  Vanilla distribution of Tanzanite -->
@@ -747,12 +699,12 @@ Amber
                 <!-- End Tanzanite Generation --> 
 
                 
-                <!-- Begin Malachite Generation --> 
+                <!-- Begin Apatite Generation --> 
                 
-                <!-- Begin Sparse Veins distribution of Malachite -->
-                <IfCondition condition=':= boplMalachiteDist = "sparseVeins"'>
+                <!-- Begin Sparse Veins distribution of Apatite -->
+                <IfCondition condition=':= boplApatiteDist = "sparseVeins"'>
                 
-                    <Veins name='boplMalachiteBaseVeins' block='BiomesOPlenty:gemOre:10' inherits='PresetSparseVeins'>
+                    <Veins name='boplApatiteBaseVeins' block='BiomesOPlenty:gemOre:10' inherits='PresetSparseVeins'>
                         <Description>
                             Large veins filled very lightly with ore.  Because they contain less ore per volume, 
                             these veins are relatively wide and long.  Mining the ore from them is time consuming 
@@ -760,35 +712,26 @@ Amber
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplMalachiteSize * _default_' range=':= 1 * 0.8 * boplMalachiteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * boplMalachiteSize * _default_' range=':= 1 * 0.8 * boplMalachiteSize * _default_'/>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * boplApatiteSize * _default_' range=':= 1 * 1 * boplApatiteSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 55' range=':= 8' type='normal' scaleTo='SeaLevel' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * boplApatiteSize * _default_' range=':= 1 * 1 * boplApatiteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * boplMalachiteFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 5 * boplApatiteFreq * _default_'/>
+                        <Setting name='BranchHeightLimit' avg=':= 10'/>
+                        <Setting name='BranchInclination' avg=':= 0' range=':= 0.35'/>
                         <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Swamp'/>
                     </Veins>
-                    
-                    <!-- Begin Preferred Biome Distribution (Malachite Sparse Veins) Settings -->
-                    <Veins name='boplMalachitePrefersVeins' block='BiomesOPlenty:gemOre:10' inherits='boplMalachiteBaseVeins'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Forest'/>
-                    </Veins>
-                    <!-- End Preferred Biome Distribution (Malachite Sparse Veins) Settings -->
                 
                 </IfCondition>
-                <!-- End Sparse Veins distribution of Malachite -->
+                <!-- End Sparse Veins distribution of Apatite -->
                 
                 
-                <!-- Begin  Strategic Cloud distribution of Malachite -->
-                <IfCondition condition=':= boplMalachiteDist = "strategicCloud"'>
+                <!-- Begin  Strategic Cloud distribution of Apatite -->
+                <IfCondition condition=':= boplApatiteDist = "strategicCloud"'>
                 
-                    <Cloud name='boplMalachiteBaseCloud' block='BiomesOPlenty:gemOre:10' inherits='PresetStrategicCloud'>
+                    <Cloud name='boplApatiteBaseCloud' block='BiomesOPlenty:gemOre:10' inherits='PresetStrategicCloud'>
                         <Description>
                             Large irregular clouds filled lightly with ore.  These are huge, spanning several 
                             adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
@@ -798,17 +741,18 @@ Amber
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * boplMalachiteSize * _default_' range=':= 1 * 0.8 * boplMalachiteSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * boplMalachiteSize * _default_' range=':= 1 * 0.8 * boplMalachiteSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Biome'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplMalachiteSize * _default_' range=':= 1 * 1 * 0.8 * boplMalachiteSize  * _default_'/>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 4.5 * boplMalachiteFreq *_default_'/>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
+                        <Setting name='CloudRadius' avg=':= 1 * 1.2 * boplApatiteSize * _default_' range=':= 1 * 1.2 * boplApatiteSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1.2 * boplApatiteSize * _default_' range=':= 1 * 1.2 * boplApatiteSize * _default_'/>
+                        <Setting name='CloudHeight' avg=':= 32' range=':= 32' type='normal' scaleTo='SeaLevel'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1.2 * boplApatiteSize * _default_' range=':= 1 * 1 * 1.2 * boplApatiteSize  * _default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 5 * boplApatiteFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Swamp'/>
                         
-                        <!-- Begin Malachite Strategic Cloud Hint Veins -->
-                        <Veins name='boplMalachiteBaseHintVeins' block='BiomesOPlenty:gemOre:10' inherits='PresetHintVeins'>
+                        <!-- Begin Apatite Strategic Cloud Hint Veins -->
+                        <Veins name='boplApatiteBaseHintVeins' block='BiomesOPlenty:gemOre:10' inherits='PresetHintVeins'>
                             <Description>
                                 Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
                                 They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
@@ -816,40 +760,40 @@ Amber
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60779786</WireframeColor>
+                            <WireframeColor>0x60AC3F82</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
+                            <BiomeType name='Swamp'/>
                         </Veins>
-                        <!-- End Malachite Strategic Cloud Hint Veins -->
+                        <!-- End Apatite Strategic Cloud Hint Veins -->
 
                     </Cloud>
-                    
                 
                 </IfCondition>
-                <!-- End  Strategic Cloud distribution of Malachite -->
+                <!-- End  Strategic Cloud distribution of Apatite -->
                 
                 
-                <!-- Begin  Vanilla distribution of Malachite -->
-                <IfCondition condition=':= boplMalachiteDist = "vanillaStdGen"'>
+                <!-- Begin  Vanilla distribution of Apatite -->
+                <IfCondition condition=':= boplApatiteDist = "vanillaStdGen"'>
                 
-                    <StandardGen name='boplMalachiteBaseStandard' block='BiomesOPlenty:gemOre:10' inherits='PresetStandardGen'>
+                    <StandardGen name='boplApatiteBaseStandard' block='BiomesOPlenty:gemOre:10' inherits='PresetStandardGen'>
                         <Description>
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * boplMalachiteSize * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10' type='normal'/> 
-                        <Setting name='Frequency' avg=':= 1 * 0.1 * boplMalachiteFreq * _default_'/>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * boplApatiteSize * _default_'/>
+                        <Setting name='Height' avg=':= 16' range=':= 12' type='uniform'/> 
+                        <Setting name='Frequency' avg=':= 1 * 2 * boplApatiteFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Swamp'/>
                     </StandardGen>
-                    
                 
                 </IfCondition>
-                <!-- End  Vanilla distribution of Malachite -->
+                <!-- End  Vanilla distribution of Apatite -->
                 
-                <!-- End Malachite Generation --> 
+                <!-- End Apatite Generation --> 
 
                 
                 <!-- Begin Sapphire Generation --> 
@@ -865,26 +809,20 @@ Amber
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplSapphireSize * _default_' range=':= 1 * 0.8 * boplSapphireSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * boplSapphireSize * _default_' range=':= 1 * 0.8 * boplSapphireSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * boplSapphireFreq * _default_'/>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.5 * boplSapphireSize * _default_' range=':= 1 * 0.5 * boplSapphireSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 12' type='normal' scaleTo='SeaLevel' />
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.5 * boplSapphireSize * _default_' range=':= 1 * 0.5 * boplSapphireSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1.5 * boplSapphireFreq * _default_'/>
+                        <Setting name='BranchFrequency' avg=':= 0.85 * _default_'/>
+                        <Setting name='BranchLength' avg=':= 0.25 * _default_' range=':= 0.25 * _default_'/>
+                        <Setting name='BranchHeightLimit' avg=':= 10'/>
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.5 * boplSapphireSize * 0.7 * _default_' range=':= 1 * 0.5 * boplSapphireSize * 0.5 * _default_'/>
+                        <Setting name='SegmentAngle' avg=':= 0.6' range=':= 0.40'/>
                         <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Ocean'/>
                     </Veins>
-                    
-                    <!-- Begin Preferred Biome Distribution (Sapphire Sparse Veins) Settings -->
-                    <Veins name='boplSapphirePrefersVeins' block='BiomesOPlenty:gemOre:12' inherits='boplSapphireBaseVeins'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Forest'/>
-                    </Veins>
-                    <!-- End Preferred Biome Distribution (Sapphire Sparse Veins) Settings -->
                 
                 </IfCondition>
                 <!-- End Sparse Veins distribution of Sapphire -->
@@ -903,14 +841,15 @@ Amber
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * boplSapphireSize * _default_' range=':= 1 * 0.8 * boplSapphireSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * boplSapphireSize * _default_' range=':= 1 * 0.8 * boplSapphireSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.5 * boplSapphireSize * _default_' range=':= 1 * 0.5 * boplSapphireSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.5 * boplSapphireSize * _default_' range=':= 1 * 0.5 * boplSapphireSize * _default_'/>
+                        <Setting name='CloudHeight' avg=':= 32' range=':= 12' type='normal' scaleTo='SeaLevel'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplSapphireSize * _default_' range=':= 1 * 1 * 0.8 * boplSapphireSize  * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.5 * 0.5 * boplSapphireSize * _default_' range=':= 1 * 0.5 * 0.5 * boplSapphireSize  * _default_'/>
                         <Setting name='DistributionFrequency' avg=':= 1 * 4.5 * boplSapphireFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Ocean'/>
                         
                         <!-- Begin Sapphire Strategic Cloud Hint Veins -->
                         <Veins name='boplSapphireBaseHintVeins' block='BiomesOPlenty:gemOre:12' inherits='PresetHintVeins'>
@@ -921,15 +860,15 @@ Amber
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60779786</WireframeColor>
+                            <WireframeColor>0x60AC3F82</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
+                            <BiomeType name='Ocean'/>
                         </Veins>
                         <!-- End Sapphire Strategic Cloud Hint Veins -->
 
                     </Cloud>
-                    
                 
                 </IfCondition>
                 <!-- End  Strategic Cloud distribution of Sapphire -->
@@ -943,123 +882,18 @@ Amber
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * boplSapphireSize * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10' type='normal'/> 
-                        <Setting name='Frequency' avg=':= 1 * 0.1 * boplSapphireFreq * _default_'/>
+                        <Setting name='Height' avg=':= 16' range=':= 12' type='uniform'/> 
+                        <Setting name='Frequency' avg=':= 1 * 2 * boplSapphireFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        <BiomeType name='Ocean'/>
                     </StandardGen>
-                    
                 
                 </IfCondition>
                 <!-- End  Vanilla distribution of Sapphire -->
                 
                 <!-- End Sapphire Generation --> 
-
-                
-                <!-- Begin Amber Generation --> 
-                
-                <!-- Begin Sparse Veins distribution of Amber -->
-                <IfCondition condition=':= boplAmberDist = "sparseVeins"'>
-                
-                    <Veins name='boplAmberBaseVeins' block='BiomesOPlenty:gemOre:14' inherits='PresetSparseVeins'>
-                        <Description>
-                            Large veins filled very lightly with ore.  Because they contain less ore per volume, 
-                            these veins are relatively wide and long.  Mining the ore from them is time consuming 
-                            compared to solid ore veins.  They are also more difficult to follow, since it is 
-                            harder to get an idea of their direction while mining.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplAmberSize * _default_' range=':= 1 * 0.8 * boplAmberSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Biome' />
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * boplAmberSize * _default_' range=':= 1 * 0.8 * boplAmberSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * boplAmberFreq * _default_'/>
-                        <Replaces block='minecraft:stone'/>
-                    </Veins>
-                    
-                    <!-- Begin Preferred Biome Distribution (Amber Sparse Veins) Settings -->
-                    <Veins name='boplAmberPrefersVeins' block='BiomesOPlenty:gemOre:14' inherits='boplAmberBaseVeins'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Forest'/>
-                    </Veins>
-                    <!-- End Preferred Biome Distribution (Amber Sparse Veins) Settings -->
-                
-                </IfCondition>
-                <!-- End Sparse Veins distribution of Amber -->
-                
-                
-                <!-- Begin  Strategic Cloud distribution of Amber -->
-                <IfCondition condition=':= boplAmberDist = "strategicCloud"'>
-                
-                    <Cloud name='boplAmberBaseCloud' block='BiomesOPlenty:gemOre:14' inherits='PresetStrategicCloud'>
-                        <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * boplAmberSize * _default_' range=':= 1 * 0.8 * boplAmberSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * boplAmberSize * _default_' range=':= 1 * 0.8 * boplAmberSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Biome'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplAmberSize * _default_' range=':= 1 * 1 * 0.8 * boplAmberSize  * _default_'/>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 4.5 * boplAmberFreq *_default_'/>
-                        <Replaces block='minecraft:stone'/>
-                        
-                        <!-- Begin Amber Strategic Cloud Hint Veins -->
-                        <Veins name='boplAmberBaseHintVeins' block='BiomesOPlenty:gemOre:14' inherits='PresetHintVeins'>
-                            <Description>
-                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
-                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
-                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
-                                deposits that would otherwise be very difficult to find. 
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60779786</WireframeColor>
-                            <Replaces block='minecraft:dirt'/>
-                            <Replaces block='minecraft:sandstone'/>
-                            <Replaces block='minecraft:stone'/>
-                        </Veins>
-                        <!-- End Amber Strategic Cloud Hint Veins -->
-
-                    </Cloud>
-                    
-                
-                </IfCondition>
-                <!-- End  Strategic Cloud distribution of Amber -->
-                
-                
-                <!-- Begin  Vanilla distribution of Amber -->
-                <IfCondition condition=':= boplAmberDist = "vanillaStdGen"'>
-                
-                    <StandardGen name='boplAmberBaseStandard' block='BiomesOPlenty:gemOre:14' inherits='PresetStandardGen'>
-                        <Description>
-                            This mimics vanilla ore generation.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * boplAmberSize * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10' type='normal'/> 
-                        <Setting name='Frequency' avg=':= 1 * 0.1 * boplAmberFreq * _default_'/>
-                        <Replaces block='minecraft:stone'/>
-                    </StandardGen>
-                    
-                
-                </IfCondition>
-                <!-- End  Vanilla distribution of Amber -->
-                
-                <!-- End Amber Generation --> 
 
                 <!-- Done adding ores -->
             
@@ -1095,26 +929,14 @@ Amber
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 0.8 * boplEnderAmathystSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 0.8 * boplEnderAmathystSize * _default_'/>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * boplEnderAmathystSize * _default_' range=':= 1 * 1 * boplEnderAmathystSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='SeaLevel'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * boplEnderAmathystSize * _default_' range=':= 1 * 1 * boplEnderAmathystSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 3 * 0.85 * boplEnderAmathystFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 3 * 1 * boplEnderAmathystFreq * _default_'/>
                         <Replaces block='minecraft:end_stone'/>
                     </Veins>
-                    
-                    <!-- Begin Preferred Biome Distribution (EnderAmathyst Layered Veins) Settings -->
-                    <Veins name='boplEnderAmathystPrefersVeins' block='BiomesOPlenty:gemOre' inherits='boplEnderAmathystBaseVeins'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Forest'/>
-                    </Veins>
-                    <!-- End Preferred Biome Distribution (EnderAmathyst Layered Veins) Settings -->
                 
                 </IfCondition>
                 <!-- End Layered Veins distribution of EnderAmathyst -->
@@ -1135,12 +957,12 @@ Amber
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 0.8 * boplEnderAmathystSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Biome' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 0.8 * boplEnderAmathystSize * _default_'/>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * boplEnderAmathystSize * _default_' range=':= 1 * 1 * boplEnderAmathystSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='SeaLevel' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * boplEnderAmathystSize * _default_' range=':= 1 * 1 * boplEnderAmathystSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 3 * 0.85 * boplEnderAmathystFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 3 * 1 * boplEnderAmathystFreq * _default_'/>
                         <Replaces block='minecraft:end_stone'/>
                         
                         <!-- Begin EnderAmathyst Huge Vein Hint Veins -->
@@ -1152,7 +974,7 @@ Amber
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60779786</WireframeColor>
+                            <WireframeColor>0x60AC3F82</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:end_stone'/>
@@ -1160,33 +982,6 @@ Amber
                         <!-- End EnderAmathyst Huge Vein Hint Veins -->
 
                     </Veins>
-                    
-                    <!-- Begin Preferred Biome Distribution (EnderAmathyst Huge Veins) Settings -->
-                    <Veins name='boplEnderAmathystPrefersVeins' block='BiomesOPlenty:gemOre' inherits='boplEnderAmathystBaseVeins'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Forest'/>
-                        
-                        <!-- Begin EnderAmathyst Huge Vein Hint Veins -->
-                        <Veins name='boplEnderAmathystPrefersHintVeins' block='BiomesOPlenty:gemOre' inherits='boplEnderAmathystBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60779786</WireframeColor>
-                            <Replaces block='minecraft:dirt'/>
-                            <Replaces block='minecraft:sandstone'/>
-                            <Replaces block='minecraft:end_stone'/>
-                            <BiomeType name='Forest'/>
-                        </Veins>
-                        <!-- End EnderAmathyst Huge Vein Hint Veins -->
-
-                    </Veins>
-                    <!-- End Preferred Biome Distribution (EnderAmathyst Huge Veins) Settings -->
                 
                 </IfCondition>
                 <!-- End  Huge Veins distribution of EnderAmathyst -->
@@ -1205,13 +1000,13 @@ Amber
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 0.8 * boplEnderAmathystSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 0.8 * boplEnderAmathystSize * _default_'/>
-                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='Biome'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * boplEnderAmathystSize * _default_' range=':= 1 * 1 * 0.8 * boplEnderAmathystSize  * _default_'/>
-                        <Setting name='DistributionFrequency' avg=':= 3 * 4.5 * boplEnderAmathystFreq *_default_'/>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * boplEnderAmathystSize * _default_' range=':= 1 * 1 * boplEnderAmathystSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * boplEnderAmathystSize * _default_' range=':= 1 * 1 * boplEnderAmathystSize * _default_'/>
+                        <Setting name='CloudHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='SeaLevel'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * boplEnderAmathystSize * _default_' range=':= 1 * 1 * 1 * boplEnderAmathystSize  * _default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 3 * 1 * boplEnderAmathystFreq *_default_'/>
                         <Replaces block='minecraft:end_stone'/>
                         
                         <!-- Begin EnderAmathyst Strategic Cloud Hint Veins -->
@@ -1223,7 +1018,7 @@ Amber
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60779786</WireframeColor>
+                            <WireframeColor>0x60AC3F82</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:end_stone'/>
@@ -1231,7 +1026,6 @@ Amber
                         <!-- End EnderAmathyst Strategic Cloud Hint Veins -->
 
                     </Cloud>
-                    
                 
                 </IfCondition>
                 <!-- End  Strategic Cloud distribution of EnderAmathyst -->
@@ -1245,13 +1039,12 @@ Amber
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60779786</WireframeColor>
+                        <WireframeColor>0x60AC3F82</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * boplEnderAmathystSize * _default_'/>
-                        <Setting name='Height' avg=':= 120' range=':= 120' type='normal'/> 
-                        <Setting name='Frequency' avg=':= 3 * 0.1 * boplEnderAmathystFreq * _default_'/>
+                        <Setting name='Height' avg=':= 120' range=':= 120' type='uniform'/> 
+                        <Setting name='Frequency' avg=':= 3 * 1 * boplEnderAmathystFreq * _default_'/>
                         <Replaces block='minecraft:end_stone'/>
                     </StandardGen>
-                    
                 
                 </IfCondition>
                 <!-- End  Vanilla distribution of EnderAmathyst -->

@@ -5,8 +5,7 @@ Custom Ore Generation:   Tinkers Construct Module
 
 Generates: 
 Copper, Tin, Aluminum, Iron Gravel, Gold Gravel, Copper Gravel, Tin
-Gravel, Aluminum Gravel, Cobalt Gravel, Cobalt, Ardite, Nether Cobalt
-Gravel
+Gravel, Aluminum Gravel, Cobalt, Ardite, Nether Cobalt Gravel
 
 ================================================================ -->
 
@@ -337,45 +336,6 @@ Gravel
                 <!-- Aluminum Gravel Configuration UI Complete -->
                 
                 
-                <!-- Cobalt Gravel Configuration UI Starting -->
-                <ConfigSection>
-                    <OptionChoice name='ticoCobaltGravelDist'  displayState='shown' displayGroup='groupTinkersConstruct'> 
-                        <Description> Controls how Cobalt Gravel is generated </Description> 
-                        <DisplayName>Tinkers Construct Cobalt Gravel</DisplayName>
-                        <Choice value='layeredVeins' displayValue='Layered Veins'>
-                            <Description>
-                                Layered Veins.
-                            </Description>
-                        </Choice>
-                        <Choice value='hugeVeins' displayValue='Huge Veins'>
-                            <Description>
-                                Huge Veins.
-                            </Description>
-                        </Choice>
-                        <Choice value='strategicCloud' displayValue='Clouds'>
-                            <Description>
-                                Strategic Clouds.
-                            </Description>
-                        </Choice>
-                        <Choice value='vanillaStdGen' displayValue='Vanilla'>
-                            <Description>
-                                Vanilla-style clusters.
-                            </Description>
-                        </Choice>
-                        <Choice value='none' displayValue='None' description='Cobalt Gravel is not generated in the world.'/>
-                    </OptionChoice>
-                    <OptionNumeric name='ticoCobaltGravelFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupTinkersConstruct'>
-                        <Description> Frequency multiplier for Tinkers Construct Cobalt Gravel distributions </Description>
-                        <DisplayName>Tinkers Construct Cobalt Gravel Freq.</DisplayName>
-                    </OptionNumeric>
-                    <OptionNumeric name='ticoCobaltGravelSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupTinkersConstruct'>
-                        <Description> Size multiplier for Tinkers Construct Cobalt Gravel distributions </Description>
-                        <DisplayName>Tinkers Construct Cobalt Gravel Size</DisplayName>
-                    </OptionNumeric>
-                </ConfigSection> 
-                <!-- Cobalt Gravel Configuration UI Complete -->
-                
-                
                 <!-- Cobalt Configuration UI Starting -->
                 <ConfigSection>
                     <OptionChoice name='ticoCobaltDist'  displayState='shown' displayGroup='groupTinkersConstruct'> 
@@ -513,7 +473,6 @@ Gravel
                     <Replaces block='TConstruct:GravelOre:3' />
                     <Replaces block='TConstruct:GravelOre:4' />
                     <Replaces block='TConstruct:GravelOre:5' />
-                    <Replaces block='TConstruct:GravelOre:5' />
                 </Substitute>
                 <Substitute name='ticoOverworldOreSubstitute1' block='minecraft:stone'>
                     <Description>
@@ -540,12 +499,15 @@ Gravel
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoCopperSize * _default_' range=':= 1 * 1 * ticoCopperSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoCopperSize * _default_' range=':= 1 * 1 * ticoCopperSize * _default_'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * ticoCopperSize * _default_' range=':= 1 * 0.8 * ticoCopperSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 40' range=':= 20' type='uniform' scaleTo='SeaLevel'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * ticoCopperSize * _default_' range=':= 1 * 0.8 * ticoCopperSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * ticoCopperFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * ticoCopperFreq * _default_'/>
+                        <Setting name='BranchFrequency' avg=':= 0.85 * _default_'/>
+                        <Setting name='BranchLength' avg=':= 0.75 * _default_' range=':= 0.66 * _default_'/>
+                        <Setting name='BranchHeightLimit' avg=':= 10.5'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
@@ -555,9 +517,9 @@ Gravel
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Cold'/>
+                        <BiomeType name='Jungle'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Copper Layered Veins) Settings -->
                 
@@ -580,12 +542,15 @@ Gravel
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoCopperSize * _default_' range=':= 1 * 1 * ticoCopperSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoCopperSize * _default_' range=':= 1 * 1 * ticoCopperSize * _default_'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * ticoCopperSize * _default_' range=':= 1 * 0.8 * ticoCopperSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 40' range=':= 20' type='uniform' scaleTo='SeaLevel' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * ticoCopperSize * _default_' range=':= 1 * 0.8 * ticoCopperSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * ticoCopperFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * ticoCopperFreq * _default_'/>
+                        <Setting name='BranchFrequency' avg=':= 0.85 * _default_'/>
+                        <Setting name='BranchLength' avg=':= 0.75 * _default_' range=':= 0.66 * _default_'/>
+                        <Setting name='BranchHeightLimit' avg=':= 10.5'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Copper Huge Vein Hint Veins -->
@@ -597,7 +562,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -612,9 +577,9 @@ Gravel
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Cold'/>
+                        <BiomeType name='Jungle'/>
                         
                         <!-- Begin Copper Huge Vein Hint Veins -->
                         <Veins name='ticoCopperPrefersHintVeins' block='TConstruct:SearedBrick:3' inherits='ticoCopperBaseHintVeins'>
@@ -622,11 +587,11 @@ Gravel
                                 Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
-                            <BiomeType name='Cold'/>
+                            <BiomeType name='Jungle'/>
                         </Veins>
                         <!-- End Copper Huge Vein Hint Veins -->
 
@@ -650,13 +615,13 @@ Gravel
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * ticoCopperSize * _default_' range=':= 1 * 1 * ticoCopperSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * ticoCopperSize * _default_' range=':= 1 * 1 * ticoCopperSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoCopperSize * _default_' range=':= 1 * 1 * 1 * ticoCopperSize  * _default_'/>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 2.5 * ticoCopperFreq *_default_'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * ticoCopperSize * _default_' range=':= 1 * 0.8 * ticoCopperSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * ticoCopperSize * _default_' range=':= 1 * 0.8 * ticoCopperSize * _default_'/>
+                        <Setting name='CloudHeight' avg=':= 32' range=':= 32' type='uniform' scaleTo='SeaLevel'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * 0.8 * ticoCopperSize * _default_' range=':= 1 * 0.8 * 0.8 * ticoCopperSize  * _default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 4.5 * ticoCopperFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Copper Strategic Cloud Hint Veins -->
@@ -668,7 +633,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -690,10 +655,10 @@ Gravel
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * ticoCopperSize * _default_'/>
-                        <Setting name='Height' avg=':= 64' range=':= 64' type='normal'/> 
-                        <Setting name='Frequency' avg=':= 1 * 1 * ticoCopperFreq * _default_'/>
+                        <Setting name='Height' avg=':= 40' range=':= 20' type='uniform'/> 
+                        <Setting name='Frequency' avg=':= 1 * 1/10 * ticoCopperFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
@@ -714,12 +679,15 @@ Gravel
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoTinSize * _default_' range=':= 1 * 1 * ticoTinSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoTinSize * _default_' range=':= 1 * 1 * ticoTinSize * _default_'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * ticoTinSize * _default_' range=':= 1 * 0.8 * ticoTinSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='uniform' scaleTo='SeaLevel'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * ticoTinSize * _default_' range=':= 1 * 0.8 * ticoTinSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * ticoTinFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * ticoTinFreq * _default_'/>
+                        <Setting name='BranchFrequency' avg=':= 0.85 * _default_'/>
+                        <Setting name='BranchLength' avg=':= 0.75 * _default_' range=':= 0.66 * _default_'/>
+                        <Setting name='BranchHeightLimit' avg=':= 10.5'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
@@ -729,9 +697,9 @@ Gravel
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Cold'/>
+                        <BiomeType name='Plains'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Tin Layered Veins) Settings -->
                 
@@ -754,12 +722,15 @@ Gravel
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoTinSize * _default_' range=':= 1 * 1 * ticoTinSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoTinSize * _default_' range=':= 1 * 1 * ticoTinSize * _default_'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * ticoTinSize * _default_' range=':= 1 * 0.8 * ticoTinSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='uniform' scaleTo='SeaLevel' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * ticoTinSize * _default_' range=':= 1 * 0.8 * ticoTinSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * ticoTinFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * ticoTinFreq * _default_'/>
+                        <Setting name='BranchFrequency' avg=':= 0.85 * _default_'/>
+                        <Setting name='BranchLength' avg=':= 0.75 * _default_' range=':= 0.66 * _default_'/>
+                        <Setting name='BranchHeightLimit' avg=':= 10.5'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Tin Huge Vein Hint Veins -->
@@ -771,7 +742,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -786,9 +757,9 @@ Gravel
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Cold'/>
+                        <BiomeType name='Plains'/>
                         
                         <!-- Begin Tin Huge Vein Hint Veins -->
                         <Veins name='ticoTinPrefersHintVeins' block='TConstruct:SearedBrick:4' inherits='ticoTinBaseHintVeins'>
@@ -796,11 +767,11 @@ Gravel
                                 Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
-                            <BiomeType name='Cold'/>
+                            <BiomeType name='Plains'/>
                         </Veins>
                         <!-- End Tin Huge Vein Hint Veins -->
 
@@ -824,13 +795,13 @@ Gravel
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * ticoTinSize * _default_' range=':= 1 * 1 * ticoTinSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * ticoTinSize * _default_' range=':= 1 * 1 * ticoTinSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoTinSize * _default_' range=':= 1 * 1 * 1 * ticoTinSize  * _default_'/>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 2.5 * ticoTinFreq *_default_'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * ticoTinSize * _default_' range=':= 1 * 0.8 * ticoTinSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * ticoTinSize * _default_' range=':= 1 * 0.8 * ticoTinSize * _default_'/>
+                        <Setting name='CloudHeight' avg=':= 32' range=':= 32' type='uniform' scaleTo='SeaLevel'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * 0.8 * ticoTinSize * _default_' range=':= 1 * 0.8 * 0.8 * ticoTinSize  * _default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 4.5 * ticoTinFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Tin Strategic Cloud Hint Veins -->
@@ -842,7 +813,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -864,10 +835,10 @@ Gravel
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * ticoTinSize * _default_'/>
-                        <Setting name='Height' avg=':= 64' range=':= 64' type='normal'/> 
-                        <Setting name='Frequency' avg=':= 1 * 1 * ticoTinFreq * _default_'/>
+                        <Setting name='Height' avg=':= 20' range=':= 20' type='uniform'/> 
+                        <Setting name='Frequency' avg=':= 1 * 1/10 * ticoTinFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
@@ -888,12 +859,15 @@ Gravel
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoAluminumSize * _default_' range=':= 1 * 1 * ticoAluminumSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoAluminumSize * _default_' range=':= 1 * 1 * ticoAluminumSize * _default_'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.6 * ticoAluminumSize * _default_' range=':= 1 * 0.6 * ticoAluminumSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 35' range=':= 20' type='uniform' scaleTo='SeaLevel'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.6 * ticoAluminumSize * _default_' range=':= 1 * 0.6 * ticoAluminumSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * ticoAluminumFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * ticoAluminumFreq * _default_'/>
+                        <Setting name='BranchFrequency' avg=':= 0.9 * _default_'/>
+                        <Setting name='BranchLength' avg=':= 0.8 * _default_' range=':= 0.7 * _default_'/>
+                        <Setting name='BranchHeightLimit' avg=':= 10.5'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
@@ -903,9 +877,9 @@ Gravel
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Cold'/>
+                        <BiomeType name='Forest'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Aluminum Layered Veins) Settings -->
                 
@@ -928,12 +902,15 @@ Gravel
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoAluminumSize * _default_' range=':= 1 * 1 * ticoAluminumSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoAluminumSize * _default_' range=':= 1 * 1 * ticoAluminumSize * _default_'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.6 * ticoAluminumSize * _default_' range=':= 1 * 0.6 * ticoAluminumSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 35' range=':= 20' type='uniform' scaleTo='SeaLevel' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.6 * ticoAluminumSize * _default_' range=':= 1 * 0.6 * ticoAluminumSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * ticoAluminumFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * ticoAluminumFreq * _default_'/>
+                        <Setting name='BranchFrequency' avg=':= 0.9 * _default_'/>
+                        <Setting name='BranchLength' avg=':= 0.8 * _default_' range=':= 0.7 * _default_'/>
+                        <Setting name='BranchHeightLimit' avg=':= 10.5'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Aluminum Huge Vein Hint Veins -->
@@ -945,7 +922,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -960,9 +937,9 @@ Gravel
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Cold'/>
+                        <BiomeType name='Forest'/>
                         
                         <!-- Begin Aluminum Huge Vein Hint Veins -->
                         <Veins name='ticoAluminumPrefersHintVeins' block='TConstruct:SearedBrick:5' inherits='ticoAluminumBaseHintVeins'>
@@ -970,11 +947,11 @@ Gravel
                                 Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
-                            <BiomeType name='Cold'/>
+                            <BiomeType name='Forest'/>
                         </Veins>
                         <!-- End Aluminum Huge Vein Hint Veins -->
 
@@ -998,13 +975,13 @@ Gravel
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * ticoAluminumSize * _default_' range=':= 1 * 1 * ticoAluminumSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * ticoAluminumSize * _default_' range=':= 1 * 1 * ticoAluminumSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoAluminumSize * _default_' range=':= 1 * 1 * 1 * ticoAluminumSize  * _default_'/>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 2.5 * ticoAluminumFreq *_default_'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.7 * ticoAluminumSize * _default_' range=':= 1 * 0.7 * ticoAluminumSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.7 * ticoAluminumSize * _default_' range=':= 1 * 0.7 * ticoAluminumSize * _default_'/>
+                        <Setting name='CloudHeight' avg=':= 32' range=':= 32' type='uniform' scaleTo='SeaLevel'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * 0.7 * ticoAluminumSize * _default_' range=':= 1 * 0.8 * 0.7 * ticoAluminumSize  * _default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 7 * ticoAluminumFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Aluminum Strategic Cloud Hint Veins -->
@@ -1016,7 +993,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -1038,10 +1015,10 @@ Gravel
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 1 * ticoAluminumSize * _default_'/>
-                        <Setting name='Height' avg=':= 64' range=':= 64' type='normal'/> 
-                        <Setting name='Frequency' avg=':= 1 * 1 * ticoAluminumFreq * _default_'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 3/4 * ticoAluminumSize * _default_'/>
+                        <Setting name='Height' avg=':= 35' range=':= 30' type='uniform'/> 
+                        <Setting name='Frequency' avg=':= 1 * 3/20 * ticoAluminumFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
@@ -1062,9 +1039,9 @@ Gravel
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoIronGravelSize * _default_' range=':= 1 * 1 * ticoIronGravelSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='uniform' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoIronGravelSize * _default_' range=':= 1 * 1 * ticoIronGravelSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 3 * 2 * ticoIronGravelFreq * _default_'/>
@@ -1077,7 +1054,7 @@ Gravel
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Cold'/>
                     </Veins>
@@ -1102,9 +1079,9 @@ Gravel
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoIronGravelSize * _default_' range=':= 1 * 1 * ticoIronGravelSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='uniform' scaleTo='SeaLevel' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoIronGravelSize * _default_' range=':= 1 * 1 * ticoIronGravelSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 3 * 2 * ticoIronGravelFreq * _default_'/>
@@ -1119,7 +1096,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:gravel'/>
@@ -1134,7 +1111,7 @@ Gravel
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Cold'/>
                         
@@ -1144,7 +1121,7 @@ Gravel
                                 Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:gravel'/>
@@ -1172,10 +1149,10 @@ Gravel
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * ticoIronGravelSize * _default_' range=':= 1 * 1 * ticoIronGravelSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * ticoIronGravelSize * _default_' range=':= 1 * 1 * ticoIronGravelSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
+                        <Setting name='CloudHeight' avg=':= 64' range=':= 64' type='uniform' scaleTo='SeaLevel'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoIronGravelSize * _default_' range=':= 1 * 1 * 1 * ticoIronGravelSize  * _default_'/>
                         <Setting name='DistributionFrequency' avg=':= 3 * 2.5 * ticoIronGravelFreq *_default_'/>
@@ -1190,7 +1167,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:gravel'/>
@@ -1212,9 +1189,9 @@ Gravel
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * ticoIronGravelSize * _default_'/>
-                        <Setting name='Height' avg=':= 64' range=':= 64' type='normal'/> 
+                        <Setting name='Height' avg=':= 64' range=':= 64' type='uniform'/> 
                         <Setting name='Frequency' avg=':= 3 * 1 * ticoIronGravelFreq * _default_'/>
                         <Replaces block='minecraft:gravel'/>
                     </StandardGen>
@@ -1236,9 +1213,9 @@ Gravel
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * ticoGoldGravelSize * _default_' range=':= 1 * 0.8 * ticoGoldGravelSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Biome'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='uniform' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * ticoGoldGravelSize * _default_' range=':= 1 * 0.8 * ticoGoldGravelSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 3 * 0.85 * ticoGoldGravelFreq * _default_'/>
@@ -1251,7 +1228,7 @@ Gravel
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Forest'/>
                     </Veins>
@@ -1276,9 +1253,9 @@ Gravel
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * ticoGoldGravelSize * _default_' range=':= 1 * 0.8 * ticoGoldGravelSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Biome' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='uniform' scaleTo='SeaLevel' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * ticoGoldGravelSize * _default_' range=':= 1 * 0.8 * ticoGoldGravelSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 3 * 0.85 * ticoGoldGravelFreq * _default_'/>
@@ -1293,7 +1270,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:gravel'/>
@@ -1308,7 +1285,7 @@ Gravel
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Forest'/>
                         
@@ -1318,7 +1295,7 @@ Gravel
                                 Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:gravel'/>
@@ -1346,10 +1323,10 @@ Gravel
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * ticoGoldGravelSize * _default_' range=':= 1 * 0.8 * ticoGoldGravelSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * ticoGoldGravelSize * _default_' range=':= 1 * 0.8 * ticoGoldGravelSize * _default_'/>
-                        <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Biome'/>
+                        <Setting name='CloudHeight' avg=':= 20' range=':= 10' type='uniform' scaleTo='SeaLevel'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * ticoGoldGravelSize * _default_' range=':= 1 * 1 * 0.8 * ticoGoldGravelSize  * _default_'/>
                         <Setting name='DistributionFrequency' avg=':= 3 * 4.5 * ticoGoldGravelFreq *_default_'/>
@@ -1364,7 +1341,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:gravel'/>
@@ -1386,9 +1363,9 @@ Gravel
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * ticoGoldGravelSize * _default_'/>
-                        <Setting name='Height' avg=':= 20' range=':= 10' type='normal'/> 
+                        <Setting name='Height' avg=':= 20' range=':= 10' type='uniform'/> 
                         <Setting name='Frequency' avg=':= 3 * 0.1 * ticoGoldGravelFreq * _default_'/>
                         <Replaces block='minecraft:gravel'/>
                     </StandardGen>
@@ -1410,9 +1387,9 @@ Gravel
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoCopperGravelSize * _default_' range=':= 1 * 1 * ticoCopperGravelSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='uniform' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoCopperGravelSize * _default_' range=':= 1 * 1 * ticoCopperGravelSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 3 * 2 * ticoCopperGravelFreq * _default_'/>
@@ -1425,9 +1402,9 @@ Gravel
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Cold'/>
+                        <BiomeType name='Jungle'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Copper Gravel Layered Veins) Settings -->
                 
@@ -1450,9 +1427,9 @@ Gravel
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoCopperGravelSize * _default_' range=':= 1 * 1 * ticoCopperGravelSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='uniform' scaleTo='SeaLevel' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoCopperGravelSize * _default_' range=':= 1 * 1 * ticoCopperGravelSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 3 * 2 * ticoCopperGravelFreq * _default_'/>
@@ -1467,7 +1444,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:gravel'/>
@@ -1482,9 +1459,9 @@ Gravel
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Cold'/>
+                        <BiomeType name='Jungle'/>
                         
                         <!-- Begin Copper Gravel Huge Vein Hint Veins -->
                         <Veins name='ticoCopperGravelPrefersHintVeins' block='TConstruct:GravelOre:2' inherits='ticoCopperGravelBaseHintVeins'>
@@ -1492,11 +1469,11 @@ Gravel
                                 Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:gravel'/>
-                            <BiomeType name='Cold'/>
+                            <BiomeType name='Jungle'/>
                         </Veins>
                         <!-- End Copper Gravel Huge Vein Hint Veins -->
 
@@ -1520,10 +1497,10 @@ Gravel
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * ticoCopperGravelSize * _default_' range=':= 1 * 1 * ticoCopperGravelSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * ticoCopperGravelSize * _default_' range=':= 1 * 1 * ticoCopperGravelSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
+                        <Setting name='CloudHeight' avg=':= 64' range=':= 64' type='uniform' scaleTo='SeaLevel'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoCopperGravelSize * _default_' range=':= 1 * 1 * 1 * ticoCopperGravelSize  * _default_'/>
                         <Setting name='DistributionFrequency' avg=':= 3 * 2.5 * ticoCopperGravelFreq *_default_'/>
@@ -1538,7 +1515,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:gravel'/>
@@ -1560,9 +1537,9 @@ Gravel
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * ticoCopperGravelSize * _default_'/>
-                        <Setting name='Height' avg=':= 64' range=':= 64' type='normal'/> 
+                        <Setting name='Height' avg=':= 64' range=':= 64' type='uniform'/> 
                         <Setting name='Frequency' avg=':= 3 * 1 * ticoCopperGravelFreq * _default_'/>
                         <Replaces block='minecraft:gravel'/>
                     </StandardGen>
@@ -1584,9 +1561,9 @@ Gravel
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoTinGravelSize * _default_' range=':= 1 * 1 * ticoTinGravelSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='uniform' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoTinGravelSize * _default_' range=':= 1 * 1 * ticoTinGravelSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 3 * 2 * ticoTinGravelFreq * _default_'/>
@@ -1599,9 +1576,9 @@ Gravel
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Cold'/>
+                        <BiomeType name='Plains'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Tin Gravel Layered Veins) Settings -->
                 
@@ -1624,9 +1601,9 @@ Gravel
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoTinGravelSize * _default_' range=':= 1 * 1 * ticoTinGravelSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='uniform' scaleTo='SeaLevel' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoTinGravelSize * _default_' range=':= 1 * 1 * ticoTinGravelSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 3 * 2 * ticoTinGravelFreq * _default_'/>
@@ -1641,7 +1618,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:gravel'/>
@@ -1656,9 +1633,9 @@ Gravel
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Cold'/>
+                        <BiomeType name='Plains'/>
                         
                         <!-- Begin Tin Gravel Huge Vein Hint Veins -->
                         <Veins name='ticoTinGravelPrefersHintVeins' block='TConstruct:GravelOre:3' inherits='ticoTinGravelBaseHintVeins'>
@@ -1666,11 +1643,11 @@ Gravel
                                 Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:gravel'/>
-                            <BiomeType name='Cold'/>
+                            <BiomeType name='Plains'/>
                         </Veins>
                         <!-- End Tin Gravel Huge Vein Hint Veins -->
 
@@ -1694,10 +1671,10 @@ Gravel
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * ticoTinGravelSize * _default_' range=':= 1 * 1 * ticoTinGravelSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * ticoTinGravelSize * _default_' range=':= 1 * 1 * ticoTinGravelSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
+                        <Setting name='CloudHeight' avg=':= 64' range=':= 64' type='uniform' scaleTo='SeaLevel'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoTinGravelSize * _default_' range=':= 1 * 1 * 1 * ticoTinGravelSize  * _default_'/>
                         <Setting name='DistributionFrequency' avg=':= 3 * 2.5 * ticoTinGravelFreq *_default_'/>
@@ -1712,7 +1689,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:gravel'/>
@@ -1734,9 +1711,9 @@ Gravel
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * ticoTinGravelSize * _default_'/>
-                        <Setting name='Height' avg=':= 64' range=':= 64' type='normal'/> 
+                        <Setting name='Height' avg=':= 64' range=':= 64' type='uniform'/> 
                         <Setting name='Frequency' avg=':= 3 * 1 * ticoTinGravelFreq * _default_'/>
                         <Replaces block='minecraft:gravel'/>
                     </StandardGen>
@@ -1758,9 +1735,9 @@ Gravel
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoAluminumGravelSize * _default_' range=':= 1 * 1 * ticoAluminumGravelSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='uniform' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoAluminumGravelSize * _default_' range=':= 1 * 1 * ticoAluminumGravelSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 3 * 2 * ticoAluminumGravelFreq * _default_'/>
@@ -1773,9 +1750,9 @@ Gravel
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Cold'/>
+                        <BiomeType name='Forest'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Aluminum Gravel Layered Veins) Settings -->
                 
@@ -1798,9 +1775,9 @@ Gravel
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoAluminumGravelSize * _default_' range=':= 1 * 1 * ticoAluminumGravelSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='uniform' scaleTo='SeaLevel' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoAluminumGravelSize * _default_' range=':= 1 * 1 * ticoAluminumGravelSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 3 * 2 * ticoAluminumGravelFreq * _default_'/>
@@ -1815,7 +1792,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:gravel'/>
@@ -1830,9 +1807,9 @@ Gravel
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Cold'/>
+                        <BiomeType name='Forest'/>
                         
                         <!-- Begin Aluminum Gravel Huge Vein Hint Veins -->
                         <Veins name='ticoAluminumGravelPrefersHintVeins' block='TConstruct:GravelOre:4' inherits='ticoAluminumGravelBaseHintVeins'>
@@ -1840,11 +1817,11 @@ Gravel
                                 Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:gravel'/>
-                            <BiomeType name='Cold'/>
+                            <BiomeType name='Forest'/>
                         </Veins>
                         <!-- End Aluminum Gravel Huge Vein Hint Veins -->
 
@@ -1868,10 +1845,10 @@ Gravel
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * ticoAluminumGravelSize * _default_' range=':= 1 * 1 * ticoAluminumGravelSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * ticoAluminumGravelSize * _default_' range=':= 1 * 1 * ticoAluminumGravelSize * _default_'/>
-                        <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
+                        <Setting name='CloudHeight' avg=':= 64' range=':= 64' type='uniform' scaleTo='SeaLevel'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoAluminumGravelSize * _default_' range=':= 1 * 1 * 1 * ticoAluminumGravelSize  * _default_'/>
                         <Setting name='DistributionFrequency' avg=':= 3 * 2.5 * ticoAluminumGravelFreq *_default_'/>
@@ -1886,7 +1863,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:gravel'/>
@@ -1908,9 +1885,9 @@ Gravel
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
+                        <WireframeColor>0x606C1A43</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * ticoAluminumGravelSize * _default_'/>
-                        <Setting name='Height' avg=':= 64' range=':= 64' type='normal'/> 
+                        <Setting name='Height' avg=':= 64' range=':= 64' type='uniform'/> 
                         <Setting name='Frequency' avg=':= 3 * 1 * ticoAluminumGravelFreq * _default_'/>
                         <Replaces block='minecraft:gravel'/>
                     </StandardGen>
@@ -1920,180 +1897,6 @@ Gravel
                 <!-- End  Vanilla distribution of Aluminum Gravel -->
                 
                 <!-- End Aluminum Gravel Generation --> 
-
-                
-                <!-- Begin Cobalt Gravel Generation --> 
-                
-                <!-- Begin LayeredVeins distribution of Cobalt Gravel -->
-                <IfCondition condition=':= ticoCobaltGravelDist = "layeredVeins"'>
-                
-                    <Veins name='ticoCobaltGravelBaseVeins' block='TConstruct:GravelOre:5' inherits='PresetLayeredVeins'>
-                        <Description>
-                            Small, fairly rare motherlodes with 2-4 horizontal veins each.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.85 * ticoCobaltGravelSize * _default_' range=':= 1 * 0.85 * ticoCobaltGravelSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 18' range=':= 14' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.85 * ticoCobaltGravelSize * _default_' range=':= 1 * 0.85 * ticoCobaltGravelSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1.2 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.9 * ticoCobaltGravelFreq * _default_'/>
-                        <Replaces block='minecraft:gravel'/>
-                    </Veins>
-                    
-                    <!-- Begin Preferred Biome Distribution (Cobalt Gravel Layered Veins) Settings -->
-                    <Veins name='ticoCobaltGravelPrefersVeins' block='TConstruct:GravelOre:5' inherits='ticoCobaltGravelBaseVeins'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='mountain'/>
-                    </Veins>
-                    <!-- End Preferred Biome Distribution (Cobalt Gravel Layered Veins) Settings -->
-                
-                </IfCondition>
-                <!-- End LayeredVeins distribution of Cobalt Gravel -->
-                
-                
-                <!-- Begin  Huge Veins distribution of Cobalt Gravel -->
-                <IfCondition condition=':= ticoCobaltGravelDist = "hugeVeins"'>
-                
-                    <Veins name='ticoCobaltGravelBaseVeins' block='TConstruct:GravelOre:5' inherits='PresetLayeredVeins'>
-                        <Description>
-                            Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that
-                            parts of the branch won't contain any ore at all.  This, combined with the incredible length of the
-                            branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains
-                            enough ore to keep a player supplied for a very long time.
-                            The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork 
-                            could make finding them much easier and the motherlodes are big enough to supply several people without
-                            shortage.  This might be a good way to add challenge to multiplayer worlds.
-                            Credit: based on feedback by dyrewulf from the MC forums.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.85 * ticoCobaltGravelSize * _default_' range=':= 1 * 0.85 * ticoCobaltGravelSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 18' range=':= 14' type='normal' scaleTo='Biome' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.85 * ticoCobaltGravelSize * _default_' range=':= 1 * 0.85 * ticoCobaltGravelSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1.2 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.9 * ticoCobaltGravelFreq * _default_'/>
-                        <Replaces block='minecraft:gravel'/>
-                        
-                        <!-- Begin Cobalt Gravel Huge Vein Hint Veins -->
-                        <Veins name='ticoCobaltGravelBaseHintVeins' block='TConstruct:GravelOre:5' inherits='PresetHintVeins'>
-                            <Description>
-                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
-                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
-                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
-                                deposits that would otherwise be very difficult to find. 
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
-                            <Replaces block='minecraft:dirt'/>
-                            <Replaces block='minecraft:sandstone'/>
-                            <Replaces block='minecraft:gravel'/>
-                        </Veins>
-                        <!-- End Cobalt Gravel Huge Vein Hint Veins -->
-
-                    </Veins>
-                    
-                    <!-- Begin Preferred Biome Distribution (Cobalt Gravel Huge Veins) Settings -->
-                    <Veins name='ticoCobaltGravelPrefersVeins' block='TConstruct:GravelOre:5' inherits='ticoCobaltGravelBaseVeins'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='mountain'/>
-                        
-                        <!-- Begin Cobalt Gravel Huge Vein Hint Veins -->
-                        <Veins name='ticoCobaltGravelPrefersHintVeins' block='TConstruct:GravelOre:5' inherits='ticoCobaltGravelBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
-                            <Replaces block='minecraft:dirt'/>
-                            <Replaces block='minecraft:sandstone'/>
-                            <Replaces block='minecraft:gravel'/>
-                            <BiomeType name='mountain'/>
-                        </Veins>
-                        <!-- End Cobalt Gravel Huge Vein Hint Veins -->
-
-                    </Veins>
-                    <!-- End Preferred Biome Distribution (Cobalt Gravel Huge Veins) Settings -->
-                
-                </IfCondition>
-                <!-- End  Huge Veins distribution of Cobalt Gravel -->
-                
-                
-                <!-- Begin  StrategicCloud distribution of Cobalt Gravel -->
-                <IfCondition condition=':= ticoCobaltGravelDist = "strategicCloud"'>
-                
-                    <Cloud name='ticoCobaltGravelBaseCloud' block='TConstruct:GravelOre:5' inherits='PresetStrategicCloud'>
-                        <Description>
-                            Large irregular clouds filled lightly with ore.  These are huge, spanning several 
-                            adjacent chunks, and consequently rather rare.  They contain a sizeable amount of 
-                            ore, but it takes some time and effort to mine due to low density.
-                            The intent for strategic clouds is that the player will need to actively search for
-                            one and then set up a semi-permanent mining base and spend some time actually mining
-                            the ore.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.4 * ticoCobaltGravelSize * _default_' range=':= 1 * 0.4 * ticoCobaltGravelSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.4 * ticoCobaltGravelSize * _default_' range=':= 1 * 0.4 * ticoCobaltGravelSize * _default_'/>
-                        <Setting name='CloudHeight' avg='18' range='14' type='normal' scaleTo='Biome'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.2 * 0.4 * ticoCobaltGravelSize * _default_' range=':= 1 * 0.2 * 0.4 * ticoCobaltGravelSize  * _default_'/>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 45 * ticoCobaltGravelFreq *_default_'/>
-                        <Replaces block='minecraft:gravel'/>
-                        
-                        <!-- Begin Cobalt Gravel Strategic Cloud Hint Veins -->
-                        <Veins name='ticoCobaltGravelBaseHintVeins' block='TConstruct:GravelOre:5' inherits='PresetHintVeins'>
-                            <Description>
-                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
-                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
-                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
-                                deposits that would otherwise be very difficult to find. 
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
-                            <Replaces block='minecraft:dirt'/>
-                            <Replaces block='minecraft:sandstone'/>
-                            <Replaces block='minecraft:gravel'/>
-                        </Veins>
-                        <!-- End Cobalt Gravel Strategic Cloud Hint Veins -->
-
-                    </Cloud>
-                    
-                
-                </IfCondition>
-                <!-- End  StrategicCloud distribution of Cobalt Gravel -->
-                
-                
-                <!-- Begin  Vanilla distribution of Cobalt Gravel -->
-                <IfCondition condition=':= ticoCobaltGravelDist = "vanillaStdGen"'>
-                
-                    <StandardGen name='ticoCobaltGravelBaseStandard' block='TConstruct:GravelOre:5' inherits='PresetStandardGen'>
-                        <Description>
-                            This mimics vanilla ore generation.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2/8 * ticoCobaltGravelSize * _default_'/>
-                        <Setting name='Height' avg=':= 18' range=':= 14' type='normal'/> 
-                        <Setting name='Frequency' avg=':= 1 * 6/20 * ticoCobaltGravelFreq * _default_'/>
-                        <Replaces block='minecraft:gravel'/>
-                    </StandardGen>
-                    
-                
-                </IfCondition>
-                <!-- End  Vanilla distribution of Cobalt Gravel -->
-                
-                <!-- End Cobalt Gravel Generation --> 
 
                 <!-- Done adding ores -->
             
@@ -2117,7 +1920,6 @@ Gravel
                     <Replaces block='TConstruct:GravelOre:2' />
                     <Replaces block='TConstruct:GravelOre:3' />
                     <Replaces block='TConstruct:GravelOre:4' />
-                    <Replaces block='TConstruct:GravelOre:5' />
                     <Replaces block='TConstruct:GravelOre:5' />
                 </Substitute>
                 <Substitute name='ticoNetherOreSubstitute1' block='minecraft:netherrack'>
@@ -2144,10 +1946,10 @@ Gravel
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * ticoCobaltSize * _default_' range=':= 0.5 * 1 * ticoCobaltSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * ticoCobaltSize * _default_' range=':= 0.5 * 1 * ticoCobaltSize * _default_'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoCobaltSize * _default_' range=':= 1 * 1 * ticoCobaltSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='uniform' scaleTo='SeaLevel'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoCobaltSize * _default_' range=':= 1 * 1 * ticoCobaltSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 0.5 * 1 * ticoCobaltFreq * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
@@ -2172,10 +1974,10 @@ Gravel
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * ticoCobaltSize * _default_' range=':= 0.5 * 1 * ticoCobaltSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Biome' /> 
-                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * ticoCobaltSize * _default_' range=':= 0.5 * 1 * ticoCobaltSize * _default_'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoCobaltSize * _default_' range=':= 1 * 1 * ticoCobaltSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='uniform' scaleTo='SeaLevel' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoCobaltSize * _default_' range=':= 1 * 1 * ticoCobaltSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 0.5 * 1 * ticoCobaltFreq * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
@@ -2189,7 +1991,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:netherrack'/>
@@ -2215,12 +2017,12 @@ Gravel
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='CloudRadius' avg=':= 0.5 * 1 * ticoCobaltSize * _default_' range=':= 0.5 * 1 * ticoCobaltSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 0.5 * 1 * ticoCobaltSize * _default_' range=':= 0.5 * 1 * ticoCobaltSize * _default_'/>
-                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * ticoCobaltSize * _default_' range=':= 1 * 1 * ticoCobaltSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * ticoCobaltSize * _default_' range=':= 1 * 1 * ticoCobaltSize * _default_'/>
+                        <Setting name='CloudHeight' avg=':= 120' range=':= 120' type='uniform' scaleTo='SeaLevel'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 0.5 * 1 * 1 * ticoCobaltSize * _default_' range=':= 0.5 * 1 * 1 * ticoCobaltSize  * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoCobaltSize * _default_' range=':= 1 * 1 * 1 * ticoCobaltSize  * _default_'/>
                         <Setting name='DistributionFrequency' avg=':= 0.5 * 1 * ticoCobaltFreq *_default_'/>
                         <Replaces block='minecraft:netherrack'/>
                         
@@ -2233,7 +2035,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:netherrack'/>
@@ -2254,9 +2056,9 @@ Gravel
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='Size' avg=':= 0.5 * 1 * ticoCobaltSize * _default_'/>
-                        <Setting name='Height' avg=':= 120' range=':= 120' type='normal'/> 
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * ticoCobaltSize * _default_'/>
+                        <Setting name='Height' avg=':= 120' range=':= 120' type='uniform'/> 
                         <Setting name='Frequency' avg=':= 0.5 * 1 * ticoCobaltFreq * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
                     </StandardGen>
@@ -2277,10 +2079,10 @@ Gravel
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * ticoArditeSize * _default_' range=':= 0.5 * 1 * ticoArditeSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * ticoArditeSize * _default_' range=':= 0.5 * 1 * ticoArditeSize * _default_'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoArditeSize * _default_' range=':= 1 * 1 * ticoArditeSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='uniform' scaleTo='SeaLevel'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoArditeSize * _default_' range=':= 1 * 1 * ticoArditeSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 0.5 * 1 * ticoArditeFreq * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
@@ -2305,10 +2107,10 @@ Gravel
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 0.5 * 1 * ticoArditeSize * _default_' range=':= 0.5 * 1 * ticoArditeSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Biome' /> 
-                        <Setting name='SegmentRadius' avg=':= 0.5 * 1 * ticoArditeSize * _default_' range=':= 0.5 * 1 * ticoArditeSize * _default_'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoArditeSize * _default_' range=':= 1 * 1 * ticoArditeSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='uniform' scaleTo='SeaLevel' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoArditeSize * _default_' range=':= 1 * 1 * ticoArditeSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 0.5 * 1 * ticoArditeFreq * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
@@ -2322,7 +2124,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:netherrack'/>
@@ -2348,12 +2150,12 @@ Gravel
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='CloudRadius' avg=':= 0.5 * 1 * ticoArditeSize * _default_' range=':= 0.5 * 1 * ticoArditeSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 0.5 * 1 * ticoArditeSize * _default_' range=':= 0.5 * 1 * ticoArditeSize * _default_'/>
-                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='Biome'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * ticoArditeSize * _default_' range=':= 1 * 1 * ticoArditeSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * ticoArditeSize * _default_' range=':= 1 * 1 * ticoArditeSize * _default_'/>
+                        <Setting name='CloudHeight' avg=':= 120' range=':= 120' type='uniform' scaleTo='SeaLevel'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 0.5 * 1 * 1 * ticoArditeSize * _default_' range=':= 0.5 * 1 * 1 * ticoArditeSize  * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoArditeSize * _default_' range=':= 1 * 1 * 1 * ticoArditeSize  * _default_'/>
                         <Setting name='DistributionFrequency' avg=':= 0.5 * 1 * ticoArditeFreq *_default_'/>
                         <Replaces block='minecraft:netherrack'/>
                         
@@ -2366,7 +2168,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:netherrack'/>
@@ -2387,9 +2189,9 @@ Gravel
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='Size' avg=':= 0.5 * 1 * ticoArditeSize * _default_'/>
-                        <Setting name='Height' avg=':= 120' range=':= 120' type='normal'/> 
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * ticoArditeSize * _default_'/>
+                        <Setting name='Height' avg=':= 120' range=':= 120' type='uniform'/> 
                         <Setting name='Frequency' avg=':= 0.5 * 1 * ticoArditeFreq * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
                     </StandardGen>
@@ -2410,12 +2212,12 @@ Gravel
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.85 * ticoNetherCobaltGravelSize * _default_' range=':= 1 * 0.85 * ticoNetherCobaltGravelSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Biome'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.85 * ticoNetherCobaltGravelSize * _default_' range=':= 1 * 0.85 * ticoNetherCobaltGravelSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1.2 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 3 * 0.9 * ticoNetherCobaltGravelFreq * _default_'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoNetherCobaltGravelSize * _default_' range=':= 1 * 1 * ticoNetherCobaltGravelSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='uniform' scaleTo='SeaLevel'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoNetherCobaltGravelSize * _default_' range=':= 1 * 1 * ticoNetherCobaltGravelSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * ticoNetherCobaltGravelFreq * _default_'/>
                         <Replaces block='minecraft:gravel'/>
                     </Veins>
                 
@@ -2438,12 +2240,12 @@ Gravel
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 0.85 * ticoNetherCobaltGravelSize * _default_' range=':= 1 * 0.85 * ticoNetherCobaltGravelSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='Biome' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 0.85 * ticoNetherCobaltGravelSize * _default_' range=':= 1 * 0.85 * ticoNetherCobaltGravelSize * _default_'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1.2 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 3 * 0.9 * ticoNetherCobaltGravelFreq * _default_'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * ticoNetherCobaltGravelSize * _default_' range=':= 1 * 1 * ticoNetherCobaltGravelSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='uniform' scaleTo='SeaLevel' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 1 * ticoNetherCobaltGravelSize * _default_' range=':= 1 * 1 * ticoNetherCobaltGravelSize * _default_'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * ticoNetherCobaltGravelFreq * _default_'/>
                         <Replaces block='minecraft:gravel'/>
                         
                         <!-- Begin Nether Cobalt Gravel Huge Vein Hint Veins -->
@@ -2455,7 +2257,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:gravel'/>
@@ -2481,13 +2283,13 @@ Gravel
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='CloudRadius' avg=':= 1 * 0.4 * ticoNetherCobaltGravelSize * _default_' range=':= 1 * 0.4 * ticoNetherCobaltGravelSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.4 * ticoNetherCobaltGravelSize * _default_' range=':= 1 * 0.4 * ticoNetherCobaltGravelSize * _default_'/>
-                        <Setting name='CloudHeight' avg='120' range='120' type='normal' scaleTo='Biome'/>
-                        <Setting name='OreDensity' avg=':= 1 * 0.4 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 0.2 * 0.4 * ticoNetherCobaltGravelSize * _default_' range=':= 1 * 0.2 * 0.4 * ticoNetherCobaltGravelSize  * _default_'/>
-                        <Setting name='DistributionFrequency' avg=':= 3 * 45 * ticoNetherCobaltGravelFreq *_default_'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='CloudRadius' avg=':= 1 * 1 * ticoNetherCobaltGravelSize * _default_' range=':= 1 * 1 * ticoNetherCobaltGravelSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * ticoNetherCobaltGravelSize * _default_' range=':= 1 * 1 * ticoNetherCobaltGravelSize * _default_'/>
+                        <Setting name='CloudHeight' avg=':= 120' range=':= 120' type='uniform' scaleTo='SeaLevel'/>
+                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * ticoNetherCobaltGravelSize * _default_' range=':= 1 * 1 * 1 * ticoNetherCobaltGravelSize  * _default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * ticoNetherCobaltGravelFreq *_default_'/>
                         <Replaces block='minecraft:gravel'/>
                         
                         <!-- Begin Nether Cobalt Gravel Strategic Cloud Hint Veins -->
@@ -2499,7 +2301,7 @@ Gravel
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x608E2341</WireframeColor>
+                            <WireframeColor>0x606C1A43</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:gravel'/>
@@ -2520,10 +2322,10 @@ Gravel
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x608E2341</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2/8 * ticoNetherCobaltGravelSize * _default_'/>
-                        <Setting name='Height' avg=':= 120' range=':= 120' type='normal'/> 
-                        <Setting name='Frequency' avg=':= 3 * 6/20 * ticoNetherCobaltGravelFreq * _default_'/>
+                        <WireframeColor>0x606C1A43</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * ticoNetherCobaltGravelSize * _default_'/>
+                        <Setting name='Height' avg=':= 120' range=':= 120' type='uniform'/> 
+                        <Setting name='Frequency' avg=':= 1 * 1 * ticoNetherCobaltGravelFreq * _default_'/>
                         <Replaces block='minecraft:gravel'/>
                     </StandardGen>
                 
