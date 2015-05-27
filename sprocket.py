@@ -660,7 +660,7 @@ def vanillaDist(currentOreGen,level):
     if level == "Base":
         
         distText += indentText(indentLine)+"<Setting name='Size' avg=':= "+oreSize[currentOreGen]+" * "+oreStdSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='Height' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"'/> \n"
+        distText += indentText(indentLine)+"<Setting name='Height' avg=':= "+localHeight+"' range=':= "+localRange+"' type='uniform'/> \n"
         distText += indentText(indentLine)+"<Setting name='Frequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreStdFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
         distText += replaceList(oreReplaceName)
     
@@ -753,15 +753,15 @@ def layeredVeinsDist(currentOreGen,level):
         if oreVeinBranchLengthAvg[currentOreGen] != "1" or oreVeinBranchLengthRange[currentOreGen] != "1":
             distText += indentText(indentLine)+"<Setting name='BranchLength' avg=':= "+oreVeinBranchLengthAvg[currentOreGen]+" * _default_' range=':= "+oreVeinBranchLengthRange[currentOreGen]+" * _default_'/>\n"
         if oreVeinBranchHeight[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchHeightLimit' avg='"+oreVeinBranchHeight[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='BranchHeightLimit' avg=':= "+oreVeinBranchHeight[currentOreGen]+"'/>\n"
         if oreVeinBranchInclineAvg[currentOreGen] != "0" or oreVeinBranchInclineRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchInclination' avg='"+oreVeinBranchInclineAvg[currentOreGen]+"' range='"+oreVeinBranchInclineRange[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='BranchInclination' avg=':= "+oreVeinBranchInclineAvg[currentOreGen]+"' range=':= "+oreVeinBranchInclineRange[currentOreGen]+"'/>\n"
         if oreVeinSegmentRadiusAvg[currentOreGen] != "1" or oreVeinSegmentRadiusRange[currentOreGen] != "1":
             distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusAvg[currentOreGen]+" * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusRange[currentOreGen]+" * _default_'/>\n"
         if oreVeinSegmentAngleAvg[currentOreGen] != "0" or oreVeinSegmentAngleRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentAngle' avg='"+oreVeinSegmentAngleAvg[currentOreGen]+"' range='"+oreVeinSegmentAngleRange[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='SegmentAngle' avg=':= "+oreVeinSegmentAngleAvg[currentOreGen]+"' range=':= "+oreVeinSegmentAngleRange[currentOreGen]+"'/>\n"
         if oreVeinSegmentPitchAvg[currentOreGen] != "0" or oreVeinSegmentPitchRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg='"+oreVeinSegmentPitchAvg[currentOreGen]+"' range='"+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg=':= "+oreVeinSegmentPitchAvg[currentOreGen]+"' range=':= "+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
         
         distText += replaceList(oreReplaceName)
     
@@ -853,15 +853,15 @@ def verticalVeinsDist(currentOreGen,level):
         if oreVeinBranchLengthAvg[currentOreGen] != "1" or oreVeinBranchLengthRange[currentOreGen] != "1":
             distText += indentText(indentLine)+"<Setting name='BranchLength' avg=':= "+oreVeinBranchLengthAvg[currentOreGen]+" * _default_' range=':= "+oreVeinBranchLengthRange[currentOreGen]+" * _default_'/>\n"
         if oreVeinBranchHeight[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchHeightLimit' avg='"+oreVeinBranchHeight[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='BranchHeightLimit' avg=':= "+oreVeinBranchHeight[currentOreGen]+"'/>\n"
         if oreVeinBranchInclineAvg[currentOreGen] != "0" or oreVeinBranchInclineRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchInclination' avg='"+oreVeinBranchInclineAvg[currentOreGen]+"' range='"+oreVeinBranchInclineRange[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='BranchInclination' avg=':= "+oreVeinBranchInclineAvg[currentOreGen]+"' range=':= "+oreVeinBranchInclineRange[currentOreGen]+"'/>\n"
         if oreVeinSegmentRadiusAvg[currentOreGen] != "1" or oreVeinSegmentRadiusRange[currentOreGen] != "1":
             distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusAvg[currentOreGen]+" * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusRange[currentOreGen]+" * _default_'/>\n"
         if oreVeinSegmentAngleAvg[currentOreGen] != "0" or oreVeinSegmentAngleRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentAngle' avg='"+oreVeinSegmentAngleAvg[currentOreGen]+"' range='"+oreVeinSegmentAngleRange[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='SegmentAngle' avg=':= "+oreVeinSegmentAngleAvg[currentOreGen]+"' range=':= "+oreVeinSegmentAngleRange[currentOreGen]+"'/>\n"
         if oreVeinSegmentPitchAvg[currentOreGen] != "0" or oreVeinSegmentPitchRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg='"+oreVeinSegmentPitchAvg[currentOreGen]+"' range='"+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg=':= "+oreVeinSegmentPitchAvg[currentOreGen]+"' range=':= "+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
         
         distText += replaceList(oreReplaceName)
     
@@ -1221,15 +1221,15 @@ def hugeVeinsDist(currentOreGen,level):
         if oreVeinBranchLengthAvg[currentOreGen] != "1" or oreVeinBranchLengthRange[currentOreGen] != "1":
             distText += indentText(indentLine)+"<Setting name='BranchLength' avg=':= "+oreVeinBranchLengthAvg[currentOreGen]+" * _default_' range=':= "+oreVeinBranchLengthRange[currentOreGen]+" * _default_'/>\n"
         if oreVeinBranchHeight[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchHeightLimit' avg='"+oreVeinBranchHeight[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='BranchHeightLimit' avg=':= "+oreVeinBranchHeight[currentOreGen]+"'/>\n"
         if oreVeinBranchInclineAvg[currentOreGen] != "0" or oreVeinBranchInclineRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchInclination' avg='"+oreVeinBranchInclineAvg[currentOreGen]+"' range='"+oreVeinBranchInclineRange[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='BranchInclination' avg=':= "+oreVeinBranchInclineAvg[currentOreGen]+"' range=':= "+oreVeinBranchInclineRange[currentOreGen]+"'/>\n"
         if oreVeinSegmentRadiusAvg[currentOreGen] != "1" or oreVeinSegmentRadiusRange[currentOreGen] != "1":
             distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusAvg[currentOreGen]+" * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusRange[currentOreGen]+" * _default_'/>\n"
         if oreVeinSegmentAngleAvg[currentOreGen] != "0" or oreVeinSegmentAngleRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentAngle' avg='"+oreVeinSegmentAngleAvg[currentOreGen]+"' range='"+oreVeinSegmentAngleRange[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='SegmentAngle' avg=':= "+oreVeinSegmentAngleAvg[currentOreGen]+"' range=':= "+oreVeinSegmentAngleRange[currentOreGen]+"'/>\n"
         if oreVeinSegmentPitchAvg[currentOreGen] != "0" or oreVeinSegmentPitchRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg='"+oreVeinSegmentPitchAvg[currentOreGen]+"' range='"+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg=':= "+oreVeinSegmentPitchAvg[currentOreGen]+"' range=':= "+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
         
         distText += replaceList(oreReplaceName)
     
@@ -1370,15 +1370,15 @@ def sparseVeinsDist(currentOreGen,level):
         if oreVeinBranchLengthAvg[currentOreGen] != "1" or oreVeinBranchLengthRange[currentOreGen] != "1":
             distText += indentText(indentLine)+"<Setting name='BranchLength' avg=':= "+oreVeinBranchLengthAvg[currentOreGen]+" * _default_' range=':= "+oreVeinBranchLengthRange[currentOreGen]+" * _default_'/>\n"
         if oreVeinBranchHeight[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchHeightLimit' avg='"+oreVeinBranchHeight[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='BranchHeightLimit' avg=':= "+oreVeinBranchHeight[currentOreGen]+"'/>\n"
         if oreVeinBranchInclineAvg[currentOreGen] != "0" or oreVeinBranchInclineRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchInclination' avg='"+oreVeinBranchInclineAvg[currentOreGen]+"' range='"+oreVeinBranchInclineRange[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='BranchInclination' avg=':= "+oreVeinBranchInclineAvg[currentOreGen]+"' range=':= "+oreVeinBranchInclineRange[currentOreGen]+"'/>\n"
         if oreVeinSegmentRadiusAvg[currentOreGen] != "1" or oreVeinSegmentRadiusRange[currentOreGen] != "1":
             distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusAvg[currentOreGen]+" * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusRange[currentOreGen]+" * _default_'/>\n"
         if oreVeinSegmentAngleAvg[currentOreGen] != "0" or oreVeinSegmentAngleRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentAngle' avg='"+oreVeinSegmentAngleAvg[currentOreGen]+"' range='"+oreVeinSegmentAngleRange[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='SegmentAngle' avg=':= "+oreVeinSegmentAngleAvg[currentOreGen]+"' range=':= "+oreVeinSegmentAngleRange[currentOreGen]+"'/>\n"
         if oreVeinSegmentPitchAvg[currentOreGen] != "0" or oreVeinSegmentPitchRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg='"+oreVeinSegmentPitchAvg[currentOreGen]+"' range='"+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg=':= "+oreVeinSegmentPitchAvg[currentOreGen]+"' range=':= "+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
         
         distText += replaceList(oreReplaceName)
     
@@ -1475,15 +1475,15 @@ def pipeVeinsDist(currentOreGen,level):
         if oreVeinBranchLengthAvg[currentOreGen] != "1" or oreVeinBranchLengthRange[currentOreGen] != "1":
             distText += indentText(indentLine)+"<Setting name='BranchLength' avg=':= "+oreVeinBranchLengthAvg[currentOreGen]+" * _default_' range=':= "+oreVeinBranchLengthRange[currentOreGen]+" * _default_'/>\n"
         if oreVeinBranchHeight[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchHeightLimit' avg='"+oreVeinBranchHeight[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='BranchHeightLimit' avg=':= "+oreVeinBranchHeight[currentOreGen]+"'/>\n"
         if oreVeinBranchInclineAvg[currentOreGen] != "0" or oreVeinBranchInclineRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchInclination' avg='"+oreVeinBranchInclineAvg[currentOreGen]+"' range='"+oreVeinBranchInclineRange[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='BranchInclination' avg=':= "+oreVeinBranchInclineAvg[currentOreGen]+"' range=':= "+oreVeinBranchInclineRange[currentOreGen]+"'/>\n"
         if oreVeinSegmentRadiusAvg[currentOreGen] != "1" or oreVeinSegmentRadiusRange[currentOreGen] != "1":
             distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusAvg[currentOreGen]+" * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusRange[currentOreGen]+" * _default_'/>\n"
         if oreVeinSegmentAngleAvg[currentOreGen] != "0" or oreVeinSegmentAngleRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentAngle' avg='"+oreVeinSegmentAngleAvg[currentOreGen]+"' range='"+oreVeinSegmentAngleRange[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='SegmentAngle' avg=':= "+oreVeinSegmentAngleAvg[currentOreGen]+"' range=':= "+oreVeinSegmentAngleRange[currentOreGen]+"'/>\n"
         if oreVeinSegmentPitchAvg[currentOreGen] != "0" or oreVeinSegmentPitchRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg='"+oreVeinSegmentPitchAvg[currentOreGen]+"' range='"+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg=':= "+oreVeinSegmentPitchAvg[currentOreGen]+"' range=':= "+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
         
         distText += replaceList(oreReplaceName)
     
@@ -1620,7 +1620,7 @@ def strategicCloudsDist(currentOreGen,level):
     if level == "Base":
         distText += indentText(indentLine)+"<Setting name='CloudRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreCloudSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreCloudSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
         distText += indentText(indentLine)+"<Setting name='CloudThickness' avg=':= "+oreSize[currentOreGen]+" * "+oreCloudSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreCloudSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='CloudHeight' avg='"+localHeight+"' range='"+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"'/>\n"
+        distText += indentText(indentLine)+"<Setting name='CloudHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"'/>\n"
         distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreCloudDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
         distText += indentText(indentLine)+"<Setting name='CloudThickness' avg=':= "+oreSize[currentOreGen]+" * "+oreCloudThickness[currentOreGen]+" * "+oreCloudSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreCloudThickness[currentOreGen]+" * "+oreCloudSize[currentOreGen]+" * "+oreConfigName+"Size  * _default_'/>\n"
         distText += indentText(indentLine)+"<Setting name='DistributionFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreCloudFrequency[currentOreGen]+" * "+oreConfigName+"Freq *_default_'/>\n"
