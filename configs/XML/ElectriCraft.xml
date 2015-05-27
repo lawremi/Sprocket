@@ -292,12 +292,12 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 2 * elcrCopperFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * elcrCopperSize * _default_' range=':= 1 * 1 * elcrCopperSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * elcrCopperSize * _default_' range=':= 1 * 1 * elcrCopperSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * elcrCopperFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
@@ -305,11 +305,10 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                     <Veins name='elcrCopperPrefersVeins' block='ElectriCraft:electricraft_block_ore' inherits='elcrCopperBaseVeins'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
-                            2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 2 * elcrCopperFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Cold'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Copper Layered Veins) Settings -->
@@ -333,13 +332,30 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 2 * elcrCopperFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * elcrCopperSize * _default_' range=':= 1 * 1 * elcrCopperSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * elcrCopperSize * _default_' range=':= 1 * 1 * elcrCopperSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * elcrCopperFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Copper Huge Vein Hint Veins -->
+                        <Veins name='elcrCopperBaseHintVeins' block='ElectriCraft:electricraft_block_ore' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60D82774</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
+                        </Veins>
+                        <!-- End Copper Huge Vein Hint Veins -->
+
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Copper Huge Veins) Settings -->
@@ -348,9 +364,24 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 2 * elcrCopperFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Copper Huge Vein Hint Veins -->
+                        <Veins name='elcrCopperPrefersHintVeins' block='ElectriCraft:electricraft_block_ore' inherits='elcrCopperBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60D82774</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
+                            <BiomeType name='Cold'/>
+                        </Veins>
+                        <!-- End Copper Huge Vein Hint Veins -->
+
                     </Veins>
                     <!-- End Preferred Biome Distribution (Copper Huge Veins) Settings -->
                 
@@ -371,13 +402,13 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 2.5 * elcrCopperFreq *_default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * elcrCopperSize * _default_' range=':= 1 * 1 * elcrCopperSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * elcrCopperSize * _default_' range=':= 1 * 1 * elcrCopperSize * _default_'/>
                         <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * elcrCopperSize * _default_' range=':= 1 * 1 * 1 * elcrCopperSize  * _default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 2.5 * elcrCopperFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Copper Strategic Cloud Hint Veins -->
@@ -389,39 +420,15 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60820638</WireframeColor>
+                            <WireframeColor>0x60D82774</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
                         </Veins>
                         <!-- End Copper Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
-                    <!-- Begin Preferred Biome Distribution (Copper Strategic Cloud) Settings -->
-                    <Cloud name='elcrCopperPrefersCloud' block='ElectriCraft:electricraft_block_ore' inherits='elcrCopperBaseCloud'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * elcrCopperFreq *_default_'/>
-                        <BiomeType name='Cold'/>
-                        
-                        <!-- Begin Copper Strategic Cloud Hint Veins -->
-                        <Veins name='elcrCopperPrefersHintVeins' block='ElectriCraft:electricraft_block_ore' inherits='elcrCopperBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60820638</WireframeColor>
-                            <Replaces block='minecraft:dirt'/>
-                            <Replaces block='minecraft:sandstone'/>
-                            <BiomeType name='Cold'/>
-                        </Veins>
-                        <!-- End Copper Strategic Cloud Hint Veins -->
-
-                    </Cloud>
-                    <!-- End Preferred Biome Distribution (Copper Strategic Cloud) Settings -->
                 
                 </IfCondition>
                 <!-- End  StrategicCloud distribution of Copper -->
@@ -435,24 +442,13 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * elcrCopperFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * elcrCopperSize * _default_'/>
                         <Setting name='Height' avg=':= 64' range=':= 64' type='normal'/> 
+                        <Setting name='Frequency' avg=':= 1 * 1 * elcrCopperFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Begin Preferred Biome Distribution (Copper Vanilla) Settings -->
-                    <StandardGen name='elcrCopperPrefersStandard' block='ElectriCraft:electricraft_block_ore' inherits='elcrCopperBaseStandard'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='Frequency' avg=':= 2 * 1 * 1 * elcrCopperFreq * _default_'/>
-                        <BiomeType name='Cold'/>
-                    </StandardGen>
-                    <!-- End Preferred Biome Distribution (Copper Vanilla) Settings -->
                 
                 </IfCondition>
                 <!-- End  Vanilla distribution of Copper -->
@@ -470,12 +466,12 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 2 * elcrTinFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * elcrTinSize * _default_' range=':= 1 * 1 * elcrTinSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * elcrTinSize * _default_' range=':= 1 * 1 * elcrTinSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * elcrTinFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
@@ -483,11 +479,10 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                     <Veins name='elcrTinPrefersVeins' block='ElectriCraft:electricraft_block_ore:1' inherits='elcrTinBaseVeins'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
-                            2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 2 * elcrTinFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Cold'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Tin Layered Veins) Settings -->
@@ -511,13 +506,30 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 2 * elcrTinFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * elcrTinSize * _default_' range=':= 1 * 1 * elcrTinSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * elcrTinSize * _default_' range=':= 1 * 1 * elcrTinSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * elcrTinFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Tin Huge Vein Hint Veins -->
+                        <Veins name='elcrTinBaseHintVeins' block='ElectriCraft:electricraft_block_ore:1' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60D82774</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
+                        </Veins>
+                        <!-- End Tin Huge Vein Hint Veins -->
+
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Tin Huge Veins) Settings -->
@@ -526,9 +538,24 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 2 * elcrTinFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Tin Huge Vein Hint Veins -->
+                        <Veins name='elcrTinPrefersHintVeins' block='ElectriCraft:electricraft_block_ore:1' inherits='elcrTinBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60D82774</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
+                            <BiomeType name='Cold'/>
+                        </Veins>
+                        <!-- End Tin Huge Vein Hint Veins -->
+
                     </Veins>
                     <!-- End Preferred Biome Distribution (Tin Huge Veins) Settings -->
                 
@@ -549,13 +576,13 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 2.5 * elcrTinFreq *_default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * elcrTinSize * _default_' range=':= 1 * 1 * elcrTinSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * elcrTinSize * _default_' range=':= 1 * 1 * elcrTinSize * _default_'/>
                         <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * elcrTinSize * _default_' range=':= 1 * 1 * 1 * elcrTinSize  * _default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 2.5 * elcrTinFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Tin Strategic Cloud Hint Veins -->
@@ -567,39 +594,15 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60820638</WireframeColor>
+                            <WireframeColor>0x60D82774</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
                         </Veins>
                         <!-- End Tin Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
-                    <!-- Begin Preferred Biome Distribution (Tin Strategic Cloud) Settings -->
-                    <Cloud name='elcrTinPrefersCloud' block='ElectriCraft:electricraft_block_ore:1' inherits='elcrTinBaseCloud'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * elcrTinFreq *_default_'/>
-                        <BiomeType name='Cold'/>
-                        
-                        <!-- Begin Tin Strategic Cloud Hint Veins -->
-                        <Veins name='elcrTinPrefersHintVeins' block='ElectriCraft:electricraft_block_ore:1' inherits='elcrTinBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60820638</WireframeColor>
-                            <Replaces block='minecraft:dirt'/>
-                            <Replaces block='minecraft:sandstone'/>
-                            <BiomeType name='Cold'/>
-                        </Veins>
-                        <!-- End Tin Strategic Cloud Hint Veins -->
-
-                    </Cloud>
-                    <!-- End Preferred Biome Distribution (Tin Strategic Cloud) Settings -->
                 
                 </IfCondition>
                 <!-- End  StrategicCloud distribution of Tin -->
@@ -613,24 +616,13 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * elcrTinFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * elcrTinSize * _default_'/>
                         <Setting name='Height' avg=':= 64' range=':= 64' type='normal'/> 
+                        <Setting name='Frequency' avg=':= 1 * 1 * elcrTinFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Begin Preferred Biome Distribution (Tin Vanilla) Settings -->
-                    <StandardGen name='elcrTinPrefersStandard' block='ElectriCraft:electricraft_block_ore:1' inherits='elcrTinBaseStandard'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='Frequency' avg=':= 2 * 1 * 1 * elcrTinFreq * _default_'/>
-                        <BiomeType name='Cold'/>
-                    </StandardGen>
-                    <!-- End Preferred Biome Distribution (Tin Vanilla) Settings -->
                 
                 </IfCondition>
                 <!-- End  Vanilla distribution of Tin -->
@@ -648,12 +640,12 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * elcrSilverFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * elcrSilverSize * _default_' range=':= 1 * 0.8 * elcrSilverSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 76' range=':= 44' type='normal' scaleTo='Biome'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * elcrSilverSize * _default_' range=':= 1 * 0.8 * elcrSilverSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * elcrSilverFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
@@ -661,11 +653,10 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                     <Veins name='elcrSilverPrefersVeins' block='ElectriCraft:electricraft_block_ore:2' inherits='elcrSilverBaseVeins'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
-                            2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * elcrSilverFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Forest'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Silver Layered Veins) Settings -->
@@ -689,13 +680,30 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * elcrSilverFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * elcrSilverSize * _default_' range=':= 1 * 0.8 * elcrSilverSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 76' range=':= 44' type='normal' scaleTo='Biome' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * elcrSilverSize * _default_' range=':= 1 * 0.8 * elcrSilverSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * elcrSilverFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Silver Huge Vein Hint Veins -->
+                        <Veins name='elcrSilverBaseHintVeins' block='ElectriCraft:electricraft_block_ore:2' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60D82774</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
+                        </Veins>
+                        <!-- End Silver Huge Vein Hint Veins -->
+
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Silver Huge Veins) Settings -->
@@ -704,9 +712,24 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * elcrSilverFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Silver Huge Vein Hint Veins -->
+                        <Veins name='elcrSilverPrefersHintVeins' block='ElectriCraft:electricraft_block_ore:2' inherits='elcrSilverBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60D82774</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
+                            <BiomeType name='Forest'/>
+                        </Veins>
+                        <!-- End Silver Huge Vein Hint Veins -->
+
                     </Veins>
                     <!-- End Preferred Biome Distribution (Silver Huge Veins) Settings -->
                 
@@ -727,13 +750,13 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * elcrSilverFreq *_default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * elcrSilverSize * _default_' range=':= 1 * 0.8 * elcrSilverSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * elcrSilverSize * _default_' range=':= 1 * 0.8 * elcrSilverSize * _default_'/>
                         <Setting name='CloudHeight' avg='76' range='44' type='normal' scaleTo='Biome'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * elcrSilverSize * _default_' range=':= 1 * 1 * 0.8 * elcrSilverSize  * _default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 4.5 * elcrSilverFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Silver Strategic Cloud Hint Veins -->
@@ -745,39 +768,15 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60820638</WireframeColor>
+                            <WireframeColor>0x60D82774</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
                         </Veins>
                         <!-- End Silver Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
-                    <!-- Begin Preferred Biome Distribution (Silver Strategic Cloud) Settings -->
-                    <Cloud name='elcrSilverPrefersCloud' block='ElectriCraft:electricraft_block_ore:2' inherits='elcrSilverBaseCloud'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * elcrSilverFreq *_default_'/>
-                        <BiomeType name='Forest'/>
-                        
-                        <!-- Begin Silver Strategic Cloud Hint Veins -->
-                        <Veins name='elcrSilverPrefersHintVeins' block='ElectriCraft:electricraft_block_ore:2' inherits='elcrSilverBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60820638</WireframeColor>
-                            <Replaces block='minecraft:dirt'/>
-                            <Replaces block='minecraft:sandstone'/>
-                            <BiomeType name='Forest'/>
-                        </Veins>
-                        <!-- End Silver Strategic Cloud Hint Veins -->
-
-                    </Cloud>
-                    <!-- End Preferred Biome Distribution (Silver Strategic Cloud) Settings -->
                 
                 </IfCondition>
                 <!-- End  StrategicCloud distribution of Silver -->
@@ -791,24 +790,13 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * elcrSilverFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * elcrSilverSize * _default_'/>
                         <Setting name='Height' avg=':= 76' range=':= 44' type='normal'/> 
+                        <Setting name='Frequency' avg=':= 1 * 1 * elcrSilverFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Begin Preferred Biome Distribution (Silver Vanilla) Settings -->
-                    <StandardGen name='elcrSilverPrefersStandard' block='ElectriCraft:electricraft_block_ore:2' inherits='elcrSilverBaseStandard'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='Frequency' avg=':= 2 * 1 * 1 * elcrSilverFreq * _default_'/>
-                        <BiomeType name='Forest'/>
-                    </StandardGen>
-                    <!-- End Preferred Biome Distribution (Silver Vanilla) Settings -->
                 
                 </IfCondition>
                 <!-- End  Vanilla distribution of Silver -->
@@ -826,12 +814,12 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 2 * elcrNickelFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * elcrNickelSize * _default_' range=':= 1 * 1 * elcrNickelSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * elcrNickelSize * _default_' range=':= 1 * 1 * elcrNickelSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * elcrNickelFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
@@ -839,11 +827,10 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                     <Veins name='elcrNickelPrefersVeins' block='ElectriCraft:electricraft_block_ore:3' inherits='elcrNickelBaseVeins'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
-                            2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 2 * elcrNickelFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Cold'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Nickel Layered Veins) Settings -->
@@ -867,13 +854,30 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 2 * elcrNickelFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * elcrNickelSize * _default_' range=':= 1 * 1 * elcrNickelSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * elcrNickelSize * _default_' range=':= 1 * 1 * elcrNickelSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * elcrNickelFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Nickel Huge Vein Hint Veins -->
+                        <Veins name='elcrNickelBaseHintVeins' block='ElectriCraft:electricraft_block_ore:3' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60D82774</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
+                        </Veins>
+                        <!-- End Nickel Huge Vein Hint Veins -->
+
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Nickel Huge Veins) Settings -->
@@ -882,9 +886,24 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 2 * elcrNickelFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Nickel Huge Vein Hint Veins -->
+                        <Veins name='elcrNickelPrefersHintVeins' block='ElectriCraft:electricraft_block_ore:3' inherits='elcrNickelBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60D82774</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
+                            <BiomeType name='Cold'/>
+                        </Veins>
+                        <!-- End Nickel Huge Vein Hint Veins -->
+
                     </Veins>
                     <!-- End Preferred Biome Distribution (Nickel Huge Veins) Settings -->
                 
@@ -905,13 +924,13 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 2.5 * elcrNickelFreq *_default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * elcrNickelSize * _default_' range=':= 1 * 1 * elcrNickelSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * elcrNickelSize * _default_' range=':= 1 * 1 * elcrNickelSize * _default_'/>
                         <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * elcrNickelSize * _default_' range=':= 1 * 1 * 1 * elcrNickelSize  * _default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 2.5 * elcrNickelFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Nickel Strategic Cloud Hint Veins -->
@@ -923,39 +942,15 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60820638</WireframeColor>
+                            <WireframeColor>0x60D82774</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
                         </Veins>
                         <!-- End Nickel Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
-                    <!-- Begin Preferred Biome Distribution (Nickel Strategic Cloud) Settings -->
-                    <Cloud name='elcrNickelPrefersCloud' block='ElectriCraft:electricraft_block_ore:3' inherits='elcrNickelBaseCloud'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * elcrNickelFreq *_default_'/>
-                        <BiomeType name='Cold'/>
-                        
-                        <!-- Begin Nickel Strategic Cloud Hint Veins -->
-                        <Veins name='elcrNickelPrefersHintVeins' block='ElectriCraft:electricraft_block_ore:3' inherits='elcrNickelBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60820638</WireframeColor>
-                            <Replaces block='minecraft:dirt'/>
-                            <Replaces block='minecraft:sandstone'/>
-                            <BiomeType name='Cold'/>
-                        </Veins>
-                        <!-- End Nickel Strategic Cloud Hint Veins -->
-
-                    </Cloud>
-                    <!-- End Preferred Biome Distribution (Nickel Strategic Cloud) Settings -->
                 
                 </IfCondition>
                 <!-- End  StrategicCloud distribution of Nickel -->
@@ -969,24 +964,13 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * elcrNickelFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * elcrNickelSize * _default_'/>
                         <Setting name='Height' avg=':= 64' range=':= 64' type='normal'/> 
+                        <Setting name='Frequency' avg=':= 1 * 1 * elcrNickelFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Begin Preferred Biome Distribution (Nickel Vanilla) Settings -->
-                    <StandardGen name='elcrNickelPrefersStandard' block='ElectriCraft:electricraft_block_ore:3' inherits='elcrNickelBaseStandard'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='Frequency' avg=':= 2 * 1 * 1 * elcrNickelFreq * _default_'/>
-                        <BiomeType name='Cold'/>
-                    </StandardGen>
-                    <!-- End Preferred Biome Distribution (Nickel Vanilla) Settings -->
                 
                 </IfCondition>
                 <!-- End  Vanilla distribution of Nickel -->
@@ -1004,12 +988,12 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 2 * elcrAluminumFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * elcrAluminumSize * _default_' range=':= 1 * 1 * elcrAluminumSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * elcrAluminumSize * _default_' range=':= 1 * 1 * elcrAluminumSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * elcrAluminumFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
@@ -1017,11 +1001,10 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                     <Veins name='elcrAluminumPrefersVeins' block='ElectriCraft:electricraft_block_ore:4' inherits='elcrAluminumBaseVeins'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
-                            2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 2 * elcrAluminumFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Cold'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Aluminum Layered Veins) Settings -->
@@ -1045,13 +1028,30 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 2 * elcrAluminumFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * elcrAluminumSize * _default_' range=':= 1 * 1 * elcrAluminumSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 64' range=':= 64' type='normal' scaleTo='Biome' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * elcrAluminumSize * _default_' range=':= 1 * 1 * elcrAluminumSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * elcrAluminumFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Aluminum Huge Vein Hint Veins -->
+                        <Veins name='elcrAluminumBaseHintVeins' block='ElectriCraft:electricraft_block_ore:4' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60D82774</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
+                        </Veins>
+                        <!-- End Aluminum Huge Vein Hint Veins -->
+
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Aluminum Huge Veins) Settings -->
@@ -1060,9 +1060,24 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 2 * elcrAluminumFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Cold'/>
+                        
+                        <!-- Begin Aluminum Huge Vein Hint Veins -->
+                        <Veins name='elcrAluminumPrefersHintVeins' block='ElectriCraft:electricraft_block_ore:4' inherits='elcrAluminumBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60D82774</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
+                            <BiomeType name='Cold'/>
+                        </Veins>
+                        <!-- End Aluminum Huge Vein Hint Veins -->
+
                     </Veins>
                     <!-- End Preferred Biome Distribution (Aluminum Huge Veins) Settings -->
                 
@@ -1083,13 +1098,13 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 2.5 * elcrAluminumFreq *_default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * elcrAluminumSize * _default_' range=':= 1 * 1 * elcrAluminumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * elcrAluminumSize * _default_' range=':= 1 * 1 * elcrAluminumSize * _default_'/>
                         <Setting name='CloudHeight' avg='64' range='64' type='normal' scaleTo='Biome'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * elcrAluminumSize * _default_' range=':= 1 * 1 * 1 * elcrAluminumSize  * _default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 2.5 * elcrAluminumFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Aluminum Strategic Cloud Hint Veins -->
@@ -1101,39 +1116,15 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60820638</WireframeColor>
+                            <WireframeColor>0x60D82774</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
                         </Veins>
                         <!-- End Aluminum Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
-                    <!-- Begin Preferred Biome Distribution (Aluminum Strategic Cloud) Settings -->
-                    <Cloud name='elcrAluminumPrefersCloud' block='ElectriCraft:electricraft_block_ore:4' inherits='elcrAluminumBaseCloud'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 2.5 * elcrAluminumFreq *_default_'/>
-                        <BiomeType name='Cold'/>
-                        
-                        <!-- Begin Aluminum Strategic Cloud Hint Veins -->
-                        <Veins name='elcrAluminumPrefersHintVeins' block='ElectriCraft:electricraft_block_ore:4' inherits='elcrAluminumBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60820638</WireframeColor>
-                            <Replaces block='minecraft:dirt'/>
-                            <Replaces block='minecraft:sandstone'/>
-                            <BiomeType name='Cold'/>
-                        </Veins>
-                        <!-- End Aluminum Strategic Cloud Hint Veins -->
-
-                    </Cloud>
-                    <!-- End Preferred Biome Distribution (Aluminum Strategic Cloud) Settings -->
                 
                 </IfCondition>
                 <!-- End  StrategicCloud distribution of Aluminum -->
@@ -1147,24 +1138,13 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 1 * elcrAluminumFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * elcrAluminumSize * _default_'/>
                         <Setting name='Height' avg=':= 64' range=':= 64' type='normal'/> 
+                        <Setting name='Frequency' avg=':= 1 * 1 * elcrAluminumFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Begin Preferred Biome Distribution (Aluminum Vanilla) Settings -->
-                    <StandardGen name='elcrAluminumPrefersStandard' block='ElectriCraft:electricraft_block_ore:4' inherits='elcrAluminumBaseStandard'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='Frequency' avg=':= 2 * 1 * 1 * elcrAluminumFreq * _default_'/>
-                        <BiomeType name='Cold'/>
-                    </StandardGen>
-                    <!-- End Preferred Biome Distribution (Aluminum Vanilla) Settings -->
                 
                 </IfCondition>
                 <!-- End  Vanilla distribution of Aluminum -->
@@ -1182,12 +1162,12 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * elcrPlatinumFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * elcrPlatinumSize * _default_' range=':= 1 * 0.8 * elcrPlatinumSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Biome'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * elcrPlatinumSize * _default_' range=':= 1 * 0.8 * elcrPlatinumSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * elcrPlatinumFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
@@ -1195,11 +1175,10 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                     <Veins name='elcrPlatinumPrefersVeins' block='ElectriCraft:electricraft_block_ore:5' inherits='elcrPlatinumBaseVeins'>
                         <Description>
                             Spawns 2 more times in preferred biomes.
-                            2 times as likely in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * elcrPlatinumFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Forest'/>
                     </Veins>
                     <!-- End Preferred Biome Distribution (Platinum Layered Veins) Settings -->
@@ -1223,13 +1202,30 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * 0.85 * elcrPlatinumFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * elcrPlatinumSize * _default_' range=':= 1 * 0.8 * elcrPlatinumSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='Biome' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * elcrPlatinumSize * _default_' range=':= 1 * 0.8 * elcrPlatinumSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * elcrPlatinumFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
+                        
+                        <!-- Begin Platinum Huge Vein Hint Veins -->
+                        <Veins name='elcrPlatinumBaseHintVeins' block='ElectriCraft:electricraft_block_ore:5' inherits='PresetHintVeins'>
+                            <Description>
+                                Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). 
+                                They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  
+                                to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  
+                                deposits that would otherwise be very difficult to find. 
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60D82774</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
+                        </Veins>
+                        <!-- End Platinum Huge Vein Hint Veins -->
+
                     </Veins>
                     
                     <!-- Begin Preferred Biome Distribution (Platinum Huge Veins) Settings -->
@@ -1238,9 +1234,24 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * 1 * 0.85 * elcrPlatinumFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Forest'/>
+                        
+                        <!-- Begin Platinum Huge Vein Hint Veins -->
+                        <Veins name='elcrPlatinumPrefersHintVeins' block='ElectriCraft:electricraft_block_ore:5' inherits='elcrPlatinumBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60D82774</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
+                            <BiomeType name='Forest'/>
+                        </Veins>
+                        <!-- End Platinum Huge Vein Hint Veins -->
+
                     </Veins>
                     <!-- End Preferred Biome Distribution (Platinum Huge Veins) Settings -->
                 
@@ -1261,13 +1272,13 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 1 * 4.5 * elcrPlatinumFreq *_default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * elcrPlatinumSize * _default_' range=':= 1 * 0.8 * elcrPlatinumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * elcrPlatinumSize * _default_' range=':= 1 * 0.8 * elcrPlatinumSize * _default_'/>
                         <Setting name='CloudHeight' avg='20' range='10' type='normal' scaleTo='Biome'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 0.8 * elcrPlatinumSize * _default_' range=':= 1 * 1 * 0.8 * elcrPlatinumSize  * _default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 4.5 * elcrPlatinumFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Platinum Strategic Cloud Hint Veins -->
@@ -1279,39 +1290,15 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60820638</WireframeColor>
+                            <WireframeColor>0x60D82774</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
                         </Veins>
                         <!-- End Platinum Strategic Cloud Hint Veins -->
 
                     </Cloud>
                     
-                    <!-- Begin Preferred Biome Distribution (Platinum Strategic Cloud) Settings -->
-                    <Cloud name='elcrPlatinumPrefersCloud' block='ElectriCraft:electricraft_block_ore:5' inherits='elcrPlatinumBaseCloud'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='DistributionFrequency' avg=':= 2 * 1 * 4.5 * elcrPlatinumFreq *_default_'/>
-                        <BiomeType name='Forest'/>
-                        
-                        <!-- Begin Platinum Strategic Cloud Hint Veins -->
-                        <Veins name='elcrPlatinumPrefersHintVeins' block='ElectriCraft:electricraft_block_ore:5' inherits='elcrPlatinumBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60820638</WireframeColor>
-                            <Replaces block='minecraft:dirt'/>
-                            <Replaces block='minecraft:sandstone'/>
-                            <BiomeType name='Forest'/>
-                        </Veins>
-                        <!-- End Platinum Strategic Cloud Hint Veins -->
-
-                    </Cloud>
-                    <!-- End Preferred Biome Distribution (Platinum Strategic Cloud) Settings -->
                 
                 </IfCondition>
                 <!-- End  StrategicCloud distribution of Platinum -->
@@ -1325,24 +1312,13 @@ Copper, Tin, Silver, Nickel, Aluminum, Platinum
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='Frequency' avg=':= 1 * 1 * 0.1 * elcrPlatinumFreq * _default_'/>
+                        <WireframeColor>0x60D82774</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * elcrPlatinumSize * _default_'/>
                         <Setting name='Height' avg=':= 20' range=':= 10' type='normal'/> 
+                        <Setting name='Frequency' avg=':= 1 * 0.1 * elcrPlatinumFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
                     
-                    <!-- Begin Preferred Biome Distribution (Platinum Vanilla) Settings -->
-                    <StandardGen name='elcrPlatinumPrefersStandard' block='ElectriCraft:electricraft_block_ore:5' inherits='elcrPlatinumBaseStandard'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60820638</WireframeColor>
-                        <Setting name='Frequency' avg=':= 2 * 1 * 0.1 * elcrPlatinumFreq * _default_'/>
-                        <BiomeType name='Forest'/>
-                    </StandardGen>
-                    <!-- End Preferred Biome Distribution (Platinum Vanilla) Settings -->
                 
                 </IfCondition>
                 <!-- End  Vanilla distribution of Platinum -->
