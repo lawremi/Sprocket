@@ -105,6 +105,16 @@ Options:
 	There is no default value; if an ore does not have a block assigned,
 	Sprocket will report it, and no configuration file will be written.
 
+    Extra:
+        
+        Some ore distributions handle multiple types of ore at the same time.
+        This option is a comma-separated list of blockid:meta values to use
+        as the "extra" ore blocks to use in a distribution.  Currently only
+        used in the "geode" distribution.
+        
+        There is no default value; if left empty, the extra field is just
+        not used.
+
     Meta:
 
 	If a block has a meta number, this is the number it uses.
@@ -144,7 +154,9 @@ Options:
 	                  Once you find a cloud, you'll have a good source
 	                  of ore.
 	* Geodes: An ore cluster, surrounded by a pipe material, and 
-	          surrounding a small air bubble.
+	          surrounding a small air bubble.  Can be either simple
+                  (containing only one ore type) or compound (mixing
+                  different ore blocks together)
 	* Substitute: This is a simple one-for-one replacement; the block
                   identified by "Replace:" will be replaced by the
                   block identified by "Block:".  The options
