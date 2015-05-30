@@ -1306,7 +1306,7 @@ def geodeCompound(currentOreGen,level):
     if level == "Base":
         distText += indentText(indentLine)+"<Setting name='MotherlodeSize' avg=':= 1.5 * "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
         distText += indentText(indentLine)+"<Setting name='MotherlodeHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"' /> \n"
-        distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= 1/"+str(oreTypeCount)+" * "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
+        distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
         distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
         distText += indentText(indentLine)+"<Replaces block='"+orePipe[currentOreGen]+"'/>\n"
     
@@ -1323,10 +1323,14 @@ def geodeCompound(currentOreGen,level):
     distText += indentText(indentLine)+"<!-- End "+oreName[currentOreGen]+" Geode Crystals -->\n"
     distText += indentText(indentLine)+"\n"
     
+    lastBlock = oreBlock[currentOreGen]+metaGen(currentOreGen)
+    fractionNumber = oreTypeCount
+    
     # Now to add ore distributions for all extra ores.
         
     for extraBlock in oreExtraBlocks:
         oreCount += 1
+        fractionNumber -= 1
         distText += indentText(indentLine)+"\n"
         distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Geode Crystals ("+extraBlock+") -->\n"
         distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+str(oreCount)+"Crystal' block='"+extraBlock+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed="+geodeSeed+">\n"
@@ -1350,9 +1354,9 @@ def geodeCompound(currentOreGen,level):
         if level == "Base":
             distText += indentText(indentLine)+"<Setting name='MotherlodeSize' avg=':= 1.5 * "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
             distText += indentText(indentLine)+"<Setting name='MotherlodeHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"' /> \n"
-            distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= 1/"+str(oreTypeCount)+" * "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
+            distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+str(fractionNumber)+"/"+str(oreTypeCount)+" * "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
             distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
-            distText += indentText(indentLine)+"<Replaces block='"+orePipe[currentOreGen]+"'/>\n"
+            distText += indentText(indentLine)+"<Replaces block='"+lastBlock+"'/>\n"
         
         if level == "Prefers":
             distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * _default_'/>\n"
@@ -1361,6 +1365,8 @@ def geodeCompound(currentOreGen,level):
         else:
             distText += biomeList(oreBiomeName)    
             distText += biomeAvoidList(oreAvoidName)
+        
+        lastBlock = extraBlock
         
         indentLine -= 1
         distText += indentText(indentLine)+"</Veins>\n"
