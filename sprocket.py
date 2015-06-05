@@ -1433,9 +1433,10 @@ def geodesDist(currentOreGen,level):
     orePreExtraName=oreExtra[currentOreGen]
     oreExtraName=orePreExtraName.replace(" ", "")
     
-    print oreExtraName
-    
-    if oreExtraName[0] == "MISSING":
+    # Generate Extra Block List
+    oreExtraBlocks = oreExtraName.split(',')
+        
+    if oreExtraBlocks[0] == "MISSING":
         return geodeSimple(currentOreGen,level)
     else:
         return geodeCompound(currentOreGen,level)
