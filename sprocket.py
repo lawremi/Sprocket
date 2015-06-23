@@ -205,6 +205,7 @@ except ConfigParser.NoOptionError:
 if errorCondition:
     sys.exit(os.path.basename(sys.argv[0])+": "+sys.argv[1]+": nothing written due to errors\n")
 
+print "Generating configuration for "+modName+"."
                     
 modConfigName=modName.replace(" ", "")
 
@@ -1006,7 +1007,7 @@ def smallDepositsDist(currentOreGen,level):
 
 def geodeSimple(currentOreGen,level):
 
-    print "Running Simple Geode..."
+    print "...using simple geode... "
     
     # Remove spaces from configured lists.
     orePreConfigName=modPrefix+oreName[currentOreGen]
@@ -1185,7 +1186,7 @@ def geodeSimple(currentOreGen,level):
 
 def geodeCompound(currentOreGen,level):
 
-    print "Running Compound Geode..."
+    print "	...using compound geodes... "
     
     # Remove spaces from configured lists.
     orePreConfigName=modPrefix+oreName[currentOreGen]
@@ -2004,10 +2005,12 @@ def distributionGen(currentOreGen, currentOrePreDist):
     oreConfigName=orePreConfigName.replace(" ", "")
     currentOreDist=currentOrePreDist.replace(" ", "")
     
+
     distributionText = indentText(indentLine)+"\n"
     distributionText += indentText(indentLine)+"<!-- Begin "+currentOrePreDist+" distribution of "+oreName[currentOreGen]+" -->\n"
         
     if currentOreDist == 'Substitute':
+        print "   ..."+oreName[currentOreGen]+": substituting... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"substituteGen\"'>\n"
         distributionText += indentText(indentLine)+"\n"
         indentLine += 1
@@ -2016,6 +2019,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
         distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
     elif currentOreDist == 'Vanilla':
+        print "   ..."+oreName[currentOreGen]+": simulating vanilla oregen... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"vanillaStdGen\"'>\n"
         distributionText += indentText(indentLine)+"\n"
         indentLine += 1
@@ -2025,6 +2029,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
         distributionText += indentText(indentLine)+"</IfCondition>\n"
         
     elif currentOreDist == 'LayeredVeins':
+        print "   ..."+oreName[currentOreGen]+": forming layered veins... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"layeredVeins\"'>\n"
         distributionText += indentText(indentLine)+"\n"
         indentLine += 1
@@ -2034,6 +2039,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
         distributionText += indentText(indentLine)+"</IfCondition>\n"
         
     elif currentOreDist == 'VerticalVeins':
+        print "   ..."+oreName[currentOreGen]+": stacking vertical veins... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"verticalVeins\"'>\n"
         distributionText += indentText(indentLine)+"\n"
         indentLine += 1
@@ -2043,6 +2049,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
         distributionText += indentText(indentLine)+"</IfCondition>\n"
 
     elif currentOreDist == 'SmallDeposits':
+        print "   ..."+oreName[currentOreGen]+": placing small deposits... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"smallDeposits\"'>\n"
         distributionText += indentText(indentLine)+"\n"
         indentLine += 1
@@ -2052,6 +2059,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
         distributionText += indentText(indentLine)+"</IfCondition>\n"
 
     elif currentOreDist == 'Geodes':
+        print "   ..."+oreName[currentOreGen]+": growing geodes... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"geodes\"'>\n"
         distributionText += indentText(indentLine)+"\n"
         indentLine += 1
@@ -2061,6 +2069,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
         distributionText += indentText(indentLine)+"</IfCondition>\n"
 
     elif currentOreDist == 'HugeVeins':
+        print "   ..."+oreName[currentOreGen]+": constructing huge veins... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"hugeVeins\"'>\n"
         distributionText += indentText(indentLine)+"\n"
         indentLine += 1
@@ -2070,6 +2079,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
         distributionText += indentText(indentLine)+"</IfCondition>\n"
 
     elif currentOreDist == 'SparseVeins':
+        print "   ..."+oreName[currentOreGen]+": sprinkling sparse veins... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"sparseVeins\"'>\n"
         distributionText += indentText(indentLine)+"\n"
         indentLine += 1
@@ -2079,6 +2089,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
         distributionText += indentText(indentLine)+"</IfCondition>\n"
 
     elif currentOreDist == 'PipeVeins':
+        print "   ..."+oreName[currentOreGen]+": rolling and filling pipe veins... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"pipeVeins\"'>\n"
         distributionText += indentText(indentLine)+"\n"
         indentLine += 1
@@ -2097,6 +2108,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
 #        distributionText += indentText(indentLine)+"</IfCondition>\n"
 
     elif currentOreDist == 'StrategicCloud':
+        print "   ..."+oreName[currentOreGen]+": seeding clouds... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"strategicCloud\"'>\n"
         distributionText += indentText(indentLine)+"\n"
         indentLine += 1
@@ -2273,6 +2285,8 @@ def modDetectLevel():
 def configSetupSection():
     global indentLine
     
+    print "Setting up configuration UI... "
+    
     setupConfig = indentText(indentLine)+"\n"
     setupConfig += indentText(indentLine)+"<!-- Setup Screen Configuration -->\n"
     setupConfig += indentText(indentLine)+"<ConfigSection>\n"
@@ -2312,6 +2326,8 @@ def configSetupSection():
 def overworldSetupSection():
     global indentLine
     
+    print "...adding Overworld ores... "
+    
     setupConfig = indentText(indentLine)+"<!-- Setup Overworld -->\n"
     setupConfig += indentText(indentLine)+"<IfCondition condition=':= ?COGActive'>\n"
     indentLine += 1
@@ -2345,6 +2361,8 @@ def overworldSetupSection():
 def netherSetupSection():
     global indentLine
     verified = 0
+    
+    print "...adding Nether ores... "
     
     for oreSelect in range(0, len(oreConfigName)):    
             
@@ -2385,6 +2403,8 @@ def netherSetupSection():
 def endSetupSection():
     global indentLine
     verified = 0
+    
+    print "...adding End ores... "
     
     for oreSelect in range(0, len(oreConfigName)):        
         if oreWorld[oreSelect] == "End":
@@ -2442,3 +2462,5 @@ if errorCondition:
 
 xmlConfigFile = open('./'+modConfigName+'.xml', 'w+')
 xmlConfigFile.write(assembleConfig())
+
+print "Configuration complete for "+modName+"!"
