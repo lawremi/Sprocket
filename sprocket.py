@@ -859,6 +859,8 @@ def verticalVeinsDist(currentOreGen,level):
         preferMultiplier = "1"
         inheritLine = "PresetVerticalVeins"
     
+    # Parent Distribution
+    
     distText = indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Veins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"'>\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
@@ -881,7 +883,7 @@ def verticalVeinsDist(currentOreGen,level):
         distText += indentText(indentLine)+"<Setting name='MotherlodeHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"' /> \n"
         distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
         distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= 1.3 * "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"    
+        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':=  "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * 1/5 * _default_'/>\n"    
 
         if oreVeinBranchFrequency[currentOreGen] != "1":
             distText += indentText(indentLine)+"<Setting name='BranchFrequency' avg=':= "+oreVeinBranchFrequency[currentOreGen]+" * _default_'/>\n"
@@ -908,6 +910,59 @@ def verticalVeinsDist(currentOreGen,level):
         distText += biomeList(oreBiomeName)    
         distText += biomeAvoidList(oreAvoidName)
     
+    # Child Distribution
+    
+    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Veins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"'>\n"
+    indentLine += 1
+    distText += indentText(indentLine)+"<Description>\n"
+    indentLine += 1
+    
+    if level == "Base":
+        distText += indentText(indentLine)+"Single vertical veins that occur with no motherlodes.\n"
+    elif level == "Prefers":
+        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
+    else:
+        distText += indentText(indentLine)+" "
+        
+    indentLine -= 1
+    distText += indentText(indentLine)+"</Description>\n"
+    distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
+    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
+
+
+    if level == "Base":
+        distText += indentText(indentLine)+"<Setting name='MotherlodeHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"' /> \n"
+        distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
+        distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
+        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= * "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * 1.5 * _default_'/>\n"    
+
+        if oreVeinBranchFrequency[currentOreGen] != "1":
+            distText += indentText(indentLine)+"<Setting name='BranchFrequency' avg=':= "+oreVeinBranchFrequency[currentOreGen]+" * _default_'/>\n"
+        if oreVeinBranchLengthAvg[currentOreGen] != "1" or oreVeinBranchLengthRange[currentOreGen] != "1":
+            distText += indentText(indentLine)+"<Setting name='BranchLength' avg=':= "+oreVeinBranchLengthAvg[currentOreGen]+" * _default_' range=':= "+oreVeinBranchLengthRange[currentOreGen]+" * _default_'/>\n"
+        if oreVeinBranchHeight[currentOreGen] != "0":
+            distText += indentText(indentLine)+"<Setting name='BranchHeightLimit' avg=':= "+oreVeinBranchHeight[currentOreGen]+"'/>\n"
+        if oreVeinBranchInclineAvg[currentOreGen] != "0" or oreVeinBranchInclineRange[currentOreGen] != "0":
+            distText += indentText(indentLine)+"<Setting name='BranchInclination' avg=':= "+oreVeinBranchInclineAvg[currentOreGen]+"' range=':= "+oreVeinBranchInclineRange[currentOreGen]+"'/>\n"
+        if oreVeinSegmentRadiusAvg[currentOreGen] != "1" or oreVeinSegmentRadiusRange[currentOreGen] != "1":
+            distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusAvg[currentOreGen]+" * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusRange[currentOreGen]+" * _default_'/>\n"
+        if oreVeinSegmentAngleAvg[currentOreGen] != "0" or oreVeinSegmentAngleRange[currentOreGen] != "0":
+            distText += indentText(indentLine)+"<Setting name='SegmentAngle' avg=':= "+oreVeinSegmentAngleAvg[currentOreGen]+"' range=':= "+oreVeinSegmentAngleRange[currentOreGen]+"'/>\n"
+        if oreVeinSegmentPitchAvg[currentOreGen] != "0" or oreVeinSegmentPitchRange[currentOreGen] != "0":
+            distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg=':= "+oreVeinSegmentPitchAvg[currentOreGen]+"' range=':= "+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
+        
+        distText += replaceList(oreReplaceName)
+    
+    if level == "Prefers":
+        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * _default_'/>\n"
+        distText += biomeList(orePreferName)
+        distText += biomeAvoidList(oreNoPreferName)
+    else:
+        distText += biomeList(oreBiomeName)    
+        distText += biomeAvoidList(oreAvoidName)
+       
+    indentLine -= 1
+    distText += indentText(indentLine)+"</Veins>\n"
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
         
