@@ -573,9 +573,9 @@ Fluorite, Yellow Fluorite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrPitchblendeSize * _default_' range=':= 1 * 0.8 * recrPitchblendeSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 40' range=':= 20' type='normal' scaleTo='SeaLevel'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 16' range=':= 8' type='normal' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrPitchblendeSize * _default_' range=':= 1 * 0.8 * recrPitchblendeSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * recrPitchblendeFreq * _default_'/>
@@ -584,6 +584,18 @@ Fluorite, Yellow Fluorite
                         <Setting name='BranchHeightLimit' avg=':= 10.5'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Pitchblende Layered Veins) Settings -->
+                    <Veins name='recrPitchblendePrefersVeins' block='ReactorCraft:reactorcraft_block_ore:1' inherits='recrPitchblendeBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60462CFF</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
+                        <BiomeType name='Mushroom'/>
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Pitchblende Layered Veins) Settings -->
                 
                 </IfCondition>
                 <!-- End LayeredVeins distribution of Pitchblende -->
@@ -604,9 +616,9 @@ Fluorite, Yellow Fluorite
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrPitchblendeSize * _default_' range=':= 1 * 0.8 * recrPitchblendeSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 40' range=':= 20' type='normal' scaleTo='SeaLevel' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 16' range=':= 8' type='normal' scaleTo='SeaLevel' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrPitchblendeSize * _default_' range=':= 1 * 0.8 * recrPitchblendeSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * recrPitchblendeFreq * _default_'/>
@@ -624,7 +636,7 @@ Fluorite, Yellow Fluorite
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
+                            <WireframeColor>0x60462CFF</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -632,6 +644,33 @@ Fluorite, Yellow Fluorite
                         <!-- End Pitchblende Huge Vein Hint Veins -->
 
                     </Veins>
+                    
+                    <!-- Begin Preferred Biome Distribution (Pitchblende Huge Veins) Settings -->
+                    <Veins name='recrPitchblendePrefersVeins' block='ReactorCraft:reactorcraft_block_ore:1' inherits='recrPitchblendeBaseVeins'>
+                        <Description>
+                            Spawns 2 more times in preferred biomes.
+                        </Description>
+                        <DrawWireframe>:=drawWireframes</DrawWireframe>
+                        <WireframeColor>0x60462CFF</WireframeColor>
+                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
+                        <BiomeType name='Mushroom'/>
+                        
+                        <!-- Begin Pitchblende Huge Vein Hint Veins -->
+                        <Veins name='recrPitchblendePrefersHintVeins' block='ReactorCraft:reactorcraft_block_ore:1' inherits='recrPitchblendeBaseHintVeins'>
+                            <Description>
+                                Spawns 2 more times in preferred biomes.
+                            </Description>
+                            <DrawWireframe>:=drawWireframes</DrawWireframe>
+                            <WireframeColor>0x60462CFF</WireframeColor>
+                            <Replaces block='minecraft:dirt'/>
+                            <Replaces block='minecraft:sandstone'/>
+                            <Replaces block='minecraft:stone'/>
+                            <BiomeType name='Mushroom'/>
+                        </Veins>
+                        <!-- End Pitchblende Huge Vein Hint Veins -->
+
+                    </Veins>
+                    <!-- End Preferred Biome Distribution (Pitchblende Huge Veins) Settings -->
                 
                 </IfCondition>
                 <!-- End  Huge Veins distribution of Pitchblende -->
@@ -650,13 +689,13 @@ Fluorite, Yellow Fluorite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * recrPitchblendeSize * _default_' range=':= 1 * 0.8 * recrPitchblendeSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * recrPitchblendeSize * _default_' range=':= 1 * 0.8 * recrPitchblendeSize * _default_'/>
-                        <Setting name='CloudHeight' avg=':= 32' range=':= 32' type='normal' scaleTo='SeaLevel'/>
+                        <Setting name='CloudHeight' avg=':= 16' range=':= 8' type='normal' scaleTo='SeaLevel'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * 0.8 * recrPitchblendeSize * _default_' range=':= 1 * 0.8 * 0.8 * recrPitchblendeSize  * _default_'/>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 4.5 * recrPitchblendeFreq *_default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 3.5 * recrPitchblendeFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Pitchblende Strategic Cloud Hint Veins -->
@@ -668,7 +707,7 @@ Fluorite, Yellow Fluorite
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
+                            <WireframeColor>0x60462CFF</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -676,6 +715,7 @@ Fluorite, Yellow Fluorite
                         <!-- End Pitchblende Strategic Cloud Hint Veins -->
 
                     </Cloud>
+                    
                 
                 </IfCondition>
                 <!-- End  StrategicCloud distribution of Pitchblende -->
@@ -689,12 +729,13 @@ Fluorite, Yellow Fluorite
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * recrPitchblendeSize * _default_'/>
-                        <Setting name='Height' avg=':= 40' range=':= 20' type='uniform'/> 
+                        <Setting name='Height' avg=':= 16' range=':= 8' type='uniform'/> 
                         <Setting name='Frequency' avg=':= 1 * 1/10 * recrPitchblendeFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
+                    
                 
                 </IfCondition>
                 <!-- End  Vanilla distribution of Pitchblende -->
@@ -712,9 +753,9 @@ Fluorite, Yellow Fluorite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrCadmiumSize * _default_' range=':= 1 * 0.8 * recrCadmiumSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='SeaLevel'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 22' range=':= 10' type='normal' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrCadmiumSize * _default_' range=':= 1 * 0.8 * recrCadmiumSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * recrCadmiumFreq * _default_'/>
@@ -730,7 +771,7 @@ Fluorite, Yellow Fluorite
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Forest'/>
                     </Veins>
@@ -755,9 +796,9 @@ Fluorite, Yellow Fluorite
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrCadmiumSize * _default_' range=':= 1 * 0.8 * recrCadmiumSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='SeaLevel' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 22' range=':= 10' type='normal' scaleTo='SeaLevel' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrCadmiumSize * _default_' range=':= 1 * 0.8 * recrCadmiumSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * recrCadmiumFreq * _default_'/>
@@ -775,7 +816,7 @@ Fluorite, Yellow Fluorite
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
+                            <WireframeColor>0x60462CFF</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -790,7 +831,7 @@ Fluorite, Yellow Fluorite
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Forest'/>
                         
@@ -800,7 +841,7 @@ Fluorite, Yellow Fluorite
                                 Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
+                            <WireframeColor>0x60462CFF</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -828,10 +869,10 @@ Fluorite, Yellow Fluorite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * recrCadmiumSize * _default_' range=':= 1 * 0.8 * recrCadmiumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * recrCadmiumSize * _default_' range=':= 1 * 0.8 * recrCadmiumSize * _default_'/>
-                        <Setting name='CloudHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='SeaLevel'/>
+                        <Setting name='CloudHeight' avg=':= 22' range=':= 10' type='normal' scaleTo='SeaLevel'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * 0.8 * recrCadmiumSize * _default_' range=':= 1 * 0.8 * 0.8 * recrCadmiumSize  * _default_'/>
                         <Setting name='DistributionFrequency' avg=':= 1 * 4.5 * recrCadmiumFreq *_default_'/>
@@ -846,7 +887,7 @@ Fluorite, Yellow Fluorite
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
+                            <WireframeColor>0x60462CFF</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -868,9 +909,9 @@ Fluorite, Yellow Fluorite
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * recrCadmiumSize * _default_'/>
-                        <Setting name='Height' avg=':= 16' range=':= 16' type='uniform'/> 
+                        <Setting name='Height' avg=':= 22' range=':= 10' type='uniform'/> 
                         <Setting name='Frequency' avg=':= 1 * 1 * recrCadmiumFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
@@ -892,29 +933,17 @@ Fluorite, Yellow Fluorite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrIndiumSize * _default_' range=':= 1 * 0.8 * recrIndiumSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='SeaLevel'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 8' range=':= 8' type='normal' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrIndiumSize * _default_' range=':= 1 * 0.8 * recrIndiumSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * recrIndiumFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.5 * recrIndiumFreq * _default_'/>
                         <Setting name='BranchFrequency' avg=':= 0.85 * _default_'/>
                         <Setting name='BranchLength' avg=':= 0.75 * _default_' range=':= 0.66 * _default_'/>
                         <Setting name='BranchHeightLimit' avg=':= 10'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    
-                    <!-- Begin Preferred Biome Distribution (Indium Layered Veins) Settings -->
-                    <Veins name='recrIndiumPrefersVeins' block='ReactorCraft:reactorcraft_block_ore:3' inherits='recrIndiumBaseVeins'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Forest'/>
-                    </Veins>
-                    <!-- End Preferred Biome Distribution (Indium Layered Veins) Settings -->
                 
                 </IfCondition>
                 <!-- End LayeredVeins distribution of Indium -->
@@ -935,12 +964,12 @@ Fluorite, Yellow Fluorite
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrIndiumSize * _default_' range=':= 1 * 0.8 * recrIndiumSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='SeaLevel' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 8' range=':= 8' type='normal' scaleTo='SeaLevel' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrIndiumSize * _default_' range=':= 1 * 0.8 * recrIndiumSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * recrIndiumFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.5 * recrIndiumFreq * _default_'/>
                         <Setting name='BranchFrequency' avg=':= 0.85 * _default_'/>
                         <Setting name='BranchLength' avg=':= 0.75 * _default_' range=':= 0.66 * _default_'/>
                         <Setting name='BranchHeightLimit' avg=':= 10'/>
@@ -955,7 +984,7 @@ Fluorite, Yellow Fluorite
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
+                            <WireframeColor>0x60462CFF</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -963,33 +992,6 @@ Fluorite, Yellow Fluorite
                         <!-- End Indium Huge Vein Hint Veins -->
 
                     </Veins>
-                    
-                    <!-- Begin Preferred Biome Distribution (Indium Huge Veins) Settings -->
-                    <Veins name='recrIndiumPrefersVeins' block='ReactorCraft:reactorcraft_block_ore:3' inherits='recrIndiumBaseVeins'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Forest'/>
-                        
-                        <!-- Begin Indium Huge Vein Hint Veins -->
-                        <Veins name='recrIndiumPrefersHintVeins' block='ReactorCraft:reactorcraft_block_ore:3' inherits='recrIndiumBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
-                            <Replaces block='minecraft:dirt'/>
-                            <Replaces block='minecraft:sandstone'/>
-                            <Replaces block='minecraft:stone'/>
-                            <BiomeType name='Forest'/>
-                        </Veins>
-                        <!-- End Indium Huge Vein Hint Veins -->
-
-                    </Veins>
-                    <!-- End Preferred Biome Distribution (Indium Huge Veins) Settings -->
                 
                 </IfCondition>
                 <!-- End  Huge Veins distribution of Indium -->
@@ -1008,13 +1010,13 @@ Fluorite, Yellow Fluorite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * recrIndiumSize * _default_' range=':= 1 * 0.8 * recrIndiumSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * recrIndiumSize * _default_' range=':= 1 * 0.8 * recrIndiumSize * _default_'/>
-                        <Setting name='CloudHeight' avg=':= 16' range=':= 16' type='normal' scaleTo='SeaLevel'/>
+                        <Setting name='CloudHeight' avg=':= 8' range=':= 8' type='normal' scaleTo='SeaLevel'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * 0.8 * recrIndiumSize * _default_' range=':= 1 * 0.8 * 0.8 * recrIndiumSize  * _default_'/>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 4.5 * recrIndiumFreq *_default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 2.5 * recrIndiumFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Indium Strategic Cloud Hint Veins -->
@@ -1026,7 +1028,7 @@ Fluorite, Yellow Fluorite
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
+                            <WireframeColor>0x60462CFF</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -1034,7 +1036,6 @@ Fluorite, Yellow Fluorite
                         <!-- End Indium Strategic Cloud Hint Veins -->
 
                     </Cloud>
-                    
                 
                 </IfCondition>
                 <!-- End  StrategicCloud distribution of Indium -->
@@ -1048,13 +1049,12 @@ Fluorite, Yellow Fluorite
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * recrIndiumSize * _default_'/>
-                        <Setting name='Height' avg=':= 16' range=':= 16' type='uniform'/> 
+                        <Setting name='Height' avg=':= 8' range=':= 8' type='uniform'/> 
                         <Setting name='Frequency' avg=':= 1 * 1 * recrIndiumFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
-                    
                 
                 </IfCondition>
                 <!-- End  Vanilla distribution of Indium -->
@@ -1072,9 +1072,9 @@ Fluorite, Yellow Fluorite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.85 * recrSilverSize * _default_' range=':= 1 * 0.85 * recrSilverSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='SeaLevel'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 32' type='normal' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.85 * recrSilverSize * _default_' range=':= 1 * 0.85 * recrSilverSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * recrSilverFreq * _default_'/>
@@ -1083,18 +1083,6 @@ Fluorite, Yellow Fluorite
                         <Setting name='BranchHeightLimit' avg=':= 12'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    
-                    <!-- Begin Preferred Biome Distribution (Silver Layered Veins) Settings -->
-                    <Veins name='recrSilverPrefersVeins' block='ReactorCraft:reactorcraft_block_ore:4' inherits='recrSilverBaseVeins'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Mountain'/>
-                    </Veins>
-                    <!-- End Preferred Biome Distribution (Silver Layered Veins) Settings -->
                 
                 </IfCondition>
                 <!-- End LayeredVeins distribution of Silver -->
@@ -1115,9 +1103,9 @@ Fluorite, Yellow Fluorite
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 0.85 * recrSilverSize * _default_' range=':= 1 * 0.85 * recrSilverSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 20' range=':= 10' type='normal' scaleTo='SeaLevel' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 32' type='normal' scaleTo='SeaLevel' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 0.85 * recrSilverSize * _default_' range=':= 1 * 0.85 * recrSilverSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * recrSilverFreq * _default_'/>
@@ -1135,7 +1123,7 @@ Fluorite, Yellow Fluorite
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
+                            <WireframeColor>0x60462CFF</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -1143,33 +1131,6 @@ Fluorite, Yellow Fluorite
                         <!-- End Silver Huge Vein Hint Veins -->
 
                     </Veins>
-                    
-                    <!-- Begin Preferred Biome Distribution (Silver Huge Veins) Settings -->
-                    <Veins name='recrSilverPrefersVeins' block='ReactorCraft:reactorcraft_block_ore:4' inherits='recrSilverBaseVeins'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Mountain'/>
-                        
-                        <!-- Begin Silver Huge Vein Hint Veins -->
-                        <Veins name='recrSilverPrefersHintVeins' block='ReactorCraft:reactorcraft_block_ore:4' inherits='recrSilverBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
-                            <Replaces block='minecraft:dirt'/>
-                            <Replaces block='minecraft:sandstone'/>
-                            <Replaces block='minecraft:stone'/>
-                            <BiomeType name='Mountain'/>
-                        </Veins>
-                        <!-- End Silver Huge Vein Hint Veins -->
-
-                    </Veins>
-                    <!-- End Preferred Biome Distribution (Silver Huge Veins) Settings -->
                 
                 </IfCondition>
                 <!-- End  Huge Veins distribution of Silver -->
@@ -1188,7 +1149,7 @@ Fluorite, Yellow Fluorite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='CloudRadius' avg=':= 1 * 0.8 * recrSilverSize * _default_' range=':= 1 * 0.8 * recrSilverSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 0.8 * recrSilverSize * _default_' range=':= 1 * 0.8 * recrSilverSize * _default_'/>
                         <Setting name='CloudHeight' avg=':= 32' range=':= 32' type='normal' scaleTo='SeaLevel'/>
@@ -1206,7 +1167,7 @@ Fluorite, Yellow Fluorite
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
+                            <WireframeColor>0x60462CFF</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -1214,7 +1175,6 @@ Fluorite, Yellow Fluorite
                         <!-- End Silver Strategic Cloud Hint Veins -->
 
                     </Cloud>
-                    
                 
                 </IfCondition>
                 <!-- End  StrategicCloud distribution of Silver -->
@@ -1228,13 +1188,12 @@ Fluorite, Yellow Fluorite
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * recrSilverSize * _default_'/>
-                        <Setting name='Height' avg=':= 18' range=':= 12' type='uniform'/> 
+                        <Setting name='Height' avg=':= 28' range=':= 24' type='uniform'/> 
                         <Setting name='Frequency' avg=':= 1 * 0.15 * recrSilverFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
-                    
                 
                 </IfCondition>
                 <!-- End  Vanilla distribution of Silver -->
@@ -1255,12 +1214,12 @@ Fluorite, Yellow Fluorite
                             harder to get an idea of their direction while mining.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrCalciteSize * _default_' range=':= 1 * 1 * recrCalciteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='SeaLevel' />
+                        <Setting name='MotherlodeHeight' avg=':= 46' range=':= 14' type='normal' scaleTo='SeaLevel' />
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * recrCalciteSize * _default_' range=':= 1 * 1 * recrCalciteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1.75 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 10.7 * recrCalciteFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * recrCalciteFreq * _default_'/>
                         <Setting name='BranchLength' avg=':= 0.45 * _default_' range=':= 0.45 * _default_'/>
                         <Setting name='BranchHeightLimit' avg=':= 10'/>
                         <Setting name='BranchInclination' avg=':= 0' range=':= 0.35'/>
@@ -1273,7 +1232,7 @@ Fluorite, Yellow Fluorite
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Swamp'/>
                         <BiomeType name='Water'/>
@@ -1299,12 +1258,12 @@ Fluorite, Yellow Fluorite
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrCalciteSize * _default_' range=':= 1 * 1 * recrCalciteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 60' range=':= 10' type='normal' scaleTo='SeaLevel' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 46' range=':= 14' type='normal' scaleTo='SeaLevel' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * recrCalciteSize * _default_' range=':= 1 * 1 * recrCalciteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1.75 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 10.7 * recrCalciteFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * recrCalciteFreq * _default_'/>
                         <Setting name='BranchLength' avg=':= 0.45 * _default_' range=':= 0.45 * _default_'/>
                         <Setting name='BranchHeightLimit' avg=':= 10'/>
                         <Setting name='BranchInclination' avg=':= 0' range=':= 0.35'/>
@@ -1319,7 +1278,7 @@ Fluorite, Yellow Fluorite
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
+                            <WireframeColor>0x60462CFF</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -1334,7 +1293,7 @@ Fluorite, Yellow Fluorite
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='Swamp'/>
                         <BiomeType name='Water'/>
@@ -1345,7 +1304,7 @@ Fluorite, Yellow Fluorite
                                 Spawns 2 more times in preferred biomes.
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
+                            <WireframeColor>0x60462CFF</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -1374,13 +1333,13 @@ Fluorite, Yellow Fluorite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='CloudRadius' avg=':= 1 * 1.2 * recrCalciteSize * _default_' range=':= 1 * 1.2 * recrCalciteSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1.2 * recrCalciteSize * _default_' range=':= 1 * 1.2 * recrCalciteSize * _default_'/>
                         <Setting name='CloudHeight' avg=':= 32' range=':= 32' type='normal' scaleTo='SeaLevel'/>
                         <Setting name='OreDensity' avg=':= 1 * 0.75 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1.2 * recrCalciteSize * _default_' range=':= 1 * 1 * 1.2 * recrCalciteSize  * _default_'/>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 5 * recrCalciteFreq *_default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 3 * recrCalciteFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Calcite Strategic Cloud Hint Veins -->
@@ -1392,7 +1351,7 @@ Fluorite, Yellow Fluorite
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
+                            <WireframeColor>0x60462CFF</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -1414,8 +1373,8 @@ Fluorite, Yellow Fluorite
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
-                        <Setting name='Size' avg=':= 1 * 2 * recrCalciteSize * _default_'/>
+                        <WireframeColor>0x60462CFF</WireframeColor>
+                        <Setting name='Size' avg=':= 1 * 1 * recrCalciteSize * _default_'/>
                         <Setting name='Height' avg=':= 32' range=':= 32' type='uniform'/> 
                         <Setting name='Frequency' avg=':= 1 * 1 * recrCalciteFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
@@ -1438,28 +1397,15 @@ Fluorite, Yellow Fluorite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrMagnetiteSize * _default_' range=':= 1 * 1 * recrMagnetiteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='SeaLevel'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 94' range=':= 34' type='uniform' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * recrMagnetiteSize * _default_' range=':= 1 * 1 * recrMagnetiteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.9 * recrMagnetiteFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * recrMagnetiteFreq * _default_'/>
                         <Setting name='BranchHeightLimit' avg=':= 10.5'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
-                    
-                    <!-- Begin Preferred Biome Distribution (Magnetite Layered Veins) Settings -->
-                    <Veins name='recrMagnetitePrefersVeins' block='ReactorCraft:reactorcraft_block_ore:8' inherits='recrMagnetiteBaseVeins'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Cold'/>
-                        <BiomeType name='Ocean' weight='-1'/>
-                    </Veins>
-                    <!-- End Preferred Biome Distribution (Magnetite Layered Veins) Settings -->
                 
                 </IfCondition>
                 <!-- End LayeredVeins distribution of Magnetite -->
@@ -1480,12 +1426,12 @@ Fluorite, Yellow Fluorite
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrMagnetiteSize * _default_' range=':= 1 * 1 * recrMagnetiteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 43' range=':= 10.5' type='normal' scaleTo='SeaLevel' /> 
+                        <Setting name='MotherlodeHeight' avg=':= 94' range=':= 34' type='uniform' scaleTo='SeaLevel' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * recrMagnetiteSize * _default_' range=':= 1 * 1 * recrMagnetiteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.9 * recrMagnetiteFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 2 * recrMagnetiteFreq * _default_'/>
                         <Setting name='BranchHeightLimit' avg=':= 10.5'/>
                         <Replaces block='minecraft:stone'/>
                         
@@ -1498,7 +1444,7 @@ Fluorite, Yellow Fluorite
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
+                            <WireframeColor>0x60462CFF</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -1506,35 +1452,6 @@ Fluorite, Yellow Fluorite
                         <!-- End Magnetite Huge Vein Hint Veins -->
 
                     </Veins>
-                    
-                    <!-- Begin Preferred Biome Distribution (Magnetite Huge Veins) Settings -->
-                    <Veins name='recrMagnetitePrefersVeins' block='ReactorCraft:reactorcraft_block_ore:8' inherits='recrMagnetiteBaseVeins'>
-                        <Description>
-                            Spawns 2 more times in preferred biomes.
-                        </Description>
-                        <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
-                        <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
-                        <BiomeType name='Cold'/>
-                        <BiomeType name='Ocean' weight='-1'/>
-                        
-                        <!-- Begin Magnetite Huge Vein Hint Veins -->
-                        <Veins name='recrMagnetitePrefersHintVeins' block='ReactorCraft:reactorcraft_block_ore:8' inherits='recrMagnetiteBaseHintVeins'>
-                            <Description>
-                                Spawns 2 more times in preferred biomes.
-                            </Description>
-                            <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
-                            <Replaces block='minecraft:dirt'/>
-                            <Replaces block='minecraft:sandstone'/>
-                            <Replaces block='minecraft:stone'/>
-                            <BiomeType name='Cold'/>
-                            <BiomeType name='Ocean' weight='-1'/>
-                        </Veins>
-                        <!-- End Magnetite Huge Vein Hint Veins -->
-
-                    </Veins>
-                    <!-- End Preferred Biome Distribution (Magnetite Huge Veins) Settings -->
                 
                 </IfCondition>
                 <!-- End  Huge Veins distribution of Magnetite -->
@@ -1553,13 +1470,13 @@ Fluorite, Yellow Fluorite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * recrMagnetiteSize * _default_' range=':= 1 * 1 * recrMagnetiteSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * recrMagnetiteSize * _default_' range=':= 1 * 1 * recrMagnetiteSize * _default_'/>
-                        <Setting name='CloudHeight' avg=':= 32' range=':= 32' type='normal' scaleTo='SeaLevel'/>
+                        <Setting name='CloudHeight' avg=':= 94' range=':= 34' type='uniform' scaleTo='SeaLevel'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * recrMagnetiteSize * _default_' range=':= 1 * 1 * 1 * recrMagnetiteSize  * _default_'/>
-                        <Setting name='DistributionFrequency' avg=':= 1 * 2.5 * recrMagnetiteFreq *_default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 4 * recrMagnetiteFreq *_default_'/>
                         <Replaces block='minecraft:stone'/>
                         
                         <!-- Begin Magnetite Strategic Cloud Hint Veins -->
@@ -1571,7 +1488,7 @@ Fluorite, Yellow Fluorite
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
+                            <WireframeColor>0x60462CFF</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:stone'/>
@@ -1579,7 +1496,6 @@ Fluorite, Yellow Fluorite
                         <!-- End Magnetite Strategic Cloud Hint Veins -->
 
                     </Cloud>
-                    
                 
                 </IfCondition>
                 <!-- End  StrategicCloud distribution of Magnetite -->
@@ -1593,13 +1509,12 @@ Fluorite, Yellow Fluorite
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * recrMagnetiteSize * _default_'/>
-                        <Setting name='Height' avg=':= 32' range=':= 32' type='uniform'/> 
+                        <Setting name='Height' avg=':= 94' range=':= 34' type='uniform'/> 
                         <Setting name='Frequency' avg=':= 1 * 1 * recrMagnetiteFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </StandardGen>
-                    
                 
                 </IfCondition>
                 <!-- End  Vanilla distribution of Magnetite -->
@@ -1617,12 +1532,12 @@ Fluorite, Yellow Fluorite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrBlueFluoriteSize * _default_' range=':= 1 * 1 * recrBlueFluoriteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 128' range=':= 128' type='uniform' scaleTo='SeaLevel'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 46' range=':= 14' type='uniform' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * recrBlueFluoriteSize * _default_' range=':= 1 * 1 * recrBlueFluoriteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * recrBlueFluoriteFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1/8 * 1 * recrBlueFluoriteFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
@@ -1632,7 +1547,7 @@ Fluorite, Yellow Fluorite
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='mountain'/>
                     </Veins>
@@ -1654,12 +1569,12 @@ Fluorite, Yellow Fluorite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrPinkFluoriteSize * _default_' range=':= 1 * 1 * recrPinkFluoriteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 128' range=':= 128' type='uniform' scaleTo='SeaLevel'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 46' range=':= 14' type='uniform' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * recrPinkFluoriteSize * _default_' range=':= 1 * 1 * recrPinkFluoriteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * recrPinkFluoriteFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1/8 * 1 * recrPinkFluoriteFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
@@ -1669,7 +1584,7 @@ Fluorite, Yellow Fluorite
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='mountain'/>
                     </Veins>
@@ -1691,12 +1606,12 @@ Fluorite, Yellow Fluorite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrOrangeFluoriteSize * _default_' range=':= 1 * 1 * recrOrangeFluoriteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 128' range=':= 128' type='uniform' scaleTo='SeaLevel'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 46' range=':= 14' type='uniform' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * recrOrangeFluoriteSize * _default_' range=':= 1 * 1 * recrOrangeFluoriteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * recrOrangeFluoriteFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1/8 * 1 * recrOrangeFluoriteFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
@@ -1706,7 +1621,7 @@ Fluorite, Yellow Fluorite
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='mountain'/>
                     </Veins>
@@ -1728,9 +1643,9 @@ Fluorite, Yellow Fluorite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrMagentaFluoriteSize * _default_' range=':= 1 * 1 * recrMagentaFluoriteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 128' range=':= 128' type='uniform' scaleTo='SeaLevel'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 46' range=':= 14' type='uniform' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * recrMagentaFluoriteSize * _default_' range=':= 1 * 1 * recrMagentaFluoriteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
                         <Setting name='MotherlodeFrequency' avg=':= 3 * 1 * recrMagentaFluoriteFreq * _default_'/>
@@ -1743,7 +1658,7 @@ Fluorite, Yellow Fluorite
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='mountain'/>
                     </Veins>
@@ -1765,12 +1680,12 @@ Fluorite, Yellow Fluorite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrGreenFluoriteSize * _default_' range=':= 1 * 1 * recrGreenFluoriteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 128' range=':= 128' type='uniform' scaleTo='SeaLevel'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 46' range=':= 14' type='uniform' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * recrGreenFluoriteSize * _default_' range=':= 1 * 1 * recrGreenFluoriteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * recrGreenFluoriteFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1/8 * 1 * recrGreenFluoriteFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
@@ -1780,7 +1695,7 @@ Fluorite, Yellow Fluorite
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='mountain'/>
                     </Veins>
@@ -1802,12 +1717,12 @@ Fluorite, Yellow Fluorite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrRedFluoriteSize * _default_' range=':= 1 * 1 * recrRedFluoriteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 128' range=':= 128' type='uniform' scaleTo='SeaLevel'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 46' range=':= 14' type='uniform' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * recrRedFluoriteSize * _default_' range=':= 1 * 1 * recrRedFluoriteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * recrRedFluoriteFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1/8 * 1 * recrRedFluoriteFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
@@ -1817,7 +1732,7 @@ Fluorite, Yellow Fluorite
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='mountain'/>
                     </Veins>
@@ -1839,12 +1754,12 @@ Fluorite, Yellow Fluorite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrWhiteFluoriteSize * _default_' range=':= 1 * 1 * recrWhiteFluoriteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 128' range=':= 128' type='uniform' scaleTo='SeaLevel'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 46' range=':= 14' type='uniform' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * recrWhiteFluoriteSize * _default_' range=':= 1 * 1 * recrWhiteFluoriteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * recrWhiteFluoriteFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1/8 * 1 * recrWhiteFluoriteFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
@@ -1854,7 +1769,7 @@ Fluorite, Yellow Fluorite
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='mountain'/>
                     </Veins>
@@ -1876,12 +1791,12 @@ Fluorite, Yellow Fluorite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrYellowFluoriteSize * _default_' range=':= 1 * 1 * recrYellowFluoriteSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 128' range=':= 128' type='uniform' scaleTo='SeaLevel'/> 
+                        <Setting name='MotherlodeHeight' avg=':= 46' range=':= 14' type='uniform' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * recrYellowFluoriteSize * _default_' range=':= 1 * 1 * recrYellowFluoriteSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 1 * 1 * recrYellowFluoriteFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1/8 * 1 * recrYellowFluoriteFreq * _default_'/>
                         <Replaces block='minecraft:stone'/>
                     </Veins>
                     
@@ -1891,7 +1806,7 @@ Fluorite, Yellow Fluorite
                             Spawns 2 more times in preferred biomes.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
                         <BiomeType name='mountain'/>
                     </Veins>
@@ -1935,12 +1850,15 @@ Fluorite, Yellow Fluorite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 1 * recrAmmoniumChlorideSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='SeaLevel'/> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 1 * recrAmmoniumChlorideSize * _default_'/>
+                        <WireframeColor>0x60462CFF</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 0.8 * recrAmmoniumChlorideSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 2' type='normal' scaleTo='SeaLevel'/> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 0.8 * recrAmmoniumChlorideSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 3 * 1 * recrAmmoniumChlorideFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * recrAmmoniumChlorideFreq * _default_'/>
+                        <Setting name='BranchFrequency' avg=':= 0.85 * _default_'/>
+                        <Setting name='BranchLength' avg=':= 0.75 * _default_' range=':= 0.66 * _default_'/>
+                        <Setting name='BranchHeightLimit' avg=':= 10'/>
                         <Replaces block='minecraft:netherrack'/>
                     </Veins>
                 
@@ -1963,12 +1881,15 @@ Fluorite, Yellow Fluorite
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
-                        <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 1 * recrAmmoniumChlorideSize * _default_'/>
-                        <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='SeaLevel' /> 
-                        <Setting name='SegmentRadius' avg=':= 1 * 1 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 1 * recrAmmoniumChlorideSize * _default_'/>
+                        <WireframeColor>0x60462CFF</WireframeColor>
+                        <Setting name='MotherlodeSize' avg=':= 1 * 0.8 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 0.8 * recrAmmoniumChlorideSize * _default_'/>
+                        <Setting name='MotherlodeHeight' avg=':= 32' range=':= 2' type='normal' scaleTo='SeaLevel' /> 
+                        <Setting name='SegmentRadius' avg=':= 1 * 0.8 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 0.8 * recrAmmoniumChlorideSize * _default_'/>
                         <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='MotherlodeFrequency' avg=':= 3 * 1 * recrAmmoniumChlorideFreq * _default_'/>
+                        <Setting name='MotherlodeFrequency' avg=':= 1 * 0.85 * recrAmmoniumChlorideFreq * _default_'/>
+                        <Setting name='BranchFrequency' avg=':= 0.85 * _default_'/>
+                        <Setting name='BranchLength' avg=':= 0.75 * _default_' range=':= 0.66 * _default_'/>
+                        <Setting name='BranchHeightLimit' avg=':= 10'/>
                         <Replaces block='minecraft:netherrack'/>
                         
                         <!-- Begin Ammonium Chloride Huge Vein Hint Veins -->
@@ -1980,7 +1901,7 @@ Fluorite, Yellow Fluorite
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
+                            <WireframeColor>0x60462CFF</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:netherrack'/>
@@ -2006,13 +1927,13 @@ Fluorite, Yellow Fluorite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
-                        <Setting name='CloudRadius' avg=':= 1 * 1 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 1 * recrAmmoniumChlorideSize * _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 1 * recrAmmoniumChlorideSize * _default_'/>
-                        <Setting name='CloudHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='SeaLevel'/>
-                        <Setting name='OreDensity' avg=':= 1 * 1 * _default_' range=':= _default_'/>
-                        <Setting name='CloudThickness' avg=':= 1 * 1 * 1 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 1 * 1 * recrAmmoniumChlorideSize  * _default_'/>
-                        <Setting name='DistributionFrequency' avg=':= 3 * 1 * recrAmmoniumChlorideFreq *_default_'/>
+                        <WireframeColor>0x60462CFF</WireframeColor>
+                        <Setting name='CloudRadius' avg=':= 1 * 0.8 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 0.8 * recrAmmoniumChlorideSize * _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 0.8 * recrAmmoniumChlorideSize * _default_'/>
+                        <Setting name='CloudHeight' avg=':= 32' range=':= 2' type='normal' scaleTo='SeaLevel'/>
+                        <Setting name='OreDensity' avg=':= 1 * 0.3 * _default_' range=':= _default_'/>
+                        <Setting name='CloudThickness' avg=':= 1 * 0.8 * 0.8 * recrAmmoniumChlorideSize * _default_' range=':= 1 * 0.8 * 0.8 * recrAmmoniumChlorideSize  * _default_'/>
+                        <Setting name='DistributionFrequency' avg=':= 1 * 4.5 * recrAmmoniumChlorideFreq *_default_'/>
                         <Replaces block='minecraft:netherrack'/>
                         
                         <!-- Begin Ammonium Chloride Strategic Cloud Hint Veins -->
@@ -2024,7 +1945,7 @@ Fluorite, Yellow Fluorite
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
+                            <WireframeColor>0x60462CFF</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:netherrack'/>
@@ -2045,10 +1966,10 @@ Fluorite, Yellow Fluorite
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * recrAmmoniumChlorideSize * _default_'/>
-                        <Setting name='Height' avg=':= 120' range=':= 120' type='uniform'/> 
-                        <Setting name='Frequency' avg=':= 3 * 1 * recrAmmoniumChlorideFreq * _default_'/>
+                        <Setting name='Height' avg=':= 32' range=':= 2' type='uniform'/> 
+                        <Setting name='Frequency' avg=':= 1 * 1 * recrAmmoniumChlorideFreq * _default_'/>
                         <Replaces block='minecraft:netherrack'/>
                     </StandardGen>
                 
@@ -2090,7 +2011,7 @@ Fluorite, Yellow Fluorite
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrEndPitchblendeSize * _default_' range=':= 1 * 1 * recrEndPitchblendeSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='SeaLevel'/> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * recrEndPitchblendeSize * _default_' range=':= 1 * 1 * recrEndPitchblendeSize * _default_'/>
@@ -2118,7 +2039,7 @@ Fluorite, Yellow Fluorite
                             Credit: based on feedback by dyrewulf from the MC forums.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='MotherlodeSize' avg=':= 1 * 1 * recrEndPitchblendeSize * _default_' range=':= 1 * 1 * recrEndPitchblendeSize * _default_'/>
                         <Setting name='MotherlodeHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='SeaLevel' /> 
                         <Setting name='SegmentRadius' avg=':= 1 * 1 * recrEndPitchblendeSize * _default_' range=':= 1 * 1 * recrEndPitchblendeSize * _default_'/>
@@ -2135,7 +2056,7 @@ Fluorite, Yellow Fluorite
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
+                            <WireframeColor>0x60462CFF</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:end_stone'/>
@@ -2161,7 +2082,7 @@ Fluorite, Yellow Fluorite
                             the ore.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='CloudRadius' avg=':= 1 * 1 * recrEndPitchblendeSize * _default_' range=':= 1 * 1 * recrEndPitchblendeSize * _default_'/>
                         <Setting name='CloudThickness' avg=':= 1 * 1 * recrEndPitchblendeSize * _default_' range=':= 1 * 1 * recrEndPitchblendeSize * _default_'/>
                         <Setting name='CloudHeight' avg=':= 120' range=':= 120' type='normal' scaleTo='SeaLevel'/>
@@ -2179,7 +2100,7 @@ Fluorite, Yellow Fluorite
                                 deposits that would otherwise be very difficult to find. 
                             </Description>
                             <DrawWireframe>:=drawWireframes</DrawWireframe>
-                            <WireframeColor>0x60050F9C</WireframeColor>
+                            <WireframeColor>0x60462CFF</WireframeColor>
                             <Replaces block='minecraft:dirt'/>
                             <Replaces block='minecraft:sandstone'/>
                             <Replaces block='minecraft:end_stone'/>
@@ -2200,7 +2121,7 @@ Fluorite, Yellow Fluorite
                             This mimics vanilla ore generation.
                         </Description>
                         <DrawWireframe>:=drawWireframes</DrawWireframe>
-                        <WireframeColor>0x60050F9C</WireframeColor>
+                        <WireframeColor>0x60462CFF</WireframeColor>
                         <Setting name='Size' avg=':= 1 * 1 * recrEndPitchblendeSize * _default_'/>
                         <Setting name='Height' avg=':= 120' range=':= 120' type='uniform'/> 
                         <Setting name='Frequency' avg=':= 1 * 1 * recrEndPitchblendeFreq * _default_'/>
