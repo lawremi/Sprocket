@@ -64,6 +64,9 @@ oreBlock = []                 # The ore's actual block id
 oreExtra = []                 # Comma separated list in name:meta format
 oreMeta = []                  #  The meta number, if not 0
 oreReplace = []               # The block the ore replaces
+OreAdjacentAbove = []         # Ore is adjacent above which block?
+OreAdjacentBelow = []         # Ore is adjacent below which block?
+OreAdjacentBeside = []        # Ore is adjacent beside which block?
 orePipe = []                  # Content of pipe distribution
                               #    (usually lava)
 oreDistributions = []         # Comma-separated list of distribution
@@ -129,6 +132,9 @@ Config = ConfigParser.SafeConfigParser(
               'World':'Overworld',
               'Meta':'0',
               'Replace':'minecraft:stone',
+              'Adjacent Above':'MISSING',
+              'Adjacent Below':'MISSING',
+              'Adjacent Beside':'MISSING',
               'Pipe':'minecraft:lava',
               'Distribution':'Vanilla',
               'Distribution Type':'normal',
@@ -226,6 +232,9 @@ for currentOre in oreName:
     oreWorld.append(Config.get(currentOre, 'World'))
     oreMeta.append(Config.get(currentOre, 'Meta'))
     oreReplace.append(Config.get(currentOre, 'Replace'))
+    OreAdjacentAbove.append(Config.get(currentOre, 'Adjacent Above'))
+    OreAdjacentBelow.append(Config.get(currentOre, 'Adjacent Below'))
+    OreAdjacentBeside.append(Config.get(currentOre, 'Adjacent Beside'))
     orePipe.append(Config.get(currentOre, 'Pipe'))
     oreDistributions.append(Config.get(currentOre, 'Distributions'))
     oreDistType.append(Config.get(currentOre, 'Distribution Type'))
@@ -378,7 +387,29 @@ def firstReplace(currentReplaceList):
     replaceList = currentReplaceList.split(',')
     
     return replaceList[0]
+    
+######################## Block Adjacency ###########################
 
+def adjacentAboveSet(adjacentTo):
+    global indentLine
+    replaceCommand = indentText(indentLine)+"<PlacesAbove block='"+adjacentTo+"'/>\n"
+    
+    return replaceCommand
+    
+    
+def adjacentBelowSet(adjacentTo):
+    global indentLine
+    replaceCommand = indentText(indentLine)+"<PlacesBelow block='"+adjacentTo+"'/>\n"
+    
+    return replaceCommand
+    
+    
+def adjacentBesideSet(adjacentTo):
+    global indentLine
+    replaceCommand = indentText(indentLine)+"<PlacesBeside block='"+adjacentTo+"'/>\n"
+    
+    return replaceCommand
+    
 ################## CHOOSE DISTRIBUTION OPTIONS #####################
 
 def distributionControlGen(currentOreDistBase):
@@ -885,7 +916,7 @@ def verticalVeinsDist(currentOreGen,level):
         distText += indentText(indentLine)+"<Setting name='MotherlodeHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"' /> \n"
         distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
         distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':=  "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * 1/5 * _default_'/>\n"    
+        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':=  "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"    
 
         if oreVeinBranchFrequency[currentOreGen] != "1":
             distText += indentText(indentLine)+"<Setting name='BranchFrequency' avg=':= "+oreVeinBranchFrequency[currentOreGen]+" * _default_'/>\n"
@@ -936,7 +967,7 @@ def verticalVeinsDist(currentOreGen,level):
         distText += indentText(indentLine)+"<Setting name='MotherlodeHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"' /> \n"
         distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
         distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * 1.5 * _default_'/>\n"    
+        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * 3 * _default_'/>\n"    
 
         if oreVeinBranchFrequency[currentOreGen] != "1":
             distText += indentText(indentLine)+"<Setting name='BranchFrequency' avg=':= "+oreVeinBranchFrequency[currentOreGen]+" * _default_'/>\n"
