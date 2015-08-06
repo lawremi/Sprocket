@@ -27,12 +27,12 @@ Sprocket is a command-line program.  It requires that you have Python 2.7
 installed on your system.  You can pick up Python 2.7 from www.python.org
 
 To run the program, you have one of two options:
-	
-	`sprocket.py name-of-file.ini`
+        
+        `sprocket.py name-of-file.ini`
 
 or 
 
-	`python sprocket.py name-of-file.ini`
+        `python sprocket.py name-of-file.ini`
 
 If Sprocket works correctly, you should either see it start a long chain
 of progress messages, starting with the ore's name, or else an error
@@ -203,23 +203,23 @@ it will name the configuration based on the mod name in the configuration file.
 
     Substitution: 
 
-	Custom Ore Generation's first action in every chunk loaded is to
-	wipe it clean of all previously-generated ores.  The process of
-	looking for and removing ores can take a small amount of time,
-	which can add up with each additional configuration.
+        Custom Ore Generation's first action in every chunk loaded is to
+        wipe it clean of all previously-generated ores.  The process of
+        looking for and removing ores can take a small amount of time,
+        which can add up with each additional configuration.
 
-	Many mods include configuration options that allow you to turn off
-	their in-built oregens for just a tool such as this one.
+        Many mods include configuration options that allow you to turn off
+        their in-built oregens for just a tool such as this one.
 
-	The Substitution option allows the modpack designer to disable
-	COG's "wipe it clean first" feature for the mods they disabled
-	oregen in.  This will improve chunk-loading performance by doing
-	away with the cleanup-before-orespawn step.
+        The Substitution option allows the modpack designer to disable
+        COG's "wipe it clean first" feature for the mods they disabled
+        oregen in.  This will improve chunk-loading performance by doing
+        away with the cleanup-before-orespawn step.
 
-	By default, this value is set to "Yes" (do the substitution
-	"wipe-it-clean" step for this ore/mod).  Changing an ore, or the
-	[DEFAULT] to "no" will skip the step for this ore or mod,
-	respectively.
+        By default, this value is set to "Yes" (do the substitution
+        "wipe-it-clean" step for this ore/mod).  Changing an ore, or the
+        [DEFAULT] to "no" will skip the step for this ore or mod,
+        respectively.
 
     Wireframe:
 
@@ -238,15 +238,15 @@ it will name the configuration based on the mod name in the configuration file.
         is the same for all ores in a configuration file.
 
     Seed:
-	
-	Some distributions, such as the Pipe and Geode distributions, depend
-	on the multiple configurations being identically-located, so they can
-	interact as desired.  This means that they have to share a random number
-	seed.  If you want to use a specific value, or you just don't want it
-	changing every time you re-run Sprocket, you can set the seed number
-	with this command.
+        
+        Some distributions, such as the Pipe and Geode distributions, depend
+        on the multiple configurations being identically-located, so they can
+        interact as desired.  This means that they have to share a random number
+        seed.  If you want to use a specific value, or you just don't want it
+        changing every time you re-run Sprocket, you can set the seed number
+        with this command.
 
-	The default is randomly generated each time Sprocket is run.
+        The default is randomly generated each time Sprocket is run.
 
     Pipe:
         
