@@ -201,7 +201,7 @@ it will name the configuration based on the mod name in the configuration file.
     
         The default is 'normal'.
 
-    Substitution: 
+    Substitute: 
 
         Custom Ore Generation's first action in every chunk loaded is to
         wipe it clean of all previously-generated ores.  The process of
