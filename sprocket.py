@@ -151,7 +151,7 @@ Config = ConfigParser.SafeConfigParser(
               'Scale':'SeaLevel',
               'Active':'Yes',
               'Substitute':'Yes',
-              'Seed':'0x'+randomHexNumber(4),
+              'Seed':randomHexNumber(4),
               'Wireframe':randomHexNumber(6),
               'Height':'32',
               'Range':'32',
