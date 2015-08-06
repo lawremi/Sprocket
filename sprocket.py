@@ -121,6 +121,11 @@ oreNoPreferBiomes = []        # Ores won't spawn extra in these biomes
 orePreMultiplier = []         # "Prefers" Multiplier
 oreScale = []                 # COG Surface Scaling
 oreActive = []                # Is ore distribution active by default?
+oreSeed = []                  # Pick a distribution seed
+oreSubstitution = []          # Do we remove this ore before generating?
+                              #   Useful if mod's oregen can be turned
+                              #   off.
+
 
 oreList = ""
 indentLine=0
@@ -145,6 +150,8 @@ Config = ConfigParser.SafeConfigParser(
               'Prefers Multiplier':'2',
               'Scale':'SeaLevel',
               'Active':'Yes',
+              'Substitute':'Yes',
+              'Seed':'0x'+randomHexNumber(4),
               'Wireframe':randomHexNumber(6),
               'Height':'32',
               'Range':'32',
@@ -280,6 +287,9 @@ for currentOre in oreName:
     orePreMultiplier.append(Config.get(currentOre, 'Prefers Multiplier'))
     oreScale.append(Config.get(currentOre, 'Scale'))
     oreActive.append(Config.get(currentOre, 'Active'))
+    oreSubstitution.append(Config.get(currentOre, 'Substitute'))
+    oreSeed.append(Config.get(currentOre, 'Seed'))
+    
     
     # Check to make sure the Block value is valid.
     if Config.get(currentOre, 'Block') == 'MISSING':
@@ -1128,7 +1138,7 @@ def geodeSimple(currentOreGen,level):
     preferMultiplier = ""
     global indentLine
     
-    geodeSeed = "'0x"+randomHexNumber(4)+"'"
+    geodeSeed = oreSeed[currentOreGen]
     if level == "Prefers":
         preferMultiplier = orePreMultiplier[currentOreGen]
         inheritLine = oreConfigName+"BaseVeins"
@@ -1139,7 +1149,7 @@ def geodeSimple(currentOreGen,level):
     #   Outer Crust
     distText = indentText(indentLine)+"\n"
     distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Geode Crust -->\n"
-    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Shell' block='"+orePipe[currentOreGen]+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed="+geodeSeed+">\n"
+    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Shell' block='"+orePipe[currentOreGen]+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed='0x"+geodeSeed+"'>\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
     indentLine += 1
@@ -1182,7 +1192,7 @@ def geodeSimple(currentOreGen,level):
     
     distText += indentText(indentLine)+"\n"
     distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Geode Crystals -->\n"
-    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Crystal' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed="+geodeSeed+">\n"
+    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Crystal' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed='0x"+geodeSeed+"'>\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
     indentLine += 1
@@ -1224,7 +1234,7 @@ def geodeSimple(currentOreGen,level):
     
     distText += indentText(indentLine)+"\n"
     distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Geode Air Pocket -->\n"
-    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"AirBubble' block='minecraft:air'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed="+geodeSeed+">\n"
+    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"AirBubble' block='minecraft:air'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed='0x"+geodeSeed+"'>\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
     indentLine += 1
@@ -1312,7 +1322,7 @@ def geodeCompound(currentOreGen,level):
     preferMultiplier = ""
     global indentLine
     
-    geodeSeed = "'0x"+randomHexNumber(4)+"'"
+    geodeSeed = oreSeed[currentOreGen]
     if level == "Prefers":
         preferMultiplier = orePreMultiplier[currentOreGen]
         inheritLine = oreConfigName+"BaseVeins"
@@ -1323,7 +1333,7 @@ def geodeCompound(currentOreGen,level):
     #   Outer Crust
     distText = indentText(indentLine)+"\n"
     distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Geode Crust -->\n"
-    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Shell' block='"+orePipe[currentOreGen]+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed="+geodeSeed+">\n"
+    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Shell' block='"+orePipe[currentOreGen]+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed='0x"+geodeSeed+"'>\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
     indentLine += 1
@@ -1374,7 +1384,7 @@ def geodeCompound(currentOreGen,level):
     
     distText += indentText(indentLine)+"\n"
     distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Geode Crystals -->\n"
-    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Crystal' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed="+geodeSeed+">\n"
+    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Crystal' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed='0x"+geodeSeed+"'>\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
     indentLine += 1
@@ -1422,7 +1432,7 @@ def geodeCompound(currentOreGen,level):
         fractionNumber -= 1
         distText += indentText(indentLine)+"\n"
         distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Geode Crystals ("+extraBlock+") -->\n"
-        distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+str(oreCount)+"Crystal' block='"+extraBlock+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed="+geodeSeed+">\n"
+        distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+str(oreCount)+"Crystal' block='"+extraBlock+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed='0x"+geodeSeed+"'>\n"
         indentLine += 1
         distText += indentText(indentLine)+"<Description>\n"
         indentLine += 1
@@ -1466,7 +1476,7 @@ def geodeCompound(currentOreGen,level):
     
     distText += indentText(indentLine)+"\n"
     distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Geode Air Pocket -->\n"
-    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"AirBubble' block='minecraft:air'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed="+geodeSeed+">\n"
+    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"AirBubble' block='minecraft:air'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed='0x"+geodeSeed+"'>\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
     indentLine += 1
@@ -1822,7 +1832,7 @@ def pipeVeinsDist(currentOreGen,level):
     preferMultiplier = ""
     global indentLine
     
-    pipeSeed = "'0x"+randomHexNumber(4)+"'"
+    pipeSeed = oreSeed[currentOreGen]
     if level == "Prefers":
         preferMultiplier = orePreMultiplier[currentOreGen]
         inheritLine = oreConfigName+"BaseVeins"
@@ -1834,7 +1844,7 @@ def pipeVeinsDist(currentOreGen,level):
     
     distText = indentText(indentLine)+"\n"
     distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Ore Configuration -->\n"
-    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Veins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed="+pipeSeed+">\n"
+    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Veins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed='0x"+pipeSeed+"'>\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
     indentLine += 1
@@ -1892,7 +1902,7 @@ def pipeVeinsDist(currentOreGen,level):
     
     distText += indentText(indentLine)+"\n"
     distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Pipe Configuration -->\n"
-    distText += indentText(indentLine)+"<Veins name= '"+oreConfigName+str(level)+"Pipe' block='"+orePipe[currentOreGen]+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+oreConfigName+str(level)+"Veins' seed="+pipeSeed+">\n"
+    distText += indentText(indentLine)+"<Veins name= '"+oreConfigName+str(level)+"Pipe' block='"+orePipe[currentOreGen]+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+oreConfigName+str(level)+"Veins' seed='0x"+pipeSeed+"'>\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
     indentLine += 1
@@ -2285,12 +2295,13 @@ def depositRemoval(world):
     # world.
     
     for oreSelect in range(0, len(oreConfigName)):
-        orePreReplaceName=oreReplace[oreSelect]
-        oreReplaceName=orePreReplaceName.replace(" ", "")
+        if oreSubstitution[oreSelect] == "Yes":
+            orePreReplaceName=oreReplace[oreSelect]
+            oreReplaceName=orePreReplaceName.replace(" ", "")
             
-        if worldCheck(oreSelect, world) == 1:
-            firstReplacement = firstReplace(oreReplaceName)
-            replacementBlocks.append(firstReplacement)
+            if worldCheck(oreSelect, world) == 1:
+                firstReplacement = firstReplace(oreReplaceName)
+                replacementBlocks.append(firstReplacement)
             
     replaceList = list(set(replacementBlocks))
                 
