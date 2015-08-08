@@ -31,6 +31,25 @@ def indentText(level):
         
     return spaceHolder
 
+### ********************* Basic Functions ************************ ###
+
+# Makes a list of characters into a comma-separated list.
+def makeCommaList(currentList):
+    newList = currentList.split(',')
+    return newList
+    
+# Removes spaces from the string.
+def spaceRemove(currentItem):
+    newItem = currentItem.replace(" ", "")
+    return newItem
+    
+# Returns the first element in a list.
+def firstListItem(currentList):
+    return firstListItem[0]
+    
+
+### ********************* End Of Basic Functions ***************** ###
+
 # Initialize variables
 
 errorCondition = ""
@@ -64,9 +83,9 @@ oreBlock = []                 # The ore's actual block id
 oreExtra = []                 # Comma separated list in name:meta format
 oreMeta = []                  #  The meta number, if not 0
 oreReplace = []               # The block the ore replaces
-OreAdjacentAbove = []         # Ore is adjacent above which block?
-OreAdjacentBelow = []         # Ore is adjacent below which block?
-OreAdjacentBeside = []        # Ore is adjacent beside which block?
+oreAdjacentAbove = []         # Ore is adjacent above which block?
+oreAdjacentBelow = []         # Ore is adjacent below which block?
+oreAdjacentBeside = []        # Ore is adjacent beside which block?
 orePipe = []                  # Content of pipe distribution
                               #    (usually lava)
 oreDistributions = []         # Comma-separated list of distribution
@@ -220,7 +239,7 @@ if errorCondition:
 
 print "Generating configuration for "+modName+"."
                     
-modConfigName=modName.replace(" ", "")
+modConfigName=spaceRemove(modName)
 
 oreName = Config.sections()
 oreName.pop(0) # The first section is not an ore, it's the mod's
@@ -228,20 +247,22 @@ oreName.pop(0) # The first section is not an ore, it's the mod's
 
 oreCount = 0
 
+
+
 # Creating a set of lists for the options; memory access is always
 # faster than disk access.
 
 
 for currentOre in oreName:
-    oreConfigName.append(oreName[oreCount].replace(" ", ""))
+    oreConfigName.append(spaceRemove(oreName[oreCount]))
     oreBlock.append(Config.get(currentOre, 'Block'))
     oreExtra.append(Config.get(currentOre, 'Extra'))
     oreWorld.append(Config.get(currentOre, 'World'))
     oreMeta.append(Config.get(currentOre, 'Meta'))
     oreReplace.append(Config.get(currentOre, 'Replace'))
-    OreAdjacentAbove.append(Config.get(currentOre, 'Adjacent Above'))
-    OreAdjacentBelow.append(Config.get(currentOre, 'Adjacent Below'))
-    OreAdjacentBeside.append(Config.get(currentOre, 'Adjacent Beside'))
+    oreAdjacentAbove.append(Config.get(currentOre, 'Adjacent Above'))
+    oreAdjacentBelow.append(Config.get(currentOre, 'Adjacent Below'))
+    oreAdjacentBeside.append(Config.get(currentOre, 'Adjacent Beside'))
     orePipe.append(Config.get(currentOre, 'Pipe'))
     oreDistributions.append(Config.get(currentOre, 'Distributions'))
     oreDistType.append(Config.get(currentOre, 'Distribution Type'))
@@ -312,6 +333,7 @@ headerTemplate = ""
 controlsTemplate = []
 oreConfigTemplate = []
 
+
 ########################## IS DISTRIBUTION ACTIVE? ###################
 # Return nothing if distribution is active; the default distribution
 # will be the first one configured.  If the distribution is active,
@@ -353,7 +375,7 @@ def biomeAvoid(biome):
 
 
 def biomeList(currentBiomeList):
-    biomeList = currentBiomeList.split(',')
+    biomeList = makeCommaList(currentBiomeList)
     biomeCommandList = ""
     
     for biomeSelect in range (0, len(biomeList)):
@@ -365,7 +387,7 @@ def biomeList(currentBiomeList):
 
 
 def biomeAvoidList(currentBiomeList):
-    biomeList = currentBiomeList.split(',')
+    biomeList = makeCommaList(currentBiomeList)
     biomeCommandList = ""
     
     for biomeSelect in range (0, len(biomeList)):
@@ -385,7 +407,7 @@ def replaceSet(replace):
     return replaceCommand
 
 def replaceList(currentReplaceList):
-    replaceList = currentReplaceList.split(',')
+    replaceList = makeCommaList(currentReplaceList)
     replaceCommandList = ""
     
     for replaceSelect in range (0, len(replaceList)):
@@ -394,37 +416,63 @@ def replaceList(currentReplaceList):
     return replaceCommandList
     
 def firstReplace(currentReplaceList):
-    replaceList = currentReplaceList.split(',')
+    replaceList = makeCommaList(currentReplaceList)
     
     return replaceList[0]
     
 ######################## Block Adjacency ###########################
 
-def adjacentAboveSet(adjacentTo):
+
+def adjacentSet(adjacentTo, adjacentDirection):
     global indentLine
-    replaceCommand = indentText(indentLine)+"<PlacesAbove block='"+adjacentTo+"'/>\n"
+    adjacentCommand = ""
     
-    return replaceCommand
+    if adjacentDirection == "Above":
+        if adjacentTo != "MISSING":
+            adjacentCommand = indentText(indentLine)+"<PlacesAbove block='"+adjacentTo+"'/>\n"
+    if adjacentDirection == "Below":
+        if adjacentTo != "MISSING":
+            adjacentCommand = indentText(indentLine)+"<PlacesBelow block='"+adjacentTo+"'/>\n"
+    if adjacentDirection == "Beside":
+        if adjacentTo != "MISSING":
+            adjacentCommand = indentText(indentLine)+"<PlacesBeside block='"+adjacentTo+"'/>\n"
     
+    return adjacentCommand
     
-def adjacentBelowSet(adjacentTo):
-    global indentLine
-    replaceCommand = indentText(indentLine)+"<PlacesBelow block='"+adjacentTo+"'/>\n"
+def adjacentAboveList(currentAdjacentList):
+    adjacentList = makeCommaList(currentAdjacentList)
+    adjacentCommandList = ""
     
-    return replaceCommand
+    for adjacentSelect in range (0, len(adjacentList)):
+        adjacentCommandList += adjacentSet(adjacentList[adjacentSelect], "Above")
     
+    return adjacentCommandList
     
-def adjacentBesideSet(adjacentTo):
-    global indentLine
-    replaceCommand = indentText(indentLine)+"<PlacesBeside block='"+adjacentTo+"'/>\n"
+def adjacentBelowList(currentAdjacentList):
+    adjacentList = makeCommaList(currentAdjacentList)
+    adjacentCommandList = ""
     
-    return replaceCommand
+    for adjacentSelect in range (0, len(adjacentList)):
+        adjacentCommandList += adjacentSet(adjacentList[adjacentSelect], "Below")
+    
+    return adjacentCommandList
+    
+def adjacentBesideList(currentAdjacentList):
+    adjacentList = makeCommaList(currentAdjacentList)
+    adjacentCommandList = ""
+    
+    for adjacentSelect in range (0, len(adjacentList)):
+        adjacentCommandList += adjacentSet(adjacentList[adjacentSelect], "Beside")
+    
+    return adjacentCommandList
+    
     
 ################## CHOOSE DISTRIBUTION OPTIONS #####################
 
 def distributionControlGen(currentOreDistBase):
     global indentLine
-    currentOreDist = currentOreDistBase.replace(" ", "")
+    
+    currentOreDist = spaceRemove(currentOreDistBase)
     if currentOreDist == 'Substitute': # uses StandardGen
         optionText = indentText(indentLine)+"<Choice value='substituteGen' displayValue='Substitute'>\n"
         indentLine += 1
@@ -567,7 +615,7 @@ def controlsGen(currentOreGen):
     global indentLine
     
     oreConfigName=modPrefix+oreName[currentOreGen]
-    oreConfigName=oreConfigName.replace(" ", "")
+    oreConfigName=spaceRemove(oreConfigName)
     
     # Opening
     configScriptOpen = indentText(indentLine)+"<OptionChoice name='"+oreConfigName+"Dist'"+ifDistActive(currentOreGen)+" displayState='shown' displayGroup='group"+modConfigName+"'> \n"
@@ -581,7 +629,7 @@ def controlsGen(currentOreGen):
     
     # The list of ore distributions will determine available options.
     distributionList = oreDistributions[currentOreGen]
-    distributionList = distributionList.split(',')
+    distributionList = makeCommaList(distributionList)
     for distribution in distributionList:
          configScriptList += distributionControlGen(distribution)
     
@@ -658,12 +706,12 @@ def substituteDist(currentOreGen,level):
     orePrePreferName=orePreferBiomes[currentOreGen]
     orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     orePreReplaceName=oreReplace[currentOreGen]
-    oreConfigName=orePreConfigName.replace(" ", "")
-    oreBiomeName=orePreBiomeName.replace(" ", "")
-    oreAvoidName=orePreAvoidName.replace(" ", "")
-    orePreferName=orePrePreferName.replace(" ", "")
-    oreNoPreferName=orePreNoPreferName.replace(" ", "")
-    oreReplaceName=orePreReplaceName.replace(" ", "")
+    oreConfigName=spaceRemove(orePreConfigName)
+    oreBiomeName=spaceRemove(orePreBiomeName)
+    oreAvoidName=spaceRemove(orePreAvoidName)
+    orePreferName=spaceRemove(orePrePreferName)
+    oreNoPreferName=spaceRemove(orePreNoPreferName)
+    oreReplaceName=spaceRemove(orePreReplaceName)
     global indentLine
     
     distText = indentText(indentLine)+"<Substitute name='"+oreConfigName+str(level)+"Substitute' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+">\n"
@@ -686,12 +734,12 @@ def vanillaDist(currentOreGen,level):
     orePrePreferName=orePreferBiomes[currentOreGen]
     orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     orePreReplaceName=oreReplace[currentOreGen]
-    oreConfigName=orePreConfigName.replace(" ", "")
-    oreBiomeName=orePreBiomeName.replace(" ", "")
-    oreAvoidName=orePreAvoidName.replace(" ", "")
-    orePreferName=orePrePreferName.replace(" ", "")
-    oreNoPreferName=orePreNoPreferName.replace(" ", "")
-    oreReplaceName=orePreReplaceName.replace(" ", "")
+    oreConfigName=spaceRemove(orePreConfigName)
+    oreBiomeName=spaceRemove(orePreBiomeName)
+    oreAvoidName=spaceRemove(orePreAvoidName)
+    orePreferName=spaceRemove(orePrePreferName)
+    oreNoPreferName=spaceRemove(orePreNoPreferName)
+    oreReplaceName=spaceRemove(orePreReplaceName)
         
     # Override global height and range with local values.
     if oreStdHeight[currentOreGen] != "0":
@@ -771,12 +819,18 @@ def layeredVeinsDist(currentOreGen,level):
     orePrePreferName=orePreferBiomes[currentOreGen]
     orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     orePreReplaceName=oreReplace[currentOreGen]
-    oreConfigName=orePreConfigName.replace(" ", "")
-    oreBiomeName=orePreBiomeName.replace(" ", "")
-    oreAvoidName=orePreAvoidName.replace(" ", "")
-    orePreferName=orePrePreferName.replace(" ", "")
-    oreNoPreferName=orePreNoPreferName.replace(" ", "")
-    oreReplaceName=orePreReplaceName.replace(" ", "")
+    orePreAdjacentAboveName=oreAdjacentAbove[currentOreGen]
+    orePreAdjacentBelowName=oreAdjacentBelow[currentOreGen]
+    orePreAdjacentBesideName=oreAdjacentBeside[currentOreGen]
+    oreConfigName=spaceRemove(orePreConfigName)
+    oreBiomeName=spaceRemove(orePreBiomeName)
+    oreAvoidName=spaceRemove(orePreAvoidName)
+    orePreferName=spaceRemove(orePrePreferName)
+    oreNoPreferName=spaceRemove(orePreNoPreferName)
+    oreReplaceName=spaceRemove(orePreReplaceName)
+    oreAdjacentBesideName=spaceRemove(orePreAdjacentBesideName)
+    oreAdjacentBelowName=spaceRemove(orePreAdjacentBelowName)
+    oreAdjacentAboveName=spaceRemove(orePreAdjacentAboveName)
         
     # Override global height and range with local values.
     if oreVeinHeight[currentOreGen] != "0":
@@ -840,6 +894,9 @@ def layeredVeinsDist(currentOreGen,level):
             distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg=':= "+oreVeinSegmentPitchAvg[currentOreGen]+"' range=':= "+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
         
         distText += replaceList(oreReplaceName)
+        distText += adjacentAboveList(oreAdjacentAboveName)
+        distText += adjacentBelowList(oreAdjacentBelowName)
+        distText += adjacentBesideList(oreAdjacentBesideName)
     
     if level == "Prefers":
         distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * _default_'/>\n"
@@ -871,12 +928,18 @@ def verticalVeinsDist(currentOreGen,level):
     orePrePreferName=orePreferBiomes[currentOreGen]
     orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     orePreReplaceName=oreReplace[currentOreGen]
-    oreConfigName=orePreConfigName.replace(" ", "")
-    oreBiomeName=orePreBiomeName.replace(" ", "")
-    oreAvoidName=orePreAvoidName.replace(" ", "")
-    orePreferName=orePrePreferName.replace(" ", "")
-    oreNoPreferName=orePreNoPreferName.replace(" ", "")
-    oreReplaceName=orePreReplaceName.replace(" ", "")
+    orePreAdjacentAboveName=oreAdjacentAbove[currentOreGen]
+    orePreAdjacentBelowName=oreAdjacentBelow[currentOreGen]
+    orePreAdjacentBesideName=oreAdjacentBeside[currentOreGen]
+    oreConfigName=spaceRemove(orePreConfigName)
+    oreBiomeName=spaceRemove(orePreBiomeName)
+    oreAvoidName=spaceRemove(orePreAvoidName)
+    orePreferName=spaceRemove(orePrePreferName)
+    oreNoPreferName=spaceRemove(orePreNoPreferName)
+    oreReplaceName=spaceRemove(orePreReplaceName)
+    oreAdjacentBesideName=spaceRemove(orePreAdjacentBesideName)
+    oreAdjacentBelowName=spaceRemove(orePreAdjacentBelowName)
+    oreAdjacentAboveName=spaceRemove(orePreAdjacentAboveName)
         
     # Override global height and range with local values.
     if oreVeinHeight[currentOreGen] != "0":
@@ -944,6 +1007,9 @@ def verticalVeinsDist(currentOreGen,level):
             distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg=':= "+oreVeinSegmentPitchAvg[currentOreGen]+"' range=':= "+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
         
         distText += replaceList(oreReplaceName)
+        distText += adjacentAboveList(oreAdjacentAboveName)
+        distText += adjacentBelowList(oreAdjacentBelowName)
+        distText += adjacentBesideList(oreAdjacentBesideName)
     
     if level == "Prefers":
         distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * _default_'/>\n"
@@ -995,6 +1061,9 @@ def verticalVeinsDist(currentOreGen,level):
             distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg=':= "+oreVeinSegmentPitchAvg[currentOreGen]+"' range=':= "+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
         
         distText += replaceList(oreReplaceName)
+        distText += adjacentAboveList(oreAdjacentAboveName)
+        distText += adjacentBelowList(oreAdjacentBelowName)
+        distText += adjacentBesideList(oreAdjacentBesideName)
     
     if level == "Prefers":
         distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * _default_'/>\n"
@@ -1028,12 +1097,18 @@ def smallDepositsDist(currentOreGen,level):
     orePrePreferName=orePreferBiomes[currentOreGen]
     orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     orePreReplaceName=oreReplace[currentOreGen]
-    oreConfigName=orePreConfigName.replace(" ", "")
-    oreBiomeName=orePreBiomeName.replace(" ", "")
-    oreAvoidName=orePreAvoidName.replace(" ", "")
-    orePreferName=orePrePreferName.replace(" ", "")
-    oreNoPreferName=orePreNoPreferName.replace(" ", "")
-    oreReplaceName=orePreReplaceName.replace(" ", "")
+    orePreAdjacentAboveName=oreAdjacentAbove[currentOreGen]
+    orePreAdjacentBelowName=oreAdjacentBelow[currentOreGen]
+    orePreAdjacentBesideName=oreAdjacentBeside[currentOreGen]
+    oreConfigName=spaceRemove(orePreConfigName)
+    oreBiomeName=spaceRemove(orePreBiomeName)
+    oreAvoidName=spaceRemove(orePreAvoidName)
+    orePreferName=spaceRemove(orePrePreferName)
+    oreNoPreferName=spaceRemove(orePreNoPreferName)
+    oreReplaceName=spaceRemove(orePreReplaceName)
+    oreAdjacentBesideName=spaceRemove(orePreAdjacentBesideName)
+    oreAdjacentBelowName=spaceRemove(orePreAdjacentBelowName)
+    oreAdjacentAboveName=spaceRemove(orePreAdjacentAboveName)
         
     # Override global height and range with local values.
     if oreVeinHeight[currentOreGen] != "0":
@@ -1081,6 +1156,9 @@ def smallDepositsDist(currentOreGen,level):
         distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
         distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
         distText += replaceList(oreReplaceName)
+        distText += adjacentAboveList(oreAdjacentAboveName)
+        distText += adjacentBelowList(oreAdjacentBelowName)
+        distText += adjacentBesideList(oreAdjacentBesideName)
     
     if level == "Prefers":
         distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * _default_'/>\n"
@@ -1115,12 +1193,12 @@ def geodeSimple(currentOreGen,level):
     orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     orePreReplaceName=oreReplace[currentOreGen]
     
-    oreConfigName=orePreConfigName.replace(" ", "")
-    oreBiomeName=orePreBiomeName.replace(" ", "")
-    oreAvoidName=orePreAvoidName.replace(" ", "")
-    orePreferName=orePrePreferName.replace(" ", "")
-    oreNoPreferName=orePreNoPreferName.replace(" ", "")
-    oreReplaceName=orePreReplaceName.replace(" ", "")
+    oreConfigName=spaceRemove(orePreConfigName)
+    oreBiomeName=spaceRemove(orePreBiomeName)
+    oreAvoidName=spaceRemove(orePreAvoidName)
+    orePreferName=spaceRemove(orePrePreferName)
+    oreNoPreferName=spaceRemove(orePreNoPreferName)
+    oreReplaceName=spaceRemove(orePreReplaceName)
         
     # Override global height and range with local values.
     if oreVeinHeight[currentOreGen] != "0":
@@ -1295,16 +1373,16 @@ def geodeCompound(currentOreGen,level):
     orePreReplaceName=oreReplace[currentOreGen]
     orePreExtraName=oreExtra[currentOreGen]
     
-    oreConfigName=orePreConfigName.replace(" ", "")
-    oreBiomeName=orePreBiomeName.replace(" ", "")
-    oreAvoidName=orePreAvoidName.replace(" ", "")
-    orePreferName=orePrePreferName.replace(" ", "")
-    oreNoPreferName=orePreNoPreferName.replace(" ", "")
-    oreReplaceName=orePreReplaceName.replace(" ", "")
-    oreExtraName=orePreExtraName.replace(" ", "")
+    oreConfigName=spaceRemove(orePreConfigName)
+    oreBiomeName=spaceRemove(orePreBiomeName)
+    oreAvoidName=spaceRemove(orePreAvoidName)
+    orePreferName=spaceRemove(orePrePreferName)
+    oreNoPreferName=spaceRemove(orePreNoPreferName)
+    oreReplaceName=spaceRemove(orePreReplaceName)
+    oreExtraName=spaceRemove(orePreExtraName)
     
     # Generate Extra Block List
-    oreExtraBlocks = oreExtraName.split(',')
+    oreExtraBlocks = makeCommaList(oreExtraName)
         
     # Override global height and range with local values.
     if oreVeinHeight[currentOreGen] != "0":
@@ -1530,10 +1608,10 @@ def geodesDist(currentOreGen,level):
     # ore, or a compound one containing multiple ores.
     
     orePreExtraName=oreExtra[currentOreGen]
-    oreExtraName=orePreExtraName.replace(" ", "")
+    oreExtraName=spaceRemove(orePreExtraName)
     
     # Generate Extra Block List
-    oreExtraBlocks = oreExtraName.split(',')
+    oreExtraBlocks = makeCommaList(oreExtraName)
         
     if oreExtraBlocks[0] == "MISSING":
         return geodeSimple(currentOreGen,level)
@@ -1553,12 +1631,18 @@ def hugeVeinsDist(currentOreGen,level):
     orePrePreferName=orePreferBiomes[currentOreGen]
     orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     orePreReplaceName=oreReplace[currentOreGen]
-    oreConfigName=orePreConfigName.replace(" ", "")
-    oreBiomeName=orePreBiomeName.replace(" ", "")
-    oreAvoidName=orePreAvoidName.replace(" ", "")
-    orePreferName=orePrePreferName.replace(" ", "")
-    oreNoPreferName=orePreNoPreferName.replace(" ", "")
-    oreReplaceName=orePreReplaceName.replace(" ", "")
+    orePreAdjacentAboveName=oreAdjacentAbove[currentOreGen]
+    orePreAdjacentBelowName=oreAdjacentBelow[currentOreGen]
+    orePreAdjacentBesideName=oreAdjacentBeside[currentOreGen]
+    oreConfigName=spaceRemove(orePreConfigName)
+    oreBiomeName=spaceRemove(orePreBiomeName)
+    oreAvoidName=spaceRemove(orePreAvoidName)
+    orePreferName=spaceRemove(orePrePreferName)
+    oreNoPreferName=spaceRemove(orePreNoPreferName)
+    oreReplaceName=spaceRemove(orePreReplaceName)
+    oreAdjacentBesideName=spaceRemove(orePreAdjacentBesideName)
+    oreAdjacentBelowName=spaceRemove(orePreAdjacentBelowName)
+    oreAdjacentAboveName=spaceRemove(orePreAdjacentAboveName)
         
     # Override global height and range with local values.
     if oreVeinHeight[currentOreGen] != "0":
@@ -1580,7 +1664,7 @@ def hugeVeinsDist(currentOreGen,level):
         inheritLine = oreConfigName+"BaseVeins"
     else:
         preferMultiplier = "1"
-        inheritLine = "PresetLayeredVeins"
+        inheritLine = "PresetHugeVeins"
     
     distText = indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Veins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"'>\n"
     indentLine += 1
@@ -1630,6 +1714,9 @@ def hugeVeinsDist(currentOreGen,level):
             distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg=':= "+oreVeinSegmentPitchAvg[currentOreGen]+"' range=':= "+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
         
         distText += replaceList(oreReplaceName)
+        distText += adjacentAboveList(oreAdjacentAboveName)
+        distText += adjacentBelowList(oreAdjacentBelowName)
+        distText += adjacentBesideList(oreAdjacentBesideName)
     
     if level == "Prefers":
         distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * _default_'/>\n"
@@ -1639,52 +1726,6 @@ def hugeVeinsDist(currentOreGen,level):
         distText += biomeList(oreBiomeName)    
         distText += biomeAvoidList(oreAvoidName)
 
-    # "Hint" Veins
-    
-    if level == "Prefers":
-        preferMultiplier = orePreMultiplier[currentOreGen]
-        inheritLine = oreConfigName+"BaseHintVeins"
-    else:
-        preferMultiplier = "1"
-        inheritLine = "PresetHintVeins"
-    
-    distText += indentText(indentLine)+"\n"
-    distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Huge Vein Hint Veins -->\n"
-    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"HintVeins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"'>\n"
-    indentLine += 1
-    distText += indentText(indentLine)+"<Description>\n"
-    indentLine += 1
-    
-    if level == "Base":
-        distText += indentText(indentLine)+"Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). \n"
-        distText += indentText(indentLine)+"They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  \n"
-        distText += indentText(indentLine)+"to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  \n"
-        distText += indentText(indentLine)+"deposits that would otherwise be very difficult to find. \n"
-
-    elif level == "Prefers":
-        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
-    else:
-        distText += indentText(indentLine)+" "
-
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Description>\n"
-    distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
-    distText += indentText(indentLine)+"<Replaces block='minecraft:dirt'/>\n"
-    distText += indentText(indentLine)+"<Replaces block='minecraft:sandstone'/>\n"
-    distText += replaceList(oreReplaceName)
-    
-    if level == "Prefers":
-        distText += biomeList(orePreferName)
-        distText += biomeAvoidList(oreNoPreferName)
-    else:
-        distText += biomeList(oreBiomeName)    
-        distText += biomeAvoidList(oreAvoidName)
-    
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Veins>\n"
-    distText += indentText(indentLine)+"<!-- End "+oreName[currentOreGen]+" Huge Vein Hint Veins -->\n\n"
-    
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
         
@@ -1707,12 +1748,18 @@ def sparseVeinsDist(currentOreGen,level):
     orePrePreferName=orePreferBiomes[currentOreGen]
     orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     orePreReplaceName=oreReplace[currentOreGen]
-    oreConfigName=orePreConfigName.replace(" ", "")
-    oreBiomeName=orePreBiomeName.replace(" ", "")
-    oreAvoidName=orePreAvoidName.replace(" ", "")
-    orePreferName=orePrePreferName.replace(" ", "")
-    oreNoPreferName=orePreNoPreferName.replace(" ", "")
-    oreReplaceName=orePreReplaceName.replace(" ", "")
+    orePreAdjacentAboveName=oreAdjacentAbove[currentOreGen]
+    orePreAdjacentBelowName=oreAdjacentBelow[currentOreGen]
+    orePreAdjacentBesideName=oreAdjacentBeside[currentOreGen]
+    oreConfigName=spaceRemove(orePreConfigName)
+    oreBiomeName=spaceRemove(orePreBiomeName)
+    oreAvoidName=spaceRemove(orePreAvoidName)
+    orePreferName=spaceRemove(orePrePreferName)
+    oreNoPreferName=spaceRemove(orePreNoPreferName)
+    oreReplaceName=spaceRemove(orePreReplaceName)
+    oreAdjacentBesideName=spaceRemove(orePreAdjacentBesideName)
+    oreAdjacentBelowName=spaceRemove(orePreAdjacentBelowName)
+    oreAdjacentAboveName=spaceRemove(orePreAdjacentAboveName)
         
     # Override global height and range with local values.
     if oreVeinHeight[currentOreGen] != "0":
@@ -1779,6 +1826,9 @@ def sparseVeinsDist(currentOreGen,level):
             distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg=':= "+oreVeinSegmentPitchAvg[currentOreGen]+"' range=':= "+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
         
         distText += replaceList(oreReplaceName)
+        distText += adjacentAboveList(oreAdjacentAboveName)
+        distText += adjacentBelowList(oreAdjacentBelowName)
+        distText += adjacentBesideList(oreAdjacentBesideName)
     
     if level == "Prefers":
         distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * _default_'/>\n"
@@ -1810,12 +1860,12 @@ def pipeVeinsDist(currentOreGen,level):
     orePrePreferName=orePreferBiomes[currentOreGen]
     orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     orePreReplaceName=oreReplace[currentOreGen]
-    oreConfigName=orePreConfigName.replace(" ", "")
-    oreBiomeName=orePreBiomeName.replace(" ", "")
-    oreAvoidName=orePreAvoidName.replace(" ", "")
-    orePreferName=orePrePreferName.replace(" ", "")
-    oreNoPreferName=orePreNoPreferName.replace(" ", "")
-    oreReplaceName=orePreReplaceName.replace(" ", "")
+    oreConfigName=spaceRemove(orePreConfigName)
+    oreBiomeName=spaceRemove(orePreBiomeName)
+    oreAvoidName=spaceRemove(orePreAvoidName)
+    orePreferName=spaceRemove(orePrePreferName)
+    oreNoPreferName=spaceRemove(orePreNoPreferName)
+    oreReplaceName=spaceRemove(orePreReplaceName)
         
     # Override global height and range with local values.
     if oreVeinHeight[currentOreGen] != "0":
@@ -1961,12 +2011,12 @@ def strategicCloudsDist(currentOreGen,level):
     orePrePreferName=orePreferBiomes[currentOreGen]
     orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
     orePreReplaceName=oreReplace[currentOreGen]
-    oreConfigName=orePreConfigName.replace(" ", "")
-    oreBiomeName=orePreBiomeName.replace(" ", "")
-    oreAvoidName=orePreAvoidName.replace(" ", "")
-    orePreferName=orePrePreferName.replace(" ", "")
-    oreNoPreferName=orePreNoPreferName.replace(" ", "")
-    oreReplaceName=orePreReplaceName.replace(" ", "")
+    oreConfigName=spaceRemove(orePreConfigName)
+    oreBiomeName=spaceRemove(orePreBiomeName)
+    oreAvoidName=spaceRemove(orePreAvoidName)
+    orePreferName=spaceRemove(orePrePreferName)
+    oreNoPreferName=spaceRemove(orePreNoPreferName)
+    oreReplaceName=spaceRemove(orePreReplaceName)
         
     # Override global height and range with local values.
     if oreCloudHeight[currentOreGen] != "0":
@@ -2100,8 +2150,8 @@ def distributionGen(currentOreGen, currentOrePreDist):
     global indentLine
     distributionText = ""
     orePreConfigName=modPrefix+oreName[currentOreGen]
-    oreConfigName=orePreConfigName.replace(" ", "")
-    currentOreDist=currentOrePreDist.replace(" ", "")
+    oreConfigName=spaceRemove(orePreConfigName)
+    currentOreDist=spaceRemove(currentOrePreDist)
     
 
     distributionText = indentText(indentLine)+"\n"
@@ -2230,7 +2280,7 @@ def distConfigGen(currentOreGen, world):
     
     # The list of ore distributions will determine available options.
     distributionList = oreDistributions[currentOreGen]
-    distributionList = distributionList.split(',')
+    distributionList = makeCommaList(distributionList)
     
     for distribution in distributionList:
         if oreWorld[currentOreGen] == world:
@@ -2253,7 +2303,7 @@ def worldCheck(currentOreGen, world):
 def replaceCheck(currentOreGen, replace):
     
     orePreReplaceName=oreReplace[currentOreGen]
-    oreReplaceName=orePreReplaceName.replace(" ", "")
+    oreReplaceName=spaceRemove(orePreReplaceName)
     
     global indentLine
     if firstReplace(oreReplaceName) == replace:
@@ -2297,7 +2347,7 @@ def depositRemoval(world):
     for oreSelect in range(0, len(oreConfigName)):
         if oreSubstitution[oreSelect] == "Yes":
             orePreReplaceName=oreReplace[oreSelect]
-            oreReplaceName=orePreReplaceName.replace(" ", "")
+            oreReplaceName=spaceRemove(orePreReplaceName)
             
             if worldCheck(oreSelect, world) == 1:
                 firstReplacement = firstReplace(oreReplaceName)
@@ -2340,43 +2390,34 @@ def depositRemoval(world):
 def modDetectLevel():
     global indentLine
     indentLine=1
+    outConfig =  ""
 
     if modDetect != "minecraft":
-        outConfig = indentText(indentLine)+"<!-- Mod detection -->\n"
+        outConfig += indentText(indentLine)+"<!-- Mod detection -->\n"        
         outConfig += indentText(indentLine)+"<IfModInstalled name=\""+modDetect+"\">\n"
-        indentLine += 1
-        outConfig += indentText(indentLine)+"\n"
-        outConfig += indentText(indentLine)+"<!-- Starting Custom Ore Gen Configuration. -->\n"
-        outConfig += indentText(indentLine)+"<ConfigSection>\n"
         outConfig += indentText(indentLine)+"\n"
         indentLine += 1
-        outConfig += configSetupSection()+"\n"
-        outConfig += overworldSetupSection()+"\n"
-        outConfig += netherSetupSection()+"\n"
-        outConfig += endSetupSection()+"\n"
-        indentLine -= 1
-        outConfig += indentText(indentLine)+"\n"
-        outConfig += indentText(indentLine)+"</ConfigSection>\n"
-        outConfig += indentText(indentLine)+"<!-- Custom Ore Gen Configuration Complete! -->\n"
+        
+    outConfig += indentText(indentLine)+"<!-- Starting Configuration for Custom Ore Generation. -->\n"
+    outConfig += indentText(indentLine)+"<ConfigSection>\n"
+    outConfig += indentText(indentLine)+"\n"
+    indentLine += 1
+    outConfig += configSetupSection()+"\n"
+    outConfig += worldSetupSection("Overworld", "COGActive")
+    outConfig += worldSetupSection("Nether", "HellRandomLevelSource")
+    outConfig += worldSetupSection("End", "EndRandomLevelSource")
+    indentLine -= 1
+    outConfig += indentText(indentLine)+"\n"
+    outConfig += indentText(indentLine)+"</ConfigSection>\n"
+    outConfig += indentText(indentLine)+"<!-- Configuration for Custom Ore Generation Complete! -->\n"
+    
+    if modDetect != "minecraft":
         indentLine -= 1
         outConfig += indentText(indentLine)+"\n"
         outConfig += indentText(indentLine)+"</IfModInstalled> \n "
 
-        return outConfig
-    else:
-        outConfig = indentText(indentLine)+"\n"
-        outConfig += indentText(indentLine)+"<!-- Starting Custom Ore Gen Configuration. -->\n"
-        outConfig += indentText(indentLine)+"<ConfigSection>\n "
-        indentLine += 1
-        outConfig += configSetupSection()+"\n"
-        outConfig += overworldSetupSection()+"\n"
-        outConfig += netherSetupSection()+"\n"
-        outConfig += endSetupSection()+"\n\n"
-        indentLine -= 1
-        outConfig += indentText(indentLine)+"</ConfigSection>\n"
-        outConfig += indentText(indentLine)+"<!-- Custom Ore Gen Configuration Complete! -->\n"
-        
-        return outConfig
+    return outConfig
+    
 
 ############################# SETUP SCREEN ##########################
 # Final configuration screen setup
@@ -2417,31 +2458,41 @@ def configSetupSection():
     setupConfig += indentText(indentLine)+"<!-- Setup Screen Complete -->\n\n"
     
     return setupConfig
+    
+    
+################### WORLD CONFIGURATION #############################
+# Final world setup (clean vanilla oregen, replace it with COG
+# oregen).  Options include the name of the dimension ("Nether"), and its
+# dimension generator ID ("HellRandomLevelSource")
 
-################## OVERWORLD CONFIGURATION ##########################
-# Final overworld setup (clean vanilla oregen, replace it with COG
-# oregen)
-
-def overworldSetupSection():
+def worldSetupSection(currentWorldName, currentWorldDimension):
     global indentLine
     
-    print "...adding Overworld ores... "
+    # If we're using the overworld, either with vanilla or Alaternate
+    # Terrain Generation, we want to use the "COGActive" option choice.
     
-    setupConfig = indentText(indentLine)+"<!-- Setup Overworld -->\n"
-    setupConfig += indentText(indentLine)+"<IfCondition condition=':= ?COGActive'>\n"
+    print "...adding "+currentWorldName+" ores... "
+    
+    setupConfig = indentText(indentLine)+"<!-- Setup "+currentWorldName+" -->\n"
+    
+    if currentWorldDimension == "COGActive":
+        setupConfig += indentText(indentLine)+"<IfCondition condition=':= ?COGActive'>\n"
+    else:
+        setupConfig += indentText(indentLine)+"<IfCondition condition=':= dimension.generator = \""+currentWorldDimension+"\"'>\n"
+        
     indentLine += 1
-    setupConfig += depositRemoval("Overworld")
+    setupConfig += depositRemoval(currentWorldName)
     setupConfig += indentText(indentLine)+"\n"
     setupConfig += indentText(indentLine)+"<!-- Adding ores --> \n"
                
     for oreSelect in range(0,len(oreName)):
-        if oreWorld[oreSelect] == "Overworld":
+        if oreWorld[oreSelect] == currentWorldName:
             setupConfig += indentText(indentLine)+"\n"
             setupConfig += indentText(indentLine)+"<!-- Begin "+oreName[oreSelect]+" Generation --> \n"
         
-        setupConfig+=distConfigGen(oreSelect, "Overworld")
+        setupConfig+=distConfigGen(oreSelect, currentWorldName)
         
-        if oreWorld[oreSelect] == "Overworld":
+        if oreWorld[oreSelect] == currentWorldName:
             setupConfig += indentText(indentLine)+"<!-- End "+oreName[oreSelect]+" Generation --> \n\n"
         
     
@@ -2449,94 +2500,10 @@ def overworldSetupSection():
     indentLine -= 1
     setupConfig += indentText(indentLine)+"\n"
     setupConfig += indentText(indentLine)+"</IfCondition>\n"
-    setupConfig += indentText(indentLine)+"<!-- Overworld Setup Complete -->\n\n"
-    
-    return setupConfig
-    
-##################### NETHER CONFIGURATION ##########################
-# Final nether setup (clean vanilla oregen, replace it with COG
-# oregen)
-
-def netherSetupSection():
-    global indentLine
-    verified = 0
-    
-    print "...adding Nether ores... "
-    
-    for oreSelect in range(0, len(oreConfigName)):    
-            
-        if oreWorld[oreSelect] == "Nether":
-            verified = 1
-            
-    if verified == 0:
-        return " "
-    
-    setupConfig = indentText(indentLine)+"<!-- Setup Nether -->\n"
-    setupConfig += indentText(indentLine)+"<IfCondition condition=':= dimension.generator = \"HellRandomLevelSource\"'>\n"
-    indentLine += 1
-    setupConfig += depositRemoval("Nether")
-    setupConfig += indentText(indentLine)+"\n"
-    setupConfig += indentText(indentLine)+"<!-- Adding ores --> \n"
-               
-    for oreSelect in range(0,len(oreName)):
-        if oreWorld[oreSelect] == "Nether":
-            setupConfig += indentText(indentLine)+"\n"
-            setupConfig += indentText(indentLine)+"<!-- Begin "+oreName[oreSelect]+" Generation --> \n"
-            
-        setupConfig+=distConfigGen(oreSelect, "Nether")
-        
-        if oreWorld[oreSelect] == "Nether":
-            setupConfig += indentText(indentLine)+"<!-- End "+oreName[oreSelect]+" Generation --> \n\n"
-    
-    setupConfig += indentText(indentLine)+"<!-- Done adding ores -->\n"
-    indentLine -= 1
-    setupConfig += indentText(indentLine)+"\n"
-    setupConfig += indentText(indentLine)+"</IfCondition>\n"
-    setupConfig += indentText(indentLine)+"<!-- Nether Setup Complete -->\n\n"
+    setupConfig += indentText(indentLine)+"<!-- "+currentWorldName+" Setup Complete -->\n\n"
     
     return setupConfig
 
-####################### END CONFIGURATION ##########################
-# Final end setup (clean vanilla oregen, replace it with COG oregen)
-
-def endSetupSection():
-    global indentLine
-    verified = 0
-    
-    print "...adding End ores... "
-    
-    for oreSelect in range(0, len(oreConfigName)):        
-        if oreWorld[oreSelect] == "End":
-            verified = 1
-            
-    if verified == 0:
-        return " "
-    
-    setupConfig = indentText(indentLine)+"<!-- Setup End -->\n"
-    setupConfig += indentText(indentLine)+"<IfCondition condition=':= dimension.generator = \"EndRandomLevelSource\"'>\n"
-    indentLine += 1
-    setupConfig += depositRemoval("End")
-    setupConfig += indentText(indentLine)+"\n"
-    setupConfig += indentText(indentLine)+"<!-- Adding ores --> \n"
-               
-    for oreSelect in range(0,len(oreName)):
-        if oreWorld[oreSelect] == "End":
-            setupConfig += indentText(indentLine)+"\n"
-            setupConfig += indentText(indentLine)+"<!-- Begin "+oreName[oreSelect]+" Generation --> \n"
-            
-        setupConfig+=distConfigGen(oreSelect, "End")
-        
-        if oreWorld[oreSelect] == "End":
-            setupConfig += indentText(indentLine)+"<!-- End "+oreName[oreSelect]+" Generation --> \n\n"
-    
-    setupConfig += indentText(indentLine)+"<!-- Done adding ores -->\n"
-    indentLine -= 1
-    setupConfig += indentText(indentLine)+"\n"
-    setupConfig += indentText(indentLine)+"</IfCondition>\n"
-    setupConfig += indentText(indentLine)+"<!-- End Setup Complete -->\n\n"
-    
-    return setupConfig
-    
 ############# ASSEMBLE CONFIGURATION ################################
 # This is where the configuration gets prepared for writing.
 
