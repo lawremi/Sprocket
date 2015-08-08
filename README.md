@@ -402,6 +402,23 @@ it will name the configuration based on the mod name in the configuration file.
     
         The default is 1.
     
+    Adjacent (Above/Below/Beside):
+    
+        This option allows you to select multiple blocks (separated by
+        commas) which the current block must be adjacent to.  The block
+        will then only spawn when the adjacency conditions are met.
+        
+        The commands are...
+            Adjacent Above:  
+            Adjacent Below:  
+            Adjacent Beside:  
+        
+        ...followed with one or more block names, separated by commas,
+        such as...
+            minecraft:dirt, minecraft:netherrack, minecraft:sand
+        
+        By default, adjacency is unused.
+    
     Scale:
     
         The ScaleTo attribute is there to scale the ore height depending on
