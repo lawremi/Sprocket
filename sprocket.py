@@ -2467,9 +2467,7 @@ def configSetupSection():
 
 def worldSetupSection(currentWorldName, currentWorldDimension):
     global indentLine
-    
-    # If we're using the overworld, either with vanilla or Alaternate
-    # Terrain Generation, we want to use the "COGActive" option choice.
+    oreCount = 0
     
     print "...adding "+currentWorldName+" ores... "
     
@@ -2487,6 +2485,7 @@ def worldSetupSection(currentWorldName, currentWorldDimension):
                
     for oreSelect in range(0,len(oreName)):
         if oreWorld[oreSelect] == currentWorldName:
+            oreCount += 1
             setupConfig += indentText(indentLine)+"\n"
             setupConfig += indentText(indentLine)+"<!-- Begin "+oreName[oreSelect]+" Generation --> \n"
         
@@ -2502,7 +2501,10 @@ def worldSetupSection(currentWorldName, currentWorldDimension):
     setupConfig += indentText(indentLine)+"</IfCondition>\n"
     setupConfig += indentText(indentLine)+"<!-- "+currentWorldName+" Setup Complete -->\n\n"
     
-    return setupConfig
+    if oreCount == 0:
+        return ""
+    else:
+        return setupConfig
 
 ############# ASSEMBLE CONFIGURATION ################################
 # This is where the configuration gets prepared for writing.
