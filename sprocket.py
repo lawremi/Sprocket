@@ -81,13 +81,14 @@ oreWorld = []                 # The world the ore spawns in
                               #    (Overworld, Nether, End)
 oreBlock = []                 # The ore's actual block id
 oreExtra = []                 # Comma separated list in name:meta format
-oreMeta = []                  #  The meta number, if not 0
+oreMeta = []                  # The meta number, if not 0
 oreReplace = []               # The block the ore replaces
 oreAdjacentAbove = []         # Ore is adjacent above which block?
 oreAdjacentBelow = []         # Ore is adjacent below which block?
 oreAdjacentBeside = []        # Ore is adjacent beside which block?
 orePipe = []                  # Content of pipe distribution
                               #    (usually lava)
+orePipeSubstitute = []        # Should the pipe material be substituted?
 oreDistributions = []         # Comma-separated list of distribution
                               #    options.
 oreDistType = []              # Pick distribution pattern
@@ -160,7 +161,8 @@ Config = ConfigParser.SafeConfigParser(
               'Adjacent Below':'MISSING',
               'Adjacent Beside':'MISSING',
               'Pipe':'minecraft:lava',
-              'Distribution':'Vanilla',
+              'Substitute Pipe':'No',
+              'Distributions':'Vanilla',
               'Distribution Type':'normal',
               'Biomes':'ALL',
               'Avoid':'NONE',
@@ -264,6 +266,7 @@ for currentOre in oreName:
     oreAdjacentBelow.append(Config.get(currentOre, 'Adjacent Below'))
     oreAdjacentBeside.append(Config.get(currentOre, 'Adjacent Beside'))
     orePipe.append(Config.get(currentOre, 'Pipe'))
+    orePipeSubstitute.append(Config.get(currentOre, 'Substitute Pipe'))
     oreDistributions.append(Config.get(currentOre, 'Distributions'))
     oreDistType.append(Config.get(currentOre, 'Distribution Type'))
     oreWireframe.append(Config.get(currentOre, 'Wireframe'))
@@ -334,7 +337,25 @@ controlsTemplate = []
 oreConfigTemplate = []
 
 
-########################## IS DISTRIBUTION ACTIVE? ###################
+############# SUPPORT FUNCTIONS ############################## 
+# These functions are designed to support the creation of    #
+# the configuration stanzas, removing the need for a lot of  #
+# ugly code in an already-overloaded block of text.  Mainly, #
+# these are "if/than" statements that, if true, returns one  #
+# or more command lines, and if false, simply returns a null #
+# string.                                                    #
+##############################################################
+
+### WRAPPED DESCRIPTIONS
+# There are a lot of descriptions, and they need to be wrapped to
+# a specific linesize.  This wraps them up and inserts the
+# appropriate space at the beginning.
+
+def wrapDescription(descriptionText):
+    global indentLine
+    return textwrap.fill(descriptionText, initial_indent=indentText(indentLine), subsequent_indent=indentText(indentLine))+"\n"
+    
+### IS DISTRIBUTION ACTIVE?
 # Return nothing if distribution is active; the default distribution
 # will be the first one configured.  If the distribution is active,
 # then "default='none'" will be returned.
@@ -345,20 +366,29 @@ def ifDistActive(oreSelect):
     else:
         return " "
 
-########################## MAKE CONFIG HEADING #######################
+### MAKE CONFIG HEADING
+# The first comment should list all the ores that will be managed
+# by this configuration.
 
 def headerGen():
-    oreList = ", ".join(oreName)
-    fmtOreList = "\r\n".join(textwrap.wrap(oreList, 70))
-    return "\n\
-<!-- ================================================================ \n\
-\n\
-Custom Ore Generation:   "+modName+" Module\n\n\
-Generates: \n"+fmtOreList+"\n\
-\n\
-================================================================ -->\n\n"
 
-##################### BIOME LISTING ###########################
+    orePreName = [element.lower() for element in oreName]
+    
+    if len(orePreName) > 2:
+        oreList = ", and ".join([", ".join(orePreName[:-1]),orePreName[-1]])
+    elif len(orePreName) == 2:
+        oreList = " and ".join(orePreName)
+    else:
+        oreList = orePreName[0]
+            
+    wrapOreList = "\r\n".join(textwrap.wrap(oreList, 70))
+    fmtOreList = "\n\
+<!-- ================================================================ Custom Ore Generation \""+modName+"\" Module: This configuration covers "+wrapOreList+". ================================================================ -->"
+    finalOreList = textwrap.fill(fmtOreList, initial_indent=indentText(indentLine), subsequent_indent=indentText(indentLine)+"      ")
+
+    return finalOreList+"\n\n"
+
+### BIOME LISTING
 # This limits ore generation to specific biomes, based on the
 # Forge Biome Dictionary.
 
@@ -397,7 +427,7 @@ def biomeAvoidList(currentBiomeList):
     
     return biomeCommandList
 
-####################### Block Replacement ##########################
+### Block Replacement 
 # This allows a block to replace multiple blocks.
 
 def replaceSet(replace):
@@ -420,7 +450,7 @@ def firstReplace(currentReplaceList):
     
     return replaceList[0]
     
-######################## Block Adjacency ###########################
+### Block Adjacency
 
 
 def adjacentSet(adjacentTo, adjacentDirection):
@@ -466,7 +496,64 @@ def adjacentBesideList(currentAdjacentList):
     
     return adjacentCommandList
     
+
+### SEED COMMAND
+
+def seedCommand(switchState, seedValue):
+    if switchState == 1:
+        return "seed='0x"+seedValue+"'"
+    else:
+        return ""
+        
+        
+### DETECT META NUMBER
+# If the meta number is anything other than zero, return the number
+# Preceded by a colon.
+
+def oreMetaGen(currentMeta):
+    if oreMeta[currentMeta] == '0':
+        return ""
+    else:
+        return ":"+oreMeta[currentMeta]
+
+
+
+### ORE CLAMPING
+# Set a maximum or minimum level for ore to appear.
+
+def highClamp(clampLevel):
+    global errorCondition
     
+    if int(clampLevel) == 0:
+        return ""
+    else:
+        return " maxHeight='"+str(clampLevel)+"'"
+        
+def lowClamp(clampLevel):
+    global errorCondition
+    
+    if int(clampLevel) == 0:
+        return ""
+    else:
+        return " minHeight='"+str(clampLevel)+"'"
+        
+def clampRange(lowClampLevel, highClampLevel):
+
+    if int(lowClampLevel) == 0 and int(highClampLevel) == 0: # No clamping is needed
+        return ""
+    elif int(lowClampLevel) > 0 or int(highClampLevel) > 0:
+        return lowClamp(lowClampLevel)+highClamp(highClampLevel)
+    else:
+        print('Error: The \'['+currentOre+']\' Min Height must be a number of 0 or greater.')
+        errorCondition = 'T'
+        return ""
+
+
+############# END SUPPORT FUNCTIONS ##############################  
+    
+    
+    
+        
 ################## CHOOSE DISTRIBUTION OPTIONS #####################
 
 def distributionControlGen(currentOreDistBase):
@@ -580,17 +667,17 @@ def distributionControlGen(currentOreDistBase):
         optionText += indentText(indentLine)+"</Choice>\n"
         return optionText
 
-#    elif currentOreDist == 'CompoundVeins': # uses Veins
-#        optionText = indentText(indentLine)+"<Choice value='compoundVeins' displayValue='Compound Veins'>\n"
-#        indentLine += 1
-#        optionText += indentText(indentLine)+"<Description>\n"
-#        indentLine += 1
-#        optionText += indentText(indentLine)+"Compound Veins.\n"
-#        indentLine -= 1
-#        optionText += indentText(indentLine)+"</Description>\n"
-#        indentLine -= 1
-#        optionText += indentText(indentLine)+"</Choice>\n"
-#        return optionText
+    elif currentOreDist == 'CompoundVeins': # uses Veins
+        optionText = indentText(indentLine)+"<Choice value='compoundVeins' displayValue='Compound Veins'>\n"
+        indentLine += 1
+        optionText += indentText(indentLine)+"<Description>\n"
+        indentLine += 1
+        optionText += indentText(indentLine)+"Compound Veins.\n"
+        indentLine -= 1
+        optionText += indentText(indentLine)+"</Description>\n"
+        indentLine -= 1
+        optionText += indentText(indentLine)+"</Choice>\n"
+        return optionText
         
     elif currentOreDist == 'StrategicCloud': # uses Cloud
         optionText = indentText(indentLine)+"<Choice value='strategicCloud' displayValue='Clouds'>\n"
@@ -652,49 +739,10 @@ def controlsGen(currentOreGen):
           
     return configScriptOpen+configScriptList+configScriptClose
 
-############## DETECT META NUMBER #################################
-# If the meta number is anything other than zero, return the number
-# Preceded by a colon.
 
-def metaGen(currentMeta):
-    if oreMeta[currentMeta] == '0':
-        return ""
-    else:
-        return ":"+oreMeta[currentMeta]
-
-
-################### ORE CLAMPING #################################
-# Set a maximum or minimum level for ore to appear.
-
-def highClamp(clampLevel):
-    global errorCondition
-    
-    if int(clampLevel) == 0:
-        return ""
-    else:
-        return " maxHeight='"+str(clampLevel)+"'"
-        
-def lowClamp(clampLevel):
-    global errorCondition
-    
-    if int(clampLevel) == 0:
-        return ""
-    else:
-        return " minHeight='"+str(clampLevel)+"'"
-        
-def clampRange(lowClampLevel, highClampLevel):
-
-    if int(lowClampLevel) == 0 and int(highClampLevel) == 0: # No clamping is needed
-        return ""
-    elif int(lowClampLevel) > 0 or int(highClampLevel) > 0:
-        return lowClamp(lowClampLevel)+highClamp(highClampLevel)
-    else:
-        print('Error: The \'['+currentOre+']\' Min Height must be a number of 0 or greater.')
-        errorCondition = 'T'
-        return ""
 
 ################## INDIVIDUAL DISTRIBUTIONS ######################
-# Each distribution is individually defined.
+# This is where we set up the actual ore distributions.
 
 
 ### Substitution Distribution
@@ -714,9 +762,15 @@ def substituteDist(currentOreGen,level):
     oreReplaceName=spaceRemove(orePreReplaceName)
     global indentLine
     
-    distText = indentText(indentLine)+"<Substitute name='"+oreConfigName+str(level)+"Substitute' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+">\n"
+    distributionDescription = "This is a global replacement of one block with another."
+    
+    distText = indentText(indentLine)+"<Substitute name='"+oreConfigName+str(level)+"Substitute' block='"+oreBlock[currentOreGen]+oreMetaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+">\n"
     indentLine += 1
-    distText += indentText(indentLine)+"<Description> This is a straight-up replacement of one block with another. </Description>\n"
+    distText += indentText(indentLine)+"<Description>\n"
+    indentLine += 1
+    distText += wrapDescription(distributionDescription)
+    indentLine -= 1
+    distText += indentText(indentLine)+"</Description>\n"
     distText += replaceList(oreReplaceName)
     indentLine -= 1
     distText += indentText(indentLine)+"</Substitute>\n"
@@ -762,16 +816,21 @@ def vanillaDist(currentOreGen,level):
     else:
         preferMultiplier = "1"
         inheritLine = "PresetStandardGen"
-    
-    distText = indentText(indentLine)+"<StandardGen name='"+oreConfigName+str(level)+"Standard' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"'>\n"
+            
+    distText = indentText(indentLine)+"<StandardGen name='"+oreConfigName+str(level)+"Standard' block='"+oreBlock[currentOreGen]+oreMetaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"'>\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
     indentLine += 1
     
     if level == "Base":
-        distText += indentText(indentLine)+"This mimics vanilla ore generation.\n"
+        distText += wrapDescription("This mimics vanilla ore generation.")
     elif level == "Prefers":
-        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
+        if preferMultiplier == 1:
+            distText += wrapDescription("Doubles spawns in preferred biomes.")
+        elif preferMultiplier > 1:
+            distText += wrapDescription("Spawns "+preferMultiplier+" more times in preferred biomes.")
+        else:
+            distText += wrapDescription("Spawns an additional "+(str(preferMultiplier*100))+"% in preferred biomes.")
     else:
         distText += indentText(indentLine)+" "
         
@@ -807,31 +866,87 @@ def vanillaDist(currentOreGen,level):
             # distText += vanillaDist(currentOreGen, "Prefers")    
             # distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Vanilla) Settings -->\n"
     return distText
+    
+    
+################# New Veins Configuration ############################
 
-### Layered Vein Distribution
+def veinsDist(currentOreGen, distributionClass, level, inheritLevel):
 
-def layeredVeinsDist(currentOreGen,level):
-
-    # Remove spaces from configured lists.
-    orePreConfigName=modPrefix+oreName[currentOreGen]
-    orePreBiomeName=oreBiomes[currentOreGen]
-    orePreAvoidName=oreAvoid[currentOreGen]
-    orePrePreferName=orePreferBiomes[currentOreGen]
-    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
-    orePreReplaceName=oreReplace[currentOreGen]
-    orePreAdjacentAboveName=oreAdjacentAbove[currentOreGen]
-    orePreAdjacentBelowName=oreAdjacentBelow[currentOreGen]
-    orePreAdjacentBesideName=oreAdjacentBeside[currentOreGen]
-    oreConfigName=spaceRemove(orePreConfigName)
-    oreBiomeName=spaceRemove(orePreBiomeName)
-    oreAvoidName=spaceRemove(orePreAvoidName)
-    orePreferName=spaceRemove(orePrePreferName)
-    oreNoPreferName=spaceRemove(orePreNoPreferName)
-    oreReplaceName=spaceRemove(orePreReplaceName)
-    oreAdjacentBesideName=spaceRemove(orePreAdjacentBesideName)
-    oreAdjacentBelowName=spaceRemove(orePreAdjacentBelowName)
-    oreAdjacentAboveName=spaceRemove(orePreAdjacentAboveName)
+    ### Distribution Preset Selection
+    
+    if distributionClass == "Layered":
+        distributionPreset = "PresetLayeredVeins"
+        distributionDescription = "Small, fairly rare motherlodes with 2-4 horizontal veins each."
+        rngSeedSwitch=0
+    elif distributionClass == "Deposit":
+        distributionPreset = "PresetSmallDeposits"
+        rngSeedSwitch=0
+        distributionDescription = "Small motherlodes with no veins; similar to vanilla clusters."
+    elif distributionClass == "Vertical":
+        distributionPreset = "PresetVerticalVeins"
+        rngSeedSwitch=0
+        distributionDescription = "Single vertical veins that occur with no motherlodes."
+    elif distributionClass == "Huge":
+        distributionPreset = "PresetHugeVeins"
+        rngSeedSwitch=0
+        distributionDescription = "Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that parts of the branch won't contain any ore at all.  This, combined with the incredible length of the branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains enough ore to keep a player supplied for a very long time.  The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork could make finding them much easier and the motherlodes are big enough to supply several people without shortage.  This might be a good way to add challenge to multiplayer worlds.  Credit: based on feedback by dyrewulf from the MC forums."
+    elif distributionClass == "Sparse":
+        distributionPreset = "PresetSparseVeins"
+        rngSeedSwitch=0
+        distributionDescription = "Large veins filled very lightly with ore.  Because they contain less ore per volume, these veins are relatively wide and long.  Mining the ore from them is time consuming compared to solid ore veins.  They are also more difficult to follow, since it is harder to get an idea of their direction while mining."
+    elif distributionClass == "Pipe":
+        distributionPreset = "PresetPipeVeins"
+        rngSeedSwitch=1
+        distributionDescription = "Short sparsely filled veins sloping up from near the bottom of the map."
+    elif distributionClass == "Compound":
+        distributionPreset = "PresetLayeredVeins"
+        rngSeedSwitch=1
         
+    else:
+        print "There is no distribution preset for "+distributionClass+"."
+        errorCondition=1
+        return ""
+            
+    ### Remove spaces from configured items/lists.
+
+    # Ore's name.
+    orePreConfigName=modPrefix+oreName[currentOreGen]
+    oreConfigName=spaceRemove(orePreConfigName)
+    
+    # Ore's biomes.
+    orePreBiomeName=oreBiomes[currentOreGen]
+    oreBiomeName=spaceRemove(orePreBiomeName)
+    
+    # Ore's biomes to avoid.
+    orePreAvoidName=oreAvoid[currentOreGen]
+    oreAvoidName=spaceRemove(orePreAvoidName)
+    
+    # Ore's biomes to prefer.
+    orePrePreferName=orePreferBiomes[currentOreGen]
+    orePreferName=spaceRemove(orePrePreferName)
+    
+    # Ore's biomes to not prefer.
+    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
+    oreNoPreferName=spaceRemove(orePreNoPreferName)
+    
+    # Ore's blocks to replace.
+    orePreReplaceName=oreReplace[currentOreGen]
+    oreReplaceName=spaceRemove(orePreReplaceName)
+    
+    # The blocks below the ore.
+    orePreAdjacentAboveName=oreAdjacentAbove[currentOreGen]
+    oreAdjacentAboveName=spaceRemove(orePreAdjacentAboveName)
+    
+    # The blocks above the ore.
+    orePreAdjacentBelowName=oreAdjacentBelow[currentOreGen]
+    oreAdjacentBelowName=spaceRemove(orePreAdjacentBelowName)
+    
+    # The blocks next to the ore.
+    orePreAdjacentBesideName=oreAdjacentBeside[currentOreGen]
+    oreAdjacentBesideName=spaceRemove(orePreAdjacentBesideName)
+    
+    ### Override globals with locals.
+    
     # Override global height and range with local values.
     if oreVeinHeight[currentOreGen] != "0":
         localHeight = oreVeinHeight[currentOreGen]
@@ -842,42 +957,76 @@ def layeredVeinsDist(currentOreGen,level):
         localRange = oreVeinRange[currentOreGen]
     else:
         localRange = oreRange[currentOreGen]
+        
+    ### Declarations.
     
-    # Misc. variables.
+    # The initial preference multiplier.
     preferMultiplier = ""
-    global indentLine
     
-    if level == "Prefers":
+    # The global indent level for clean XML.
+    global indentLine
+    rngSeed = oreSeed[currentOreGen]
+    
+    # Recursion variables.
+    if level == "Base":
+        preferMultiplier = "1"
+        inheritLine = distributionPreset
+        blockAttribute = "block='"+oreBlock[currentOreGen]+oreMetaGen(currentOreGen)+"'"
+    elif level == "Prefers":
         preferMultiplier = orePreMultiplier[currentOreGen]
-        inheritLine = oreConfigName+"BaseVeins"
+        inheritLine = oreConfigName+inheritLevel+"Veins"
+        blockAttribute = "block='"+oreBlock[currentOreGen]+oreMetaGen(currentOreGen)+"'"
+    elif level == "Pipe":
+        preferMultiplier = "1"
+        inheritLine = oreConfigName+inheritLevel+"Veins"
+        blockAttribute = "block='"+orePipe[currentOreGen]+"'"
     else:
         preferMultiplier = "1"
-        inheritLine = "PresetLayeredVeins"
+        inheritLine = oreConfigName+inheritLevel+"Veins"
+        blockAttribute = "block='"+oreBlock[currentOreGen]+oreMetaGen(currentOreGen)+"'"
+        
+        
+    ########### The start of the actual text. #################
     
-    distText = indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Veins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"'>\n"
+    distText = indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Veins' "+blockAttribute+" "+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' "+seedCommand(rngSeedSwitch, rngSeed)+">\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
     indentLine += 1
     
+    # First, we cover the "cosmetic information" of the distribution,
+    # including wireframe, description, and so on.
+    
     if level == "Base":
-        distText += indentText(indentLine)+"Small, fairly rare motherlodes with 2-4 horizontal veins each.\n"
+        distText += wrapDescription(distributionDescription)
     elif level == "Prefers":
-        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
+        if preferMultiplier == 1:
+            distText += wrapDescription("Adds a spawn in preferred biomes.")
+        elif preferMultiplier > 1:
+            distText += wrapDescription("Spawns "+preferMultiplier+" more times in preferred biomes.")
+        else:
+            distText += wrapDescription("Spawns an additional "+(str(preferMultiplier*100))+"% in preferred biomes.")
+    elif level == "Pipe":
+        distributionDescription = "Fills the vein with an additional material ("+orePipe[currentOreGen]+").\n"
+        distText += wrapDescription(distributionDescription)
     else:
         distText += indentText(indentLine)+" "
-    
+
     indentLine -= 1
     distText += indentText(indentLine)+"</Description>\n"
     distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
     distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
     
+    # Next, we generate the actual code for the distribution.
+    
     if level == "Base":
         distText += indentText(indentLine)+"<Setting name='MotherlodeSize' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='MotherlodeHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"'/> \n"
+        distText += indentText(indentLine)+"<Setting name='MotherlodeHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"' /> \n"
         distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
         distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
         distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
 
+        # These are only added when a non-default value is specified.
+        
         if oreVeinBranchFrequency[currentOreGen] != "1":
             distText += indentText(indentLine)+"<Setting name='BranchFrequency' avg=':= "+oreVeinBranchFrequency[currentOreGen]+" * _default_'/>\n"
         if oreVeinBranchLengthAvg[currentOreGen] != "1" or oreVeinBranchLengthRange[currentOreGen] != "1":
@@ -893,293 +1042,88 @@ def layeredVeinsDist(currentOreGen,level):
         if oreVeinSegmentPitchAvg[currentOreGen] != "0" or oreVeinSegmentPitchRange[currentOreGen] != "0":
             distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg=':= "+oreVeinSegmentPitchAvg[currentOreGen]+"' range=':= "+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
         
-        distText += replaceList(oreReplaceName)
+        # This is specifically which biomes this ore spawns in.
+        distText += biomeList(oreBiomeName) 
+        distText += biomeAvoidList(oreAvoidName)
+                
+        # These commands are for the new adjacency rules.
         distText += adjacentAboveList(oreAdjacentAboveName)
         distText += adjacentBelowList(oreAdjacentBelowName)
         distText += adjacentBesideList(oreAdjacentBesideName)
-    
-    if level == "Prefers":
-        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * _default_'/>\n"
-        distText += biomeList(orePreferName)
-        distText += biomeAvoidList(oreNoPreferName)
-    else:
-        distText += biomeList(oreBiomeName)    
-        distText += biomeAvoidList(oreAvoidName)
-    
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Veins>\n"
         
-    if orePreferBiomes[currentOreGen] != "NONE":
-        if level == "Base" :
-            distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Layered Veins) Settings -->\n"
-            distText += layeredVeinsDist(currentOreGen, "Prefers")    
-            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Layered Veins) Settings -->\n"
-    return distText
-
-### Vertical Vein Distribution
-
-def verticalVeinsDist(currentOreGen,level):
-
-    # Remove spaces from configured lists.
-    orePreConfigName=modPrefix+oreName[currentOreGen]
-    orePreBiomeName=oreBiomes[currentOreGen]
-    orePreAvoidName=oreAvoid[currentOreGen]
-    orePrePreferName=orePreferBiomes[currentOreGen]
-    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
-    orePreReplaceName=oreReplace[currentOreGen]
-    orePreAdjacentAboveName=oreAdjacentAbove[currentOreGen]
-    orePreAdjacentBelowName=oreAdjacentBelow[currentOreGen]
-    orePreAdjacentBesideName=oreAdjacentBeside[currentOreGen]
-    oreConfigName=spaceRemove(orePreConfigName)
-    oreBiomeName=spaceRemove(orePreBiomeName)
-    oreAvoidName=spaceRemove(orePreAvoidName)
-    orePreferName=spaceRemove(orePrePreferName)
-    oreNoPreferName=spaceRemove(orePreNoPreferName)
-    oreReplaceName=spaceRemove(orePreReplaceName)
-    oreAdjacentBesideName=spaceRemove(orePreAdjacentBesideName)
-    oreAdjacentBelowName=spaceRemove(orePreAdjacentBelowName)
-    oreAdjacentAboveName=spaceRemove(orePreAdjacentAboveName)
+        # These are the blocks that the ore will replace.
+        distText += replaceList(oreReplaceName)
         
-    # Override global height and range with local values.
-    if oreVeinHeight[currentOreGen] != "0":
-        localHeight = oreVeinHeight[currentOreGen]
-    else:
-        localHeight = oreHeight[currentOreGen]
+    # These settings are for non-base distributions, since the base is
+    # inherited.
     
-    if oreVeinRange[currentOreGen] != "0":
-        localRange = oreVeinRange[currentOreGen]
-    else:
-        localRange = oreRange[currentOreGen]
+    # "Prefers" covers additional distributions with different
+    # frequencies and/or biomes.
     
-    # Misc. variables.
-    preferMultiplier = ""
-    global indentLine
-    
-    if level == "Prefers":
-        preferMultiplier = orePreMultiplier[currentOreGen]
-        inheritLine = oreConfigName+"BaseParentVeins"
-        childInheritLine = oreConfigName+"BaseChildVeins"
-    else:
-        preferMultiplier = "1"
-        inheritLine = "PresetVerticalVeins"
-        childInheritLine = "PresetVerticalVeins"
-        
-    # Parent Distribution
-    
-    distText = indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"ParentVeins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"'>\n"
-    indentLine += 1
-    distText += indentText(indentLine)+"<Description>\n"
-    indentLine += 1
-    
-    if level == "Base":
-        distText += indentText(indentLine)+"Single vertical veins that occur with no motherlodes.\n"
     elif level == "Prefers":
-        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
-    else:
-        distText += indentText(indentLine)+" "
-        
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Description>\n"
-    distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
-
-
-    if level == "Base":
-        distText += indentText(indentLine)+"<Setting name='MotherlodeHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"' /> \n"
-        distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':=  "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"    
-
-        if oreVeinBranchFrequency[currentOreGen] != "1":
-            distText += indentText(indentLine)+"<Setting name='BranchFrequency' avg=':= "+oreVeinBranchFrequency[currentOreGen]+" * _default_'/>\n"
-        if oreVeinBranchLengthAvg[currentOreGen] != "1" or oreVeinBranchLengthRange[currentOreGen] != "1":
-            distText += indentText(indentLine)+"<Setting name='BranchLength' avg=':= "+oreVeinBranchLengthAvg[currentOreGen]+" * _default_' range=':= "+oreVeinBranchLengthRange[currentOreGen]+" * _default_'/>\n"
-        if oreVeinBranchHeight[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchHeightLimit' avg=':= "+oreVeinBranchHeight[currentOreGen]+"'/>\n"
-        if oreVeinBranchInclineAvg[currentOreGen] != "0" or oreVeinBranchInclineRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchInclination' avg=':= "+oreVeinBranchInclineAvg[currentOreGen]+"' range=':= "+oreVeinBranchInclineRange[currentOreGen]+"'/>\n"
-        if oreVeinSegmentRadiusAvg[currentOreGen] != "1" or oreVeinSegmentRadiusRange[currentOreGen] != "1":
-            distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusAvg[currentOreGen]+" * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusRange[currentOreGen]+" * _default_'/>\n"
-        if oreVeinSegmentAngleAvg[currentOreGen] != "0" or oreVeinSegmentAngleRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentAngle' avg=':= "+oreVeinSegmentAngleAvg[currentOreGen]+"' range=':= "+oreVeinSegmentAngleRange[currentOreGen]+"'/>\n"
-        if oreVeinSegmentPitchAvg[currentOreGen] != "0" or oreVeinSegmentPitchRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg=':= "+oreVeinSegmentPitchAvg[currentOreGen]+"' range=':= "+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
-        
-        distText += replaceList(oreReplaceName)
-        distText += adjacentAboveList(oreAdjacentAboveName)
-        distText += adjacentBelowList(oreAdjacentBelowName)
-        distText += adjacentBesideList(oreAdjacentBesideName)
-    
-    if level == "Prefers":
         distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * _default_'/>\n"
         distText += biomeList(orePreferName)
         distText += biomeAvoidList(oreNoPreferName)
-    else:
-        distText += biomeList(oreBiomeName)    
-        distText += biomeAvoidList(oreAvoidName)
     
-    # Child Distribution
+    # Pipes are half the content of the main distribution; they share
+    # the exact same location, and the pipe material can be anything.
+    # Both pipe and compound veins use the pipe level.
     
-    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"ChildVeins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+childInheritLine+"'>\n"
-    indentLine += 1
-    distText += indentText(indentLine)+"<Description>\n"
-    indentLine += 1
-    
-    if level == "Base":
-        distText += indentText(indentLine)+"Single vertical veins that occur with no motherlodes.\n"
-    elif level == "Prefers":
-        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
-    else:
-        distText += indentText(indentLine)+" "
-        
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Description>\n"
-    distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
-
-
-    if level == "Base":
-        distText += indentText(indentLine)+"<Setting name='MotherlodeHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"' /> \n"
-        distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * 3 * _default_'/>\n"    
-
-        if oreVeinBranchFrequency[currentOreGen] != "1":
-            distText += indentText(indentLine)+"<Setting name='BranchFrequency' avg=':= "+oreVeinBranchFrequency[currentOreGen]+" * _default_'/>\n"
-        if oreVeinBranchLengthAvg[currentOreGen] != "1" or oreVeinBranchLengthRange[currentOreGen] != "1":
-            distText += indentText(indentLine)+"<Setting name='BranchLength' avg=':= "+oreVeinBranchLengthAvg[currentOreGen]+" * _default_' range=':= "+oreVeinBranchLengthRange[currentOreGen]+" * _default_'/>\n"
-        if oreVeinBranchHeight[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchHeightLimit' avg=':= "+oreVeinBranchHeight[currentOreGen]+"'/>\n"
-        if oreVeinBranchInclineAvg[currentOreGen] != "0" or oreVeinBranchInclineRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchInclination' avg=':= "+oreVeinBranchInclineAvg[currentOreGen]+"' range=':= "+oreVeinBranchInclineRange[currentOreGen]+"'/>\n"
-        if oreVeinSegmentRadiusAvg[currentOreGen] != "1" or oreVeinSegmentRadiusRange[currentOreGen] != "1":
-            distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusAvg[currentOreGen]+" * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusRange[currentOreGen]+" * _default_'/>\n"
-        if oreVeinSegmentAngleAvg[currentOreGen] != "0" or oreVeinSegmentAngleRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentAngle' avg=':= "+oreVeinSegmentAngleAvg[currentOreGen]+"' range=':= "+oreVeinSegmentAngleRange[currentOreGen]+"'/>\n"
-        if oreVeinSegmentPitchAvg[currentOreGen] != "0" or oreVeinSegmentPitchRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg=':= "+oreVeinSegmentPitchAvg[currentOreGen]+"' range=':= "+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
-        
+    elif level == "Pipe":
+        distText += indentText(indentLine)+"<Setting name='MotherlodeSize' avg=':= 0.5 * "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= 0.5 * "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
+        distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= 0.5 * "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= 0.5 * "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
         distText += replaceList(oreReplaceName)
-        distText += adjacentAboveList(oreAdjacentAboveName)
-        distText += adjacentBelowList(oreAdjacentBelowName)
-        distText += adjacentBesideList(oreAdjacentBesideName)
+        distText += indentText(indentLine)+"<Replaces block='"+oreBlock[currentOreGen]+oreMetaGen(currentOreGen)+"'/>\n"
+        distText += indentText(indentLine)+"<Replaces block='minecraft:dirt'/>\n"
+        distText += indentText(indentLine)+"<Replaces block='minecraft:stone'/>\n"
+        distText += indentText(indentLine)+"<Replaces block='minecraft:gravel'/>\n"
+        distText += indentText(indentLine)+"<Replaces block='minecraft:netherrack'/>\n"
+        distText += indentText(indentLine)+"<Replaces block='minecraft:end_stone'/>\n"
     
-    if level == "Prefers":
-        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * _default_'/>\n"
-        distText += biomeList(orePreferName)
-        distText += biomeAvoidList(oreNoPreferName)
+    # More levels can be added now, but it never hurts to have a
+    # catch-all.    
+    
     else:
         distText += biomeList(oreBiomeName)    
         distText += biomeAvoidList(oreAvoidName)
-       
+
+    # Any child distributions should be added here.
+
     indentLine -= 1
     distText += indentText(indentLine)+"</Veins>\n"
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Veins>\n"
-        
-    if orePreferBiomes[currentOreGen] != "NONE":
-        if level == "Base" :
-            distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Vertical Veins) Settings -->\n"
-            distText += verticalVeinsDist(currentOreGen, "Prefers")    
-            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Vertical Veins) Settings -->\n"
-    return distText
-
-### Small Deposit Distribution
-
-def smallDepositsDist(currentOreGen,level):
-
-    # Remove spaces from configured lists.
-    orePreConfigName=modPrefix+oreName[currentOreGen]
-    orePreBiomeName=oreBiomes[currentOreGen]
-    orePreAvoidName=oreAvoid[currentOreGen]
-    orePrePreferName=orePreferBiomes[currentOreGen]
-    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
-    orePreReplaceName=oreReplace[currentOreGen]
-    orePreAdjacentAboveName=oreAdjacentAbove[currentOreGen]
-    orePreAdjacentBelowName=oreAdjacentBelow[currentOreGen]
-    orePreAdjacentBesideName=oreAdjacentBeside[currentOreGen]
-    oreConfigName=spaceRemove(orePreConfigName)
-    oreBiomeName=spaceRemove(orePreBiomeName)
-    oreAvoidName=spaceRemove(orePreAvoidName)
-    orePreferName=spaceRemove(orePrePreferName)
-    oreNoPreferName=spaceRemove(orePreNoPreferName)
-    oreReplaceName=spaceRemove(orePreReplaceName)
-    oreAdjacentBesideName=spaceRemove(orePreAdjacentBesideName)
-    oreAdjacentBelowName=spaceRemove(orePreAdjacentBelowName)
-    oreAdjacentAboveName=spaceRemove(orePreAdjacentAboveName)
-        
-    # Override global height and range with local values.
-    if oreVeinHeight[currentOreGen] != "0":
-        localHeight = oreVeinHeight[currentOreGen]
-    else:
-        localHeight = oreHeight[currentOreGen]
     
-    if oreVeinRange[currentOreGen] != "0":
-        localRange = oreVeinRange[currentOreGen]
-    else:
-        localRange = oreRange[currentOreGen]
+    # At this point, we add additional "peer" distributions.
     
-    # Misc. variables.
-    preferMultiplier = ""
-    global indentLine
-    
-    if level == "Prefers":
-        preferMultiplier = orePreMultiplier[currentOreGen]
-        inheritLine = oreConfigName+"BaseVeins"
-    else:
-        preferMultiplier = "1"
-        inheritLine = "PresetSmallDeposits"
-    
-    distText = indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Veins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"'>\n"
-    indentLine += 1
-    distText += indentText(indentLine)+"<Description>\n"
-    indentLine += 1
-    
-    if level == "Base":
-        distText += indentText(indentLine)+"Small motherlodes without any branches.\n"
-        distText += indentText(indentLine)+"Similar to the deposits produced by StandardGen distributions.\n"
-    elif level == "Prefers":
-        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
-    else:
-        distText += indentText(indentLine)+" "
-        
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Description>\n"
-    distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
-    
-    if level == "Base":
-        distText += indentText(indentLine)+"<Setting name='MotherlodeHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"' /> \n"
-        distText += indentText(indentLine)+"<Setting name='MotherlodeSize' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
-        distText += replaceList(oreReplaceName)
-        distText += adjacentAboveList(oreAdjacentAboveName)
-        distText += adjacentBelowList(oreAdjacentBelowName)
-        distText += adjacentBesideList(oreAdjacentBesideName)
-    
-    if level == "Prefers":
-        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * _default_'/>\n"
-        distText += biomeList(orePreferName)
-        distText += biomeAvoidList(oreNoPreferName)
-    else:
-        distText += biomeList(oreBiomeName)    
-        distText += biomeAvoidList(oreAvoidName)
-    
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Veins>\n"
+    # Check to see if there are preferred biomes.  If there are, spawn another distribution within this one.
         
     if orePreferBiomes[currentOreGen] != "NONE":
         if level == "Base":
             distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Small Deposits) Settings -->\n"
-            distText += smallDepositsDist(currentOreGen, "Prefers")    
-            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Small Deposits) Settings -->\n"
+            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" "+distributionClass+" Veins) Settings -->\n"
+            distText += veinsDist(currentOreGen, distributionClass, "Prefers", "Base")  
+            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" "+distributionClass+" Veins) Settings -->\n"
+        elif level == "Pipe":
+            distText += indentText(indentLine)+"\n"
+            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" "+distributionClass+" Veins) Settings -->\n"
+            distText += veinsDist(currentOreGen, distributionClass, "Prefers", "Pipe")  
+            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" "+distributionClass+" Veins) Settings -->\n"
+    # Check to see if this is the base run.  If so, check to see if any additional distributions need to be run.
+    
+    if level == "Base":
+        if distributionClass == "Pipe": 
+            distText += indentText(indentLine)+"\n"
+            distText += indentText(indentLine)+"<!-- Begin Pipe Filling ("+oreName[currentOreGen]+" "+distributionClass+" Veins) Settings -->\n"
+            distText += veinsDist(currentOreGen, distributionClass, "Pipe", "Base")  
+            distText += indentText(indentLine)+"<!-- End Pipe Filling ("+oreName[currentOreGen]+" "+distributionClass+" Veins) Settings -->\n"
+        elif distributionClass == "Compound":
+            distText += indentText(indentLine)+"\n"
+            distText += indentText(indentLine)+"<!-- Begin Compund Ore ("+oreName[currentOreGen]+" "+distributionClass+" Veins) Settings -->\n"
+            distText += veinsDist(currentOreGen, distributionClass, "Pipe", "Base")  
+            distText += indentText(indentLine)+"<!-- End Compound Ore ("+oreName[currentOreGen]+" "+distributionClass+" Veins) Settings -->\n"
+                
     return distText
 
-### Geode Distribution  #########################################################################################################################################
+### Geode Distribution  
 
 def geodeSimple(currentOreGen,level):
 
@@ -1233,9 +1177,14 @@ def geodeSimple(currentOreGen,level):
     indentLine += 1
     
     if level == "Base":
-        distText += indentText(indentLine)+"The geode's outer shell, composed of the Pipe material.\n"
+        distText += wrapDescription("The geode's outer shell, composed of the Pipe material.")
     elif level == "Prefers":
-        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
+        if preferMultiplier == 1:
+            distText += wrapDescription("Adds a spawn in preferred biomes.")
+        elif preferMultiplier > 1:
+            distText += wrapDescription("Spawns "+preferMultiplier+" more times in preferred biomes.")
+        else:
+            distText += wrapDescription("Spawns an additional "+(str(preferMultiplier*100))+"% in preferred biomes.")
     else:
         distText += indentText(indentLine)+" "
         
@@ -1270,15 +1219,20 @@ def geodeSimple(currentOreGen,level):
     
     distText += indentText(indentLine)+"\n"
     distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Geode Crystals -->\n"
-    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Crystal' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed='0x"+geodeSeed+"'>\n"
+    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Crystal' block='"+oreBlock[currentOreGen]+oreMetaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed='0x"+geodeSeed+"'>\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
     indentLine += 1
     
     if level == "Base":
-        distText += indentText(indentLine)+"The geode's inner material, usually some form of crystal.\n"
+        distText += wrapDescription("The geode's inner material, usually some form of crystal.")
     elif level == "Prefers":
-        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
+        if preferMultiplier == 1:
+            distText += wrapDescription("Adds a spawn in preferred biomes.")
+        elif preferMultiplier > 1:
+            distText += wrapDescription("Spawns "+preferMultiplier+" more times in preferred biomes.")
+        else:
+            distText += wrapDescription("Spawns an additional "+(str(preferMultiplier*100))+"% in preferred biomes.")
     else:
         distText += indentText(indentLine)+" "
         
@@ -1318,9 +1272,14 @@ def geodeSimple(currentOreGen,level):
     indentLine += 1
     
     if level == "Base":
-        distText += indentText(indentLine)+"The air pocket within the center of a geode.\n"
+        distText += wrapDescription("The air pocket within the center of a geode.")
     elif level == "Prefers":
-        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
+        if preferMultiplier == 1:
+            distText += wrapDescription("Adds a spawn in preferred biomes.")
+        elif preferMultiplier > 1:
+            distText += wrapDescription("Spawns "+preferMultiplier+" more times in preferred biomes.")
+        else:
+            distText += wrapDescription("Spawns an additional "+(str(preferMultiplier*100))+"% in preferred biomes.")
     else:
         distText += indentText(indentLine)+" "
         
@@ -1335,7 +1294,7 @@ def geodeSimple(currentOreGen,level):
         distText += indentText(indentLine)+"<Setting name='MotherlodeHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"' /> \n"
         distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
         distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
-        distText += indentText(indentLine)+"<Replaces block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'/>\n"
+        distText += indentText(indentLine)+"<Replaces block='"+oreBlock[currentOreGen]+oreMetaGen(currentOreGen)+"'/>\n"
         distText += indentText(indentLine)+"<Replaces block='"+orePipe[currentOreGen]+"'/>\n"
     
     if level == "Prefers":
@@ -1417,7 +1376,7 @@ def geodeCompound(currentOreGen,level):
     indentLine += 1
     
     if level == "Base":
-        distText += indentText(indentLine)+"The geode's outer shell, composed of the Pipe material.\n"
+        distText += wrapDescription("The geode's outer shell, composed of the Pipe material.")
     elif level == "Prefers":
         distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
     else:
@@ -1462,15 +1421,20 @@ def geodeCompound(currentOreGen,level):
     
     distText += indentText(indentLine)+"\n"
     distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Geode Crystals -->\n"
-    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Crystal' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed='0x"+geodeSeed+"'>\n"
+    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Crystal' block='"+oreBlock[currentOreGen]+oreMetaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed='0x"+geodeSeed+"'>\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
     indentLine += 1
     
     if level == "Base":
-        distText += indentText(indentLine)+"The geode's inner material, usually some form of crystal.\n"
+        distText += wrapDescription("The geode's inner material, usually some form of crystal.")
     elif level == "Prefers":
-        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
+        if preferMultiplier == 1:
+            distText += wrapDescription("Adds a spawn in preferred biomes.")
+        elif preferMultiplier > 1:
+            distText += wrapDescription("Spawns "+preferMultiplier+" more times in preferred biomes.")
+        else:
+            distText += wrapDescription("Spawns an additional "+(str(preferMultiplier*100))+"% in preferred biomes.")
     else:
         distText += indentText(indentLine)+" "
         
@@ -1500,7 +1464,7 @@ def geodeCompound(currentOreGen,level):
     distText += indentText(indentLine)+"<!-- End "+oreName[currentOreGen]+" Geode Crystals -->\n"
     distText += indentText(indentLine)+"\n"
     
-    lastBlock = oreBlock[currentOreGen]+metaGen(currentOreGen)
+    lastBlock = oreBlock[currentOreGen]+oreMetaGen(currentOreGen)
     fractionNumber = oreTypeCount
     
     # Now to add ore distributions for all extra ores.
@@ -1516,9 +1480,14 @@ def geodeCompound(currentOreGen,level):
         indentLine += 1
         
         if level == "Base":
-            distText += indentText(indentLine)+"The geode's inner material, usually some form of crystal.\n"
+            distText += wrapDescription("The geode's inner material, usually some form of crystal.")
         elif level == "Prefers":
-            distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
+            if preferMultiplier == 1:
+                distText += wrapDescription("Adds a spawn in preferred biomes.")
+            elif preferMultiplier > 1:
+                distText += wrapDescription("Spawns "+preferMultiplier+" more times in preferred biomes.")
+            else:
+                distText += wrapDescription("Spawns an additional "+(str(preferMultiplier*100))+"% in preferred biomes.")
         else:
             distText += indentText(indentLine)+" "
             
@@ -1560,9 +1529,14 @@ def geodeCompound(currentOreGen,level):
     indentLine += 1
     
     if level == "Base":
-        distText += indentText(indentLine)+"The air pocket within the center of a geode.\n"
+        distText += wrapDescription("The air pocket within the center of a geode.")
     elif level == "Prefers":
-        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
+        if preferMultiplier == 1:
+            distText += wrapDescription("Adds a spawn in preferred biomes.")
+        elif preferMultiplier > 1:
+            distText += wrapDescription("Spawns "+preferMultiplier+" more times in preferred biomes.")
+        else:
+            distText += wrapDescription("Spawns an additional "+(str(preferMultiplier*100))+"% in preferred biomes.")
     else:
         distText += indentText(indentLine)+" "
         
@@ -1577,7 +1551,7 @@ def geodeCompound(currentOreGen,level):
         distText += indentText(indentLine)+"<Setting name='MotherlodeHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"' /> \n"
         distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
         distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
-        distText += indentText(indentLine)+"<Replaces block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'/>\n"
+        distText += indentText(indentLine)+"<Replaces block='"+oreBlock[currentOreGen]+oreMetaGen(currentOreGen)+"'/>\n"
         distText += indentText(indentLine)+"<Replaces block='"+orePipe[currentOreGen]+"'/>\n"
     
     if level == "Prefers":
@@ -1618,388 +1592,6 @@ def geodesDist(currentOreGen,level):
     else:
         return geodeCompound(currentOreGen,level)
 
-#########################################################################################################################################
-
-### Huge Vein Distribution
-
-def hugeVeinsDist(currentOreGen,level):
-
-    # Remove spaces from configured lists.
-    orePreConfigName=modPrefix+oreName[currentOreGen]
-    orePreBiomeName=oreBiomes[currentOreGen]
-    orePreAvoidName=oreAvoid[currentOreGen]
-    orePrePreferName=orePreferBiomes[currentOreGen]
-    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
-    orePreReplaceName=oreReplace[currentOreGen]
-    orePreAdjacentAboveName=oreAdjacentAbove[currentOreGen]
-    orePreAdjacentBelowName=oreAdjacentBelow[currentOreGen]
-    orePreAdjacentBesideName=oreAdjacentBeside[currentOreGen]
-    oreConfigName=spaceRemove(orePreConfigName)
-    oreBiomeName=spaceRemove(orePreBiomeName)
-    oreAvoidName=spaceRemove(orePreAvoidName)
-    orePreferName=spaceRemove(orePrePreferName)
-    oreNoPreferName=spaceRemove(orePreNoPreferName)
-    oreReplaceName=spaceRemove(orePreReplaceName)
-    oreAdjacentBesideName=spaceRemove(orePreAdjacentBesideName)
-    oreAdjacentBelowName=spaceRemove(orePreAdjacentBelowName)
-    oreAdjacentAboveName=spaceRemove(orePreAdjacentAboveName)
-        
-    # Override global height and range with local values.
-    if oreVeinHeight[currentOreGen] != "0":
-        localHeight = oreVeinHeight[currentOreGen]
-    else:
-        localHeight = oreHeight[currentOreGen]
-    
-    if oreVeinRange[currentOreGen] != "0":
-        localRange = oreVeinRange[currentOreGen]
-    else:
-        localRange = oreRange[currentOreGen]
-    
-    # Misc. variables.
-    preferMultiplier = ""
-    global indentLine
-    
-    if level == "Prefers":
-        preferMultiplier = orePreMultiplier[currentOreGen]
-        inheritLine = oreConfigName+"BaseVeins"
-    else:
-        preferMultiplier = "1"
-        inheritLine = "PresetHugeVeins"
-    
-    distText = indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Veins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"'>\n"
-    indentLine += 1
-    distText += indentText(indentLine)+"<Description>\n"
-    indentLine += 1
-    
-    if level == "Base":
-        distText += indentText(indentLine)+"Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that\n"
-        distText += indentText(indentLine)+"parts of the branch won't contain any ore at all.  This, combined with the incredible length of the\n"
-        distText += indentText(indentLine)+"branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains\n"
-        distText += indentText(indentLine)+"enough ore to keep a player supplied for a very long time.\n"
-        distText += indentText(indentLine)+"The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork \n"
-        distText += indentText(indentLine)+"could make finding them much easier and the motherlodes are big enough to supply several people without\n"
-        distText += indentText(indentLine)+"shortage.  This might be a good way to add challenge to multiplayer worlds.\n"
-        distText += indentText(indentLine)+"Credit: based on feedback by dyrewulf from the MC forums.\n"
-    elif level == "Prefers":
-        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
-    else:
-        distText += indentText(indentLine)+" "
-
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Description>\n"
-    distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
-
-    
-    if level == "Base":
-        distText += indentText(indentLine)+"<Setting name='MotherlodeSize' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='MotherlodeHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"' /> \n"
-        distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
-
-        if oreVeinBranchFrequency[currentOreGen] != "1":
-            distText += indentText(indentLine)+"<Setting name='BranchFrequency' avg=':= "+oreVeinBranchFrequency[currentOreGen]+" * _default_'/>\n"
-        if oreVeinBranchLengthAvg[currentOreGen] != "1" or oreVeinBranchLengthRange[currentOreGen] != "1":
-            distText += indentText(indentLine)+"<Setting name='BranchLength' avg=':= "+oreVeinBranchLengthAvg[currentOreGen]+" * _default_' range=':= "+oreVeinBranchLengthRange[currentOreGen]+" * _default_'/>\n"
-        if oreVeinBranchHeight[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchHeightLimit' avg=':= "+oreVeinBranchHeight[currentOreGen]+"'/>\n"
-        if oreVeinBranchInclineAvg[currentOreGen] != "0" or oreVeinBranchInclineRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchInclination' avg=':= "+oreVeinBranchInclineAvg[currentOreGen]+"' range=':= "+oreVeinBranchInclineRange[currentOreGen]+"'/>\n"
-        if oreVeinSegmentRadiusAvg[currentOreGen] != "1" or oreVeinSegmentRadiusRange[currentOreGen] != "1":
-            distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusAvg[currentOreGen]+" * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusRange[currentOreGen]+" * _default_'/>\n"
-        if oreVeinSegmentAngleAvg[currentOreGen] != "0" or oreVeinSegmentAngleRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentAngle' avg=':= "+oreVeinSegmentAngleAvg[currentOreGen]+"' range=':= "+oreVeinSegmentAngleRange[currentOreGen]+"'/>\n"
-        if oreVeinSegmentPitchAvg[currentOreGen] != "0" or oreVeinSegmentPitchRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg=':= "+oreVeinSegmentPitchAvg[currentOreGen]+"' range=':= "+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
-        
-        distText += replaceList(oreReplaceName)
-        distText += adjacentAboveList(oreAdjacentAboveName)
-        distText += adjacentBelowList(oreAdjacentBelowName)
-        distText += adjacentBesideList(oreAdjacentBesideName)
-    
-    if level == "Prefers":
-        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * _default_'/>\n"
-        distText += biomeList(orePreferName)
-        distText += biomeAvoidList(oreNoPreferName)
-    else:
-        distText += biomeList(oreBiomeName)    
-        distText += biomeAvoidList(oreAvoidName)
-
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Veins>\n"
-        
-    if orePreferBiomes[currentOreGen] != "NONE":
-        if level == "Base" :
-            distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Huge Veins) Settings -->\n"
-            distText += hugeVeinsDist(currentOreGen, "Prefers")  
-            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Huge Veins) Settings -->\n"  
-    return distText
-
-### Sparse Vein Distribution
-
-def sparseVeinsDist(currentOreGen,level):
-
-    # Remove spaces from configured lists.
-    orePreConfigName=modPrefix+oreName[currentOreGen]
-    orePreBiomeName=oreBiomes[currentOreGen]
-    orePreAvoidName=oreAvoid[currentOreGen]
-    orePrePreferName=orePreferBiomes[currentOreGen]
-    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
-    orePreReplaceName=oreReplace[currentOreGen]
-    orePreAdjacentAboveName=oreAdjacentAbove[currentOreGen]
-    orePreAdjacentBelowName=oreAdjacentBelow[currentOreGen]
-    orePreAdjacentBesideName=oreAdjacentBeside[currentOreGen]
-    oreConfigName=spaceRemove(orePreConfigName)
-    oreBiomeName=spaceRemove(orePreBiomeName)
-    oreAvoidName=spaceRemove(orePreAvoidName)
-    orePreferName=spaceRemove(orePrePreferName)
-    oreNoPreferName=spaceRemove(orePreNoPreferName)
-    oreReplaceName=spaceRemove(orePreReplaceName)
-    oreAdjacentBesideName=spaceRemove(orePreAdjacentBesideName)
-    oreAdjacentBelowName=spaceRemove(orePreAdjacentBelowName)
-    oreAdjacentAboveName=spaceRemove(orePreAdjacentAboveName)
-        
-    # Override global height and range with local values.
-    if oreVeinHeight[currentOreGen] != "0":
-        localHeight = oreVeinHeight[currentOreGen]
-    else:
-        localHeight = oreHeight[currentOreGen]
-    
-    if oreVeinRange[currentOreGen] != "0":
-        localRange = oreVeinRange[currentOreGen]
-    else:
-        localRange = oreRange[currentOreGen]
-    
-    # Misc. variables.
-    preferMultiplier = ""
-    global indentLine
-    
-    if level == "Prefers":
-        preferMultiplier = orePreMultiplier[currentOreGen]
-        inheritLine = oreConfigName+"BaseVeins"
-    else:
-        preferMultiplier = "1"
-        inheritLine = "PresetSparseVeins"
-    
-    distText = indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Veins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"'>\n"
-    indentLine += 1
-    distText += indentText(indentLine)+"<Description>\n"
-    indentLine += 1
-    
-    if level == "Base":
-        distText += indentText(indentLine)+"Large veins filled very lightly with ore.  Because they contain less ore per volume, \n"
-        distText += indentText(indentLine)+"these veins are relatively wide and long.  Mining the ore from them is time consuming \n"
-        distText += indentText(indentLine)+"compared to solid ore veins.  They are also more difficult to follow, since it is \n"
-        distText += indentText(indentLine)+"harder to get an idea of their direction while mining.\n"
-    elif level == "Prefers":
-        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
-    else:
-        distText += indentText(indentLine)+" "
-
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Description>\n"
-    distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
-    
-    if level == "Base":
-        distText += indentText(indentLine)+"<Setting name='MotherlodeSize' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='MotherlodeHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"' />\n"
-        distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"    
-
-        if oreVeinBranchFrequency[currentOreGen] != "1":
-            distText += indentText(indentLine)+"<Setting name='BranchFrequency' avg=':= "+oreVeinBranchFrequency[currentOreGen]+" * _default_'/>\n"
-        if oreVeinBranchLengthAvg[currentOreGen] != "1" or oreVeinBranchLengthRange[currentOreGen] != "1":
-            distText += indentText(indentLine)+"<Setting name='BranchLength' avg=':= "+oreVeinBranchLengthAvg[currentOreGen]+" * _default_' range=':= "+oreVeinBranchLengthRange[currentOreGen]+" * _default_'/>\n"
-        if oreVeinBranchHeight[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchHeightLimit' avg=':= "+oreVeinBranchHeight[currentOreGen]+"'/>\n"
-        if oreVeinBranchInclineAvg[currentOreGen] != "0" or oreVeinBranchInclineRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchInclination' avg=':= "+oreVeinBranchInclineAvg[currentOreGen]+"' range=':= "+oreVeinBranchInclineRange[currentOreGen]+"'/>\n"
-        if oreVeinSegmentRadiusAvg[currentOreGen] != "1" or oreVeinSegmentRadiusRange[currentOreGen] != "1":
-            distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusAvg[currentOreGen]+" * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusRange[currentOreGen]+" * _default_'/>\n"
-        if oreVeinSegmentAngleAvg[currentOreGen] != "0" or oreVeinSegmentAngleRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentAngle' avg=':= "+oreVeinSegmentAngleAvg[currentOreGen]+"' range=':= "+oreVeinSegmentAngleRange[currentOreGen]+"'/>\n"
-        if oreVeinSegmentPitchAvg[currentOreGen] != "0" or oreVeinSegmentPitchRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg=':= "+oreVeinSegmentPitchAvg[currentOreGen]+"' range=':= "+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
-        
-        distText += replaceList(oreReplaceName)
-        distText += adjacentAboveList(oreAdjacentAboveName)
-        distText += adjacentBelowList(oreAdjacentBelowName)
-        distText += adjacentBesideList(oreAdjacentBesideName)
-    
-    if level == "Prefers":
-        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * _default_'/>\n"
-        distText += biomeList(orePreferName)
-        distText += biomeAvoidList(oreNoPreferName)
-    else:
-        distText += biomeList(oreBiomeName)    
-        distText += biomeAvoidList(oreAvoidName)
-    
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Veins>\n"
-        
-    if orePreferBiomes[currentOreGen] != "NONE":
-        if level == "Base" :
-            distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Sparse Veins) Settings -->\n"
-            distText += sparseVeinsDist(currentOreGen, "Prefers")  
-            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Sparse Veins) Settings -->\n"  
-    return distText
-
-### Pipe Vein Distribution
-
-def pipeVeinsDist(currentOreGen,level):
-
-    # Remove spaces from configured lists.
-    orePreConfigName=modPrefix+oreName[currentOreGen]
-    orePreBiomeName=oreBiomes[currentOreGen]
-    orePreAvoidName=oreAvoid[currentOreGen]
-    orePrePreferName=orePreferBiomes[currentOreGen]
-    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
-    orePreReplaceName=oreReplace[currentOreGen]
-    oreConfigName=spaceRemove(orePreConfigName)
-    oreBiomeName=spaceRemove(orePreBiomeName)
-    oreAvoidName=spaceRemove(orePreAvoidName)
-    orePreferName=spaceRemove(orePrePreferName)
-    oreNoPreferName=spaceRemove(orePreNoPreferName)
-    oreReplaceName=spaceRemove(orePreReplaceName)
-        
-    # Override global height and range with local values.
-    if oreVeinHeight[currentOreGen] != "0":
-        localHeight = oreVeinHeight[currentOreGen]
-    else:
-        localHeight = oreHeight[currentOreGen]
-    
-    if oreVeinRange[currentOreGen] != "0":
-        localRange = oreVeinRange[currentOreGen]
-    else:
-        localRange = oreRange[currentOreGen]
-    
-    # Misc. variables.
-    preferMultiplier = ""
-    global indentLine
-    
-    pipeSeed = oreSeed[currentOreGen]
-    if level == "Prefers":
-        preferMultiplier = orePreMultiplier[currentOreGen]
-        inheritLine = oreConfigName+"BaseVeins"
-    else:
-        preferMultiplier = "1"
-        inheritLine = "PresetPipeVeins"
-    
-    # Ore
-    
-    distText = indentText(indentLine)+"\n"
-    distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Ore Configuration -->\n"
-    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Veins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' seed='0x"+pipeSeed+"'>\n"
-    indentLine += 1
-    distText += indentText(indentLine)+"<Description>\n"
-    indentLine += 1
-    
-    if level == "Base":
-        distText += indentText(indentLine)+"Short sparsely filled veins sloping up from near the bottom of the map.\n"
-    elif level == "Prefers":
-        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
-    else:
-        distText += indentText(indentLine)+" "
-
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Description>\n"
-    distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
-    
-    if level == "Base":
-        distText += indentText(indentLine)+"<Setting name='MotherlodeSize' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='MotherlodeHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"' />\n"
-        distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
-
-        if oreVeinBranchFrequency[currentOreGen] != "1":
-            distText += indentText(indentLine)+"<Setting name='BranchFrequency' avg=':= "+oreVeinBranchFrequency[currentOreGen]+" * _default_'/>\n"
-        if oreVeinBranchLengthAvg[currentOreGen] != "1" or oreVeinBranchLengthRange[currentOreGen] != "1":
-            distText += indentText(indentLine)+"<Setting name='BranchLength' avg=':= "+oreVeinBranchLengthAvg[currentOreGen]+" * _default_' range=':= "+oreVeinBranchLengthRange[currentOreGen]+" * _default_'/>\n"
-        if oreVeinBranchHeight[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchHeightLimit' avg=':= "+oreVeinBranchHeight[currentOreGen]+"'/>\n"
-        if oreVeinBranchInclineAvg[currentOreGen] != "0" or oreVeinBranchInclineRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchInclination' avg=':= "+oreVeinBranchInclineAvg[currentOreGen]+"' range=':= "+oreVeinBranchInclineRange[currentOreGen]+"'/>\n"
-        if oreVeinSegmentRadiusAvg[currentOreGen] != "1" or oreVeinSegmentRadiusRange[currentOreGen] != "1":
-            distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusAvg[currentOreGen]+" * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusRange[currentOreGen]+" * _default_'/>\n"
-        if oreVeinSegmentAngleAvg[currentOreGen] != "0" or oreVeinSegmentAngleRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentAngle' avg=':= "+oreVeinSegmentAngleAvg[currentOreGen]+"' range=':= "+oreVeinSegmentAngleRange[currentOreGen]+"'/>\n"
-        if oreVeinSegmentPitchAvg[currentOreGen] != "0" or oreVeinSegmentPitchRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg=':= "+oreVeinSegmentPitchAvg[currentOreGen]+"' range=':= "+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
-        
-        distText += replaceList(oreReplaceName)
-    
-    if level == "Prefers":
-        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * _default_'/>\n"
-        distText += biomeList(orePreferName)
-        distText += biomeAvoidList(oreNoPreferName)
-    else:
-        distText += biomeList(oreBiomeName)    
-        distText += biomeAvoidList(oreAvoidName)
-    
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Veins>\n"
-    distText += indentText(indentLine)+"<!-- End "+oreName[currentOreGen]+" Ore Configuration -->\n"
-    distText += indentText(indentLine)+"\n"
-    
-    # Pipe Material
-    
-    distText += indentText(indentLine)+"\n"
-    distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Pipe Configuration -->\n"
-    distText += indentText(indentLine)+"<Veins name= '"+oreConfigName+str(level)+"Pipe' block='"+orePipe[currentOreGen]+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+oreConfigName+str(level)+"Veins' seed='0x"+pipeSeed+"'>\n"
-    indentLine += 1
-    distText += indentText(indentLine)+"<Description>\n"
-    indentLine += 1
-    
-    if level == "Base":
-        distText += indentText(indentLine)+"Fills center of each tube with Pipe material.\n"
-    elif level == "Prefers":
-        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
-    else:
-        distText += indentText(indentLine)+" "
-
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Description>\n"
-    distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
-    
-    if level == "Base":
-        distText += indentText(indentLine)+"<Setting name='MotherlodeSize' avg=':= 0.5 * "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= 0.5 * "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= 0.5 * "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= 0.5 * "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
-        distText += replaceList(oreReplaceName)
-        distText += indentText(indentLine)+"<Replaces block='minecraft:dirt'/>\n"
-        distText += indentText(indentLine)+"<Replaces block='minecraft:stone'/>\n"
-        distText += indentText(indentLine)+"<Replaces block='minecraft:gravel'/>\n"
-        distText += indentText(indentLine)+"<Replaces block='minecraft:netherrack'/>\n"
-        distText += indentText(indentLine)+"<Replaces block='minecraft:end_stone'/>\n"
-    
-    if level == "Prefers":
-        distText += biomeList(orePreferName)
-        distText += biomeAvoidList(oreNoPreferName)
-    else:
-        distText += biomeList(oreBiomeName)    
-        distText += biomeAvoidList(oreAvoidName)
-    
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Veins>\n"
-    distText += indentText(indentLine)+"<!-- End "+oreName[currentOreGen]+" Pipe Configuration -->\n"
-    distText += indentText(indentLine)+"\n"
-        
-    if orePreferBiomes[currentOreGen] != "NONE":
-        if level == "Base" :
-            distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Pipe Veins) Settings -->\n"
-            distText += pipeVeinsDist(currentOreGen, "Prefers")    
-            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Pipe Veins) Settings -->\n"
-    return distText
-
 ### Strategic Cloud Distribution
 
 def strategicCloudsDist(currentOreGen,level):
@@ -2033,6 +1625,8 @@ def strategicCloudsDist(currentOreGen,level):
     preferMultiplier = ""
     global indentLine
     
+    distributionDescription = "Large irregular clouds filled lightly with ore.  These are huge, spanning several adjacent chunks, and consequently rather rare.  They contain a sizeable amount of ore, but it takes some time and effort to mine due to low density.  The intent for strategic clouds is that the player will need to actively search for one and then set up a semi-permanent mining base and spend some time actually mining the ore."
+    
     if level == "Prefers":
         preferMultiplier = orePreMultiplier[currentOreGen]
         inheritLine = oreConfigName+"BaseCloud"
@@ -2042,20 +1636,20 @@ def strategicCloudsDist(currentOreGen,level):
     
     # Main Cloud
     
-    distText = indentText(indentLine)+"<Cloud name='"+oreConfigName+str(level)+"Cloud' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"'>\n"
+    distText = indentText(indentLine)+"<Cloud name='"+oreConfigName+str(level)+"Cloud' block='"+oreBlock[currentOreGen]+oreMetaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"'>\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
     indentLine += 1
     
     if level == "Base":
-        distText += indentText(indentLine)+"Large irregular clouds filled lightly with ore.  These are huge, spanning several \n"
-        distText += indentText(indentLine)+"adjacent chunks, and consequently rather rare.  They contain a sizeable amount of \n"
-        distText += indentText(indentLine)+"ore, but it takes some time and effort to mine due to low density.\n"
-        distText += indentText(indentLine)+"The intent for strategic clouds is that the player will need to actively search for\n"
-        distText += indentText(indentLine)+"one and then set up a semi-permanent mining base and spend some time actually mining\n"
-        distText += indentText(indentLine)+"the ore.\n"
+        distText += wrapDescription(distributionDescription)
     elif level == "Prefers":
-        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
+        if preferMultiplier == 1:
+            distText += wrapDescription("Adds a spawn in preferred biomes.")
+        elif preferMultiplier > 1:
+            distText += wrapDescription("Spawns "+preferMultiplier+" more times in preferred biomes.")
+        else:
+            distText += wrapDescription("Spawns an additional "+(str(preferMultiplier*100))+"% in preferred biomes.")
     else:
         distText += indentText(indentLine)+" "
 
@@ -2093,19 +1687,22 @@ def strategicCloudsDist(currentOreGen,level):
     
     distText += indentText(indentLine)+"\n"
     distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Strategic Cloud Hint Veins -->\n"
-    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"HintVeins' block='"+oreBlock[currentOreGen]+metaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"'>\n"
+    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"HintVeins' block='"+oreBlock[currentOreGen]+oreMetaGen(currentOreGen)+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"'>\n"
     indentLine += 1
     distText += indentText(indentLine)+"<Description>\n"
     indentLine += 1
     
+    distributionDescription = "Single blocks, generously scattered through all heights (density is about that of vanilla iron ore).  They will replace dirt and sandstone (but not grass or sand), so they can be found nearer to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic deposits that would otherwise be very difficult to find."
+    
     if level == "Base":
-        distText += indentText(indentLine)+"Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). \n"
-        distText += indentText(indentLine)+"They will replace dirt and sandstone (but not grass or sand), so they can be found nearer  \n"
-        distText += indentText(indentLine)+"to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic  \n"
-        distText += indentText(indentLine)+"deposits that would otherwise be very difficult to find. \n"
-
+        distText += wrapDescription(distributionDescription)
     elif level == "Prefers":
-        distText += indentText(indentLine)+"Spawns "+preferMultiplier+" more times in preferred biomes.\n"
+        if preferMultiplier == 1:
+            distText += wrapDescription("Adds a spawn in preferred biomes.")
+        elif preferMultiplier > 1:
+            distText += wrapDescription("Spawns "+preferMultiplier+" more times in preferred biomes.")
+        else:
+            distText += wrapDescription("Spawns an additional "+(str(preferMultiplier*100))+"% in preferred biomes.")
     else:
         distText += indentText(indentLine)+" "
 
@@ -2158,6 +1755,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
     distributionText += indentText(indentLine)+"<!-- Begin "+currentOrePreDist+" distribution of "+oreName[currentOreGen]+" -->\n"
         
     if currentOreDist == 'Substitute':
+        distributionClass = "Base"
         print "   ..."+oreName[currentOreGen]+": substituting... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"substituteGen\"'>\n"
         distributionText += indentText(indentLine)+"\n"
@@ -2167,6 +1765,7 @@ def distributionGen(currentOreGen, currentOrePreDist):
         distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
     elif currentOreDist == 'Vanilla':
+        distributionClass = "Base"
         print "   ..."+oreName[currentOreGen]+": simulating vanilla oregen... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"vanillaStdGen\"'>\n"
         distributionText += indentText(indentLine)+"\n"
@@ -2181,32 +1780,38 @@ def distributionGen(currentOreGen, currentOrePreDist):
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"layeredVeins\"'>\n"
         distributionText += indentText(indentLine)+"\n"
         indentLine += 1
-        distributionText +=  layeredVeinsDist(currentOreGen, "Base")
+        # distributionText +=  layeredVeinsDist(currentOreGen, "Base")
+        distributionText += veinsDist(currentOreGen, "Layered", "Base", "Base")
         indentLine -= 1
         distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
         
     elif currentOreDist == 'VerticalVeins':
+        distributionClass = "Vertical"
         print "   ..."+oreName[currentOreGen]+": stacking vertical veins... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"verticalVeins\"'>\n"
         distributionText += indentText(indentLine)+"\n"
         indentLine += 1
-        distributionText +=  verticalVeinsDist(currentOreGen, "Base")
+        #distributionText +=  verticalVeinsDist(currentOreGen, "Base")
+        distributionText += veinsDist(currentOreGen, "Vertical", "Base", "Base")
         indentLine -= 1
         distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
 
     elif currentOreDist == 'SmallDeposits':
+        distributionClass = "Small"
         print "   ..."+oreName[currentOreGen]+": placing small deposits... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"smallDeposits\"'>\n"
         distributionText += indentText(indentLine)+"\n"
         indentLine += 1
-        distributionText +=  smallDepositsDist(currentOreGen, "Base")
+        #distributionText +=  smallDepositsDist(currentOreGen, "Base")
+        distributionText += veinsDist(currentOreGen, "Deposit", "Base", "Base")
         indentLine -= 1
         distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
 
     elif currentOreDist == 'Geodes':
+        distributionClass = "Base"
         print "   ..."+oreName[currentOreGen]+": growing geodes... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"geodes\"'>\n"
         distributionText += indentText(indentLine)+"\n"
@@ -2217,45 +1822,54 @@ def distributionGen(currentOreGen, currentOrePreDist):
         distributionText += indentText(indentLine)+"</IfCondition>\n"
 
     elif currentOreDist == 'HugeVeins':
+        distributionClass = "Huge"
         print "   ..."+oreName[currentOreGen]+": constructing huge veins... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"hugeVeins\"'>\n"
         distributionText += indentText(indentLine)+"\n"
         indentLine += 1
-        distributionText +=   hugeVeinsDist(currentOreGen, "Base")
+        #distributionText +=   hugeVeinsDist(currentOreGen, "Base")
+        distributionText += veinsDist(currentOreGen, "Huge", "Base", "Base")
         indentLine -= 1
         distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
 
     elif currentOreDist == 'SparseVeins':
+        distributionClass = "Sparse"
         print "   ..."+oreName[currentOreGen]+": sprinkling sparse veins... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"sparseVeins\"'>\n"
         distributionText += indentText(indentLine)+"\n"
         indentLine += 1
-        distributionText +=   sparseVeinsDist(currentOreGen, "Base")
+        #distributionText +=   sparseVeinsDist(currentOreGen, "Base")
+        distributionText += veinsDist(currentOreGen, "Sparse", "Base", "Base")
         indentLine -= 1
         distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
 
     elif currentOreDist == 'PipeVeins':
+        distributionClass = "Pipe"
         print "   ..."+oreName[currentOreGen]+": rolling and filling pipe veins... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"pipeVeins\"'>\n"
         distributionText += indentText(indentLine)+"\n"
         indentLine += 1
-        distributionText +=  pipeVeinsDist(currentOreGen, "Base")
+        #distributionText +=  pipeVeinsDist(currentOreGen, "Base")
+        distributionText += veinsDist(currentOreGen, "Pipe", "Base", "Base")
         indentLine -= 1
         distributionText += indentText(indentLine)+"\n"
         distributionText += indentText(indentLine)+"</IfCondition>\n"
 
-#    elif currentOreDist == 'CompoundVeins':
-#        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"compoundVeins\"'>\n"
-#        distributionText += indentText(indentLine)+"\n"
-#        indentLine += 1
-#        distributionText += compoundVeinsDist(currentOreGen, "Base")
-#        indentLine -= 1
-#        distributionText += indentText(indentLine)+"\n"
-#        distributionText += indentText(indentLine)+"</IfCondition>\n"
+    elif currentOreDist == 'CompoundVeins':
+        distributionClass = "Compound"
+        print "   ..."+oreName[currentOreGen]+": assembling compound veins... "
+        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"compoundVeins\"'>\n"
+        distributionText += indentText(indentLine)+"\n"
+        indentLine += 1
+        distributionText += veinsDist(currentOreGen, "Compound", "Base", "Base")
+        indentLine -= 1
+        distributionText += indentText(indentLine)+"\n"
+        distributionText += indentText(indentLine)+"</IfCondition>\n"
 
     elif currentOreDist == 'StrategicCloud':
+        distributionClass = "Base"
         print "   ..."+oreName[currentOreGen]+": seeding clouds... "
         distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"strategicCloud\"'>\n"
         distributionText += indentText(indentLine)+"\n"
@@ -2312,24 +1926,14 @@ def replaceCheck(currentOreGen, replace):
 ##################### Per-Material Ore Replacement #################
 # Lists the vanilla ores to be replaced with the identified material.
 
-def depositRemovalList(world, replacement):
-    global indentLine
+def depositRemovalList(oreBlocks, replacementBlocks, currentReplacementBlock):
+
     outReplacement = ""
-    availableOres = []
-    replacementBlocks = []
-    availableMetas = []
-    availableBlocks = []
+
+    for currentOre in range(0, len(oreBlocks)):
+        if replacementBlocks[currentOre] == currentReplacementBlock:
+            outReplacement += indentText(indentLine)+"<Replaces block='"+oreBlocks[currentOre]+"' />\n"
         
-    for oreSelect in range(0, len(oreConfigName)):        
-        if replaceCheck(oreSelect, replacement) == 1:
-            availableOres.append(oreConfigName[oreSelect])
-            availableBlocks.append(oreBlock[oreSelect])
-            availableMetas.append(oreMeta[oreSelect])
-            replacementBlocks.append(oreReplace[oreSelect])
-            
-    for availableSelect in range(0, len(availableOres)):
-        outReplacement += indentText(indentLine)+"<Replaces block='"+availableBlocks[availableSelect]+":"+availableMetas[availableSelect]+"' />\n"
-    
     return outReplacement
 
 
@@ -2338,28 +1942,95 @@ def depositRemovalList(world, replacement):
 
 def depositRemoval(world):
     global indentLine
-    replacementBlocks = []
-    outConfig = ""
     
-    # First, determine if anything needs to be replaced in this
-    # world.
+    oreBlocks = []                  # Ore blocks to be replaced.
+    
+    replacementBlocks = []          # Landscape blocks to replace ore.
+    
+    replacementSections = []        # List of unique landscape blocks.
+    
+    currentSectionReplacements = [] # Ore blocks to be replaced with
+                                    #   current landscape block    
+                                    
+    outConfig = ""              
     
     for oreSelect in range(0, len(oreConfigName)):
-        if oreSubstitution[oreSelect] == "Yes":
+ 
+        # This part is quite tricky, so I'm going to heavily comment
+        # it for the sake of future editing.
+    
+        # If ore is configured to be substituted, and the world is correct...
+        
+        if oreSubstitution[oreSelect] == "Yes" and worldCheck(oreSelect, world) == 1:
+
+            # ...prepare the string for the replacement ore...
+
             orePreReplaceName=oreReplace[oreSelect]
             oreReplaceName=spaceRemove(orePreReplaceName)
             
-            if worldCheck(oreSelect, world) == 1:
-                firstReplacement = firstReplace(oreReplaceName)
-                replacementBlocks.append(firstReplacement)
+            # ...then add the ore to be removed to the "oreBlocks" list...
+ 
+            oreBlocks.append(oreBlock[oreSelect]+oreMetaGen(oreSelect))
+            # ...and add the replacement block to the "replacementBlocks" list.
+ 
+            replacementBlocks.append(firstReplace(oreReplaceName))
+        
+        # Now, repeat the process with the ore pipe value (in case the
+        # pipe material also needs to be cleaned out of the world).
+        
+        if orePipeSubstitute[oreSelect] == "Yes" and worldCheck(oreSelect, world) == 1:
+            orePreReplaceName=oreReplace[oreSelect]
+            oreReplaceName=spaceRemove(orePreReplaceName)
             
-    replaceList = list(set(replacementBlocks))
-                
+            # In this case, however, check to make sure the material has
+            # not already been added to the "oreBlocks" list.
+            
+            orePresence = 0     # Changes to 1 when finding a duplicate.
+            
+            for check in range(0, len(oreBlocks)):
+                if oreBlocks[check] == orePipe[oreSelect]:
+                    orePresence = 1
+            
+            # If it's not added to the list, then good, we can add it.
+            
+            if orePresence == 0:
+                oreBlocks.append(orePipe[oreSelect])
+                replacementBlocks.append(firstReplace(oreReplaceName))
+
+    # Now, we want a list of replacement blocks that have no duplicates.
+    # This list will be used to define the replacement sections.
+         
+    # For each block in the existing replacement list...
+    
+    for check in range(0,len(replacementBlocks)):
+        
+        sectionPresence = 0     # Changes to 1 when finding a duplicate.
+        
+        # ...go through the sections list...
+        
+        for review in range(0,len(replacementSections)):
+        
+            # ...to see if the current replacement block is already
+            # there...
+            
+            if replacementBlocks[check] == replacementSections[review]:
+                sectionPresence = 1
+        
+        # if it's not, then add it.
+        
+        if sectionPresence == 0:
+            replacementSections.append(replacementBlocks[check])
+    
+    # So far so good.  We now have a list of ores, a list of replacement
+    # blocks, and a list of replacement block sections.  Now to do the
+    # deed itself.
+
     outConfig += indentText(indentLine)+"\n"
     outConfig += indentText(indentLine)+"<!-- Starting Original "+world+" Ore Removal -->\n"
     
-    for blockSelect in range (0, len(replaceList)): # list(set(replacementBlocks)) = remove duplicate blocks
-        outConfig += indentText(indentLine)+"<Substitute name='"+modPrefix+world+"OreSubstitute"+str(blockSelect)+"' block='"+replaceList[blockSelect]+"'>\n"
+    for blockSelect in range(0, len(replacementSections)):
+        
+        outConfig += indentText(indentLine)+"<Substitute name='"+modPrefix+world+"OreSubstitute"+str(blockSelect)+"' block='"+replacementBlocks[blockSelect]+"'>\n"
         indentLine += 1
         outConfig += indentText(indentLine)+"<Description>\n"
         indentLine += 1
@@ -2371,8 +2042,8 @@ def depositRemoval(world):
         outConfig += indentText(indentLine)+"The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).\n"
         indentLine -= 1
         outConfig += indentText(indentLine)+"</Comment>\n"
-    
-        outConfig += depositRemovalList(world,replaceList[blockSelect])
+        
+        outConfig += depositRemovalList(oreBlocks, replacementBlocks, replacementSections[blockSelect])
     
         indentLine -= 1
         outConfig += indentText(indentLine)+"</Substitute>\n"
@@ -2380,7 +2051,7 @@ def depositRemoval(world):
     
     outConfig += indentText(indentLine)+"<!-- Original "+world+" Ore Removal Complete -->\n"
             
-        
+    
     return outConfig
     
 
