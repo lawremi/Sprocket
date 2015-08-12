@@ -1,8 +1,7 @@
  <!-- ================================================================
       Custom Ore Generation "RailCraft" Module: This configuration
       covers quarry stone, sulfur, poor iron, poor gold, poor copper,
-      poor tin,  poor lead, saltpeter, remove abyssal stone, abyssal
-      ores, and  firestone.
+      poor tin,  poor lead, saltpeter, abyssal ores, and firestone.
       ================================================================
       -->
 
@@ -313,30 +312,6 @@
                 <!-- Saltpeter Configuration UI Complete -->
                 
                 
-                <!-- Remove Abyssal Stone Configuration UI Starting -->
-                <ConfigSection>
-                    <OptionChoice name='rlcrRemoveAbyssalStoneDist'  displayState='shown' displayGroup='groupRailCraft'> 
-                        <Description> Controls how Remove Abyssal Stone is generated </Description> 
-                        <DisplayName>RailCraft Remove Abyssal Stone</DisplayName>
-                        <Choice value='substituteGen' displayValue='Substitute'>
-                            <Description>
-                                Simple substitution.
-                            </Description>
-                        </Choice>
-                        <Choice value='none' displayValue='None' description='Remove Abyssal Stone is not generated in the world.'/>
-                    </OptionChoice>
-                    <OptionNumeric name='rlcrRemoveAbyssalStoneFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                        <Description> Frequency multiplier for RailCraft Remove Abyssal Stone distributions </Description>
-                        <DisplayName>RailCraft Remove Abyssal Stone Freq.</DisplayName>
-                    </OptionNumeric>
-                    <OptionNumeric name='rlcrRemoveAbyssalStoneSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupRailCraft'>
-                        <Description> Size multiplier for RailCraft Remove Abyssal Stone distributions </Description>
-                        <DisplayName>RailCraft Remove Abyssal Stone Size</DisplayName>
-                    </OptionNumeric>
-                </ConfigSection> 
-                <!-- Remove Abyssal Stone Configuration UI Complete -->
-                
-                
                 <!-- Abyssal Ores Configuration UI Starting -->
                 <ConfigSection>
                     <OptionChoice name='rlcrAbyssalOresDist'  displayState='shown' displayGroup='groupRailCraft'> 
@@ -421,7 +396,6 @@
                     <Replaces block='Railcraft:ore:9' />
                     <Replaces block='Railcraft:ore:10' />
                     <Replaces block='Railcraft:ore:11' />
-                    <Replaces block='minecraft:stone' />
                     <Replaces block='Railcraft:ore:2' />
                     <Replaces block='Railcraft:cube:6' />
                 </Substitute>
@@ -1570,25 +1544,6 @@
                 <!-- End  Vanilla distribution of Saltpeter -->
                 
                 <!-- End Saltpeter Generation --> 
-
-                
-                <!-- Begin Remove Abyssal Stone Generation --> 
-                
-                <!-- Begin Substitute distribution of Remove Abyssal Stone -->
-                <IfCondition condition=':= rlcrRemoveAbyssalStoneDist = "substituteGen"'>
-                
-                    <Substitute name='rlcrRemoveAbyssalStoneBaseSubstitute' block='minecraft:stone'>
-                        <Description>
-                            This is a global replacement of one block
-                            with another.
-                        </Description>
-                        <Replaces block='minecraft:stone'/>
-                    </Substitute>
-                
-                </IfCondition>
-                <!-- End Substitute distribution of Remove Abyssal Stone -->
-                
-                <!-- End Remove Abyssal Stone Generation --> 
 
                 
                 <!-- Begin Abyssal Ores Generation --> 
