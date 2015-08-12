@@ -1,12 +1,9 @@
-
-<!-- ================================================================ 
-
-Custom Ore Generation:   Substitution Test Module
-
-Generates: 
-Deepen the Dirt, Dirt Mountains, Glass the Land, No Water
-
-================================================================ -->
+ <!-- ================================================================
+      Custom Ore Generation "Substitution Test" Module: This
+      configuration covers deepen the dirt, dirt mountains, glass the
+      land, and no water.
+      ================================================================
+      -->
 
     <!-- Starting Configuration for Custom Ore Generation. -->
     <ConfigSection>
@@ -123,14 +120,15 @@ Deepen the Dirt, Dirt Mountains, Glass the Land, No Water
         <IfCondition condition=':= ?COGActive'>
             
             <!-- Starting Original Overworld Ore Removal -->
-            <Substitute name='subtOverworldOreSubstitute0' block='minecraft:sand'>
+            <Substitute name='subtOverworldOreSubstitute0' block='minecraft:stone'>
                 <Description>
                     Replace vanilla-generated ore clusters.
                 </Description>
                 <Comment>
                     The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
                 </Comment>
-                <Replaces block='minecraft:glass:0' />
+                <Replaces block='minecraft:dirt' />
+                <Replaces block='minecraft:dirt' />
             </Substitute>
             <Substitute name='subtOverworldOreSubstitute1' block='minecraft:stone'>
                 <Description>
@@ -139,17 +137,16 @@ Deepen the Dirt, Dirt Mountains, Glass the Land, No Water
                 <Comment>
                     The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
                 </Comment>
-                <Replaces block='minecraft:dirt:0' />
-                <Replaces block='minecraft:dirt:0' />
+                <Replaces block='minecraft:glass' />
             </Substitute>
-            <Substitute name='subtOverworldOreSubstitute2' block='minecraft:water'>
+            <Substitute name='subtOverworldOreSubstitute2' block='minecraft:sand'>
                 <Description>
                     Replace vanilla-generated ore clusters.
                 </Description>
                 <Comment>
                     The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
                 </Comment>
-                <Replaces block='minecraft:air:0' />
+                <Replaces block='minecraft:air' />
             </Substitute>
             <!-- Original Overworld Ore Removal Complete -->
             
@@ -161,7 +158,10 @@ Deepen the Dirt, Dirt Mountains, Glass the Land, No Water
             <IfCondition condition=':= subtDeepentheDirtDist = "substituteGen"'>
             
                 <Substitute name='subtDeepentheDirtBaseSubstitute' block='minecraft:dirt' minHeight='50' maxHeight='64'>
-                    <Description> This is a straight-up replacement of one block with another. </Description>
+                    <Description>
+                        This is a global replacement of one block with
+                        another.
+                    </Description>
                     <Replaces block='minecraft:stone'/>
                 </Substitute>
             
@@ -177,7 +177,10 @@ Deepen the Dirt, Dirt Mountains, Glass the Land, No Water
             <IfCondition condition=':= subtDirtMountainsDist = "substituteGen"'>
             
                 <Substitute name='subtDirtMountainsBaseSubstitute' block='minecraft:dirt' minHeight='63' maxHeight='254'>
-                    <Description> This is a straight-up replacement of one block with another. </Description>
+                    <Description>
+                        This is a global replacement of one block with
+                        another.
+                    </Description>
                     <Replaces block='minecraft:stone'/>
                 </Substitute>
             
@@ -193,7 +196,10 @@ Deepen the Dirt, Dirt Mountains, Glass the Land, No Water
             <IfCondition condition=':= subtGlasstheLandDist = "substituteGen"'>
             
                 <Substitute name='subtGlasstheLandBaseSubstitute' block='minecraft:glass'>
-                    <Description> This is a straight-up replacement of one block with another. </Description>
+                    <Description>
+                        This is a global replacement of one block with
+                        another.
+                    </Description>
                     <Replaces block='minecraft:sand'/>
                     <Replaces block='minecraft:sandstone'/>
                     <Replaces block='minecraft:dirt'/>
@@ -213,7 +219,10 @@ Deepen the Dirt, Dirt Mountains, Glass the Land, No Water
             <IfCondition condition=':= subtNoWaterDist = "substituteGen"'>
             
                 <Substitute name='subtNoWaterBaseSubstitute' block='minecraft:air'>
-                    <Description> This is a straight-up replacement of one block with another. </Description>
+                    <Description>
+                        This is a global replacement of one block with
+                        another.
+                    </Description>
                     <Replaces block='minecraft:water'/>
                 </Substitute>
             
