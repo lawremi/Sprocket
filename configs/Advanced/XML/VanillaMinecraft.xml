@@ -59,9 +59,19 @@
                         Large veins filled very lightly with ore.
                     </Description>
                 </Choice>
+                <Choice value='Cloud' displayValue='Strategic Cloud'>
+                    <Description>
+                        Large irregular clouds filled lightly with ore.
+                    </Description>
+                </Choice>
                 <Choice value='Vanilla' displayValue='Vanilla'>
                     <Description>
                         Simulates Vanilla Minecraft.
+                    </Description>
+                </Choice>
+                <Choice value='Cloud' displayValue='Strategic Cloud'>
+                    <Description>
+                        Large irregular clouds filled lightly with ore.
                     </Description>
                 </Choice>
                 <Choice value='none' displayValue='None' description='Coal is not generated in the world.'/>
@@ -195,6 +205,11 @@
                         Simulates Vanilla Minecraft.
                     </Description>
                 </Choice>
+                <Choice value='Cloud' displayValue='Strategic Cloud'>
+                    <Description>
+                        Large irregular clouds filled lightly with ore.
+                    </Description>
+                </Choice>
                 <Choice value='none' displayValue='None' description='Diamond is not generated in the world.'/>
             </OptionChoice>
             <OptionNumeric name='vnlaDiamondFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
@@ -222,6 +237,11 @@
                 <Choice value='Vanilla' displayValue='Vanilla'>
                     <Description>
                         Simulates Vanilla Minecraft.
+                    </Description>
+                </Choice>
+                <Choice value='Cloud' displayValue='Strategic Cloud'>
+                    <Description>
+                        Large irregular clouds filled lightly with ore.
                     </Description>
                 </Choice>
                 <Choice value='none' displayValue='None' description='Lapis Lazuli is not generated in the world.'/>
@@ -253,6 +273,11 @@
                         Simulates Vanilla Minecraft.
                     </Description>
                 </Choice>
+                <Choice value='Cloud' displayValue='Strategic Cloud'>
+                    <Description>
+                        Large irregular clouds filled lightly with ore.
+                    </Description>
+                </Choice>
                 <Choice value='none' displayValue='None' description='Emerald is not generated in the world.'/>
             </OptionChoice>
             <OptionNumeric name='vnlaEmeraldFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupVanillaMinecraft'>
@@ -280,6 +305,11 @@
                 <Choice value='Vanilla' displayValue='Vanilla'>
                     <Description>
                         Simulates Vanilla Minecraft.
+                    </Description>
+                </Choice>
+                <Choice value='Cloud' displayValue='Strategic Cloud'>
+                    <Description>
+                        Large irregular clouds filled lightly with ore.
                     </Description>
                 </Choice>
                 <Choice value='none' displayValue='None' description='Nether Quartz is not generated in the world.'/>
@@ -346,7 +376,7 @@
         <!-- Starting SmallDeposits Preset for Clay. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaClayDist = "SmallDeposits"'>
-                <Veins name='vnlaClayVeins'  inherits='PresetSmallDeposits' drawWireframe='true' wireframeColor='0x60A5A9B9' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Veins name='vnlaClayVeins'  inherits='PresetSmallDeposits' drawWireframe='true' wireframeColor='0x60A5A9B9' drawBoundBox='false' boundBoxColor='0x60A5A9B9'>
                     <Description>
                         Small motherlodes without any branches.
                         Similar to the deposits produced by
@@ -378,7 +408,7 @@
                 </Veins>
 
                 <!-- Beginning "Preferred" configuration. -->
-                <Veins name='vnlaClayPreferredVeins'  inherits='PresetSmallDeposits' drawWireframe='true' wireframeColor='0x60A5A9B9' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Veins name='vnlaClayPreferredVeins'  inherits='PresetSmallDeposits' drawWireframe='true' wireframeColor='0x60A5A9B9' drawBoundBox='false' boundBoxColor='0x60A5A9B9'>
                     <Description>
                         Ore generation is doubled in preferred
                         biomes.
@@ -423,7 +453,7 @@
         <!-- Starting SparseVeins Preset for Coal. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaCoalDist = "SparseVeins"'>
-                <Veins name='vnlaCoalVeins'  inherits='PresetSparseVeins' drawWireframe='true' wireframeColor='0x602A2A2A' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Veins name='vnlaCoalVeins'  inherits='PresetSparseVeins' drawWireframe='true' wireframeColor='0x602A2A2A' drawBoundBox='false' boundBoxColor='0x602A2A2A'>
                     <Description>
                         Large veins filled very lightly with ore.
                         Because they contain less ore per volume,
@@ -437,8 +467,8 @@
                     <OreBlock block='minecraft:coal_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <Biome name='.*'  />
-                    <Setting name='MotherlodeFrequency' avg=':= 6.14 * _default_ * vnlaCoalFreq ' range=':=  6.14 * _default_ * vnlaCoalFreq ' type='normal' scaleTo='base' />
-                    <Setting name='MotherlodeSize' avg=':= 6.14 * _default_ * vnlaCoalSize ' range=':=  6.14 * _default_ * vnlaCoalSize ' type='normal' />
+                    <Setting name='MotherlodeFrequency' avg=':= 6.52 * _default_ * vnlaCoalFreq ' range=':=  1 * _default_ * vnlaCoalFreq ' type='normal' scaleTo='base' />
+                    <Setting name='MotherlodeSize' avg=':= 6.52 * _default_ * vnlaCoalSize ' range=':=  1 * _default_ * vnlaCoalSize ' type='normal' />
                     <Setting name='MotherlodeHeight' avg=':= 68 ' range=':=  63 ' type='uniform' scaleTo='base' />
                     <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='BranchFrequency' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
@@ -455,7 +485,7 @@
                 </Veins>
 
                 <!-- Beginning "Preferred" configuration. -->
-                <Veins name='vnlaCoalPreferredVeins'  inherits='PresetSparseVeins' drawWireframe='true' wireframeColor='0x602A2A2A' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Veins name='vnlaCoalPreferredVeins'  inherits='PresetSparseVeins' drawWireframe='true' wireframeColor='0x602A2A2A' drawBoundBox='false' boundBoxColor='0x602A2A2A'>
                     <Description>
                         Ore generation is doubled in preferred
                         biomes.
@@ -463,8 +493,8 @@
                     <OreBlock block='minecraft:coal_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <BiomeType name='Swamp'  />
-                    <Setting name='MotherlodeFrequency' avg=':= 6.14 * _default_ * vnlaCoalFreq ' range=':=  6.14 * _default_ * vnlaCoalFreq ' type='normal' scaleTo='base' />
-                    <Setting name='MotherlodeSize' avg=':= 6.14 * _default_ * vnlaCoalSize ' range=':=  6.14 * _default_ * vnlaCoalSize ' type='normal' />
+                    <Setting name='MotherlodeFrequency' avg=':= 6.52 * _default_ * vnlaCoalFreq ' range=':=  1 * _default_ * vnlaCoalFreq ' type='normal' scaleTo='base' />
+                    <Setting name='MotherlodeSize' avg=':= 6.52 * _default_ * vnlaCoalSize ' range=':=  1 * _default_ * vnlaCoalSize ' type='normal' />
                     <Setting name='MotherlodeHeight' avg=':= 68 ' range=':=  63 ' type='uniform' scaleTo='base' />
                     <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='BranchFrequency' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
@@ -486,10 +516,99 @@
         <!-- SparseVeins Preset for Coal is complete. -->
 
 
+        <!-- Starting Cloud Preset for Coal. -->
+        <ConfigSection>
+            <IfCondition condition=':= vnlaCoalDist = "Cloud"'>
+                <Cloud name='vnlaCoalCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x602A2A2A' drawBoundBox='false' boundBoxColor='0x602A2A2A'>
+                    <Description>
+                        Large irregular clouds filled lightly  with
+                        ore.  These are huge, spanning  several
+                        adjacent chunks, and consequently  rather
+                        rare.  They contain a sizeable  amount of ore,
+                        but it takes some time and  effort to mine due
+                        to low density. The  intent for strategic
+                        clouds is that the  player will need to
+                        actively search for  one and then set up a
+                        semi-permanent  mining base and spend some
+                        time actually  mining the ore.
+                    </Description>
+                    <OreBlock block='minecraft:coal_ore' weight='1.0' />
+                    <Replaces block='minecraft:stone' weight='1.0' />
+                    <Biome name='.*'  />
+                    <Setting name='CloudRadius' avg=':= 1.477 * _default_ * vnlaCoalSize ' range=':=  _default_ * vnlaCoalSize ' type='normal' />
+                    <Setting name='CloudThickness' avg=':= 1.477 * _default_ * vnlaCoalSize ' range=':=  _default_ * vnlaCoalSize ' type='normal' scaleTo='base' />
+                    <Setting name='DistributionFrequency' avg=':= 2.183  * _default_ * vnlaCoalFreq ' range=':=  _default_ * vnlaCoalFreq ' type='normal' scaleTo='base' />
+                    <Setting name='CloudHeight' avg=':= 68 ' range=':=  63 ' type='uniform' scaleTo='base' />
+                    <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='CloudInclination' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreDensity' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
+                    <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreRadiusMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Veins name='vnlaCoalHintVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x602A2A2A' drawBoundBox='false' boundBoxColor='0x602A2A2A'>
+                        <Description>
+                            Single blocks, generously scattered
+                            through all heights (density is about
+                            that of vanilla iron ore). They will
+                            replace dirt and sandstone (but not  grass
+                            or sand), so they can be found  nearer to
+                            the surface than most ores.  Intened to be
+                            used as a child  distribution for large,
+                            rare  strategic deposits that would
+                            otherwise be very difficult to find.  Note
+                            that the frequency is multiplied  by
+                            ground level to maintain a  constant
+                            density, but not by ore  frequency because
+                            it is assumed that  the frequency of the
+                            parent  distribution will already be
+                            scaled  by that.
+                        </Description>
+                        <OreBlock block='minecraft:coal_ore' weight='1.0' />
+                        <Replaces block='minecraft:dirt' weight='1.0' />
+                        <Replaces block='minecraft:sandstone' weight='1.0' />
+                    </Veins>
+                </Cloud>
+
+                <!-- Beginning "Preferred" configuration. -->
+                <Cloud name='vnlaCoalPreferredCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x602A2A2A' drawBoundBox='false' boundBoxColor='0x602A2A2A'>
+                    <Description>
+                        Ore generation is doubled in preferred
+                        biomes.
+                    </Description>
+                    <OreBlock block='minecraft:coal_ore' weight='1.0' />
+                    <Replaces block='minecraft:stone' weight='1.0' />
+                    <BiomeType name='Swamp'  />
+                    <Setting name='CloudRadius' avg=':= 1.477 * _default_ * vnlaCoalSize ' range=':=  _default_ * vnlaCoalSize ' type='normal' />
+                    <Setting name='CloudThickness' avg=':= 1.477 * _default_ * vnlaCoalSize ' range=':=  _default_ * vnlaCoalSize ' type='normal' scaleTo='base' />
+                    <Setting name='DistributionFrequency' avg=':= 2.183  * _default_ * vnlaCoalFreq ' range=':=  _default_ * vnlaCoalFreq ' type='normal' scaleTo='base' />
+                    <Setting name='CloudHeight' avg=':= 68 ' range=':=  63 ' type='uniform' scaleTo='base' />
+                    <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='CloudInclination' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreDensity' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
+                    <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreRadiusMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Veins name='vnlaCoalPreferredHintVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x602A2A2A' drawBoundBox='false' boundBoxColor='0x602A2A2A'>
+                        <Description>
+                            Ore generation is doubled in  preferred
+                            biomes.
+                        </Description>
+                        <OreBlock block='minecraft:coal_ore' weight='1.0' />
+                        <Replaces block='minecraft:dirt' weight='1.0' />
+                        <Replaces block='minecraft:sandstone' weight='1.0' />
+                    </Veins>
+                </Cloud>
+                <!-- "Preferred" configuration complete. -->
+
+            </IfCondition>
+        </ConfigSection>
+        <!-- Cloud Preset for Coal is complete. -->
+
+
         <!-- Starting Vanilla Preset for Coal. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaCoalDist = "Vanilla"'>
-                <StandardGen name='vnlaCoalStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x602A2A2A' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <StandardGen name='vnlaCoalStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x602A2A2A' drawBoundBox='false' boundBoxColor='0x602A2A2A'>
                     <Description>
                         A master preset for standardgen ore
                         distributions.
@@ -497,14 +616,103 @@
                     <OreBlock block='minecraft:coal_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <Biome name='.*'  />
-                    <Setting name='Size' avg=':= 6.14 * _default_ * vnlaCoalSize ' range=':=  6.14 * _default_ * vnlaCoalSize ' type='normal' />
-                    <Setting name='Frequency' avg=':= 6.14 * _default_ * vnlaCoalFreq ' range=':=  6.14 * _default_ * vnlaCoalFreq ' type='normal' scaleTo='base' />
+                    <Setting name='Size' avg=':= 9 * vnlaCoalSize ' range=':=  2 * vnlaCoalSize ' type='normal' />
+                    <Setting name='Frequency' avg=':= 19 * vnlaCoalFreq ' range=':=  1 * vnlaCoalFreq ' type='normal' scaleTo='base' />
                     <Setting name='Height' avg=':= 68 ' range=':=  63 ' type='uniform' scaleTo='base' />
                     <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                 </StandardGen>
             </IfCondition>
         </ConfigSection>
         <!-- Vanilla Preset for Coal is complete. -->
+
+
+        <!-- Starting Cloud Preset for Coal. -->
+        <ConfigSection>
+            <IfCondition condition=':= vnlaCoalDist = "Cloud"'>
+                <Cloud name='vnlaCoalCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x602A2A2A' drawBoundBox='false' boundBoxColor='0x602A2A2A'>
+                    <Description>
+                        Large irregular clouds filled lightly  with
+                        ore.  These are huge, spanning  several
+                        adjacent chunks, and consequently  rather
+                        rare.  They contain a sizeable  amount of ore,
+                        but it takes some time and  effort to mine due
+                        to low density. The  intent for strategic
+                        clouds is that the  player will need to
+                        actively search for  one and then set up a
+                        semi-permanent  mining base and spend some
+                        time actually  mining the ore.
+                    </Description>
+                    <OreBlock block='minecraft:coal_ore' weight='1.0' />
+                    <Replaces block='minecraft:stone' weight='1.0' />
+                    <Biome name='.*'  />
+                    <Setting name='CloudRadius' avg=':= 1.477 * _default_ * vnlaCoalSize ' range=':=  _default_ * vnlaCoalSize ' type='normal' />
+                    <Setting name='CloudThickness' avg=':= 1.477 * _default_ * vnlaCoalSize ' range=':=  _default_ * vnlaCoalSize ' type='normal' scaleTo='base' />
+                    <Setting name='DistributionFrequency' avg=':= 2.183  * _default_ * vnlaCoalFreq ' range=':=  _default_ * vnlaCoalFreq ' type='normal' scaleTo='base' />
+                    <Setting name='CloudHeight' avg=':= 68 ' range=':=  63 ' type='uniform' scaleTo='base' />
+                    <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='CloudInclination' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreDensity' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
+                    <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreRadiusMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Veins name='vnlaCoalHintVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x602A2A2A' drawBoundBox='false' boundBoxColor='0x602A2A2A'>
+                        <Description>
+                            Single blocks, generously scattered
+                            through all heights (density is about
+                            that of vanilla iron ore). They will
+                            replace dirt and sandstone (but not  grass
+                            or sand), so they can be found  nearer to
+                            the surface than most ores.  Intened to be
+                            used as a child  distribution for large,
+                            rare  strategic deposits that would
+                            otherwise be very difficult to find.  Note
+                            that the frequency is multiplied  by
+                            ground level to maintain a  constant
+                            density, but not by ore  frequency because
+                            it is assumed that  the frequency of the
+                            parent  distribution will already be
+                            scaled  by that.
+                        </Description>
+                        <OreBlock block='minecraft:coal_ore' weight='1.0' />
+                        <Replaces block='minecraft:dirt' weight='1.0' />
+                        <Replaces block='minecraft:sandstone' weight='1.0' />
+                    </Veins>
+                </Cloud>
+
+                <!-- Beginning "Preferred" configuration. -->
+                <Cloud name='vnlaCoalPreferredCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x602A2A2A' drawBoundBox='false' boundBoxColor='0x602A2A2A'>
+                    <Description>
+                        Ore generation is doubled in preferred
+                        biomes.
+                    </Description>
+                    <OreBlock block='minecraft:coal_ore' weight='1.0' />
+                    <Replaces block='minecraft:stone' weight='1.0' />
+                    <BiomeType name='Swamp'  />
+                    <Setting name='CloudRadius' avg=':= 1.477 * _default_ * vnlaCoalSize ' range=':=  _default_ * vnlaCoalSize ' type='normal' />
+                    <Setting name='CloudThickness' avg=':= 1.477 * _default_ * vnlaCoalSize ' range=':=  _default_ * vnlaCoalSize ' type='normal' scaleTo='base' />
+                    <Setting name='DistributionFrequency' avg=':= 2.183  * _default_ * vnlaCoalFreq ' range=':=  _default_ * vnlaCoalFreq ' type='normal' scaleTo='base' />
+                    <Setting name='CloudHeight' avg=':= 68 ' range=':=  63 ' type='uniform' scaleTo='base' />
+                    <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='CloudInclination' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreDensity' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
+                    <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreRadiusMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Veins name='vnlaCoalPreferredHintVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x602A2A2A' drawBoundBox='false' boundBoxColor='0x602A2A2A'>
+                        <Description>
+                            Ore generation is doubled in  preferred
+                            biomes.
+                        </Description>
+                        <OreBlock block='minecraft:coal_ore' weight='1.0' />
+                        <Replaces block='minecraft:dirt' weight='1.0' />
+                        <Replaces block='minecraft:sandstone' weight='1.0' />
+                    </Veins>
+                </Cloud>
+                <!-- "Preferred" configuration complete. -->
+
+            </IfCondition>
+        </ConfigSection>
+        <!-- Cloud Preset for Coal is complete. -->
 
         <!-- End Coal Generation -->
 
@@ -514,7 +722,7 @@
         <!-- Starting LayeredVeins Preset for Iron. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaIronDist = "LayeredVeins"'>
-                <Veins name='vnlaIronVeins'  inherits='PresetLayeredVeins' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Veins name='vnlaIronVeins'  inherits='PresetLayeredVeins' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
                     <Description>
                         Small, fairly rare motherlodes with 2-4
                         horizontal veins each.
@@ -523,8 +731,8 @@
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <Biome name='.*'  />
                     <Biome name='Ocean'  weight='-1' />
-                    <Setting name='MotherlodeFrequency' avg=':= 1.45 * _default_ * vnlaIronFreq ' range=':=  1.45 * _default_ * vnlaIronFreq ' type='normal' scaleTo='base' />
-                    <Setting name='MotherlodeSize' avg=':= 1.45 * _default_ * vnlaIronSize ' range=':=  1.45 * _default_ * vnlaIronSize ' type='normal' />
+                    <Setting name='MotherlodeFrequency' avg=':= 1.608 * _default_ * vnlaIronFreq ' range=':=  1 * _default_ * vnlaIronFreq ' type='normal' scaleTo='base' />
+                    <Setting name='MotherlodeSize' avg=':= 1.608 * _default_ * vnlaIronSize ' range=':=  1 * _default_ * vnlaIronSize ' type='normal' />
                     <Setting name='MotherlodeHeight' avg=':= 36 ' range=':=  31 ' type='normal' scaleTo='base' />
                     <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='BranchFrequency' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
@@ -541,7 +749,7 @@
                 </Veins>
 
                 <!-- Beginning "Preferred" configuration. -->
-                <Veins name='vnlaIronPreferredVeins'  inherits='PresetLayeredVeins' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Veins name='vnlaIronPreferredVeins'  inherits='PresetLayeredVeins' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
                     <Description>
                         Ore generation is doubled in preferred
                         biomes.
@@ -550,8 +758,8 @@
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <BiomeType name='Cold'  />
                     <Biome name='Ocean'  weight='-1' />
-                    <Setting name='MotherlodeFrequency' avg=':= 1.45 * _default_ * vnlaIronFreq ' range=':=  1.45 * _default_ * vnlaIronFreq ' type='normal' scaleTo='base' />
-                    <Setting name='MotherlodeSize' avg=':= 1.45 * _default_ * vnlaIronSize ' range=':=  1.45 * _default_ * vnlaIronSize ' type='normal' />
+                    <Setting name='MotherlodeFrequency' avg=':= 1.608 * _default_ * vnlaIronFreq ' range=':=  1 * _default_ * vnlaIronFreq ' type='normal' scaleTo='base' />
+                    <Setting name='MotherlodeSize' avg=':= 1.608 * _default_ * vnlaIronSize ' range=':=  1 * _default_ * vnlaIronSize ' type='normal' />
                     <Setting name='MotherlodeHeight' avg=':= 36 ' range=':=  31 ' type='normal' scaleTo='base' />
                     <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='BranchFrequency' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
@@ -576,7 +784,7 @@
         <!-- Starting Vanilla Preset for Iron. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaIronDist = "Vanilla"'>
-                <StandardGen name='vnlaIronStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <StandardGen name='vnlaIronStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
                     <Description>
                         A master preset for standardgen ore
                         distributions.
@@ -585,8 +793,8 @@
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <Biome name='.*'  />
                     <Biome name='Ocean'  weight='-1' />
-                    <Setting name='Size' avg=':= 1.45 * _default_ * vnlaIronSize ' range=':=  1.45 * _default_ * vnlaIronSize ' type='normal' />
-                    <Setting name='Frequency' avg=':= 1.45 * _default_ * vnlaIronFreq ' range=':=  1.45 * _default_ * vnlaIronFreq ' type='normal' scaleTo='base' />
+                    <Setting name='Size' avg=':= 7 * vnlaIronSize ' range=':=  3 * vnlaIronSize ' type='normal' />
+                    <Setting name='Frequency' avg=':= 13 * vnlaIronFreq ' range=':=  1 * vnlaIronFreq ' type='normal' scaleTo='base' />
                     <Setting name='Height' avg=':= 36 ' range=':=  31 ' type='normal' scaleTo='base' />
                     <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                 </StandardGen>
@@ -598,7 +806,7 @@
         <!-- Starting Cloud Preset for Iron. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaIronDist = "Cloud"'>
-                <Cloud name='vnlaIronCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Cloud name='vnlaIronCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
                     <Description>
                         Large irregular clouds filled lightly  with
                         ore.  These are huge, spanning  several
@@ -615,9 +823,9 @@
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <Biome name='.*'  />
                     <Biome name='Ocean'  weight='-1' />
-                    <Setting name='CloudRadius' avg=':= 1.45 * _default_ * vnlaIronSize ' range=':=  1.45 * _default_ * vnlaIronSize ' type='normal' />
-                    <Setting name='CloudThickness' avg=':= 1.45 * _default_ * vnlaIronSize ' range=':=  1.45 * _default_ * vnlaIronSize ' type='normal' scaleTo='base' />
-                    <Setting name='DistributionFrequency' avg=':= 1.45 * _default_ * vnlaIronFreq ' range=':=  1.45 * _default_ * vnlaIronFreq ' type='normal' scaleTo='base' />
+                    <Setting name='CloudRadius' avg=':= 0.734 * _default_ * vnlaIronSize ' range=':=  _default_ * vnlaIronSize ' type='normal' />
+                    <Setting name='CloudThickness' avg=':= 0.734 * _default_ * vnlaIronSize ' range=':=  _default_ * vnlaIronSize ' type='normal' scaleTo='base' />
+                    <Setting name='DistributionFrequency' avg=':= 0.538  * _default_ * vnlaIronFreq ' range=':=  _default_ * vnlaIronFreq ' type='normal' scaleTo='base' />
                     <Setting name='CloudHeight' avg=':= 36 ' range=':=  31 ' type='normal' scaleTo='base' />
                     <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
@@ -625,7 +833,7 @@
                     <Setting name='OreDensity' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
                     <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='OreRadiusMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Veins name='vnlaIronVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                    <Veins name='vnlaIronHintVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
                         <Description>
                             Single blocks, generously scattered
                             through all heights (density is about
@@ -646,13 +854,11 @@
                         <OreBlock block='minecraft:iron_ore' weight='1.0' />
                         <Replaces block='minecraft:dirt' weight='1.0' />
                         <Replaces block='minecraft:sandstone' weight='1.0' />
-                        <Biome name='.*'  />
-                        <Biome name='Ocean'  weight='-1' />
                     </Veins>
                 </Cloud>
 
                 <!-- Beginning "Preferred" configuration. -->
-                <Cloud name='vnlaIronPreferredCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Cloud name='vnlaIronPreferredCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
                     <Description>
                         Ore generation is doubled in preferred
                         biomes.
@@ -661,9 +867,9 @@
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <BiomeType name='Cold'  />
                     <Biome name='Ocean'  weight='-1' />
-                    <Setting name='CloudRadius' avg=':= 1.45 * _default_ * vnlaIronSize ' range=':=  1.45 * _default_ * vnlaIronSize ' type='normal' />
-                    <Setting name='CloudThickness' avg=':= 1.45 * _default_ * vnlaIronSize ' range=':=  1.45 * _default_ * vnlaIronSize ' type='normal' scaleTo='base' />
-                    <Setting name='DistributionFrequency' avg=':= 1.45 * _default_ * vnlaIronFreq ' range=':=  1.45 * _default_ * vnlaIronFreq ' type='normal' scaleTo='base' />
+                    <Setting name='CloudRadius' avg=':= 0.734 * _default_ * vnlaIronSize ' range=':=  _default_ * vnlaIronSize ' type='normal' />
+                    <Setting name='CloudThickness' avg=':= 0.734 * _default_ * vnlaIronSize ' range=':=  _default_ * vnlaIronSize ' type='normal' scaleTo='base' />
+                    <Setting name='DistributionFrequency' avg=':= 0.538  * _default_ * vnlaIronFreq ' range=':=  _default_ * vnlaIronFreq ' type='normal' scaleTo='base' />
                     <Setting name='CloudHeight' avg=':= 36 ' range=':=  31 ' type='normal' scaleTo='base' />
                     <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
@@ -671,7 +877,7 @@
                     <Setting name='OreDensity' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
                     <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='OreRadiusMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Veins name='vnlaIronVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                    <Veins name='vnlaIronPreferredHintVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
                         <Description>
                             Ore generation is doubled in  preferred
                             biomes.
@@ -679,9 +885,6 @@
                         <OreBlock block='minecraft:iron_ore' weight='1.0' />
                         <Replaces block='minecraft:dirt' weight='1.0' />
                         <Replaces block='minecraft:sandstone' weight='1.0' />
-                        <BiomeType name='Cold'  />
-                        <Biome name='Ocean'  weight='-1' />
-                        <Biome name='Ocean'  weight='-1' />
                     </Veins>
                 </Cloud>
                 <!-- "Preferred" configuration complete. -->
@@ -698,7 +901,7 @@
         <!-- Starting LayeredVeins Preset for Gold. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaGoldDist = "LayeredVeins"'>
-                <Veins name='vnlaGoldVeins'  inherits='PresetLayeredVeins' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Veins name='vnlaGoldVeins'  inherits='PresetLayeredVeins' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
                     <Description>
                         Small, fairly rare motherlodes with 2-4
                         horizontal veins each.
@@ -706,8 +909,8 @@
                     <OreBlock block='minecraft:gold_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <Biome name='.*'  />
-                    <Setting name='MotherlodeFrequency' avg=':= 0.51 * _default_ * vnlaGoldFreq ' range=':=  0.51 * _default_ * vnlaGoldFreq ' type='normal' scaleTo='base' />
-                    <Setting name='MotherlodeSize' avg=':= 0.51 * _default_ * vnlaGoldSize ' range=':=  0.51 * _default_ * vnlaGoldSize ' type='normal' />
+                    <Setting name='MotherlodeFrequency' avg=':= 0.493 * _default_ * vnlaGoldFreq ' range=':=  1 * _default_ * vnlaGoldFreq ' type='normal' scaleTo='base' />
+                    <Setting name='MotherlodeSize' avg=':= 0.493 * _default_ * vnlaGoldSize ' range=':=  1 * _default_ * vnlaGoldSize ' type='normal' />
                     <Setting name='MotherlodeHeight' avg=':= 17 ' range=':=  12 ' type='normal' scaleTo='base' />
                     <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='BranchFrequency' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
@@ -724,7 +927,7 @@
                 </Veins>
 
                 <!-- Beginning "Preferred" configuration. -->
-                <Veins name='vnlaGoldPreferredVeins'  inherits='PresetLayeredVeins' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Veins name='vnlaGoldPreferredVeins'  inherits='PresetLayeredVeins' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
                     <Description>
                         Ore generation is doubled in preferred
                         biomes.
@@ -732,8 +935,8 @@
                     <OreBlock block='minecraft:gold_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <BiomeType name='Jungle'  />
-                    <Setting name='MotherlodeFrequency' avg=':= 0.51 * _default_ * vnlaGoldFreq ' range=':=  0.51 * _default_ * vnlaGoldFreq ' type='normal' scaleTo='base' />
-                    <Setting name='MotherlodeSize' avg=':= 0.51 * _default_ * vnlaGoldSize ' range=':=  0.51 * _default_ * vnlaGoldSize ' type='normal' />
+                    <Setting name='MotherlodeFrequency' avg=':= 0.493 * _default_ * vnlaGoldFreq ' range=':=  1 * _default_ * vnlaGoldFreq ' type='normal' scaleTo='base' />
+                    <Setting name='MotherlodeSize' avg=':= 0.493 * _default_ * vnlaGoldSize ' range=':=  1 * _default_ * vnlaGoldSize ' type='normal' />
                     <Setting name='MotherlodeHeight' avg=':= 17 ' range=':=  12 ' type='normal' scaleTo='base' />
                     <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='BranchFrequency' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
@@ -758,7 +961,7 @@
         <!-- Starting Vanilla Preset for Gold. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaGoldDist = "Vanilla"'>
-                <StandardGen name='vnlaGoldStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <StandardGen name='vnlaGoldStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
                     <Description>
                         A master preset for standardgen ore
                         distributions.
@@ -766,8 +969,8 @@
                     <OreBlock block='minecraft:gold_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <Biome name='.*'  />
-                    <Setting name='Size' avg=':= 0.51 * _default_ * vnlaGoldSize ' range=':=  0.51 * _default_ * vnlaGoldSize ' type='normal' />
-                    <Setting name='Frequency' avg=':= 0.51 * _default_ * vnlaGoldFreq ' range=':=  0.51 * _default_ * vnlaGoldFreq ' type='normal' scaleTo='base' />
+                    <Setting name='Size' avg=':= 6 * vnlaGoldSize ' range=':=  2 * vnlaGoldSize ' type='normal' />
+                    <Setting name='Frequency' avg=':= 1.5 * vnlaGoldFreq ' range=':=  1 * vnlaGoldFreq ' type='normal' scaleTo='base' />
                     <Setting name='Height' avg=':= 17 ' range=':=  12 ' type='normal' scaleTo='base' />
                     <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                 </StandardGen>
@@ -779,7 +982,7 @@
         <!-- Starting Cloud Preset for Gold. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaGoldDist = "Cloud"'>
-                <Cloud name='vnlaGoldCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Cloud name='vnlaGoldCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
                     <Description>
                         Large irregular clouds filled lightly  with
                         ore.  These are huge, spanning  several
@@ -795,9 +998,9 @@
                     <OreBlock block='minecraft:gold_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <Biome name='.*'  />
-                    <Setting name='CloudRadius' avg=':= 0.51 * _default_ * vnlaGoldSize ' range=':=  0.51 * _default_ * vnlaGoldSize ' type='normal' />
-                    <Setting name='CloudThickness' avg=':= 0.51 * _default_ * vnlaGoldSize ' range=':=  0.51 * _default_ * vnlaGoldSize ' type='normal' scaleTo='base' />
-                    <Setting name='DistributionFrequency' avg=':= 0.51 * _default_ * vnlaGoldFreq ' range=':=  0.51 * _default_ * vnlaGoldFreq ' type='normal' scaleTo='base' />
+                    <Setting name='CloudRadius' avg=':= 0.406 * _default_ * vnlaGoldSize ' range=':=  _default_ * vnlaGoldSize ' type='normal' />
+                    <Setting name='CloudThickness' avg=':= 0.406 * _default_ * vnlaGoldSize ' range=':=  _default_ * vnlaGoldSize ' type='normal' scaleTo='base' />
+                    <Setting name='DistributionFrequency' avg=':= 0.165  * _default_ * vnlaGoldFreq ' range=':=  _default_ * vnlaGoldFreq ' type='normal' scaleTo='base' />
                     <Setting name='CloudHeight' avg=':= 17 ' range=':=  12 ' type='normal' scaleTo='base' />
                     <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
@@ -805,7 +1008,7 @@
                     <Setting name='OreDensity' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
                     <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='OreRadiusMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Veins name='vnlaGoldVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                    <Veins name='vnlaGoldHintVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
                         <Description>
                             Single blocks, generously scattered
                             through all heights (density is about
@@ -826,12 +1029,11 @@
                         <OreBlock block='minecraft:gold_ore' weight='1.0' />
                         <Replaces block='minecraft:dirt' weight='1.0' />
                         <Replaces block='minecraft:sandstone' weight='1.0' />
-                        <Biome name='.*'  />
                     </Veins>
                 </Cloud>
 
                 <!-- Beginning "Preferred" configuration. -->
-                <Cloud name='vnlaGoldPreferredCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Cloud name='vnlaGoldPreferredCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
                     <Description>
                         Ore generation is doubled in preferred
                         biomes.
@@ -839,9 +1041,9 @@
                     <OreBlock block='minecraft:gold_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <BiomeType name='Jungle'  />
-                    <Setting name='CloudRadius' avg=':= 0.51 * _default_ * vnlaGoldSize ' range=':=  0.51 * _default_ * vnlaGoldSize ' type='normal' />
-                    <Setting name='CloudThickness' avg=':= 0.51 * _default_ * vnlaGoldSize ' range=':=  0.51 * _default_ * vnlaGoldSize ' type='normal' scaleTo='base' />
-                    <Setting name='DistributionFrequency' avg=':= 0.51 * _default_ * vnlaGoldFreq ' range=':=  0.51 * _default_ * vnlaGoldFreq ' type='normal' scaleTo='base' />
+                    <Setting name='CloudRadius' avg=':= 0.406 * _default_ * vnlaGoldSize ' range=':=  _default_ * vnlaGoldSize ' type='normal' />
+                    <Setting name='CloudThickness' avg=':= 0.406 * _default_ * vnlaGoldSize ' range=':=  _default_ * vnlaGoldSize ' type='normal' scaleTo='base' />
+                    <Setting name='DistributionFrequency' avg=':= 0.165  * _default_ * vnlaGoldFreq ' range=':=  _default_ * vnlaGoldFreq ' type='normal' scaleTo='base' />
                     <Setting name='CloudHeight' avg=':= 17 ' range=':=  12 ' type='normal' scaleTo='base' />
                     <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
@@ -849,7 +1051,7 @@
                     <Setting name='OreDensity' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
                     <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='OreRadiusMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Veins name='vnlaGoldVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                    <Veins name='vnlaGoldPreferredHintVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
                         <Description>
                             Ore generation is doubled in  preferred
                             biomes.
@@ -857,7 +1059,6 @@
                         <OreBlock block='minecraft:gold_ore' weight='1.0' />
                         <Replaces block='minecraft:dirt' weight='1.0' />
                         <Replaces block='minecraft:sandstone' weight='1.0' />
-                        <BiomeType name='Jungle'  />
                     </Veins>
                 </Cloud>
                 <!-- "Preferred" configuration complete. -->
@@ -874,7 +1075,7 @@
         <!-- Starting VerticalVeins Preset for Redstone. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaRedstoneDist = "VerticalVeins"'>
-                <Veins name='vnlaRedstoneVeins'  inherits='PresetVerticalVeins' drawWireframe='true' wireframeColor='0x60A80002' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Veins name='vnlaRedstoneVeins'  inherits='PresetVerticalVeins' drawWireframe='true' wireframeColor='0x60A80002' drawBoundBox='false' boundBoxColor='0x60A80002'>
                     <Description>
                         Single vertical veins that occur with no
                         motherlodes.
@@ -882,8 +1083,8 @@
                     <OreBlock block='minecraft:redstone_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <Biome name='.*'  />
-                    <Setting name='MotherlodeFrequency' avg=':= 0.803 * _default_ * vnlaRedstoneFreq ' range=':=  0.803 * _default_ * vnlaRedstoneFreq ' type='normal' scaleTo='base' />
-                    <Setting name='MotherlodeSize' avg=':= 0.803 * _default_ * vnlaRedstoneSize ' range=':=  0.803 * _default_ * vnlaRedstoneSize ' type='normal' />
+                    <Setting name='MotherlodeFrequency' avg=':= 1.576 * _default_ * vnlaRedstoneFreq ' range=':=  1 * _default_ * vnlaRedstoneFreq ' type='normal' scaleTo='base' />
+                    <Setting name='MotherlodeSize' avg=':= 1.576 * _default_ * vnlaRedstoneSize ' range=':=  1 * _default_ * vnlaRedstoneSize ' type='normal' />
                     <Setting name='MotherlodeHeight' avg=':= 10 ' range=':=  5 ' type='normal' scaleTo='base' />
                     <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='BranchFrequency' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
@@ -900,7 +1101,7 @@
                 </Veins>
 
                 <!-- Beginning "Preferred" configuration. -->
-                <Veins name='vnlaRedstonePreferredVeins'  inherits='PresetVerticalVeins' drawWireframe='true' wireframeColor='0x60A80002' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Veins name='vnlaRedstonePreferredVeins'  inherits='PresetVerticalVeins' drawWireframe='true' wireframeColor='0x60A80002' drawBoundBox='false' boundBoxColor='0x60A80002'>
                     <Description>
                         Ore generation is doubled in preferred
                         biomes.
@@ -908,8 +1109,8 @@
                     <OreBlock block='minecraft:redstone_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <BiomeType name='Desert'  />
-                    <Setting name='MotherlodeFrequency' avg=':= 0.803 * _default_ * vnlaRedstoneFreq ' range=':=  0.803 * _default_ * vnlaRedstoneFreq ' type='normal' scaleTo='base' />
-                    <Setting name='MotherlodeSize' avg=':= 0.803 * _default_ * vnlaRedstoneSize ' range=':=  0.803 * _default_ * vnlaRedstoneSize ' type='normal' />
+                    <Setting name='MotherlodeFrequency' avg=':= 1.576 * _default_ * vnlaRedstoneFreq ' range=':=  1 * _default_ * vnlaRedstoneFreq ' type='normal' scaleTo='base' />
+                    <Setting name='MotherlodeSize' avg=':= 1.576 * _default_ * vnlaRedstoneSize ' range=':=  1 * _default_ * vnlaRedstoneSize ' type='normal' />
                     <Setting name='MotherlodeHeight' avg=':= 10 ' range=':=  5 ' type='normal' scaleTo='base' />
                     <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='BranchFrequency' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
@@ -934,7 +1135,7 @@
         <!-- Starting Vanilla Preset for Redstone. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaRedstoneDist = "Vanilla"'>
-                <StandardGen name='vnlaRedstoneStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60A80002' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <StandardGen name='vnlaRedstoneStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60A80002' drawBoundBox='false' boundBoxColor='0x60A80002'>
                     <Description>
                         A master preset for standardgen ore
                         distributions.
@@ -942,8 +1143,8 @@
                     <OreBlock block='minecraft:redstone_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <Biome name='.*'  />
-                    <Setting name='Size' avg=':= 0.803 * _default_ * vnlaRedstoneSize ' range=':=  0.803 * _default_ * vnlaRedstoneSize ' type='normal' />
-                    <Setting name='Frequency' avg=':= 0.803 * _default_ * vnlaRedstoneFreq ' range=':=  0.803 * _default_ * vnlaRedstoneFreq ' type='normal' scaleTo='base' />
+                    <Setting name='Size' avg=':= 6 * vnlaRedstoneSize ' range=':=  2 * vnlaRedstoneSize ' type='normal' />
+                    <Setting name='Frequency' avg=':= 4.3 * vnlaRedstoneFreq ' range=':=  1 * vnlaRedstoneFreq ' type='normal' scaleTo='base' />
                     <Setting name='Height' avg=':= 10 ' range=':=  5 ' type='normal' scaleTo='base' />
                     <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                 </StandardGen>
@@ -955,7 +1156,7 @@
         <!-- Starting Cloud Preset for Redstone. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaRedstoneDist = "Cloud"'>
-                <Cloud name='vnlaRedstoneCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60A80002' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Cloud name='vnlaRedstoneCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60A80002' drawBoundBox='false' boundBoxColor='0x60A80002'>
                     <Description>
                         Large irregular clouds filled lightly  with
                         ore.  These are huge, spanning  several
@@ -971,9 +1172,9 @@
                     <OreBlock block='minecraft:redstone_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <Biome name='.*'  />
-                    <Setting name='CloudRadius' avg=':= 0.803 * _default_ * vnlaRedstoneSize ' range=':=  0.803 * _default_ * vnlaRedstoneSize ' type='normal' />
-                    <Setting name='CloudThickness' avg=':= 0.803 * _default_ * vnlaRedstoneSize ' range=':=  0.803 * _default_ * vnlaRedstoneSize ' type='normal' scaleTo='base' />
-                    <Setting name='DistributionFrequency' avg=':= 0.803 * _default_ * vnlaRedstoneFreq ' range=':=  0.803 * _default_ * vnlaRedstoneFreq ' type='normal' scaleTo='base' />
+                    <Setting name='CloudRadius' avg=':= 0.726 * _default_ * vnlaRedstoneSize ' range=':=  _default_ * vnlaRedstoneSize ' type='normal' />
+                    <Setting name='CloudThickness' avg=':= 0.726 * _default_ * vnlaRedstoneSize ' range=':=  _default_ * vnlaRedstoneSize ' type='normal' scaleTo='base' />
+                    <Setting name='DistributionFrequency' avg=':= 0.527  * _default_ * vnlaRedstoneFreq ' range=':=  _default_ * vnlaRedstoneFreq ' type='normal' scaleTo='base' />
                     <Setting name='CloudHeight' avg=':= 10 ' range=':=  5 ' type='normal' scaleTo='base' />
                     <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
@@ -981,7 +1182,7 @@
                     <Setting name='OreDensity' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
                     <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='OreRadiusMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Veins name='vnlaRedstoneVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60A80002' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                    <Veins name='vnlaRedstoneHintVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60A80002' drawBoundBox='false' boundBoxColor='0x60A80002'>
                         <Description>
                             Single blocks, generously scattered
                             through all heights (density is about
@@ -1002,12 +1203,11 @@
                         <OreBlock block='minecraft:redstone_ore' weight='1.0' />
                         <Replaces block='minecraft:dirt' weight='1.0' />
                         <Replaces block='minecraft:sandstone' weight='1.0' />
-                        <Biome name='.*'  />
                     </Veins>
                 </Cloud>
 
                 <!-- Beginning "Preferred" configuration. -->
-                <Cloud name='vnlaRedstonePreferredCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60A80002' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Cloud name='vnlaRedstonePreferredCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60A80002' drawBoundBox='false' boundBoxColor='0x60A80002'>
                     <Description>
                         Ore generation is doubled in preferred
                         biomes.
@@ -1015,9 +1215,9 @@
                     <OreBlock block='minecraft:redstone_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <BiomeType name='Desert'  />
-                    <Setting name='CloudRadius' avg=':= 0.803 * _default_ * vnlaRedstoneSize ' range=':=  0.803 * _default_ * vnlaRedstoneSize ' type='normal' />
-                    <Setting name='CloudThickness' avg=':= 0.803 * _default_ * vnlaRedstoneSize ' range=':=  0.803 * _default_ * vnlaRedstoneSize ' type='normal' scaleTo='base' />
-                    <Setting name='DistributionFrequency' avg=':= 0.803 * _default_ * vnlaRedstoneFreq ' range=':=  0.803 * _default_ * vnlaRedstoneFreq ' type='normal' scaleTo='base' />
+                    <Setting name='CloudRadius' avg=':= 0.726 * _default_ * vnlaRedstoneSize ' range=':=  _default_ * vnlaRedstoneSize ' type='normal' />
+                    <Setting name='CloudThickness' avg=':= 0.726 * _default_ * vnlaRedstoneSize ' range=':=  _default_ * vnlaRedstoneSize ' type='normal' scaleTo='base' />
+                    <Setting name='DistributionFrequency' avg=':= 0.527  * _default_ * vnlaRedstoneFreq ' range=':=  _default_ * vnlaRedstoneFreq ' type='normal' scaleTo='base' />
                     <Setting name='CloudHeight' avg=':= 10 ' range=':=  5 ' type='normal' scaleTo='base' />
                     <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
@@ -1025,7 +1225,7 @@
                     <Setting name='OreDensity' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
                     <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='OreRadiusMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Veins name='vnlaRedstoneVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60A80002' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                    <Veins name='vnlaRedstonePreferredHintVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60A80002' drawBoundBox='false' boundBoxColor='0x60A80002'>
                         <Description>
                             Ore generation is doubled in  preferred
                             biomes.
@@ -1033,7 +1233,6 @@
                         <OreBlock block='minecraft:redstone_ore' weight='1.0' />
                         <Replaces block='minecraft:dirt' weight='1.0' />
                         <Replaces block='minecraft:sandstone' weight='1.0' />
-                        <BiomeType name='Desert'  />
                     </Veins>
                 </Cloud>
                 <!-- "Preferred" configuration complete. -->
@@ -1050,7 +1249,7 @@
         <!-- Starting PipeVeins Preset for Diamond. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaDiamondDist = "PipeVeins"'>
-                <Veins name='vnlaDiamondVeins'  inherits='PresetPipeVeins' seed='0x197B' drawWireframe='true' wireframeColor='0x608BF4E3' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Veins name='vnlaDiamondVeins'  inherits='PresetPipeVeins' seed='0x197B' drawWireframe='true' wireframeColor='0x608BF4E3' drawBoundBox='false' boundBoxColor='0x608BF4E3'>
                     <Description>
                         Short sparsely filled veins sloping up  from
                         near the bottom of the map.
@@ -1058,8 +1257,8 @@
                     <OreBlock block='minecraft:diamond_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <Biome name='.*'  />
-                    <Setting name='MotherlodeFrequency' avg=':= 0.048 * _default_ * vnlaDiamondFreq ' range=':=  0.048 * _default_ * vnlaDiamondFreq ' type='normal' scaleTo='base' />
-                    <Setting name='MotherlodeSize' avg=':= 6 * _default_ * vnlaDiamondSize ' range=':=  6 * _default_ * vnlaDiamondSize ' type='normal' />
+                    <Setting name='MotherlodeFrequency' avg=':= 0.349 * _default_ * vnlaDiamondFreq ' range=':=  1 * _default_ * vnlaDiamondFreq ' type='normal' scaleTo='base' />
+                    <Setting name='MotherlodeSize' avg=':= 0.349 * _default_ * vnlaDiamondSize ' range=':=  1 * _default_ * vnlaDiamondSize ' type='normal' />
                     <Setting name='MotherlodeHeight' avg=':= 10 ' range=':=  5 ' type='normal' scaleTo='base' />
                     <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='BranchFrequency' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
@@ -1076,25 +1275,13 @@
                 </Veins>
 
                 <!-- Configuring contained material. -->
-                <Veins name='vnlaDiamondVeinsPipe'  inherits='vnlaDiamondVeins' seed='0x197B' drawWireframe='true' wireframeColor='0x608BF4E3' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Veins name='vnlaDiamondVeinsPipe'  inherits='vnlaDiamondVeins' seed='0x197B' drawWireframe='true' wireframeColor='0x608BF4E3' drawBoundBox='false' boundBoxColor='0x608BF4E3'>
                     <OreBlock block='minecraft:lava' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
-                    <Biome name='.*'  />
-                    <Setting name='MotherlodeFrequency' avg=':= 0.048 * _default_ * vnlaDiamondFreq ' range=':=  0.048 * _default_ * vnlaDiamondFreq ' type='normal' scaleTo='base' />
-                    <Setting name='MotherlodeSize' avg=':= 6 * _default_ * vnlaDiamondSize  * 0.5 ' range=':=  6 * _default_ * vnlaDiamondSize  * 0.5 ' type='normal' />
-                    <Setting name='MotherlodeHeight' avg=':= 10 ' range=':=  5 ' type='normal' scaleTo='base' />
-                    <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Setting name='BranchFrequency' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Setting name='BranchInclination' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Setting name='BranchLength' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
-                    <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Setting name='SegmentLength' avg=':= _default_ * vnlaDiamondSize ' range=':=  _default_ * vnlaDiamondSize ' type='normal' />
-                    <Setting name='SegmentAngle' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Replaces block='minecraft:diamond_ore' weight='1.0' />
+                    <Setting name='MotherlodeSize' avg=':= 0.349 * _default_ * vnlaDiamondSize  * 0.5 ' range=':=  1 * _default_ * vnlaDiamondSize  * 0.5 ' type='normal' />
                     <Setting name='SegmentRadius' avg=':= _default_ * vnlaDiamondSize  * 0.5 ' range=':=  _default_ * vnlaDiamondSize  * 0.5 ' type='normal' />
-                    <Setting name='OreDensity' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Setting name='OreRadiusMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreDensity' avg=':= 1.0 ' range=':= 0 ' type='normal' />
                 </Veins>
             </IfCondition>
         </ConfigSection>
@@ -1104,7 +1291,7 @@
         <!-- Starting Vanilla Preset for Diamond. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaDiamondDist = "Vanilla"'>
-                <StandardGen name='vnlaDiamondStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x608BF4E3' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <StandardGen name='vnlaDiamondStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x608BF4E3' drawBoundBox='false' boundBoxColor='0x608BF4E3'>
                     <Description>
                         A master preset for standardgen ore
                         distributions.
@@ -1112,14 +1299,71 @@
                     <OreBlock block='minecraft:diamond_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <Biome name='.*'  />
-                    <Setting name='Size' avg=':= 6 * _default_ * vnlaDiamondSize ' range=':=  6 * _default_ * vnlaDiamondSize ' type='normal' />
-                    <Setting name='Frequency' avg=':= 0.048 * _default_ * vnlaDiamondFreq ' range=':=  0.048 * _default_ * vnlaDiamondFreq ' type='normal' scaleTo='base' />
+                    <Setting name='Size' avg=':= 5.5 * vnlaDiamondSize ' range=':=  2.5 * vnlaDiamondSize ' type='normal' />
+                    <Setting name='Frequency' avg=':= 0.50 * vnlaDiamondFreq ' range=':=  1 * vnlaDiamondFreq ' type='normal' scaleTo='base' />
                     <Setting name='Height' avg=':= 10 ' range=':=  5 ' type='normal' scaleTo='base' />
                     <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                 </StandardGen>
             </IfCondition>
         </ConfigSection>
         <!-- Vanilla Preset for Diamond is complete. -->
+
+
+        <!-- Starting Cloud Preset for Diamond. -->
+        <ConfigSection>
+            <IfCondition condition=':= vnlaDiamondDist = "Cloud"'>
+                <Cloud name='vnlaDiamondCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x608BF4E3' drawBoundBox='false' boundBoxColor='0x608BF4E3'>
+                    <Description>
+                        Large irregular clouds filled lightly  with
+                        ore.  These are huge, spanning  several
+                        adjacent chunks, and consequently  rather
+                        rare.  They contain a sizeable  amount of ore,
+                        but it takes some time and  effort to mine due
+                        to low density. The  intent for strategic
+                        clouds is that the  player will need to
+                        actively search for  one and then set up a
+                        semi-permanent  mining base and spend some
+                        time actually  mining the ore.
+                    </Description>
+                    <OreBlock block='minecraft:diamond_ore' weight='1.0' />
+                    <Replaces block='minecraft:stone' weight='1.0' />
+                    <Biome name='.*'  />
+                    <Setting name='CloudRadius' avg=':= 0.342 * _default_ * vnlaDiamondSize ' range=':=  _default_ * vnlaDiamondSize ' type='normal' />
+                    <Setting name='CloudThickness' avg=':= 0.342 * _default_ * vnlaDiamondSize ' range=':=  _default_ * vnlaDiamondSize ' type='normal' scaleTo='base' />
+                    <Setting name='DistributionFrequency' avg=':= 0.117  * _default_ * vnlaDiamondFreq ' range=':=  _default_ * vnlaDiamondFreq ' type='normal' scaleTo='base' />
+                    <Setting name='CloudHeight' avg=':= 10 ' range=':=  5 ' type='normal' scaleTo='base' />
+                    <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='CloudInclination' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreDensity' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
+                    <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreRadiusMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Veins name='vnlaDiamondHintVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x608BF4E3' drawBoundBox='false' boundBoxColor='0x608BF4E3'>
+                        <Description>
+                            Single blocks, generously scattered
+                            through all heights (density is about
+                            that of vanilla iron ore). They will
+                            replace dirt and sandstone (but not  grass
+                            or sand), so they can be found  nearer to
+                            the surface than most ores.  Intened to be
+                            used as a child  distribution for large,
+                            rare  strategic deposits that would
+                            otherwise be very difficult to find.  Note
+                            that the frequency is multiplied  by
+                            ground level to maintain a  constant
+                            density, but not by ore  frequency because
+                            it is assumed that  the frequency of the
+                            parent  distribution will already be
+                            scaled  by that.
+                        </Description>
+                        <OreBlock block='minecraft:diamond_ore' weight='1.0' />
+                        <Replaces block='minecraft:dirt' weight='1.0' />
+                        <Replaces block='minecraft:sandstone' weight='1.0' />
+                    </Veins>
+                </Cloud>
+            </IfCondition>
+        </ConfigSection>
+        <!-- Cloud Preset for Diamond is complete. -->
 
         <!-- End Diamond Generation -->
 
@@ -1129,7 +1373,7 @@
         <!-- Starting VerticalVeins Preset for Lapis Lazuli. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaLapisLazuliDist = "VerticalVeins"'>
-                <Veins name='vnlaLapisLazuliVeins'  inherits='PresetVerticalVeins' drawWireframe='true' wireframeColor='0x601442BA' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Veins name='vnlaLapisLazuliVeins'  inherits='PresetVerticalVeins' drawWireframe='true' wireframeColor='0x601442BA' drawBoundBox='false' boundBoxColor='0x601442BA'>
                     <Description>
                         Single vertical veins that occur with no
                         motherlodes.
@@ -1137,8 +1381,8 @@
                     <OreBlock block='minecraft:lapis_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <Biome name='.*'  />
-                    <Setting name='MotherlodeFrequency' avg=':= 0.3 * _default_ * vnlaLapisLazuliFreq ' range=':=  0.3 * _default_ * vnlaLapisLazuliFreq ' type='normal' scaleTo='base' />
-                    <Setting name='MotherlodeSize' avg=':= 0.3 * _default_ * vnlaLapisLazuliSize ' range=':=  0.3 * _default_ * vnlaLapisLazuliSize ' type='normal' />
+                    <Setting name='MotherlodeFrequency' avg=':= 0.589 * _default_ * vnlaLapisLazuliFreq ' range=':=  1 * _default_ * vnlaLapisLazuliFreq ' type='normal' scaleTo='base' />
+                    <Setting name='MotherlodeSize' avg=':= 0.589 * _default_ * vnlaLapisLazuliSize ' range=':=  1 * _default_ * vnlaLapisLazuliSize ' type='normal' />
                     <Setting name='MotherlodeHeight' avg=':= 19 ' range=':=  14 ' type='normal' scaleTo='base' />
                     <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='BranchFrequency' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
@@ -1155,7 +1399,7 @@
                 </Veins>
 
                 <!-- Beginning "Preferred" configuration. -->
-                <Veins name='vnlaLapisLazuliPreferredVeins'  inherits='PresetVerticalVeins' drawWireframe='true' wireframeColor='0x601442BA' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Veins name='vnlaLapisLazuliPreferredVeins'  inherits='PresetVerticalVeins' drawWireframe='true' wireframeColor='0x601442BA' drawBoundBox='false' boundBoxColor='0x601442BA'>
                     <Description>
                         Ore generation is doubled in preferred
                         biomes.
@@ -1163,8 +1407,8 @@
                     <OreBlock block='minecraft:lapis_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <BiomeType name='Ocean'  />
-                    <Setting name='MotherlodeFrequency' avg=':= 0.3 * _default_ * vnlaLapisLazuliFreq ' range=':=  0.3 * _default_ * vnlaLapisLazuliFreq ' type='normal' scaleTo='base' />
-                    <Setting name='MotherlodeSize' avg=':= 0.3 * _default_ * vnlaLapisLazuliSize ' range=':=  0.3 * _default_ * vnlaLapisLazuliSize ' type='normal' />
+                    <Setting name='MotherlodeFrequency' avg=':= 0.589 * _default_ * vnlaLapisLazuliFreq ' range=':=  1 * _default_ * vnlaLapisLazuliFreq ' type='normal' scaleTo='base' />
+                    <Setting name='MotherlodeSize' avg=':= 0.589 * _default_ * vnlaLapisLazuliSize ' range=':=  1 * _default_ * vnlaLapisLazuliSize ' type='normal' />
                     <Setting name='MotherlodeHeight' avg=':= 19 ' range=':=  14 ' type='normal' scaleTo='base' />
                     <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='BranchFrequency' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
@@ -1189,7 +1433,7 @@
         <!-- Starting Vanilla Preset for Lapis Lazuli. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaLapisLazuliDist = "Vanilla"'>
-                <StandardGen name='vnlaLapisLazuliStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x601442BA' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <StandardGen name='vnlaLapisLazuliStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x601442BA' drawBoundBox='false' boundBoxColor='0x601442BA'>
                     <Description>
                         A master preset for standardgen ore
                         distributions.
@@ -1197,14 +1441,103 @@
                     <OreBlock block='minecraft:lapis_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <Biome name='.*'  />
-                    <Setting name='Size' avg=':= 0.3 * _default_ * vnlaLapisLazuliSize ' range=':=  0.3 * _default_ * vnlaLapisLazuliSize ' type='normal' />
-                    <Setting name='Frequency' avg=':= 0.3 * _default_ * vnlaLapisLazuliFreq ' range=':=  0.3 * _default_ * vnlaLapisLazuliFreq ' type='normal' scaleTo='base' />
+                    <Setting name='Size' avg=':= 5.5 * vnlaLapisLazuliSize ' range=':=  2.5 * vnlaLapisLazuliSize ' type='normal' />
+                    <Setting name='Frequency' avg=':= 0.65 * vnlaLapisLazuliFreq ' range=':=  1 * vnlaLapisLazuliFreq ' type='normal' scaleTo='base' />
                     <Setting name='Height' avg=':= 19 ' range=':=  14 ' type='normal' scaleTo='base' />
                     <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                 </StandardGen>
             </IfCondition>
         </ConfigSection>
         <!-- Vanilla Preset for Lapis Lazuli is complete. -->
+
+
+        <!-- Starting Cloud Preset for Lapis Lazuli. -->
+        <ConfigSection>
+            <IfCondition condition=':= vnlaLapisLazuliDist = "Cloud"'>
+                <Cloud name='vnlaLapisLazuliCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x601442BA' drawBoundBox='false' boundBoxColor='0x601442BA'>
+                    <Description>
+                        Large irregular clouds filled lightly  with
+                        ore.  These are huge, spanning  several
+                        adjacent chunks, and consequently  rather
+                        rare.  They contain a sizeable  amount of ore,
+                        but it takes some time and  effort to mine due
+                        to low density. The  intent for strategic
+                        clouds is that the  player will need to
+                        actively search for  one and then set up a
+                        semi-permanent  mining base and spend some
+                        time actually  mining the ore.
+                    </Description>
+                    <OreBlock block='minecraft:lapis_ore' weight='1.0' />
+                    <Replaces block='minecraft:stone' weight='1.0' />
+                    <Biome name='.*'  />
+                    <Setting name='CloudRadius' avg=':= 0.444 * _default_ * vnlaLapisLazuliSize ' range=':=  _default_ * vnlaLapisLazuliSize ' type='normal' />
+                    <Setting name='CloudThickness' avg=':= 0.444 * _default_ * vnlaLapisLazuliSize ' range=':=  _default_ * vnlaLapisLazuliSize ' type='normal' scaleTo='base' />
+                    <Setting name='DistributionFrequency' avg=':= 0.197  * _default_ * vnlaLapisLazuliFreq ' range=':=  _default_ * vnlaLapisLazuliFreq ' type='normal' scaleTo='base' />
+                    <Setting name='CloudHeight' avg=':= 19 ' range=':=  14 ' type='normal' scaleTo='base' />
+                    <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='CloudInclination' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreDensity' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
+                    <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreRadiusMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Veins name='vnlaLapisLazuliHintVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x601442BA' drawBoundBox='false' boundBoxColor='0x601442BA'>
+                        <Description>
+                            Single blocks, generously scattered
+                            through all heights (density is about
+                            that of vanilla iron ore). They will
+                            replace dirt and sandstone (but not  grass
+                            or sand), so they can be found  nearer to
+                            the surface than most ores.  Intened to be
+                            used as a child  distribution for large,
+                            rare  strategic deposits that would
+                            otherwise be very difficult to find.  Note
+                            that the frequency is multiplied  by
+                            ground level to maintain a  constant
+                            density, but not by ore  frequency because
+                            it is assumed that  the frequency of the
+                            parent  distribution will already be
+                            scaled  by that.
+                        </Description>
+                        <OreBlock block='minecraft:lapis_ore' weight='1.0' />
+                        <Replaces block='minecraft:dirt' weight='1.0' />
+                        <Replaces block='minecraft:sandstone' weight='1.0' />
+                    </Veins>
+                </Cloud>
+
+                <!-- Beginning "Preferred" configuration. -->
+                <Cloud name='vnlaLapisLazuliPreferredCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x601442BA' drawBoundBox='false' boundBoxColor='0x601442BA'>
+                    <Description>
+                        Ore generation is doubled in preferred
+                        biomes.
+                    </Description>
+                    <OreBlock block='minecraft:lapis_ore' weight='1.0' />
+                    <Replaces block='minecraft:stone' weight='1.0' />
+                    <BiomeType name='Ocean'  />
+                    <Setting name='CloudRadius' avg=':= 0.444 * _default_ * vnlaLapisLazuliSize ' range=':=  _default_ * vnlaLapisLazuliSize ' type='normal' />
+                    <Setting name='CloudThickness' avg=':= 0.444 * _default_ * vnlaLapisLazuliSize ' range=':=  _default_ * vnlaLapisLazuliSize ' type='normal' scaleTo='base' />
+                    <Setting name='DistributionFrequency' avg=':= 0.197  * _default_ * vnlaLapisLazuliFreq ' range=':=  _default_ * vnlaLapisLazuliFreq ' type='normal' scaleTo='base' />
+                    <Setting name='CloudHeight' avg=':= 19 ' range=':=  14 ' type='normal' scaleTo='base' />
+                    <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='CloudInclination' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreDensity' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
+                    <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreRadiusMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Veins name='vnlaLapisLazuliPreferredHintVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x601442BA' drawBoundBox='false' boundBoxColor='0x601442BA'>
+                        <Description>
+                            Ore generation is doubled in  preferred
+                            biomes.
+                        </Description>
+                        <OreBlock block='minecraft:lapis_ore' weight='1.0' />
+                        <Replaces block='minecraft:dirt' weight='1.0' />
+                        <Replaces block='minecraft:sandstone' weight='1.0' />
+                    </Veins>
+                </Cloud>
+                <!-- "Preferred" configuration complete. -->
+
+            </IfCondition>
+        </ConfigSection>
+        <!-- Cloud Preset for Lapis Lazuli is complete. -->
 
         <!-- End Lapis Lazuli Generation -->
 
@@ -1214,7 +1547,7 @@
         <!-- Starting PipeVeins Preset for Emerald. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaEmeraldDist = "PipeVeins"'>
-                <Veins name='vnlaEmeraldVeins'  inherits='PresetPipeVeins' seed='0x60EA' drawWireframe='true' wireframeColor='0x606CE391' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Veins name='vnlaEmeraldVeins'  inherits='PresetPipeVeins' seed='0xBFCB' drawWireframe='true' wireframeColor='0x606CE391' drawBoundBox='false' boundBoxColor='0x606CE391'>
                     <Description>
                         Short sparsely filled veins sloping up  from
                         near the bottom of the map.
@@ -1222,8 +1555,8 @@
                     <OreBlock block='minecraft:emerald_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <BiomeType name='Mountain'  />
-                    <Setting name='MotherlodeFrequency' avg=':= _default_ * vnlaEmeraldFreq ' range=':=  _default_ * vnlaEmeraldFreq ' type='normal' scaleTo='base' />
-                    <Setting name='MotherlodeSize' avg=':= _default_ * vnlaEmeraldSize ' range=':=  _default_ * vnlaEmeraldSize ' type='normal' />
+                    <Setting name='MotherlodeFrequency' avg=':= 0.111 * _default_ * vnlaEmeraldFreq ' range=':=  1 * _default_ * vnlaEmeraldFreq ' type='normal' scaleTo='base' />
+                    <Setting name='MotherlodeSize' avg=':= 0.111 * _default_ * vnlaEmeraldSize ' range=':=  1 * _default_ * vnlaEmeraldSize ' type='normal' />
                     <Setting name='MotherlodeHeight' avg=':= 37 ' range=':=  14 ' type='normal' scaleTo='base' />
                     <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                     <Setting name='BranchFrequency' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
@@ -1240,25 +1573,13 @@
                 </Veins>
 
                 <!-- Configuring contained material. -->
-                <Veins name='vnlaEmeraldVeinsPipe'  inherits='vnlaEmeraldVeins' seed='0x60EA' drawWireframe='true' wireframeColor='0x606CE391' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Veins name='vnlaEmeraldVeinsPipe'  inherits='vnlaEmeraldVeins' seed='0xBFCB' drawWireframe='true' wireframeColor='0x606CE391' drawBoundBox='false' boundBoxColor='0x606CE391'>
                     <OreBlock block='minecraft:monster_egg' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
-                    <BiomeType name='Mountain'  />
-                    <Setting name='MotherlodeFrequency' avg=':= _default_ * vnlaEmeraldFreq ' range=':=  _default_ * vnlaEmeraldFreq ' type='normal' scaleTo='base' />
-                    <Setting name='MotherlodeSize' avg=':= _default_ * vnlaEmeraldSize  * 0.5 ' range=':=  _default_ * vnlaEmeraldSize  * 0.5 ' type='normal' />
-                    <Setting name='MotherlodeHeight' avg=':= 37 ' range=':=  14 ' type='normal' scaleTo='base' />
-                    <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Setting name='BranchFrequency' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Setting name='BranchInclination' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Setting name='BranchLength' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
-                    <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Setting name='SegmentLength' avg=':= _default_ * vnlaEmeraldSize ' range=':=  _default_ * vnlaEmeraldSize ' type='normal' />
-                    <Setting name='SegmentAngle' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Replaces block='minecraft:emerald_ore' weight='1.0' />
+                    <Setting name='MotherlodeSize' avg=':= 0.111 * _default_ * vnlaEmeraldSize  * 0.5 ' range=':=  1 * _default_ * vnlaEmeraldSize  * 0.5 ' type='normal' />
                     <Setting name='SegmentRadius' avg=':= _default_ * vnlaEmeraldSize  * 0.5 ' range=':=  _default_ * vnlaEmeraldSize  * 0.5 ' type='normal' />
-                    <Setting name='OreDensity' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
-                    <Setting name='OreRadiusMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreDensity' avg=':= 1.0 ' range=':= 0 ' type='normal' />
                 </Veins>
             </IfCondition>
         </ConfigSection>
@@ -1268,7 +1589,7 @@
         <!-- Starting Vanilla Preset for Emerald. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaEmeraldDist = "Vanilla"'>
-                <StandardGen name='vnlaEmeraldStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x606CE391' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <StandardGen name='vnlaEmeraldStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x606CE391' drawBoundBox='false' boundBoxColor='0x606CE391'>
                     <Description>
                         A master preset for standardgen ore
                         distributions.
@@ -1276,14 +1597,71 @@
                     <OreBlock block='minecraft:emerald_ore' weight='1.0' />
                     <Replaces block='minecraft:stone' weight='1.0' />
                     <BiomeType name='Mountain'  />
-                    <Setting name='Size' avg=':= _default_ * vnlaEmeraldSize ' range=':=  _default_ * vnlaEmeraldSize ' type='normal' />
-                    <Setting name='Frequency' avg=':= _default_ * vnlaEmeraldFreq ' range=':=  _default_ * vnlaEmeraldFreq ' type='normal' scaleTo='base' />
+                    <Setting name='Size' avg=':= 1 * vnlaEmeraldSize ' range=':=  0 * vnlaEmeraldSize ' type='normal' />
+                    <Setting name='Frequency' avg=':= 1 * vnlaEmeraldFreq ' range=':=  1 * vnlaEmeraldFreq ' type='normal' scaleTo='base' />
                     <Setting name='Height' avg=':= 37 ' range=':=  14 ' type='normal' scaleTo='base' />
                     <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                 </StandardGen>
             </IfCondition>
         </ConfigSection>
         <!-- Vanilla Preset for Emerald is complete. -->
+
+
+        <!-- Starting Cloud Preset for Emerald. -->
+        <ConfigSection>
+            <IfCondition condition=':= vnlaEmeraldDist = "Cloud"'>
+                <Cloud name='vnlaEmeraldCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x606CE391' drawBoundBox='false' boundBoxColor='0x606CE391'>
+                    <Description>
+                        Large irregular clouds filled lightly  with
+                        ore.  These are huge, spanning  several
+                        adjacent chunks, and consequently  rather
+                        rare.  They contain a sizeable  amount of ore,
+                        but it takes some time and  effort to mine due
+                        to low density. The  intent for strategic
+                        clouds is that the  player will need to
+                        actively search for  one and then set up a
+                        semi-permanent  mining base and spend some
+                        time actually  mining the ore.
+                    </Description>
+                    <OreBlock block='minecraft:emerald_ore' weight='1.0' />
+                    <Replaces block='minecraft:stone' weight='1.0' />
+                    <BiomeType name='Mountain'  />
+                    <Setting name='CloudRadius' avg=':= 0.193 * _default_ * vnlaEmeraldSize ' range=':=  _default_ * vnlaEmeraldSize ' type='normal' />
+                    <Setting name='CloudThickness' avg=':= 0.193 * _default_ * vnlaEmeraldSize ' range=':=  _default_ * vnlaEmeraldSize ' type='normal' scaleTo='base' />
+                    <Setting name='DistributionFrequency' avg=':= 0.037  * _default_ * vnlaEmeraldFreq ' range=':=  _default_ * vnlaEmeraldFreq ' type='normal' scaleTo='base' />
+                    <Setting name='CloudHeight' avg=':= 37 ' range=':=  14 ' type='normal' scaleTo='base' />
+                    <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='CloudInclination' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreDensity' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
+                    <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreRadiusMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Veins name='vnlaEmeraldHintVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x606CE391' drawBoundBox='false' boundBoxColor='0x606CE391'>
+                        <Description>
+                            Single blocks, generously scattered
+                            through all heights (density is about
+                            that of vanilla iron ore). They will
+                            replace dirt and sandstone (but not  grass
+                            or sand), so they can be found  nearer to
+                            the surface than most ores.  Intened to be
+                            used as a child  distribution for large,
+                            rare  strategic deposits that would
+                            otherwise be very difficult to find.  Note
+                            that the frequency is multiplied  by
+                            ground level to maintain a  constant
+                            density, but not by ore  frequency because
+                            it is assumed that  the frequency of the
+                            parent  distribution will already be
+                            scaled  by that.
+                        </Description>
+                        <OreBlock block='minecraft:emerald_ore' weight='1.0' />
+                        <Replaces block='minecraft:dirt' weight='1.0' />
+                        <Replaces block='minecraft:sandstone' weight='1.0' />
+                    </Veins>
+                </Cloud>
+            </IfCondition>
+        </ConfigSection>
+        <!-- Cloud Preset for Emerald is complete. -->
 
         <!-- End Emerald Generation -->
 
@@ -1322,7 +1700,7 @@
         <!-- Starting LayeredVeins Preset for Nether Quartz. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaNetherQuartzDist = "LayeredVeins"'>
-                <Veins name='vnlaNetherQuartzVeins'  inherits='PresetLayeredVeins' drawWireframe='true' wireframeColor='0x60DBCCBF' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <Veins name='vnlaNetherQuartzVeins'  inherits='PresetLayeredVeins' drawWireframe='true' wireframeColor='0x60DBCCBF' drawBoundBox='false' boundBoxColor='0x60DBCCBF'>
                     <Description>
                         Small, fairly rare motherlodes with 2-4
                         horizontal veins each.
@@ -1354,7 +1732,7 @@
         <!-- Starting Vanilla Preset for Nether Quartz. -->
         <ConfigSection>
             <IfCondition condition=':= vnlaNetherQuartzDist = "Vanilla"'>
-                <StandardGen name='vnlaNetherQuartzStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60DBCCBF' drawBoundBox='false' boundBoxColor='0x6058C85E'>
+                <StandardGen name='vnlaNetherQuartzStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60DBCCBF' drawBoundBox='false' boundBoxColor='0x60DBCCBF'>
                     <Description>
                         A master preset for standardgen ore
                         distributions.
@@ -1362,14 +1740,71 @@
                     <OreBlock block='minecraft:quartz_ore' weight='1.0' />
                     <Replaces block='minecraft:netherrack' weight='1.0' />
                     <Biome name='.*'  />
-                    <Setting name='Size' avg=':= _default_ * vnlaNetherQuartzSize ' range=':=  _default_ * vnlaNetherQuartzSize ' type='normal' />
-                    <Setting name='Frequency' avg=':= _default_ * vnlaNetherQuartzFreq ' range=':=  _default_ * vnlaNetherQuartzFreq ' type='normal' scaleTo='base' />
+                    <Setting name='Size' avg=':= 7 * vnlaNetherQuartzSize ' range=':=  3 * vnlaNetherQuartzSize ' type='normal' />
+                    <Setting name='Frequency' avg=':= 22.45 * vnlaNetherQuartzFreq ' range=':=  2 * vnlaNetherQuartzFreq ' type='normal' scaleTo='base' />
                     <Setting name='Height' avg=':= 68 ' range=':=  52 ' type='uniform' scaleTo='base' />
                     <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
                 </StandardGen>
             </IfCondition>
         </ConfigSection>
         <!-- Vanilla Preset for Nether Quartz is complete. -->
+
+
+        <!-- Starting Cloud Preset for Nether Quartz. -->
+        <ConfigSection>
+            <IfCondition condition=':= vnlaNetherQuartzDist = "Cloud"'>
+                <Cloud name='vnlaNetherQuartzCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60DBCCBF' drawBoundBox='false' boundBoxColor='0x60DBCCBF'>
+                    <Description>
+                        Large irregular clouds filled lightly  with
+                        ore.  These are huge, spanning  several
+                        adjacent chunks, and consequently  rather
+                        rare.  They contain a sizeable  amount of ore,
+                        but it takes some time and  effort to mine due
+                        to low density. The  intent for strategic
+                        clouds is that the  player will need to
+                        actively search for  one and then set up a
+                        semi-permanent  mining base and spend some
+                        time actually  mining the ore.
+                    </Description>
+                    <OreBlock block='minecraft:quartz_ore' weight='1.0' />
+                    <Replaces block='minecraft:netherrack' weight='1.0' />
+                    <Biome name='.*'  />
+                    <Setting name='CloudRadius' avg=':= 1.439 * _default_ * vnlaNetherQuartzSize ' range=':=  _default_ * vnlaNetherQuartzSize ' type='normal' />
+                    <Setting name='CloudThickness' avg=':= 1.439 * _default_ * vnlaNetherQuartzSize ' range=':=  _default_ * vnlaNetherQuartzSize ' type='normal' scaleTo='base' />
+                    <Setting name='DistributionFrequency' avg=':= 2.071  * _default_ * vnlaNetherQuartzFreq ' range=':=  _default_ * vnlaNetherQuartzFreq ' type='normal' scaleTo='base' />
+                    <Setting name='CloudHeight' avg=':= 68 ' range=':=  52 ' type='uniform' scaleTo='base' />
+                    <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='CloudInclination' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreDensity' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
+                    <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Setting name='OreRadiusMult' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                    <Veins name='vnlaNetherQuartzHintVeins'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60DBCCBF' drawBoundBox='false' boundBoxColor='0x60DBCCBF'>
+                        <Description>
+                            Single blocks, generously scattered
+                            through all heights (density is about
+                            that of vanilla iron ore). They will
+                            replace dirt and sandstone (but not  grass
+                            or sand), so they can be found  nearer to
+                            the surface than most ores.  Intened to be
+                            used as a child  distribution for large,
+                            rare  strategic deposits that would
+                            otherwise be very difficult to find.  Note
+                            that the frequency is multiplied  by
+                            ground level to maintain a  constant
+                            density, but not by ore  frequency because
+                            it is assumed that  the frequency of the
+                            parent  distribution will already be
+                            scaled  by that.
+                        </Description>
+                        <OreBlock block='minecraft:quartz_ore' weight='1.0' />
+                        <Replaces block='minecraft:dirt' weight='1.0' />
+                        <Replaces block='minecraft:sandstone' weight='1.0' />
+                    </Veins>
+                </Cloud>
+            </IfCondition>
+        </ConfigSection>
+        <!-- Cloud Preset for Nether Quartz is complete. -->
 
         <!-- End Nether Quartz Generation -->
 
