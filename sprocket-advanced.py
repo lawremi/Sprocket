@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
-# Sprocket.py: A configuration generator for the Custom Ore Generation:
+# sprocket-advanced.py:
+#              A configuration generator for the Custom Ore Generation:
 #              First Revival add-on for Minecraft.  The program reads
 #              the mod's name and list of ores from a simple file, and
 #              then generates the xml configuration file that can be
@@ -1466,24 +1467,23 @@ class veinPreset(substitutePreset):
 
 # The Compound Vein preset inherits the veins, and adds a second distribution
 # within the first.  This obviously covers the pipe vein preset, but can be
-# applied to any vein distribution.
+# applied to any configuration of main and alternate ores.
         
 class veinCompoundPreset(veinPreset):    
     def addInvRepBlocksList(self, blockIndex):
-        # Replaces blocks by name.
-        weightDefined = False
-        blockWeight = 0.0
-        
-        # If no weights were assigned to the blocks, we want the blocks to be evenly distributed.
-        if not checkOption(mainBlockWeights[blockIndex]):
-            blockWeight = 1.0
-        else:
-            weightDefined = True
-        
         for blockSelect in range(0, len(mainBlocks[blockIndex])):
-            if weightDefined:
-                blockWeight = mainBlockWeights[blockIndex][blockSelect]
             self._presetScript += cogFormatLine(blockCommand("Replaces", mainBlocks[blockIndex][blockSelect], "1.0"))
+    
+        return
+        
+    def addPipeVeinCoreDensity(self, blockIndex, multiplier):
+        coreDensity = []
+        
+        coreDensity.append("1.0")
+        coreDensity.append("0")
+        coreDensity.append("normal")
+     
+        self._presetScript += cogFormatLine(mainSetting("OreDensity", coreDensity, coreDensity, blockSettingName[blockIndex], "MISSING", multiplier))
     
         return
                 
@@ -1525,25 +1525,13 @@ class veinCompoundPreset(veinPreset):
         cogIndent(1)        
         self.addAltBlocksList(blockIndex)
         self.addRepBlocksList(blockIndex)
-        self.addBiomesList(blockIndex)
-        self.addBiomeTypesList(blockIndex)
-        self.addAvoidBiomesList(blockIndex)
-        self.addAvoidBiomeTypesList(blockIndex)
-        self.addMotherlodeFrequencySetting(blockIndex, "1")
+        self.addInvRepBlocksList(blockIndex)
         self.addMotherlodeSizeSetting(blockIndex, "0.5")
-        self.addMotherlodeHeightSetting(blockIndex, "1")
-        self.addMotherlodeRangeLimitSetting(blockIndex, "1")
-        self.addBranchFrequencySetting(blockIndex, "1")
-        self.addBranchInclinationSetting(blockIndex, "1")
-        self.addBranchLengthSetting(blockIndex, "1")
-        self.addBranchHeightLimitSetting(blockIndex, "1")
-        self.addSegmentForkFrequencySetting(blockIndex, "1")
-        self.addSegmentForkLengthMultSetting(blockIndex, "1")
-        self.addSegmentLengthSetting(blockIndex, "1")
-        self.addSegmentAngleSetting(blockIndex, "1")
         self.addSegmentRadiusSetting(blockIndex, "0.5")
-        self.addOreDensitySetting(blockIndex, "1")
-        self.addOreRadiusMultSetting(blockIndex, "1")
+        if presetName(preset) == "Pipe Veins":
+            self.addPipeVeinCoreDensity(blockIndex, "1")
+        else:
+            self.addOreDensitySetting(blockIndex, "1")
         cogIndent(-1)
         self._presetScript += cogFormatLine("</Veins>")
         # Now to repeat the step for preferred biomes, essentially tripling the distributions in those biomes.
@@ -1588,25 +1576,12 @@ class veinCompoundPreset(veinPreset):
             self.addAltBlocksList(blockIndex)
             self.addInvRepBlocksList(blockIndex)
             self.addRepBlocksList(blockIndex)
-            self.addPreferredBiomesList(blockIndex)
-            self.addPreferredBiomeTypesList(blockIndex)
-            self.addAvoidBiomesList(blockIndex)
-            self.addAvoidBiomeTypesList(blockIndex)
-            self.addMotherlodeFrequencySetting(blockIndex, "1")
             self.addMotherlodeSizeSetting(blockIndex, "0.5")
-            self.addMotherlodeHeightSetting(blockIndex, "1")
-            self.addMotherlodeRangeLimitSetting(blockIndex, "1")
-            self.addBranchFrequencySetting(blockIndex, "1")
-            self.addBranchInclinationSetting(blockIndex, "1")
-            self.addBranchLengthSetting(blockIndex, "1")
-            self.addBranchHeightLimitSetting(blockIndex, "1")
-            self.addSegmentForkFrequencySetting(blockIndex, "1")
-            self.addSegmentForkLengthMultSetting(blockIndex, "1")
-            self.addSegmentLengthSetting(blockIndex, "1")
-            self.addSegmentAngleSetting(blockIndex, "1")
             self.addSegmentRadiusSetting(blockIndex, "0.5")
-            self.addOreDensitySetting(blockIndex, "1")
-            self.addOreRadiusMultSetting(blockIndex, "1")
+            if presetName(preset) == "Pipe Veins":
+                self.addPipeVeinCoreDensity(blockIndex, "1")
+            else:
+                self.addOreDensitySetting(blockIndex, "1")
             cogIndent(-1)
             self._presetScript += cogFormatLine("</Veins>")
             self._presetScript += cogFormatComment("\"Preferred\" configuration complete.")
@@ -1846,7 +1821,7 @@ class veinHintPreset(veinPreset):
         return
 
     def setPresetScript(self, blockIndex, preset):        
-        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"Veins' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"HintVeins' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
         cogIndent(1)
         self._presetScript += cogFormatLine("<Description>")
         cogIndent(1)
@@ -1855,15 +1830,11 @@ class veinHintPreset(veinPreset):
         self._presetScript += cogFormatLine("</Description>")
         self.addMainBlocksList(blockIndex)
         self.addHintRepBlocksList()
-        self.addBiomesList(blockIndex)
-        self.addBiomeTypesList(blockIndex)
-        self.addAvoidBiomesList(blockIndex)
-        self.addAvoidBiomeTypesList(blockIndex)
         cogIndent(-1)
         self._presetScript += cogFormatLine("</Veins>")
     
     def setPresetPreferredScript(self, blockIndex, preset):        
-        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"Veins' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"PreferredHintVeins' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
         cogIndent(1)
         self._presetScript += cogFormatLine("<Description>")
         cogIndent(1)
@@ -1872,12 +1843,6 @@ class veinHintPreset(veinPreset):
         self._presetScript += cogFormatLine("</Description>")
         self.addMainBlocksList(blockIndex)
         self.addHintRepBlocksList()
-        self.addPreferredBiomesList(blockIndex)
-        self.addPreferredBiomeTypesList(blockIndex)
-        self.addAvoidBiomesList(blockIndex)
-        self.addAvoidBiomeTypesList(blockIndex)
-        self.addAvoidBiomesList(blockIndex)
-        self.addAvoidBiomeTypesList(blockIndex)
         cogIndent(-1)
         self._presetScript += cogFormatLine("</Veins>")     
 
