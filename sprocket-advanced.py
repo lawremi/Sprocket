@@ -78,7 +78,7 @@ def grammaticalList(textList):
 # Makes a list of characters into a spaceless, comma-separated list.
 def extractList(currentList):
     newList = []
-    intList = currentList.split(',')
+    intList = currentList.strip().split(',')
     for item in range (0, len(intList)):
         newList.append(intList[item].replace(" ", ""))
     return newList
@@ -92,8 +92,8 @@ def extractList(currentList):
 # Makes a list of characters into a comma-separated list.
 def extractPreservedList(currentList):
     newList = []
-    newList = currentList.split(',')
-    
+    newList = currentList.strip().split(",")
+        
     return newList
 
 # Before we try to pull any information from an option, we want to make
