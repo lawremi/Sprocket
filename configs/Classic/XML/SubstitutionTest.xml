@@ -1,0 +1,269 @@
+<!-- =================================================================
+     Custom Ore Generation "Substitution Test" Module: This
+     configuration covers deepen the dirt, dirt mountains, glass the
+     land, and no water.
+     ================================================================= -->
+
+
+
+
+
+
+<!-- Starting Configuration for Custom Ore Generation. -->
+<ConfigSection>
+
+
+
+
+
+    <!-- Setup Screen Configuration -->
+    <ConfigSection>
+        <OptionDisplayGroup name='groupSubstitutionTest' displayName='Substitution Test' displayState='shown'>
+            <Description>
+                Distribution options for Substitution Test Ores.
+            </Description>
+        </OptionDisplayGroup>
+
+        <!-- Deepen the Dirt Configuration UI Starting -->
+        <ConfigSection>
+            <OptionChoice name='subtDeepentheDirtDist' default='none'  displayState='shown' displayGroup='groupSubstitutionTest'>
+                <Description> Controls how Deepen the Dirt is generated </Description>
+                <DisplayName>Substitution Test Deepen the Dirt</DisplayName>
+                <Choice value='Vanilla' displayValue='Vanilla'>
+                    <Description>
+                        Simulates Vanilla Minecraft.
+                    </Description>
+                </Choice>
+                <Choice value='none' displayValue='None' description='Deepen the Dirt is not generated in the world.'/>
+            </OptionChoice>
+            <OptionNumeric name='subtDeepentheDirtFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSubstitutionTest'>
+                <Description> Frequency multiplier for Substitution Test Deepen the Dirt distributions </Description>
+                <DisplayName>Substitution Test Deepen the Dirt Freq.</DisplayName>
+            </OptionNumeric>
+            <OptionNumeric name='subtDeepentheDirtSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSubstitutionTest'>
+                <Description> Size multiplier for Substitution Test Deepen the Dirt distributions </Description>
+                <DisplayName>Substitution Test Deepen the Dirt Size</DisplayName>
+            </OptionNumeric>
+        </ConfigSection>
+        <!-- Deepen the Dirt Configuration UI Complete -->
+
+
+        <!-- Dirt Mountains Configuration UI Starting -->
+        <ConfigSection>
+            <OptionChoice name='subtDirtMountainsDist' default='none'  displayState='shown' displayGroup='groupSubstitutionTest'>
+                <Description> Controls how Dirt Mountains is generated </Description>
+                <DisplayName>Substitution Test Dirt Mountains</DisplayName>
+                <Choice value='Vanilla' displayValue='Vanilla'>
+                    <Description>
+                        Simulates Vanilla Minecraft.
+                    </Description>
+                </Choice>
+                <Choice value='none' displayValue='None' description='Dirt Mountains is not generated in the world.'/>
+            </OptionChoice>
+            <OptionNumeric name='subtDirtMountainsFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSubstitutionTest'>
+                <Description> Frequency multiplier for Substitution Test Dirt Mountains distributions </Description>
+                <DisplayName>Substitution Test Dirt Mountains Freq.</DisplayName>
+            </OptionNumeric>
+            <OptionNumeric name='subtDirtMountainsSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSubstitutionTest'>
+                <Description> Size multiplier for Substitution Test Dirt Mountains distributions </Description>
+                <DisplayName>Substitution Test Dirt Mountains Size</DisplayName>
+            </OptionNumeric>
+        </ConfigSection>
+        <!-- Dirt Mountains Configuration UI Complete -->
+
+
+        <!-- Glass the Land Configuration UI Starting -->
+        <ConfigSection>
+            <OptionChoice name='subtGlasstheLandDist' default='none'  displayState='shown' displayGroup='groupSubstitutionTest'>
+                <Description> Controls how Glass the Land is generated </Description>
+                <DisplayName>Substitution Test Glass the Land</DisplayName>
+                <Choice value='Vanilla' displayValue='Vanilla'>
+                    <Description>
+                        Simulates Vanilla Minecraft.
+                    </Description>
+                </Choice>
+                <Choice value='none' displayValue='None' description='Glass the Land is not generated in the world.'/>
+            </OptionChoice>
+            <OptionNumeric name='subtGlasstheLandFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSubstitutionTest'>
+                <Description> Frequency multiplier for Substitution Test Glass the Land distributions </Description>
+                <DisplayName>Substitution Test Glass the Land Freq.</DisplayName>
+            </OptionNumeric>
+            <OptionNumeric name='subtGlasstheLandSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSubstitutionTest'>
+                <Description> Size multiplier for Substitution Test Glass the Land distributions </Description>
+                <DisplayName>Substitution Test Glass the Land Size</DisplayName>
+            </OptionNumeric>
+        </ConfigSection>
+        <!-- Glass the Land Configuration UI Complete -->
+
+
+        <!-- No Water Configuration UI Starting -->
+        <ConfigSection>
+            <OptionChoice name='subtNoWaterDist' default='none'  displayState='shown' displayGroup='groupSubstitutionTest'>
+                <Description> Controls how No Water is generated </Description>
+                <DisplayName>Substitution Test No Water</DisplayName>
+                <Choice value='Vanilla' displayValue='Vanilla'>
+                    <Description>
+                        Simulates Vanilla Minecraft.
+                    </Description>
+                </Choice>
+                <Choice value='none' displayValue='None' description='No Water is not generated in the world.'/>
+            </OptionChoice>
+            <OptionNumeric name='subtNoWaterFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSubstitutionTest'>
+                <Description> Frequency multiplier for Substitution Test No Water distributions </Description>
+                <DisplayName>Substitution Test No Water Freq.</DisplayName>
+            </OptionNumeric>
+            <OptionNumeric name='subtNoWaterSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupSubstitutionTest'>
+                <Description> Size multiplier for Substitution Test No Water distributions </Description>
+                <DisplayName>Substitution Test No Water Size</DisplayName>
+            </OptionNumeric>
+        </ConfigSection>
+        <!-- No Water Configuration UI Complete -->
+
+    </ConfigSection>
+    <!-- Setup Screen Complete -->
+
+
+
+
+
+    <!-- Overworld Setup Beginning -->
+
+    <IfCondition condition=':= ?COGActive'>
+
+        <!-- Starting Original "Overworld" Block Removal -->
+
+        <Substitute name='subtOverworldBlockSubstitute0' block='minecraft:stone'>
+            <Description>
+                Replace vanilla-generated ore clusters.
+            </Description>
+            <Comment>
+                The global option deferredPopulationRange must be
+                large enough to catch all ore clusters (>= 32).
+            </Comment>
+            
+        </Substitute>
+
+        <!-- Original "Overworld" Block Removal Complete -->
+
+        <!-- Adding blocks -->
+
+        <!-- Begin Deepen the Dirt Generation -->
+
+        <!-- Starting Vanilla Preset for Deepen the Dirt. -->
+        <ConfigSection>
+            <IfCondition condition=':= subtDeepentheDirtDist = "Vanilla"'>
+                <StandardGen name='subtDeepentheDirtStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60594D49' drawBoundBox='false' boundBoxColor='0x60E8C687'>
+                    <Description>
+                        A master preset for standardgen ore
+                        distributions.
+                    </Description>
+                    
+                    <Replaces block='minecraft:stone' weight='1.0' />
+                    <Biome name='.*'  />
+                    <Setting name='Size' avg=':= _default_ * subtDeepentheDirtSize ' range=':=  _default_ * subtDeepentheDirtSize ' type='normal' />
+                    <Setting name='Frequency' avg=':= _default_ * subtDeepentheDirtFreq ' range=':=  _default_ * subtDeepentheDirtFreq ' type='normal' scaleTo='base' />
+                    <Setting name='Height' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
+                    <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                </StandardGen>
+            </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Deepen the Dirt is complete. -->
+
+        <!-- End Deepen the Dirt Generation -->
+
+
+        <!-- Begin Dirt Mountains Generation -->
+
+        <!-- Starting Vanilla Preset for Dirt Mountains. -->
+        <ConfigSection>
+            <IfCondition condition=':= subtDirtMountainsDist = "Vanilla"'>
+                <StandardGen name='subtDirtMountainsStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60594D49' drawBoundBox='false' boundBoxColor='0x60E8C687'>
+                    <Description>
+                        A master preset for standardgen ore
+                        distributions.
+                    </Description>
+                    
+                    <Replaces block='minecraft:stone' weight='1.0' />
+                    <Biome name='.*'  />
+                    <Setting name='Size' avg=':= _default_ * subtDirtMountainsSize ' range=':=  _default_ * subtDirtMountainsSize ' type='normal' />
+                    <Setting name='Frequency' avg=':= _default_ * subtDirtMountainsFreq ' range=':=  _default_ * subtDirtMountainsFreq ' type='normal' scaleTo='base' />
+                    <Setting name='Height' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
+                    <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                </StandardGen>
+            </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Dirt Mountains is complete. -->
+
+        <!-- End Dirt Mountains Generation -->
+
+
+        <!-- Begin Glass the Land Generation -->
+
+        <!-- Starting Vanilla Preset for Glass the Land. -->
+        <ConfigSection>
+            <IfCondition condition=':= subtGlasstheLandDist = "Vanilla"'>
+                <StandardGen name='subtGlasstheLandStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60594D49' drawBoundBox='false' boundBoxColor='0x60E8C687'>
+                    <Description>
+                        A master preset for standardgen ore
+                        distributions.
+                    </Description>
+                    
+                    <Replaces block='minecraft:stone' weight='1.0' />
+                    <Biome name='.*'  />
+                    <Setting name='Size' avg=':= _default_ * subtGlasstheLandSize ' range=':=  _default_ * subtGlasstheLandSize ' type='normal' />
+                    <Setting name='Frequency' avg=':= _default_ * subtGlasstheLandFreq ' range=':=  _default_ * subtGlasstheLandFreq ' type='normal' scaleTo='base' />
+                    <Setting name='Height' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
+                    <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                </StandardGen>
+            </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Glass the Land is complete. -->
+
+        <!-- End Glass the Land Generation -->
+
+
+        <!-- Begin No Water Generation -->
+
+        <!-- Starting Vanilla Preset for No Water. -->
+        <ConfigSection>
+            <IfCondition condition=':= subtNoWaterDist = "Vanilla"'>
+                <StandardGen name='subtNoWaterStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60594D49' drawBoundBox='false' boundBoxColor='0x60E8C687'>
+                    <Description>
+                        A master preset for standardgen ore
+                        distributions.
+                    </Description>
+                    
+                    <Replaces block='minecraft:stone' weight='1.0' />
+                    <Biome name='.*'  />
+                    <Setting name='Size' avg=':= _default_ * subtNoWaterSize ' range=':=  _default_ * subtNoWaterSize ' type='normal' />
+                    <Setting name='Frequency' avg=':= _default_ * subtNoWaterFreq ' range=':=  _default_ * subtNoWaterFreq ' type='normal' scaleTo='base' />
+                    <Setting name='Height' avg=':= _default_ ' range=':=  _default_ ' type='normal' scaleTo='base' />
+                    <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':=  _default_ ' type='normal' />
+                </StandardGen>
+            </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for No Water is complete. -->
+
+        <!-- End No Water Generation -->
+
+        <!-- Finished adding blocks -->
+
+    </IfCondition>
+    <!-- Overworld Setup Complete -->
+
+
+
+
+</ConfigSection>
+<!-- Configuration for Custom Ore Generation Complete! -->
+
+
+
+
+<!-- =================================================================
+     This file was made using the Sprocket Configuration Generator.
+     If you wish to make your own configurations for a mod not
+     currently supported by Custom Ore Generation, and you don't want
+     the hassle of writing XML, you can find the generator script at
+     its GitHub page: http://https://github.com/reteo/Sprocket
+     ================================================================= -->
