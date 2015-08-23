@@ -743,7 +743,7 @@ def dimensionCheck(dimList, dimName):
 
 def presetInherit(preset):
     # Presets provided by Custom Ore Generation.
-    if preset.lower()=="substition":
+    if preset.lower()=="substitution":
         return ""
     if preset.lower()=="vanilla":
         return "inherits='PresetStandardGen'"
@@ -768,12 +768,14 @@ def presetInherit(preset):
         return "inherits='PresetSmallDeposits'"
     if preset.lower()=="compoundveins":
         return "inherits='PresetLayeredVeins'"
-    print "fail inherit"
+    else:
+        print "Invalid Distribution Preset: \""+preset+"\""
+        return ""
     
 def presetName(preset):
     # Presets provided by Custom Ore Generation.
-    if preset.lower()=="substition":
-        return "Substition"
+    if preset.lower()=="substitution":
+        return "Substitution"
     if preset.lower()=="vanilla":
         return "Vanilla"
     if preset.lower()=="layeredveins":
@@ -797,13 +799,13 @@ def presetName(preset):
         return "Geode"
     if preset.lower()=="compoundveins":
         return "Compound Veins"
-    
-    print preset.lower()
-    print "fail name"
+    else:
+        print "Invalid Distribution Preset: \""+preset+"\""
+        return ""
     
 def presetDescription(preset):
     # Presets provided by Custom Ore Generation.
-    if preset.lower()=="substition":
+    if preset.lower()=="substitution":
         return "This is a global replacement of one block with another.  Height clamping is needed to keep the substitution from being universal."
     if preset.lower()=="vanilla":
         return "A master preset for standardgen ore distributions."
@@ -828,12 +830,13 @@ def presetDescription(preset):
         return "Multi-layered deposit.  On the outside is a shell, usually made of some form of stone.  Within this shell is sprinkled ores.  Inside both is an air pocket from which the enterprising miner can look for the contained ores."
     if preset.lower()=="compoundveins":
         return "Similar to pipe veins, except that the motherlode and veins are a solid vein containing another, smaller solid vein."
-    
-    print "fail description"
+    else:
+        print "Invalid Distribution Preset: \""+preset+"\""
+        return ""
     
 def presetLiteDescription(preset):
     # Presets provided by Custom Ore Generation.
-    if preset.lower()=="substition":
+    if preset.lower()=="substitution":
         return "Universal Block Replacement."
     if preset.lower()=="vanilla":
         return "Simulates Vanilla Minecraft."
@@ -858,8 +861,9 @@ def presetLiteDescription(preset):
         return "Multi-layered deposit in a spherical shape."
     if preset.lower()=="compoundveins":
         return "Veins containing another vein."
-
-    print "fail lite description"
+    else:
+        print "Invalid Distribution Preset: \""+preset+"\""
+        return ""
 
 
 
@@ -1627,7 +1631,7 @@ class veinGeodePreset(veinPreset):
         self.addAvoidBiomesList(blockIndex)
         self.addAvoidBiomeTypesList(blockIndex)
         self.addMotherlodeFrequencySetting(blockIndex, "1")
-        self.addMotherlodeSizeSetting(blockIndex, "")
+        self.addMotherlodeSizeSetting(blockIndex, "3")
         self.addMotherlodeHeightSetting(blockIndex, "1")
         self.addMotherlodeRangeLimitSetting(blockIndex, "1")
         self.addBranchFrequencySetting(blockIndex, "1")
@@ -1726,7 +1730,7 @@ class veinGeodePreset(veinPreset):
             self.addAvoidBiomesList(blockIndex)
             self.addAvoidBiomeTypesList(blockIndex)
             self.addMotherlodeFrequencySetting(blockIndex, "1")
-            self.addMotherlodeSizeSetting(blockIndex, "")
+            self.addMotherlodeSizeSetting(blockIndex, "3")
             self.addMotherlodeHeightSetting(blockIndex, "1")
             self.addMotherlodeRangeLimitSetting(blockIndex, "1")
             self.addBranchFrequencySetting(blockIndex, "1")
@@ -1895,7 +1899,7 @@ def chosenBlockList(replacementBlock, dimName):
 
 def presetSelection(blockIndex, presetSelect):
     distOutput = ""
-
+    
     distOutput += cogFormatLine("<Choice value='"+presetList[blockIndex][presetSelect]+"' displayValue='"+presetName(presetList[blockIndex][presetSelect])+"'>")
     cogIndent(1)
     distOutput += cogFormatLine("<Description>")
