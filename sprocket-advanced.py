@@ -629,9 +629,9 @@ def cogFormatBoxComment(cogComment):
 def blockCommand(command, currentBlock, currentWeight):
     if checkCurrentOption(currentBlock):
         if checkCurrentOption(currentWeight):
-            return "<"+command+" block='"+currentBlock+"' weight='"+currentWeight+"' />"
+            return "<IfCondition condition=':= ?blockExists(\""+currentBlock+"\")'> <"+command+" block='"+currentBlock+"' weight='"+currentWeight+"' /> </IfCondition>"
         else:
-            return "<"+command+" block='"+currentBlock+"' />"
+            return "<IfCondition condition=':= ?blockExists(\""+currentBlock+"\")'> <"+command+" block='"+currentBlock+"' /> </IfCondition>"
     else:
         return ""
 
@@ -1922,7 +1922,10 @@ def presetSelection(blockIndex, presetSelect):
 def controlsSetup(blockIndex):    
     controlsOutput = ""
 
-    controlsOutput += cogFormatLine("<OptionChoice name='"+blockSettingName[blockIndex]+"Dist'"+ifDistActive(distActive[blockIndex])+" displayState='shown' displayGroup='group"+modConfigName+"'>")
+    if modDetect.lower() == "minecraft":
+        controlsOutput += cogFormatLine("<OptionChoice name='"+blockSettingName[blockIndex]+"Dist'"+ifDistActive(distActive[blockIndex])+" displayState=':= \"shown\"' displayGroup='group"+modConfigName+"'>")
+    else:
+        controlsOutput += cogFormatLine("<OptionChoice name='"+blockSettingName[blockIndex]+"Dist'"+ifDistActive(distActive[blockIndex])+" displayState=':= if(?enable"+modConfigName+", \"shown\", \"hidden\")' displayGroup='group"+modConfigName+"'>")
     cogIndent(1)
     controlsOutput += cogFormatLine("<Description> Controls how "+blockName[blockIndex]+" is generated </Description>")
     controlsOutput += cogFormatLine("<DisplayName>"+modName+" "+blockName[blockIndex]+"</DisplayName>")
@@ -1934,13 +1937,20 @@ def controlsSetup(blockIndex):
     
     cogIndent(-1)
     controlsOutput += cogFormatLine("</OptionChoice>")
-    controlsOutput += cogFormatLine("<OptionNumeric name='"+blockSettingName[blockIndex]+"Freq' default='1'  min='0' max='5' displayState=':= if(?advOptions,\"shown\",\"hidden\")' displayGroup='group"+modConfigName+"'>")
+    if modDetect.lower() == "minecraft":
+        controlsOutput += cogFormatLine("<OptionNumeric name='"+blockSettingName[blockIndex]+"Freq' default='1'  min='0' max='5' displayState=':= if(?advOptions, \"shown\", \"hidden\")' displayGroup='group"+modConfigName+"'>")
+    else:
+        controlsOutput += cogFormatLine("<OptionNumeric name='"+blockSettingName[blockIndex]+"Freq' default='1'  min='0' max='5' displayState=':= if(?enable"+modConfigName+", if(?advOptions, \"shown\", \"hidden\"), \"hidden\")' displayGroup='group"+modConfigName+"'>")
+
     cogIndent(1)
     controlsOutput += cogFormatLine("<Description> Frequency multiplier for "+modName+" "+blockName[blockIndex]+" distributions </Description>")
     controlsOutput += cogFormatLine("<DisplayName>"+modName+" "+blockName[blockIndex]+" Freq.</DisplayName>")
     cogIndent(-1)
     controlsOutput += cogFormatLine("</OptionNumeric>")
-    controlsOutput += cogFormatLine("<OptionNumeric name='"+blockSettingName[blockIndex]+"Size' default='1'  min='0' max='5' displayState=':= if(?advOptions,\"shown\",\"hidden\")' displayGroup='group"+modConfigName+"'>")
+    if modDetect.lower() == "minecraft":
+        controlsOutput += cogFormatLine("<OptionNumeric name='"+blockSettingName[blockIndex]+"Size' default='1'  min='0' max='5' displayState=':= if(?advOptions, \"shown\", \"hidden\")' displayGroup='group"+modConfigName+"'>")
+    else:
+        controlsOutput += cogFormatLine("<OptionNumeric name='"+blockSettingName[blockIndex]+"Size' default='1'  min='0' max='5' displayState=':= if(?enable"+modConfigName+", if(?advOptions, \"shown\", \"hidden\"), \"hidden\")' displayGroup='group"+modConfigName+"'>")
     cogIndent(1)
     controlsOutput += cogFormatLine("<Description> Size multiplier for "+modName+" "+blockName[blockIndex]+" distributions </Description>")
     controlsOutput += cogFormatLine("<DisplayName>"+modName+" "+blockName[blockIndex]+" Size</DisplayName>")
@@ -2075,6 +2085,8 @@ def initCleanup(dimName):
         chosenBlocks = chosenBlockList(uniqueSections[sectionSelect],dimName)
         
         cleanupSubOutput += "\n"
+        cleanupSubOutput += cogFormatLine("<IfCondition condition=':= ?blockExists(\""+uniqueSections[sectionSelect]+"\")'>")
+        cogIndent(1)
         cleanupSubOutput += cogFormatLine("<Substitute name='"+modPrefix+dimName+"BlockSubstitute"+str(sectionSelect)+"' block='"+uniqueSections[sectionSelect]+"'>")
         cogIndent(1)
         cleanupSubOutput += cogFormatLine("<Description>")
@@ -2094,6 +2106,8 @@ def initCleanup(dimName):
                 
         cogIndent(-1)
         cleanupSubOutput += cogFormatLine("</Substitute>")
+        cogIndent(-1)
+        cleanupSubOutput += cogFormatLine("</IfCondition>")
         cleanupSubOutput += "\n"
                 
         if cleanupSubUse:
@@ -2123,6 +2137,16 @@ def configSetupSection():
     setupOutput += cogFormatLine("</Description>")
     cogIndent(-1)
     setupOutput += cogFormatLine("</OptionDisplayGroup>")
+    
+    if modDetect.lower() != "minecraft":
+        # New option, designed to allow the player to bypass specific mods in favor of others.  By default, always enabled.
+        setupOutput += cogFormatLine("<OptionChoice name='enable"+modConfigName+"' displayName='Handle "+modName+" Setup?' default='true' displayState='shown_dynamic' displayGroup='group"+modConfigName+"'>")
+        cogIndent(1)    
+        setupOutput += cogFormatLine("<Description> Should Custom Ore Generation handle "+modName+" ore generation? </Description>")
+        setupOutput += cogFormatLine("<Choice value=':= ?true' displayValue='Yes' description='Use Custom Ore Generation to handle "+modName+" ores.'/>")
+        setupOutput += cogFormatLine("<Choice value=':= ?false' displayValue='No' description='"+modName+" ores will be handled by the mod itself.'/>")
+        cogIndent(-1)
+        setupOutput += cogFormatLine("</OptionChoice>")
     
     for blockSelect in range(0, len(blockName)):
         setupOutput += "\n"
@@ -2213,12 +2237,22 @@ def mainConfigStructure():
     # First, the Setup Screen Configuration...
     configOutput += configSetupSection()
     configOutput += "\n"    
+    
+    if modDetect.lower() != "minecraft":
+        # Now, let's make sure we want to do this... a new option was added in the menu to bypass COG for specific mods.
+        configOutput += cogFormatLine("<IfCondition condition=':= ?enable"+modConfigName+"'>")
+        cogIndent(1)
+    
     # Next, let's get the worlds prepared.  For now, we're limited to the
     # Overworld, Nether, and End, but as new generators can be detected, we can
     # Expand Sprocket's ability to create configurations for additional dimensions.
     configOutput += dimensionSetup("Overworld", "COGActive")+"\n"
     configOutput += dimensionSetup("Nether", "HellRandomLevelSource")+"\n"
     configOutput += dimensionSetup("End", "EndRandomLevelSource")+"\n"
+        
+    if modDetect.lower() != "minecraft":     
+        cogIndent(-1)
+        configOutput += cogFormatLine("</IfCondition>")
         
     cogIndent(-1)
     configOutput += "\n"
