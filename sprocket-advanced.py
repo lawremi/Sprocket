@@ -184,6 +184,7 @@ def extractFirstBlock(option):
 modName=""                  # Mod name component for variable names
 modPrefix=""                # Comes before the ore name in variable names
 modDetect=""                # ModID identifier for mod
+modHandle=""                # By default, COG will handle the mod's oregen.
 modDescription=""           # Custom description for the Mod
 
 # Variables for distribution configuration.
@@ -433,6 +434,11 @@ try:
 except ConfigParser.NoOptionError:
     print "You don't need a mod description, but one might be nice..."
 
+# Also, let's see how we want to handle ores by default
+try:
+    modHandle = Config.get('Mod', 'Enable') # Enable COG generation of this mod by default?
+except ConfigParser.NoOptionError:
+    modHandle = "yes"
 
 print "Generating configuration for "+modName+"." # Yup, we can now proceed.
 
@@ -658,7 +664,7 @@ def biomeClimate(currentRainfall, currentTemperature):
             maxTemperature=extractMaximum(currentTemperature)
            
     if minRainfall != -2.0:
-        climateAttributes += " minRainfail='"+extractMinimum(currentRainfall)+"'"
+        climateAttributes += " minRainfall='"+extractMinimum(currentRainfall)+"'"
         
     if maxRainfall != -2.0:
         climateAttributes += " maxRainfall='"+extractMaximum(currentRainfall)+"'"
@@ -1912,6 +1918,12 @@ def presetSelection(blockIndex, presetSelect):
     
     return distOutput
     
+def modHandleState():
+    if modHandle.lower() == "yes":
+        return "true"
+    else:
+        return "false"
+    
 
 # ----------------------------------------------------------------------------- #
     
@@ -2140,7 +2152,7 @@ def configSetupSection():
     
     if modDetect.lower() != "minecraft":
         # New option, designed to allow the player to bypass specific mods in favor of others.  By default, always enabled.
-        setupOutput += cogFormatLine("<OptionChoice name='enable"+modConfigName+"' displayName='Handle "+modName+" Setup?' default='true' displayState='shown_dynamic' displayGroup='group"+modConfigName+"'>")
+        setupOutput += cogFormatLine("<OptionChoice name='enable"+modConfigName+"' displayName='Handle "+modName+" Setup?' default='"+modHandleState()+"' displayState='shown_dynamic' displayGroup='group"+modConfigName+"'>")
         cogIndent(1)    
         setupOutput += cogFormatLine("<Description> Should Custom Ore Generation handle "+modName+" ore generation? </Description>")
         setupOutput += cogFormatLine("<Choice value=':= ?true' displayValue='Yes' description='Use Custom Ore Generation to handle "+modName+" ores.'/>")
