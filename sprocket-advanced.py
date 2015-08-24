@@ -78,7 +78,7 @@ def grammaticalList(textList):
 # Makes a list of characters into a spaceless, comma-separated list.
 def extractList(currentList):
     newList = []
-    intList = currentList.strip().split(',')
+    intList = currentList.split(',')
     for item in range (0, len(intList)):
         newList.append(intList[item].replace(" ", ""))
     return newList
@@ -92,8 +92,9 @@ def extractList(currentList):
 # Makes a list of characters into a comma-separated list.
 def extractPreservedList(currentList):
     newList = []
-    newList = currentList.strip().split(",")
-        
+    intList = currentList.split(',')
+    for item in range (0, len(intList)):
+        newList.append(intList[item].lstrip())        
     return newList
 
 # Before we try to pull any information from an option, we want to make
@@ -462,12 +463,12 @@ for currentBlock in blockName:
     repBlocks.append(extractList(Config.get(currentBlock, 'Replaces')))
     repBlockWeights.append(extractList(Config.get(currentBlock, 'Replacement Weights')))
     dimensionList.append(extractList(Config.get(currentBlock, 'Dimensions')))
-    biomeNames.append(extractList(Config.get(currentBlock, 'Need Biomes')))
-    biomeTypes.append(extractList(Config.get(currentBlock, 'Need Biome Types')))
-    biomeAvoidNames.append(extractList(Config.get(currentBlock, 'Avoid Biomes')))
-    biomeAvoidTypes.append(extractList(Config.get(currentBlock, 'Avoid Biome Types')))
-    biomePreferNames.append(extractList(Config.get(currentBlock, 'Prefer Biomes')))
-    biomePreferTypes.append(extractList(Config.get(currentBlock, 'Prefer Biome Types')))
+    biomeNames.append(extractPreservedList(Config.get(currentBlock, 'Need Biomes')))
+    biomeTypes.append(extractPreservedList(Config.get(currentBlock, 'Need Biome Types')))
+    biomeAvoidNames.append(extractPreservedList(Config.get(currentBlock, 'Avoid Biomes')))
+    biomeAvoidTypes.append(extractPreservedList(Config.get(currentBlock, 'Avoid Biome Types')))
+    biomePreferNames.append(extractPreservedList(Config.get(currentBlock, 'Prefer Biomes')))
+    biomePreferTypes.append(extractPreservedList(Config.get(currentBlock, 'Prefer Biome Types')))
     biomeRainfall.append(extractList(Config.get(currentBlock, 'Biome Rainfall Range')))
     biomeTmperature.append(extractList(Config.get(currentBlock, 'Biome Temperature Range')))
     placeBelow.append(extractList(Config.get(currentBlock, 'Place Below')))
@@ -640,6 +641,15 @@ def blockCommand(command, currentBlock, currentWeight):
             return "<IfCondition condition=':= ?blockExists(\""+currentBlock+"\")'> <"+command+" block='"+currentBlock+"' /> </IfCondition>"
     else:
         return ""
+    
+    
+    #if checkCurrentOption(currentBlock):
+    #    if checkCurrentOption(currentWeight):
+    #        return "<"+command+" block='"+currentBlock+"' weight='"+currentWeight+"' />"
+    #    else:
+    #        return "<"+command+" block='"+currentBlock+"' />"
+    #else:
+    #    return ""
 
      
 ### Biome Commands ###
@@ -1621,6 +1631,14 @@ class veinGeodePreset(veinPreset):
             self._presetScript += cogFormatLine(blockCommand("Replaces", altBlocks[blockIndex][blockSelect], "1.0"))
     
         return
+    
+    # A custom motherlode size is necessary for inner shells to avoid extraneous imports.
+    def addGeodeSubMotherlodeSizeSetting(self, ruleType):
+        self._presetScript += cogFormatLine("<Setting name='MotherlodeSize' avg=':= _default_ * 0.5' range=':= _default_ * 0.5' type='"+ruleType+"' />")
+      
+        return
+    
+    
     def setPresetScript(self, blockIndex, preset):
         # First, we have the outer shell layer.
         self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeShell' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
@@ -1637,18 +1655,9 @@ class veinGeodePreset(veinPreset):
         self.addAvoidBiomesList(blockIndex)
         self.addAvoidBiomeTypesList(blockIndex)
         self.addMotherlodeFrequencySetting(blockIndex, "1")
-        self.addMotherlodeSizeSetting(blockIndex, "3")
+        self.addMotherlodeSizeSetting(blockIndex, "1")
         self.addMotherlodeHeightSetting(blockIndex, "1")
         self.addMotherlodeRangeLimitSetting(blockIndex, "1")
-        self.addBranchFrequencySetting(blockIndex, "1")
-        self.addBranchInclinationSetting(blockIndex, "1")
-        self.addBranchLengthSetting(blockIndex, "1")
-        self.addBranchHeightLimitSetting(blockIndex, "1")
-        self.addSegmentForkFrequencySetting(blockIndex, "1")
-        self.addSegmentForkLengthMultSetting(blockIndex, "1")
-        self.addSegmentLengthSetting(blockIndex, "1")
-        self.addSegmentAngleSetting(blockIndex, "1")
-        self.addSegmentRadiusSetting(blockIndex, "1")
         self.addOreDensitySetting(blockIndex, "1")
         self.addOreRadiusMultSetting(blockIndex, "1")
         cogIndent(-1)
@@ -1662,26 +1671,9 @@ class veinGeodePreset(veinPreset):
         cogIndent(-1)
         self._presetScript += cogFormatLine("</Description>")
         self.addMainBlocksList(blockIndex) # Ore layer
+        self.addRepBlocksList(blockIndex) # Normal replacement material
         self.addRepShellBlocksList(blockIndex) # Shell material
-        self.addBiomesList(blockIndex)
-        self.addBiomeTypesList(blockIndex)
-        self.addAvoidBiomesList(blockIndex)
-        self.addAvoidBiomeTypesList(blockIndex)
-        self.addMotherlodeFrequencySetting(blockIndex, "1")
-        self.addMotherlodeSizeSetting(blockIndex, "0.5")
-        self.addMotherlodeHeightSetting(blockIndex, "1")
-        self.addMotherlodeRangeLimitSetting(blockIndex, "1")
-        self.addBranchFrequencySetting(blockIndex, "1")
-        self.addBranchInclinationSetting(blockIndex, "1")
-        self.addBranchLengthSetting(blockIndex, "1")
-        self.addBranchHeightLimitSetting(blockIndex, "1")
-        self.addSegmentForkFrequencySetting(blockIndex, "1")
-        self.addSegmentForkLengthMultSetting(blockIndex, "1")
-        self.addSegmentLengthSetting(blockIndex, "1")
-        self.addSegmentAngleSetting(blockIndex, "1")
-        self.addSegmentRadiusSetting(blockIndex, "1")
-        self.addOreDensitySetting(blockIndex, "1")
-        self.addOreRadiusMultSetting(blockIndex, "1")
+        self.addGeodeSubMotherlodeSizeSetting("uniform")
         cogIndent(-1)
         self._presetScript += cogFormatLine("</Veins>")
         # Finally, the central air bubble.
@@ -1694,25 +1686,8 @@ class veinGeodePreset(veinPreset):
         self._presetScript += cogFormatLine("</Description>")
         self.addAirBlock(blockIndex) # Air Bubble
         self.addRepBubbleBlocksList(blockIndex) # Shell material
-        self.addBiomesList(blockIndex)
-        self.addBiomeTypesList(blockIndex)
-        self.addAvoidBiomesList(blockIndex)
-        self.addAvoidBiomeTypesList(blockIndex)
-        self.addMotherlodeFrequencySetting(blockIndex, "1")
-        self.addMotherlodeSizeSetting(blockIndex, "0.5")
-        self.addMotherlodeHeightSetting(blockIndex, "1")
-        self.addMotherlodeRangeLimitSetting(blockIndex, "1")
-        self.addBranchFrequencySetting(blockIndex, "1")
-        self.addBranchInclinationSetting(blockIndex, "1")
-        self.addBranchLengthSetting(blockIndex, "1")
-        self.addBranchHeightLimitSetting(blockIndex, "1")
-        self.addSegmentForkFrequencySetting(blockIndex, "1")
-        self.addSegmentForkLengthMultSetting(blockIndex, "1")
-        self.addSegmentLengthSetting(blockIndex, "1")
-        self.addSegmentAngleSetting(blockIndex, "1")
-        self.addSegmentRadiusSetting(blockIndex, "1")
-        self.addOreDensitySetting(blockIndex, "1")
-        self.addOreRadiusMultSetting(blockIndex, "1")
+        self.addRepBlocksList(blockIndex) # Normal replacement material
+        self.addGeodeSubMotherlodeSizeSetting("uniform")
         cogIndent(-1)
         self._presetScript += cogFormatLine("</Veins>")
         # Now to repeat the step for preferred biomes, essentially tripling the distributions in those biomes.
@@ -1736,18 +1711,9 @@ class veinGeodePreset(veinPreset):
             self.addAvoidBiomesList(blockIndex)
             self.addAvoidBiomeTypesList(blockIndex)
             self.addMotherlodeFrequencySetting(blockIndex, "1")
-            self.addMotherlodeSizeSetting(blockIndex, "3")
+            self.addMotherlodeSizeSetting(blockIndex, "1")
             self.addMotherlodeHeightSetting(blockIndex, "1")
             self.addMotherlodeRangeLimitSetting(blockIndex, "1")
-            self.addBranchFrequencySetting(blockIndex, "1")
-            self.addBranchInclinationSetting(blockIndex, "1")
-            self.addBranchLengthSetting(blockIndex, "1")
-            self.addBranchHeightLimitSetting(blockIndex, "1")
-            self.addSegmentForkFrequencySetting(blockIndex, "1")
-            self.addSegmentForkLengthMultSetting(blockIndex, "1")
-            self.addSegmentLengthSetting(blockIndex, "1")
-            self.addSegmentAngleSetting(blockIndex, "1")
-            self.addSegmentRadiusSetting(blockIndex, "1")
             self.addOreDensitySetting(blockIndex, "1")
             self.addOreRadiusMultSetting(blockIndex, "1")
             cogIndent(-1)
@@ -1762,25 +1728,7 @@ class veinGeodePreset(veinPreset):
             self._presetScript += cogFormatLine("</Description>")
             self.addMainBlocksList(blockIndex) # Ore layer
             self.addRepShellBlocksList(blockIndex) # Shell material
-            self.addPreferredBiomesList(blockIndex)
-            self.addPreferredBiomeTypesList(blockIndex)
-            self.addAvoidBiomesList(blockIndex)
-            self.addAvoidBiomeTypesList(blockIndex)
-            self.addMotherlodeFrequencySetting(blockIndex, "1")
-            self.addMotherlodeSizeSetting(blockIndex, "0.5")
-            self.addMotherlodeHeightSetting(blockIndex, "1")
-            self.addMotherlodeRangeLimitSetting(blockIndex, "1")
-            self.addBranchFrequencySetting(blockIndex, "1")
-            self.addBranchInclinationSetting(blockIndex, "1")
-            self.addBranchLengthSetting(blockIndex, "1")
-            self.addBranchHeightLimitSetting(blockIndex, "1")
-            self.addSegmentForkFrequencySetting(blockIndex, "1")
-            self.addSegmentForkLengthMultSetting(blockIndex, "1")
-            self.addSegmentLengthSetting(blockIndex, "1")
-            self.addSegmentAngleSetting(blockIndex, "1")
-            self.addSegmentRadiusSetting(blockIndex, "1")
-            self.addOreDensitySetting(blockIndex, "1")
-            self.addOreRadiusMultSetting(blockIndex, "1")
+            self.addGeodeSubMotherlodeSizeSetting("uniform")
             cogIndent(-1)
             self._presetScript += cogFormatLine("</Veins>")
             # Finally, the central air bubble.
@@ -1793,25 +1741,7 @@ class veinGeodePreset(veinPreset):
             self._presetScript += cogFormatLine("</Description>")
             self.addAirBlock(blockIndex) # Air Bubble
             self.addRepBubbleBlocksList(blockIndex) # Shell material
-            self.addPreferredBiomesList(blockIndex)
-            self.addPreferredBiomeTypesList(blockIndex)
-            self.addAvoidBiomesList(blockIndex)
-            self.addAvoidBiomeTypesList(blockIndex)
-            self.addMotherlodeFrequencySetting(blockIndex, "1")
-            self.addMotherlodeSizeSetting(blockIndex, "0.5")
-            self.addMotherlodeHeightSetting(blockIndex, "1")
-            self.addMotherlodeRangeLimitSetting(blockIndex, "1")
-            self.addBranchFrequencySetting(blockIndex, "1")
-            self.addBranchInclinationSetting(blockIndex, "1")
-            self.addBranchLengthSetting(blockIndex, "1")
-            self.addBranchHeightLimitSetting(blockIndex, "1")
-            self.addSegmentForkFrequencySetting(blockIndex, "1")
-            self.addSegmentForkLengthMultSetting(blockIndex, "1")
-            self.addSegmentLengthSetting(blockIndex, "1")
-            self.addSegmentAngleSetting(blockIndex, "1")
-            self.addSegmentRadiusSetting(blockIndex, "1")
-            self.addOreDensitySetting(blockIndex, "1")
-            self.addOreRadiusMultSetting(blockIndex, "1")
+            self.addGeodeSubMotherlodeSizeSetting("uniform")
             cogIndent(-1)
             self._presetScript += cogFormatLine("</Veins>")
         
