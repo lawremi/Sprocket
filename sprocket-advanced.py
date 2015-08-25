@@ -342,9 +342,9 @@ Config = ConfigParser.SafeConfigParser(
                 'Place Above':'MISSING',
                 'Wireframe':'yes',
                 'Bounding Box':'no',
-                'Wireframe Color':randomHexNumber(6),
-                'Bounding Box Color':randomHexNumber(6),
-                'Seed':randomHexNumber(4),
+                'Wireframe Color':"MISSING",
+                'Bounding Box Color':"MISSING",
+                'Seed':"MISSING",
                 'Active':'yes',
                 'Size':'_default_, _default_, normal, base',
                 'Frequency':'_default_, _default_, normal, base',
@@ -533,6 +533,16 @@ for currentBlock in blockName:
 
     # Okay, we got this section of the configuration, let's move onto the next.
     blockCount += 1
+    
+# Now, we need to assign individual random numbers to seeds and wireframes that are missing them.
+for blockIndex in range(0, len(blockName)):
+    if blockSeed[blockIndex][0] == "MISSING":
+        blockSeed[blockIndex][0] = str(randomHexNumber(4))
+    if wireframeColor[blockIndex][0] == "MISSING":
+        wireframeColor[blockIndex][0] = str(randomHexNumber(6))
+    if boundBoxColor[blockIndex][0] == "MISSING":
+        boundBoxColor[blockIndex][0] = str(randomHexNumber(6))
+        
 # ------------------------------------------- #
 
 
