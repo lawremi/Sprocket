@@ -646,9 +646,15 @@ def cogFormatBoxComment(cogComment):
 def blockCommand(command, currentBlock, currentWeight):
     if checkCurrentOption(currentBlock):
         if checkCurrentOption(currentWeight):
-            return "<IfCondition condition=':= ?blockExists(\""+currentBlock+"\")'> <"+command+" block='"+currentBlock+"' weight='"+currentWeight+"' /> </IfCondition>"
+            if currentBlock=="blockSand" or currentBlock=="stone":
+                return "<"+command+" block='"+currentBlock+"' weight='"+currentWeight+"' />"
+            else:
+                return "<IfCondition condition=':= ?blockExists(\""+currentBlock+"\")'> <"+command+" block='"+currentBlock+"' weight='"+currentWeight+"' /> </IfCondition>"
         else:
-            return "<IfCondition condition=':= ?blockExists(\""+currentBlock+"\")'> <"+command+" block='"+currentBlock+"' /> </IfCondition>"
+            if currentBlock=="blockSand" or currentBlock=="stone":
+                return "<"+command+" block='"+currentBlock+"' />"
+            else:
+                return "<IfCondition condition=':= ?blockExists(\""+currentBlock+"\")'> <"+command+" block='"+currentBlock+"' /> </IfCondition>"
     else:
         return ""
     
@@ -1090,7 +1096,18 @@ class substitutePreset:
         for blockSelect in range(0, len(repBlocks[blockIndex])):
             if weightDefined:
                 blockWeight = repBlockWeights[blockIndex][blockSelect]
-            self._presetScript += cogFormatLine(blockCommand("Replaces", repBlocks[blockIndex][blockSelect], str(blockWeight)))
+                
+            # Certain blocks should use their ore dictionary entries for replacement.
+            if repBlocks[blockIndex][blockSelect]=="minecraft:stone":
+                self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "stone", str(blockWeight)))
+            elif repBlocks[blockIndex][blockSelect]=="minecraft:sand":
+                self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "sand", str(blockWeight)))
+            elif repBlocks[blockIndex][blockSelect]=="minecraft:dirt":
+                self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "dirt", str(blockWeight)))
+            elif repBlocks[blockIndex][blockSelect]=="minecraft:gravel":
+                self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "gravel", str(blockWeight)))
+            else:
+                self._presetScript += cogFormatLine(blockCommand("Replaces", repBlocks[blockIndex][blockSelect], str(blockWeight)))
     
         return
     
