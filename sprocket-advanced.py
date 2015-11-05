@@ -646,12 +646,13 @@ def cogFormatBoxComment(cogComment):
 def blockCommand(command, currentBlock, currentWeight):
     if checkCurrentOption(currentBlock):
         if checkCurrentOption(currentWeight):
-            if currentBlock=="blockSand" or currentBlock=="stone":
+            # Don't do a block check for replacement commands.
+            if command=="Replaces" or command=="ReplacesOre":
                 return "<"+command+" block='"+currentBlock+"' weight='"+currentWeight+"' />"
             else:
                 return "<IfCondition condition=':= ?blockExists(\""+currentBlock+"\")'> <"+command+" block='"+currentBlock+"' weight='"+currentWeight+"' /> </IfCondition>"
-        else:
-            if currentBlock=="blockSand" or currentBlock=="stone":
+        else: # Don't do a block check for replacement commands.
+            if command=="Replaces" or command=="ReplacesOre":
                 return "<"+command+" block='"+currentBlock+"' />"
             else:
                 return "<IfCondition condition=':= ?blockExists(\""+currentBlock+"\")'> <"+command+" block='"+currentBlock+"' /> </IfCondition>"
