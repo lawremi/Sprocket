@@ -1,0 +1,231 @@
+<!-- =================================================================
+     Custom Ore Generation "Thaumcraft 4" Module: This configuration
+     covers multiore spike.
+     ================================================================= -->
+
+
+<!-- This is the core of a custom configuration for Thaumcraft 4.
+     This configuration will make vertical veins with infused stone
+     shells, which will be configured in this XML file to have vanilla
+     ores inside.
+     
+     See line 45 of this XML file for the next step. -->
+
+
+
+
+<!-- Is the "Thaumcraft 4" mod on the system?  Let's find out! -->
+<IfModInstalled name="Thaumcraft">
+
+    <!-- Starting Configuration for Custom Ore Generation. -->
+    <ConfigSection>
+
+
+
+
+
+        <!-- Setup Screen Configuration -->
+        <ConfigSection>
+            <OptionDisplayGroup name='groupThaumcraft4' displayName='Thaumcraft 4' displayState='shown'>
+                <Description>
+                    Distribution options for Thaumcraft 4 Ores.
+                </Description>
+            </OptionDisplayGroup>
+            <OptionChoice name='enableThaumcraft4' displayName='Handle Thaumcraft 4 Setup?' default='true' displayState='shown_dynamic' displayGroup='groupThaumcraft4'>
+                <Description> Should Custom Ore Generation handle Thaumcraft 4 ore generation? </Description>
+                <Choice value=':= ?true' displayValue='Yes' description='Use Custom Ore Generation to handle Thaumcraft 4 ores.'/>
+                <Choice value=':= ?false' displayValue='No' description='Thaumcraft 4 ores will be handled by the mod itself.'/>
+            </OptionChoice>
+
+            <!-- MultiOre Spike Configuration UI Starting -->
+            <ConfigSection>
+                <OptionChoice name='thm4MultiOreSpikeDist'  displayState=':= if(?enableThaumcraft4, "shown", "hidden")' displayGroup='groupThaumcraft4'>
+                    <Description> Controls how MultiOre Spike is generated </Description>
+                    <DisplayName>Thaumcraft 4 MultiOre Spike</DisplayName>
+                    <!-- The display value is what shows on the button.  The description shows up on the mouseover tooltip. Next step at line 95. -->
+                    <Choice value='VerticalVeins' displayValue='Spikes'>
+                        <Description>
+                            Long vertical spikes of infused stone containing mixed ores.
+                        </Description>
+                    </Choice>
+                    <Choice value='none' displayValue='None' description='MultiOre Spike is not generated in the world.'/>
+                </OptionChoice>
+                <OptionNumeric name='thm4MultiOreSpikeFreq' default='1'  min='0' max='5' displayState=':= if(?enableThaumcraft4, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupThaumcraft4'>
+                    <Description> Frequency multiplier for Thaumcraft 4 MultiOre Spike distributions </Description>
+                    <DisplayName>Thaumcraft 4 MultiOre Spike Freq.</DisplayName>
+                </OptionNumeric>
+                <OptionNumeric name='thm4MultiOreSpikeSize' default='1'  min='0' max='5' displayState=':= if(?enableThaumcraft4, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupThaumcraft4'>
+                    <Description> Size multiplier for Thaumcraft 4 MultiOre Spike distributions </Description>
+                    <DisplayName>Thaumcraft 4 MultiOre Spike Size</DisplayName>
+                </OptionNumeric>
+            </ConfigSection>
+            <!-- MultiOre Spike Configuration UI Complete -->
+
+        </ConfigSection>
+        <!-- Setup Screen Complete -->
+
+        <IfCondition condition=':= ?enableThaumcraft4'>
+
+
+
+
+            <!-- Overworld Setup Beginning -->
+
+            <IfCondition condition=':= ?COGActive'>
+
+                <!-- Starting Original "Overworld" Block Removal -->
+
+                <IfCondition condition=':= ?blockExists("minecraft:stone")'>
+                    <Substitute name='thm4OverworldBlockSubstitute0' block='minecraft:stone'>
+                        <Description>
+                            Replace vanilla-generated ore clusters.
+                        </Description>
+                        <Comment>
+                            The global option  deferredPopulationRange
+                            must be large  enough to catch all ore
+                            clusters (>=  32).
+                        </Comment>
+                        <!-- Next, we want to add lines to clean out the ores we're going to add using this distribution, if we want this to be the sole source. -->
+                        <IfCondition condition=':= ?blockExists("Thaumcraft:blockCustomOre:1")'> <Replaces block='Thaumcraft:blockCustomOre:1' weight='1.0' /> </IfCondition>
+                        <IfCondition condition=':= ?blockExists("Thaumcraft:blockCustomOre:2")'> <Replaces block='Thaumcraft:blockCustomOre:2' weight='1.0' /> </IfCondition>
+                        <IfCondition condition=':= ?blockExists("Thaumcraft:blockCustomOre:3")'> <Replaces block='Thaumcraft:blockCustomOre:3' weight='1.0' /> </IfCondition>
+                        <IfCondition condition=':= ?blockExists("Thaumcraft:blockCustomOre:4")'> <Replaces block='Thaumcraft:blockCustomOre:4' weight='1.0' /> </IfCondition>
+                        <IfCondition condition=':= ?blockExists("Thaumcraft:blockCustomOre:5")'> <Replaces block='Thaumcraft:blockCustomOre:5' weight='1.0' /> </IfCondition>
+                        <IfCondition condition=':= ?blockExists("Thaumcraft:blockCustomOre:6")'> <Replaces block='Thaumcraft:blockCustomOre:6' weight='1.0' /> </IfCondition>
+                        <!-- At this point, you want to add the following for all vanilla ores.  You can replace (or append) them with another mod's ores if you so choose,
+                             but make sure you enter the block name twice, once in the existence check, and once in the Replaces section. -->
+                        <IfCondition condition=':= ?blockExists("minecraft:coal_ore")'> <Replaces block='minecraft:coal_ore' weight='1.0' /> </IfCondition>
+                        <IfCondition condition=':= ?blockExists("minecraft:iron_ore")'> <Replaces block='minecraft:iron_ore' weight='1.0' /> </IfCondition>
+                        <IfCondition condition=':= ?blockExists("minecraft:gold_ore")'> <Replaces block='minecraft:gold_ore' weight='1.0' /> </IfCondition>
+                        <IfCondition condition=':= ?blockExists("minecraft:redstone_ore")'> <Replaces block='minecraft:redstone_ore' weight='1.0' /> </IfCondition>
+                        <IfCondition condition=':= ?blockExists("minecraft:diamond_ore")'> <Replaces block='minecraft:diamond_ore' weight='1.0' /> </IfCondition>
+                        <IfCondition condition=':= ?blockExists("minecraft:lapis_ore")'> <Replaces block='minecraft:lapis_ore' weight='1.0' /> </IfCondition>
+                        <IfCondition condition=':= ?blockExists("minecraft:emerald_ore")'> <Replaces block='minecraft:emerald_ore' weight='1.0' /> </IfCondition>
+                        <!-- Note the "?blockExists" IfCondition; this is for those mods whose ores can be completely removed by configuration file; this option allows
+                             COG to ignore missing blocks, rather than crashing when the blocks can't be found in the game. It's not needed for vanilla ores, but
+                             it never hurts to retain consistency. 
+                             
+                             The next step begins on line 121. -->
+                    </Substitute>
+                </IfCondition>
+
+                <!-- Original "Overworld" Block Removal Complete -->
+
+                <!-- Adding blocks -->
+
+                <!-- Begin MultiOre Spike Generation -->
+
+                <!-- Starting VerticalVeins Preset for MultiOre Spike. -->
+                <ConfigSection>
+                    <IfCondition condition=':= thm4MultiOreSpikeDist = "VerticalVeins"'>
+                        <!-- We now get to the main distribution.  Little needs to change here, except that you need to add a "seed" value at the end of the next line. 
+                             Next step at line 152 -->
+                        <Veins name='thm4MultiOreSpikeVeins'  inherits='PresetVerticalVeins' drawWireframe='true' wireframeColor='0x60A80002' drawBoundBox='false' boundBoxColor='0x60A80002' seed='0x1AE2'>
+                            <Description>
+                                Single vertical veins that occur  with
+                                no motherlodes.
+                            </Description>
+                            <IfCondition condition=':= ?blockExists("Thaumcraft:blockCustomOre:1")'> <OreBlock block='Thaumcraft:blockCustomOre:1' weight='0.166666666667' /> </IfCondition>
+                            <IfCondition condition=':= ?blockExists("Thaumcraft:blockCustomOre:2")'> <OreBlock block='Thaumcraft:blockCustomOre:2' weight='0.166666666667' /> </IfCondition>
+                            <IfCondition condition=':= ?blockExists("Thaumcraft:blockCustomOre:3")'> <OreBlock block='Thaumcraft:blockCustomOre:3' weight='0.166666666667' /> </IfCondition>
+                            <IfCondition condition=':= ?blockExists("Thaumcraft:blockCustomOre:4")'> <OreBlock block='Thaumcraft:blockCustomOre:4' weight='0.166666666667' /> </IfCondition>
+                            <IfCondition condition=':= ?blockExists("Thaumcraft:blockCustomOre:5")'> <OreBlock block='Thaumcraft:blockCustomOre:5' weight='0.166666666667' /> </IfCondition>
+                            <IfCondition condition=':= ?blockExists("Thaumcraft:blockCustomOre:6")'> <OreBlock block='Thaumcraft:blockCustomOre:6' weight='0.166666666667' /> </IfCondition>
+                            <ReplacesOre block='stone' weight='1.0' />
+                            <IfCondition condition=':= ?blockExists("sand")'> <ReplacesOre block='sand' weight='1.0' /> </IfCondition>
+                            <IfCondition condition=':= ?blockExists("gravel")'> <ReplacesOre block='gravel' weight='1.0' /> </IfCondition>
+                            <IfCondition condition=':= ?blockExists("dirt")'> <ReplacesOre block='dirt' weight='1.0' /> </IfCondition>
+                            <IfCondition condition=':= ?blockExists("minecraft:grass")'> <Replaces block='minecraft:grass' weight='1.0' /> </IfCondition>
+                            <IfCondition condition=':= ?blockExists("minecraft:sandstone")'> <Replaces block='minecraft:sandstone' weight='1.0' /> </IfCondition>
+                            <IfCondition condition=':= ?blockExists("minecraft:water")'> <Replaces block='minecraft:water' weight='1.0' /> </IfCondition>
+                            <IfCondition condition=':= ?blockExists("minecraft:air")'> <Replaces block='minecraft:air' weight='1.0' /> </IfCondition>
+                            <IfCondition condition=':= ?blockExists("minecraft:lava")'> <Replaces block='minecraft:lava' weight='1.0' /> </IfCondition>
+                            <Biome name='.*'  />
+                            <Setting name='MotherlodeFrequency' avg=':= 2.406 * _default_ * thm4MultiOreSpikeFreq ' range=':= 2.406 * _default_ * thm4MultiOreSpikeFreq ' type='normal' scaleTo='base' />
+                            <Setting name='MotherlodeSize' avg=':= 0 * _default_ * thm4MultiOreSpikeSize ' range=':= 0 * _default_ * thm4MultiOreSpikeSize ' type='normal' />
+                            <Setting name='MotherlodeHeight' avg=':= 8 ' range=':= 8 ' type='normal' scaleTo='base' />
+                            <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+                            <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+                            <Setting name='BranchInclination' avg=':= -_default_ ' range=':= -_default_ ' type='normal' />
+                            <Setting name='BranchLength' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+                            <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+                            <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+                            <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+                            <Setting name='SegmentLength' avg=':= _default_ * thm4MultiOreSpikeSize ' range=':= _default_ * thm4MultiOreSpikeSize ' type='normal' />
+                            <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+                            <Setting name='SegmentRadius' avg=':= 5 * _default_ * thm4MultiOreSpikeSize ' range=':= 5 * _default_ * thm4MultiOreSpikeSize ' type='normal' />
+                            <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+                            <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+                        </Veins>
+                        <!-- At this point, we now want a second, smaller (non-child) distribution, that mirrors the placement and travel of the first distribution, while replacing only 
+                             infused stone with ore.  In essence, this forms a vein inside a vein.  Make sure it has a *different name*, and inherits the first name, rather than the
+                             default preset!  And don't forget to end it with an identical seed!-->
+                        <Veins name='thm4MultiOreSpikeVeinOres'  inherits='thm4MultiOreSpikeVeins' drawWireframe='true' wireframeColor='0x60A80002' drawBoundBox='false' boundBoxColor='0x60A80002' seed='0x1AE2'>
+                            <!-- ONLY add the changed lines, NOTHING ELSE.  For the radius, you need it significantly smaller than the first distribution if you want it completely
+                                 engulfed, and sometimes, ore will still peek out.-->
+                            <Setting name='SegmentRadius' avg=':= 1 * _default_ * thm4MultiOreSpikeSize ' range=':= 1 * _default_ * thm4MultiOreSpikeSize ' type='normal' />
+                            <!-- Next, we want to use Minecraft ores for this example, not infused stone.  The total weight of all the blocks should total "1".  Release the hounds! -->
+                           <IfCondition condition=':= ?blockExists("minecraft:coal_ore")'> <OreBlock block='minecraft:coal_ore' weight='0.3' /> </IfCondition>
+                           <IfCondition condition=':= ?blockExists("minecraft:iron_ore")'> <OreBlock block='minecraft:iron_ore' weight='0.2' /> </IfCondition>
+                           <IfCondition condition=':= ?blockExists("minecraft:gold_ore")'> <OreBlock block='minecraft:gold_ore' weight='0.1' /> </IfCondition>
+                           <IfCondition condition=':= ?blockExists("minecraft:redstone_ore")'> <OreBlock block='minecraft:redstone_ore' weight='0.2' /> </IfCondition>
+                           <IfCondition condition=':= ?blockExists("minecraft:diamond_ore")'> <OreBlock block='minecraft:diamond_ore' weight='0.075' /> </IfCondition>
+                           <IfCondition condition=':= ?blockExists("minecraft:lapis_ore")'> <OreBlock block='minecraft:lapis_ore' weight='0.1' /> </IfCondition>
+                           <IfCondition condition=':= ?blockExists("minecraft:emerald_ore")'> <OreBlock block='minecraft:emerald_ore' weight='0.025' /> </IfCondition>
+                           <!-- Now that the ores are in place, we want to alter what they replace. First, we want to change the existing replacents to weight -1, meaning that
+                                stone, sand, gravel, dirt, water, air, and lava won't be replaced by ore at all. -->
+                           <ReplacesOre block='stone' weight='-1' />
+                           <IfCondition condition=':= ?blockExists("sand")'> <ReplacesOre block='sand' weight='-1' /> </IfCondition>
+                           <IfCondition condition=':= ?blockExists("gravel")'> <ReplacesOre block='gravel' weight='-1' /> </IfCondition>
+                           <IfCondition condition=':= ?blockExists("dirt")'> <ReplacesOre block='dirt' weight='-1' /> </IfCondition>
+                           <IfCondition condition=':= ?blockExists("minecraft:grass")'> <Replaces block='minecraft:grass' weight='-1' /> </IfCondition>
+                           <IfCondition condition=':= ?blockExists("minecraft:sandstone")'> <Replaces block='minecraft:sandstone' weight='-1' /> </IfCondition>
+                           <IfCondition condition=':= ?blockExists("minecraft:water")'> <Replaces block='minecraft:water' weight='-1' /> </IfCondition>
+                           <IfCondition condition=':= ?blockExists("minecraft:air")'> <Replaces block='minecraft:air' weight='-1' /> </IfCondition>
+                           <IfCondition condition=':= ?blockExists("minecraft:lava")'> <Replaces block='minecraft:lava' weight='-1' /> </IfCondition>
+                           <!-- Next, we add the infused stone to be replaced in place of the stone.  -->
+                           <IfCondition condition=':= ?blockExists("Thaumcraft:blockCustomOre:1")'> <Replaces block='Thaumcraft:blockCustomOre:1' weight='0.166666666667' /> </IfCondition>
+                           <IfCondition condition=':= ?blockExists("Thaumcraft:blockCustomOre:2")'> <Replaces block='Thaumcraft:blockCustomOre:2' weight='0.166666666667' /> </IfCondition>
+                           <IfCondition condition=':= ?blockExists("Thaumcraft:blockCustomOre:3")'> <Replaces block='Thaumcraft:blockCustomOre:3' weight='0.166666666667' /> </IfCondition>
+                           <IfCondition condition=':= ?blockExists("Thaumcraft:blockCustomOre:4")'> <Replaces block='Thaumcraft:blockCustomOre:4' weight='0.166666666667' /> </IfCondition>
+                           <IfCondition condition=':= ?blockExists("Thaumcraft:blockCustomOre:5")'> <Replaces block='Thaumcraft:blockCustomOre:5' weight='0.166666666667' /> </IfCondition>
+                           <IfCondition condition=':= ?blockExists("Thaumcraft:blockCustomOre:6")'> <Replaces block='Thaumcraft:blockCustomOre:6' weight='0.166666666667' /> </IfCondition>
+                           <!-- That's it.  At this point, the infused ore spikes should now spawn in the world.  Make sure you save this configuration somewhere other than the
+                                folder where you store the generated configurations; it would probably suck if all your hard work gets overwritten with the freshly-generated
+                                code.
+                             
+                                This ends the tutorial. -->
+                        </Veins>
+                    </IfCondition>
+                </ConfigSection>
+                <!-- VerticalVeins Preset for MultiOre Spike is
+                     complete. -->
+
+                <!-- End MultiOre Spike Generation -->
+
+                <!-- Finished adding blocks -->
+
+            </IfCondition>
+            <!-- Overworld Setup Complete -->
+
+
+
+        </IfCondition>
+
+    </ConfigSection>
+    <!-- Configuration for Custom Ore Generation Complete! -->
+
+</IfModInstalled>
+<!-- The "Thaumcraft 4" mod is now configured. -->
+
+
+
+
+
+<!-- =================================================================
+     This file was made using the Sprocket Configuration Generator.
+     If you wish to make your own configurations for a mod not
+     currently supported by Custom Ore Generation, and you don't want
+     the hassle of writing XML, you can find the generator script at
+     its GitHub page: http://https://github.com/reteo/Sprocket
+     ================================================================= -->
