@@ -29,11 +29,13 @@ Custom Ore Generation comes with several built-in presets, and Sprocket adds som
 * **Statistical Variation**: This option consists of four values.
     * The *statistical average*.
     * The *statistical deviation*.
-    * Preference, consisting of _one of the following_:
+    * Preference, consisting of *one of the following*:
         * **normal** (prefers to stay closer to the average)
         * **inverse** (prefers to stay closer to the deviation)
         * **uniform** (no preference, completely random)
     * *Scaling option* (see COG's documentation for more details), usually defaults to "base".
+    
+**NOTE**:  in the case of Statistical Variation options, you can refer to the preset's default values by using the `_default_` value.  Make sure this is the word "default" with an underline before and after it.  If you want the negative version of the default value, you can use the negative operator before the value (`-_default_`)
     
 ## Example Options
 
