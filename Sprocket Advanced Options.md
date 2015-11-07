@@ -15,19 +15,19 @@
     
 ## Example Options
 
-Example List
+### Example List
 
 ```
 Blocks: minecraft:stone, minecraft:dirt, minecraft:sand
 ```
 
-Example Boolean
+### Example Boolean
 
 ```
 Active: yes
 ```
 
-Example Statistical Variation
+### Example Statistical Variation
 
 ```
 Vein Motherlode Height: 16, 8, normal, base
