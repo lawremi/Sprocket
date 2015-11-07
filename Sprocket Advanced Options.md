@@ -1,4 +1,26 @@
-# Sprocket INI Options
+# Sprocket Advanced INI Options
+
+## Distribution Presets
+
+Before we get into the options, it seems like a good idea to cover the different distribution options available in Sprocket Advanced.
+
+Custom Ore Generation comes with several built-in presets, and Sprocket adds some more complex presets to the table.
+
+### Custom Ore Generation Presets
+
+* **Substitution**: The simplest of the distribution options.  The substitution distribution simply replaces all of one type of block with a block of a second type.  Constraints can be added to limit the changes to specific Y layers in the ground.
+* **Vanilla**: Actually, the name of this distribution is "StandardGen", but Sprocket uses "Vanilla" to clarify the function of this distribution.  In essence, this distribution works like the vanilla oregen, sprinkling small veins of ore throughout the Y layers its assigned.
+* **Cloud**: The cloud distribution is a large sphere of ore.  This sphere is, by default sparse, meaning that all the blocks in the cloud are spread apart, making the process of mining the whole cloud time-consuming.  The shape of the cloud is configurable, as its vertical and horizontal sizes can be independently changed, and the whole distribution can be tilted.  The cloud distribution also generates hint veins around it (see below).
+* **Motherlode and Veins**:  Note, unlike the previous options, this is not a preset; this is a class of preset.  The vein distribution is easily the most complex distribution of the group.  The first part of the vein distribution is the *motherlode*, a sphere of ore that functions as the center of the distribution.  The second part is the *vein*, a string of ore which leaves the motherlode, and goes outward in random directions, smoothly twisting and turning on its path, and sometimes splitting into multiple branches.  Key terms to know in the vein distribution are *branches*, which is essentially the entire length of the vein from the point at which it spawned (whether it's at a motherlode, or at a point where another branch split), and *segments*, which are the different curved sections of the vein.
+    * **Layered Veins**:  This preset is the basic motherlode-and-veins ore distribution.
+    * **Vertical Veins**: This preset is nothing but a branch of ore starting at one location, and travelling downwards by default.  The branch does still split on its way down, however.
+    * **Small Deposits**: This preset is nothing but a motherlode.  By default, it can be quite small... about the size of a vanilla vein.
+    * **Huge Veins**:  This distribution consists of both motherlode and vein distributions, like the layered veins.  However, the motherlode is enormous by comparison, and the veins are thin, but extremely long.  This is meant to be a strategic option; players have to search for the ore, and once they encounter the vein, they have to follow it back to the motherlode, at which point, they will have ore for a long time to come.
+    * **Sparse Veins**:  This preset is nothing but a branch of ore.  The branch is extremely wide, and extremely long.  However, the vein is a sparse one.  Following a sparse vein is tricky, since the player has to keep looking to find the next ore block, rather than just mining as blocks become visible.
+    * **Pipe Veins**:  This preset is a two-vein distribution with no motherlode.  The outer vein is a sparse vein, while the smaller inner vein is solid.  This is used to mix valuable ore with a hazard of some kind, such as lava or monster eggs.
+    * **Hint Veins**:  This preset is usually not used on its own, instead functioning as a way to alert a player that a strategic deposit is close by.  It sprinkles the area with one-block veins of ore.  It only replaces dirt and sandstone, not stone, so the hint veins will be found close to the surface.
+    * **Compound Veins**:  This preset is identical to the layered veins distribution, except that it is a distribution containing a distribution, similar to the pipe vein distribution.
+    * **Geode**: The geode distribution is identical to the small deposits distribution, except it contains a second distribution, which itself surrounds an air pocket.  In essence, This distribution arranges blocks to simulate actual geodes.
 
 ## Option Types
 
@@ -223,8 +245,6 @@ List of block IDs.  Block will only be placed if it is connected to the top surf
      
 # Substitution Distribution Options
 
-The substitution distribution is relatively simple; it replaces one block with another.
-
 ### Substitution Height Clamp Range (List)
 
 Two numbers, indicating the minimum and maximum Y level that the distribution will substitute blocks on.
@@ -232,8 +252,6 @@ Two numbers, indicating the minimum and maximum Y level that the distribution wi
      Default: MISSING
 
 ## Standard Distribution Options
-
-The standard distribution is also called the vanilla option, as it is designed to simulate the placement of ore as vanilla does; in clusters of ore throughout a specific range of levels.
 
 ### Standard Size (Statistical Variation)
 
@@ -266,8 +284,6 @@ Two numbers, indicating the minimum and maximum Y level that the distribution wi
      Default: MISSING
      
 ## Cloud Distribution Options
-
-Clouds are spherical distributions of ores.  The name is due to the fact that the distribution is often configured to be sparse (blocks are spread out, instead of solidly-packed).  By default, this distribution also is accompanied by "hint veins," which are single-block clusters spread about.
 
 ### Cloud Frequency (Statistical Variation)
 
@@ -336,8 +352,6 @@ Two numbers, indicating the minimum and maximum Y level that the distribution wi
      Default: MISSING
      
 ## Vein Distribution Options
-
-Vein distributions consist of two elements, a single spherical motherlode, and the branchlike veins that travel out of it and away.  For each segment in the branch's path, there is a chance of the branch splitting into more branches.
 
 ### Vein Motherlode Frequency (Statistical Variation)
 
@@ -461,3 +475,4 @@ The color, in web color code, of the wireframes for this distribution.  Sprocket
 The color, in web color code, of the bounding box for this distribution.  Sprocket Advanced can handle the hash mark (#), but the XML can't.
 
      Default: MISSING
+     
