@@ -35,7 +35,9 @@ Custom Ore Generation comes with several built-in presets, and Sprocket adds som
         * **uniform** (no preference, completely random)
     * *Scaling option* (see COG's documentation for more details), usually defaults to "base".
     
-**NOTE**:  in the case of Statistical Variation options, you can refer to the preset's default values by using the `_default_` value.  Make sure this is the word "default" with an underline before and after it.  If you want the negative version of the default value, you can use the negative operator before the value (`-_default_`)
+**NOTE**:  in the case of Statistical Variation options, you can refer to the preset's default values by using the `_default_` value.  Make sure this is the word "default" with an underline before and after it.
+
+If you want the negative version of the default value, you can use the negative operator before the value (`-_default_`).  The negative version can be useful in some cases, such as reversing the direction of a vertical vein (`Vein Branch Inclination: -_default_, -_default_, normal, base`), making it go from the bottom up, instead of the top down.
     
 ## Example Options
 
