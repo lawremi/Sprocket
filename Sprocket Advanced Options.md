@@ -56,9 +56,16 @@ This is a generic height range, used by all unconfigured distribution options.
 
 ### Density (Statistical Variation)
 
-This is a generic density range, used by all unconfigured distribution options.
+Density multiplier; 0 means no blocks, 1 means a solid shape, anything inbetween means that the ores will be spread out.
 
      Default: _default_, _default_, normal, base
+
+### Height Clamp Range (List)
+
+Two numbers, indicating the minimum and maximum Y level that the distribution will place blocks on.  Used by all unconfigured distribution options.
+
+     Default: MISSING
+
 
 ### Parent Range Limit (Statistical Variation)
 
@@ -196,124 +203,241 @@ List of block IDs.  Block will only be placed if it is connected to the top surf
      
 # Substitution Distribution Options
 
-### Height Clamp Range (List)
-     Default: MISSING
+The substitution distribution is relatively simple; it replaces one block with another.
 
 ### Substitution Height Clamp Range (List)
+
+Two numbers, indicating the minimum and maximum Y level that the distribution will substitute blocks on.
+
      Default: MISSING
 
 ## Standard Distribution Options
 
+The standard distribution is also called the vanilla option, as it is designed to simulate the placement of ore as vanilla does; in clusters of ore throughout a specific range of levels.
+
 ### Standard Size (Statistical Variation)
+
+The vein size.
+
      Default: MISSING
 
 ### Standard Frequency (Statistical Variation)
+
+The number of veins per chunk.
+
      Default: MISSING
 
 ### Standard Height (Statistical Variation)
+
+The range of Y levels the ore spawns at.
+
      Default: MISSING
 
 ### Standard Parent Range Limit (Statistical Variation)
+
+The range from the parent distribution that children distributions spawn.
+
      Default: MISSING
 
 ### Standard Height Clamp Range (List)
+
+Two numbers, indicating the minimum and maximum Y level that the distribution will substitute blocks on.
+
      Default: MISSING
      
 ## Cloud Distribution Options
 
+Clouds are spherical distributions of ores.  The name is due to the fact that the distribution is often configured to be sparse (blocks are spread out, instead of solidly-packed).  By default, this distribution also is accompanied by "hint veins," which are single-block clusters spread about.
+
 ### Cloud Frequency (Statistical Variation)
+
+The number of clouds per chunk.
+
      Default: MISSING
 
 ### Cloud Parent Range Limit (Statistical Variation)
+
+The range from the parent distribution that children distributions spawn.
+
      Default: MISSING
 
 ### Cloud Radius (Statistical Variation)
+
+The horizontal range from the center of the cloud to its edge.
+
      Default: MISSING
 
 ### Cloud Thickness (Statistical Variation)
+
+The vertical range from the center of the cloud to its edge.
+
      Default: MISSING
 
 ### Cloud Noise (Statistical Variation)
+
+How random the blocks spawn in the cloud.  If the value is 0, and the cloud is sparse, then the blocks spawn at regular intervals.
+
      Default: _default_, _default_, normal, base
 
 ### Cloud Height (Statistical Variation)
+
+The range of Y levels the clouds spawn at.
+
      Default: MISSING
 
 ### Cloud Inclination (Statistical Variation)
+
+The vertical angle of the cloud (allows for "slanting" clouds).
+
      Default: _default_, _default_, normal, base
 
 ### Cloud Density (Statistical Variation)
+
+Density multiplier; 0 means no blocks, 1 means a solid sphere, anything inbetween means that the ores will be spread out.
+
      Default: MISSING
 
 ### Cloud Noise Cutoff (Statistical Variation)
+
+TBD
+
      Default: _default_, _default_, normal, base
 
 ### Cloud Radius Multiplier (Statistical Variation)
+
+TBD
+
      Default: _default_, _default_, normal, base
 
 ### Cloud Height Clamp Range (List)
+
+Two numbers, indicating the minimum and maximum Y level that the distribution will substitute blocks on.
+
      Default: MISSING
      
 ## Vein Distribution Options
 
+Vein distributions consist of two elements, a single spherical motherlode, and the branchlike veins that travel out of it and away.  For each segment in the branch's path, there is a chance of the branch splitting into more branches.
+
 ### Vein Motherlode Frequency (Statistical Variation)
+
+The number of motherlodes per chunk.
+
      Default: MISSING
 
 ### Vein Motherlode Range Limit (Statistical Variation)
+
+The range from the parent motherlode that children distributions spawn.
+
      Default: MISSING
 
 ### Vein Motherlode Size (Statistical Variation)
+
+The size of the motherlode's diameter.
+
      Default: MISSING
 
 ### Vein Motherlode Height (Statistical Variation)
+
+The range of Y levels the motherlode spawns at.
+
      Default: MISSING
 
 ### Vein Branch Frequency (Statistical Variation)
+
+The number of branches per motherlode.
+
      Default: _default_, _default_, normal, base
 
 ### Vein Branch Inclination (Statistical Variation)
+
+Adjusts the vertical angle of branches as they leave the motherlode.
+
      Default: _default_, _default_, normal, base
 
 ### Vein Branch Length (Statistical Variation)
+
+The total length of the branch (and all segments within it) from the motherlode to its farthest tip.
+
      Default: _default_, _default_, normal, base
 
 ### Vein Branch Height Limit (Statistical Variation)
+
+The maximum Y levels the branches can wander away from the motherlode.
+
      Default: _default_, _default_, normal, base
 
 ### Vein Segment Fork Frequency (Statistical Variation)
+
+How likely a given segment will split into two branches.
+
      Default: _default_, _default_, normal, base
 
 ### Vein Segment Fork Length Multiplier (Statistical Variation)
+
+Multiplier to each fork to reduce the total branch length.  Values must be from 0-1.
+
      Default: _default_, _default_, normal, base
 
 ### Vein Segment Length (Statistical Variation)
+
+The length of each segment of the branch.
+
      Default: _default_, _default_, normal, base
 
 ### Vein Segment Angle (Statistical Variation)
+
+The angle from which a segment diverges from the branch.
+
      Default: _default_, _default_, normal, base
 
 ### Vein Segment Radius (Statistical Variation)
+
+The width of the segments at their thickest point.  In essence, the width of the branch.
+
      Default: _default_, _default_, normal, base
 
 ### Vein Ore Density (Statistical Variation)
+
+Density multiplier; 0 means no blocks, 1 means a solid sphere and solid veins, anything inbetween means that the ores will be spread out.
+
      Default: MISSING
 
 ### Vein Ore Radius Multiplier (Statistical Variation)
+
+TBD
+
      Default: _default_, _default_, normal, base
 
 ### Vein Height Clamp Range (List)
+
+Two numbers, indicating the minimum and maximum Y level that the distribution will substitute blocks on.
+
      Default: MISSING
 
 ## Debugging Options
 
 ### Wireframe (Boolean)
+
+When in debugging mode, do you want to see wireframes?
+
      Default: yes
 
 ### Bounding Box (Boolean)
+
+When in debugging mode, do you want to see bounding boxes?
+
      Default: no
 
 ### Wireframe Color (Value)
+
+The color, in web color code, of the wireframes for this distribution.  Sprocket Advanced can handle the hash mark (#), but the XML can't.
+
      Default: MISSING
 
 ### Bounding Box Color (Value)
+
+
+The color, in web color code, of the bounding box for this distribution.  Sprocket Advanced can handle the hash mark (#), but the XML can't.
+
      Default: MISSING
