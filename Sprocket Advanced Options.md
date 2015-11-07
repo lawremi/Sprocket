@@ -18,6 +18,16 @@ The `[Mod]` section provides key information for the mod, including its name, XM
 * The mod's "detect" name is used in the XML to check and see if a mod is installed.  Otherwise, if you are to remove a mod without removing its Custom Ore Generation configuration, the Custom Ore Generation mod will crash upon starting the game.  Example: `Detect: harvestcraft`
 * The description is where you can add custom information into the XML file.  This is a perfect place to add a basic description of the mod, your name and email address (as the configuration designer), and any other information you wish to include.
 
+So, an example using the above three examples would be:
+
+```
+[Mod]
+Name: Pams HarvestCraft
+Prefix: hvst
+Detect: harvestcraft
+Description: A mod centered around the farming and collection of crops, and the extensive arrays of edible recipes you can make from them.  Oregen is for salt. Configuration by Reteo.
+```
+
 ### Defaults Section
 
 Some options are shared among all block definition sections.  In this case, there is no reason that the shared options need to be repeated over and over.  That's where the `[DEFAULTS]` section comes in.  It doesn't need to be included, but if you want to set an option that everything will use (such as enabling wireframes, or choosing distribution presets), you simply add those options to this section, and they won't need to be added to other sections.
