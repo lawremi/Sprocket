@@ -2,17 +2,17 @@
 
 ## Option Types:
 
-* *List*: A comma-separated list of items.  Can also use regular expressions.
-* *Value*: a single value only
-* *Boolean*: A simple "yes" or "no" will suffice.
-* *Statistical Variation*: This option consists of four values.
-    * The statistical average.
-    * The statistical deviation, also called the range.
-    * Preference, consisting of _one_of_the_following_:
-        * "normal" (prefers to stay closer to the average)
-        * "inverse" (prefers to stay closer to the deviation)
-        * "uniform" (no preference, completely random)
-    * Scaling option (see COG's documentation for more details), usually defaults to "base".
+* **List**: A comma-separated list of items.  Can also use regular expressions.
+* **Value**: a single value only
+* **Boolean**: A simple "yes" or "no" will suffice.
+* **Statistical Variation**: This option consists of four values.
+    * The *statistical average*.
+    * The *statistical deviation*.
+    * Preference, consisting of _one of the following_:
+        * **normal** (prefers to stay closer to the average)
+        * **inverse** (prefers to stay closer to the deviation)
+        * **uniform** (no preference, completely random)
+    * *Scaling option* (see COG's documentation for more details), usually defaults to "base".
 
 ## Distribution Meta Options
 
