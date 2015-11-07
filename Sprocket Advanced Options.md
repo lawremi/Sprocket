@@ -8,7 +8,7 @@
 * *Statistical Variation*: This option consists of four values.
     * The statistical average.
     * The statistical deviation, also called the range.
-    * Preference, consisting of:
+    * Preference, consisting of _one_of_the_following_:
         * "normal" (prefers to stay closer to the average)
         * "inverse" (prefers to stay closer to the deviation)
         * "uniform" (no preference, completely random)
