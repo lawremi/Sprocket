@@ -1,5 +1,63 @@
 # Sprocket Advanced INI Options
 
+## INI Format
+
+The INI file will have at least 3 parts, the mod definition section, the defaults section, and at least one block definition section.  The file is formatted as follows:
+
+```
+[Section]
+Option Name: Option 1, Option 2, Option 3, ... Final Option
+```
+
+### Mod Definition
+
+The `[Mod]` section provides key information for the mod, including its name, XML prefix, Mod ID, and A description of the mod or the configuration.
+
+* The mod name is just that; this is what a player will see in the "Custom Ore Generation" setup screen, both before the ore name, and the mod tab.  Do not use special characters, other than spaces.  Example: `Name: Pams Harvestcraft`
+* The mod's prefix is used in the XML.  This ensures that all variables are different to prevent conflicts.  For example, Copper exists in a large number of mods, so any configuration of copper in one mod would conflict with the copper in another mod, unless the configuration variables include something specific to that mod.  The full name (minus spaces) could be used, but shortened versions of the mod name tend to be easier to read in what might already be a long name.  Example: `Prefix: hvst`
+* The mod's "detect" name is used in the XML to check and see if a mod is installed.  Otherwise, if you are to remove a mod without removing its Custom Ore Generation configuration, the Custom Ore Generation mod will crash upon starting the game.  Example: `Detect: harvestcraft`
+* The description is where you can add custom information into the XML file.  This is a perfect place to add a basic description of the mod, your name and email address (as the configuration designer), and any other information you wish to include.
+
+### Defaults Section
+
+Some options are shared among all block definition sections.  In this case, there is no reason that the shared options need to be repeated over and over.  That's where the `[DEFAULTS]` section comes in.  It doesn't need to be included, but if you want to set an option that everything will use (such as enabling wireframes, or choosing distribution presets), you simply add those options to this section, and they won't need to be added to other sections.
+
+Keep in mind that this sets defaults.  These defaults can easily be overridden by simply adding an altered form of the option to a specific block section (for example, setting layered veins as a default distribution preset, but configuring a specific ore to use sparse or pipe veins instead).
+
+Example:
+
+```
+[DEFAULT]
+Wireframe: yes
+Bounding Box: no
+Distribution presets: Sparse Veins, Cloud, Vanilla
+```
+
+### Block Definitions Sections
+
+The block definition sections always start with the distribution's name; for example: `[Salt]`.  This will be shown in the list of blocks in the Custom Ore Generation Setup screen during game setup (in the example's case, as "Pams Harvestcraft Salt").
+
+Following the name are a list of distribution options.  The options will be explained in more detail in the following sections.
+
+For now, however, here's an example of a block definition section, using the Pam's HarvestCraft example we've already used so far:
+
+```
+[Salt]
+Wireframe Color: 90927C
+Bounding Box Color: 90927C
+Blocks: harvestcraft:salt
+Height: 67, 61, uniform, base
+Standard Size: 2.500, 2.500, normal, base
+Standard Frequency: 15.000, 15.000, normal, base
+Vein Motherlode Frequency: 3.751 * _default_, 3.751 * _default_, normal, base
+Vein Motherlode Size: 0 * _default_, 0 * _default_, normal, base
+Vein Branch Length: 1.937 * _default_, 1.937 * _default_, normal, base
+Vein Segment Radius: 1.392 * _default_, 1.392 * _default_, normal, base
+Cloud Frequency: 1.341 * _default_, 1.341 * _default_, normal, base
+Cloud Radius: 1.158 * _default_, 1.158 * _default_, normal, base
+Cloud Thickness: 1.158 * _default_, 1.158 * _default_, normal, base
+```
+
 ## Distribution Presets
 
 Before we get into the options, it seems like a good idea to cover the different distribution options available in Sprocket Advanced.
