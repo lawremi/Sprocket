@@ -1,9 +1,8 @@
 # Sprocket INI Options
 
-## Option Types:
+## Option Types
 
 * **List**: A comma-separated list of items.  Can also use regular expressions.
-* **Value**: a single value only
 * **Boolean**: A simple "yes" or "no" will suffice.
 * **Statistical Variation**: This option consists of four values.
     * The *statistical average*.
@@ -13,6 +12,27 @@
         * **inverse** (prefers to stay closer to the deviation)
         * **uniform** (no preference, completely random)
     * *Scaling option* (see COG's documentation for more details), usually defaults to "base".
+    
+## Example Options
+
+Example List
+
+```
+Blocks: minecraft:stone, minecraft:dirt, minecraft:sand
+```
+
+Example Boolean
+
+```
+Active: yes
+```
+
+Example Statistical Variation
+
+```
+Vein Motherlode Height: 16, 8, normal, base
+```
+    
 
 ## Distribution Meta Options
 
