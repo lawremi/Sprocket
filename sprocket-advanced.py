@@ -646,16 +646,9 @@ def cogFormatBoxComment(cogComment):
 def blockCommand(command, currentBlock, currentWeight):
     if checkCurrentOption(currentBlock):
         if checkCurrentOption(currentWeight):
-            # Don't do a block check for replacement commands.
-            if command=="Replaces" or command=="ReplacesOre":
-                return "<"+command+" block='"+currentBlock+"' weight='"+currentWeight+"' />"
-            else:
-                return "<IfCondition condition=':= ?blockExists(\""+currentBlock+"\")'> <"+command+" block='"+currentBlock+"' weight='"+currentWeight+"' /> </IfCondition>"
-        else: # Don't do a block check for replacement commands.
-            if command=="Replaces" or command=="ReplacesOre":
-                return "<"+command+" block='"+currentBlock+"' />"
-            else:
-                return "<IfCondition condition=':= ?blockExists(\""+currentBlock+"\")'> <"+command+" block='"+currentBlock+"' /> </IfCondition>"
+            return "<"+command+" block='"+currentBlock+"' weight='"+currentWeight+"' />"
+        else: 
+            return "<"+command+" block='"+currentBlock+"' />"
     else:
         return ""
     
@@ -794,8 +787,10 @@ def presetInherit(preset):
         return "inherits='PresetSparseVeins'"
     if preset.lower()=="pipeveins":
         return "inherits='PresetPipeVeins'"
-    if preset.lower()=="cloud" or preset.lower()=="strategiccloud":
+    if preset.lower()=="cloud" or preset.lower()=="strategicclouds":
         return "inherits='PresetStrategicCloud'"
+    if preset.lower()=="strata" or preset.lower()=="stratumclouds":
+        return "inherits='PresetStratum'"
     # Presets added by Sprocket.
     if preset.lower()=="geode":
         return "inherits='PresetSmallDeposits'"
@@ -825,8 +820,10 @@ def presetName(preset):
         return "Sparse Veins"
     if preset.lower()=="pipeveins":
         return "Pipe Veins"
-    if preset.lower()=="cloud" or preset.lower()=="strategiccloud":
-        return "Strategic Cloud"
+    if preset.lower()=="cloud" or preset.lower()=="strategicclouds":
+        return "Strategic Clouds"
+    if preset.lower()=="strata" or preset.lower()=="stratumclouds":
+        return "Strata"
     # Presets added by Sprocket.
     if preset.lower()=="geode":
         return "Geode"
@@ -856,8 +853,10 @@ def presetDescription(preset):
         return "Large veins filled very lightly with ore.  Because they contain less ore per volume, these veins are relatively wide and long.  Mining the ore from them is time consuming compared to solid ore veins.  They are also more difficult to follow, since it is harder to get an idea of their direction while mining."
     if preset.lower()=="pipeveins":
         return "Short sparsely filled veins sloping up from near the bottom of the map."
-    if preset.lower()=="cloud" or preset.lower()=="strategiccloud":
+    if preset.lower()=="cloud" or preset.lower()=="strategicclouds":
         return "Large irregular clouds filled lightly with ore.  These are huge, spanning several adjacent chunks, and consequently rather rare.  They contain a sizeable amount of ore, but it takes some time and effort to mine due to low density. The intent for strategic clouds is that the player will need to actively search for one and then set up a semi-permanent mining base and spend some time actually mining the ore."
+    if preset.lower()=="stratum" or preset.lower()=="stratumclouds":
+        return "Wide, thin, and flat disks of ore.  Primarily, this distribution is meant to provide realistic distribution of stone in a strata formation."
     # Presets added by Sprocket.
     if preset.lower()=="geode":
         return "Multi-layered deposit.  On the outside is a shell, usually made of some form of stone.  Within this shell is sprinkled ores.  Inside both is an air pocket from which the enterprising miner can look for the contained ores."
@@ -887,8 +886,10 @@ def presetLiteDescription(preset):
         return "Large veins filled very lightly with ore."
     if preset.lower()=="pipeveins":
         return "Short and sparsely filled compound veins containing one material inside another."
-    if preset.lower()=="cloud" or preset.lower()=="strategiccloud":
+    if preset.lower()=="cloud" or preset.lower()=="strategicclouds":
         return "Large irregular clouds filled lightly with ore."
+    if preset.lower()=="stratum" or preset.lower()=="stratumclouds":
+        return "Wide, thin, and flat disks of ore."
     # Presets added by Sprocket.
     if preset.lower()=="geode":
         return "Multi-layered deposit in a spherical shape."
@@ -1240,6 +1241,7 @@ class vanillaPreset(substitutePreset):
         cogIndent(-1)
         self._presetScript += cogFormatLine("</StandardGen>")
         
+        
 
 # The Cloud preset provides a large, strategic deposit.
         
@@ -1365,6 +1367,66 @@ class cloudPreset(substitutePreset):
             self._presetScript += cogFormatComment("\"Preferred\" configuration complete.")
             self._presetScript += "\n"
             
+# The stratum preset produces a wide, thin, and flat, disk of ore.
+class cloudStratumPreset (cloudPreset): 
+    def setPresetScript(self, blockIndex, preset):
+        self._presetScript += cogFormatLine("<Cloud name='"+blockSettingName[blockIndex]+"Cloud' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        cogIndent(1)
+        self._presetScript += cogFormatLine("<Description>")
+        cogIndent(1)
+        self._presetScript += cogWrappedLine(presetDescription(preset))
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Description>")
+        self.addMainBlocksList(blockIndex)
+        self.addRepBlocksList(blockIndex)
+        self.addBiomesList(blockIndex)
+        self.addBiomeTypesList(blockIndex)
+        self.addAvoidBiomesList(blockIndex)
+        self.addAvoidBiomeTypesList(blockIndex)
+        self.addRadiusSetting(blockIndex, "1")
+        self.addThicknessSetting(blockIndex, "1")
+        self.addFreqSetting(blockIndex, "1")
+        self.addHeightSetting(blockIndex, "1")
+        self.addParentRangeSetting(blockIndex, "1")
+        self.addNoiseSetting(blockIndex, "1")
+        self.addInclinationSetting(blockIndex, "1")
+        self.addDensitySetting(blockIndex, "1")
+        self.addVolumeNoiseCutoffSetting(blockIndex, "1")
+        self.addRadiusMultSetting(blockIndex, "1")
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Cloud>")
+        # Now to repeat the step for preferred biomes, essentially tripling the distributions in those biomes.
+        
+        if checkOption(biomePreferNames[blockIndex]) or checkOption(biomePreferTypes[blockIndex]):
+            self._presetScript += "\n"
+            self._presetScript += cogFormatComment("Beginning \"Preferred\" configuration.")
+            self._presetScript += cogFormatLine("<Cloud name='"+blockSettingName[blockIndex]+"PreferredCloud' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+            cogIndent(1)
+            self._presetScript += cogFormatLine("<Description>")
+            cogIndent(1)
+            self._presetScript += cogWrappedLine("Ore generation is doubled in preferred biomes.")
+            cogIndent(-1)
+            self._presetScript += cogFormatLine("</Description>")
+            self.addMainBlocksList(blockIndex)
+            self.addRepBlocksList(blockIndex)
+            self.addPreferredBiomesList(blockIndex)
+            self.addPreferredBiomeTypesList(blockIndex)
+            self.addAvoidBiomesList(blockIndex)
+            self.addAvoidBiomeTypesList(blockIndex)
+            self.addRadiusSetting(blockIndex, "1")
+            self.addThicknessSetting(blockIndex, "1")
+            self.addFreqSetting(blockIndex, "1")
+            self.addHeightSetting(blockIndex, "1")
+            self.addParentRangeSetting(blockIndex, "1")
+            self.addNoiseSetting(blockIndex, "1")
+            self.addInclinationSetting(blockIndex, "1")
+            self.addDensitySetting(blockIndex, "1")
+            self.addVolumeNoiseCutoffSetting(blockIndex, "1")
+            self.addRadiusMultSetting(blockIndex, "1")
+            cogIndent(-1)
+            self._presetScript += cogFormatLine("</Cloud>")
+            self._presetScript += cogFormatComment("\"Preferred\" configuration complete.")
+            self._presetScript += "\n"
     
 # The Vein preset provides a large motherlode with multiple branches.
         
@@ -1859,11 +1921,41 @@ def chosenBlockList(replacementBlock, dimName):
     cleanupFinalBlockList.sort()
             
     return cleanupFinalBlockList
-    
 
+### Make a list of "?blockExists()" conditions, separated by an OR statement ("|")
+def blockExistList(blockIndex):
+    blockChecklist = []
+    altChecklist = []
+    blockCheckString = "("
+
+    for blockSelect in range(0, len(mainBlocks[blockIndex])):
+        blockChecklist.append("?blockExists(\""+mainBlocks[blockIndex][blockSelect]+"\")")
+            
+    for blockCheckCount in range(0, len(blockChecklist)):
+        if blockCheckCount > 0:
+            blockCheckString += "  &amp; "
+        blockCheckString += blockChecklist[blockCheckCount]
+    
+    for blockSelect in range(0, len(altBlocks[blockIndex])):
+        if altBlocks[blockIndex][blockSelect] != "minecraft:stone":
+            altChecklist.append("?blockExists(\""+altBlocks[blockIndex][blockSelect]+"\")")
+          
+    if len(altBlocks[blockIndex]) > 0 and altBlocks[blockIndex][0] != "minecraft:stone":
+        blockCheckString += ") &amp; ("
+            
+    for blockCheckCount in range(0, len(altChecklist)):
+        if blockCheckCount > 0:
+            blockCheckString += "  &amp; "            
+        blockCheckString += altChecklist[blockCheckCount]
+        
+    blockCheckString += ")"
+    
+    return(blockCheckString)
+    
 def presetSelection(blockIndex, presetSelect):
     distOutput = ""
     
+    distOutput += cogFormatLine("<IfCondition condition=':= "+blockExistList(blockIndex)+" '>\n")
     distOutput += cogFormatLine("<Choice value='"+presetList[blockIndex][presetSelect]+"' displayValue='"+presetName(presetList[blockIndex][presetSelect])+"'>")
     cogIndent(1)
     distOutput += cogFormatLine("<Description>")
@@ -1873,6 +1965,8 @@ def presetSelection(blockIndex, presetSelect):
     distOutput += cogFormatLine("</Description>")
     cogIndent(-1)
     distOutput += cogFormatLine("</Choice>")
+    distOutput += cogFormatLine("</IfCondition>\n")
+    
     
     return distOutput
     
@@ -1934,7 +2028,7 @@ def distributionSetup(blockIndex, dimension):
     distOutput = ""
     
     for presetSelect in range (0, len(presetList[blockIndex])):
-        if presetList[blockIndex][presetSelect] == "Substitution":
+        if presetName(presetList[blockIndex][presetSelect]) == "Substitution":
             distOutput += "\n"
             distOutput += cogFormatComment("Starting "+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+".")
             distOutput += cogFormatLine("<ConfigSection>")
@@ -1950,7 +2044,7 @@ def distributionSetup(blockIndex, dimension):
             distOutput += cogFormatLine("</ConfigSection>")
             distOutput += cogFormatComment(""+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+" is complete.")
             distOutput += "\n"
-        elif presetList[blockIndex][presetSelect] == "Vanilla":
+        elif presetName(presetList[blockIndex][presetSelect]) == "Vanilla":
             distOutput += "\n"
             distOutput += cogFormatComment("Starting "+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+".")
             distOutput += cogFormatLine("<ConfigSection>")
@@ -1966,7 +2060,7 @@ def distributionSetup(blockIndex, dimension):
             distOutput += cogFormatLine("</ConfigSection>")
             distOutput += cogFormatComment(""+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+" is complete.")
             distOutput += "\n"
-        elif presetList[blockIndex][presetSelect] == "Cloud":
+        elif presetName(presetList[blockIndex][presetSelect]) == "Strategic Clouds":
             distOutput += "\n"
             distOutput += cogFormatComment("Starting "+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+".")
             distOutput += cogFormatLine("<ConfigSection>")
@@ -1982,7 +2076,23 @@ def distributionSetup(blockIndex, dimension):
             distOutput += cogFormatLine("</ConfigSection>")
             distOutput += cogFormatComment(""+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+" is complete.")
             distOutput += "\n"
-        elif presetList[blockIndex][presetSelect] == "LayeredVeins" or presetList[blockIndex][presetSelect] == "VerticalVeins" or presetList[blockIndex][presetSelect] == "SmallDeposits" or presetList[blockIndex][presetSelect] == "HugeVeins" or presetList[blockIndex][presetSelect] == "SparseVeins":
+        elif presetName(presetList[blockIndex][presetSelect]) == "Strata":
+            distOutput += "\n"
+            distOutput += cogFormatComment("Starting "+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+".")
+            distOutput += cogFormatLine("<ConfigSection>")
+            cogIndent(1)
+            distOutput += cogFormatLine("<IfCondition condition=':= "+blockSettingName[blockIndex]+"Dist = \""+presetList[blockIndex][presetSelect]+"\"'>")
+            cogIndent(1)
+            currentPreset = cloudStratumPreset()
+            currentPreset.setPresetScript(blockIndex, presetList[blockIndex][presetSelect])
+            distOutput += currentPreset.getPresetScript()
+            cogIndent(-1)
+            distOutput += cogFormatLine("</IfCondition>")
+            cogIndent(-1)
+            distOutput += cogFormatLine("</ConfigSection>")
+            distOutput += cogFormatComment(""+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+" is complete.")
+            distOutput += "\n"
+        elif presetName(presetList[blockIndex][presetSelect]) == "Layered Veins" or presetName(presetList[blockIndex][presetSelect]) == "Vertical Veins" or presetName(presetList[blockIndex][presetSelect]) == "Small Deposits" or presetName(presetList[blockIndex][presetSelect]) == "Huge Veins" or presetName(presetList[blockIndex][presetSelect]) == "Sparse Veins":
             distOutput += "\n"
             distOutput += cogFormatComment("Starting "+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+".")
             distOutput += cogFormatLine("<ConfigSection>")
@@ -1998,7 +2108,7 @@ def distributionSetup(blockIndex, dimension):
             distOutput += cogFormatLine("</ConfigSection>")
             distOutput += cogFormatComment(""+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+" is complete.")
             distOutput += "\n"
-        elif presetList[blockIndex][presetSelect] == "CompoundVeins" or presetList[blockIndex][presetSelect] == "PipeVeins":
+        elif presetName(presetList[blockIndex][presetSelect]) == "Compound Veins" or presetName(presetList[blockIndex][presetSelect]) == "Pipe Veins":
             distOutput += "\n"
             distOutput += cogFormatComment("Starting "+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+".")
             distOutput += cogFormatLine("<ConfigSection>")
@@ -2014,7 +2124,7 @@ def distributionSetup(blockIndex, dimension):
             distOutput += cogFormatLine("</ConfigSection>")
             distOutput += cogFormatComment(""+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+" is complete.")
             distOutput += "\n"
-        elif presetList[blockIndex][presetSelect] == "Geode":
+        elif presetName(presetList[blockIndex][presetSelect]) == "Geode":
             distOutput += "\n"
             distOutput += cogFormatComment("Starting "+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+".")
             distOutput += cogFormatLine("<ConfigSection>")
@@ -2030,8 +2140,7 @@ def distributionSetup(blockIndex, dimension):
             distOutput += cogFormatLine("</ConfigSection>")
             distOutput += cogFormatComment(""+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+" is complete.")
             distOutput += "\n"
-                
-    
+                    
     return distOutput
 
 ### Remove all previously-placed blocks.
