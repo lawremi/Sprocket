@@ -227,6 +227,7 @@ dimensionList=[]            # List of dimensions for block to spawn in.
 presetList=[]               # List of distribution presets to use.
 blockSeed=[]                # Hexadecimal seed for the RNG
 distActive=[]               # If not active, the default distribution is "none"
+distHint=[]                 # Do we want to use hint veins?  (Clouds only)
 distSize=[]                 # General distribution size.
 distFreq=[]                 # General distribution frequency.
 distHeight=[]               # Y level of distribution
@@ -346,6 +347,7 @@ Config = ConfigParser.SafeConfigParser(
                 'Bounding Box Color':"MISSING",
                 'Seed':"MISSING",
                 'Active':'yes',
+                'Hint Veins':'yes',
                 'Size':'_default_, _default_, normal, base',
                 'Frequency':'_default_, _default_, normal, base',
                 'Height':'_default_, _default_, normal, base',
@@ -481,6 +483,7 @@ for currentBlock in blockName:
     presetList.append(extractList(Config.get(currentBlock, 'Distribution Presets')))
     blockSeed.append(extractList(Config.get(currentBlock, 'Seed')))
     distActive.append(extractList(Config.get(currentBlock, 'Active')))
+    distHint.append(extractList(Config.get(currentBlock, 'Hint Veins')))
     distSize.append(extractPreservedList(Config.get(currentBlock, 'Size')))
     distFreq.append(extractPreservedList(Config.get(currentBlock, 'Frequency')))
     distHeight.append(extractPreservedList(Config.get(currentBlock, 'Height')))
@@ -1096,6 +1099,7 @@ class substitutePreset:
             weightDefined = True
         
         for blockSelect in range(0, len(repBlocks[blockIndex])):
+        
             if weightDefined:
                 blockWeight = repBlockWeights[blockIndex][blockSelect]
                 
@@ -1109,6 +1113,7 @@ class substitutePreset:
             elif repBlocks[blockIndex][blockSelect]=="minecraft:gravel":
                 self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "gravel", str(blockWeight)))
             else:
+                print repBlocks[blockIndex][blockSelect]
                 self._presetScript += cogFormatLine(blockCommand("Replaces", repBlocks[blockIndex][blockSelect], str(blockWeight)))
     
         return
@@ -1176,7 +1181,7 @@ class substitutePreset:
         return 
         
     def setPresetScript(self, blockIndex, preset):
-        self._presetScript += cogFormatLine("<Substitute name='"+blockSettingName[blockIndex]+"Substitute' "+distHeightRange(subHeightRange[blockIndex], clampRange[blockIndex])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        self._presetScript += cogFormatLine("<Substitute name='"+blockSettingName[blockIndex]+"Substitute' "+distHeightRange(subHeightRange[blockIndex], clampRange[blockIndex])+">")
         cogIndent(1)
         self._presetScript += cogFormatLine("<Description>")
         cogIndent(1)
@@ -1320,12 +1325,13 @@ class cloudPreset(substitutePreset):
         self.addDensitySetting(blockIndex, "1")
         self.addVolumeNoiseCutoffSetting(blockIndex, "1")
         self.addRadiusMultSetting(blockIndex, "1")
-        # The next step is to set up hint veins to make the deposits findable.
-        currentPreset = veinHintPreset()        
-        currentPreset.setPresetScript(blockIndex, "HintVeins")
-        cogIndent(1)
-        self._presetScript += currentPreset.getPresetScript()
-        cogIndent(-1)
+        if distHint[blockIndex][0] == "yes":
+            # The next step is to set up hint veins to make the deposits findable.
+            currentPreset = veinHintPreset()        
+            currentPreset.setPresetScript(blockIndex, "HintVeins")
+            cogIndent(1)
+            self._presetScript += currentPreset.getPresetScript()
+            cogIndent(-1)
         cogIndent(-1)
         self._presetScript += cogFormatLine("</Cloud>")
         # Now to repeat the step for preferred biomes, essentially tripling the distributions in those biomes.
@@ -1357,11 +1363,12 @@ class cloudPreset(substitutePreset):
             self.addVolumeNoiseCutoffSetting(blockIndex, "1")
             self.addRadiusMultSetting(blockIndex, "1")
             # The next step is to set up hint veins to make the deposits findable.
-            currentPreset = veinHintPreset()        
-            currentPreset.setPresetPreferredScript(blockIndex, "HintVeins")
-            cogIndent(1)
-            self._presetScript += currentPreset.getPresetScript()
-            cogIndent(-1)
+            if distHint[blockIndex][0] == "yes":
+               currentPreset = veinHintPreset()        
+               currentPreset.setPresetPreferredScript(blockIndex, "HintVeins")
+               cogIndent(1)
+               self._presetScript += currentPreset.getPresetScript()
+               cogIndent(-1)
             cogIndent(-1)
             self._presetScript += cogFormatLine("</Cloud>")
             self._presetScript += cogFormatComment("\"Preferred\" configuration complete.")
@@ -1845,8 +1852,20 @@ class veinHintPreset(veinPreset):
         hintReplace = []
         hintReplace.append("minecraft:dirt")
         hintReplace.append("minecraft:sandstone")
+        hintReplace.append("minecraft:stone")
+        hintReplace.append("minecraft:gravel")
+        
         for blockSelect in range(0, len(hintReplace)):
-            self._presetScript += cogFormatLine(blockCommand("Replaces", hintReplace[blockSelect], "1.0"))
+            if hintReplace[blockSelect]=="minecraft:stone":
+                self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "stone", "1.0"))
+            elif hintReplace[blockSelect]=="minecraft:sand":
+                self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "sand", "1.0"))
+            elif hintReplace[blockSelect]=="minecraft:dirt":
+                self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "dirt", "1.0"))
+            elif hintReplace[blockSelect]=="minecraft:gravel":
+                self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "gravel", "1.0"))
+            else:
+                self._presetScript += cogFormatLine(blockCommand("Replaces", hintReplace[blockSelect], "1.0"))
     
         return
 
