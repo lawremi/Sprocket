@@ -363,15 +363,6 @@
                     <DisplayName>Project Red Marble</DisplayName>
                     <IfCondition condition=':= (?blockExists("ProjRed|Exploration:projectred.exploration.stone")) &amp; (?blockExists("minecraft:lava")) '>
 
-                    <Choice value='StratumClouds' displayValue='Strata'>
-                        <Description>
-                            Wide, thin, and flat disks of ore.
-                        </Description>
-                    </Choice>
-                    </IfCondition>
-
-                    <IfCondition condition=':= (?blockExists("ProjRed|Exploration:projectred.exploration.stone")) &amp; (?blockExists("minecraft:lava")) '>
-
                     <Choice value='LayeredVeins' displayValue='Layered Veins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -1319,35 +1310,6 @@
 
 
                 <!-- Begin Marble Generation -->
-
-                <!-- Starting StratumClouds Preset for Marble. -->
-                <ConfigSection>
-                    <IfCondition condition=':= predMarbleDist = "StratumClouds"'>
-                        <Cloud name='predMarbleCloud'  inherits='PresetStratum' drawWireframe='true' wireframeColor='0x60FFFFFF' drawBoundBox='false' boundBoxColor='0x60FFFFFF'>
-                            <Description>
-                                Wide, thin, and flat disks of  ore.
-                                Primarily, this  distribution is meant
-                                to provide  realistic distribution of
-                                stone  in a strata formation.
-                            </Description>
-                            <OreBlock block='ProjRed|Exploration:projectred.exploration.stone' weight='1.0' />
-                            <ReplacesOre block='stone' weight='1.0' />
-                            <Biome name='.*'  />
-                            <Setting name='CloudRadius' avg=':= 0.687 * _default_ * predMarbleSize ' range=':= 0.687 * _default_ * predMarbleSize ' type='normal' />
-                            <Setting name='CloudThickness' avg=':= 0.687 * _default_ * predMarbleSize ' range=':= 0.687 * _default_ * predMarbleSize ' type='normal' scaleTo='base' />
-                            <Setting name='DistributionFrequency' avg=':= 0.472 * _default_ * predMarbleFreq ' range=':= 0.472 * _default_ * predMarbleFreq ' type='normal' scaleTo='base' />
-                            <Setting name='CloudHeight' avg=':= 48 ' range=':= 16 ' type='normal' scaleTo='base' />
-                            <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                            <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                            <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                            <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
-                            <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                            <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                        </Cloud>
-                    </IfCondition>
-                </ConfigSection>
-                <!-- StratumClouds Preset for Marble is complete. -->
-
 
                 <!-- Starting LayeredVeins Preset for Marble. -->
                 <ConfigSection>

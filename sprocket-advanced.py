@@ -1113,7 +1113,6 @@ class substitutePreset:
             elif repBlocks[blockIndex][blockSelect]=="minecraft:gravel":
                 self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "gravel", str(blockWeight)))
             else:
-                print repBlocks[blockIndex][blockSelect]
                 self._presetScript += cogFormatLine(blockCommand("Replaces", repBlocks[blockIndex][blockSelect], str(blockWeight)))
     
         return
@@ -2379,4 +2378,4 @@ def mainConfigStructure():
 xmlConfigFile = open('./'+modConfigName+'.xml', 'w+')
 xmlConfigFile.write(mainConfigStructure())
 
-print "Configuration complete for "+modName+"!"
+print "Configuration complete for "+modName+"!\n"

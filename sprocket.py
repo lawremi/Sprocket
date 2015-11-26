@@ -1494,7 +1494,9 @@ def strategicCloudsDist(currentOreGen,level):
     distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
     distText += blockList(oreBlockName, oreWeightName) 
     
-    distText += indentText(indentLine)+"<Replaces block='minecraft:dirt'/>\n"
+    distText += indentText(indentLine)+"<ReplacesOre block='dirt'/>\n"
+    distText += indentText(indentLine)+"<ReplacesOre block='stone'/>\n"
+    distText += indentText(indentLine)+"<ReplacesOre block='gravel'/>\n"
     distText += indentText(indentLine)+"<Replaces block='minecraft:sandstone'/>\n"
     distText += replaceList(oreReplaceName)
     

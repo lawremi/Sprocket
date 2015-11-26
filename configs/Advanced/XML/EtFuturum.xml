@@ -40,15 +40,6 @@
                     <DisplayName>Et Futurum Granite</DisplayName>
                     <IfCondition condition=':= (?blockExists("etfuturum:stone:1")) '>
 
-                    <Choice value='StratumClouds' displayValue='Strata'>
-                        <Description>
-                            Wide, thin, and flat disks of ore.
-                        </Description>
-                    </Choice>
-                    </IfCondition>
-
-                    <IfCondition condition=':= (?blockExists("etfuturum:stone:1")) '>
-
                     <Choice value='LayeredVeins' displayValue='Layered Veins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -86,15 +77,6 @@
                     <DisplayName>Et Futurum Diorite</DisplayName>
                     <IfCondition condition=':= (?blockExists("etfuturum:stone:3")) '>
 
-                    <Choice value='StratumClouds' displayValue='Strata'>
-                        <Description>
-                            Wide, thin, and flat disks of ore.
-                        </Description>
-                    </Choice>
-                    </IfCondition>
-
-                    <IfCondition condition=':= (?blockExists("etfuturum:stone:3")) '>
-
                     <Choice value='LayeredVeins' displayValue='Layered Veins'>
                         <Description>
                             Small, fairly rare motherlodes with 2-4 horizontal veins each.
@@ -130,15 +112,6 @@
                 <OptionChoice name='etftAndesiteDist'  displayState=':= if(?enableEtFuturum, "shown", "hidden")' displayGroup='groupEtFuturum'>
                     <Description> Controls how Andesite is generated </Description>
                     <DisplayName>Et Futurum Andesite</DisplayName>
-                    <IfCondition condition=':= (?blockExists("etfuturum:stone:5")) '>
-
-                    <Choice value='StratumClouds' displayValue='Strata'>
-                        <Description>
-                            Wide, thin, and flat disks of ore.
-                        </Description>
-                    </Choice>
-                    </IfCondition>
-
                     <IfCondition condition=':= (?blockExists("etfuturum:stone:5")) '>
 
                     <Choice value='LayeredVeins' displayValue='Layered Veins'>
@@ -206,35 +179,6 @@
 
                 <!-- Begin Granite Generation -->
 
-                <!-- Starting StratumClouds Preset for Granite. -->
-                <ConfigSection>
-                    <IfCondition condition=':= etftGraniteDist = "StratumClouds"'>
-                        <Cloud name='etftGraniteCloud'  inherits='PresetStratum' drawWireframe='true' wireframeColor='0x60DAAE99' drawBoundBox='false' boundBoxColor='0x60DAAE99'>
-                            <Description>
-                                Wide, thin, and flat disks of  ore.
-                                Primarily, this  distribution is meant
-                                to provide  realistic distribution of
-                                stone  in a strata formation.
-                            </Description>
-                            <OreBlock block='etfuturum:stone:1' weight='1.0' />
-                            <ReplacesOre block='stone' weight='1.0' />
-                            <Biome name='.*'  />
-                            <Setting name='CloudRadius' avg=':= 1.465 * _default_ * etftGraniteSize ' range=':= 1.465 * _default_ * etftGraniteSize ' type='normal' />
-                            <Setting name='CloudThickness' avg=':= 1.465 * _default_ * etftGraniteSize ' range=':= 1.465 * _default_ * etftGraniteSize ' type='normal' scaleTo='base' />
-                            <Setting name='DistributionFrequency' avg=':= 2.146 * _default_ * etftGraniteFreq ' range=':= 2.146 * _default_ * etftGraniteFreq ' type='normal' scaleTo='base' />
-                            <Setting name='CloudHeight' avg=':= 40 ' range=':= 40 ' type='normal' scaleTo='base' />
-                            <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                            <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                            <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                            <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
-                            <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                            <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                        </Cloud>
-                    </IfCondition>
-                </ConfigSection>
-                <!-- StratumClouds Preset for Granite is complete. -->
-
-
                 <!-- Starting LayeredVeins Preset for Granite. -->
                 <ConfigSection>
                     <IfCondition condition=':= etftGraniteDist = "LayeredVeins"'>
@@ -292,35 +236,6 @@
 
                 <!-- Begin Diorite Generation -->
 
-                <!-- Starting StratumClouds Preset for Diorite. -->
-                <ConfigSection>
-                    <IfCondition condition=':= etftDioriteDist = "StratumClouds"'>
-                        <Cloud name='etftDioriteCloud'  inherits='PresetStratum' drawWireframe='true' wireframeColor='0x60CBCBCF' drawBoundBox='false' boundBoxColor='0x60CBCBCF'>
-                            <Description>
-                                Wide, thin, and flat disks of  ore.
-                                Primarily, this  distribution is meant
-                                to provide  realistic distribution of
-                                stone  in a strata formation.
-                            </Description>
-                            <OreBlock block='etfuturum:stone:3' weight='1.0' />
-                            <ReplacesOre block='stone' weight='1.0' />
-                            <Biome name='.*'  />
-                            <Setting name='CloudRadius' avg=':= 1.465 * _default_ * etftDioriteSize ' range=':= 1.465 * _default_ * etftDioriteSize ' type='normal' />
-                            <Setting name='CloudThickness' avg=':= 1.465 * _default_ * etftDioriteSize ' range=':= 1.465 * _default_ * etftDioriteSize ' type='normal' scaleTo='base' />
-                            <Setting name='DistributionFrequency' avg=':= 2.146 * _default_ * etftDioriteFreq ' range=':= 2.146 * _default_ * etftDioriteFreq ' type='normal' scaleTo='base' />
-                            <Setting name='CloudHeight' avg=':= 40 ' range=':= 40 ' type='normal' scaleTo='base' />
-                            <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                            <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                            <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                            <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
-                            <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                            <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                        </Cloud>
-                    </IfCondition>
-                </ConfigSection>
-                <!-- StratumClouds Preset for Diorite is complete. -->
-
-
                 <!-- Starting LayeredVeins Preset for Diorite. -->
                 <ConfigSection>
                     <IfCondition condition=':= etftDioriteDist = "LayeredVeins"'>
@@ -377,35 +292,6 @@
 
 
                 <!-- Begin Andesite Generation -->
-
-                <!-- Starting StratumClouds Preset for Andesite. -->
-                <ConfigSection>
-                    <IfCondition condition=':= etftAndesiteDist = "StratumClouds"'>
-                        <Cloud name='etftAndesiteCloud'  inherits='PresetStratum' drawWireframe='true' wireframeColor='0x6085858B' drawBoundBox='false' boundBoxColor='0x6085858B'>
-                            <Description>
-                                Wide, thin, and flat disks of  ore.
-                                Primarily, this  distribution is meant
-                                to provide  realistic distribution of
-                                stone  in a strata formation.
-                            </Description>
-                            <OreBlock block='etfuturum:stone:5' weight='1.0' />
-                            <ReplacesOre block='stone' weight='1.0' />
-                            <Biome name='.*'  />
-                            <Setting name='CloudRadius' avg=':= 1.465 * _default_ * etftAndesiteSize ' range=':= 1.465 * _default_ * etftAndesiteSize ' type='normal' />
-                            <Setting name='CloudThickness' avg=':= 1.465 * _default_ * etftAndesiteSize ' range=':= 1.465 * _default_ * etftAndesiteSize ' type='normal' scaleTo='base' />
-                            <Setting name='DistributionFrequency' avg=':= 2.146 * _default_ * etftAndesiteFreq ' range=':= 2.146 * _default_ * etftAndesiteFreq ' type='normal' scaleTo='base' />
-                            <Setting name='CloudHeight' avg=':= 40 ' range=':= 40 ' type='normal' scaleTo='base' />
-                            <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                            <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                            <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                            <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
-                            <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                            <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                        </Cloud>
-                    </IfCondition>
-                </ConfigSection>
-                <!-- StratumClouds Preset for Andesite is complete. -->
-
 
                 <!-- Starting LayeredVeins Preset for Andesite. -->
                 <ConfigSection>

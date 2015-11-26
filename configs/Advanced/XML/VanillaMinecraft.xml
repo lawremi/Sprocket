@@ -40,15 +40,6 @@
                 </Choice>
                 </IfCondition>
 
-                <IfCondition condition=':= (?blockExists("minecraft:clay")) '>
-
-                <Choice value='StratumClouds' displayValue='Strata'>
-                    <Description>
-                        Wide, thin, and flat disks of ore.
-                    </Description>
-                </Choice>
-                </IfCondition>
-
                 <Choice value='none' displayValue='None' description='Clay is not generated in the world.'/>
             </OptionChoice>
             <OptionNumeric name='vnlaClayFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions, "shown", "hidden")' displayGroup='groupVanillaMinecraft'>
@@ -553,70 +544,6 @@
             </IfCondition>
         </ConfigSection>
         <!-- SmallDeposits Preset for Clay is complete. -->
-
-
-        <!-- Starting StratumClouds Preset for Clay. -->
-        <ConfigSection>
-            <IfCondition condition=':= vnlaClayDist = "StratumClouds"'>
-                <Cloud name='vnlaClayCloud'  inherits='PresetStratum' drawWireframe='true' wireframeColor='0x60A5A9B9' drawBoundBox='false' boundBoxColor='0x60A5A9B9'>
-                    <Description>
-                        Wide, thin, and flat disks of ore.  Primarily,
-                        this distribution is meant to  provide
-                        realistic distribution of stone  in a strata
-                        formation.
-                    </Description>
-                    <OreBlock block='minecraft:clay' weight='1.0' />
-                    <ReplacesOre block='sand' weight='1.0' />
-                    <ReplacesOre block='gravel' weight='1.0' />
-                    <ReplacesOre block='dirt' weight='1.0' />
-                    <Biome name='.*'  />
-                    <Biome name='Ocean'  weight='-1' />
-                    <Biome name='Desert'  weight='-1' />
-                    <Biome name='Mountain'  weight='-1' />
-                    <Setting name='CloudRadius' avg=':= 1.635 * _default_ * vnlaClaySize ' range=':= 1.635 * _default_ * vnlaClaySize ' type='normal' />
-                    <Setting name='CloudThickness' avg=':= 1.635 * _default_ * vnlaClaySize ' range=':= 1.635 * _default_ * vnlaClaySize ' type='normal' scaleTo='base' />
-                    <Setting name='DistributionFrequency' avg=':= 2.673 * _default_ * vnlaClayFreq ' range=':= 2.673 * _default_ * vnlaClayFreq ' type='normal' scaleTo='base' />
-                    <Setting name='CloudHeight' avg=':= 64 ' range=':= 10 ' type='uniform' scaleTo='base' />
-                    <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                    <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                    <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                    <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
-                    <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                    <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                </Cloud>
-
-                <!-- Beginning "Preferred" configuration. -->
-                <Cloud name='vnlaClayPreferredCloud'  inherits='PresetStratum' drawWireframe='true' wireframeColor='0x60A5A9B9' drawBoundBox='false' boundBoxColor='0x60A5A9B9'>
-                    <Description>
-                        Ore generation is doubled in preferred
-                        biomes.
-                    </Description>
-                    <OreBlock block='minecraft:clay' weight='1.0' />
-                    <ReplacesOre block='sand' weight='1.0' />
-                    <ReplacesOre block='gravel' weight='1.0' />
-                    <ReplacesOre block='dirt' weight='1.0' />
-                    <BiomeType name='Swamp'  />
-                    <BiomeType name='Beach'  />
-                    <BiomeType name='River'  />
-                    <Biome name='Ocean'  weight='-1' />
-                    <Biome name='Desert'  weight='-1' />
-                    <Biome name='Mountain'  weight='-1' />
-                    <Setting name='CloudRadius' avg=':= 1.635 * _default_ * vnlaClaySize ' range=':= 1.635 * _default_ * vnlaClaySize ' type='normal' />
-                    <Setting name='CloudThickness' avg=':= 1.635 * _default_ * vnlaClaySize ' range=':= 1.635 * _default_ * vnlaClaySize ' type='normal' scaleTo='base' />
-                    <Setting name='DistributionFrequency' avg=':= 2.673 * _default_ * vnlaClayFreq ' range=':= 2.673 * _default_ * vnlaClayFreq ' type='normal' scaleTo='base' />
-                    <Setting name='CloudHeight' avg=':= 64 ' range=':= 10 ' type='uniform' scaleTo='base' />
-                    <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                    <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                    <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                    <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
-                    <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                    <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-                </Cloud>
-                <!-- "Preferred" configuration complete. -->
-
-            </IfCondition>
-        </ConfigSection>
-        <!-- StratumClouds Preset for Clay is complete. -->
 
         <!-- End Clay Generation -->
 
