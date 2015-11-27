@@ -268,6 +268,7 @@ veinMotherlodeRangeLimit=[] # Range of child distribution from parent.
 veinMotherlodeSize=[]       # Size multiplier of motherlode.
 veinMotherlodeHeight=[]     # Y levels of motherlodes.
 # Full branch settings
+veinBranchType=[]           # Ellipsoid or Bezier
 veinBranchFreq=[]           # Number of branches per motherlode.
 veinBranchInclination=[]    # Angle from XZ plane that branch leaves motherlode.
 veinBranchLength=[]         # Maximum length of branch if stretched out.
@@ -277,6 +278,7 @@ veinSegmentForkFreq=[]      # How frequently segments will fork from branch.
 veinSegmentForkLength=[]    # Multiplier to remaining branch length to a fork.
 veinSegmentLength=[]        # Length of each straight branch segment.
 veinSegmentAngle=[]         # Angle of diversion from one segment to next.
+veinSegmentPitch=[]         # 
 veinSegmentRadius=[]        # Width multiplier to widest point in segment.
 veinOreDensity=[]           # Per-block density multiplier
 veinOreRadiusMult=[]        # Multiplier to maximum radius (for both segments and motherlodes)
@@ -379,6 +381,7 @@ Config = ConfigParser.SafeConfigParser(
                 'Vein Motherlode Range Limit':'MISSING',
                 'Vein Motherlode Size':'MISSING',
                 'Vein Motherlode Height':'MISSING',
+                'Vein Branch Type':'Bezier',
                 'Vein Branch Frequency':'_default_, _default_, normal, base',
                 'Vein Branch Inclination':'_default_, _default_, normal, base',
                 'Vein Branch Length':'_default_, _default_, normal, base',
@@ -387,6 +390,7 @@ Config = ConfigParser.SafeConfigParser(
                 'Vein Segment Fork Length Multiplier':'_default_, _default_, normal, base',
                 'Vein Segment Length':'_default_, _default_, normal, base',
                 'Vein Segment Angle':'_default_, _default_, normal, base',
+                'Vein Segment Pitch':'_default_, _default_, normal, base',
                 'Vein Segment Radius':'_default_, _default_, normal, base',
                 'Vein Ore Density':'MISSING',
                 'Vein Ore Radius Multiplier':'_default_, _default_, normal, base',
@@ -513,6 +517,7 @@ for currentBlock in blockName:
     veinMotherlodeRangeLimit.append(extractPreservedList(Config.get(currentBlock, 'Vein Motherlode Range Limit')))
     veinMotherlodeSize.append(extractPreservedList(Config.get(currentBlock, 'Vein Motherlode Size')))
     veinMotherlodeHeight.append(extractPreservedList(Config.get(currentBlock, 'Vein Motherlode Height')))
+    veinBranchType.append(extractPreservedList(Config.get(currentBlock, 'Vein Branch Type')))
     veinBranchFreq.append(extractPreservedList(Config.get(currentBlock, 'Vein Branch Frequency')))
     veinBranchInclination.append(extractPreservedList(Config.get(currentBlock, 'Vein Branch Inclination')))
     veinBranchLength.append(extractPreservedList(Config.get(currentBlock, 'Vein Branch Length')))
@@ -521,6 +526,7 @@ for currentBlock in blockName:
     veinSegmentForkLength.append(extractPreservedList(Config.get(currentBlock, 'Vein Segment Fork Length Multiplier')))
     veinSegmentLength.append(extractPreservedList(Config.get(currentBlock, 'Vein Segment Length')))
     veinSegmentAngle.append(extractPreservedList(Config.get(currentBlock, 'Vein Segment Angle')))
+    veinSegmentPitch.append(extractPreservedList(Config.get(currentBlock, 'Vein Segment Pitch')))
     veinSegmentRadius.append(extractPreservedList(Config.get(currentBlock, 'Vein Segment Radius')))
     veinOreDensity.append(extractPreservedList(Config.get(currentBlock, 'Vein Ore Density')))
     veinOreRadiusMult.append(extractPreservedList(Config.get(currentBlock, 'Vein Ore Radius Multiplier')))
@@ -799,6 +805,13 @@ def presetInherit(preset):
         return "inherits='PresetSmallDeposits'"
     if preset.lower()=="compoundveins":
         return "inherits='PresetLayeredVeins'"
+    # Preset for a non-preset distribution; useful for completely custom distributions.
+    if preset.lower()=="customcloud":
+        return ""
+    if preset.lower()=="customveins":
+        return ""
+    if preset.lower()=="null":
+        return ""
     else:
         print "Invalid Distribution Preset: \""+preset+"\""
         return ""
@@ -832,6 +845,13 @@ def presetName(preset):
         return "Geode"
     if preset.lower()=="compoundveins":
         return "Compound Veins"
+    # Preset for a non-preset distribution; useful for completely custom distributions.
+    if preset.lower()=="customcloud":
+        return "Custom Cloud"
+    if preset.lower()=="customveins":
+        return "Custom Veins"
+    if preset.lower()=="null":
+        return "Blank"
     else:
         print "Invalid Distribution Preset: \""+preset+"\""
         return ""
@@ -865,6 +885,13 @@ def presetDescription(preset):
         return "Multi-layered deposit.  On the outside is a shell, usually made of some form of stone.  Within this shell is sprinkled ores.  Inside both is an air pocket from which the enterprising miner can look for the contained ores."
     if preset.lower()=="compoundveins":
         return "Similar to pipe veins, except that the motherlode and veins are a solid vein containing another, smaller solid vein."
+    # Preset for a non-preset distribution; useful for completely custom distributions.
+    if preset.lower()=="customcloud":
+        return "A completely custom cloud design.  It is recommended to change this text to appropriately describe the distribution."
+    if preset.lower()=="customveins":
+        return "A completely custom veins design.  It is recommended to change this text to appropriately describe the distribution."
+    if preset.lower()=="null":
+        return "MISSING"
     else:
         print "Invalid Distribution Preset: \""+preset+"\""
         return ""
@@ -898,6 +925,13 @@ def presetLiteDescription(preset):
         return "Multi-layered deposit in a spherical shape."
     if preset.lower()=="compoundveins":
         return "Veins containing another vein."
+    # Preset for a non-preset distribution; useful for completely custom distributions.
+    if preset.lower()=="customcloud":
+        return "Custom cloud; update this description."
+    if preset.lower()=="customveins":
+        return "Custom vein; update this description."
+    if preset.lower()=="null":
+        return "MISSING"
     else:
         print "Invalid Distribution Preset: \""+preset+"\""
         return ""
@@ -1027,6 +1061,20 @@ def extSetting(settingName, preferredOption, globalOption, configName, sliderOpt
     return "<Setting name='"+settingName+"' avg=':= "+numAverage+sliderName+" "+multiplierString+"' range=':= "+numRange+sliderName+" "+multiplierString+"' type='"+ruleType+"' scaleTo='"+scale+"' />"
 
 
+### Vein Type options (Ellipsoid/Bezier)
+def setVeinType(veinType):
+    veinTypeOption = ""
+    veinTypeLower = veinType.lower()
+    
+    if veinTypeLower.startswith("e"):
+        veinTypeOption = "Ellipsoid"
+    elif veinTypeLower.startswith("b"):
+        veinTypeOption = "Bezier"
+    return "branchType='"+veinTypeOption+"'"
+    
+
+
+
 # ----------------------------------------------------------------------------- #
 
 
@@ -1035,6 +1083,7 @@ def extSetting(settingName, preferredOption, globalOption, configName, sliderOpt
 
 
 # ---------------------------- Preset Classes --------------------------------- #
+  
 
 # Substitute Preset is the most basic.  It simply replaces one block with another.
 # There is little configuration beyond height clamping, and choices of biomes and
@@ -1199,6 +1248,24 @@ class substitutePreset:
     def getPresetScript(self):
         return self._presetScript
         
+
+# This is a blank preset for those wanting a blank XML Canvas to design
+# their configurations.
+class nullPreset(substitutePreset):
+
+    def setPresetScript(self, blockIndex, preset):
+        self._presetScript += cogFormatLine("<NULL name='"+blockSettingName[blockIndex]+"NULL'>")
+        cogIndent(1)
+        self._presetScript += cogFormatLine("<Description>")
+        cogIndent(1)
+        self._presetScript += cogWrappedLine(presetDescription(preset))
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Description>")
+        self._presetScript += "\n\n"
+        self._presetScript += cogFormatLine("<!-- Enter your distribution code here -->")
+        self._presetScript += "\n\n"
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</NULL>")
 
 # The Vanilla preset is designed to mimic classic minecraft orespawn.
 # Doing this will require a few extra commands.
@@ -1497,6 +1564,11 @@ class veinPreset(substitutePreset):
     
         return
     
+    def addSegmentPitchSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("SegmentPitch", veinSegmentPitch[blockIndex], veinSegmentPitch[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
     def addSegmentRadiusSetting(self, blockIndex, multiplier):
         self._presetScript += cogFormatLine(mainSetting("SegmentRadius", veinSegmentRadius[blockIndex], veinSegmentRadius[blockIndex], blockSettingName[blockIndex], "Size", multiplier))
     
@@ -1513,7 +1585,7 @@ class veinPreset(substitutePreset):
         return
     
     def setPresetScript(self, blockIndex, preset):
-        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"Veins' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"Veins' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setVeinType(veinBranchType[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
         cogIndent(1)
         self._presetScript += cogFormatLine("<Description>")
         cogIndent(1)
@@ -1538,6 +1610,7 @@ class veinPreset(substitutePreset):
         self.addSegmentForkLengthMultSetting(blockIndex, "1")
         self.addSegmentLengthSetting(blockIndex, "1")
         self.addSegmentAngleSetting(blockIndex, "1")
+        self.addSegmentPitchSetting(blockIndex, "1")
         self.addSegmentRadiusSetting(blockIndex, "1")
         self.addOreDensitySetting(blockIndex, "1")
         self.addOreRadiusMultSetting(blockIndex, "1")
@@ -1548,7 +1621,7 @@ class veinPreset(substitutePreset):
         if checkOption(biomePreferNames[blockIndex]) or checkOption(biomePreferTypes[blockIndex]):
             self._presetScript += "\n"
             self._presetScript += cogFormatComment("Beginning \"Preferred\" configuration.")
-            self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"PreferredVeins' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+            self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"PreferredVeins' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setVeinType(veinBranchType[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
             cogIndent(1)
             self._presetScript += cogFormatLine("<Description>")
             cogIndent(1)
@@ -1573,6 +1646,7 @@ class veinPreset(substitutePreset):
             self.addSegmentForkLengthMultSetting(blockIndex, "1")
             self.addSegmentLengthSetting(blockIndex, "1")
             self.addSegmentAngleSetting(blockIndex, "1")
+            self.addSegmentPitchSetting(blockIndex, "1")
             self.addSegmentRadiusSetting(blockIndex, "1")
             self.addOreDensitySetting(blockIndex, "1")
             self.addOreRadiusMultSetting(blockIndex, "1")
@@ -1605,7 +1679,7 @@ class veinCompoundPreset(veinPreset):
                 
 
     def setPresetScript(self, blockIndex, preset):
-        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"Veins' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"Veins' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setVeinType(veinBranchType[blockIndex][0])+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
         cogIndent(1)
         self._presetScript += cogFormatLine("<Description>")
         cogIndent(1)
@@ -1630,6 +1704,7 @@ class veinCompoundPreset(veinPreset):
         self.addSegmentForkLengthMultSetting(blockIndex, "1")
         self.addSegmentLengthSetting(blockIndex, "1")
         self.addSegmentAngleSetting(blockIndex, "1")
+        self.addSegmentPitchSetting(blockIndex, "1")
         self.addSegmentRadiusSetting(blockIndex, "1")
         self.addOreDensitySetting(blockIndex, "1")
         self.addOreRadiusMultSetting(blockIndex, "1")
@@ -1637,7 +1712,7 @@ class veinCompoundPreset(veinPreset):
         self._presetScript += cogFormatLine("</Veins>")
         self._presetScript += "\n"
         self._presetScript += cogFormatComment("Configuring contained material.")
-        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"VeinsPipe' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" inherits='"+blockSettingName[blockIndex]+"Veins' "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"VeinsPipe' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" inherits='"+blockSettingName[blockIndex]+"Veins' "+setVeinType(veinBranchType[blockIndex][0])+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
         cogIndent(1)        
         self.addAltBlocksList(blockIndex)
         self.addRepBlocksList(blockIndex)
@@ -1655,7 +1730,7 @@ class veinCompoundPreset(veinPreset):
         if checkOption(biomePreferNames[blockIndex]) or checkOption(biomePreferTypes[blockIndex]):
             self._presetScript += "\n"
             self._presetScript += cogFormatComment("Beginning \"Preferred\" configuration.")
-            self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"VeinsPrefer' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+            self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"VeinsPrefer' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setVeinType(veinBranchType[blockIndex][0])+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
             cogIndent(1)
             self._presetScript += cogFormatLine("<Description>")
             cogIndent(1)
@@ -1680,6 +1755,7 @@ class veinCompoundPreset(veinPreset):
             self.addSegmentForkLengthMultSetting(blockIndex, "1")
             self.addSegmentLengthSetting(blockIndex, "1")
             self.addSegmentAngleSetting(blockIndex, "1")
+            self.addSegmentPitchSetting(blockIndex, "1")
             self.addSegmentRadiusSetting(blockIndex, "1")
             self.addOreDensitySetting(blockIndex, "1")
             self.addOreRadiusMultSetting(blockIndex, "1")
@@ -1687,7 +1763,7 @@ class veinCompoundPreset(veinPreset):
             self._presetScript += cogFormatLine("</Veins>")
             self._presetScript += "\n"
             self._presetScript += cogFormatComment("Contained Material for Preferred Distributions.")
-            self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"VeinsPreferPipe' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" inherits='"+blockSettingName[blockIndex]+"VeinsPrefer' "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+            self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"VeinsPreferPipe' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" inherits='"+blockSettingName[blockIndex]+"VeinsPrefer' "+setVeinType(veinBranchType[blockIndex][0])+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
             cogIndent(1)        
             self.addAltBlocksList(blockIndex)
             self.addInvRepBlocksList(blockIndex)
@@ -1737,7 +1813,7 @@ class veinGeodePreset(veinPreset):
     
     def setPresetScript(self, blockIndex, preset):
         # First, we have the outer shell layer.
-        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeShell' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeShell' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setVeinType(veinBranchType[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
         cogIndent(1)
         self._presetScript += cogFormatLine("<Description>")
         cogIndent(1)
@@ -1759,7 +1835,7 @@ class veinGeodePreset(veinPreset):
         cogIndent(-1)
         self._presetScript += cogFormatLine("</Veins>")
         # Next, the inner ore layer.
-        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeOre' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" inherits='"+blockSettingName[blockIndex]+"GeodeShell' "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeOre' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" inherits='"+blockSettingName[blockIndex]+"GeodeShell' "+setVeinType(veinBranchType[blockIndex][0])+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
         cogIndent(1)
         self._presetScript += cogFormatLine("<Description>")
         cogIndent(1)
@@ -1773,7 +1849,7 @@ class veinGeodePreset(veinPreset):
         cogIndent(-1)
         self._presetScript += cogFormatLine("</Veins>")
         # Finally, the central air bubble.
-        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeBubble' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" inherits='"+blockSettingName[blockIndex]+"GeodeOre' "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeBubble' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" inherits='"+blockSettingName[blockIndex]+"GeodeOre' "+setVeinType(veinBranchType[blockIndex][0])+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
         cogIndent(1)
         self._presetScript += cogFormatLine("<Description>")
         cogIndent(1)
@@ -1793,7 +1869,7 @@ class veinGeodePreset(veinPreset):
         if checkOption(biomePreferNames[blockIndex]) or checkOption(biomePreferTypes[blockIndex]):
             
             # First, we have the outer shell layer.
-            self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeShell' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+            self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeShell' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setVeinType(veinBranchType[blockIndex][0])+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
             cogIndent(1)
             self._presetScript += cogFormatLine("<Description>")
             cogIndent(1)
@@ -1815,7 +1891,7 @@ class veinGeodePreset(veinPreset):
             cogIndent(-1)
             self._presetScript += cogFormatLine("</Veins>")
             # Next, the inner ore layer.
-            self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeOre' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" inherits='"+blockSettingName[blockIndex]+"GeodeShell' "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+            self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeOre' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" inherits='"+blockSettingName[blockIndex]+"GeodeShell' "+setVeinType(veinBranchType[blockIndex][0])+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
             cogIndent(1)
             self._presetScript += cogFormatLine("<Description>")
             cogIndent(1)
@@ -1828,7 +1904,7 @@ class veinGeodePreset(veinPreset):
             cogIndent(-1)
             self._presetScript += cogFormatLine("</Veins>")
             # Finally, the central air bubble.
-            self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeBubble' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" inherits='"+blockSettingName[blockIndex]+"GeodeOre' "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+            self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeBubble' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" inherits='"+blockSettingName[blockIndex]+"GeodeOre' "+setVeinType(veinBranchType[blockIndex][0])+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
             cogIndent(1)
             self._presetScript += cogFormatLine("<Description>")
             cogIndent(1)
@@ -1869,7 +1945,7 @@ class veinHintPreset(veinPreset):
         return
 
     def setPresetScript(self, blockIndex, preset):        
-        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"HintVeins' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"HintVeins' "+setVeinType(veinBranchType[blockIndex][0])+" "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
         cogIndent(1)
         self._presetScript += cogFormatLine("<Description>")
         cogIndent(1)
@@ -1882,7 +1958,7 @@ class veinHintPreset(veinPreset):
         self._presetScript += cogFormatLine("</Veins>")
     
     def setPresetPreferredScript(self, blockIndex, preset):        
-        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"PreferredHintVeins' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"PreferredHintVeins' "+setVeinType(veinBranchType[blockIndex][0])+" "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
         cogIndent(1)
         self._presetScript += cogFormatLine("<Description>")
         cogIndent(1)
@@ -2078,7 +2154,7 @@ def distributionSetup(blockIndex, dimension):
             distOutput += cogFormatLine("</ConfigSection>")
             distOutput += cogFormatComment(""+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+" is complete.")
             distOutput += "\n"
-        elif presetName(presetList[blockIndex][presetSelect]) == "Strategic Clouds":
+        elif presetName(presetList[blockIndex][presetSelect]) == "Strategic Clouds" or presetName(presetList[blockIndex][presetSelect]) == "Custom Cloud":
             distOutput += "\n"
             distOutput += cogFormatComment("Starting "+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+".")
             distOutput += cogFormatLine("<ConfigSection>")
@@ -2110,7 +2186,7 @@ def distributionSetup(blockIndex, dimension):
             distOutput += cogFormatLine("</ConfigSection>")
             distOutput += cogFormatComment(""+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+" is complete.")
             distOutput += "\n"
-        elif presetName(presetList[blockIndex][presetSelect]) == "Layered Veins" or presetName(presetList[blockIndex][presetSelect]) == "Vertical Veins" or presetName(presetList[blockIndex][presetSelect]) == "Small Deposits" or presetName(presetList[blockIndex][presetSelect]) == "Huge Veins" or presetName(presetList[blockIndex][presetSelect]) == "Sparse Veins":
+        elif presetName(presetList[blockIndex][presetSelect]) == "Layered Veins" or presetName(presetList[blockIndex][presetSelect]) == "Vertical Veins" or presetName(presetList[blockIndex][presetSelect]) == "Small Deposits" or presetName(presetList[blockIndex][presetSelect]) == "Huge Veins" or presetName(presetList[blockIndex][presetSelect]) == "Sparse Veins" or presetName(presetList[blockIndex][presetSelect]) == "Custom Veins":
             distOutput += "\n"
             distOutput += cogFormatComment("Starting "+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+".")
             distOutput += cogFormatLine("<ConfigSection>")
@@ -2150,6 +2226,22 @@ def distributionSetup(blockIndex, dimension):
             distOutput += cogFormatLine("<IfCondition condition=':= "+blockSettingName[blockIndex]+"Dist = \""+presetList[blockIndex][presetSelect]+"\"'>")
             cogIndent(1)
             currentPreset = veinGeodePreset()
+            currentPreset.setPresetScript(blockIndex, presetList[blockIndex][presetSelect])
+            distOutput += currentPreset.getPresetScript()
+            cogIndent(-1)
+            distOutput += cogFormatLine("</IfCondition>")
+            cogIndent(-1)
+            distOutput += cogFormatLine("</ConfigSection>")
+            distOutput += cogFormatComment(""+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+" is complete.")
+            distOutput += "\n"
+        elif presetName(presetList[blockIndex][presetSelect]) == "Blank":
+            distOutput += "\n"
+            distOutput += cogFormatComment("Starting "+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+".")
+            distOutput += cogFormatLine("<ConfigSection>")
+            cogIndent(1)
+            distOutput += cogFormatLine("<IfCondition condition=':= "+blockSettingName[blockIndex]+"Dist = \""+presetList[blockIndex][presetSelect]+"\"'>")
+            cogIndent(1)
+            currentPreset = nullPreset()
             currentPreset.setPresetScript(blockIndex, presetList[blockIndex][presetSelect])
             distOutput += currentPreset.getPresetScript()
             cogIndent(-1)
@@ -2364,7 +2456,7 @@ def mainConfigStructure():
         configOutput += "\n"
     
     configOutput += "\n\n\n\n"
-    configOutput += cogFormatBoxComment("This file was made using the Sprocket Configuration Generator.  If you wish to make your own configurations for a mod not currently supported by Custom Ore Generation, and you don't want the hassle of writing XML, you can find the generator script at its GitHub page: http://https://github.com/reteo/Sprocket")
+    configOutput += cogFormatBoxComment("This file was made using the Sprocket Advanced Configuration Generator.  If you wish to make your own configurations for a mod not currently supported by Custom Ore Generation, and you don't want the hassle of writing XML, you can find the generator script at its GitHub page: http://https://github.com/reteo/Sprocket")
     
     return configOutput
 
