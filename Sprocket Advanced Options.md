@@ -508,13 +508,13 @@ The length of each segment of the branch.
 
 ### Vein Segment Angle (Statistical Variation)
 
-The side angle from which a segment diverges from the branch.
+The horizontal angle from which a segment diverges from the branch.
 
      Default: _default_, _default_, normal, base
      
 ### Vein Segment Pitch (Statistical Variation)
 
-The front angle from which a segment diverges from the branch.
+The vertical angle from which a segment diverges from the branch.
 
      Default: _default_, _default_, normal, base
 
