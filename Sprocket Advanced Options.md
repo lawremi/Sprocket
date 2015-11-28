@@ -91,8 +91,8 @@ Custom Ore Generation comes with several built-in presets, and Sprocket adds som
     * **Compound Veins**:  This preset is identical to the layered veins distribution, except that it is a distribution containing a distribution, similar to the pipe vein distribution.
     * **Geode**: The geode distribution is identical to the small deposits distribution, except it contains a second distribution, which itself surrounds an air pocket.  In essence, This distribution arranges blocks to simulate actual geodes.
 * **Custom Distributions**: The following are distributions to use when you know what you're doing, and you have something specific in mind.  These distributions will not include a preset value.
-    * **Custom Veins**: This will produce an un-preset vein distribution.  All vein-related options will still be written into the XML file, which you can then edit.
-    * **Custom Cloud**: This will produce an un-preset cloud distribution.  All cloud-related options will still be written into the XML file, which you can then edit.
+    * **Custom Veins**: This will produce an un-preset vein distribution.  You can use all vein-related options in this distribution, but it's recommended that you use exact values, and not include *_default_*.
+    * **Custom Cloud**: This will produce an un-preset cloud distribution.  You can use all cloud-related options in this distribution, but it's recommended that you use exact values, and not include *_default_*.
     * **Null**: This will produce only the absolute basic XML configuration; it will be empty, and all distribution-specific names and values will include the word "NULL".  This is meant to be a blank canvas on which a configuration writer can make their custom-designed XML code without needing to worry about arganizing the main file.
 
 ## Option Types
