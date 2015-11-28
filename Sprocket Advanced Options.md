@@ -457,6 +457,12 @@ The size of the motherlode's diameter.
 The range of Y levels the motherlode spawns at.
 
      Default: MISSING
+     
+### Vein Branch Type (List)
+
+A single option describing the type of curves in the branches.  The choices are *Ellipsoid*, in which curves are somewhat circular, and more regular, and *Bezier*, in which the vein's curves are smoother and more complex.
+
+    Default: Bezier
 
 ### Vein Branch Frequency (Statistical Variation)
 
@@ -502,7 +508,13 @@ The length of each segment of the branch.
 
 ### Vein Segment Angle (Statistical Variation)
 
-The angle from which a segment diverges from the branch.
+The side angle from which a segment diverges from the branch.
+
+     Default: _default_, _default_, normal, base
+     
+### Vein Segment Pitch (Statistical Variation)
+
+The front angle from which a segment diverges from the branch.
 
      Default: _default_, _default_, normal, base
 
