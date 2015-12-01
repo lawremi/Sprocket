@@ -1157,10 +1157,6 @@ class substitutePreset:
                 self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "stone", str(blockWeight)))
             elif repBlocks[blockIndex][blockSelect]=="minecraft:sand":
                 self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "sand", str(blockWeight)))
-            elif repBlocks[blockIndex][blockSelect]=="minecraft:dirt":
-                self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "dirt", str(blockWeight)))
-            elif repBlocks[blockIndex][blockSelect]=="minecraft:gravel":
-                self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "gravel", str(blockWeight)))
             else:
                 self._presetScript += cogFormatLine(blockCommand("Replaces", repBlocks[blockIndex][blockSelect], str(blockWeight)))
     
