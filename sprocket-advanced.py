@@ -1931,10 +1931,6 @@ class veinHintPreset(veinPreset):
                 self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "stone", "1.0"))
             elif hintReplace[blockSelect]=="minecraft:sand":
                 self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "sand", "1.0"))
-            elif hintReplace[blockSelect]=="minecraft:dirt":
-                self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "dirt", "1.0"))
-            elif hintReplace[blockSelect]=="minecraft:gravel":
-                self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "gravel", "1.0"))
             else:
                 self._presetScript += cogFormatLine(blockCommand("Replaces", hintReplace[blockSelect], "1.0"))
     
