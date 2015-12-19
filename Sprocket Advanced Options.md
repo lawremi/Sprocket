@@ -154,6 +154,16 @@ The seed value is used to synchronize the random number generator between two or
 If Active is set to "no," then the default distribution is set to "none."  Otherwise, the default distribution is the first option in the distribution presets list.
 
      Default: yes
+     
+### Use Cleanup (Boolean)
+
+If set to "yes," then the configuration will undergo a "cleaning" pass before beginning to generate any block distributions.  This is a computationally-expensive step that can cause a game to lag when generating new chunks.
+
+If set to "no," the cleanup pass is skipped.  However, if the mod does not have oregen disabled in its own configuration, you will end up with both Custom Ore Generation distributions, as well as the mod's own oregen.
+
+This option is not available for "minecraft" (non-modded) configurations.
+
+    Default: yes
 
 ### Main Block Cleanup (Boolean)
 

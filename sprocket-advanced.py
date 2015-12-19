@@ -233,6 +233,7 @@ distFreq=[]                 # General distribution frequency.
 distHeight=[]               # Y level of distribution
 distDensity=[]              # Density of ores in distribution.
 distParentRange=[]          # Range of child distribution from parent.
+initSubAll=[]               # Initialize oregen by wiping any blocks at all? (Default: yes)
 initSubMain=[]              # Initialize oregen by wiping main block? (Default: yes)
 initSubAlt=[]               # Initialize oregen by wiping alternate block? (Default: no)
 clampRange=[]               # Two comma-separated numbers, stating min and max Y levels for clamping ore distribution.
@@ -355,6 +356,7 @@ Config = ConfigParser.SafeConfigParser(
                 'Height':'_default_, _default_, normal, base',
                 'Density':'_default_, _default_, normal, base',
                 'Parent Range Limit':'_default_, _default_, normal, base',
+                'Use Cleanup':'yes',
                 'Main Block Cleanup':'yes',
                 'Alternate Block Cleanup':'no',
                 'Distribution Presets':'Vanilla',
@@ -462,11 +464,11 @@ blockCount = 0    # Start the count at the first ore.
 for currentBlock in blockName:
     blockConfigName.append(xmlInvalidRemove(blockName[blockCount]))
     blockSettingName.append(modPrefix+blockConfigName[blockCount])
-    mainBlocks.append(extractList(Config.get(currentBlock, 'Blocks')))
+    mainBlocks.append(extractPreservedList(Config.get(currentBlock, 'Blocks')))
     mainBlockWeights.append(extractList(Config.get(currentBlock, 'Block Weights')))
-    altBlocks.append(extractList(Config.get(currentBlock, 'Alternate Blocks')))
+    altBlocks.append(extractPreservedList(Config.get(currentBlock, 'Alternate Blocks')))
     altBlockWeights.append(extractList(Config.get(currentBlock, 'Alternate Block Weights')))
-    repBlocks.append(extractList(Config.get(currentBlock, 'Replaces')))
+    repBlocks.append(extractPreservedList(Config.get(currentBlock, 'Replaces')))
     repBlockWeights.append(extractList(Config.get(currentBlock, 'Replacement Weights')))
     dimensionList.append(extractList(Config.get(currentBlock, 'Dimensions')))
     biomeNames.append(extractPreservedList(Config.get(currentBlock, 'Need Biomes')))
@@ -493,6 +495,7 @@ for currentBlock in blockName:
     distHeight.append(extractPreservedList(Config.get(currentBlock, 'Height')))
     distDensity.append(extractPreservedList(Config.get(currentBlock, 'Density')))
     distParentRange.append(extractPreservedList(Config.get(currentBlock, 'Parent Range Limit')))
+    initSubAll.append(extractList(Config.get(currentBlock, 'Use Cleanup')))
     initSubMain.append(extractList(Config.get(currentBlock, 'Main Block Cleanup')))
     initSubAlt.append(extractList(Config.get(currentBlock, 'Alternate Block Cleanup')))
     clampRange.append(extractList(Config.get(currentBlock, 'Height Clamp Range')))
@@ -575,7 +578,7 @@ def cogIndentSpace():
     global cogIndentLevel
     
     for count in range(0, cogIndentLevel):
-        cogSpace += "    "
+        cogSpace += "  "
         
     return cogSpace
  
@@ -2062,6 +2065,12 @@ def modHandleState():
     else:
         return "false"
     
+def modCleanupState():
+    if modHandle.lower() == "yes":
+        return "true"
+    else:
+        return "false"
+    
 
 # ----------------------------------------------------------------------------- #
     
@@ -2266,6 +2275,9 @@ def initCleanup(dimName):
         chosenBlocks = chosenBlockList(uniqueSections[sectionSelect],dimName)
         
         cleanupSubOutput += "\n"
+        if modDetect.lower() != "minecraft":
+          cleanupSubOutput += cogFormatLine("<IfCondition condition=':= ?cleanUp"+modConfigName+"'>")
+          cogIndent(1)
         cleanupSubOutput += cogFormatLine("<IfCondition condition=':= ?blockExists(\""+uniqueSections[sectionSelect]+"\")'>")
         cogIndent(1)
         cleanupSubOutput += cogFormatLine("<Substitute name='"+modPrefix+dimName+"BlockSubstitute"+str(sectionSelect)+"' block='"+uniqueSections[sectionSelect]+"'>")
@@ -2289,6 +2301,9 @@ def initCleanup(dimName):
         cleanupSubOutput += cogFormatLine("</Substitute>")
         cogIndent(-1)
         cleanupSubOutput += cogFormatLine("</IfCondition>")
+        if modDetect.lower() != "minecraft":
+          cogIndent(-1)
+          cleanupSubOutput += cogFormatLine("</IfCondition>")
         cleanupSubOutput += "\n"
                 
         if cleanupSubUse:
@@ -2326,6 +2341,14 @@ def configSetupSection():
         setupOutput += cogFormatLine("<Description> Should Custom Ore Generation handle "+modName+" ore generation? </Description>")
         setupOutput += cogFormatLine("<Choice value=':= ?true' displayValue='Yes' description='Use Custom Ore Generation to handle "+modName+" ores.'/>")
         setupOutput += cogFormatLine("<Choice value=':= ?false' displayValue='No' description='"+modName+" ores will be handled by the mod itself.'/>")
+        cogIndent(-1)
+        setupOutput += cogFormatLine("</OptionChoice>")
+        
+        setupOutput += cogFormatLine("<OptionChoice name='cleanUp"+modConfigName+"' displayName='Use "+modName+" Cleanup?' default='"+modCleanupState()+"' displayState='shown_dynamic' displayGroup='group"+modConfigName+"'>")
+        cogIndent(1)    
+        setupOutput += cogFormatLine("<Description> Should Custom Ore Generation use the Substitution Pass to remove all instances of "+modName+" ore from the world?  If the mod's oregen can be turned off in its configuration, then it's recommended to do so, as the substitution pass can slow the game significantly.  If this option is disabled without disabling the mod's own ore generation, you'll end up with two oregens working at once, flooding the world with ore.  Enabled by default to ensure the ores are completely removed. </Description>")
+        setupOutput += cogFormatLine("<Choice value=':= ?true' displayValue='Yes' description='Use the substitution pass to clean up "+modName+" ores.'/>")
+        setupOutput += cogFormatLine("<Choice value=':= ?false' displayValue='No' description='"+modName+" ores do not need to be cleaned up by a substitution pass.'/>")
         cogIndent(-1)
         setupOutput += cogFormatLine("</OptionChoice>")
     
