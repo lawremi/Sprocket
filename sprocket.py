@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
-# Sprocket.py: A configuration generator for the Custom Ore Generation:
+# sprocket-advanced.py:
+#              A configuration generator for the Custom Ore Generation:
 #              First Revival add-on for Minecraft.  The program reads
 #              the mod's name and list of ores from a simple file, and
 #              then generates the xml configuration file that can be
@@ -10,53 +11,305 @@
 #              tedious searching for missing brackets or broken 
 #              elements.
 
-# UPDATE - 4/11/2015 - Script completely rewritten for more options and
-#              flexibility.  
+# UPDATE - 8/15/2015 - Script rewritten from the ground up for maximum
+#                      Flexibility and compatibility with COG
 
 import random
 import ConfigParser
-import json
 import sys
 import os
 import textwrap
 import string
 
+
+
+# ------ Basic Functions ----- #
+
+# Generates a random hexadecimal number of specified length.
 def randomHexNumber(length):
     return ''.join([random.choice('0123456789ABCDEF') for x in range(length)])
-
-def indentText(level):
-    spaceHolder = ""
-    for i in range (0, level):
-        spaceHolder += "    "
-        
-    return spaceHolder
-
-### ********************* Basic Functions ************************ ###
-
-# Makes a list of characters into a comma-separated list.
-def makeCommaList(currentList):
-    newList = currentList.split(',')
-    return newList
+    
+# Returns the first element in a list.
+def firstListItem(currentList):
+    return firstListItem[0]
     
 # Removes spaces from the string.
 def spaceRemove(currentItem):
     newItem = currentItem.replace(" ", "")
     return newItem
     
-# Returns the first element in a list.
-def firstListItem(currentList):
-    return firstListItem[0]
+# Removes a hash mark (#) from a string.  Useful for web color codes.
+def hashRemove(currentItem):
+    newItem = currentItem.replace("#", "")
+    return newItem
     
+# Removes XML-invalid characters from the string.
+def xmlInvalidRemove(currentItem):
+    preNewItem1 = currentItem.replace("\'", "")  # Remove Apostrophes
+    preNewItem2 = preNewItem1.replace(":", "")  # Remove Colons
+    preNewItem3 = preNewItem2.replace("|", "")  # Remove Vertical Bar
+    preNewItem4 = preNewItem3.replace("<", "")  # Remove Less-Than
+    preNewItem5 = preNewItem4.replace(">", "")  # Remove Greater-Than
+    preNewItem6 = preNewItem5.replace("\"", "")     # Remove Quotes
+    newItem = preNewItem6.replace(" ", "")
+    return newItem
 
-### ********************* End Of Basic Functions ***************** ###
+# Takes a list of text items, and turns it into a grammatically-correct
+# list, depending on the number of items in the list.  Useful for
+# generating lists for comments.
+def grammaticalList(textList):    
+    if len(textList) > 2:
+        return ", and ".join([", ".join(textList[:-1]),textList[-1]])
+    elif len(textList) == 2:
+        return " and ".join(textList)
+    else:
+        return textList[0]
 
-# Initialize variables
+# --- End of Basic Functions --- #
 
-errorCondition = ""
 
+
+
+
+
+
+# ------------- Option Extraction commands ------------ #
+
+# Makes a list of characters into a spaceless, comma-separated list.
+def extractList(currentList):
+    newList = []
+    intList = currentList.split(',')
+    for item in range (0, len(intList)):
+        newList.append(intList[item].replace(" ", ""))
+    return newList
+
+# Before we try to pull any information from an option, we want to make
+# sure it actually has information to be pulled.  If the information is
+# either -2.0 (that's negative two-point-zero) or "MISSING", then there
+# is no need to extract it.
+
+
+# Makes a list of characters into a comma-separated list.
+def extractPreservedList(currentList):
+    newList = []
+    intList = currentList.split(',')
+    for item in range (0, len(intList)):
+        newList.append(intList[item].lstrip())        
+    return newList
+
+# Before we try to pull any information from an option, we want to make
+# sure it actually has information to be pulled.  If the information is
+# either -2.0 (that's negative two-point-zero) or "MISSING", then there
+# is no need to extract it.
+
+# This is the list version.
+def checkOption(option):
+    if spaceRemove(option[0]) == -2.0 or spaceRemove(option[0]) == -2 or spaceRemove(option[0]) == "MISSING":
+        return False
+    else:
+        return True
+
+# This is the single-variable version.
+def checkCurrentOption(option):
+    if option == -2.0 or option == -2 or spaceRemove(option) == "MISSING":
+        return False
+    else:
+        return True
+
+# A lot of the options come in the form "average, range, selection
+# type, scaling" so it stands to reason we need special commands to
+# extract the correct information from those options.
+
+def extractAverage(option): # Extracts the average number
+    if checkOption(option):    
+        return option[0]
+    else:
+        return ""
+
+
+def extractRange(option): # Extracts the deviation range  
+    if checkOption(option):    
+        return option[1]
+    else:
+        return ""
+
+
+def extractRule(option): # Extracts the distribution rule  
+    if checkOption(option):    
+        return spaceRemove(option[2])
+    else:
+        return ""
+
+
+def extractScale(option): # Extracts the height scaling method
+    if checkOption(option):    
+        return spaceRemove(option[3])
+    else:
+        return ""
+    
+# There are also compound options that have a minimum and maximum value.
+# Let's make sure those are extractable as well.
+
+def extractMinimum(option): # Extracts minimum value.
+    if checkOption(option):    
+        return spaceRemove(option[0])
+    else:
+        return ""
+
+def extractMaximum(option): # Extracts minimum value.
+    if checkOption(option):    
+        return spaceRemove(option[1])
+    else:
+        return ""
+
+# Finally, let's make sure we can get the first block from a list of blocks.
+def extractFirstBlock(option):    
+    if checkOption(option):    
+        return spaceRemove(option[0])
+    else:
+        return ""
+
+# ------------------------------------------- #
+
+
+
+
+
+
+
+
+
+# ------------- Global Variables ------------ #
+
+# [Mod] Section
+modName=""                  # Mod name component for variable names
+modPrefix=""                # Comes before the ore name in variable names
+modDetect=""                # ModID identifier for mod
+modHandle=""                # By default, COG will handle the mod's oregen.
+modDescription=""           # Custom description for the Mod
+
+# Variables for distribution configuration.
+blockName=[]                # Name for block's section.
+blockConfigName=[]          # The XML-valid name
+blockSettingName=[]         # Block's configuration name with prefix.
+
+# Block ID and Weight Lists
+mainBlocks=[]               # List of unlocalized main block names.
+mainBlockWeights=[]         # List of weights for main blocks.
+altBlocks=[]                # List of unlocalized alternate block names.
+altBlockWeights=[]          # List of weights for alternate blocks.
+repBlocks=[]                # List of unlocalized replacement block names.
+repBlockWeights=[]          # List of weights for replacement blocks.
+
+# Locations
+biomeNames=[]               # List of biome names
+biomeTypes=[]               # List of biome dictionary keywords
+biomeAvoidNames=[]          # List of biome names for main blocks to avoid.
+biomeAvoidTypes=[]          # List of biome dictionary keywords for main blocks to avoid.
+biomePreferNames=[]         # List of biome names for main blocks to prefer.
+biomePreferTypes=[]         # List of biome dictionary keywords for main blocks to prefer.
+biomeRainfall=[]            # Minimum and maximum rainfall to select biomes.
+biomeTmperature=[]          # Minimum and maximum temperature to select biomes.
+                    
+# Adjacency
+placeAbove=[]               # List of blocks to place main blocks above.
+placeBeside=[]              # List of blocks to place main blocks next to.
+placeBelow=[]               # List of blocks to place main blocks beneath.
+
+# Debugging Values
+wireframeActive=[]          # Enable wireframe in debugging mode?
+wireframeColor=[]           # Web color code for wireframe.
+boundBoxActive=[]           # Enable bounding box in debugging mode?
+boundBoxColor=[]            # Web color code for bounding box.
+
+# General Distribution Options
+dimensionList=[]            # List of dimensions for block to spawn in.
+presetList=[]               # List of distribution presets to use.
+blockSeed=[]                # Hexadecimal seed for the RNG
+distActive=[]               # If not active, the default distribution is "none"
+distHint=[]                 # Do we want to use hint veins?  (Clouds only)
+distSize=[]                 # General distribution size.
+distFreq=[]                 # General distribution frequency.
+distHeight=[]               # Y level of distribution
+distDensity=[]              # Density of ores in distribution.
+distParentRange=[]          # Range of child distribution from parent.
+initSubAll=[]               # Initialize oregen by wiping any blocks at all? (Default: yes)
+initSubMain=[]              # Initialize oregen by wiping main block? (Default: yes)
+initSubAlt=[]               # Initialize oregen by wiping alternate block? (Default: no)
+clampRange=[]               # Two comma-separated numbers, stating min and max Y levels for clamping ore distribution.
+heightScaling=[]            # Height Scaling Option
+
+# Substitution Settings
+subHeightRange=[]           # Two comma-separated numbers stating min and max Y level for substitution.
+
+# Standard Generation (Vanilla-Simulation) Distribution Options
+stdHeight=[]                # Y level for standard generator.
+stdFreq=[]                  # Frequency multiplier for standard generator.
+stdSize=[]                  # Size multiplier for standard generator.
+stdParentRange=[]           # Range of child distribution from parent.
+stdHeightRange=[]           # Two comma-separated numbers stating min and max Y level for substitution.
+
+# Cloud Generation Distribution Options
+cloudFreq=[]                # Frequency Multiplier
+cloudParentRange=[]         # Range of child distribution from parent.
+cloudRadius=[]              # Horizontal Size of cloud.
+cloudThickness=[]           # Vertical Size of cloud.
+cloudNoise=[]               # Smoothness (or lack thereof) of cloud sides.
+cloudHeight=[]              # Y levels of cloud distribution
+cloudInclination=[]         # Tilt of the cloud from XZ, in radians.
+cloudDensity=[]             # Density multiplier
+cloudNoiseCutoff=[]         # Per-block internal density noise cutoff.
+cloudRadiusMult=[]          # Per-block multiplier of max radius for clouds.
+cloudHeightRange=[]         # Two comma-separated numbers stating min and max Y level for substitution.
+
+# Vein Generation Distribution Options
+# Motherlode settings
+veinMotherlodeFreq=[]       # Vein motherlode frequency multiplier.
+veinMotherlodeRangeLimit=[] # Range of child distribution from parent.
+veinMotherlodeSize=[]       # Size multiplier of motherlode.
+veinMotherlodeHeight=[]     # Y levels of motherlodes.
+# Full branch settings
+veinBranchType=[]           # Ellipsoid or Bezier
+veinBranchFreq=[]           # Number of branches per motherlode.
+veinBranchInclination=[]    # Angle from XZ plane that branch leaves motherlode.
+veinBranchLength=[]         # Maximum length of branch if stretched out.
+veinBranchHeightLimit=[]    # Limits how far up or down branches will turn.
+# Branch segment settings
+veinSegmentForkFreq=[]      # How frequently segments will fork from branch.
+veinSegmentForkLength=[]    # Multiplier to remaining branch length to a fork.
+veinSegmentLength=[]        # Length of each straight branch segment.
+veinSegmentAngle=[]         # Angle of diversion from one segment to next.
+veinSegmentPitch=[]         # 
+veinSegmentRadius=[]        # Width multiplier to widest point in segment.
+veinOreDensity=[]           # Per-block density multiplier
+veinOreRadiusMult=[]        # Multiplier to maximum radius (for both segments and motherlodes)
+# Miscellaneous vein distribution settings
+veinHeightRange=[]          # Two comma-separated numbers stating min and max Y level for substitution.
+
+oreList = ""
+indentLine=0 # This is the value that tracks indentation for XML
+
+# ------------------------------------------- #
+
+
+
+
+
+
+# --- Error Checking and File Preparation --- #
+
+# We want to make sure that errors are tracked by this program, and
+# when one occurs, nothing gets written to disk.  This prevents mistakes
+# from destroying a previously-working configuration.
+
+errorCondition = "" # No errors are detected by default.
+
+# First step, make sure the INI file is actually there.  If not,
+# just shut down.
 try:
     if not os.path.isfile(sys.argv[1]):
         sys.exit(os.path.basename(sys.argv[0])+": "+sys.argv[1]+": No such file or directory")
+        
 except IndexError:
 	print "\n  Sprocket is designed to take an INI file and convert it into an"
 	print "  XML file in the current directory.\n"
@@ -66,153 +319,88 @@ except IndexError:
 	print "python "+os.path.basename(sys.argv[0])+" <oregen file> \n"
 	errorCondition=1
 	sys.exit()
-
+	
+# At this point, we've passed the test.  Let's prepare the file for
+# loading.
 configFile = sys.argv[1]
-   
-
-modName = ""        # This is the mod name component for variable names
-modPrefix = ""      # This comes before the ore name in variable names
-                    #     (tic, mtlg)
-
-# Initialize Ore Options
-oreName = []                  # The name of this specific Ore
-oreConfigName = []            # Ore name without the spaces
-oreWorld = []                 # The world the ore spawns in
-                              #    (Overworld, Nether, End)
-oreBlock = []                 # Comma-separated list of block names
-oreWeight = []               # Comma separated list of block weights
-oreExtra = []                 # Comma separated list in name:meta format
-oreReplace = []               # The block the ore replaces
-oreAdjacentAbove = []         # Ore is adjacent above which block?
-oreAdjacentBelow = []         # Ore is adjacent below which block?
-oreAdjacentBeside = []        # Ore is adjacent beside which block?
-orePipe = []                  # Content of pipe distribution
-                              #    (usually lava)
-orePipeSubstitute = []        # Should the pipe material be substituted?
-oreDistributions = []         # Comma-separated list of distribution
-                              #    options.
-oreDistType = []              # Pick distribution pattern
-oreWireframe = []             # Wireframe color (web code)
-oreHeight = []                # Center level for ore distributions
-oreRange = []                 # Level range between lowest and highest
-                              #    point
-oreClampHigh = []             # Top possible level for ore
-oreClampLow = []              # Bottom possible level for ore
-oreFrequency = []             # Ore Frequency Multiplier
-oreCloudFrequency = []        # Frequency Multiplier for Clouds
-oreVeinFrequency = []         # Frequency Multiplier for Veins
-oreStdFrequency = []          # Frequency Multiplier for Standard 
-oreSize = []                  # Ore Size Multiplier
-oreCloudSize = []             # Size Multiplier for Clouds
-oreVeinSize = []              # Size Multiplier for Veins
-oreStdSize = []               # Size Multiplier for Standard 
-oreStdHeight = []             # Height for Standard Distributions
-                              #   Overrides Main Height Value
-oreStdRange = []              # Range for Standard Distributions
-                              #   Overrides Main Range Value
-oreVeinHeight = []            # Height for Vein Distributions
-                              #   Overrides Main Range Value
-oreVeinRange = []             # Range for Vein Distributions
-                              #   Overrides Main Range Value
-oreCloudHeight = []           # Height for Cloud Distributions
-                              #   Overrides Main Range Value
-oreCloudRange = []            # Range for Cloud Distributions
-                              #   Overrides Main Range Value
-oreDensity = []               # Ore Density Multiplier
-oreCloudDensity = []          # Density Multiplier for Clouds
-oreVeinDensity = []           # Density Multiplier for Veins
-oreVeinBranchFrequency = []   # Ore Veins Branch Frequency
-oreVeinBranchLengthAvg = []   # Ore Veins Branch Length Average
-oreVeinBranchLengthRange = [] # Ore Veins Branch Length Range
-oreVeinBranchHeight = []      # Ore Veins Branch Height Limit
-oreVeinBranchInclineAvg = []  # Ore Veins Branch Inclination Average
-oreVeinBranchInclineRange = []# Ore Veins Branch Inclination Range
-oreVeinSegmentRadiusAvg = []  # Ore Veins Segment Radius Average
-oreVeinSegmentRadiusRange = []# Ore Veins Segment Radius Range
-oreVeinSegmentAngleAvg = []   # Ore Veins Segment Angle Average
-oreVeinSegmentAngleRange = [] # Ore Veins Segment Angle Range
-oreVeinSegmentPitchAvg = []   # Ore Veins Segment Pitch Average
-oreVeinSegmentPitchRange = [] # Ore Veins Segment Pitch Range
-oreCloudThickness = []        # Thickness Multiplier for Clouds
-oreBiomes = []                # Ores only spawn in these biomes
-oreAvoid = []                 # Ores will not spawn in these biomes
-orePreferBiomes = []          # Ores spawn extra in these biomes
-oreNoPreferBiomes = []        # Ores won't spawn extra in these biomes
-orePreMultiplier = []         # "Prefers" Multiplier
-oreScale = []                 # COG Surface Scaling
-oreActive = []                # Is ore distribution active by default?
-oreSeed = []                  # Pick a distribution seed
-oreSubstitution = []          # Do we remove this ore before generating?
-                              #   Useful if mod's oregen can be turned
-                              #   off.
-
-
-oreList = ""
-indentLine=0
 
 # Open a configuration file for reading, and prepare defaults.
 Config = ConfigParser.SafeConfigParser(
-    defaults={'Block':'MISSING',
-              'Weight':'-2.0',
-              'Extra':'MISSING',
-              'World':'Overworld',
-              'Replace':'minecraft:stone',
-              'Adjacent Above':'MISSING',
-              'Adjacent Below':'MISSING',
-              'Adjacent Beside':'MISSING',
-              'Pipe':'minecraft:lava',
-              'Substitute Pipe':'No',
-              'Distributions':'Vanilla',
-              'Distribution Type':'normal',
-              'Biomes':'ALL',
-              'Avoid':'NONE',
-              'Prefers':'NONE',
-              'Prefers Not':'NONE',
-              'Prefers Multiplier':'2',
-              'Scale':'SeaLevel',
-              'Active':'Yes',
-              'Substitute':'Yes',
-              'Seed':randomHexNumber(4),
-              'Wireframe':randomHexNumber(6),
-              'Height':'_default_',
-              'Range':'_default_',
-              'Min Height':'0',
-              'Max Height':'0',
-              'Density':'1',
-              'Frequency':'1',
-              'Size':'1',
-              'Standard Frequency':'1',
-              'Standard Height':'0',
-              'Standard Range':'0',
-              'Standard Size':'1',
-              'Vein Frequency':'1',
-              'Vein Size':'1',
-              'Vein Height':'0',
-              'Vein Range':'0',
-              'Vein Density':'1',
-              'Vein Branch Frequency':'1',
-              'Vein Branch Height Limit':'0',
-              'Vein Branch Inclination Average':'0',
-              'Vein Branch Inclination Range':'0',
-              'Vein Branch Length Average':'1',
-              'Vein Branch Length Range':'1',
-              'Vein Segment Angle Average':'0',
-              'Vein Segment Angle Range':'0',
-              'Vein Segment Pitch Average':'0',
-              'Vein Segment Pitch Range':'0',
-              'Vein Segment Radius Average':'1',
-              'Vein Segment Radius Range':'1',
-              'Cloud Frequency':'1',
-              'Cloud Size':'1',
-              'Cloud Height':'0',
-              'Cloud Range':'0',
-              'Cloud Density':'1',
-              'Cloud Thickness':'1'
+    defaults={  'Blocks':'MISSING',
+                'Block Weights':'MISSING',
+                'Alternate Blocks':'minecraft:stone',
+                'Alternate Block Weights':'MISSING',
+                'Replaces':'minecraft:stone',
+                'Replacement Weights':'MISSING',
+                'Dimensions':'0',
+                'Need Biomes':'.*',
+                'Need Biome Types':'MISSING',
+                'Avoid Biomes':'MISSING',
+                'Avoid Biome Types':'MISSING',
+                'Prefer Biomes':'MISSING',
+                'Prefer Biome Types':'MISSING',
+                'Biome Rainfall Range':'MISSING',
+                'Biome Temperature Range':'MISSING',
+                'Place Below':'MISSING',
+                'Place Beside':'MISSING',
+                'Place Above':'MISSING',
+                'Wireframe':'yes',
+                'Bounding Box':'no',
+                'Wireframe Color':"MISSING",
+                'Bounding Box Color':"MISSING",
+                'Seed':"MISSING",
+                'Active':'yes',
+                'Hint Veins':'yes',
+                'Size':'_default_, _default_, normal, base',
+                'Frequency':'_default_, _default_, normal, base',
+                'Height':'_default_, _default_, normal, base',
+                'Density':'_default_, _default_, normal, base',
+                'Parent Range Limit':'_default_, _default_, normal, base',
+                'Use Cleanup':'yes',
+                'Main Block Cleanup':'yes',
+                'Alternate Block Cleanup':'no',
+                'Distribution Presets':'Vanilla',
+                'Height Clamp Range':'MISSING',
+                'Height Scaling':'base',
+                'Substitution Height Clamp Range':'MISSING',
+                'Standard Size':'MISSING',
+                'Standard Frequency':'MISSING',
+                'Standard Height':'MISSING',
+                'Standard Parent Range Limit':'MISSING',
+                'Standard Height Clamp Range':'MISSING',
+                'Cloud Frequency':'MISSING',
+                'Cloud Parent Range Limit':'MISSING',
+                'Cloud Radius':'MISSING',
+                'Cloud Thickness':'MISSING',
+                'Cloud Noise':'_default_, _default_, normal, base',
+                'Cloud Height':'MISSING',
+                'Cloud Inclination':'_default_, _default_, normal, base',
+                'Cloud Density':'MISSING',
+                'Cloud Noise Cutoff':'_default_, _default_, normal, base',
+                'Cloud Radius Multiplier':'_default_, _default_, normal, base',
+                'Cloud Height Clamp Range':'MISSING',
+                'Vein Motherlode Frequency':'MISSING',
+                'Vein Motherlode Range Limit':'MISSING',
+                'Vein Motherlode Size':'MISSING',
+                'Vein Motherlode Height':'MISSING',
+                'Vein Branch Type':'Bezier',
+                'Vein Branch Frequency':'_default_, _default_, normal, base',
+                'Vein Branch Inclination':'_default_, _default_, normal, base',
+                'Vein Branch Length':'_default_, _default_, normal, base',
+                'Vein Branch Height Limit':'_default_, _default_, normal, base',
+                'Vein Segment Fork Frequency':'_default_, _default_, normal, base',
+                'Vein Segment Fork Length Multiplier':'_default_, _default_, normal, base',
+                'Vein Segment Length':'_default_, _default_, normal, base',
+                'Vein Segment Angle':'_default_, _default_, normal, base',
+                'Vein Segment Pitch':'_default_, _default_, normal, base',
+                'Vein Segment Radius':'_default_, _default_, normal, base',
+                'Vein Ore Density':'MISSING',
+                'Vein Ore Radius Multiplier':'_default_, _default_, normal, base',
+                'Vein Height Clamp Range':'MISSING'
     })
 Config.read(configFile)
 
-# Get the mod's name in three forms, one for mod-specific variables,
-# one for display in strings, and a prefix to use for ore variables.
+# Let's get the name of the mod from the configuration.
 try:
     modName = Config.get('Mod', 'Name')  # "My Mod 2"
 except ConfigParser.NoSectionError:
@@ -223,12 +411,21 @@ except ConfigParser.NoOptionError:
     print "No mod name found."
     errorCondition=1
 
+# Variables cannot have spaces.  Let's remove spaces and XML-invalid
+# characters from the Mod's name so we can use it in variable names.
+
+modPreConfigName1=spaceRemove(modName)
+modConfigName=xmlInvalidRemove(modPreConfigName1)
+
+
+# The prefix is important in making XML name attributes.
 try:
     modPrefix = Config.get('Mod', 'Prefix') # "mmd2"
 except ConfigParser.NoOptionError:
     print "No mod prefix found."
     errorCondition=1
 
+# This is for detecting the mod based on its ModID name.
 try:
     modDetect = Config.get('Mod', 'Detect') # "MyMod"
 except ConfigParser.NoOptionError:
@@ -239,1756 +436,2053 @@ except ConfigParser.NoOptionError:
 if errorCondition:
     sys.exit(os.path.basename(sys.argv[0])+": "+sys.argv[1]+": nothing written due to errors\n")
 
-print "Generating configuration for "+modName+"."
-                    
-modConfigName=spaceRemove(modName)
+# Otherwise, let's see if we can get a description.
 
-oreName = Config.sections()
-oreName.pop(0) # The first section is not an ore, it's the mod's
-               # settings.  It needs to go.
+try:
+    modDescription = Config.get('Mod', 'Description') # "This is a mod I like...?"
+except ConfigParser.NoOptionError:
+    print "You don't need a mod description, but one might be nice..."
 
-oreCount = 0
+# Also, let's see how we want to handle ores by default
+try:
+    modHandle = Config.get('Mod', 'Enable') # Enable COG generation of this mod by default?
+except ConfigParser.NoOptionError:
+    modHandle = "yes"
 
+print "Generating configuration for "+modName+"." # Yup, we can now proceed.
 
+blockName = Config.sections()
+blockName.pop(0)  # The first section is not an ore, it's the mod's
+                # default settings.  It's not needed here, but will
+                # still apply when needed.
 
-# Creating a set of lists for the options; memory access is always
+blockCount = 0    # Start the count at the first ore.
+
+# Creating a set of matrices for the options; memory access is always
 # faster than disk access.
 
+for currentBlock in blockName:
+    blockConfigName.append(xmlInvalidRemove(blockName[blockCount]))
+    blockSettingName.append(modPrefix+blockConfigName[blockCount])
+    mainBlocks.append(extractPreservedList(Config.get(currentBlock, 'Blocks')))
+    mainBlockWeights.append(extractList(Config.get(currentBlock, 'Block Weights')))
+    altBlocks.append(extractPreservedList(Config.get(currentBlock, 'Alternate Blocks')))
+    altBlockWeights.append(extractList(Config.get(currentBlock, 'Alternate Block Weights')))
+    repBlocks.append(extractPreservedList(Config.get(currentBlock, 'Replaces')))
+    repBlockWeights.append(extractList(Config.get(currentBlock, 'Replacement Weights')))
+    dimensionList.append(extractList(Config.get(currentBlock, 'Dimensions')))
+    biomeNames.append(extractPreservedList(Config.get(currentBlock, 'Need Biomes')))
+    biomeTypes.append(extractPreservedList(Config.get(currentBlock, 'Need Biome Types')))
+    biomeAvoidNames.append(extractPreservedList(Config.get(currentBlock, 'Avoid Biomes')))
+    biomeAvoidTypes.append(extractPreservedList(Config.get(currentBlock, 'Avoid Biome Types')))
+    biomePreferNames.append(extractPreservedList(Config.get(currentBlock, 'Prefer Biomes')))
+    biomePreferTypes.append(extractPreservedList(Config.get(currentBlock, 'Prefer Biome Types')))
+    biomeRainfall.append(extractList(Config.get(currentBlock, 'Biome Rainfall Range')))
+    biomeTmperature.append(extractList(Config.get(currentBlock, 'Biome Temperature Range')))
+    placeBelow.append(extractList(Config.get(currentBlock, 'Place Below')))
+    placeBeside.append(extractList(Config.get(currentBlock, 'Place Beside')))
+    placeAbove.append(extractList(Config.get(currentBlock, 'Place Above')))
+    wireframeActive.append(extractList(Config.get(currentBlock, 'Wireframe')))
+    wireframeColor.append(extractList(Config.get(currentBlock, 'Wireframe Color')))
+    boundBoxActive.append(extractList(Config.get(currentBlock, 'Bounding Box')))
+    boundBoxColor.append(extractList(Config.get(currentBlock, 'Bounding Box Color')))
+    presetList.append(extractList(Config.get(currentBlock, 'Distribution Presets')))
+    blockSeed.append(extractList(Config.get(currentBlock, 'Seed')))
+    distActive.append(extractList(Config.get(currentBlock, 'Active')))
+    distHint.append(extractList(Config.get(currentBlock, 'Hint Veins')))
+    distSize.append(extractPreservedList(Config.get(currentBlock, 'Size')))
+    distFreq.append(extractPreservedList(Config.get(currentBlock, 'Frequency')))
+    distHeight.append(extractPreservedList(Config.get(currentBlock, 'Height')))
+    distDensity.append(extractPreservedList(Config.get(currentBlock, 'Density')))
+    distParentRange.append(extractPreservedList(Config.get(currentBlock, 'Parent Range Limit')))
+    initSubAll.append(extractList(Config.get(currentBlock, 'Use Cleanup')))
+    initSubMain.append(extractList(Config.get(currentBlock, 'Main Block Cleanup')))
+    initSubAlt.append(extractList(Config.get(currentBlock, 'Alternate Block Cleanup')))
+    clampRange.append(extractList(Config.get(currentBlock, 'Height Clamp Range')))
+    subHeightRange.append(extractList(Config.get(currentBlock, 'Substitution Height Clamp Range')))
+    stdHeight.append(extractPreservedList(Config.get(currentBlock, 'Standard Height')))
+    stdFreq.append(extractPreservedList(Config.get(currentBlock, 'Standard Frequency')))
+    stdSize.append(extractPreservedList(Config.get(currentBlock, 'Standard Size')))
+    stdParentRange.append(extractPreservedList(Config.get(currentBlock, 'Standard Parent Range Limit')))
+    stdHeightRange.append(extractList(Config.get(currentBlock, 'Standard Height Clamp Range')))
+    cloudFreq.append(extractPreservedList(Config.get(currentBlock, 'Cloud Frequency')))
+    cloudParentRange.append(extractPreservedList(Config.get(currentBlock, 'Cloud Parent Range Limit')))
+    cloudRadius.append(extractPreservedList(Config.get(currentBlock, 'Cloud Radius')))
+    cloudThickness.append(extractPreservedList(Config.get(currentBlock, 'Cloud Thickness')))
+    cloudNoise.append(extractPreservedList(Config.get(currentBlock, 'Cloud Noise')))
+    cloudHeight.append(extractPreservedList(Config.get(currentBlock, 'Cloud Height')))
+    cloudInclination.append(extractPreservedList(Config.get(currentBlock, 'Cloud Inclination')))
+    cloudDensity.append(extractPreservedList(Config.get(currentBlock, 'Cloud Density')))
+    cloudNoiseCutoff.append(extractPreservedList(Config.get(currentBlock, 'Cloud Noise Cutoff')))
+    cloudRadiusMult.append(extractPreservedList(Config.get(currentBlock, 'Cloud Radius Multiplier')))
+    cloudHeightRange.append(extractList(Config.get(currentBlock, 'Cloud Height Clamp Range')))
+    veinMotherlodeFreq.append(extractPreservedList(Config.get(currentBlock, 'Vein Motherlode Frequency')))
+    veinMotherlodeRangeLimit.append(extractPreservedList(Config.get(currentBlock, 'Vein Motherlode Range Limit')))
+    veinMotherlodeSize.append(extractPreservedList(Config.get(currentBlock, 'Vein Motherlode Size')))
+    veinMotherlodeHeight.append(extractPreservedList(Config.get(currentBlock, 'Vein Motherlode Height')))
+    veinBranchType.append(extractPreservedList(Config.get(currentBlock, 'Vein Branch Type')))
+    veinBranchFreq.append(extractPreservedList(Config.get(currentBlock, 'Vein Branch Frequency')))
+    veinBranchInclination.append(extractPreservedList(Config.get(currentBlock, 'Vein Branch Inclination')))
+    veinBranchLength.append(extractPreservedList(Config.get(currentBlock, 'Vein Branch Length')))
+    veinBranchHeightLimit.append(extractPreservedList(Config.get(currentBlock, 'Vein Branch Height Limit')))
+    veinSegmentForkFreq.append(extractPreservedList(Config.get(currentBlock, 'Vein Segment Fork Frequency')))
+    veinSegmentForkLength.append(extractPreservedList(Config.get(currentBlock, 'Vein Segment Fork Length Multiplier')))
+    veinSegmentLength.append(extractPreservedList(Config.get(currentBlock, 'Vein Segment Length')))
+    veinSegmentAngle.append(extractPreservedList(Config.get(currentBlock, 'Vein Segment Angle')))
+    veinSegmentPitch.append(extractPreservedList(Config.get(currentBlock, 'Vein Segment Pitch')))
+    veinSegmentRadius.append(extractPreservedList(Config.get(currentBlock, 'Vein Segment Radius')))
+    veinOreDensity.append(extractPreservedList(Config.get(currentBlock, 'Vein Ore Density')))
+    veinOreRadiusMult.append(extractPreservedList(Config.get(currentBlock, 'Vein Ore Radius Multiplier')))
+    veinHeightRange.append(extractList(Config.get(currentBlock, 'Vein Height Clamp Range')))
+    
+    # There MUST be a main block value; all others are negotiable or
+    # have default values already assigned.  If the block is missing,
+    # Then we'll just stop the program with an error; there's no point
+    # continuing.
+    #if checkOption(Config.get(currentBlock, 'Blocks')):
+    #    print('Error: The \'['+currentBlock+']\' section *must* have at least one block ID assigned.')
+    #    errorCondition = 'T'
 
-for currentOre in oreName:
-    oreConfigName.append(spaceRemove(oreName[oreCount]))
-    oreBlock.append(Config.get(currentOre, 'Block'))
-    oreWeight.append(Config.get(currentOre, 'Weight'))
-    oreExtra.append(Config.get(currentOre, 'Extra'))
-    oreWorld.append(Config.get(currentOre, 'World'))
-    oreReplace.append(Config.get(currentOre, 'Replace'))
-    oreAdjacentAbove.append(Config.get(currentOre, 'Adjacent Above'))
-    oreAdjacentBelow.append(Config.get(currentOre, 'Adjacent Below'))
-    oreAdjacentBeside.append(Config.get(currentOre, 'Adjacent Beside'))
-    orePipe.append(Config.get(currentOre, 'Pipe'))
-    orePipeSubstitute.append(Config.get(currentOre, 'Substitute Pipe'))
-    oreDistributions.append(Config.get(currentOre, 'Distributions'))
-    oreDistType.append(Config.get(currentOre, 'Distribution Type'))
-    oreWireframe.append(Config.get(currentOre, 'Wireframe'))
-    oreHeight.append(Config.get(currentOre, 'Height'))
-    oreRange.append(Config.get(currentOre, 'Range'))
-    oreClampHigh.append(Config.get(currentOre, 'Max Height'))
-    oreClampLow.append(Config.get(currentOre, 'Min Height'))
-    oreFrequency.append(Config.get(currentOre, 'Frequency'))
-    oreStdFrequency.append(Config.get(currentOre, 'Standard Frequency'))
-    oreVeinFrequency.append(Config.get(currentOre, 'Vein Frequency'))
-    oreCloudFrequency.append(Config.get(currentOre, 'Cloud Frequency'))
-    oreStdHeight.append(Config.get(currentOre, 'Standard Height'))
-    oreStdRange.append(Config.get(currentOre, 'Standard Range'))
-    oreVeinHeight.append(Config.get(currentOre, 'Vein Height'))
-    oreVeinRange.append(Config.get(currentOre, 'Vein Range'))
-    oreCloudHeight.append(Config.get(currentOre, 'Cloud Height'))
-    oreCloudRange.append(Config.get(currentOre, 'Cloud Range'))
-    oreSize.append(Config.get(currentOre, 'Size'))
-    oreStdSize.append(Config.get(currentOre, 'Standard Size'))
-    oreVeinSize.append(Config.get(currentOre, 'Vein Size'))
-    oreCloudSize.append(Config.get(currentOre, 'Cloud Size'))
-    oreDensity.append(Config.get(currentOre, 'Density'))
-    oreCloudDensity.append(Config.get(currentOre, 'Cloud Density'))
-    oreVeinDensity.append(Config.get(currentOre, 'Vein Density'))
-    oreVeinBranchFrequency.append(Config.get(currentOre, 'Vein Branch Frequency'))
-    oreVeinBranchHeight.append(Config.get(currentOre, 'Vein Branch Height Limit'))
-    oreVeinBranchLengthAvg.append(Config.get(currentOre, 'Vein Branch Length Average'))
-    oreVeinBranchLengthRange.append(Config.get(currentOre, 'Vein Branch Length Range'))
-    oreVeinBranchInclineAvg.append(Config.get(currentOre, 'Vein Branch Inclination Average'))
-    oreVeinBranchInclineRange.append(Config.get(currentOre, 'Vein Branch Inclination Range'))
-    oreVeinSegmentRadiusAvg.append(Config.get(currentOre, 'Vein Segment Radius Average'))
-    oreVeinSegmentRadiusRange.append(Config.get(currentOre, 'Vein Segment Radius Range'))
-    oreVeinSegmentAngleAvg.append(Config.get(currentOre, 'Vein Segment Angle Average'))
-    oreVeinSegmentAngleRange.append(Config.get(currentOre, 'Vein Segment Angle Range'))
-    oreVeinSegmentPitchAvg.append(Config.get(currentOre, 'Vein Segment Pitch Average'))
-    oreVeinSegmentPitchRange.append(Config.get(currentOre, 'Vein Segment Pitch Range'))
-    oreCloudThickness.append(Config.get(currentOre, 'Cloud Thickness'))
-    oreBiomes.append(Config.get(currentOre, 'Biomes'))
-    oreAvoid.append(Config.get(currentOre, 'Avoid'))
-    orePreferBiomes.append(Config.get(currentOre, 'Prefers'))
-    oreNoPreferBiomes.append(Config.get(currentOre, 'Prefers Not'))
-    orePreMultiplier.append(Config.get(currentOre, 'Prefers Multiplier'))
-    oreScale.append(Config.get(currentOre, 'Scale'))
-    oreActive.append(Config.get(currentOre, 'Active'))
-    oreSubstitution.append(Config.get(currentOre, 'Substitute'))
-    oreSeed.append(Config.get(currentOre, 'Seed'))
+    # Okay, we got this section of the configuration, let's move onto the next.
+    blockCount += 1
+    
+# Now, we need to assign individual random numbers to seeds and wireframes that are missing them.
+for blockIndex in range(0, len(blockName)):
+    if blockSeed[blockIndex][0] == "MISSING":
+        blockSeed[blockIndex][0] = str(randomHexNumber(4))
+    if wireframeColor[blockIndex][0] == "MISSING":
+        wireframeColor[blockIndex][0] = str(randomHexNumber(6))
+    if boundBoxColor[blockIndex][0] == "MISSING":
+        boundBoxColor[blockIndex][0] = str(randomHexNumber(6))
+        
+# ------------------------------------------- #
+
+
+
+
+
+
+
+
+
+                    
+
+# ---- Configuration Formatting Commands ---- #
+
+# XML convention is to indent items within an XML space.
+cogIndentLevel = 0
+
+# Returns space equal to two spaces per indent level.
+def cogIndentSpace():
+    cogSpace = ""
+    global cogIndentLevel
+    
+    for count in range(0, cogIndentLevel):
+        cogSpace += "  "
+        
+    return cogSpace
+ 
+# Changes the indent level.
+def cogIndent(cogIndentValue):
+    global cogIndentLevel
+    
+    cogIndentLevel += cogIndentValue
+
+    return ""
+   
+# Adds a new line to the configuration.
+def cogFormatLine(cogLine):
+
+    return cogIndentSpace()+cogLine+"\n"
+
+# This adds a wrapped version of the cogFormatLine command.
+def cogWrappedLine(cogComment):
+    global cogIndentLevel
+    wrappedComment = "\r\n".join(textwrap.wrap(cogComment, (65-(cogIndentLevel*4))))
+    finalComment = textwrap.fill(wrappedComment, initial_indent=cogIndentSpace(), subsequent_indent=cogIndentSpace())+"\n"
+    
+    return finalComment
+
+# Adds a new comment to the configuration.
+# This comment is automatically wrapped and
+# indented as needed.
+def cogFormatComment(cogComment):
+    global cogIndentLevel
+    wrappedComment = "\r\n".join(textwrap.wrap(cogComment, (65-(cogIndentLevel*4))))
+    finalComment = textwrap.fill(wrappedComment, initial_indent=cogIndentSpace()+"<!-- ", subsequent_indent=cogIndentSpace()+"     ")+" -->\n"
+    
+    return finalComment
+
+# A boxed comment for extra-special comments.
+def cogFormatBoxComment(cogComment):
+    currentLine = ""
+    wrappedComment = "\r\n".join(textwrap.wrap(cogComment, (65-(cogIndentLevel*4))))
+    for lineSegment in range(0, (65-(cogIndentLevel*4))):
+        currentLine += "="
+        
+    firstLine = cogIndentSpace()+"<!-- "+currentLine+"\n"
+    mainLine  = textwrap.fill(wrappedComment, initial_indent=cogIndentSpace()+"     ", subsequent_indent=cogIndentSpace()+"     ")+"\n"
+    lastLine  = cogIndentSpace()+"     "+currentLine+" -->\n"
+    
+    finalComment = firstLine+mainLine+lastLine
+    
+    return finalComment
+    
+# ------------------------------------------- #
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+# -------------- Main Commands ------------- #
+
+
+
+### Block Command ###
+
+def blockCommand(command, currentBlock, currentWeight):
+    if checkCurrentOption(currentBlock):
+        if checkCurrentOption(currentWeight):
+            return "<"+command+" block='"+currentBlock+"' weight='"+currentWeight+"' />"
+        else: 
+            return "<"+command+" block='"+currentBlock+"' />"
+    else:
+        return ""
     
     
-    # Check to make sure the Block value is valid.
-    if Config.get(currentOre, 'Block') == 'MISSING':
-        print('Error: The \'['+currentOre+']\' section is missing a block name.')
-        errorCondition = 'T'
+    #if checkCurrentOption(currentBlock):
+    #    if checkCurrentOption(currentWeight):
+    #        return "<"+command+" block='"+currentBlock+"' weight='"+currentWeight+"' />"
+    #    else:
+    #        return "<"+command+" block='"+currentBlock+"' />"
+    #else:
+    #    return ""
+
+     
+### Biome Commands ###
+
+# Refine by rainfall and/or temperature.
+def biomeClimate(currentRainfall, currentTemperature):
+    maxRainfall = maxTemperature = minRainfall = minTemperature = -2.0
+    climateAttributes = ""
     
-    oreCount += 1
+    # Make sure the values exist, and then assign them.
+       
+    if checkOption(currentRainfall):
+        if checkCurrentOption(extractMinimum(currentRainfall)):
+            minRainfall=extractMinimum(currentRainfall)
+        if checkCurrentOption(extractMaximum(currentRainfall)):
+            maxRainfall=extractMaximum(currentRainfall)
+        
+    if checkOption(currentTemperature):
+        if checkCurrentOption(extractMinimum(currentTemperature)):
+            minTemperature=extractMinimum(currentTemperature)
+        if checkCurrentOption(extractMaximum(currentTemperature)):
+            maxTemperature=extractMaximum(currentTemperature)
+           
+    if minRainfall != -2.0:
+        climateAttributes += " minRainfall='"+extractMinimum(currentRainfall)+"'"
+        
+    if maxRainfall != -2.0:
+        climateAttributes += " maxRainfall='"+extractMaximum(currentRainfall)+"'"
+            
+    if minTemperature != -2.0:
+        climateAttributes += " minTemperature='"+extractMinimum(currentTemperature)+"'"
+        
+    if minTemperature != -2.0:
+        climateAttributes += " maxTemperature='"+extractMaximum(currentTemperature)+"'"
+        
+    return climateAttributes
 
-# Let's make sure there is any reason to continue the generation.
-if oreCount == 0:
-    print('Error: There are no ores to configure.')
-    errorCondition = 'T'
-
-# All ore data has been imported from the configuration file.  Now we 
-# need to generate the actual XML configuration.
-
-# First, we'll set up the variables that will hold the generated text
-# until everything is ready to be written to the new file.
-headerTemplate = ""
-controlsTemplate = []
-oreConfigTemplate = []
-
-
-############# SUPPORT FUNCTIONS ############################## 
-# These functions are designed to support the creation of    #
-# the configuration stanzas, removing the need for a lot of  #
-# ugly code in an already-overloaded block of text.  Mainly, #
-# these are "if/than" statements that, if true, returns one  #
-# or more command lines, and if false, simply returns a null #
-# string.                                                    #
-##############################################################
-
-### WRAPPED DESCRIPTIONS
-# There are a lot of descriptions, and they need to be wrapped to
-# a specific linesize.  This wraps them up and inserts the
-# appropriate space at the beginning.
-
-def wrapDescription(descriptionText):
-    global indentLine
-    return textwrap.fill(descriptionText, initial_indent=indentText(indentLine), subsequent_indent=indentText(indentLine))+"\n"
+# Selects biomes to populate.
+def biomeSelect(command, currentBiome, currentRainfall, currentTemperature):  
+    if checkOption(currentBiome):
+        return "<"+command+" name='"+currentBiome+"' "+biomeClimate(currentRainfall, currentTemperature)+" />"
+    else:
+        return ""
     
-### IS DISTRIBUTION ACTIVE?
-# Return nothing if distribution is active; the default distribution
-# will be the first one configured.  If the distribution is active,
-# then "default='none'" will be returned.
+# Selects biomes to ignore.
+def biomeIgnore(command, currentBiome, currentRainfall, currentTemperature):   
+    if checkOption(currentBiome):
+        return "<"+command+" name='"+currentBiome+"' "+biomeClimate(currentRainfall, currentTemperature)+" weight='-1' />"
+    else:
+        return ""
 
-def ifDistActive(oreSelect):
-    if (oreActive[oreSelect] == "no") or (oreActive[oreSelect] == "No"):
-        return " default='none'"
+   
+
+
+### Adjacency Placement
+   
+def placeNear(direction, blockId):
+    return "<Places"+direction+" "+blockId+" />"
+
+
+
+
+
+### Debugging Values
+    
+# Wireframes
+def setWireframe(active, color):
+    if active == "yes":
+        return "drawWireframe='true' wireframeColor='0x60"+hashRemove(color)+"'"
+    else:
+        return "drawWireframe='false' wireframeColor='0x60"+hashRemove(color)+"'"
+    
+# Bounding boxes
+def setBoundingBox(active, color):
+    if active == "yes":
+        return "drawBoundBox='true' boundBoxColor='0x60"+boundBoxColor(color)+"'"
+    else:
+        return "drawBoundBox='false' boundBoxColor='0x60"+hashRemove(color)+"'"
+
+
+
+
+
+### Dimension Options
+   
+def dimensionName(dimensionNumber):
+    if dimensionNumber == "0":
+        return "Overworld"
+    elif dimensionNumber == "-1":
+        return "Nether"
+    elif dimensionNumber == "1":
+        return "End"
+    else:
+        return "MISSING"
+    
+def dimensionCheck(dimList, dimName):
+    confirm = False
+    
+    for dimCount in range(0, len(dimList)):
+        if dimensionName(dimList[dimCount]) == dimName:
+            confirm = True
+    
+    return confirm
+
+
+### Preset Options
+
+def presetInherit(preset):
+    # Presets provided by Custom Ore Generation.
+    if preset.lower()=="substitution":
+        return ""
+    if preset.lower()=="vanilla":
+        return "inherits='PresetStandardGen'"
+    if preset.lower()=="layeredveins":
+        return "inherits='PresetLayeredVeins'"
+    if preset.lower()=="verticalveins":
+        return "inherits='PresetVerticalVeins'"
+    if preset.lower()=="smalldeposits":
+        return "inherits='PresetSmallDeposits'"
+    if preset.lower()=="hugeveins":
+        return "inherits='PresetHugeVeins'"
+    if preset.lower()=="hintveins":
+        return "inherits='PresetHintVeins'"
+    if preset.lower()=="sparseveins":
+        return "inherits='PresetSparseVeins'"
+    if preset.lower()=="pipeveins":
+        return "inherits='PresetPipeVeins'"
+    if preset.lower()=="cloud" or preset.lower()=="strategicclouds":
+        return "inherits='PresetStrategicCloud'"
+    if preset.lower()=="strata" or preset.lower()=="stratumclouds":
+        return "inherits='PresetStratum'"
+    # Presets added by Sprocket.
+    if preset.lower()=="geode":
+        return "inherits='PresetSmallDeposits'"
+    if preset.lower()=="compoundveins":
+        return "inherits='PresetLayeredVeins'"
+    # Preset for a non-preset distribution; useful for completely custom distributions.
+    if preset.lower()=="customcloud":
+        return ""
+    if preset.lower()=="customveins":
+        return ""
+    if preset.lower()=="null":
+        return ""
+    else:
+        print "Invalid Distribution Preset: \""+preset+"\""
+        return ""
+    
+def presetName(preset):
+    # Presets provided by Custom Ore Generation.
+    if preset.lower()=="substitution":
+        return "Substitution"
+    if preset.lower()=="vanilla":
+        return "Vanilla"
+    if preset.lower()=="layeredveins":
+        return "Layered Veins"
+    if preset.lower()=="verticalveins":
+        return "Vertical Veins"
+    if preset.lower()=="smalldeposits":
+        return "Small Deposits"
+    if preset.lower()=="hugeveins":
+        return "Huge Veins"
+    if preset.lower()=="hintveins":
+        return "Hint Veins"
+    if preset.lower()=="sparseveins":
+        return "Sparse Veins"
+    if preset.lower()=="pipeveins":
+        return "Pipe Veins"
+    if preset.lower()=="cloud" or preset.lower()=="strategicclouds":
+        return "Strategic Clouds"
+    if preset.lower()=="strata" or preset.lower()=="stratumclouds":
+        return "Strata"
+    # Presets added by Sprocket.
+    if preset.lower()=="geode":
+        return "Geode"
+    if preset.lower()=="compoundveins":
+        return "Compound Veins"
+    # Preset for a non-preset distribution; useful for completely custom distributions.
+    if preset.lower()=="customcloud":
+        return "Custom Cloud"
+    if preset.lower()=="customveins":
+        return "Custom Veins"
+    if preset.lower()=="null":
+        return "Blank"
+    else:
+        print "Invalid Distribution Preset: \""+preset+"\""
+        return ""
+    
+def presetDescription(preset):
+    # Presets provided by Custom Ore Generation.
+    if preset.lower()=="substitution":
+        return "This is a global replacement of one block with another.  Height clamping is needed to keep the substitution from being universal."
+    if preset.lower()=="vanilla":
+        return "A master preset for standardgen ore distributions."
+    if preset.lower()=="layeredveins":
+        return "Small, fairly rare motherlodes with 2-4 horizontal veins each."
+    if preset.lower()=="verticalveins":
+        return "Single vertical veins that occur with no motherlodes."
+    if preset.lower()=="smalldeposits":
+        return "Small motherlodes without any branches.  Similar to the deposits produced by StandardGen distributions."
+    if preset.lower()=="hugeveins":
+        return "Very large, extremely rare motherlodes.  Each motherlode has many long slender branches---so thin that parts of the branch won't contain any ore at all.  This, combined with the incredible length of the branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains enough ore to keep a player supplied for a very long time.  The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork could make finding them much easier and the motherlodes are big enough to supply several people without shortage.  This might be a good way to add challenge to multiplayer worlds.  Credit: based on feedback by dyrewulf from the MC forums."
+    if preset.lower()=="hintveins":
+        return "Single blocks, generously scattered through all heights (density is about that of vanilla iron ore). They will replace dirt and sandstone (but not grass or sand), so they can be found nearer to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic deposits that would otherwise be very difficult to find.  Note that the frequency is multiplied by ground level to maintain a constant density, but not by ore frequency because it is assumed that the frequency of the parent distribution will already be scaled by that."
+    if preset.lower()=="sparseveins":
+        return "Large veins filled very lightly with ore.  Because they contain less ore per volume, these veins are relatively wide and long.  Mining the ore from them is time consuming compared to solid ore veins.  They are also more difficult to follow, since it is harder to get an idea of their direction while mining."
+    if preset.lower()=="pipeveins":
+        return "Short sparsely filled veins sloping up from near the bottom of the map."
+    if preset.lower()=="cloud" or preset.lower()=="strategicclouds":
+        return "Large irregular clouds filled lightly with ore.  These are huge, spanning several adjacent chunks, and consequently rather rare.  They contain a sizeable amount of ore, but it takes some time and effort to mine due to low density. The intent for strategic clouds is that the player will need to actively search for one and then set up a semi-permanent mining base and spend some time actually mining the ore."
+    if preset.lower()=="stratum" or preset.lower()=="stratumclouds":
+        return "Wide, thin, and flat disks of ore.  Primarily, this distribution is meant to provide realistic distribution of stone in a strata formation."
+    # Presets added by Sprocket.
+    if preset.lower()=="geode":
+        return "Multi-layered deposit.  On the outside is a shell, usually made of some form of stone.  Within this shell is sprinkled ores.  Inside both is an air pocket from which the enterprising miner can look for the contained ores."
+    if preset.lower()=="compoundveins":
+        return "Similar to pipe veins, except that the motherlode and veins are a solid vein containing another, smaller solid vein."
+    # Preset for a non-preset distribution; useful for completely custom distributions.
+    if preset.lower()=="customcloud":
+        return "A completely custom cloud design.  It is recommended to change this text to appropriately describe the distribution."
+    if preset.lower()=="customveins":
+        return "A completely custom veins design.  It is recommended to change this text to appropriately describe the distribution."
+    if preset.lower()=="null":
+        return "MISSING"
+    else:
+        print "Invalid Distribution Preset: \""+preset+"\""
+        return ""
+    
+def presetLiteDescription(preset):
+    # Presets provided by Custom Ore Generation.
+    if preset.lower()=="substitution":
+        return "Universal Block Replacement."
+    if preset.lower()=="vanilla":
+        return "Simulates Vanilla Minecraft."
+    if preset.lower()=="layeredveins":
+        return "Small, fairly rare motherlodes with 2-4 horizontal veins each."
+    if preset.lower()=="verticalveins":
+        return "Single vertical veins that occur with no motherlodes."
+    if preset.lower()=="smalldeposits":
+        return "Small motherlodes without any branches."
+    if preset.lower()=="hugeveins":
+        return "Very large, extremely rare motherlodes with long, thin tendrils."
+    if preset.lower()=="hintveins":
+        return "Single blocks, scattered through all heights, replacing dirt and sandstone only."
+    if preset.lower()=="sparseveins":
+        return "Large veins filled very lightly with ore."
+    if preset.lower()=="pipeveins":
+        return "Short and sparsely filled compound veins containing one material inside another."
+    if preset.lower()=="cloud" or preset.lower()=="strategicclouds":
+        return "Large irregular clouds filled lightly with ore."
+    if preset.lower()=="stratum" or preset.lower()=="stratumclouds":
+        return "Wide, thin, and flat disks of ore."
+    # Presets added by Sprocket.
+    if preset.lower()=="geode":
+        return "Multi-layered deposit in a spherical shape."
+    if preset.lower()=="compoundveins":
+        return "Veins containing another vein."
+    # Preset for a non-preset distribution; useful for completely custom distributions.
+    if preset.lower()=="customcloud":
+        return "Custom cloud; update this description."
+    if preset.lower()=="customveins":
+        return "Custom vein; update this description."
+    if preset.lower()=="null":
+        return "MISSING"
+    else:
+        print "Invalid Distribution Preset: \""+preset+"\""
+        return ""
+
+
+
+
+### Random Number Generator options.
+
+def seedAttribute(seed):
+    return "seed='0x"+seed+"'"
+
+
+
+
+### Height Range Commands
+
+def distHeightRange(preferredOption, globalOption):
+    
+    attributes = ""
+        
+    # First, we'll see if the distribution's own clamps are set.
+    if checkOption(preferredOption):
+        if checkCurrentOption(extractMinimum(preferredOption)):
+            attributes += " minHeight='"+extractMinimum(preferredOption)+"' "        
+        if checkCurrentOption(extractMaximum(preferredOption)):
+            attributes += " maxHeight='"+extractMaximum(preferredOption)+"' "
+    elif checkOption(globalOption): # It's not here, so now we check for global clamps.
+        if checkCurrentOption(extractMinimum(globalOption)):
+            attributes += " minHeight='"+extractMinimum(globalOption)+"' "
+        if checkCurrentOption(extractMaximum(globalOption)):
+            attributes += " maxHeight='"+extractMaximum(globalOption)+"' "        
+        
+    return attributes
+
+
+
+
+# If the distribution is not active, than the default should be set to "none."
+
+def ifDistActive(option):
+    activeOption = option[0]
+    if activeOption.lower() == "no":
+        return " default='none' "
     else:
         return " "
 
-### MAKE CONFIG HEADING
-# The first comment should list all the ores that will be managed
-# by this configuration.
-
-def headerGen():
-
-    orePreName = [element.lower() for element in oreName]
-    
-    if len(orePreName) > 2:
-        oreList = ", and ".join([", ".join(orePreName[:-1]),orePreName[-1]])
-    elif len(orePreName) == 2:
-        oreList = " and ".join(orePreName)
-    else:
-        oreList = orePreName[0]
-            
-    wrapOreList = "\r\n".join(textwrap.wrap(oreList, 70))
-    fmtOreList = "\n\
-<!-- ================================================================ Custom Ore Generation \""+modName+"\" Module: This configuration covers "+wrapOreList+". ================================================================ -->"
-    finalOreList = textwrap.fill(fmtOreList, initial_indent=indentText(indentLine), subsequent_indent=indentText(indentLine)+"      ")
-
-    return finalOreList+"\n\n"
-
-### BIOME LISTING
-# This limits ore generation to specific biomes, based on the
-# Forge Biome Dictionary.
-
-def biomeSet(biome):
-    global indentLine
-    biomeCommand = indentText(indentLine)+"<BiomeType name='"+biome+"'/>\n"
-    
-    return biomeCommand
-
-def biomeAvoid(biome):
-    biomeCommand = indentText(indentLine)+"<BiomeType name='"+biome+"' weight='-1'/>\n"
-    
-    return biomeCommand
 
 
-def biomeList(currentBiomeList):
-    biomeList = makeCommaList(currentBiomeList)
-    biomeCommandList = ""
     
-    for biomeSelect in range (0, len(biomeList)):
-        biomeCommandList += biomeSet(biomeList[biomeSelect])
-        if biomeList[biomeSelect] == "ALL":
-            biomeCommandList = ""
-    
-    return biomeCommandList
+### 3-option settings (avg, range, type)
 
+# NOTE: configName should be set to the appropriate blockSettingName[]
 
-def biomeAvoidList(currentBiomeList):
-    biomeList = makeCommaList(currentBiomeList)
-    biomeCommandList = ""
-    
-    for biomeSelect in range (0, len(biomeList)):
-        biomeCommandList += biomeAvoid(biomeList[biomeSelect])
-        if biomeList[biomeSelect] == "NONE":
-            biomeCommandList = ""
-    
-    return biomeCommandList
-
-### Block Replacement 
-# This allows a block to replace multiple blocks.
-
-def replaceSet(replace):
-    global indentLine
-    replaceCommand = indentText(indentLine)+"<Replaces block='"+replace+"'/>\n"
-    
-    return replaceCommand
-
-def replaceList(currentReplaceList):
-    replaceList = makeCommaList(currentReplaceList)
-    replaceCommandList = ""
-    replaceCount = len(replaceList)
-    
-    for replaceSelect in range (0, replaceCount):
-        replaceCommandList += replaceSet(replaceList[replaceSelect])
-    
-    return replaceCommandList
-    
-def firstReplace(currentReplaceList):
-    replaceList = makeCommaList(currentReplaceList)
-    
-    return replaceList[0]
-    
-### Ore Block List
-# Creates a list of ore blocks for a distribution.
-
-def blockSet(block, weight):
-    global indentLine
-    blockCommand = indentText(indentLine)+"<OreBlock block='"+block+"' weight='"+str(weight)+"'/>\n"
-    
-    return blockCommand
-
-def blockList(currentBlockList,currentWeightList):
-    # Use commas to separate items.
-    blockList = makeCommaList(currentBlockList)
-    weightList = makeCommaList(currentWeightList)
-    blockCommandList = ""
-    blockCount = len(blockList)
-    
-    # If weight list is missing, then just use the default.
-    if weightList[0] == "-2.0":
-        weight = 1.0/blockCount
-    else:
-        weight = 0.0
-    
-    for blockSelect in range (0, len(blockList)):
-        if weightList[0] != "-2.0" and weightList[blockSelect]:
-            weight = float(weightList[blockSelect])
-        blockCommandList += blockSet(blockList[blockSelect], str(weight))
-    
-    return blockCommandList
-
-def firstBlock(currentBlockList):
-    blockList = makeCommaList(currentBlockList)
-    
-    return blockList[0]
-    
-# What can be set should also be unset (for child distributions).
-
-def blockRelease(block):
-    global indentLine
-    blockCommand = indentText(indentLine)+"<OreBlock block='"+block+"' weight='0.0'/>\n"
-    
-    return blockCommand
-
-def releaseList(currentBlockList):
-    # Use commas to separate items.
-    blockList = makeCommaList(currentBlockList)
-    blockCommandList = ""
-    blockCount = len(blockList)
-    
-    if blockList:
-        for blockSelect in range (0, len(blockList)):
-            blockCommandList += blockRelease(blockList[blockSelect])
-    
-    return blockCommandList
-    
-### Block Adjacency
-
-
-def adjacentSet(adjacentTo, adjacentDirection):
-    global indentLine
-    adjacentCommand = ""
-    
-    if adjacentDirection == "Above":
-        if adjacentTo != "MISSING":
-            adjacentCommand = indentText(indentLine)+"<PlacesAbove block='"+adjacentTo+"'/>\n"
-    if adjacentDirection == "Below":
-        if adjacentTo != "MISSING":
-            adjacentCommand = indentText(indentLine)+"<PlacesBelow block='"+adjacentTo+"'/>\n"
-    if adjacentDirection == "Beside":
-        if adjacentTo != "MISSING":
-            adjacentCommand = indentText(indentLine)+"<PlacesBeside block='"+adjacentTo+"'/>\n"
-    
-    return adjacentCommand
-    
-def adjacentAboveList(currentAdjacentList):
-    adjacentList = makeCommaList(currentAdjacentList)
-    adjacentCommandList = ""
-    
-    for adjacentSelect in range (0, len(adjacentList)):
-        adjacentCommandList += adjacentSet(adjacentList[adjacentSelect], "Above")
-    
-    return adjacentCommandList
-    
-def adjacentBelowList(currentAdjacentList):
-    adjacentList = makeCommaList(currentAdjacentList)
-    adjacentCommandList = ""
-    
-    for adjacentSelect in range (0, len(adjacentList)):
-        adjacentCommandList += adjacentSet(adjacentList[adjacentSelect], "Below")
-    
-    return adjacentCommandList
-    
-def adjacentBesideList(currentAdjacentList):
-    adjacentList = makeCommaList(currentAdjacentList)
-    adjacentCommandList = ""
-    
-    for adjacentSelect in range (0, len(adjacentList)):
-        adjacentCommandList += adjacentSet(adjacentList[adjacentSelect], "Beside")
-    
-    return adjacentCommandList
-    
-
-### SEED COMMAND
-
-def seedCommand(switchState, seedValue):
-    if switchState == 1:
-        return "seed='0x"+seedValue+"'"
-    else:
-        return ""
-        
-
-
-### ORE CLAMPING
-# Set a maximum or minimum level for ore to appear.
-
-def highClamp(clampLevel):
-    global errorCondition
-    
-    if int(clampLevel) == 0:
-        return ""
-    else:
-        return " maxHeight='"+str(clampLevel)+"'"
-        
-def lowClamp(clampLevel):
-    global errorCondition
-    
-    if int(clampLevel) == 0:
-        return ""
-    else:
-        return " minHeight='"+str(clampLevel)+"'"
-        
-def clampRange(lowClampLevel, highClampLevel):
-
-    if int(lowClampLevel) == 0 and int(highClampLevel) == 0: # No clamping is needed
-        return ""
-    elif int(lowClampLevel) > 0 or int(highClampLevel) > 0:
-        return lowClamp(lowClampLevel)+highClamp(highClampLevel)
-    else:
-        print('Error: The \'['+currentOre+']\' Min Height must be a number of 0 or greater.')
-        errorCondition = 'T'
-        return ""
-
-
-############# END SUPPORT FUNCTIONS ##############################  
-    
-    
-    
-        
-################## CHOOSE DISTRIBUTION OPTIONS #####################
-
-def distributionControlGen(currentOreDistBase):
-    global indentLine
-    
-    currentOreDist = spaceRemove(currentOreDistBase)
-    if currentOreDist == 'Substitute': # uses StandardGen
-        optionText = indentText(indentLine)+"<Choice value='substituteGen' displayValue='Substitute'>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"<Description>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"Simple substitution.\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Description>\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Choice>\n"
-        return optionText
-    elif currentOreDist == 'Vanilla': # uses StandardGen
-        optionText = indentText(indentLine)+"<Choice value='vanillaStdGen' displayValue='Vanilla'>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"<Description>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"Vanilla-style clusters.\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Description>\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Choice>\n"
-        return optionText
-        
-    elif currentOreDist == 'LayeredVeins': # uses Veins
-        optionText = indentText(indentLine)+"<Choice value='layeredVeins' displayValue='Layered Veins'>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"<Description>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"Layered Veins.\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Description>\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Choice>\n"
-        return optionText
-               
-    elif currentOreDist == 'VerticalVeins': # uses Veins
-        optionText = indentText(indentLine)+"<Choice value='verticalVeins' displayValue='Vertical Veins'>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"<Description>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"Vertical Veins.\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Description>\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Choice>\n"
-        return optionText
-               
-    elif currentOreDist == 'SmallDeposits': # uses Veins
-        optionText = indentText(indentLine)+"<Choice value='smallDeposits' displayValue='Small Deposits'>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"<Description>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"Small Deposits.\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Description>\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Choice>\n"
-        return optionText
-        
-    elif currentOreDist == 'Geodes': # uses Veins
-        optionText = indentText(indentLine)+"<Choice value='geodes' displayValue='Geodes'>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"<Description>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"Geodes.\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Description>\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Choice>\n"
-        return optionText
-        
-    elif currentOreDist == 'HugeVeins': # uses Veins
-        optionText = indentText(indentLine)+"<Choice value='hugeVeins' displayValue='Huge Veins'>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"<Description>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"Huge Veins.\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Description>\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Choice>\n"
-        return optionText
-        
-    elif currentOreDist == 'SparseVeins': # uses Veins
-        optionText = indentText(indentLine)+"<Choice value='sparseVeins' displayValue='Sparse Veins'>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"<Description>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"Sparse Veins.\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Description>\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Choice>\n"
-        return optionText
-
-    elif currentOreDist == 'PipeVeins': # uses Veins
-        optionText = indentText(indentLine)+"<Choice value='pipeVeins' displayValue='Pipe Veins'>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"<Description>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"Pipe Veins.\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Description>\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Choice>\n"
-        return optionText
-
-    elif currentOreDist == 'CompoundVeins': # uses Veins
-        optionText = indentText(indentLine)+"<Choice value='compoundVeins' displayValue='Compound Veins'>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"<Description>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"Compound Veins.\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Description>\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Choice>\n"
-        return optionText
-        
-    elif currentOreDist == 'StrategicCloud': # uses Cloud
-        optionText = indentText(indentLine)+"<Choice value='strategicCloud' displayValue='Clouds'>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"<Description>\n"
-        indentLine += 1
-        optionText += indentText(indentLine)+"Strategic Clouds.\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Description>\n"
-        indentLine -= 1
-        optionText += indentText(indentLine)+"</Choice>\n"
-        return optionText
-        
-    else:
-        print "There is no '"+currentOreDist+"' distribution!"
-        errorCondition = 'T'
-
-################### CONFIGURATION SETUP ##############################
-# Assembles the configuration section for in-game setup.
-
-def controlsGen(currentOreGen):
-    global indentLine
-    
-    oreConfigName=modPrefix+oreName[currentOreGen]
-    oreConfigName=spaceRemove(oreConfigName)
-    
-    # Opening
-    configScriptOpen = indentText(indentLine)+"<OptionChoice name='"+oreConfigName+"Dist'"+ifDistActive(currentOreGen)+" displayState='shown' displayGroup='group"+modConfigName+"'> \n"
-    indentLine += 1
-    configScriptOpen += indentText(indentLine)+"<Description> Controls how "+oreName[currentOreGen]+" is generated </Description> \n"
-    configScriptOpen += indentText(indentLine)+"<DisplayName>"+modName+" "+oreName[currentOreGen]+"</DisplayName>\n"
-    
-    # Actual Configuration List
-    # Start with an empty script
-    configScriptList = ""
-    
-    # The list of ore distributions will determine available options.
-    distributionList = oreDistributions[currentOreGen]
-    distributionList = makeCommaList(distributionList)
-    for distribution in distributionList:
-         configScriptList += distributionControlGen(distribution)
-    
-    # Closing
-    configScriptClose = indentText(indentLine)+"<Choice value='none' displayValue='None' description='"+oreName[currentOreGen]+" is not generated in the world.'/>\n"
-    indentLine -= 1
-    configScriptClose += indentText(indentLine)+"</OptionChoice>\n"
-    configScriptClose += indentText(indentLine)+"<OptionNumeric name='"+oreConfigName+"Freq' default='1'  min='0' max='5' displayState=':= if(?advOptions,\"shown\",\"hidden\")' displayGroup='group"+modConfigName+"'>\n"
-    indentLine += 1
-    configScriptClose += indentText(indentLine)+"<Description> Frequency multiplier for "+modName+" "+oreName[currentOreGen]+" distributions </Description>\n"
-    configScriptClose += indentText(indentLine)+"<DisplayName>"+modName+" "+oreName[currentOreGen]+" Freq.</DisplayName>\n"
-    indentLine -= 1
-    configScriptClose += indentText(indentLine)+"</OptionNumeric>\n"
-    configScriptClose += indentText(indentLine)+"<OptionNumeric name='"+oreConfigName+"Size' default='1'  min='0' max='5' displayState=':= if(?advOptions,\"shown\",\"hidden\")' displayGroup='group"+modConfigName+"'>\n"
-    indentLine += 1
-    configScriptClose += indentText(indentLine)+"<Description> Size multiplier for "+modName+" "+oreName[currentOreGen]+" distributions </Description>\n"
-    configScriptClose += indentText(indentLine)+"<DisplayName>"+modName+" "+oreName[currentOreGen]+" Size</DisplayName>\n"
-    indentLine -= 1
-    configScriptClose += indentText(indentLine)+"</OptionNumeric>\n"
-          
-    return configScriptOpen+configScriptList+configScriptClose
-
-
-
-################## INDIVIDUAL DISTRIBUTIONS ######################
-# This is where we set up the actual ore distributions.
-
-
-### Substitution Distribution
-
-def substituteDist(currentOreGen,level):
-
-            
-    ### Remove spaces from configured items/lists.
-
-    # Ore's name.
-    orePreConfigName=modPrefix+oreName[currentOreGen]
-    oreConfigName=spaceRemove(orePreConfigName)
-    
-    # Ore's biomes.
-    orePreBiomeName=oreBiomes[currentOreGen]
-    oreBiomeName=spaceRemove(orePreBiomeName)
-    
-    # Ore blocks to use.
-    orePreBlockName=oreBlock[currentOreGen]
-    oreBlockName=spaceRemove(orePreBlockName)
-    
-    # Ore weights to use.
-    orePreWeightName=oreWeight[currentOreGen]
-    oreWeightName=spaceRemove(orePreWeightName)
-    
-    # Pipe blocks to use.
-    pipePreBlockName=orePipe[currentOreGen]
-    pipeBlockName=spaceRemove(pipePreBlockName)
-    
-    # Ore's biomes to avoid.
-    orePreAvoidName=oreAvoid[currentOreGen]
-    oreAvoidName=spaceRemove(orePreAvoidName)
-    
-    # Ore's biomes to prefer.
-    orePrePreferName=orePreferBiomes[currentOreGen]
-    orePreferName=spaceRemove(orePrePreferName)
-    
-    # Ore's biomes to not prefer.
-    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
-    oreNoPreferName=spaceRemove(orePreNoPreferName)
-    
-    # Ore's blocks to replace.
-    orePreReplaceName=oreReplace[currentOreGen]
-    oreReplaceName=spaceRemove(orePreReplaceName)
-    
-    # The blocks below the ore.
-    orePreAdjacentAboveName=oreAdjacentAbove[currentOreGen]
-    oreAdjacentAboveName=spaceRemove(orePreAdjacentAboveName)
-    
-    # The blocks above the ore.
-    orePreAdjacentBelowName=oreAdjacentBelow[currentOreGen]
-    oreAdjacentBelowName=spaceRemove(orePreAdjacentBelowName)
-    
-    # The blocks next to the ore.
-    orePreAdjacentBesideName=oreAdjacentBeside[currentOreGen]
-    oreAdjacentBesideName=spaceRemove(orePreAdjacentBesideName)
-        
-    global indentLine
-    
-    distributionDescription = "This is a global replacement of one block with another."
-    
-    distText = indentText(indentLine)+"<Substitute name='"+oreConfigName+str(level)+"Substitute'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+">\n"
-    indentLine += 1
-    distText += indentText(indentLine)+"<Description>\n"
-    indentLine += 1
-    distText += wrapDescription(distributionDescription)
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Description>\n"
-    distText += blockList(oreBlockName, oreWeightName) 
-    distText += replaceList(oreReplaceName)
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Substitute>\n"
+def mainSetting(settingName, preferredOption, globalOption, configName, sliderOption, multiplier):
+    valAverage = valRange = ruleType = ""
      
-    return distText
+    # Next, we'll see if the distribution's own settings are set.
+    if checkOption(preferredOption):
+        if checkCurrentOption(extractAverage(preferredOption)):
+            numAverage = str(extractAverage(preferredOption))
+        if checkCurrentOption(extractRange(preferredOption)):
+            numRange = str(extractRange(preferredOption))
+        if checkCurrentOption(extractRule(preferredOption)):
+            ruleType = str(extractRule(preferredOption))
+                
+    else: # The preferred options weren't set, let's use globals.
+        if checkCurrentOption(extractAverage(globalOption)):
+            numAverage = str(extractAverage(globalOption))
+        if checkCurrentOption(extractRange(globalOption)):
+            numRange = str(extractRange(globalOption))
+        if checkCurrentOption(extractRule(globalOption)):
+            ruleType = str(extractRule(globalOption))
     
-### Standard "Vanilla" Distribution
-
-def vanillaDist(currentOreGen,level):
-
-            
-    ### Remove spaces from configured items/lists.
-
-    # Ore's name.
-    orePreConfigName=modPrefix+oreName[currentOreGen]
-    oreConfigName=spaceRemove(orePreConfigName)
-    
-    # Ore's biomes.
-    orePreBiomeName=oreBiomes[currentOreGen]
-    oreBiomeName=spaceRemove(orePreBiomeName)
-    
-    # Ore blocks to use.
-    orePreBlockName=oreBlock[currentOreGen]
-    oreBlockName=spaceRemove(orePreBlockName)
-    
-    # Ore weights to use.
-    orePreWeightName=oreWeight[currentOreGen]
-    oreWeightName=spaceRemove(orePreWeightName)
-    
-    # Pipe blocks to use.
-    pipePreBlockName=orePipe[currentOreGen]
-    pipeBlockName=spaceRemove(pipePreBlockName)
-    
-    # Ore's biomes to avoid.
-    orePreAvoidName=oreAvoid[currentOreGen]
-    oreAvoidName=spaceRemove(orePreAvoidName)
-    
-    # Ore's biomes to prefer.
-    orePrePreferName=orePreferBiomes[currentOreGen]
-    orePreferName=spaceRemove(orePrePreferName)
-    
-    # Ore's biomes to not prefer.
-    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
-    oreNoPreferName=spaceRemove(orePreNoPreferName)
-    
-    # Ore's blocks to replace.
-    orePreReplaceName=oreReplace[currentOreGen]
-    oreReplaceName=spaceRemove(orePreReplaceName)
-    
-    # The blocks below the ore.
-    orePreAdjacentAboveName=oreAdjacentAbove[currentOreGen]
-    oreAdjacentAboveName=spaceRemove(orePreAdjacentAboveName)
-    
-    # The blocks above the ore.
-    orePreAdjacentBelowName=oreAdjacentBelow[currentOreGen]
-    oreAdjacentBelowName=spaceRemove(orePreAdjacentBelowName)
-    
-    # The blocks next to the ore.
-    orePreAdjacentBesideName=oreAdjacentBeside[currentOreGen]
-    oreAdjacentBesideName=spaceRemove(orePreAdjacentBesideName)
+    sliderName = ""
+    if checkCurrentOption(sliderOption):
+        sliderName = " * "+configName+sliderOption
         
-    # Override global height and range with local values.
-    if oreStdHeight[currentOreGen] != "0":
-        localHeight = oreStdHeight[currentOreGen]
+    if multiplier == "1":
+        multiplierString = ""
     else:
-        localHeight = oreHeight[currentOreGen]
+        multiplierString = " * "+multiplier+" "
     
-    if oreStdRange[currentOreGen] != "0":
-        localRange = oreStdRange[currentOreGen]
+    return "<Setting name='"+settingName+"' avg=':= "+numAverage+sliderName+" "+multiplierString+"' range=':= "+numRange+sliderName+" "+multiplierString+"' type='"+ruleType+"' />"
+
+
+
+
+
+### 4-option settings (avg, range, type, scale)
+
+# NOTE: configName should be set to the appropriate blockSettingName[]
+
+def extSetting(settingName, preferredOption, globalOption, configName, sliderOption, multiplier):
+    numAverage = numRange = ruleType = scale = ""
+        
+    # First, we'll see if the distribution's own settings are set.
+    if checkOption(preferredOption):
+        if checkCurrentOption(extractAverage(preferredOption)):
+            numAverage = str(extractAverage(preferredOption))
+        if checkCurrentOption(extractRange(preferredOption)):
+            numRange = str(extractRange(preferredOption))
+        if checkCurrentOption(extractRule(preferredOption)):
+            ruleType = extractRule(preferredOption)
+        if checkCurrentOption(extractScale(preferredOption)):
+            scale = extractScale(preferredOption)
+                
+    else: # The preferred options weren't set, let's use globals.
+        if checkCurrentOption(extractAverage(globalOption)):
+            numAverage = str(extractAverage(globalOption))
+        if checkCurrentOption(extractRange(globalOption)):
+            numRange = str(extractRange(globalOption))
+        if checkCurrentOption(extractRule(globalOption)):
+            ruleType = extractRule(globalOption)
+        if checkCurrentOption(extractScale(globalOption)):
+            scale = extractScale(globalOption)
+    
+    sliderName = ""
+    if checkCurrentOption(sliderOption):
+        sliderName = " * "+configName+sliderOption
+        
+    if multiplier == "1":
+        multiplierString = ""
     else:
-        localRange = oreRange[currentOreGen]
+        multiplierString = " * "+multiplier+" "
+      
+    return "<Setting name='"+settingName+"' avg=':= "+numAverage+sliderName+" "+multiplierString+"' range=':= "+numRange+sliderName+" "+multiplierString+"' type='"+ruleType+"' scaleTo='"+scale+"' />"
+
+
+### Vein Type options (Ellipsoid/Bezier)
+def setVeinType(veinType):
+    veinTypeOption = ""
+    veinTypeLower = veinType.lower()
     
-    # Misc. variables.
-    preferMultiplier = ""
-    global indentLine
+    if veinTypeLower.startswith("e"):
+        veinTypeOption = "Ellipsoid"
+    elif veinTypeLower.startswith("b"):
+        veinTypeOption = "Bezier"
+    return "branchType='"+veinTypeOption+"'"
     
-    if level == "Prefers":
-        preferMultiplier = orePreMultiplier[currentOreGen]
-        inheritLine = oreConfigName+"BaseStandard"
-    else:
-        preferMultiplier = "1"
-        inheritLine = "PresetStandardGen"
-            
-    distText = indentText(indentLine)+"<StandardGen name='"+oreConfigName+str(level)+"Standard' block='"+oreBlock[currentOreGen]+"'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"'>\n"
-    indentLine += 1
-    distText += indentText(indentLine)+"<Description>\n"
-    indentLine += 1
-    
-    if level == "Base":
-        distText += wrapDescription("This mimics vanilla ore generation.")
-    elif level == "Prefers":
-        if preferMultiplier == 1:
-            distText += wrapDescription("Doubles spawns in preferred biomes.")
-        elif preferMultiplier > 1:
-            distText += wrapDescription("Spawns "+preferMultiplier+" more times in preferred biomes.")
+
+
+
+# ----------------------------------------------------------------------------- #
+
+
+
+
+
+
+# ---------------------------- Preset Classes --------------------------------- #
+  
+
+# Substitute Preset is the most basic.  It simply replaces one block with another.
+# There is little configuration beyond height clamping, and choices of biomes and
+# blocks.
+
+class substitutePreset:
+    # 'basePreset' is a class containing methods used by all classes, including
+    # block, biome, and clamping values.
+
+    # This is required for each class to have its own copy of _presetScript.
+    def __init__(self):
+        self._presetScript = ""
+ 
+    # Method for adding a list of "main block" 
+    def addMainBlocksList(self, blockIndex):
+        
+        weightDefined = False
+        blockWeight = 0.0
+        
+        # If no weights were assigned to the blocks, we want the blocks to be evenly distributed.
+        if spaceRemove(mainBlockWeights[blockIndex][0]) == "MISSING":
+            blockWeight = 1.0 / float(len(mainBlocks[blockIndex]))
         else:
-            distText += wrapDescription("Spawns an additional "+(str(preferMultiplier*100))+"% in preferred biomes.")
-    else:
-        distText += indentText(indentLine)+" "
-        
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Description>\n"
-    distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
-    distText += blockList(oreBlockName, oreWeightName) 
-    
-    if level == "Base":
-        
-        distText += indentText(indentLine)+"<Setting name='Size' avg=':= "+oreSize[currentOreGen]+" * "+oreStdSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='Height' avg=':= "+localHeight+"' range=':= "+localRange+"' type='uniform'/> \n"
-        distText += indentText(indentLine)+"<Setting name='Frequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreStdFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
-        distText += replaceList(oreReplaceName)
-    
-    if level == "Prefers":
-        distText += indentText(indentLine)+"<Setting name='Frequency' avg=':= "+preferMultiplier+" * _default_'/>\n"
-        distText += biomeList(orePreferName)
-        distText += biomeAvoidList(oreNoPreferName)
-    else:
-        if biomeAvoidList(oreAvoidName) and not biomeList(oreBiomeName):
-            distText += indentText(indentLine)+"<Biome name='.*' />\n"
+            weightDefined = True
             
-        distText += biomeList(oreBiomeName) 
-        distText += biomeAvoidList(oreAvoidName)
+        for blockSelect in range(0, len(mainBlocks[blockIndex])):
+            if weightDefined:
+                blockWeight = mainBlockWeights[blockIndex][blockSelect]
+            self._presetScript += cogFormatLine(blockCommand("OreBlock", mainBlocks[blockIndex][blockSelect], str(blockWeight)))
+    
+        return
+ 
+    
+    def addAltBlocksList(self, blockIndex):
         
-    indentLine -= 1
-    distText += indentText(indentLine)+"</StandardGen>\n"
+        weightDefined = False
+        blockWeight = 0.0
         
-    #if orePreferBiomes[currentOreGen] != "NONE":
-    #    if level == "Base" :
-            # distText += indentText(indentLine)+"\n"
-            ##  There is no preferred distribution setup for vanilla distributions.
-            # distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Vanilla) Settings -->\n"
-            # distText += vanillaDist(currentOreGen, "Prefers")    
-            # distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Vanilla) Settings -->\n"
-    
-    return distText
-    
-################# New Veins Configuration ############################
-
-def veinsDist(currentOreGen, distributionClass, level, inheritLevel):
-
-    ### Distribution Preset Selection
-    
-    if distributionClass == "Layered":
-        distributionPreset = "PresetLayeredVeins"
-        distributionDescription = "Small, fairly rare motherlodes with 2-4 horizontal veins each."
-        rngSeedSwitch=0
-    elif distributionClass == "Deposit":
-        distributionPreset = "PresetSmallDeposits"
-        rngSeedSwitch=0
-        distributionDescription = "Small motherlodes with no veins; similar to vanilla clusters."
-    elif distributionClass == "Vertical":
-        distributionPreset = "PresetVerticalVeins"
-        rngSeedSwitch=0
-        distributionDescription = "Single vertical veins that occur with no motherlodes."
-    elif distributionClass == "Huge":
-        distributionPreset = "PresetHugeVeins"
-        rngSeedSwitch=0
-        distributionDescription = "Very large, extremely rare motherlodes.  Each motherlode has many long slender branches - so thin that parts of the branch won't contain any ore at all.  This, combined with the incredible length of the branches, makes them more challenging to follow underground.  Once found, however, a motherlode contains enough ore to keep a player supplied for a very long time.  The rarity of these veins might be too frustrating in a single-player setting.  In SMP, though, teamwork could make finding them much easier and the motherlodes are big enough to supply several people without shortage.  This might be a good way to add challenge to multiplayer worlds.  Credit: based on feedback by dyrewulf from the MC forums."
-    elif distributionClass == "Sparse":
-        distributionPreset = "PresetSparseVeins"
-        rngSeedSwitch=0
-        distributionDescription = "Large veins filled very lightly with ore.  Because they contain less ore per volume, these veins are relatively wide and long.  Mining the ore from them is time consuming compared to solid ore veins.  They are also more difficult to follow, since it is harder to get an idea of their direction while mining."
-    elif distributionClass == "Pipe":
-        distributionPreset = "PresetPipeVeins"
-        rngSeedSwitch=1
-        distributionDescription = "Short sparsely filled veins sloping up from near the bottom of the map."
-    elif distributionClass == "Compound":
-        distributionPreset = "PresetLayeredVeins"
-        rngSeedSwitch=1
-        distributionDescription = "Small, fairly rare motherlodes with 2-4 horizontal veins each.  Inside each vein is a smaller vein of a different material."
-    elif distributionClass == "Geode":
-        distributionPreset = "PresetSmallDeposits"
-        rngSeedSwitch=1
-        distributionDescription = "Scattered ore surrounding a pocket of air, all of which are covered in a shell."
-        
-    else:
-        print "There is no distribution preset for "+distributionClass+"."
-        errorCondition=1
-        return ""
-            
-    ### Remove spaces from configured items/lists.
-
-    # Ore's name.
-    orePreConfigName=modPrefix+oreName[currentOreGen]
-    oreConfigName=spaceRemove(orePreConfigName)
-    
-    # Ore's biomes.
-    orePreBiomeName=oreBiomes[currentOreGen]
-    oreBiomeName=spaceRemove(orePreBiomeName)
-    
-    # Ore blocks to use.
-    orePreBlockName=oreBlock[currentOreGen]
-    oreBlockName=spaceRemove(orePreBlockName)
-    
-    # Ore weights to use.
-    orePreWeightName=oreWeight[currentOreGen]
-    oreWeightName=spaceRemove(orePreWeightName)
-    
-    # Pipe blocks to use.
-    pipePreBlockName=orePipe[currentOreGen]
-    pipeBlockName=spaceRemove(pipePreBlockName)
-    
-    # Ore's biomes to avoid.
-    orePreAvoidName=oreAvoid[currentOreGen]
-    oreAvoidName=spaceRemove(orePreAvoidName)
-    
-    # Ore's biomes to prefer.
-    orePrePreferName=orePreferBiomes[currentOreGen]
-    orePreferName=spaceRemove(orePrePreferName)
-    
-    # Ore's biomes to not prefer.
-    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
-    oreNoPreferName=spaceRemove(orePreNoPreferName)
-    
-    # Ore's blocks to replace.
-    orePreReplaceName=oreReplace[currentOreGen]
-    oreReplaceName=spaceRemove(orePreReplaceName)
-    
-    # The blocks below the ore.
-    orePreAdjacentAboveName=oreAdjacentAbove[currentOreGen]
-    oreAdjacentAboveName=spaceRemove(orePreAdjacentAboveName)
-    
-    # The blocks above the ore.
-    orePreAdjacentBelowName=oreAdjacentBelow[currentOreGen]
-    oreAdjacentBelowName=spaceRemove(orePreAdjacentBelowName)
-    
-    # The blocks next to the ore.
-    orePreAdjacentBesideName=oreAdjacentBeside[currentOreGen]
-    oreAdjacentBesideName=spaceRemove(orePreAdjacentBesideName)
-    
-    ### Override globals with locals.
-    
-    # Override global height and range with local values.
-    if oreVeinHeight[currentOreGen] != "0":
-        localHeight = oreVeinHeight[currentOreGen]
-    else:
-        localHeight = oreHeight[currentOreGen]
-    
-    if oreVeinRange[currentOreGen] != "0":
-        localRange = oreVeinRange[currentOreGen]
-    else:
-        localRange = oreRange[currentOreGen]
-        
-    ### Declarations.
-    
-    # The initial preference multiplier.
-    preferMultiplier = ""
-    
-    # The global indent level for clean XML.
-    global indentLine
-    rngSeed = oreSeed[currentOreGen]
-    oreBlockReleaseName = ""
-    
-    # Recursion variables.
-    if level == "Base":
-        preferMultiplier = "1"
-        inheritLine = distributionPreset
-        if distributionClass == "Geode" or distributionClass == "Compound":
-            blocksUsed = pipeBlockName
+        # If no weights were assigned to the blocks, we want the blocks to be evenly distributed.
+        if spaceRemove(altBlockWeights[blockIndex][0]) == "MISSING":
+            blockWeight = 1.0 / float(len(altBlocks[blockIndex]))
         else:
-            blocksUsed = oreBlockName
-    elif level == "Prefers":
-        preferMultiplier = orePreMultiplier[currentOreGen]
-        inheritLine = oreConfigName+inheritLevel+"Veins"
-        if distributionClass == "Geode" or distributionClass == "Compound":
-            if inheritLevel == "Pipe":
-                blocksUsed = oreBlockName
-            elif inheritLevel == "Bubble":
-                blocksUsed = "minecraft:air"
+            weightDefined = True
+            
+        for blockSelect in range(0, len(altBlocks[blockIndex])):
+            if weightDefined:
+                blockWeight = altBlockWeights[blockIndex][blockSelect]
+            self._presetScript += cogFormatLine(blockCommand("OreBlock", altBlocks[blockIndex][blockSelect], str(blockWeight)))
+    
+        return
+ 
+    
+    def addRepBlocksList(self, blockIndex):
+        # Replaces blocks by name.
+        weightDefined = False
+        blockWeight = 0.0
+        
+        # If no weights were assigned to the blocks, we want the blocks to be evenly distributed.
+        if not checkOption(repBlockWeights[blockIndex]):
+            blockWeight = 1.0
+        else:
+            weightDefined = True
+        
+        for blockSelect in range(0, len(repBlocks[blockIndex])):
+        
+            if weightDefined:
+                blockWeight = repBlockWeights[blockIndex][blockSelect]
+                
+            # Certain blocks should use their ore dictionary entries for replacement.
+            if repBlocks[blockIndex][blockSelect]=="minecraft:stone":
+                self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "stone", str(blockWeight)))
+            elif repBlocks[blockIndex][blockSelect]=="minecraft:sand":
+                self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "sand", str(blockWeight)))
             else:
-                blocksUsed = pipeBlockName
-        else:
-            blocksUsed = oreBlockName
-    elif level == "Pipe":
-        preferMultiplier = "1"
-        inheritLine = oreConfigName+inheritLevel+"Veins"
-        
-        if distributionClass == "Geode" or distributionClass == "Compound":
-            blocksUsed = oreBlockName
-            oreBlockReleaseName = pipeBlockName
-        else:
-            blocksUsed = pipeBlockName
-            oreBlockReleaseName = oreBlockName
-    elif level == "Bubble":
-        preferMultiplier = "1"
-        inheritLine = oreConfigName+inheritLevel+"Veins"
-        blocksUsed = "minecraft:air"
-        oreBlockReleaseName = pipeBlockName+","+oreBlockName
-    else:
-        preferMultiplier = "1"
-        inheritLine = oreConfigName+inheritLevel+"Veins"
-        if distributionClass == "Geode" or distributionClass == "Compound":
-            blocksUsed = pipeBlockName
-        else:
-            blocksUsed = oreBlockName
-        
-        
-    ########### The start of the actual text. #################
+                self._presetScript += cogFormatLine(blockCommand("Replaces", repBlocks[blockIndex][blockSelect], str(blockWeight)))
     
-    distText = indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"Veins' "+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"' "+seedCommand(rngSeedSwitch, rngSeed)+">\n"
-    indentLine += 1
-    distText += indentText(indentLine)+"<Description>\n"
-    indentLine += 1
+        return
     
-    # First, we cover the "cosmetic information" of the distribution,
-    # including wireframe, description, and so on.
+    def addBiomesList(self, biomeIndex):
+        if checkOption(biomeNames[biomeIndex]):
+            for biomeStep in range(0, len(biomeNames[biomeIndex])):
+                self._presetScript += cogFormatLine(biomeSelect("Biome", biomeNames[biomeIndex][biomeStep], biomeRainfall[biomeIndex], biomeTmperature[biomeIndex]))
+            
+        return
     
-    if level == "Base":
-        distText += wrapDescription(distributionDescription)
-    elif level == "Prefers":
-        if preferMultiplier == 1:
-            distText += wrapDescription("Adds a spawn in preferred biomes.")
-        elif preferMultiplier > 1:
-            distText += wrapDescription("Spawns "+preferMultiplier+" more times in preferred biomes.")
-        else:
-            distText += wrapDescription("Spawns an additional "+(str(preferMultiplier*100))+"% in preferred biomes.")
-    elif level == "Pipe":
-        if distributionClass == "Geode":
-            distText += wrapDescription("Fills the geode shell with ore.")
-        else:
-            distText += wrapDescription("Fills the vein with an additional material ("+orePipe[currentOreGen]+").")
-    elif level == "Bubble":
-        distributionDescription = "Places an air bubble in the middle of the geode.\n"
-        distText += wrapDescription(distributionDescription)
-    else:
-        distText += indentText(indentLine)+" "
+    def addBiomeTypesList(self, biomeIndex):
+        if checkOption(biomeTypes[biomeIndex]):
+            for biomeStep in range(0, len(biomeTypes[biomeIndex])):
+                self._presetScript += cogFormatLine(biomeSelect("BiomeType", biomeTypes[biomeIndex][biomeStep], biomeRainfall[biomeIndex], biomeTmperature[biomeIndex]))
+            
+        return
+    
+    def addAvoidBiomesList(self, biomeIndex):
+        if checkOption(biomeAvoidTypes[biomeIndex]):
+            for biomeStep in range(0, len(biomeAvoidTypes[biomeIndex])):
+                self._presetScript += cogFormatLine(biomeIgnore("Biome", biomeAvoidTypes[biomeIndex][biomeStep], biomeRainfall[biomeIndex], biomeTmperature[biomeIndex]))
+            
+        return
+    
+    def addAvoidBiomeTypesList(self, biomeIndex):
+        if checkOption(biomeAvoidNames[biomeIndex]):
+            for biomeStep in range(0, len(biomeAvoidNames[biomeIndex])):
+                self._presetScript += cogFormatLine(biomeIgnore("Biome", biomeAvoidNames[biomeIndex][biomeStep], biomeRainfall[biomeIndex], biomeTmperature[biomeIndex]))
+            
+        return
+        
+    def addPreferredBiomesList(self, biomeIndex):
+        if checkOption(biomePreferNames[biomeIndex]):
+            for biomeStep in range(0, len(biomePreferNames[biomeIndex])):
+                self._presetScript += cogFormatLine(biomeSelect("Biome", biomePreferNames[biomeIndex][biomeStep], biomeRainfall[biomeIndex], biomeTmperature[biomeIndex]))
+            
+        return
+        
+    def addPreferredBiomeTypesList(self, biomeIndex):
+        if checkOption(biomePreferTypes[biomeIndex]):
+            for biomeStep in range(0, len(biomePreferTypes[biomeIndex])):
+                self._presetScript += cogFormatLine(biomeSelect("BiomeType", biomePreferTypes[biomeIndex][biomeStep], biomeRainfall[biomeIndex], biomeTmperature[biomeIndex]))
+            
+        return
+    
+    def addCogIndent(self, indentValue):
+        cogIndent(indentValue)
+        
+        return
+    
+    def addBlankLine(self):
+        self._presetScript += "\n"
+        
+        return
+        
+    def addComment(self, comment):
+        self._presetScript += cogFormatComment(comment)
+        
+        return 
+        
+    def addBoxComment(self, comment):
+        self._presetScript += cogFormatBoxComment(comment)
+        
+        return 
+        
+    def setPresetScript(self, blockIndex, preset):
+        self._presetScript += cogFormatLine("<Substitute name='"+blockSettingName[blockIndex]+"Substitute' "+distHeightRange(subHeightRange[blockIndex], clampRange[blockIndex])+">")
+        cogIndent(1)
+        self._presetScript += cogFormatLine("<Description>")
+        cogIndent(1)
+        self._presetScript += cogWrappedLine(presetDescription(preset))
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Description>")
+        self.addMainBlocksList(blockIndex)
+        self.addRepBlocksList(blockIndex)
+        self.addBiomesList(blockIndex)
+        self.addBiomeTypesList(blockIndex)
+        self.addAvoidBiomesList(blockIndex)
+        self.addAvoidBiomeTypesList(blockIndex)
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Substitute>")
+    
+    def getPresetScript(self):
+        return self._presetScript
+        
 
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Description>\n"
-    distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
-    distText += blockList(blocksUsed, oreWeightName) 
-    if oreBlockReleaseName:
-        distText += releaseList(oreBlockReleaseName) 
-    
-    # Next, we generate the actual code for the distribution.
-    
-    if level == "Base":
-        distText += indentText(indentLine)+"<Setting name='MotherlodeHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"' /> \n"
+# This is a blank preset for those wanting a blank XML Canvas to design
+# their configurations.
+class nullPreset(substitutePreset):
 
+    def setPresetScript(self, blockIndex, preset):
+        self._presetScript += cogFormatLine("<NULL name='"+blockSettingName[blockIndex]+"NULL'>")
+        cogIndent(1)
+        self._presetScript += cogFormatLine("<Description>")
+        cogIndent(1)
+        self._presetScript += cogWrappedLine(presetDescription(preset))
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Description>")
+        self._presetScript += "\n\n"
+        self._presetScript += cogFormatLine("<!-- Enter your distribution code here -->")
+        self._presetScript += "\n\n"
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</NULL>")
+
+# The Vanilla preset is designed to mimic classic minecraft orespawn.
+# Doing this will require a few extra commands.
         
-        if distributionClass == "Geode":
-            distText += indentText(indentLine)+"<Setting name='MotherlodeSize' avg=':= 3 * "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        else:
-            distText += indentText(indentLine)+"<Setting name='MotherlodeSize' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-            distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
-            distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
+class vanillaPreset(substitutePreset):
+    def addSizeSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("Size", stdSize[blockIndex], distSize[blockIndex], blockSettingName[blockIndex], "Size", multiplier))
+    
+        return
+    
+    def addFreqSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(extSetting("Frequency", stdFreq[blockIndex], distFreq[blockIndex], blockSettingName[blockIndex], "Freq", multiplier))
+    
+        return
+    
+    def addHeightSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(extSetting("Height", stdHeight[blockIndex], distHeight[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def addParentRangeSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("ParentRangeLimit", stdParentRange[blockIndex], distParentRange[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def setPresetScript(self, blockIndex, preset):
+        self._presetScript += cogFormatLine("<StandardGen name='"+blockSettingName[blockIndex]+"Standard' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        cogIndent(1)
+        self._presetScript += cogFormatLine("<Description>")
+        cogIndent(1)
+        self._presetScript += cogWrappedLine(presetDescription(preset))
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Description>")
+        self.addMainBlocksList(blockIndex)
+        self.addRepBlocksList(blockIndex)
+        self.addBiomesList(blockIndex)
+        self.addBiomeTypesList(blockIndex)
+        self.addAvoidBiomesList(blockIndex)
+        self.addAvoidBiomeTypesList(blockIndex)
+        self.addSizeSetting(blockIndex, "1")
+        self.addFreqSetting(blockIndex, "1")
+        self.addHeightSetting(blockIndex, "1")
+        self.addParentRangeSetting(blockIndex, "1")
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</StandardGen>")
+        
+        
+
+# The Cloud preset provides a large, strategic deposit.
+        
+class cloudPreset(substitutePreset):
+    def addRadiusSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("CloudRadius", cloudRadius[blockIndex], distSize[blockIndex], blockSettingName[blockIndex], "Size", multiplier))
+    
+        return
+        
+    def addThicknessSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(extSetting("CloudThickness", cloudThickness[blockIndex], distSize[blockIndex], blockSettingName[blockIndex], "Size", multiplier))
+    
+        return
+    
+    def addFreqSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(extSetting("DistributionFrequency", cloudFreq[blockIndex], distFreq[blockIndex], blockSettingName[blockIndex], "Freq", multiplier))
+    
+        return
+    
+    def addHeightSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(extSetting("CloudHeight", cloudHeight[blockIndex], distHeight[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def addParentRangeSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("ParentRangeLimit", cloudParentRange[blockIndex], distParentRange[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+        
+    def addNoiseSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("CloudSizeNoise", cloudNoise[blockIndex], cloudNoise[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def addInclinationSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("CloudInclination", cloudInclination[blockIndex], cloudInclination[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def addDensitySetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(extSetting("OreDensity", cloudDensity[blockIndex], distDensity[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def addVolumeNoiseCutoffSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("OreVolumeNoiseCutoff", cloudNoiseCutoff[blockIndex], cloudNoiseCutoff[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def addRadiusMultSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("OreRadiusMult", cloudRadiusMult[blockIndex], cloudRadiusMult[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def setPresetScript(self, blockIndex, preset):
+        self._presetScript += cogFormatLine("<Cloud name='"+blockSettingName[blockIndex]+"Cloud' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        cogIndent(1)
+        self._presetScript += cogFormatLine("<Description>")
+        cogIndent(1)
+        self._presetScript += cogWrappedLine(presetDescription(preset))
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Description>")
+        self.addMainBlocksList(blockIndex)
+        self.addRepBlocksList(blockIndex)
+        self.addBiomesList(blockIndex)
+        self.addBiomeTypesList(blockIndex)
+        self.addAvoidBiomesList(blockIndex)
+        self.addAvoidBiomeTypesList(blockIndex)
+        self.addRadiusSetting(blockIndex, "1")
+        self.addThicknessSetting(blockIndex, "1")
+        self.addFreqSetting(blockIndex, "1")
+        self.addHeightSetting(blockIndex, "1")
+        self.addParentRangeSetting(blockIndex, "1")
+        self.addNoiseSetting(blockIndex, "1")
+        self.addInclinationSetting(blockIndex, "1")
+        self.addDensitySetting(blockIndex, "1")
+        self.addVolumeNoiseCutoffSetting(blockIndex, "1")
+        self.addRadiusMultSetting(blockIndex, "1")
+        if distHint[blockIndex][0] == "yes":
+            # The next step is to set up hint veins to make the deposits findable.
+            currentPreset = veinHintPreset()        
+            currentPreset.setPresetScript(blockIndex, "HintVeins")
+            cogIndent(1)
+            self._presetScript += currentPreset.getPresetScript()
+            cogIndent(-1)
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Cloud>")
+        # Now to repeat the step for preferred biomes, essentially tripling the distributions in those biomes.
+        
+        if checkOption(biomePreferNames[blockIndex]) or checkOption(biomePreferTypes[blockIndex]):
+            self._presetScript += "\n"
+            self._presetScript += cogFormatComment("Beginning \"Preferred\" configuration.")
+            self._presetScript += cogFormatLine("<Cloud name='"+blockSettingName[blockIndex]+"PreferredCloud' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+            cogIndent(1)
+            self._presetScript += cogFormatLine("<Description>")
+            cogIndent(1)
+            self._presetScript += cogWrappedLine("Ore generation is doubled in preferred biomes.")
+            cogIndent(-1)
+            self._presetScript += cogFormatLine("</Description>")
+            self.addMainBlocksList(blockIndex)
+            self.addRepBlocksList(blockIndex)
+            self.addPreferredBiomesList(blockIndex)
+            self.addPreferredBiomeTypesList(blockIndex)
+            self.addAvoidBiomesList(blockIndex)
+            self.addAvoidBiomeTypesList(blockIndex)
+            self.addRadiusSetting(blockIndex, "1")
+            self.addThicknessSetting(blockIndex, "1")
+            self.addFreqSetting(blockIndex, "1")
+            self.addHeightSetting(blockIndex, "1")
+            self.addParentRangeSetting(blockIndex, "1")
+            self.addNoiseSetting(blockIndex, "1")
+            self.addInclinationSetting(blockIndex, "1")
+            self.addDensitySetting(blockIndex, "1")
+            self.addVolumeNoiseCutoffSetting(blockIndex, "1")
+            self.addRadiusMultSetting(blockIndex, "1")
+            # The next step is to set up hint veins to make the deposits findable.
+            if distHint[blockIndex][0] == "yes":
+               currentPreset = veinHintPreset()        
+               currentPreset.setPresetPreferredScript(blockIndex, "HintVeins")
+               cogIndent(1)
+               self._presetScript += currentPreset.getPresetScript()
+               cogIndent(-1)
+            cogIndent(-1)
+            self._presetScript += cogFormatLine("</Cloud>")
+            self._presetScript += cogFormatComment("\"Preferred\" configuration complete.")
+            self._presetScript += "\n"
+            
+# The stratum preset produces a wide, thin, and flat, disk of ore.
+class cloudStratumPreset (cloudPreset): 
+    def setPresetScript(self, blockIndex, preset):
+        self._presetScript += cogFormatLine("<Cloud name='"+blockSettingName[blockIndex]+"Cloud' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        cogIndent(1)
+        self._presetScript += cogFormatLine("<Description>")
+        cogIndent(1)
+        self._presetScript += cogWrappedLine(presetDescription(preset))
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Description>")
+        self.addMainBlocksList(blockIndex)
+        self.addRepBlocksList(blockIndex)
+        self.addBiomesList(blockIndex)
+        self.addBiomeTypesList(blockIndex)
+        self.addAvoidBiomesList(blockIndex)
+        self.addAvoidBiomeTypesList(blockIndex)
+        self.addRadiusSetting(blockIndex, "1")
+        self.addThicknessSetting(blockIndex, "1")
+        self.addFreqSetting(blockIndex, "1")
+        self.addHeightSetting(blockIndex, "1")
+        self.addParentRangeSetting(blockIndex, "1")
+        self.addNoiseSetting(blockIndex, "1")
+        self.addInclinationSetting(blockIndex, "1")
+        self.addDensitySetting(blockIndex, "1")
+        self.addVolumeNoiseCutoffSetting(blockIndex, "1")
+        self.addRadiusMultSetting(blockIndex, "1")
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Cloud>")
+        # Now to repeat the step for preferred biomes, essentially tripling the distributions in those biomes.
+        
+        if checkOption(biomePreferNames[blockIndex]) or checkOption(biomePreferTypes[blockIndex]):
+            self._presetScript += "\n"
+            self._presetScript += cogFormatComment("Beginning \"Preferred\" configuration.")
+            self._presetScript += cogFormatLine("<Cloud name='"+blockSettingName[blockIndex]+"PreferredCloud' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+            cogIndent(1)
+            self._presetScript += cogFormatLine("<Description>")
+            cogIndent(1)
+            self._presetScript += cogWrappedLine("Ore generation is doubled in preferred biomes.")
+            cogIndent(-1)
+            self._presetScript += cogFormatLine("</Description>")
+            self.addMainBlocksList(blockIndex)
+            self.addRepBlocksList(blockIndex)
+            self.addPreferredBiomesList(blockIndex)
+            self.addPreferredBiomeTypesList(blockIndex)
+            self.addAvoidBiomesList(blockIndex)
+            self.addAvoidBiomeTypesList(blockIndex)
+            self.addRadiusSetting(blockIndex, "1")
+            self.addThicknessSetting(blockIndex, "1")
+            self.addFreqSetting(blockIndex, "1")
+            self.addHeightSetting(blockIndex, "1")
+            self.addParentRangeSetting(blockIndex, "1")
+            self.addNoiseSetting(blockIndex, "1")
+            self.addInclinationSetting(blockIndex, "1")
+            self.addDensitySetting(blockIndex, "1")
+            self.addVolumeNoiseCutoffSetting(blockIndex, "1")
+            self.addRadiusMultSetting(blockIndex, "1")
+            cogIndent(-1)
+            self._presetScript += cogFormatLine("</Cloud>")
+            self._presetScript += cogFormatComment("\"Preferred\" configuration complete.")
+            self._presetScript += "\n"
+    
+# The Vein preset provides a large motherlode with multiple branches.
+        
+class veinPreset(substitutePreset):
+    def addMotherlodeFrequencySetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(extSetting("MotherlodeFrequency", veinMotherlodeFreq[blockIndex], distFreq[blockIndex], blockSettingName[blockIndex], "Freq", multiplier))
+    
+        return
+        
+    def addMotherlodeSizeSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("MotherlodeSize", veinMotherlodeSize[blockIndex], distSize[blockIndex], blockSettingName[blockIndex], "Size", multiplier))
+    
+        return
+    
+    def addMotherlodeHeightSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(extSetting("MotherlodeHeight", veinMotherlodeHeight[blockIndex], distHeight[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def addMotherlodeRangeLimitSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("MotherlodeRangeLimit", veinMotherlodeRangeLimit[blockIndex], distParentRange[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def addBranchFrequencySetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("BranchFrequency", veinBranchFreq[blockIndex], veinBranchFreq[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+        
+    def addBranchInclinationSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("BranchInclination", veinBranchInclination[blockIndex], veinBranchInclination[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def addBranchLengthSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("BranchLength", veinBranchLength[blockIndex], veinBranchLength[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def addBranchHeightLimitSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(extSetting("BranchHeightLimit", veinBranchHeightLimit[blockIndex], veinBranchHeightLimit[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def addSegmentForkFrequencySetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("SegmentForkFrequency", veinSegmentForkFreq[blockIndex], veinSegmentForkFreq[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def addSegmentForkLengthMultSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("SegmentForkLengthMult", veinSegmentForkLength[blockIndex], veinSegmentForkLength[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def addSegmentLengthSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("SegmentLength", veinSegmentLength[blockIndex], veinSegmentLength[blockIndex], blockSettingName[blockIndex], "Size", multiplier))
+    
+        return
+    
+    def addSegmentAngleSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("SegmentAngle", veinSegmentAngle[blockIndex], veinSegmentAngle[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def addSegmentPitchSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("SegmentPitch", veinSegmentPitch[blockIndex], veinSegmentPitch[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def addSegmentRadiusSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("SegmentRadius", veinSegmentRadius[blockIndex], veinSegmentRadius[blockIndex], blockSettingName[blockIndex], "Size", multiplier))
+    
+        return
+    
+    def addOreDensitySetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("OreDensity", veinOreDensity[blockIndex], distDensity[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def addOreRadiusMultSetting(self, blockIndex, multiplier):
+        self._presetScript += cogFormatLine(mainSetting("OreRadiusMult", veinOreRadiusMult[blockIndex], veinOreRadiusMult[blockIndex], blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
+    
+    def setPresetScript(self, blockIndex, preset):
+        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"Veins' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setVeinType(veinBranchType[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        cogIndent(1)
+        self._presetScript += cogFormatLine("<Description>")
+        cogIndent(1)
+        self._presetScript += cogWrappedLine(presetDescription(preset))
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Description>")
+        self.addMainBlocksList(blockIndex)
+        self.addRepBlocksList(blockIndex)
+        self.addBiomesList(blockIndex)
+        self.addBiomeTypesList(blockIndex)
+        self.addAvoidBiomesList(blockIndex)
+        self.addAvoidBiomeTypesList(blockIndex)
+        self.addMotherlodeFrequencySetting(blockIndex, "1")
+        self.addMotherlodeSizeSetting(blockIndex, "1")
+        self.addMotherlodeHeightSetting(blockIndex, "1")
+        self.addMotherlodeRangeLimitSetting(blockIndex, "1")
+        self.addBranchFrequencySetting(blockIndex, "1")
+        self.addBranchInclinationSetting(blockIndex, "1")
+        self.addBranchLengthSetting(blockIndex, "1")
+        self.addBranchHeightLimitSetting(blockIndex, "1")
+        self.addSegmentForkFrequencySetting(blockIndex, "1")
+        self.addSegmentForkLengthMultSetting(blockIndex, "1")
+        self.addSegmentLengthSetting(blockIndex, "1")
+        self.addSegmentAngleSetting(blockIndex, "1")
+        self.addSegmentPitchSetting(blockIndex, "1")
+        self.addSegmentRadiusSetting(blockIndex, "1")
+        self.addOreDensitySetting(blockIndex, "1")
+        self.addOreRadiusMultSetting(blockIndex, "1")
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Veins>")
+        # Now to repeat the step for preferred biomes, essentially tripling the distributions in those biomes.
+        
+        if checkOption(biomePreferNames[blockIndex]) or checkOption(biomePreferTypes[blockIndex]):
+            self._presetScript += "\n"
+            self._presetScript += cogFormatComment("Beginning \"Preferred\" configuration.")
+            self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"PreferredVeins' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setVeinType(veinBranchType[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+            cogIndent(1)
+            self._presetScript += cogFormatLine("<Description>")
+            cogIndent(1)
+            self._presetScript += cogWrappedLine("Ore generation is doubled in preferred biomes.")
+            cogIndent(-1)
+            self._presetScript += cogFormatLine("</Description>")
+            self.addMainBlocksList(blockIndex)
+            self.addRepBlocksList(blockIndex)
+            self.addPreferredBiomesList(blockIndex)
+            self.addPreferredBiomeTypesList(blockIndex)
+            self.addAvoidBiomesList(blockIndex)
+            self.addAvoidBiomeTypesList(blockIndex)
+            self.addMotherlodeFrequencySetting(blockIndex, "1")
+            self.addMotherlodeSizeSetting(blockIndex, "1")
+            self.addMotherlodeHeightSetting(blockIndex, "1")
+            self.addMotherlodeRangeLimitSetting(blockIndex, "1")
+            self.addBranchFrequencySetting(blockIndex, "1")
+            self.addBranchInclinationSetting(blockIndex, "1")
+            self.addBranchLengthSetting(blockIndex, "1")
+            self.addBranchHeightLimitSetting(blockIndex, "1")
+            self.addSegmentForkFrequencySetting(blockIndex, "1")
+            self.addSegmentForkLengthMultSetting(blockIndex, "1")
+            self.addSegmentLengthSetting(blockIndex, "1")
+            self.addSegmentAngleSetting(blockIndex, "1")
+            self.addSegmentPitchSetting(blockIndex, "1")
+            self.addSegmentRadiusSetting(blockIndex, "1")
+            self.addOreDensitySetting(blockIndex, "1")
+            self.addOreRadiusMultSetting(blockIndex, "1")
+            cogIndent(-1)
+            self._presetScript += cogFormatLine("</Veins>")
+            self._presetScript += cogFormatComment("\"Preferred\" configuration complete.")
+            self._presetScript += "\n"
+
+# The Compound Vein preset inherits the veins, and adds a second distribution
+# within the first.  This obviously covers the pipe vein preset, but can be
+# applied to any configuration of main and alternate ores.
+        
+class veinCompoundPreset(veinPreset):    
+    def addInvRepBlocksList(self, blockIndex):
+        for blockSelect in range(0, len(mainBlocks[blockIndex])):
+            self._presetScript += cogFormatLine(blockCommand("Replaces", mainBlocks[blockIndex][blockSelect], "1.0"))
+    
+        return
+        
+    def addPipeVeinCoreDensity(self, blockIndex, multiplier):
+        coreDensity = []
+        
+        coreDensity.append("1.0")
+        coreDensity.append("0")
+        coreDensity.append("normal")
+     
+        self._presetScript += cogFormatLine(mainSetting("OreDensity", coreDensity, coreDensity, blockSettingName[blockIndex], "MISSING", multiplier))
+    
+        return
                 
-        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreVeinFrequency[currentOreGen]+" * "+oreConfigName+"Freq * _default_'/>\n"
 
-        # These are only added when a non-default value is specified.
+    def setPresetScript(self, blockIndex, preset):
+        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"Veins' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setVeinType(veinBranchType[blockIndex][0])+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        cogIndent(1)
+        self._presetScript += cogFormatLine("<Description>")
+        cogIndent(1)
+        self._presetScript += cogWrappedLine(presetDescription(preset))
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Description>")
+        self.addMainBlocksList(blockIndex)
+        self.addRepBlocksList(blockIndex)
+        self.addBiomesList(blockIndex)
+        self.addBiomeTypesList(blockIndex)
+        self.addAvoidBiomesList(blockIndex)
+        self.addAvoidBiomeTypesList(blockIndex)
+        self.addMotherlodeFrequencySetting(blockIndex, "1")
+        self.addMotherlodeSizeSetting(blockIndex, "1")
+        self.addMotherlodeHeightSetting(blockIndex, "1")
+        self.addMotherlodeRangeLimitSetting(blockIndex, "1")
+        self.addBranchFrequencySetting(blockIndex, "1")
+        self.addBranchInclinationSetting(blockIndex, "1")
+        self.addBranchLengthSetting(blockIndex, "1")
+        self.addBranchHeightLimitSetting(blockIndex, "1")
+        self.addSegmentForkFrequencySetting(blockIndex, "1")
+        self.addSegmentForkLengthMultSetting(blockIndex, "1")
+        self.addSegmentLengthSetting(blockIndex, "1")
+        self.addSegmentAngleSetting(blockIndex, "1")
+        self.addSegmentPitchSetting(blockIndex, "1")
+        self.addSegmentRadiusSetting(blockIndex, "1")
+        self.addOreDensitySetting(blockIndex, "1")
+        self.addOreRadiusMultSetting(blockIndex, "1")
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Veins>")
+        self._presetScript += "\n"
+        self._presetScript += cogFormatComment("Configuring contained material.")
+        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"VeinsPipe' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" inherits='"+blockSettingName[blockIndex]+"Veins' "+setVeinType(veinBranchType[blockIndex][0])+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        cogIndent(1)        
+        self.addAltBlocksList(blockIndex)
+        self.addRepBlocksList(blockIndex)
+        self.addInvRepBlocksList(blockIndex)
+        self.addMotherlodeSizeSetting(blockIndex, "0.5")
+        self.addSegmentRadiusSetting(blockIndex, "0.5")
+        if presetName(preset) == "Pipe Veins":
+            self.addPipeVeinCoreDensity(blockIndex, "1")
+        else:
+            self.addOreDensitySetting(blockIndex, "1")
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Veins>")
+        # Now to repeat the step for preferred biomes, essentially tripling the distributions in those biomes.
         
-        if oreVeinBranchFrequency[currentOreGen] != "1":
-            distText += indentText(indentLine)+"<Setting name='BranchFrequency' avg=':= "+oreVeinBranchFrequency[currentOreGen]+" * _default_'/>\n"
-        if oreVeinBranchLengthAvg[currentOreGen] != "1" or oreVeinBranchLengthRange[currentOreGen] != "1":
-            distText += indentText(indentLine)+"<Setting name='BranchLength' avg=':= "+oreVeinBranchLengthAvg[currentOreGen]+" * _default_' range=':= "+oreVeinBranchLengthRange[currentOreGen]+" * _default_'/>\n"
-        if oreVeinBranchHeight[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchHeightLimit' avg=':= "+oreVeinBranchHeight[currentOreGen]+"'/>\n"
-        if oreVeinBranchInclineAvg[currentOreGen] != "0" or oreVeinBranchInclineRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='BranchInclination' avg=':= "+oreVeinBranchInclineAvg[currentOreGen]+"' range=':= "+oreVeinBranchInclineRange[currentOreGen]+"'/>\n"
-        if oreVeinSegmentRadiusAvg[currentOreGen] != "1" or oreVeinSegmentRadiusRange[currentOreGen] != "1":
-            distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusAvg[currentOreGen]+" * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreVeinSize[currentOreGen]+" * "+oreConfigName+"Size * "+oreVeinSegmentRadiusRange[currentOreGen]+" * _default_'/>\n"
-        if oreVeinSegmentAngleAvg[currentOreGen] != "0" or oreVeinSegmentAngleRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentAngle' avg=':= "+oreVeinSegmentAngleAvg[currentOreGen]+"' range=':= "+oreVeinSegmentAngleRange[currentOreGen]+"'/>\n"
-        if oreVeinSegmentPitchAvg[currentOreGen] != "0" or oreVeinSegmentPitchRange[currentOreGen] != "0":
-            distText += indentText(indentLine)+"<Setting name='SegmentPitch' avg=':= "+oreVeinSegmentPitchAvg[currentOreGen]+"' range=':= "+oreVeinSegmentPitchRange[currentOreGen]+"'/>\n"
+        if checkOption(biomePreferNames[blockIndex]) or checkOption(biomePreferTypes[blockIndex]):
+            self._presetScript += "\n"
+            self._presetScript += cogFormatComment("Beginning \"Preferred\" configuration.")
+            self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"VeinsPrefer' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setVeinType(veinBranchType[blockIndex][0])+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+            cogIndent(1)
+            self._presetScript += cogFormatLine("<Description>")
+            cogIndent(1)
+            self._presetScript += cogWrappedLine("Ore generation is doubled in preferred biomes.")
+            cogIndent(-1)
+            self._presetScript += cogFormatLine("</Description>")
+            self.addMainBlocksList(blockIndex)
+            self.addRepBlocksList(blockIndex)
+            self.addPreferredBiomesList(blockIndex)
+            self.addPreferredBiomeTypesList(blockIndex)
+            self.addAvoidBiomesList(blockIndex)
+            self.addAvoidBiomeTypesList(blockIndex)
+            self.addMotherlodeFrequencySetting(blockIndex, "1")
+            self.addMotherlodeSizeSetting(blockIndex, "1")
+            self.addMotherlodeHeightSetting(blockIndex, "1")
+            self.addMotherlodeRangeLimitSetting(blockIndex, "1")
+            self.addBranchFrequencySetting(blockIndex, "1")
+            self.addBranchInclinationSetting(blockIndex, "1")
+            self.addBranchLengthSetting(blockIndex, "1")
+            self.addBranchHeightLimitSetting(blockIndex, "1")
+            self.addSegmentForkFrequencySetting(blockIndex, "1")
+            self.addSegmentForkLengthMultSetting(blockIndex, "1")
+            self.addSegmentLengthSetting(blockIndex, "1")
+            self.addSegmentAngleSetting(blockIndex, "1")
+            self.addSegmentPitchSetting(blockIndex, "1")
+            self.addSegmentRadiusSetting(blockIndex, "1")
+            self.addOreDensitySetting(blockIndex, "1")
+            self.addOreRadiusMultSetting(blockIndex, "1")
+            cogIndent(-1)
+            self._presetScript += cogFormatLine("</Veins>")
+            self._presetScript += "\n"
+            self._presetScript += cogFormatComment("Contained Material for Preferred Distributions.")
+            self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"VeinsPreferPipe' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" inherits='"+blockSettingName[blockIndex]+"VeinsPrefer' "+setVeinType(veinBranchType[blockIndex][0])+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+            cogIndent(1)        
+            self.addAltBlocksList(blockIndex)
+            self.addInvRepBlocksList(blockIndex)
+            self.addRepBlocksList(blockIndex)
+            self.addMotherlodeSizeSetting(blockIndex, "0.5")
+            self.addSegmentRadiusSetting(blockIndex, "0.5")
+            if presetName(preset) == "Pipe Veins":
+                self.addPipeVeinCoreDensity(blockIndex, "1")
+            else:
+                self.addOreDensitySetting(blockIndex, "1")
+            cogIndent(-1)
+            self._presetScript += cogFormatLine("</Veins>")
+            self._presetScript += cogFormatComment("\"Preferred\" configuration complete.")
+            self._presetScript += "\n"
+    
+    
+class veinGeodePreset(veinPreset):  
+
+    # The center of any geode is a bubble of air.  The center will not have any other material.
+    def addAirBlock(self, blockIndex):
+        self._presetScript += cogFormatLine(blockCommand("OreBlock", "minecraft:air", "1.0"))
+        return
+
+    # The bubble must be able to replace both shell and ore materials.
+    def addRepBubbleBlocksList(self, blockIndex):
+        for blockSelect in range(0, len(altBlocks[blockIndex])):
+            self._presetScript += cogFormatLine(blockCommand("Replaces", altBlocks[blockIndex][blockSelect], "1.0"))
         
-        # This is specifically which biomes this ore spawns in.
-        if biomeAvoidList(oreAvoidName) and not biomeList(oreBiomeName):
-            distText += indentText(indentLine)+"<Biome name='.*' />\n"
-        distText += biomeList(oreBiomeName) 
-        distText += biomeAvoidList(oreAvoidName)
+        for blockSelect in range(0, len(mainBlocks[blockIndex])):
+            self._presetScript += cogFormatLine(blockCommand("Replaces", mainBlocks[blockIndex][blockSelect], "1.0"))
+    
+        return
+ 
+    # At the same time, the ore layer should always be able to replace the outer shell's material.
+    def addRepShellBlocksList(self, blockIndex):
+        for blockSelect in range(0, len(altBlocks[blockIndex])):
+            self._presetScript += cogFormatLine(blockCommand("Replaces", altBlocks[blockIndex][blockSelect], "1.0"))
+    
+        return
+    
+    # A custom motherlode size is necessary for inner shells to avoid extraneous imports.
+    def addGeodeSubMotherlodeSizeSetting(self, ruleType):
+        self._presetScript += cogFormatLine("<Setting name='MotherlodeSize' avg=':= _default_ * 0.5' range=':= _default_ * 0.5' type='"+ruleType+"' />")
+      
+        return
+    
+    
+    def setPresetScript(self, blockIndex, preset):
+        # First, we have the outer shell layer.
+        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeShell' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setVeinType(veinBranchType[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        cogIndent(1)
+        self._presetScript += cogFormatLine("<Description>")
+        cogIndent(1)
+        self._presetScript += cogWrappedLine(presetDescription(preset))
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Description>")
+        self.addAltBlocksList(blockIndex) # Shell material
+        self.addRepBlocksList(blockIndex) # Normal replacement material
+        self.addBiomesList(blockIndex)
+        self.addBiomeTypesList(blockIndex)
+        self.addAvoidBiomesList(blockIndex)
+        self.addAvoidBiomeTypesList(blockIndex)
+        self.addMotherlodeFrequencySetting(blockIndex, "1")
+        self.addMotherlodeSizeSetting(blockIndex, "1")
+        self.addMotherlodeHeightSetting(blockIndex, "1")
+        self.addMotherlodeRangeLimitSetting(blockIndex, "1")
+        self.addOreDensitySetting(blockIndex, "1")
+        self.addOreRadiusMultSetting(blockIndex, "1")
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Veins>")
+        # Next, the inner ore layer.
+        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeOre' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" inherits='"+blockSettingName[blockIndex]+"GeodeShell' "+setVeinType(veinBranchType[blockIndex][0])+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        cogIndent(1)
+        self._presetScript += cogFormatLine("<Description>")
+        cogIndent(1)
+        self._presetScript += cogWrappedLine(presetDescription(preset))
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Description>")
+        self.addMainBlocksList(blockIndex) # Ore layer
+        self.addRepBlocksList(blockIndex) # Normal replacement material
+        self.addRepShellBlocksList(blockIndex) # Shell material
+        self.addGeodeSubMotherlodeSizeSetting("uniform")
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Veins>")
+        # Finally, the central air bubble.
+        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeBubble' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" inherits='"+blockSettingName[blockIndex]+"GeodeOre' "+setVeinType(veinBranchType[blockIndex][0])+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        cogIndent(1)
+        self._presetScript += cogFormatLine("<Description>")
+        cogIndent(1)
+        self._presetScript += cogWrappedLine(presetDescription(preset))
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Description>")
+        self.addAirBlock(blockIndex) # Air Bubble
+        self.addRepBubbleBlocksList(blockIndex) # Shell material
+        self.addRepBlocksList(blockIndex) # Normal replacement material
+        self.addGeodeSubMotherlodeSizeSetting("uniform")
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Veins>")
+        # Now to repeat the step for preferred biomes, essentially tripling the distributions in those biomes.
+        self._presetScript += "\n"
+        self._presetScript += cogFormatComment("Beginning \"Preferred\" configuration.")
+        
+        if checkOption(biomePreferNames[blockIndex]) or checkOption(biomePreferTypes[blockIndex]):
+            
+            # First, we have the outer shell layer.
+            self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeShell' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setVeinType(veinBranchType[blockIndex][0])+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+            cogIndent(1)
+            self._presetScript += cogFormatLine("<Description>")
+            cogIndent(1)
+            self._presetScript += cogWrappedLine(presetDescription(preset))
+            cogIndent(-1)
+            self._presetScript += cogFormatLine("</Description>")
+            self.addAltBlocksList(blockIndex) # Shell material
+            self.addRepBlocksList(blockIndex) # Normal replacement material
+            self.addPreferredBiomesList(blockIndex)
+            self.addPreferredBiomeTypesList(blockIndex)
+            self.addAvoidBiomesList(blockIndex)
+            self.addAvoidBiomeTypesList(blockIndex)
+            self.addMotherlodeFrequencySetting(blockIndex, "1")
+            self.addMotherlodeSizeSetting(blockIndex, "1")
+            self.addMotherlodeHeightSetting(blockIndex, "1")
+            self.addMotherlodeRangeLimitSetting(blockIndex, "1")
+            self.addOreDensitySetting(blockIndex, "1")
+            self.addOreRadiusMultSetting(blockIndex, "1")
+            cogIndent(-1)
+            self._presetScript += cogFormatLine("</Veins>")
+            # Next, the inner ore layer.
+            self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeOre' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" inherits='"+blockSettingName[blockIndex]+"GeodeShell' "+setVeinType(veinBranchType[blockIndex][0])+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+            cogIndent(1)
+            self._presetScript += cogFormatLine("<Description>")
+            cogIndent(1)
+            self._presetScript += cogWrappedLine(presetDescription(preset))
+            cogIndent(-1)
+            self._presetScript += cogFormatLine("</Description>")
+            self.addMainBlocksList(blockIndex) # Ore layer
+            self.addRepShellBlocksList(blockIndex) # Shell material
+            self.addGeodeSubMotherlodeSizeSetting("uniform")
+            cogIndent(-1)
+            self._presetScript += cogFormatLine("</Veins>")
+            # Finally, the central air bubble.
+            self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"GeodeBubble' "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" inherits='"+blockSettingName[blockIndex]+"GeodeOre' "+setVeinType(veinBranchType[blockIndex][0])+" "+seedAttribute(blockSeed[blockIndex][0])+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+            cogIndent(1)
+            self._presetScript += cogFormatLine("<Description>")
+            cogIndent(1)
+            self._presetScript += cogWrappedLine(presetDescription(preset))
+            cogIndent(-1)
+            self._presetScript += cogFormatLine("</Description>")
+            self.addAirBlock(blockIndex) # Air Bubble
+            self.addRepBubbleBlocksList(blockIndex) # Shell material
+            self.addGeodeSubMotherlodeSizeSetting("uniform")
+            cogIndent(-1)
+            self._presetScript += cogFormatLine("</Veins>")
+        
+            
+# Hint Veins have a different purpose than most.  They do not provide
+# a lot of ore in stone, but they can scatter ores in other materials
+# that are closer to the surface.
+        
+class veinHintPreset(veinPreset):   
+    def addHintRepBlocksList(self):
+        hintReplace = []
+        hintReplace.append("minecraft:dirt")
+        hintReplace.append("minecraft:sandstone")
+        hintReplace.append("minecraft:stone")
+        hintReplace.append("minecraft:gravel")
+        
+        for blockSelect in range(0, len(hintReplace)):
+            if hintReplace[blockSelect]=="minecraft:stone":
+                self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "stone", "1.0"))
+            elif hintReplace[blockSelect]=="minecraft:sand":
+                self._presetScript += cogFormatLine(blockCommand("ReplacesOre", "sand", "1.0"))
+            else:
+                self._presetScript += cogFormatLine(blockCommand("Replaces", hintReplace[blockSelect], "1.0"))
+    
+        return
+
+    def setPresetScript(self, blockIndex, preset):        
+        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"HintVeins' "+setVeinType(veinBranchType[blockIndex][0])+" "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        cogIndent(1)
+        self._presetScript += cogFormatLine("<Description>")
+        cogIndent(1)
+        self._presetScript += cogWrappedLine(presetDescription(preset))
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Description>")
+        self.addMainBlocksList(blockIndex)
+        self.addHintRepBlocksList()
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Veins>")
+    
+    def setPresetPreferredScript(self, blockIndex, preset):        
+        self._presetScript += cogFormatLine("<Veins name='"+blockSettingName[blockIndex]+"PreferredHintVeins' "+setVeinType(veinBranchType[blockIndex][0])+" "+distHeightRange(stdHeightRange[blockIndex], clampRange[blockIndex])+" "+presetInherit(preset)+" "+setWireframe(wireframeActive[blockIndex][0], wireframeColor[blockIndex][0])+" "+setBoundingBox(boundBoxActive[blockIndex][0], boundBoxColor[blockIndex][0])+">")
+        cogIndent(1)
+        self._presetScript += cogFormatLine("<Description>")
+        cogIndent(1)
+        self._presetScript += cogWrappedLine("Ore generation is doubled in preferred biomes.")
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Description>")
+        self.addMainBlocksList(blockIndex)
+        self.addHintRepBlocksList()
+        cogIndent(-1)
+        self._presetScript += cogFormatLine("</Veins>")     
+
+# ----------------------------------------------------------------------------- #
+
+
+
+
+
+
+# -------------------- Process Support Commands ------------------------------- #
+
+### Assemble a list of replacement blocks for the current world.
+def replacementSectionList(dimName):
+    replacementBlockList = []
+    
+    # Make a list of replacement blocks for the specified dimension.
+    for mainBlockSelect in range(0, len(mainBlocks)):
+        if dimensionCheck(dimensionList[mainBlockSelect], dimName) and checkOption(repBlocks[mainBlockSelect]):
+            for replacementBlockSelect in range(0, len(repBlocks[mainBlockSelect])):
+                replacementBlockList.append(spaceRemove(repBlocks[mainBlockSelect][replacementBlockSelect]))
+    
+    # Remove duplicate entries from the list.
+    replacementFinalBlockList = list(set(replacementBlockList))
+    replacementFinalBlockList.sort()
+       
+    return replacementFinalBlockList
+    
+def chosenBlockList(replacementBlock, dimName):
+    cleanupBlockList = []
+    
+    # We will start by collecting all the substitutable main blocks.
+    for mainBlockSelect in range(0, len(mainBlocks)):
+        if dimensionCheck(dimensionList[mainBlockSelect], dimName) and initSubMain[mainBlockSelect][0] == "yes" and extractFirstBlock(repBlocks[mainBlockSelect]) == replacementBlock:
+            for cleanupBlockSelect in range(0, len(mainBlocks[mainBlockSelect])):
+                cleanupBlockList.append(spaceRemove(mainBlocks[mainBlockSelect][cleanupBlockSelect]))
+    
+    # Next, we will collect the substitutable alternate blocks.
+    for altBlockSelect in range(0, len(altBlocks)):
+        if dimensionCheck(dimensionList[altBlockSelect], dimName) and initSubAlt[altBlockSelect][0] == "yes" and extractFirstBlock(repBlocks[mainBlockSelect]) == replacementBlock:
+            for cleanupBlockSelect in range(0, len(altBlocks[mainBlockSelect])):
+                cleanupBlockList.append(spaceRemove(altBlocks[altBlockSelect][cleanupBlockSelect]))
+    
+    # Remove all duplicate entries from the combined list.
+    cleanupFinalBlockList = list(set(cleanupBlockList))
+    cleanupFinalBlockList.sort()
+            
+    return cleanupFinalBlockList
+
+### Make a list of "?blockExists()" conditions, separated by an OR statement ("|")
+def blockExistList(blockIndex):
+    blockChecklist = []
+    altChecklist = []
+    blockCheckString = "("
+
+    for blockSelect in range(0, len(mainBlocks[blockIndex])):
+        blockChecklist.append("?blockExists(\""+mainBlocks[blockIndex][blockSelect]+"\")")
+            
+    for blockCheckCount in range(0, len(blockChecklist)):
+        if blockCheckCount > 0:
+            blockCheckString += "  &amp; "
+        blockCheckString += blockChecklist[blockCheckCount]
+    
+    for blockSelect in range(0, len(altBlocks[blockIndex])):
+        if altBlocks[blockIndex][blockSelect] != "minecraft:stone":
+            altChecklist.append("?blockExists(\""+altBlocks[blockIndex][blockSelect]+"\")")
+          
+    if len(altBlocks[blockIndex]) > 0 and altBlocks[blockIndex][0] != "minecraft:stone":
+        blockCheckString += ") &amp; ("
+            
+    for blockCheckCount in range(0, len(altChecklist)):
+        if blockCheckCount > 0:
+            blockCheckString += "  &amp; "            
+        blockCheckString += altChecklist[blockCheckCount]
+        
+    blockCheckString += ")"
+    
+    return(blockCheckString)
+    
+def presetSelection(blockIndex, presetSelect):
+    distOutput = ""
+    
+    distOutput += cogFormatLine("<IfCondition condition=':= "+blockExistList(blockIndex)+" '>\n")
+    distOutput += cogFormatLine("<Choice value='"+presetList[blockIndex][presetSelect]+"' displayValue='"+presetName(presetList[blockIndex][presetSelect])+"'>")
+    cogIndent(1)
+    distOutput += cogFormatLine("<Description>")
+    cogIndent(1)
+    distOutput += cogFormatLine(presetLiteDescription(presetList[blockIndex][presetSelect]))
+    cogIndent(-1)
+    distOutput += cogFormatLine("</Description>")
+    cogIndent(-1)
+    distOutput += cogFormatLine("</Choice>")
+    distOutput += cogFormatLine("</IfCondition>\n")
+    
+    
+    return distOutput
+    
+def modHandleState():
+    if modHandle.lower() == "yes":
+        return "true"
+    else:
+        return "false"
+    
+def modCleanupState():
+    if modHandle.lower() == "yes":
+        return "true"
+    else:
+        return "false"
+    
+
+# ----------------------------------------------------------------------------- #
+    
+    
+
+# ----------------------------------------------------------------------------- #
+
+def controlsSetup(blockIndex):    
+    controlsOutput = ""
+
+    if modDetect.lower() == "minecraft":
+        controlsOutput += cogFormatLine("<OptionChoice name='"+blockSettingName[blockIndex]+"Dist'"+ifDistActive(distActive[blockIndex])+" displayState=':= \"shown\"' displayGroup='group"+modConfigName+"'>")
+    else:
+        controlsOutput += cogFormatLine("<OptionChoice name='"+blockSettingName[blockIndex]+"Dist'"+ifDistActive(distActive[blockIndex])+" displayState=':= if(?enable"+modConfigName+", \"shown\", \"hidden\")' displayGroup='group"+modConfigName+"'>")
+    cogIndent(1)
+    controlsOutput += cogFormatLine("<Description> Controls how "+blockName[blockIndex]+" is generated </Description>")
+    controlsOutput += cogFormatLine("<DisplayName>"+modName+" "+blockName[blockIndex]+"</DisplayName>")
+    
+    for selectPreset in range(0, len(presetList[blockIndex])):
+        controlsOutput += presetSelection(blockIndex, selectPreset)
+    
+    controlsOutput += cogFormatLine("<Choice value='none' displayValue='None' description='"+blockName[blockIndex]+" is not generated in the world.'/>")
+    
+    cogIndent(-1)
+    controlsOutput += cogFormatLine("</OptionChoice>")
+    if modDetect.lower() == "minecraft":
+        controlsOutput += cogFormatLine("<OptionNumeric name='"+blockSettingName[blockIndex]+"Freq' default='1'  min='0' max='5' displayState=':= if(?advOptions, \"shown\", \"hidden\")' displayGroup='group"+modConfigName+"'>")
+    else:
+        controlsOutput += cogFormatLine("<OptionNumeric name='"+blockSettingName[blockIndex]+"Freq' default='1'  min='0' max='5' displayState=':= if(?enable"+modConfigName+", if(?advOptions, \"shown\", \"hidden\"), \"hidden\")' displayGroup='group"+modConfigName+"'>")
+
+    cogIndent(1)
+    controlsOutput += cogFormatLine("<Description> Frequency multiplier for "+modName+" "+blockName[blockIndex]+" distributions </Description>")
+    controlsOutput += cogFormatLine("<DisplayName>"+modName+" "+blockName[blockIndex]+" Freq.</DisplayName>")
+    cogIndent(-1)
+    controlsOutput += cogFormatLine("</OptionNumeric>")
+    if modDetect.lower() == "minecraft":
+        controlsOutput += cogFormatLine("<OptionNumeric name='"+blockSettingName[blockIndex]+"Size' default='1'  min='0' max='5' displayState=':= if(?advOptions, \"shown\", \"hidden\")' displayGroup='group"+modConfigName+"'>")
+    else:
+        controlsOutput += cogFormatLine("<OptionNumeric name='"+blockSettingName[blockIndex]+"Size' default='1'  min='0' max='5' displayState=':= if(?enable"+modConfigName+", if(?advOptions, \"shown\", \"hidden\"), \"hidden\")' displayGroup='group"+modConfigName+"'>")
+    cogIndent(1)
+    controlsOutput += cogFormatLine("<Description> Size multiplier for "+modName+" "+blockName[blockIndex]+" distributions </Description>")
+    controlsOutput += cogFormatLine("<DisplayName>"+modName+" "+blockName[blockIndex]+" Size</DisplayName>")
+    cogIndent(-1)
+    controlsOutput += cogFormatLine("</OptionNumeric>")
+
+    return controlsOutput
+
+def distributionSetup(blockIndex, dimension):
+    # Start with empty script.
+    distOutput = ""
+    
+    for presetSelect in range (0, len(presetList[blockIndex])):
+        if presetName(presetList[blockIndex][presetSelect]) == "Substitution":
+            distOutput += "\n"
+            distOutput += cogFormatComment("Starting "+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+".")
+            distOutput += cogFormatLine("<ConfigSection>")
+            cogIndent(1)
+            distOutput += cogFormatLine("<IfCondition condition=':= "+blockSettingName[blockIndex]+"Dist = \""+presetList[blockIndex][presetSelect]+"\"'>")
+            cogIndent(1)
+            currentPreset = substitutePreset()
+            currentPreset.setPresetScript(blockIndex, presetList[blockIndex][presetSelect])
+            distOutput += currentPreset.getPresetScript()
+            cogIndent(-1)
+            distOutput += cogFormatLine("</IfCondition>")
+            cogIndent(-1)
+            distOutput += cogFormatLine("</ConfigSection>")
+            distOutput += cogFormatComment(""+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+" is complete.")
+            distOutput += "\n"
+        elif presetName(presetList[blockIndex][presetSelect]) == "Vanilla":
+            distOutput += "\n"
+            distOutput += cogFormatComment("Starting "+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+".")
+            distOutput += cogFormatLine("<ConfigSection>")
+            cogIndent(1)
+            distOutput += cogFormatLine("<IfCondition condition=':= "+blockSettingName[blockIndex]+"Dist = \""+presetList[blockIndex][presetSelect]+"\"'>")
+            cogIndent(1)
+            currentPreset = vanillaPreset()
+            currentPreset.setPresetScript(blockIndex, presetList[blockIndex][presetSelect])
+            distOutput += currentPreset.getPresetScript()
+            cogIndent(-1)
+            distOutput += cogFormatLine("</IfCondition>")
+            cogIndent(-1)
+            distOutput += cogFormatLine("</ConfigSection>")
+            distOutput += cogFormatComment(""+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+" is complete.")
+            distOutput += "\n"
+        elif presetName(presetList[blockIndex][presetSelect]) == "Strategic Clouds" or presetName(presetList[blockIndex][presetSelect]) == "Custom Cloud":
+            distOutput += "\n"
+            distOutput += cogFormatComment("Starting "+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+".")
+            distOutput += cogFormatLine("<ConfigSection>")
+            cogIndent(1)
+            distOutput += cogFormatLine("<IfCondition condition=':= "+blockSettingName[blockIndex]+"Dist = \""+presetList[blockIndex][presetSelect]+"\"'>")
+            cogIndent(1)
+            currentPreset = cloudPreset()
+            currentPreset.setPresetScript(blockIndex, presetList[blockIndex][presetSelect])
+            distOutput += currentPreset.getPresetScript()
+            cogIndent(-1)
+            distOutput += cogFormatLine("</IfCondition>")
+            cogIndent(-1)
+            distOutput += cogFormatLine("</ConfigSection>")
+            distOutput += cogFormatComment(""+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+" is complete.")
+            distOutput += "\n"
+        elif presetName(presetList[blockIndex][presetSelect]) == "Strata":
+            distOutput += "\n"
+            distOutput += cogFormatComment("Starting "+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+".")
+            distOutput += cogFormatLine("<ConfigSection>")
+            cogIndent(1)
+            distOutput += cogFormatLine("<IfCondition condition=':= "+blockSettingName[blockIndex]+"Dist = \""+presetList[blockIndex][presetSelect]+"\"'>")
+            cogIndent(1)
+            currentPreset = cloudStratumPreset()
+            currentPreset.setPresetScript(blockIndex, presetList[blockIndex][presetSelect])
+            distOutput += currentPreset.getPresetScript()
+            cogIndent(-1)
+            distOutput += cogFormatLine("</IfCondition>")
+            cogIndent(-1)
+            distOutput += cogFormatLine("</ConfigSection>")
+            distOutput += cogFormatComment(""+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+" is complete.")
+            distOutput += "\n"
+        elif presetName(presetList[blockIndex][presetSelect]) == "Layered Veins" or presetName(presetList[blockIndex][presetSelect]) == "Vertical Veins" or presetName(presetList[blockIndex][presetSelect]) == "Small Deposits" or presetName(presetList[blockIndex][presetSelect]) == "Huge Veins" or presetName(presetList[blockIndex][presetSelect]) == "Sparse Veins" or presetName(presetList[blockIndex][presetSelect]) == "Custom Veins":
+            distOutput += "\n"
+            distOutput += cogFormatComment("Starting "+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+".")
+            distOutput += cogFormatLine("<ConfigSection>")
+            cogIndent(1)
+            distOutput += cogFormatLine("<IfCondition condition=':= "+blockSettingName[blockIndex]+"Dist = \""+presetList[blockIndex][presetSelect]+"\"'>")
+            cogIndent(1)
+            currentPreset = veinPreset()
+            currentPreset.setPresetScript(blockIndex, presetList[blockIndex][presetSelect])
+            distOutput += currentPreset.getPresetScript()
+            cogIndent(-1)
+            distOutput += cogFormatLine("</IfCondition>")
+            cogIndent(-1)
+            distOutput += cogFormatLine("</ConfigSection>")
+            distOutput += cogFormatComment(""+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+" is complete.")
+            distOutput += "\n"
+        elif presetName(presetList[blockIndex][presetSelect]) == "Compound Veins" or presetName(presetList[blockIndex][presetSelect]) == "Pipe Veins":
+            distOutput += "\n"
+            distOutput += cogFormatComment("Starting "+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+".")
+            distOutput += cogFormatLine("<ConfigSection>")
+            cogIndent(1)
+            distOutput += cogFormatLine("<IfCondition condition=':= "+blockSettingName[blockIndex]+"Dist = \""+presetList[blockIndex][presetSelect]+"\"'>")
+            cogIndent(1)
+            currentPreset = veinCompoundPreset()
+            currentPreset.setPresetScript(blockIndex, presetList[blockIndex][presetSelect])
+            distOutput += currentPreset.getPresetScript()
+            cogIndent(-1)
+            distOutput += cogFormatLine("</IfCondition>")
+            cogIndent(-1)
+            distOutput += cogFormatLine("</ConfigSection>")
+            distOutput += cogFormatComment(""+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+" is complete.")
+            distOutput += "\n"
+        elif presetName(presetList[blockIndex][presetSelect]) == "Geode":
+            distOutput += "\n"
+            distOutput += cogFormatComment("Starting "+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+".")
+            distOutput += cogFormatLine("<ConfigSection>")
+            cogIndent(1)
+            distOutput += cogFormatLine("<IfCondition condition=':= "+blockSettingName[blockIndex]+"Dist = \""+presetList[blockIndex][presetSelect]+"\"'>")
+            cogIndent(1)
+            currentPreset = veinGeodePreset()
+            currentPreset.setPresetScript(blockIndex, presetList[blockIndex][presetSelect])
+            distOutput += currentPreset.getPresetScript()
+            cogIndent(-1)
+            distOutput += cogFormatLine("</IfCondition>")
+            cogIndent(-1)
+            distOutput += cogFormatLine("</ConfigSection>")
+            distOutput += cogFormatComment(""+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+" is complete.")
+            distOutput += "\n"
+        elif presetName(presetList[blockIndex][presetSelect]) == "Blank":
+            distOutput += "\n"
+            distOutput += cogFormatComment("Starting "+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+".")
+            distOutput += cogFormatLine("<ConfigSection>")
+            cogIndent(1)
+            distOutput += cogFormatLine("<IfCondition condition=':= "+blockSettingName[blockIndex]+"Dist = \""+presetList[blockIndex][presetSelect]+"\"'>")
+            cogIndent(1)
+            currentPreset = nullPreset()
+            currentPreset.setPresetScript(blockIndex, presetList[blockIndex][presetSelect])
+            distOutput += currentPreset.getPresetScript()
+            cogIndent(-1)
+            distOutput += cogFormatLine("</IfCondition>")
+            cogIndent(-1)
+            distOutput += cogFormatLine("</ConfigSection>")
+            distOutput += cogFormatComment(""+presetList[blockIndex][presetSelect]+" Preset for "+blockName[blockIndex]+" is complete.")
+            distOutput += "\n"
+                    
+    return distOutput
+
+### Remove all previously-placed blocks.
+def initCleanup(dimName):
+    cleanupOutput = ""
+    
+    # First, we need a list of replacement block sections to populate.
+    uniqueSections = replacementSectionList(dimName)
+        
+    # Now, we need to create the sections, and apply the substitution of
+    # the replacement blocks to the main/alternate blocks.
+    
+    cleanupOutput += "\n" 
+    cleanupOutput += cogFormatComment("Starting Original \""+dimName+"\" Block Removal")
+    
+    for sectionSelect in range(0, len(uniqueSections)):
+        cleanupSubOutput = ""
+        cleanupSubUse = 0
+        
+        # Next, we need a list of main and alternate blocks to clean out.
+        chosenBlocks = chosenBlockList(uniqueSections[sectionSelect],dimName)
+        
+        cleanupSubOutput += "\n"
+        if modDetect.lower() != "minecraft":
+          cleanupSubOutput += cogFormatLine("<IfCondition condition=':= ?cleanUp"+modConfigName+"'>")
+          cogIndent(1)
+        cleanupSubOutput += cogFormatLine("<IfCondition condition=':= ?blockExists(\""+uniqueSections[sectionSelect]+"\")'>")
+        cogIndent(1)
+        cleanupSubOutput += cogFormatLine("<Substitute name='"+modPrefix+dimName+"BlockSubstitute"+str(sectionSelect)+"' block='"+uniqueSections[sectionSelect]+"'>")
+        cogIndent(1)
+        cleanupSubOutput += cogFormatLine("<Description>")
+        cogIndent(1)
+        cleanupSubOutput += cogFormatLine("Replace vanilla-generated ore clusters.")
+        cogIndent(-1)
+        cleanupSubOutput += cogFormatLine("</Description>")
+        cleanupSubOutput += cogFormatLine("<Comment>")
+        cogIndent(1)
+        cleanupSubOutput += cogWrappedLine("The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).")
+        cogIndent(-1)
+        cleanupSubOutput += cogFormatLine("</Comment>")
                 
-        # These commands are for the new adjacency rules.
-        distText += adjacentAboveList(oreAdjacentAboveName)
-        distText += adjacentBelowList(oreAdjacentBelowName)
-        distText += adjacentBesideList(oreAdjacentBesideName)
-        
-        # These are the blocks that the ore will replace.
-        distText += replaceList(oreReplaceName)
-        
-    # These settings are for non-base distributions, since the base is
-    # inherited.
-    
-    # "Prefers" covers additional distributions with different
-    # frequencies and/or biomes.
-    
-    elif level == "Prefers":
-        distText += indentText(indentLine)+"<Setting name='MotherlodeFrequency' avg=':= "+preferMultiplier+" * _default_'/>\n"
-        distText += biomeList(orePreferName)
-        distText += biomeAvoidList(oreNoPreferName)
-    
-    # Pipes are half the content of the main distribution; they share
-    # the exact same location, and the pipe material can be anything.
-    # Both pipe and compound veins use the pipe level.
-    
-    elif level == "Pipe":
-        distText += indentText(indentLine)+"<Setting name='MotherlodeSize' avg=':= 0.5 * _default_' range=':= 0.5 * _default_'/>\n"
-        if distributionClass == "Geode":
-            distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreVeinDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
-            distText += replaceList(pipeBlockName)
-        else:
-            distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= 0.5 * _default_' range=':= 0.5 * _default_'/>\n"
-            distText += replaceList(oreBlockName)
-            distText += replaceList(oreReplaceName)
-            distText += indentText(indentLine)+"<Replaces block='minecraft:dirt'/>\n"
-            distText += indentText(indentLine)+"<Replaces block='minecraft:stone'/>\n"
-            distText += indentText(indentLine)+"<Replaces block='minecraft:gravel'/>\n"
-            distText += indentText(indentLine)+"<Replaces block='minecraft:netherrack'/>\n"
-            distText += indentText(indentLine)+"<Replaces block='minecraft:end_stone'/>\n"
-    
-    elif level == "Bubble":
-        distText += indentText(indentLine)+"<Setting name='MotherlodeSize' avg=':= 0.5 * _default_' range=':= 0.5 * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='SegmentRadius' avg=':= 0.5 * _default_' range=':= 0.5 * _default_'/>\n"
-        distText += replaceList(oreBlockName)
-        distText += replaceList(pipeBlockName)
-    
-    # More levels can be added now, but it never hurts to have a
-    # catch-all.    
-    
-    else:
-        distText += biomeList(oreBiomeName)    
-        distText += biomeAvoidList(oreAvoidName)
-
-    # Any child distributions should be added here.
-
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Veins>\n"
-    
-    # At this point, we add additional "peer" distributions.
-    
-    # Check to see if there are preferred biomes.  If there are, spawn another distribution within this one.
-        
-    if orePreferBiomes[currentOreGen] != "NONE":
-        if level == "Base":
-            if distributionClass == "Geode":
-                distText += indentText(indentLine)+"\n"
-                distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Geodes) Settings -->\n"
-                distText += veinsDist(currentOreGen, distributionClass, "Prefers", "Base")  
-                distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Geodes) Settings -->\n"
-            else: 
-                distText += indentText(indentLine)+"\n"
-                distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" "+distributionClass+" Veins) Settings -->\n"
-                distText += veinsDist(currentOreGen, distributionClass, "Prefers", "Base")  
-                distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" "+distributionClass+" Veins) Settings -->\n"
-        elif level == "Pipe":
-            distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" "+distributionClass+" Veins) Settings -->\n"
-            distText += veinsDist(currentOreGen, distributionClass, "Prefers", "Pipe")  
-            distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" "+distributionClass+" Veins) Settings -->\n"
-    # Check to see if this is the base run.  If so, check to see if any additional distributions need to be run.
-    
-    if level == "Base":
-        if distributionClass == "Pipe": 
-            distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Begin Pipe Filling ("+oreName[currentOreGen]+" Pipe Veins) Settings -->\n"
-            distText += veinsDist(currentOreGen, distributionClass, "Pipe", "Base")  
-            distText += indentText(indentLine)+"<!-- End Pipe Filling ("+oreName[currentOreGen]+" Pipe Veins) Settings -->\n"
-        elif distributionClass == "Compound":
-            distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Begin Compund Ore ("+oreName[currentOreGen]+" Compound Veins) Settings -->\n"
-            distText += veinsDist(currentOreGen, distributionClass, "Pipe", "Base")  
-            distText += indentText(indentLine)+"<!-- End Compound Ore ("+oreName[currentOreGen]+" Compound Veins) Settings -->\n"
-        elif distributionClass == "Geode":
-            distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Begin Geode Ore ("+oreName[currentOreGen]+" Geodes) Settings -->\n"
-            distText += veinsDist(currentOreGen, distributionClass, "Pipe", "Base")  
-            distText += indentText(indentLine)+"<!-- End Geode Ore ("+oreName[currentOreGen]+" Geodes) Settings -->\n"
-    elif level == "Pipe":
-        if distributionClass == "Geode":
-            distText += indentText(indentLine)+"\n"
-            distText += indentText(indentLine)+"<!-- Begin Air Pocket ("+oreName[currentOreGen]+" "+distributionClass+" Veins) Settings -->\n"
-            distText += veinsDist(currentOreGen, distributionClass, "Bubble", "Pipe")  
-            distText += indentText(indentLine)+"<!-- End Air Pocket ("+oreName[currentOreGen]+" "+distributionClass+" Veins) Settings -->\n"
-        
+        for blockSelect in range(0, len(chosenBlocks)):
+            cleanupSubOutput += cogFormatLine(blockCommand("Replaces", chosenBlocks[blockSelect], "1.0"))
+            cleanupSubUse = 1
                 
-    return distText
-
-### Strategic Cloud Distribution
-
-def strategicCloudsDist(currentOreGen,level):
-            
-    ### Remove spaces from configured items/lists.
-
-    # Ore's name.
-    orePreConfigName=modPrefix+oreName[currentOreGen]
-    oreConfigName=spaceRemove(orePreConfigName)
-    
-    # Ore's biomes.
-    orePreBiomeName=oreBiomes[currentOreGen]
-    oreBiomeName=spaceRemove(orePreBiomeName)
-    
-    # Ore blocks to use.
-    orePreBlockName=oreBlock[currentOreGen]
-    oreBlockName=spaceRemove(orePreBlockName)
-    
-    # Ore weights to use.
-    orePreWeightName=oreWeight[currentOreGen]
-    oreWeightName=spaceRemove(orePreWeightName)
-    
-    # Pipe blocks to use.
-    pipePreBlockName=orePipe[currentOreGen]
-    pipeBlockName=spaceRemove(pipePreBlockName)
-    
-    # Ore's biomes to avoid.
-    orePreAvoidName=oreAvoid[currentOreGen]
-    oreAvoidName=spaceRemove(orePreAvoidName)
-    
-    # Ore's biomes to prefer.
-    orePrePreferName=orePreferBiomes[currentOreGen]
-    orePreferName=spaceRemove(orePrePreferName)
-    
-    # Ore's biomes to not prefer.
-    orePreNoPreferName=oreNoPreferBiomes[currentOreGen]
-    oreNoPreferName=spaceRemove(orePreNoPreferName)
-    
-    # Ore's blocks to replace.
-    orePreReplaceName=oreReplace[currentOreGen]
-    oreReplaceName=spaceRemove(orePreReplaceName)
-    
-    # The blocks below the ore.
-    orePreAdjacentAboveName=oreAdjacentAbove[currentOreGen]
-    oreAdjacentAboveName=spaceRemove(orePreAdjacentAboveName)
-    
-    # The blocks above the ore.
-    orePreAdjacentBelowName=oreAdjacentBelow[currentOreGen]
-    oreAdjacentBelowName=spaceRemove(orePreAdjacentBelowName)
-    
-    # The blocks next to the ore.
-    orePreAdjacentBesideName=oreAdjacentBeside[currentOreGen]
-    oreAdjacentBesideName=spaceRemove(orePreAdjacentBesideName)
+        cogIndent(-1)
+        cleanupSubOutput += cogFormatLine("</Substitute>")
+        cogIndent(-1)
+        cleanupSubOutput += cogFormatLine("</IfCondition>")
+        if modDetect.lower() != "minecraft":
+          cogIndent(-1)
+          cleanupSubOutput += cogFormatLine("</IfCondition>")
+        cleanupSubOutput += "\n"
+                
+        if cleanupSubUse:
+            cleanupOutput += cleanupSubOutput
         
-    # Override global height and range with local values.
-    if oreCloudHeight[currentOreGen] != "0":
-        localHeight = oreCloudHeight[currentOreGen]
-    else:
-        localHeight = oreHeight[currentOreGen]
+    cleanupOutput += cogFormatComment("Original \""+dimName+"\" Block Removal Complete")
     
-    if oreCloudRange[currentOreGen] != "0":
-        localRange = oreCloudRange[currentOreGen]
-    else:
-        localRange = oreRange[currentOreGen]
-    
-    # Misc. variables.
-    preferMultiplier = ""
-    global indentLine
-    
-    distributionDescription = "Large irregular clouds filled lightly with ore.  These are huge, spanning several adjacent chunks, and consequently rather rare.  They contain a sizeable amount of ore, but it takes some time and effort to mine due to low density.  The intent for strategic clouds is that the player will need to actively search for one and then set up a semi-permanent mining base and spend some time actually mining the ore."
-    
-    if level == "Prefers":
-        preferMultiplier = orePreMultiplier[currentOreGen]
-        inheritLine = oreConfigName+"BaseCloud"
-    else:
-        preferMultiplier = "1"
-        inheritLine = "PresetStrategicCloud"
-    
-    # Main Cloud
-    
-    distText = indentText(indentLine)+"<Cloud name='"+oreConfigName+str(level)+"Cloud'"+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"'>\n"
-    indentLine += 1
-    distText += indentText(indentLine)+"<Description>\n"
-    indentLine += 1
-    
-    if level == "Base":
-        distText += wrapDescription(distributionDescription)
-    elif level == "Prefers":
-        if preferMultiplier == 1:
-            distText += wrapDescription("Adds a spawn in preferred biomes.")
-        elif preferMultiplier > 1:
-            distText += wrapDescription("Spawns "+preferMultiplier+" more times in preferred biomes.")
-        else:
-            distText += wrapDescription("Spawns an additional "+(str(preferMultiplier*100))+"% in preferred biomes.")
-    else:
-        distText += indentText(indentLine)+" "
-
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Description>\n"
-    distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
-    distText += blockList(oreBlockName, oreWeightName) 
+    return cleanupOutput
 
 
-    if level == "Base":
-        distText += indentText(indentLine)+"<Setting name='CloudRadius' avg=':= "+oreSize[currentOreGen]+" * "+oreCloudSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreCloudSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='CloudThickness' avg=':= "+oreSize[currentOreGen]+" * "+oreCloudSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreCloudSize[currentOreGen]+" * "+oreConfigName+"Size * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='CloudHeight' avg=':= "+localHeight+"' range=':= "+localRange+"' type='"+oreDistType[currentOreGen]+"' scaleTo='"+oreScale[currentOreGen]+"'/>\n"
-        distText += indentText(indentLine)+"<Setting name='OreDensity' avg=':= "+oreDensity[currentOreGen]+" * "+oreCloudDensity[currentOreGen]+" * _default_' range=':= _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='CloudThickness' avg=':= "+oreSize[currentOreGen]+" * "+oreCloudThickness[currentOreGen]+" * "+oreCloudSize[currentOreGen]+" * "+oreConfigName+"Size * _default_' range=':= "+oreSize[currentOreGen]+" * "+oreCloudThickness[currentOreGen]+" * "+oreCloudSize[currentOreGen]+" * "+oreConfigName+"Size  * _default_'/>\n"
-        distText += indentText(indentLine)+"<Setting name='DistributionFrequency' avg=':= "+oreFrequency[currentOreGen]+" * "+oreCloudFrequency[currentOreGen]+" * "+oreConfigName+"Freq *_default_'/>\n"
-        distText += replaceList(oreReplaceName)
-    
-    if level == "Prefers":
-        distText += indentText(indentLine)+"<Setting name='DistributionFrequency' avg=':= "+preferMultiplier+" * _default_'/>\n"
-        distText += biomeList(orePreferName)
-        distText += biomeAvoidList(oreNoPreferName)
-    else:
-        if biomeAvoidList(oreAvoidName) and not biomeList(oreBiomeName):
-            distText += indentText(indentLine)+"<Biome name='.*' />\n"
-        distText += biomeList(oreBiomeName)    
-        distText += biomeAvoidList(oreAvoidName)
-
-    # "Hint" Veins
-    
-    if level == "Prefers":
-        preferMultiplier = orePreMultiplier[currentOreGen]
-        inheritLine = oreConfigName+"BaseHintVeins"
-    else:
-        preferMultiplier = "1"
-        inheritLine = "PresetHintVeins"
-    
-    distText += indentText(indentLine)+"\n"
-    distText += indentText(indentLine)+"<!-- Begin "+oreName[currentOreGen]+" Strategic Cloud Hint Veins -->\n"
-    distText += indentText(indentLine)+"<Veins name='"+oreConfigName+str(level)+"HintVeins' "+clampRange(oreClampLow[currentOreGen],oreClampHigh[currentOreGen])+" inherits='"+inheritLine+"'>\n"
-    indentLine += 1
-    distText += indentText(indentLine)+"<Description>\n"
-    indentLine += 1
-    
-    distributionDescription = "Single blocks, generously scattered through all heights (density is about that of vanilla iron ore).  They will replace dirt and sandstone (but not grass or sand), so they can be found nearer to the surface than most ores.  Intened to be used as a child distribution for large, rare strategic deposits that would otherwise be very difficult to find."
-    
-    if level == "Base":
-        distText += wrapDescription(distributionDescription)
-    elif level == "Prefers":
-        if preferMultiplier == 1:
-            distText += wrapDescription("Adds a spawn in preferred biomes.")
-        elif preferMultiplier > 1:
-            distText += wrapDescription("Spawns "+preferMultiplier+" more times in preferred biomes.")
-        else:
-            distText += wrapDescription("Spawns an additional "+(str(preferMultiplier*100))+"% in preferred biomes.")
-    else:
-        distText += indentText(indentLine)+" "
-
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Description>\n"
-    distText += indentText(indentLine)+"<DrawWireframe>:=drawWireframes</DrawWireframe>\n"
-    distText += indentText(indentLine)+"<WireframeColor>0x60"+oreWireframe[currentOreGen]+"</WireframeColor>\n"
-    distText += blockList(oreBlockName, oreWeightName) 
-    
-    distText += indentText(indentLine)+"<ReplacesOre block='dirt'/>\n"
-    distText += indentText(indentLine)+"<ReplacesOre block='stone'/>\n"
-    distText += indentText(indentLine)+"<ReplacesOre block='gravel'/>\n"
-    distText += indentText(indentLine)+"<Replaces block='minecraft:sandstone'/>\n"
-    distText += replaceList(oreReplaceName)
-    
-    if level == "Prefers":
-        distText += biomeList(orePreferName)
-        distText += biomeAvoidList(oreNoPreferName)
-    else:
-        if biomeAvoidList(oreAvoidName) and not biomeList(oreBiomeName):
-            distText += indentText(indentLine)+"<Biome name='.*' />\n"
-        distText += biomeList(oreBiomeName)    
-        distText += biomeAvoidList(oreAvoidName)
-    
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Veins>\n"
-    distText += indentText(indentLine)+"<!-- End "+oreName[currentOreGen]+" Strategic Cloud Hint Veins -->\n\n"
-    
-    indentLine -= 1
-    distText += indentText(indentLine)+"</Cloud>\n"
-        
-    if orePreferBiomes[currentOreGen] != "NONE":
-        if level == "Base" :
-            distText += indentText(indentLine)+"\n"
-            ##  There is no preferred distribution setup for vanilla distributions.
-            # distText += indentText(indentLine)+"<!-- Begin Preferred Biome Distribution ("+oreName[currentOreGen]+" Strategic Cloud) Settings -->\n"
-            # distText += strategicCloudsDist(currentOreGen, "Prefers")    
-            # distText += indentText(indentLine)+"<!-- End Preferred Biome Distribution ("+oreName[currentOreGen]+" Strategic Cloud) Settings -->\n"
-    return distText
-
-    
-
-################# DISTRIBUTION SETUP #############################
-# Sets up the actual ore distribution configuration for each type
-# of distribution.
-
-def distributionGen(currentOreGen, currentOrePreDist):
-    global indentLine
-    distributionText = ""
-    orePreConfigName=modPrefix+oreName[currentOreGen]
-    oreConfigName=spaceRemove(orePreConfigName)
-    currentOreDist=spaceRemove(currentOrePreDist)
-    
-
-    distributionText = indentText(indentLine)+"\n"
-    distributionText += indentText(indentLine)+"<!-- Begin "+currentOrePreDist+" distribution of "+oreName[currentOreGen]+" -->\n"
-        
-    if currentOreDist == 'Substitute':
-        distributionClass = "Base"
-        print "   ..."+oreName[currentOreGen]+": substituting... "
-        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"substituteGen\"'>\n"
-        distributionText += indentText(indentLine)+"\n"
-        indentLine += 1
-        distributionText += substituteDist(currentOreGen, "Base")
-        indentLine -= 1
-        distributionText += indentText(indentLine)+"\n"
-        distributionText += indentText(indentLine)+"</IfCondition>\n"
-    elif currentOreDist == 'Vanilla':
-        distributionClass = "Base"
-        print "   ..."+oreName[currentOreGen]+": simulating vanilla oregen... "
-        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"vanillaStdGen\"'>\n"
-        distributionText += indentText(indentLine)+"\n"
-        indentLine += 1
-        distributionText += vanillaDist(currentOreGen, "Base")
-        indentLine -= 1
-        distributionText += indentText(indentLine)+"\n"
-        distributionText += indentText(indentLine)+"</IfCondition>\n"
-        
-    elif currentOreDist == 'LayeredVeins':
-        print "   ..."+oreName[currentOreGen]+": forming layered veins... "
-        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"layeredVeins\"'>\n"
-        distributionText += indentText(indentLine)+"\n"
-        indentLine += 1
-        # distributionText +=  layeredVeinsDist(currentOreGen, "Base")
-        distributionText += veinsDist(currentOreGen, "Layered", "Base", "Base")
-        indentLine -= 1
-        distributionText += indentText(indentLine)+"\n"
-        distributionText += indentText(indentLine)+"</IfCondition>\n"
-        
-    elif currentOreDist == 'VerticalVeins':
-        distributionClass = "Vertical"
-        print "   ..."+oreName[currentOreGen]+": stacking vertical veins... "
-        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"verticalVeins\"'>\n"
-        distributionText += indentText(indentLine)+"\n"
-        indentLine += 1
-        #distributionText +=  verticalVeinsDist(currentOreGen, "Base")
-        distributionText += veinsDist(currentOreGen, "Vertical", "Base", "Base")
-        indentLine -= 1
-        distributionText += indentText(indentLine)+"\n"
-        distributionText += indentText(indentLine)+"</IfCondition>\n"
-
-    elif currentOreDist == 'SmallDeposits':
-        distributionClass = "Small"
-        print "   ..."+oreName[currentOreGen]+": placing small deposits... "
-        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"smallDeposits\"'>\n"
-        distributionText += indentText(indentLine)+"\n"
-        indentLine += 1
-        #distributionText +=  smallDepositsDist(currentOreGen, "Base")
-        distributionText += veinsDist(currentOreGen, "Deposit", "Base", "Base")
-        indentLine -= 1
-        distributionText += indentText(indentLine)+"\n"
-        distributionText += indentText(indentLine)+"</IfCondition>\n"
-
-    elif currentOreDist == 'Geodes':
-        distributionClass = "Base"
-        print "   ..."+oreName[currentOreGen]+": growing geodes... "
-        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"geodes\"'>\n"
-        distributionText += indentText(indentLine)+"\n"
-        indentLine += 1
-        # distributionText +=  geodesDist(currentOreGen, "Base")
-        distributionText += veinsDist(currentOreGen, "Geode", "Base", "Base")
-        indentLine -= 1
-        distributionText += indentText(indentLine)+"\n"
-        distributionText += indentText(indentLine)+"</IfCondition>\n"
-
-    elif currentOreDist == 'HugeVeins':
-        distributionClass = "Huge"
-        print "   ..."+oreName[currentOreGen]+": constructing huge veins... "
-        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"hugeVeins\"'>\n"
-        distributionText += indentText(indentLine)+"\n"
-        indentLine += 1
-        #distributionText +=   hugeVeinsDist(currentOreGen, "Base")
-        distributionText += veinsDist(currentOreGen, "Huge", "Base", "Base")
-        indentLine -= 1
-        distributionText += indentText(indentLine)+"\n"
-        distributionText += indentText(indentLine)+"</IfCondition>\n"
-
-    elif currentOreDist == 'SparseVeins':
-        distributionClass = "Sparse"
-        print "   ..."+oreName[currentOreGen]+": sprinkling sparse veins... "
-        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"sparseVeins\"'>\n"
-        distributionText += indentText(indentLine)+"\n"
-        indentLine += 1
-        #distributionText +=   sparseVeinsDist(currentOreGen, "Base")
-        distributionText += veinsDist(currentOreGen, "Sparse", "Base", "Base")
-        indentLine -= 1
-        distributionText += indentText(indentLine)+"\n"
-        distributionText += indentText(indentLine)+"</IfCondition>\n"
-
-    elif currentOreDist == 'PipeVeins':
-        distributionClass = "Pipe"
-        print "   ..."+oreName[currentOreGen]+": rolling and filling pipe veins... "
-        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"pipeVeins\"'>\n"
-        distributionText += indentText(indentLine)+"\n"
-        indentLine += 1
-        #distributionText +=  pipeVeinsDist(currentOreGen, "Base")
-        distributionText += veinsDist(currentOreGen, "Pipe", "Base", "Base")
-        indentLine -= 1
-        distributionText += indentText(indentLine)+"\n"
-        distributionText += indentText(indentLine)+"</IfCondition>\n"
-
-    elif currentOreDist == 'CompoundVeins':
-        distributionClass = "Compound"
-        print "   ..."+oreName[currentOreGen]+": assembling compound veins... "
-        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"compoundVeins\"'>\n"
-        distributionText += indentText(indentLine)+"\n"
-        indentLine += 1
-        distributionText += veinsDist(currentOreGen, "Compound", "Base", "Base")
-        indentLine -= 1
-        distributionText += indentText(indentLine)+"\n"
-        distributionText += indentText(indentLine)+"</IfCondition>\n"
-
-    elif currentOreDist == 'StrategicCloud':
-        distributionClass = "Base"
-        print "   ..."+oreName[currentOreGen]+": seeding clouds... "
-        distributionText += indentText(indentLine)+"<IfCondition condition=':= "+oreConfigName+"Dist = \"strategicCloud\"'>\n"
-        distributionText += indentText(indentLine)+"\n"
-        indentLine += 1
-        distributionText +=  strategicCloudsDist(currentOreGen, "Base")
-        indentLine -= 1
-        distributionText += indentText(indentLine)+"\n"
-        distributionText += indentText(indentLine)+"</IfCondition>\n"
-    
-    distributionText += indentText(indentLine)+"<!-- End "+currentOrePreDist+" distribution of "+oreName[currentOreGen]+" -->\n"
-    distributionText += indentText(indentLine)+"\n"
-        
-    return distributionText
-    
-
-################## DISTRIBUTION SETUP ###############################
-# Creates the entire distribution configuration section
-
-def distConfigGen(currentOreGen, world):
-    # Start with an empty script
-    configScriptList = ""
-    
-    # The list of ore distributions will determine available options.
-    distributionList = oreDistributions[currentOreGen]
-    distributionList = makeCommaList(distributionList)
-    
-    for distribution in distributionList:
-        if oreWorld[currentOreGen] == world:
-         configScriptList += distributionGen(currentOreGen, distribution)
-             
-    return configScriptList
-    
-##################### ORE WORLD CHECK ###############################
-# Only returns anything if the ore is configured for the chosen world.
-
-def worldCheck(currentOreGen, world):
-    global indentLine    
-    if oreWorld[currentOreGen] == world:
-        return 1
-
-####################### ORE REPLACEMENT CHECK #######################
-# Only returns anything if the ore is configured to replace the
-# chosen material.
-
-def replaceCheck(currentOreGen, replace):
-    
-    orePreReplaceName=oreReplace[currentOreGen]
-    oreReplaceName=spaceRemove(orePreReplaceName)
-    
-    global indentLine
-    if firstReplace(oreReplaceName) == replace:
-        return 1
-
-##################### Per-Material Ore Replacement #################
-# Lists the vanilla ores to be replaced with the identified material.
-
-def depositRemovalList(oreBlocks, replacementBlocks, currentReplacementBlock):
-
-    outReplacement = ""
-
-    for currentOre in range(0, len(oreBlocks)):
-        if replacementBlocks[currentOre] == currentReplacementBlock:
-            outReplacement += indentText(indentLine)+"<Replaces block='"+oreBlocks[currentOre]+"' />\n"
-        
-    return outReplacement
-
-
-############## Remove Existing Ores ###############################
-# Substitutes vanilla oregen with appropriate materials.
-
-def depositRemoval(world):
-    global indentLine
-    
-    oreBlocks = []                  # Ore blocks to be replaced.
-    
-    replacementBlocks = []          # Landscape blocks to replace ore.
-    
-    replacementSections = []        # List of unique landscape blocks.
-    
-    currentSectionReplacements = [] # Ore blocks to be replaced with
-                                    #   current landscape block    
-                                    
-    outConfig = ""              
-    
-    for oreSelect in range(0, len(oreConfigName)):
- 
-        # This part is quite tricky, so I'm going to heavily comment
-        # it for the sake of future editing.
-    
-        # If ore is configured to be substituted, and the world is correct...
-        
-        if oreSubstitution[oreSelect] == "Yes" and worldCheck(oreSelect, world) == 1:
-
-            # ...prepare the string for the replacement ore...
-
-            orePreReplaceName=oreReplace[oreSelect]
-            oreReplaceName=spaceRemove(orePreReplaceName)
-            
-            # ...then add the ore to be removed to the "oreBlocks" list...
- 
-            oreBlocks.append(oreBlock[oreSelect])
-            # ...and add the replacement block to the "replacementBlocks" list.
- 
-            replacementBlocks.append(firstReplace(oreReplaceName))
-        
-        # Now, repeat the process with the ore pipe value (in case the
-        # pipe material also needs to be cleaned out of the world).
-        
-        if orePipeSubstitute[oreSelect] == "Yes" and worldCheck(oreSelect, world) == 1:
-            orePreReplaceName=oreReplace[oreSelect]
-            oreReplaceName=spaceRemove(orePreReplaceName)
-            
-            # In this case, however, check to make sure the material has
-            # not already been added to the "oreBlocks" list.
-            
-            orePresence = 0     # Changes to 1 when finding a duplicate.
-            
-            for check in range(0, len(oreBlocks)):
-                if oreBlocks[check] == orePipe[oreSelect]:
-                    orePresence = 1
-            
-            # If it's not added to the list, then good, we can add it.
-            
-            if orePresence == 0:
-                oreBlocks.append(orePipe[oreSelect])
-                replacementBlocks.append(firstReplace(oreReplaceName))
-
-    # Now, we want a list of replacement blocks that have no duplicates.
-    # This list will be used to define the replacement sections.
-         
-    # For each block in the existing replacement list...
-    
-    for check in range(0,len(replacementBlocks)):
-        
-        sectionPresence = 0     # Changes to 1 when finding a duplicate.
-        
-        # ...go through the sections list...
-        
-        for review in range(0,len(replacementSections)):
-        
-            # ...to see if the current replacement block is already
-            # there...
-            
-            if replacementBlocks[check] == replacementSections[review]:
-                sectionPresence = 1
-        
-        # if it's not, then add it.
-        
-        if sectionPresence == 0:
-            replacementSections.append(replacementBlocks[check])
-    
-    # So far so good.  We now have a list of ores, a list of replacement
-    # blocks, and a list of replacement block sections.  Now to do the
-    # deed itself.
-
-    outConfig += indentText(indentLine)+"\n"
-    outConfig += indentText(indentLine)+"<!-- Starting Original "+world+" Ore Removal -->\n"
-    
-    for blockSelect in range(0, len(replacementSections)):
-        
-        outConfig += indentText(indentLine)+"<Substitute name='"+modPrefix+world+"OreSubstitute"+str(blockSelect)+"' block='"+replacementBlocks[blockSelect]+"'>\n"
-        indentLine += 1
-        outConfig += indentText(indentLine)+"<Description>\n"
-        indentLine += 1
-        outConfig += indentText(indentLine)+"Replace vanilla-generated ore clusters.\n"
-        indentLine -= 1
-        outConfig += indentText(indentLine)+"</Description>\n"
-        outConfig += indentText(indentLine)+"<Comment>\n"
-        indentLine += 1
-        outConfig += indentText(indentLine)+"The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).\n"
-        indentLine -= 1
-        outConfig += indentText(indentLine)+"</Comment>\n"
-        
-        outConfig += depositRemovalList(oreBlocks, replacementBlocks, replacementSections[blockSelect])
-    
-        indentLine -= 1
-        outConfig += indentText(indentLine)+"</Substitute>\n"
-    
-    
-    outConfig += indentText(indentLine)+"<!-- Original "+world+" Ore Removal Complete -->\n"
-            
-    
-    return outConfig
-    
-
-############################# MOD DETECTION ##########################
-# If a mod is not installed, don't run the configuration.
-
-def modDetectLevel():
-    global indentLine
-    indentLine=1
-    outConfig =  ""
-
-    if modDetect != "minecraft":
-        outConfig += indentText(indentLine)+"<!-- Mod detection -->\n"        
-        outConfig += indentText(indentLine)+"<IfModInstalled name=\""+modDetect+"\">\n"
-        outConfig += indentText(indentLine)+"\n"
-        indentLine += 1
-        
-    outConfig += indentText(indentLine)+"<!-- Starting Configuration for Custom Ore Generation. -->\n"
-    outConfig += indentText(indentLine)+"<ConfigSection>\n"
-    outConfig += indentText(indentLine)+"\n"
-    indentLine += 1
-    outConfig += configSetupSection()+"\n"
-    outConfig += worldSetupSection("Overworld", "COGActive")
-    outConfig += worldSetupSection("Nether", "HellRandomLevelSource")
-    outConfig += worldSetupSection("End", "EndRandomLevelSource")
-    indentLine -= 1
-    outConfig += indentText(indentLine)+"\n"
-    outConfig += indentText(indentLine)+"</ConfigSection>\n"
-    outConfig += indentText(indentLine)+"<!-- Configuration for Custom Ore Generation Complete! -->\n"
-    
-    if modDetect != "minecraft":
-        indentLine -= 1
-        outConfig += indentText(indentLine)+"\n"
-        outConfig += indentText(indentLine)+"</IfModInstalled> \n "
-
-    return outConfig
-    
-
-############################# SETUP SCREEN ##########################
-# Final configuration screen setup
+### Minecraft Setup Screen Configuration.
 
 def configSetupSection():
-    global indentLine
     
-    print "Setting up configuration UI... "
+    setupOutput = ""
     
-    setupConfig = indentText(indentLine)+"\n"
-    setupConfig += indentText(indentLine)+"<!-- Setup Screen Configuration -->\n"
-    setupConfig += indentText(indentLine)+"<ConfigSection>\n"
-    indentLine += 1
-    setupConfig += indentText(indentLine)+"<OptionDisplayGroup name='group"+modConfigName+"' displayName='"+modName+"' displayState='shown'> \n"
-    indentLine += 1
-    setupConfig += indentText(indentLine)+"<Description>\n"
-    indentLine += 1
-    setupConfig += indentText(indentLine)+"Distribution options for "+modName+" Ores.\n"
-    indentLine -= 1
-    setupConfig += indentText(indentLine)+"</Description>\n"
-    indentLine -= 1
-    setupConfig += indentText(indentLine)+"</OptionDisplayGroup>\n"
+    setupOutput += "\n\n\n\n" 
+    setupOutput += cogFormatComment("Setup Screen Configuration")
+    setupOutput += cogFormatLine("<ConfigSection>")
+    cogIndent(1)
+    setupOutput += cogFormatLine("<OptionDisplayGroup name='group"+modConfigName+"' displayName='"+modName+"' displayState='shown'>")
+    cogIndent(1)
+    setupOutput += cogFormatLine("<Description>")
+    cogIndent(1)
+    setupOutput += cogFormatLine("Distribution options for "+modName+" Ores.")
+    cogIndent(-1)
+    setupOutput += cogFormatLine("</Description>")
+    cogIndent(-1)
+    setupOutput += cogFormatLine("</OptionDisplayGroup>")
     
-    for oreSelect in range (0, len(oreName)):
+    if modDetect.lower() != "minecraft":
+        # New option, designed to allow the player to bypass specific mods in favor of others.  By default, always enabled.
+        setupOutput += cogFormatLine("<OptionChoice name='enable"+modConfigName+"' displayName='Handle "+modName+" Setup?' default='"+modHandleState()+"' displayState='shown_dynamic' displayGroup='group"+modConfigName+"'>")
+        cogIndent(1)    
+        setupOutput += cogFormatLine("<Description> Should Custom Ore Generation handle "+modName+" ore generation? </Description>")
+        setupOutput += cogFormatLine("<Choice value=':= ?true' displayValue='Yes' description='Use Custom Ore Generation to handle "+modName+" ores.'/>")
+        setupOutput += cogFormatLine("<Choice value=':= ?false' displayValue='No' description='"+modName+" ores will be handled by the mod itself.'/>")
+        cogIndent(-1)
+        setupOutput += cogFormatLine("</OptionChoice>")
         
-        setupConfig += indentText(indentLine)+"\n"
-        setupConfig += indentText(indentLine)+"<!-- "+oreName[oreSelect]+" Configuration UI Starting -->\n"
-        setupConfig += indentText(indentLine)+"<ConfigSection>\n"
-        indentLine += 1
-        setupConfig += controlsGen(oreSelect)
-        indentLine -= 1
-        setupConfig += indentText(indentLine)+"</ConfigSection> \n"
-        setupConfig += indentText(indentLine)+"<!-- "+oreName[oreSelect]+" Configuration UI Complete -->\n"
-        setupConfig += indentText(indentLine)+"\n"
+        setupOutput += cogFormatLine("<OptionChoice name='cleanUp"+modConfigName+"' displayName='Use "+modName+" Cleanup?' default='"+modCleanupState()+"' displayState='shown_dynamic' displayGroup='group"+modConfigName+"'>")
+        cogIndent(1)    
+        setupOutput += cogFormatLine("<Description> Should Custom Ore Generation use the Substitution Pass to remove all instances of "+modName+" ore from the world?  If the mod's oregen can be turned off in its configuration, then it's recommended to do so, as the substitution pass can slow the game significantly.  If this option is disabled without disabling the mod's own ore generation, you'll end up with two oregens working at once, flooding the world with ore.  Enabled by default to ensure the ores are completely removed. </Description>")
+        setupOutput += cogFormatLine("<Choice value=':= ?true' displayValue='Yes' description='Use the substitution pass to clean up "+modName+" ores.'/>")
+        setupOutput += cogFormatLine("<Choice value=':= ?false' displayValue='No' description='"+modName+" ores do not need to be cleaned up by a substitution pass.'/>")
+        cogIndent(-1)
+        setupOutput += cogFormatLine("</OptionChoice>")
     
-    indentLine -= 1
-    setupConfig += indentText(indentLine)+"</ConfigSection>\n"
-    setupConfig += indentText(indentLine)+"<!-- Setup Screen Complete -->\n\n"
+    for blockSelect in range(0, len(blockName)):
+        setupOutput += "\n"
+        setupOutput += cogFormatComment(blockName[blockSelect]+" Configuration UI Starting")
+        setupOutput += cogFormatLine("<ConfigSection>")
+        cogIndent(1)
+        setupOutput += controlsSetup(blockSelect)
+        cogIndent(-1)
+        setupOutput += cogFormatLine("</ConfigSection>")
+        setupOutput += cogFormatComment(blockName[blockSelect]+" Configuration UI Complete")
+        setupOutput += "\n"
     
-    return setupConfig
-    
-    
-################### WORLD CONFIGURATION #############################
-# Final world setup (clean vanilla oregen, replace it with COG
-# oregen).  Options include the name of the dimension ("Nether"), and its
-# dimension generator ID ("HellRandomLevelSource")
+    cogIndent(-1)
+    setupOutput += cogFormatLine("</ConfigSection>")
+    setupOutput += cogFormatComment("Setup Screen Complete")
 
-def worldSetupSection(currentWorldName, currentWorldDimension):
-    global indentLine
-    oreCount = 0
+    return setupOutput
+
+### Dimension configuration
+
+def dimensionSetup(dimName, dimGenerator):
+    blockCount=0 # We start with the first block.
+    worldOutput = ""
     
-    print "...adding "+currentWorldName+" ores... "
+    worldOutput += "\n\n\n\n" 
+    worldOutput += cogFormatComment(dimName+" Setup Beginning")
+    worldOutput += "\n"
     
-    setupConfig = indentText(indentLine)+"<!-- Setup "+currentWorldName+" -->\n"
-    
-    if currentWorldDimension == "COGActive":
-        setupConfig += indentText(indentLine)+"<IfCondition condition=':= ?COGActive'>\n"
+    if dimName == "Overworld":
+        worldOutput += cogFormatLine("<IfCondition condition=':= ?COGActive'>")
     else:
-        setupConfig += indentText(indentLine)+"<IfCondition condition=':= dimension.generator = \""+currentWorldDimension+"\"'>\n"
-        
-    indentLine += 1
-    setupConfig += depositRemoval(currentWorldName)
-    setupConfig += indentText(indentLine)+"\n"
-    setupConfig += indentText(indentLine)+"<!-- Adding ores --> \n"
-               
-    for oreSelect in range(0,len(oreName)):
-        if oreWorld[oreSelect] == currentWorldName:
-            oreCount += 1
-            setupConfig += indentText(indentLine)+"\n"
-            setupConfig += indentText(indentLine)+"<!-- Begin "+oreName[oreSelect]+" Generation --> \n"
-        
-        setupConfig+=distConfigGen(oreSelect, currentWorldName)
-        
-        if oreWorld[oreSelect] == currentWorldName:
-            setupConfig += indentText(indentLine)+"<!-- End "+oreName[oreSelect]+" Generation --> \n\n"
-        
+        worldOutput += cogFormatLine("<IfCondition condition=':= dimension.generator = \""+dimGenerator+"\"'>")
     
-    setupConfig += indentText(indentLine)+"<!-- Done adding ores -->\n"
-    indentLine -= 1
-    setupConfig += indentText(indentLine)+"\n"
-    setupConfig += indentText(indentLine)+"</IfCondition>\n"
-    setupConfig += indentText(indentLine)+"<!-- "+currentWorldName+" Setup Complete -->\n\n"
+    cogIndent(1)
+    worldOutput += initCleanup(dimName)
+    worldOutput += "\n"
+    worldOutput += cogFormatComment("Adding blocks")
     
-    if oreCount == 0:
+    for blockSelect in range(0,len(blockName)):
+        if dimensionCheck(dimensionList[blockSelect], dimName):
+            blockCount += 1
+            worldOutput += "\n"
+            worldOutput += cogFormatComment("Begin "+blockName[blockSelect]+" Generation")
+            worldOutput += distributionSetup(blockSelect, dimName) # Pass the list index, not block name.
+            worldOutput += cogFormatComment("End "+blockName[blockSelect]+" Generation")
+            worldOutput += "\n"
+     
+    worldOutput += cogFormatComment("Finished adding blocks")
+    cogIndent(-1)
+    worldOutput += "\n"
+    worldOutput += cogFormatLine("</IfCondition>")
+    worldOutput += cogFormatComment(dimName+" Setup Complete")
+    
+    if blockCount == 0:
         return ""
     else:
-        return setupConfig
+        return worldOutput
+            
+### Whole configuration setting
+# This is where the main structure is established, and the various sections are
+# launched for generation.
 
-############# ASSEMBLE CONFIGURATION ################################
-# This is where the configuration gets prepared for writing.
+def mainConfigStructure():
+    configOutput = "" # create the output configuration
+    
+    # First, we want the opening comments to describe the mod and its ores.
+    blockNameList = grammaticalList([element.lower() for element in blockName])
 
-def assembleConfig():
+    configOutput += cogFormatBoxComment("Custom Ore Generation \""+modName+"\" Module: This configuration covers "+blockNameList+".")
+    configOutput += "\n\n"
+    if modDescription:
+        configOutput += cogFormatComment(modDescription)
     
-    configOutput = headerGen()
-    configOutput += modDetectLevel()
+    configOutput += "\n\n\n\n" 
+        
+    if modDetect !="minecraft": # Don't use a detect line for vanilla minecraft!
+        configOutput += cogFormatComment("Is the \""+modName+"\" mod on the system?  Let's find out!")
+        configOutput += cogFormatLine("<IfModInstalled name=\""+modDetect+"\">")
+        configOutput += "\n"
+        cogIndent(1)
+      
+    configOutput += cogFormatComment("Starting Configuration for Custom Ore Generation.")
+    configOutput += cogFormatLine("<ConfigSection>")
+    configOutput += "\n"    
+    cogIndent(1)
     
-    configOutput += "\n\n\n<!-- This file was made using the Sprocket Configuration Generator. -->"
+    # At this point, we pass the configuration onto sub-functions.
+    # First, the Setup Screen Configuration...
+    configOutput += configSetupSection()
+    configOutput += "\n"    
+    
+    if modDetect.lower() != "minecraft":
+        # Now, let's make sure we want to do this... a new option was added in the menu to bypass COG for specific mods.
+        configOutput += cogFormatLine("<IfCondition condition=':= ?enable"+modConfigName+"'>")
+        cogIndent(1)
+    
+    # Next, let's get the worlds prepared.  For now, we're limited to the
+    # Overworld, Nether, and End, but as new generators can be detected, we can
+    # Expand Sprocket's ability to create configurations for additional dimensions.
+    configOutput += dimensionSetup("Overworld", "COGActive")+"\n"
+    configOutput += dimensionSetup("Nether", "HellRandomLevelSource")+"\n"
+    configOutput += dimensionSetup("End", "EndRandomLevelSource")+"\n"
+        
+    if modDetect.lower() != "minecraft":     
+        cogIndent(-1)
+        configOutput += cogFormatLine("</IfCondition>")
+        
+    cogIndent(-1)
+    configOutput += "\n"
+    configOutput += cogFormatLine("</ConfigSection>")
+    configOutput += cogFormatComment("Configuration for Custom Ore Generation Complete!")
+            
+    if modDetect != "minecraft": # Don't use a detect line for vanilla minecraft!
+        cogIndent(-1)
+        configOutput += "\n"
+        configOutput += cogFormatLine("</IfModInstalled>")
+        configOutput += cogFormatComment("The \""+modName+"\" mod is now configured.")
+        configOutput += "\n"
+    
+    configOutput += "\n\n\n\n"
+    configOutput += cogFormatBoxComment("This file was made using the Sprocket Advanced Configuration Generator.  If you wish to make your own configurations for a mod not currently supported by Custom Ore Generation, and you don't want the hassle of writing XML, you can find the generator script at its GitHub page: http://https://github.com/reteo/Sprocket")
     
     return configOutput
 
-################ ERROR CHECK ########################################
-# If an error was found, we do NOT want to overwrite the config file.
+#print mainConfigStructure()
 
-if errorCondition:
-    sys.exit(os.path.basename(sys.argv[0])+": "+sys.argv[1]+": nothing written due to errors")
-
-################# WRITE CONFIG ######################################
-# This is actually where the rubber meets the road; the configuration
-# is written to an XML file.
+### Write XML File
+# At this point, we can confirm that the configuration is completely assembled
+# and there has been no logic errors in the script.  Time to create/open the
+# file and write the new configuration to it.
 
 xmlConfigFile = open('./'+modConfigName+'.xml', 'w+')
-xmlConfigFile.write(assembleConfig())
+xmlConfigFile.write(mainConfigStructure())
 
-print "Configuration complete for "+modName+"!"
+print "Configuration complete for "+modName+"!\n"
