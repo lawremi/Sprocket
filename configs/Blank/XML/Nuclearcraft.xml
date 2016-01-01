@@ -1,0 +1,2869 @@
+<!-- =================================================================
+     Custom Ore Generation "Nuclearcraft" Module: This configuration
+     covers uranium, mountain uranium, copper, mountain copper, tin,
+     mountain tin, lead, mountain lead, silver, mountain silver,
+     plutonium, lithium, mountain lithium, boron, mountain boron,
+     thorium, and mountain thorium.
+     ================================================================= -->
+
+
+<!-- Configuration by Reteo. -->
+
+
+
+
+<!-- Is the "Nuclearcraft" mod on the system?  Let's find out! -->
+<IfModInstalled name="NuclearCraft">
+
+  <!-- Starting Configuration for Custom Ore Generation. -->
+  <ConfigSection>
+
+
+
+
+
+    <!-- Setup Screen Configuration -->
+    <ConfigSection>
+      <OptionDisplayGroup name='groupNuclearcraft' displayName='Nuclearcraft' displayState='shown'>
+        <Description>
+          Distribution options for Nuclearcraft Ores.
+        </Description>
+      </OptionDisplayGroup>
+      <OptionChoice name='enableNuclearcraft' displayName='Handle Nuclearcraft Setup?' default='true' displayState='shown_dynamic' displayGroup='groupNuclearcraft'>
+        <Description> Should Custom Ore Generation handle Nuclearcraft ore generation? </Description>
+        <Choice value=':= ?true' displayValue='Yes' description='Use Custom Ore Generation to handle Nuclearcraft ores.'/>
+        <Choice value=':= ?false' displayValue='No' description='Nuclearcraft ores will be handled by the mod itself.'/>
+      </OptionChoice>
+      <OptionChoice name='cleanUpNuclearcraft' displayName='Use Nuclearcraft Cleanup?' default='true' displayState='shown_dynamic' displayGroup='groupNuclearcraft'>
+        <Description> Should Custom Ore Generation use the Substitution Pass to remove all instances of Nuclearcraft ore from the world?  If the mod's oregen can be turned off in its configuration, then it's recommended to do so, as the substitution pass can slow the game significantly.  If this option is disabled without disabling the mod's own ore generation, you'll end up with two oregens working at once, flooding the world with ore.  Enabled by default to ensure the ores are completely removed. </Description>
+        <Choice value=':= ?true' displayValue='Yes' description='Use the substitution pass to clean up Nuclearcraft ores.'/>
+        <Choice value=':= ?false' displayValue='No' description='Nuclearcraft ores do not need to be cleaned up by a substitution pass.'/>
+      </OptionChoice>
+
+      <!-- Uranium Configuration UI Starting -->
+      <ConfigSection>
+        <OptionChoice name='nclcUraniumDist'  displayState=':= if(?enableNuclearcraft, "shown", "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Controls how Uranium is generated </Description>
+          <DisplayName>Nuclearcraft Uranium</DisplayName>
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:4")) '>
+
+          <Choice value='SparseVeins' displayValue='Sparse Veins'>
+            <Description>
+              Large veins filled very lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:4")) '>
+
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:4")) '>
+
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <Choice value='none' displayValue='None' description='Uranium is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='nclcUraniumFreq' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Frequency multiplier for Nuclearcraft Uranium distributions </Description>
+          <DisplayName>Nuclearcraft Uranium Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='nclcUraniumSize' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Size multiplier for Nuclearcraft Uranium distributions </Description>
+          <DisplayName>Nuclearcraft Uranium Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Uranium Configuration UI Complete -->
+
+
+      <!-- Mountain Uranium Configuration UI Starting -->
+      <ConfigSection>
+        <OptionChoice name='nclcMountainUraniumDist'  displayState=':= if(?enableNuclearcraft, "shown", "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Controls how Mountain Uranium is generated </Description>
+          <DisplayName>Nuclearcraft Mountain Uranium</DisplayName>
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:4")) '>
+
+          <Choice value='SparseVeins' displayValue='Sparse Veins'>
+            <Description>
+              Large veins filled very lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:4")) '>
+
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:4")) '>
+
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <Choice value='none' displayValue='None' description='Mountain Uranium is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='nclcMountainUraniumFreq' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Frequency multiplier for Nuclearcraft Mountain Uranium distributions </Description>
+          <DisplayName>Nuclearcraft Mountain Uranium Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='nclcMountainUraniumSize' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Size multiplier for Nuclearcraft Mountain Uranium distributions </Description>
+          <DisplayName>Nuclearcraft Mountain Uranium Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Mountain Uranium Configuration UI Complete -->
+
+
+      <!-- Copper Configuration UI Starting -->
+      <ConfigSection>
+        <OptionChoice name='nclcCopperDist'  displayState=':= if(?enableNuclearcraft, "shown", "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Controls how Copper is generated </Description>
+          <DisplayName>Nuclearcraft Copper</DisplayName>
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre")) '>
+
+          <Choice value='LayeredVeins' displayValue='Layered Veins'>
+            <Description>
+              Small, fairly rare motherlodes with 2-4 horizontal veins each.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre")) '>
+
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre")) '>
+
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <Choice value='none' displayValue='None' description='Copper is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='nclcCopperFreq' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Frequency multiplier for Nuclearcraft Copper distributions </Description>
+          <DisplayName>Nuclearcraft Copper Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='nclcCopperSize' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Size multiplier for Nuclearcraft Copper distributions </Description>
+          <DisplayName>Nuclearcraft Copper Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Copper Configuration UI Complete -->
+
+
+      <!-- Mountain Copper Configuration UI Starting -->
+      <ConfigSection>
+        <OptionChoice name='nclcMountainCopperDist'  displayState=':= if(?enableNuclearcraft, "shown", "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Controls how Mountain Copper is generated </Description>
+          <DisplayName>Nuclearcraft Mountain Copper</DisplayName>
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre")) '>
+
+          <Choice value='LayeredVeins' displayValue='Layered Veins'>
+            <Description>
+              Small, fairly rare motherlodes with 2-4 horizontal veins each.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre")) '>
+
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre")) '>
+
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <Choice value='none' displayValue='None' description='Mountain Copper is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='nclcMountainCopperFreq' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Frequency multiplier for Nuclearcraft Mountain Copper distributions </Description>
+          <DisplayName>Nuclearcraft Mountain Copper Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='nclcMountainCopperSize' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Size multiplier for Nuclearcraft Mountain Copper distributions </Description>
+          <DisplayName>Nuclearcraft Mountain Copper Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Mountain Copper Configuration UI Complete -->
+
+
+      <!-- Tin Configuration UI Starting -->
+      <ConfigSection>
+        <OptionChoice name='nclcTinDist'  displayState=':= if(?enableNuclearcraft, "shown", "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Controls how Tin is generated </Description>
+          <DisplayName>Nuclearcraft Tin</DisplayName>
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:1")) '>
+
+          <Choice value='LayeredVeins' displayValue='Layered Veins'>
+            <Description>
+              Small, fairly rare motherlodes with 2-4 horizontal veins each.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:1")) '>
+
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:1")) '>
+
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <Choice value='none' displayValue='None' description='Tin is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='nclcTinFreq' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Frequency multiplier for Nuclearcraft Tin distributions </Description>
+          <DisplayName>Nuclearcraft Tin Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='nclcTinSize' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Size multiplier for Nuclearcraft Tin distributions </Description>
+          <DisplayName>Nuclearcraft Tin Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Tin Configuration UI Complete -->
+
+
+      <!-- Mountain Tin Configuration UI Starting -->
+      <ConfigSection>
+        <OptionChoice name='nclcMountainTinDist'  displayState=':= if(?enableNuclearcraft, "shown", "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Controls how Mountain Tin is generated </Description>
+          <DisplayName>Nuclearcraft Mountain Tin</DisplayName>
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:1")) '>
+
+          <Choice value='LayeredVeins' displayValue='Layered Veins'>
+            <Description>
+              Small, fairly rare motherlodes with 2-4 horizontal veins each.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:1")) '>
+
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:1")) '>
+
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <Choice value='none' displayValue='None' description='Mountain Tin is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='nclcMountainTinFreq' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Frequency multiplier for Nuclearcraft Mountain Tin distributions </Description>
+          <DisplayName>Nuclearcraft Mountain Tin Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='nclcMountainTinSize' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Size multiplier for Nuclearcraft Mountain Tin distributions </Description>
+          <DisplayName>Nuclearcraft Mountain Tin Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Mountain Tin Configuration UI Complete -->
+
+
+      <!-- Lead Configuration UI Starting -->
+      <ConfigSection>
+        <OptionChoice name='nclcLeadDist'  displayState=':= if(?enableNuclearcraft, "shown", "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Controls how Lead is generated </Description>
+          <DisplayName>Nuclearcraft Lead</DisplayName>
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:2")) '>
+
+          <Choice value='LayeredVeins' displayValue='Layered Veins'>
+            <Description>
+              Small, fairly rare motherlodes with 2-4 horizontal veins each.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:2")) '>
+
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:2")) '>
+
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <Choice value='none' displayValue='None' description='Lead is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='nclcLeadFreq' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Frequency multiplier for Nuclearcraft Lead distributions </Description>
+          <DisplayName>Nuclearcraft Lead Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='nclcLeadSize' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Size multiplier for Nuclearcraft Lead distributions </Description>
+          <DisplayName>Nuclearcraft Lead Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Lead Configuration UI Complete -->
+
+
+      <!-- Mountain Lead Configuration UI Starting -->
+      <ConfigSection>
+        <OptionChoice name='nclcMountainLeadDist'  displayState=':= if(?enableNuclearcraft, "shown", "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Controls how Mountain Lead is generated </Description>
+          <DisplayName>Nuclearcraft Mountain Lead</DisplayName>
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:2")) '>
+
+          <Choice value='LayeredVeins' displayValue='Layered Veins'>
+            <Description>
+              Small, fairly rare motherlodes with 2-4 horizontal veins each.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:2")) '>
+
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:2")) '>
+
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <Choice value='none' displayValue='None' description='Mountain Lead is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='nclcMountainLeadFreq' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Frequency multiplier for Nuclearcraft Mountain Lead distributions </Description>
+          <DisplayName>Nuclearcraft Mountain Lead Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='nclcMountainLeadSize' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Size multiplier for Nuclearcraft Mountain Lead distributions </Description>
+          <DisplayName>Nuclearcraft Mountain Lead Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Mountain Lead Configuration UI Complete -->
+
+
+      <!-- Silver Configuration UI Starting -->
+      <ConfigSection>
+        <OptionChoice name='nclcSilverDist'  displayState=':= if(?enableNuclearcraft, "shown", "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Controls how Silver is generated </Description>
+          <DisplayName>Nuclearcraft Silver</DisplayName>
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:3")) '>
+
+          <Choice value='LayeredVeins' displayValue='Layered Veins'>
+            <Description>
+              Small, fairly rare motherlodes with 2-4 horizontal veins each.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:3")) '>
+
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:3")) '>
+
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <Choice value='none' displayValue='None' description='Silver is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='nclcSilverFreq' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Frequency multiplier for Nuclearcraft Silver distributions </Description>
+          <DisplayName>Nuclearcraft Silver Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='nclcSilverSize' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Size multiplier for Nuclearcraft Silver distributions </Description>
+          <DisplayName>Nuclearcraft Silver Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Silver Configuration UI Complete -->
+
+
+      <!-- Mountain Silver Configuration UI Starting -->
+      <ConfigSection>
+        <OptionChoice name='nclcMountainSilverDist'  displayState=':= if(?enableNuclearcraft, "shown", "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Controls how Mountain Silver is generated </Description>
+          <DisplayName>Nuclearcraft Mountain Silver</DisplayName>
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:3")) '>
+
+          <Choice value='LayeredVeins' displayValue='Layered Veins'>
+            <Description>
+              Small, fairly rare motherlodes with 2-4 horizontal veins each.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:3")) '>
+
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:3")) '>
+
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <Choice value='none' displayValue='None' description='Mountain Silver is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='nclcMountainSilverFreq' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Frequency multiplier for Nuclearcraft Mountain Silver distributions </Description>
+          <DisplayName>Nuclearcraft Mountain Silver Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='nclcMountainSilverSize' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Size multiplier for Nuclearcraft Mountain Silver distributions </Description>
+          <DisplayName>Nuclearcraft Mountain Silver Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Mountain Silver Configuration UI Complete -->
+
+
+      <!-- Plutonium Configuration UI Starting -->
+      <ConfigSection>
+        <OptionChoice name='nclcPlutoniumDist'  displayState=':= if(?enableNuclearcraft, "shown", "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Controls how Plutonium is generated </Description>
+          <DisplayName>Nuclearcraft Plutonium</DisplayName>
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:6")) '>
+
+          <Choice value='SparseVeins' displayValue='Sparse Veins'>
+            <Description>
+              Large veins filled very lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:6")) '>
+
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:6")) '>
+
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <Choice value='none' displayValue='None' description='Plutonium is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='nclcPlutoniumFreq' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Frequency multiplier for Nuclearcraft Plutonium distributions </Description>
+          <DisplayName>Nuclearcraft Plutonium Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='nclcPlutoniumSize' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Size multiplier for Nuclearcraft Plutonium distributions </Description>
+          <DisplayName>Nuclearcraft Plutonium Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Plutonium Configuration UI Complete -->
+
+
+      <!-- Lithium Configuration UI Starting -->
+      <ConfigSection>
+        <OptionChoice name='nclcLithiumDist'  displayState=':= if(?enableNuclearcraft, "shown", "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Controls how Lithium is generated </Description>
+          <DisplayName>Nuclearcraft Lithium</DisplayName>
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:7")) '>
+
+          <Choice value='SparseVeins' displayValue='Sparse Veins'>
+            <Description>
+              Large veins filled very lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:7")) '>
+
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:7")) '>
+
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <Choice value='none' displayValue='None' description='Lithium is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='nclcLithiumFreq' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Frequency multiplier for Nuclearcraft Lithium distributions </Description>
+          <DisplayName>Nuclearcraft Lithium Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='nclcLithiumSize' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Size multiplier for Nuclearcraft Lithium distributions </Description>
+          <DisplayName>Nuclearcraft Lithium Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Lithium Configuration UI Complete -->
+
+
+      <!-- Mountain Lithium Configuration UI Starting -->
+      <ConfigSection>
+        <OptionChoice name='nclcMountainLithiumDist'  displayState=':= if(?enableNuclearcraft, "shown", "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Controls how Mountain Lithium is generated </Description>
+          <DisplayName>Nuclearcraft Mountain Lithium</DisplayName>
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:7")) '>
+
+          <Choice value='SparseVeins' displayValue='Sparse Veins'>
+            <Description>
+              Large veins filled very lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:7")) '>
+
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:7")) '>
+
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <Choice value='none' displayValue='None' description='Mountain Lithium is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='nclcMountainLithiumFreq' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Frequency multiplier for Nuclearcraft Mountain Lithium distributions </Description>
+          <DisplayName>Nuclearcraft Mountain Lithium Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='nclcMountainLithiumSize' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Size multiplier for Nuclearcraft Mountain Lithium distributions </Description>
+          <DisplayName>Nuclearcraft Mountain Lithium Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Mountain Lithium Configuration UI Complete -->
+
+
+      <!-- Boron Configuration UI Starting -->
+      <ConfigSection>
+        <OptionChoice name='nclcBoronDist'  displayState=':= if(?enableNuclearcraft, "shown", "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Controls how Boron is generated </Description>
+          <DisplayName>Nuclearcraft Boron</DisplayName>
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:8")) '>
+
+          <Choice value='SparseVeins' displayValue='Sparse Veins'>
+            <Description>
+              Large veins filled very lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:8")) '>
+
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:8")) '>
+
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <Choice value='none' displayValue='None' description='Boron is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='nclcBoronFreq' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Frequency multiplier for Nuclearcraft Boron distributions </Description>
+          <DisplayName>Nuclearcraft Boron Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='nclcBoronSize' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Size multiplier for Nuclearcraft Boron distributions </Description>
+          <DisplayName>Nuclearcraft Boron Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Boron Configuration UI Complete -->
+
+
+      <!-- Mountain Boron Configuration UI Starting -->
+      <ConfigSection>
+        <OptionChoice name='nclcMountainBoronDist'  displayState=':= if(?enableNuclearcraft, "shown", "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Controls how Mountain Boron is generated </Description>
+          <DisplayName>Nuclearcraft Mountain Boron</DisplayName>
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:8")) '>
+
+          <Choice value='SparseVeins' displayValue='Sparse Veins'>
+            <Description>
+              Large veins filled very lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:8")) '>
+
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:8")) '>
+
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <Choice value='none' displayValue='None' description='Mountain Boron is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='nclcMountainBoronFreq' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Frequency multiplier for Nuclearcraft Mountain Boron distributions </Description>
+          <DisplayName>Nuclearcraft Mountain Boron Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='nclcMountainBoronSize' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Size multiplier for Nuclearcraft Mountain Boron distributions </Description>
+          <DisplayName>Nuclearcraft Mountain Boron Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Mountain Boron Configuration UI Complete -->
+
+
+      <!-- Thorium Configuration UI Starting -->
+      <ConfigSection>
+        <OptionChoice name='nclcThoriumDist'  displayState=':= if(?enableNuclearcraft, "shown", "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Controls how Thorium is generated </Description>
+          <DisplayName>Nuclearcraft Thorium</DisplayName>
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:5")) '>
+
+          <Choice value='SparseVeins' displayValue='Sparse Veins'>
+            <Description>
+              Large veins filled very lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:5")) '>
+
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:5")) '>
+
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <Choice value='none' displayValue='None' description='Thorium is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='nclcThoriumFreq' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Frequency multiplier for Nuclearcraft Thorium distributions </Description>
+          <DisplayName>Nuclearcraft Thorium Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='nclcThoriumSize' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Size multiplier for Nuclearcraft Thorium distributions </Description>
+          <DisplayName>Nuclearcraft Thorium Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Thorium Configuration UI Complete -->
+
+
+      <!-- Mountain Thorium Configuration UI Starting -->
+      <ConfigSection>
+        <OptionChoice name='nclcMountainThoriumDist'  displayState=':= if(?enableNuclearcraft, "shown", "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Controls how Mountain Thorium is generated </Description>
+          <DisplayName>Nuclearcraft Mountain Thorium</DisplayName>
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:5")) '>
+
+          <Choice value='SparseVeins' displayValue='Sparse Veins'>
+            <Description>
+              Large veins filled very lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:5")) '>
+
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <IfCondition condition=':= (?blockExists("NuclearCraft:blockOre:5")) '>
+
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
+          </IfCondition>
+
+          <Choice value='none' displayValue='None' description='Mountain Thorium is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='nclcMountainThoriumFreq' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Frequency multiplier for Nuclearcraft Mountain Thorium distributions </Description>
+          <DisplayName>Nuclearcraft Mountain Thorium Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='nclcMountainThoriumSize' default='1'  min='0' max='5' displayState=':= if(?enableNuclearcraft, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNuclearcraft'>
+          <Description> Size multiplier for Nuclearcraft Mountain Thorium distributions </Description>
+          <DisplayName>Nuclearcraft Mountain Thorium Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Mountain Thorium Configuration UI Complete -->
+
+    </ConfigSection>
+    <!-- Setup Screen Complete -->
+
+    <IfCondition condition=':= ?enableNuclearcraft'>
+
+
+
+
+      <!-- Overworld Setup Beginning -->
+
+      <IfCondition condition=':= ?COGActive'>
+
+        <!-- Starting Original "Overworld" Block Removal -->
+
+        <IfCondition condition=':= ?cleanUpNuclearcraft'>
+          <IfCondition condition=':= ?blockExists("minecraft:stone")'>
+            <Substitute name='nclcOverworldBlockSubstitute0' block='minecraft:stone'>
+              <Description>
+                Replace vanilla-generated ore clusters.
+              </Description>
+              <Comment>
+                The global option  deferredPopulationRange must be
+                large enough to catch all ore  clusters (>= 32).
+              </Comment>
+              <Replaces block='NuclearCraft:blockOre' weight='1.0' />
+              <Replaces block='NuclearCraft:blockOre:1' weight='1.0' />
+              <Replaces block='NuclearCraft:blockOre:2' weight='1.0' />
+              <Replaces block='NuclearCraft:blockOre:3' weight='1.0' />
+              <Replaces block='NuclearCraft:blockOre:4' weight='1.0' />
+              <Replaces block='NuclearCraft:blockOre:5' weight='1.0' />
+              <Replaces block='NuclearCraft:blockOre:7' weight='1.0' />
+              <Replaces block='NuclearCraft:blockOre:8' weight='1.0' />
+            </Substitute>
+          </IfCondition>
+        </IfCondition>
+
+        <!-- Original "Overworld" Block Removal Complete -->
+
+        <!-- Adding blocks -->
+
+        <!-- Begin Uranium Generation -->
+
+        <!-- Starting SparseVeins Preset for Uranium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcUraniumDist = "SparseVeins"'>
+            <Veins name='nclcUraniumVeins'  inherits='PresetSparseVeins' branchType='Bezier' drawWireframe='false' wireframeColor='0x600FEA81' drawBoundBox='false' boundBoxColor='0x60CFEF8C'>
+              <Description>
+                Large veins filled very lightly  with ore.  Because
+                they contain  less ore per volume, these veins  are
+                relatively wide and long.  Mining the ore from them is
+                time  consuming compared to solid ore  veins.  They
+                are also more  difficult to follow, since it is
+                harder to get an idea of their  direction while
+                mining.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:4' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='MotherlodeFrequency' avg=':= 0 * nclcUraniumFreq ' range=':= 0 * nclcUraniumFreq ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeSize' avg=':= _default_ * nclcUraniumSize ' range=':= _default_ * nclcUraniumSize ' type='normal' />
+              <Setting name='MotherlodeHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchLength' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentLength' avg=':= _default_ * nclcUraniumSize ' range=':= _default_ * nclcUraniumSize ' type='normal' />
+              <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentPitch' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentRadius' avg=':= _default_ * nclcUraniumSize ' range=':= _default_ * nclcUraniumSize ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </Veins>
+          </IfCondition>
+        </ConfigSection>
+        <!-- SparseVeins Preset for Uranium is complete. -->
+
+
+        <!-- Starting StrategicClouds Preset for Uranium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcUraniumDist = "StrategicClouds"'>
+            <Cloud name='nclcUraniumCloud'  inherits='PresetStrategicCloud' drawWireframe='false' wireframeColor='0x600FEA81' drawBoundBox='false' boundBoxColor='0x60CFEF8C'>
+              <Description>
+                Large irregular clouds filled  lightly with ore.
+                These are  huge, spanning several adjacent  chunks,
+                and consequently rather  rare.  They contain a
+                sizeable  amount of ore, but it takes some  time and
+                effort to mine due to  low density. The intent for
+                strategic clouds is that the  player will need to
+                actively  search for one and then set up a  semi-
+                permanent mining base and  spend some time actually
+                mining  the ore.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:4' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='CloudRadius' avg=':= _default_ * nclcUraniumSize ' range=':= _default_ * nclcUraniumSize ' type='normal' />
+              <Setting name='CloudThickness' avg=':= _default_ * nclcUraniumSize ' range=':= _default_ * nclcUraniumSize ' type='normal' scaleTo='base' />
+              <Setting name='DistributionFrequency' avg=':= 0 * nclcUraniumFreq ' range=':= 0 * nclcUraniumFreq ' type='normal' scaleTo='base' />
+              <Setting name='CloudHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Veins name='nclcUraniumHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='false' wireframeColor='0x600FEA81' drawBoundBox='false' boundBoxColor='0x60CFEF8C'>
+                <Description>
+                  Single blocks, generously  scattered through all
+                  heights  (density is about that of  vanilla iron
+                  ore). They will  replace dirt and sandstone  (but
+                  not grass or sand), so  they can be found nearer to
+                  the surface than most ores.  Intened to be used as a
+                  child  distribution for large, rare  strategic
+                  deposits that would  otherwise be very difficult  to
+                  find.  Note that the  frequency is multiplied by
+                  ground level to maintain a  constant density, but
+                  not by  ore frequency because it is  assumed that
+                  the frequency of  the parent distribution will
+                  already be scaled by that.
+                </Description>
+                <OreBlock block='NuclearCraft:blockOre:4' weight='1.0' />
+                <Replaces block='minecraft:dirt' weight='1.0' />
+                <Replaces block='minecraft:sandstone' weight='1.0' />
+                <ReplacesOre block='stone' weight='1.0' />
+                <Replaces block='minecraft:gravel' weight='1.0' />
+              </Veins>
+            </Cloud>
+          </IfCondition>
+        </ConfigSection>
+        <!-- StrategicClouds Preset for Uranium is complete. -->
+
+
+        <!-- Starting Vanilla Preset for Uranium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcUraniumDist = "Vanilla"'>
+            <StandardGen name='nclcUraniumStandard'  inherits='PresetStandardGen' drawWireframe='false' wireframeColor='0x600FEA81' drawBoundBox='false' boundBoxColor='0x60CFEF8C'>
+              <Description>
+                A master preset for standardgen  ore distributions.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:4' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='Size' avg=':= _default_ * nclcUraniumSize ' range=':= _default_ * nclcUraniumSize ' type='normal' />
+              <Setting name='Frequency' avg=':= 0 * nclcUraniumFreq ' range=':= 0 * nclcUraniumFreq ' type='normal' scaleTo='base' />
+              <Setting name='Height' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </StandardGen>
+          </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Uranium is complete. -->
+
+        <!-- End Uranium Generation -->
+
+
+        <!-- Begin Mountain Uranium Generation -->
+
+        <!-- Starting SparseVeins Preset for Mountain Uranium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainUraniumDist = "SparseVeins"'>
+            <Veins name='nclcMountainUraniumVeins'  inherits='PresetSparseVeins' branchType='Bezier' drawWireframe='false' wireframeColor='0x605FB7EA' drawBoundBox='false' boundBoxColor='0x6009D71A'>
+              <Description>
+                Large veins filled very lightly  with ore.  Because
+                they contain  less ore per volume, these veins  are
+                relatively wide and long.  Mining the ore from them is
+                time  consuming compared to solid ore  veins.  They
+                are also more  difficult to follow, since it is
+                harder to get an idea of their  direction while
+                mining.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:4' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='MotherlodeFrequency' avg=':= 0 * nclcMountainUraniumFreq ' range=':= 0 * nclcMountainUraniumFreq ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeSize' avg=':= _default_ * nclcMountainUraniumSize ' range=':= _default_ * nclcMountainUraniumSize ' type='normal' />
+              <Setting name='MotherlodeHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchLength' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentLength' avg=':= _default_ * nclcMountainUraniumSize ' range=':= _default_ * nclcMountainUraniumSize ' type='normal' />
+              <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentPitch' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentRadius' avg=':= _default_ * nclcMountainUraniumSize ' range=':= _default_ * nclcMountainUraniumSize ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </Veins>
+          </IfCondition>
+        </ConfigSection>
+        <!-- SparseVeins Preset for Mountain Uranium is  complete. -->
+
+
+        <!-- Starting StrategicClouds Preset for Mountain  Uranium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainUraniumDist = "StrategicClouds"'>
+            <Cloud name='nclcMountainUraniumCloud'  inherits='PresetStrategicCloud' drawWireframe='false' wireframeColor='0x605FB7EA' drawBoundBox='false' boundBoxColor='0x6009D71A'>
+              <Description>
+                Large irregular clouds filled  lightly with ore.
+                These are  huge, spanning several adjacent  chunks,
+                and consequently rather  rare.  They contain a
+                sizeable  amount of ore, but it takes some  time and
+                effort to mine due to  low density. The intent for
+                strategic clouds is that the  player will need to
+                actively  search for one and then set up a  semi-
+                permanent mining base and  spend some time actually
+                mining  the ore.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:4' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='CloudRadius' avg=':= _default_ * nclcMountainUraniumSize ' range=':= _default_ * nclcMountainUraniumSize ' type='normal' />
+              <Setting name='CloudThickness' avg=':= _default_ * nclcMountainUraniumSize ' range=':= _default_ * nclcMountainUraniumSize ' type='normal' scaleTo='base' />
+              <Setting name='DistributionFrequency' avg=':= 0 * nclcMountainUraniumFreq ' range=':= 0 * nclcMountainUraniumFreq ' type='normal' scaleTo='base' />
+              <Setting name='CloudHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Veins name='nclcMountainUraniumHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='false' wireframeColor='0x605FB7EA' drawBoundBox='false' boundBoxColor='0x6009D71A'>
+                <Description>
+                  Single blocks, generously  scattered through all
+                  heights  (density is about that of  vanilla iron
+                  ore). They will  replace dirt and sandstone  (but
+                  not grass or sand), so  they can be found nearer to
+                  the surface than most ores.  Intened to be used as a
+                  child  distribution for large, rare  strategic
+                  deposits that would  otherwise be very difficult  to
+                  find.  Note that the  frequency is multiplied by
+                  ground level to maintain a  constant density, but
+                  not by  ore frequency because it is  assumed that
+                  the frequency of  the parent distribution will
+                  already be scaled by that.
+                </Description>
+                <OreBlock block='NuclearCraft:blockOre:4' weight='1.0' />
+                <Replaces block='minecraft:dirt' weight='1.0' />
+                <Replaces block='minecraft:sandstone' weight='1.0' />
+                <ReplacesOre block='stone' weight='1.0' />
+                <Replaces block='minecraft:gravel' weight='1.0' />
+              </Veins>
+            </Cloud>
+          </IfCondition>
+        </ConfigSection>
+        <!-- StrategicClouds Preset for Mountain Uranium is  complete. -->
+
+
+        <!-- Starting Vanilla Preset for Mountain Uranium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainUraniumDist = "Vanilla"'>
+            <StandardGen name='nclcMountainUraniumStandard'  inherits='PresetStandardGen' drawWireframe='false' wireframeColor='0x605FB7EA' drawBoundBox='false' boundBoxColor='0x6009D71A'>
+              <Description>
+                A master preset for standardgen  ore distributions.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:4' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='Size' avg=':= _default_ * nclcMountainUraniumSize ' range=':= _default_ * nclcMountainUraniumSize ' type='normal' />
+              <Setting name='Frequency' avg=':= 0 * nclcMountainUraniumFreq ' range=':= 0 * nclcMountainUraniumFreq ' type='normal' scaleTo='base' />
+              <Setting name='Height' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </StandardGen>
+          </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Mountain Uranium is complete. -->
+
+        <!-- End Mountain Uranium Generation -->
+
+
+        <!-- Begin Copper Generation -->
+
+        <!-- Starting LayeredVeins Preset for Copper. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcCopperDist = "LayeredVeins"'>
+            <Veins name='nclcCopperVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='false' wireframeColor='0x607F79B7' drawBoundBox='false' boundBoxColor='0x602832F8'>
+              <Description>
+                Small, fairly rare motherlodes  with 2-4 horizontal
+                veins each.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='MotherlodeFrequency' avg=':= 0 * nclcCopperFreq ' range=':= 0 * nclcCopperFreq ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeSize' avg=':= _default_ * nclcCopperSize ' range=':= _default_ * nclcCopperSize ' type='normal' />
+              <Setting name='MotherlodeHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchLength' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentLength' avg=':= _default_ * nclcCopperSize ' range=':= _default_ * nclcCopperSize ' type='normal' />
+              <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentPitch' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentRadius' avg=':= _default_ * nclcCopperSize ' range=':= _default_ * nclcCopperSize ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </Veins>
+          </IfCondition>
+        </ConfigSection>
+        <!-- LayeredVeins Preset for Copper is complete. -->
+
+
+        <!-- Starting StrategicClouds Preset for Copper. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcCopperDist = "StrategicClouds"'>
+            <Cloud name='nclcCopperCloud'  inherits='PresetStrategicCloud' drawWireframe='false' wireframeColor='0x607F79B7' drawBoundBox='false' boundBoxColor='0x602832F8'>
+              <Description>
+                Large irregular clouds filled  lightly with ore.
+                These are  huge, spanning several adjacent  chunks,
+                and consequently rather  rare.  They contain a
+                sizeable  amount of ore, but it takes some  time and
+                effort to mine due to  low density. The intent for
+                strategic clouds is that the  player will need to
+                actively  search for one and then set up a  semi-
+                permanent mining base and  spend some time actually
+                mining  the ore.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='CloudRadius' avg=':= _default_ * nclcCopperSize ' range=':= _default_ * nclcCopperSize ' type='normal' />
+              <Setting name='CloudThickness' avg=':= _default_ * nclcCopperSize ' range=':= _default_ * nclcCopperSize ' type='normal' scaleTo='base' />
+              <Setting name='DistributionFrequency' avg=':= 0 * nclcCopperFreq ' range=':= 0 * nclcCopperFreq ' type='normal' scaleTo='base' />
+              <Setting name='CloudHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Veins name='nclcCopperHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='false' wireframeColor='0x607F79B7' drawBoundBox='false' boundBoxColor='0x602832F8'>
+                <Description>
+                  Single blocks, generously  scattered through all
+                  heights  (density is about that of  vanilla iron
+                  ore). They will  replace dirt and sandstone  (but
+                  not grass or sand), so  they can be found nearer to
+                  the surface than most ores.  Intened to be used as a
+                  child  distribution for large, rare  strategic
+                  deposits that would  otherwise be very difficult  to
+                  find.  Note that the  frequency is multiplied by
+                  ground level to maintain a  constant density, but
+                  not by  ore frequency because it is  assumed that
+                  the frequency of  the parent distribution will
+                  already be scaled by that.
+                </Description>
+                <OreBlock block='NuclearCraft:blockOre' weight='1.0' />
+                <Replaces block='minecraft:dirt' weight='1.0' />
+                <Replaces block='minecraft:sandstone' weight='1.0' />
+                <ReplacesOre block='stone' weight='1.0' />
+                <Replaces block='minecraft:gravel' weight='1.0' />
+              </Veins>
+            </Cloud>
+          </IfCondition>
+        </ConfigSection>
+        <!-- StrategicClouds Preset for Copper is complete. -->
+
+
+        <!-- Starting Vanilla Preset for Copper. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcCopperDist = "Vanilla"'>
+            <StandardGen name='nclcCopperStandard'  inherits='PresetStandardGen' drawWireframe='false' wireframeColor='0x607F79B7' drawBoundBox='false' boundBoxColor='0x602832F8'>
+              <Description>
+                A master preset for standardgen  ore distributions.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='Size' avg=':= _default_ * nclcCopperSize ' range=':= _default_ * nclcCopperSize ' type='normal' />
+              <Setting name='Frequency' avg=':= 0 * nclcCopperFreq ' range=':= 0 * nclcCopperFreq ' type='normal' scaleTo='base' />
+              <Setting name='Height' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </StandardGen>
+          </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Copper is complete. -->
+
+        <!-- End Copper Generation -->
+
+
+        <!-- Begin Mountain Copper Generation -->
+
+        <!-- Starting LayeredVeins Preset for Mountain Copper. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainCopperDist = "LayeredVeins"'>
+            <Veins name='nclcMountainCopperVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='false' wireframeColor='0x60D3DB57' drawBoundBox='false' boundBoxColor='0x60D2BC14'>
+              <Description>
+                Small, fairly rare motherlodes  with 2-4 horizontal
+                veins each.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='MotherlodeFrequency' avg=':= 0 * nclcMountainCopperFreq ' range=':= 0 * nclcMountainCopperFreq ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeSize' avg=':= _default_ * nclcMountainCopperSize ' range=':= _default_ * nclcMountainCopperSize ' type='normal' />
+              <Setting name='MotherlodeHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchLength' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentLength' avg=':= _default_ * nclcMountainCopperSize ' range=':= _default_ * nclcMountainCopperSize ' type='normal' />
+              <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentPitch' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentRadius' avg=':= _default_ * nclcMountainCopperSize ' range=':= _default_ * nclcMountainCopperSize ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </Veins>
+          </IfCondition>
+        </ConfigSection>
+        <!-- LayeredVeins Preset for Mountain Copper is  complete. -->
+
+
+        <!-- Starting StrategicClouds Preset for Mountain  Copper. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainCopperDist = "StrategicClouds"'>
+            <Cloud name='nclcMountainCopperCloud'  inherits='PresetStrategicCloud' drawWireframe='false' wireframeColor='0x60D3DB57' drawBoundBox='false' boundBoxColor='0x60D2BC14'>
+              <Description>
+                Large irregular clouds filled  lightly with ore.
+                These are  huge, spanning several adjacent  chunks,
+                and consequently rather  rare.  They contain a
+                sizeable  amount of ore, but it takes some  time and
+                effort to mine due to  low density. The intent for
+                strategic clouds is that the  player will need to
+                actively  search for one and then set up a  semi-
+                permanent mining base and  spend some time actually
+                mining  the ore.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='CloudRadius' avg=':= _default_ * nclcMountainCopperSize ' range=':= _default_ * nclcMountainCopperSize ' type='normal' />
+              <Setting name='CloudThickness' avg=':= _default_ * nclcMountainCopperSize ' range=':= _default_ * nclcMountainCopperSize ' type='normal' scaleTo='base' />
+              <Setting name='DistributionFrequency' avg=':= 0 * nclcMountainCopperFreq ' range=':= 0 * nclcMountainCopperFreq ' type='normal' scaleTo='base' />
+              <Setting name='CloudHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Veins name='nclcMountainCopperHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='false' wireframeColor='0x60D3DB57' drawBoundBox='false' boundBoxColor='0x60D2BC14'>
+                <Description>
+                  Single blocks, generously  scattered through all
+                  heights  (density is about that of  vanilla iron
+                  ore). They will  replace dirt and sandstone  (but
+                  not grass or sand), so  they can be found nearer to
+                  the surface than most ores.  Intened to be used as a
+                  child  distribution for large, rare  strategic
+                  deposits that would  otherwise be very difficult  to
+                  find.  Note that the  frequency is multiplied by
+                  ground level to maintain a  constant density, but
+                  not by  ore frequency because it is  assumed that
+                  the frequency of  the parent distribution will
+                  already be scaled by that.
+                </Description>
+                <OreBlock block='NuclearCraft:blockOre' weight='1.0' />
+                <Replaces block='minecraft:dirt' weight='1.0' />
+                <Replaces block='minecraft:sandstone' weight='1.0' />
+                <ReplacesOre block='stone' weight='1.0' />
+                <Replaces block='minecraft:gravel' weight='1.0' />
+              </Veins>
+            </Cloud>
+          </IfCondition>
+        </ConfigSection>
+        <!-- StrategicClouds Preset for Mountain Copper is  complete. -->
+
+
+        <!-- Starting Vanilla Preset for Mountain Copper. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainCopperDist = "Vanilla"'>
+            <StandardGen name='nclcMountainCopperStandard'  inherits='PresetStandardGen' drawWireframe='false' wireframeColor='0x60D3DB57' drawBoundBox='false' boundBoxColor='0x60D2BC14'>
+              <Description>
+                A master preset for standardgen  ore distributions.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='Size' avg=':= _default_ * nclcMountainCopperSize ' range=':= _default_ * nclcMountainCopperSize ' type='normal' />
+              <Setting name='Frequency' avg=':= 0 * nclcMountainCopperFreq ' range=':= 0 * nclcMountainCopperFreq ' type='normal' scaleTo='base' />
+              <Setting name='Height' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </StandardGen>
+          </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Mountain Copper is complete. -->
+
+        <!-- End Mountain Copper Generation -->
+
+
+        <!-- Begin Tin Generation -->
+
+        <!-- Starting LayeredVeins Preset for Tin. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcTinDist = "LayeredVeins"'>
+            <Veins name='nclcTinVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='false' wireframeColor='0x60F2CFDB' drawBoundBox='false' boundBoxColor='0x60792E37'>
+              <Description>
+                Small, fairly rare motherlodes  with 2-4 horizontal
+                veins each.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:1' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='MotherlodeFrequency' avg=':= 0 * nclcTinFreq ' range=':= 0 * nclcTinFreq ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeSize' avg=':= _default_ * nclcTinSize ' range=':= _default_ * nclcTinSize ' type='normal' />
+              <Setting name='MotherlodeHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchLength' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentLength' avg=':= _default_ * nclcTinSize ' range=':= _default_ * nclcTinSize ' type='normal' />
+              <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentPitch' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentRadius' avg=':= _default_ * nclcTinSize ' range=':= _default_ * nclcTinSize ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </Veins>
+          </IfCondition>
+        </ConfigSection>
+        <!-- LayeredVeins Preset for Tin is complete. -->
+
+
+        <!-- Starting StrategicClouds Preset for Tin. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcTinDist = "StrategicClouds"'>
+            <Cloud name='nclcTinCloud'  inherits='PresetStrategicCloud' drawWireframe='false' wireframeColor='0x60F2CFDB' drawBoundBox='false' boundBoxColor='0x60792E37'>
+              <Description>
+                Large irregular clouds filled  lightly with ore.
+                These are  huge, spanning several adjacent  chunks,
+                and consequently rather  rare.  They contain a
+                sizeable  amount of ore, but it takes some  time and
+                effort to mine due to  low density. The intent for
+                strategic clouds is that the  player will need to
+                actively  search for one and then set up a  semi-
+                permanent mining base and  spend some time actually
+                mining  the ore.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:1' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='CloudRadius' avg=':= _default_ * nclcTinSize ' range=':= _default_ * nclcTinSize ' type='normal' />
+              <Setting name='CloudThickness' avg=':= _default_ * nclcTinSize ' range=':= _default_ * nclcTinSize ' type='normal' scaleTo='base' />
+              <Setting name='DistributionFrequency' avg=':= 0 * nclcTinFreq ' range=':= 0 * nclcTinFreq ' type='normal' scaleTo='base' />
+              <Setting name='CloudHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Veins name='nclcTinHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='false' wireframeColor='0x60F2CFDB' drawBoundBox='false' boundBoxColor='0x60792E37'>
+                <Description>
+                  Single blocks, generously  scattered through all
+                  heights  (density is about that of  vanilla iron
+                  ore). They will  replace dirt and sandstone  (but
+                  not grass or sand), so  they can be found nearer to
+                  the surface than most ores.  Intened to be used as a
+                  child  distribution for large, rare  strategic
+                  deposits that would  otherwise be very difficult  to
+                  find.  Note that the  frequency is multiplied by
+                  ground level to maintain a  constant density, but
+                  not by  ore frequency because it is  assumed that
+                  the frequency of  the parent distribution will
+                  already be scaled by that.
+                </Description>
+                <OreBlock block='NuclearCraft:blockOre:1' weight='1.0' />
+                <Replaces block='minecraft:dirt' weight='1.0' />
+                <Replaces block='minecraft:sandstone' weight='1.0' />
+                <ReplacesOre block='stone' weight='1.0' />
+                <Replaces block='minecraft:gravel' weight='1.0' />
+              </Veins>
+            </Cloud>
+          </IfCondition>
+        </ConfigSection>
+        <!-- StrategicClouds Preset for Tin is complete. -->
+
+
+        <!-- Starting Vanilla Preset for Tin. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcTinDist = "Vanilla"'>
+            <StandardGen name='nclcTinStandard'  inherits='PresetStandardGen' drawWireframe='false' wireframeColor='0x60F2CFDB' drawBoundBox='false' boundBoxColor='0x60792E37'>
+              <Description>
+                A master preset for standardgen  ore distributions.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:1' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='Size' avg=':= _default_ * nclcTinSize ' range=':= _default_ * nclcTinSize ' type='normal' />
+              <Setting name='Frequency' avg=':= 0 * nclcTinFreq ' range=':= 0 * nclcTinFreq ' type='normal' scaleTo='base' />
+              <Setting name='Height' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </StandardGen>
+          </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Tin is complete. -->
+
+        <!-- End Tin Generation -->
+
+
+        <!-- Begin Mountain Tin Generation -->
+
+        <!-- Starting LayeredVeins Preset for Mountain Tin. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainTinDist = "LayeredVeins"'>
+            <Veins name='nclcMountainTinVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='false' wireframeColor='0x605931E1' drawBoundBox='false' boundBoxColor='0x6090DF13'>
+              <Description>
+                Small, fairly rare motherlodes  with 2-4 horizontal
+                veins each.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:1' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='MotherlodeFrequency' avg=':= 0 * nclcMountainTinFreq ' range=':= 0 * nclcMountainTinFreq ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeSize' avg=':= _default_ * nclcMountainTinSize ' range=':= _default_ * nclcMountainTinSize ' type='normal' />
+              <Setting name='MotherlodeHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchLength' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentLength' avg=':= _default_ * nclcMountainTinSize ' range=':= _default_ * nclcMountainTinSize ' type='normal' />
+              <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentPitch' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentRadius' avg=':= _default_ * nclcMountainTinSize ' range=':= _default_ * nclcMountainTinSize ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </Veins>
+          </IfCondition>
+        </ConfigSection>
+        <!-- LayeredVeins Preset for Mountain Tin is complete. -->
+
+
+        <!-- Starting StrategicClouds Preset for Mountain Tin. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainTinDist = "StrategicClouds"'>
+            <Cloud name='nclcMountainTinCloud'  inherits='PresetStrategicCloud' drawWireframe='false' wireframeColor='0x605931E1' drawBoundBox='false' boundBoxColor='0x6090DF13'>
+              <Description>
+                Large irregular clouds filled  lightly with ore.
+                These are  huge, spanning several adjacent  chunks,
+                and consequently rather  rare.  They contain a
+                sizeable  amount of ore, but it takes some  time and
+                effort to mine due to  low density. The intent for
+                strategic clouds is that the  player will need to
+                actively  search for one and then set up a  semi-
+                permanent mining base and  spend some time actually
+                mining  the ore.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:1' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='CloudRadius' avg=':= _default_ * nclcMountainTinSize ' range=':= _default_ * nclcMountainTinSize ' type='normal' />
+              <Setting name='CloudThickness' avg=':= _default_ * nclcMountainTinSize ' range=':= _default_ * nclcMountainTinSize ' type='normal' scaleTo='base' />
+              <Setting name='DistributionFrequency' avg=':= 0 * nclcMountainTinFreq ' range=':= 0 * nclcMountainTinFreq ' type='normal' scaleTo='base' />
+              <Setting name='CloudHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Veins name='nclcMountainTinHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='false' wireframeColor='0x605931E1' drawBoundBox='false' boundBoxColor='0x6090DF13'>
+                <Description>
+                  Single blocks, generously  scattered through all
+                  heights  (density is about that of  vanilla iron
+                  ore). They will  replace dirt and sandstone  (but
+                  not grass or sand), so  they can be found nearer to
+                  the surface than most ores.  Intened to be used as a
+                  child  distribution for large, rare  strategic
+                  deposits that would  otherwise be very difficult  to
+                  find.  Note that the  frequency is multiplied by
+                  ground level to maintain a  constant density, but
+                  not by  ore frequency because it is  assumed that
+                  the frequency of  the parent distribution will
+                  already be scaled by that.
+                </Description>
+                <OreBlock block='NuclearCraft:blockOre:1' weight='1.0' />
+                <Replaces block='minecraft:dirt' weight='1.0' />
+                <Replaces block='minecraft:sandstone' weight='1.0' />
+                <ReplacesOre block='stone' weight='1.0' />
+                <Replaces block='minecraft:gravel' weight='1.0' />
+              </Veins>
+            </Cloud>
+          </IfCondition>
+        </ConfigSection>
+        <!-- StrategicClouds Preset for Mountain Tin is  complete. -->
+
+
+        <!-- Starting Vanilla Preset for Mountain Tin. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainTinDist = "Vanilla"'>
+            <StandardGen name='nclcMountainTinStandard'  inherits='PresetStandardGen' drawWireframe='false' wireframeColor='0x605931E1' drawBoundBox='false' boundBoxColor='0x6090DF13'>
+              <Description>
+                A master preset for standardgen  ore distributions.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:1' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='Size' avg=':= _default_ * nclcMountainTinSize ' range=':= _default_ * nclcMountainTinSize ' type='normal' />
+              <Setting name='Frequency' avg=':= 0 * nclcMountainTinFreq ' range=':= 0 * nclcMountainTinFreq ' type='normal' scaleTo='base' />
+              <Setting name='Height' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </StandardGen>
+          </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Mountain Tin is complete. -->
+
+        <!-- End Mountain Tin Generation -->
+
+
+        <!-- Begin Lead Generation -->
+
+        <!-- Starting LayeredVeins Preset for Lead. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcLeadDist = "LayeredVeins"'>
+            <Veins name='nclcLeadVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='false' wireframeColor='0x609971DD' drawBoundBox='false' boundBoxColor='0x60FEA91B'>
+              <Description>
+                Small, fairly rare motherlodes  with 2-4 horizontal
+                veins each.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:2' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='MotherlodeFrequency' avg=':= 0 * nclcLeadFreq ' range=':= 0 * nclcLeadFreq ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeSize' avg=':= _default_ * nclcLeadSize ' range=':= _default_ * nclcLeadSize ' type='normal' />
+              <Setting name='MotherlodeHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchLength' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentLength' avg=':= _default_ * nclcLeadSize ' range=':= _default_ * nclcLeadSize ' type='normal' />
+              <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentPitch' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentRadius' avg=':= _default_ * nclcLeadSize ' range=':= _default_ * nclcLeadSize ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </Veins>
+          </IfCondition>
+        </ConfigSection>
+        <!-- LayeredVeins Preset for Lead is complete. -->
+
+
+        <!-- Starting StrategicClouds Preset for Lead. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcLeadDist = "StrategicClouds"'>
+            <Cloud name='nclcLeadCloud'  inherits='PresetStrategicCloud' drawWireframe='false' wireframeColor='0x609971DD' drawBoundBox='false' boundBoxColor='0x60FEA91B'>
+              <Description>
+                Large irregular clouds filled  lightly with ore.
+                These are  huge, spanning several adjacent  chunks,
+                and consequently rather  rare.  They contain a
+                sizeable  amount of ore, but it takes some  time and
+                effort to mine due to  low density. The intent for
+                strategic clouds is that the  player will need to
+                actively  search for one and then set up a  semi-
+                permanent mining base and  spend some time actually
+                mining  the ore.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:2' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='CloudRadius' avg=':= _default_ * nclcLeadSize ' range=':= _default_ * nclcLeadSize ' type='normal' />
+              <Setting name='CloudThickness' avg=':= _default_ * nclcLeadSize ' range=':= _default_ * nclcLeadSize ' type='normal' scaleTo='base' />
+              <Setting name='DistributionFrequency' avg=':= 0 * nclcLeadFreq ' range=':= 0 * nclcLeadFreq ' type='normal' scaleTo='base' />
+              <Setting name='CloudHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Veins name='nclcLeadHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='false' wireframeColor='0x609971DD' drawBoundBox='false' boundBoxColor='0x60FEA91B'>
+                <Description>
+                  Single blocks, generously  scattered through all
+                  heights  (density is about that of  vanilla iron
+                  ore). They will  replace dirt and sandstone  (but
+                  not grass or sand), so  they can be found nearer to
+                  the surface than most ores.  Intened to be used as a
+                  child  distribution for large, rare  strategic
+                  deposits that would  otherwise be very difficult  to
+                  find.  Note that the  frequency is multiplied by
+                  ground level to maintain a  constant density, but
+                  not by  ore frequency because it is  assumed that
+                  the frequency of  the parent distribution will
+                  already be scaled by that.
+                </Description>
+                <OreBlock block='NuclearCraft:blockOre:2' weight='1.0' />
+                <Replaces block='minecraft:dirt' weight='1.0' />
+                <Replaces block='minecraft:sandstone' weight='1.0' />
+                <ReplacesOre block='stone' weight='1.0' />
+                <Replaces block='minecraft:gravel' weight='1.0' />
+              </Veins>
+            </Cloud>
+          </IfCondition>
+        </ConfigSection>
+        <!-- StrategicClouds Preset for Lead is complete. -->
+
+
+        <!-- Starting Vanilla Preset for Lead. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcLeadDist = "Vanilla"'>
+            <StandardGen name='nclcLeadStandard'  inherits='PresetStandardGen' drawWireframe='false' wireframeColor='0x609971DD' drawBoundBox='false' boundBoxColor='0x60FEA91B'>
+              <Description>
+                A master preset for standardgen  ore distributions.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:2' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='Size' avg=':= _default_ * nclcLeadSize ' range=':= _default_ * nclcLeadSize ' type='normal' />
+              <Setting name='Frequency' avg=':= 0 * nclcLeadFreq ' range=':= 0 * nclcLeadFreq ' type='normal' scaleTo='base' />
+              <Setting name='Height' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </StandardGen>
+          </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Lead is complete. -->
+
+        <!-- End Lead Generation -->
+
+
+        <!-- Begin Mountain Lead Generation -->
+
+        <!-- Starting LayeredVeins Preset for Mountain Lead. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainLeadDist = "LayeredVeins"'>
+            <Veins name='nclcMountainLeadVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='false' wireframeColor='0x603BF9F5' drawBoundBox='false' boundBoxColor='0x60582C7D'>
+              <Description>
+                Small, fairly rare motherlodes  with 2-4 horizontal
+                veins each.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:2' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='MotherlodeFrequency' avg=':= 0 * nclcMountainLeadFreq ' range=':= 0 * nclcMountainLeadFreq ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeSize' avg=':= _default_ * nclcMountainLeadSize ' range=':= _default_ * nclcMountainLeadSize ' type='normal' />
+              <Setting name='MotherlodeHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchLength' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentLength' avg=':= _default_ * nclcMountainLeadSize ' range=':= _default_ * nclcMountainLeadSize ' type='normal' />
+              <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentPitch' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentRadius' avg=':= _default_ * nclcMountainLeadSize ' range=':= _default_ * nclcMountainLeadSize ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </Veins>
+          </IfCondition>
+        </ConfigSection>
+        <!-- LayeredVeins Preset for Mountain Lead is  complete. -->
+
+
+        <!-- Starting StrategicClouds Preset for Mountain  Lead. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainLeadDist = "StrategicClouds"'>
+            <Cloud name='nclcMountainLeadCloud'  inherits='PresetStrategicCloud' drawWireframe='false' wireframeColor='0x603BF9F5' drawBoundBox='false' boundBoxColor='0x60582C7D'>
+              <Description>
+                Large irregular clouds filled  lightly with ore.
+                These are  huge, spanning several adjacent  chunks,
+                and consequently rather  rare.  They contain a
+                sizeable  amount of ore, but it takes some  time and
+                effort to mine due to  low density. The intent for
+                strategic clouds is that the  player will need to
+                actively  search for one and then set up a  semi-
+                permanent mining base and  spend some time actually
+                mining  the ore.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:2' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='CloudRadius' avg=':= _default_ * nclcMountainLeadSize ' range=':= _default_ * nclcMountainLeadSize ' type='normal' />
+              <Setting name='CloudThickness' avg=':= _default_ * nclcMountainLeadSize ' range=':= _default_ * nclcMountainLeadSize ' type='normal' scaleTo='base' />
+              <Setting name='DistributionFrequency' avg=':= 0 * nclcMountainLeadFreq ' range=':= 0 * nclcMountainLeadFreq ' type='normal' scaleTo='base' />
+              <Setting name='CloudHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Veins name='nclcMountainLeadHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='false' wireframeColor='0x603BF9F5' drawBoundBox='false' boundBoxColor='0x60582C7D'>
+                <Description>
+                  Single blocks, generously  scattered through all
+                  heights  (density is about that of  vanilla iron
+                  ore). They will  replace dirt and sandstone  (but
+                  not grass or sand), so  they can be found nearer to
+                  the surface than most ores.  Intened to be used as a
+                  child  distribution for large, rare  strategic
+                  deposits that would  otherwise be very difficult  to
+                  find.  Note that the  frequency is multiplied by
+                  ground level to maintain a  constant density, but
+                  not by  ore frequency because it is  assumed that
+                  the frequency of  the parent distribution will
+                  already be scaled by that.
+                </Description>
+                <OreBlock block='NuclearCraft:blockOre:2' weight='1.0' />
+                <Replaces block='minecraft:dirt' weight='1.0' />
+                <Replaces block='minecraft:sandstone' weight='1.0' />
+                <ReplacesOre block='stone' weight='1.0' />
+                <Replaces block='minecraft:gravel' weight='1.0' />
+              </Veins>
+            </Cloud>
+          </IfCondition>
+        </ConfigSection>
+        <!-- StrategicClouds Preset for Mountain Lead is  complete. -->
+
+
+        <!-- Starting Vanilla Preset for Mountain Lead. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainLeadDist = "Vanilla"'>
+            <StandardGen name='nclcMountainLeadStandard'  inherits='PresetStandardGen' drawWireframe='false' wireframeColor='0x603BF9F5' drawBoundBox='false' boundBoxColor='0x60582C7D'>
+              <Description>
+                A master preset for standardgen  ore distributions.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:2' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='Size' avg=':= _default_ * nclcMountainLeadSize ' range=':= _default_ * nclcMountainLeadSize ' type='normal' />
+              <Setting name='Frequency' avg=':= 0 * nclcMountainLeadFreq ' range=':= 0 * nclcMountainLeadFreq ' type='normal' scaleTo='base' />
+              <Setting name='Height' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </StandardGen>
+          </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Mountain Lead is complete. -->
+
+        <!-- End Mountain Lead Generation -->
+
+
+        <!-- Begin Silver Generation -->
+
+        <!-- Starting LayeredVeins Preset for Silver. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcSilverDist = "LayeredVeins"'>
+            <Veins name='nclcSilverVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='false' wireframeColor='0x60089836' drawBoundBox='false' boundBoxColor='0x604DAD4F'>
+              <Description>
+                Small, fairly rare motherlodes  with 2-4 horizontal
+                veins each.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:3' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='MotherlodeFrequency' avg=':= 0 * nclcSilverFreq ' range=':= 0 * nclcSilverFreq ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeSize' avg=':= _default_ * nclcSilverSize ' range=':= _default_ * nclcSilverSize ' type='normal' />
+              <Setting name='MotherlodeHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchLength' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentLength' avg=':= _default_ * nclcSilverSize ' range=':= _default_ * nclcSilverSize ' type='normal' />
+              <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentPitch' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentRadius' avg=':= _default_ * nclcSilverSize ' range=':= _default_ * nclcSilverSize ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </Veins>
+          </IfCondition>
+        </ConfigSection>
+        <!-- LayeredVeins Preset for Silver is complete. -->
+
+
+        <!-- Starting StrategicClouds Preset for Silver. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcSilverDist = "StrategicClouds"'>
+            <Cloud name='nclcSilverCloud'  inherits='PresetStrategicCloud' drawWireframe='false' wireframeColor='0x60089836' drawBoundBox='false' boundBoxColor='0x604DAD4F'>
+              <Description>
+                Large irregular clouds filled  lightly with ore.
+                These are  huge, spanning several adjacent  chunks,
+                and consequently rather  rare.  They contain a
+                sizeable  amount of ore, but it takes some  time and
+                effort to mine due to  low density. The intent for
+                strategic clouds is that the  player will need to
+                actively  search for one and then set up a  semi-
+                permanent mining base and  spend some time actually
+                mining  the ore.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:3' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='CloudRadius' avg=':= _default_ * nclcSilverSize ' range=':= _default_ * nclcSilverSize ' type='normal' />
+              <Setting name='CloudThickness' avg=':= _default_ * nclcSilverSize ' range=':= _default_ * nclcSilverSize ' type='normal' scaleTo='base' />
+              <Setting name='DistributionFrequency' avg=':= 0 * nclcSilverFreq ' range=':= 0 * nclcSilverFreq ' type='normal' scaleTo='base' />
+              <Setting name='CloudHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Veins name='nclcSilverHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='false' wireframeColor='0x60089836' drawBoundBox='false' boundBoxColor='0x604DAD4F'>
+                <Description>
+                  Single blocks, generously  scattered through all
+                  heights  (density is about that of  vanilla iron
+                  ore). They will  replace dirt and sandstone  (but
+                  not grass or sand), so  they can be found nearer to
+                  the surface than most ores.  Intened to be used as a
+                  child  distribution for large, rare  strategic
+                  deposits that would  otherwise be very difficult  to
+                  find.  Note that the  frequency is multiplied by
+                  ground level to maintain a  constant density, but
+                  not by  ore frequency because it is  assumed that
+                  the frequency of  the parent distribution will
+                  already be scaled by that.
+                </Description>
+                <OreBlock block='NuclearCraft:blockOre:3' weight='1.0' />
+                <Replaces block='minecraft:dirt' weight='1.0' />
+                <Replaces block='minecraft:sandstone' weight='1.0' />
+                <ReplacesOre block='stone' weight='1.0' />
+                <Replaces block='minecraft:gravel' weight='1.0' />
+              </Veins>
+            </Cloud>
+          </IfCondition>
+        </ConfigSection>
+        <!-- StrategicClouds Preset for Silver is complete. -->
+
+
+        <!-- Starting Vanilla Preset for Silver. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcSilverDist = "Vanilla"'>
+            <StandardGen name='nclcSilverStandard'  inherits='PresetStandardGen' drawWireframe='false' wireframeColor='0x60089836' drawBoundBox='false' boundBoxColor='0x604DAD4F'>
+              <Description>
+                A master preset for standardgen  ore distributions.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:3' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='Size' avg=':= _default_ * nclcSilverSize ' range=':= _default_ * nclcSilverSize ' type='normal' />
+              <Setting name='Frequency' avg=':= 0 * nclcSilverFreq ' range=':= 0 * nclcSilverFreq ' type='normal' scaleTo='base' />
+              <Setting name='Height' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </StandardGen>
+          </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Silver is complete. -->
+
+        <!-- End Silver Generation -->
+
+
+        <!-- Begin Mountain Silver Generation -->
+
+        <!-- Starting LayeredVeins Preset for Mountain Silver. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainSilverDist = "LayeredVeins"'>
+            <Veins name='nclcMountainSilverVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='false' wireframeColor='0x60E71BA1' drawBoundBox='false' boundBoxColor='0x60F079D1'>
+              <Description>
+                Small, fairly rare motherlodes  with 2-4 horizontal
+                veins each.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:3' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='MotherlodeFrequency' avg=':= 0 * nclcMountainSilverFreq ' range=':= 0 * nclcMountainSilverFreq ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeSize' avg=':= _default_ * nclcMountainSilverSize ' range=':= _default_ * nclcMountainSilverSize ' type='normal' />
+              <Setting name='MotherlodeHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchLength' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentLength' avg=':= _default_ * nclcMountainSilverSize ' range=':= _default_ * nclcMountainSilverSize ' type='normal' />
+              <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentPitch' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentRadius' avg=':= _default_ * nclcMountainSilverSize ' range=':= _default_ * nclcMountainSilverSize ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </Veins>
+          </IfCondition>
+        </ConfigSection>
+        <!-- LayeredVeins Preset for Mountain Silver is  complete. -->
+
+
+        <!-- Starting StrategicClouds Preset for Mountain  Silver. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainSilverDist = "StrategicClouds"'>
+            <Cloud name='nclcMountainSilverCloud'  inherits='PresetStrategicCloud' drawWireframe='false' wireframeColor='0x60E71BA1' drawBoundBox='false' boundBoxColor='0x60F079D1'>
+              <Description>
+                Large irregular clouds filled  lightly with ore.
+                These are  huge, spanning several adjacent  chunks,
+                and consequently rather  rare.  They contain a
+                sizeable  amount of ore, but it takes some  time and
+                effort to mine due to  low density. The intent for
+                strategic clouds is that the  player will need to
+                actively  search for one and then set up a  semi-
+                permanent mining base and  spend some time actually
+                mining  the ore.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:3' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='CloudRadius' avg=':= _default_ * nclcMountainSilverSize ' range=':= _default_ * nclcMountainSilverSize ' type='normal' />
+              <Setting name='CloudThickness' avg=':= _default_ * nclcMountainSilverSize ' range=':= _default_ * nclcMountainSilverSize ' type='normal' scaleTo='base' />
+              <Setting name='DistributionFrequency' avg=':= 0 * nclcMountainSilverFreq ' range=':= 0 * nclcMountainSilverFreq ' type='normal' scaleTo='base' />
+              <Setting name='CloudHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Veins name='nclcMountainSilverHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='false' wireframeColor='0x60E71BA1' drawBoundBox='false' boundBoxColor='0x60F079D1'>
+                <Description>
+                  Single blocks, generously  scattered through all
+                  heights  (density is about that of  vanilla iron
+                  ore). They will  replace dirt and sandstone  (but
+                  not grass or sand), so  they can be found nearer to
+                  the surface than most ores.  Intened to be used as a
+                  child  distribution for large, rare  strategic
+                  deposits that would  otherwise be very difficult  to
+                  find.  Note that the  frequency is multiplied by
+                  ground level to maintain a  constant density, but
+                  not by  ore frequency because it is  assumed that
+                  the frequency of  the parent distribution will
+                  already be scaled by that.
+                </Description>
+                <OreBlock block='NuclearCraft:blockOre:3' weight='1.0' />
+                <Replaces block='minecraft:dirt' weight='1.0' />
+                <Replaces block='minecraft:sandstone' weight='1.0' />
+                <ReplacesOre block='stone' weight='1.0' />
+                <Replaces block='minecraft:gravel' weight='1.0' />
+              </Veins>
+            </Cloud>
+          </IfCondition>
+        </ConfigSection>
+        <!-- StrategicClouds Preset for Mountain Silver is  complete. -->
+
+
+        <!-- Starting Vanilla Preset for Mountain Silver. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainSilverDist = "Vanilla"'>
+            <StandardGen name='nclcMountainSilverStandard'  inherits='PresetStandardGen' drawWireframe='false' wireframeColor='0x60E71BA1' drawBoundBox='false' boundBoxColor='0x60F079D1'>
+              <Description>
+                A master preset for standardgen  ore distributions.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:3' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='Size' avg=':= _default_ * nclcMountainSilverSize ' range=':= _default_ * nclcMountainSilverSize ' type='normal' />
+              <Setting name='Frequency' avg=':= 0 * nclcMountainSilverFreq ' range=':= 0 * nclcMountainSilverFreq ' type='normal' scaleTo='base' />
+              <Setting name='Height' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </StandardGen>
+          </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Mountain Silver is complete. -->
+
+        <!-- End Mountain Silver Generation -->
+
+
+        <!-- Begin Lithium Generation -->
+
+        <!-- Starting SparseVeins Preset for Lithium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcLithiumDist = "SparseVeins"'>
+            <Veins name='nclcLithiumVeins'  inherits='PresetSparseVeins' branchType='Bezier' drawWireframe='false' wireframeColor='0x60620C7F' drawBoundBox='false' boundBoxColor='0x60204FE9'>
+              <Description>
+                Large veins filled very lightly  with ore.  Because
+                they contain  less ore per volume, these veins  are
+                relatively wide and long.  Mining the ore from them is
+                time  consuming compared to solid ore  veins.  They
+                are also more  difficult to follow, since it is
+                harder to get an idea of their  direction while
+                mining.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:7' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='MotherlodeFrequency' avg=':= 0 * nclcLithiumFreq ' range=':= 0 * nclcLithiumFreq ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeSize' avg=':= _default_ * nclcLithiumSize ' range=':= _default_ * nclcLithiumSize ' type='normal' />
+              <Setting name='MotherlodeHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchLength' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentLength' avg=':= _default_ * nclcLithiumSize ' range=':= _default_ * nclcLithiumSize ' type='normal' />
+              <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentPitch' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentRadius' avg=':= _default_ * nclcLithiumSize ' range=':= _default_ * nclcLithiumSize ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </Veins>
+          </IfCondition>
+        </ConfigSection>
+        <!-- SparseVeins Preset for Lithium is complete. -->
+
+
+        <!-- Starting StrategicClouds Preset for Lithium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcLithiumDist = "StrategicClouds"'>
+            <Cloud name='nclcLithiumCloud'  inherits='PresetStrategicCloud' drawWireframe='false' wireframeColor='0x60620C7F' drawBoundBox='false' boundBoxColor='0x60204FE9'>
+              <Description>
+                Large irregular clouds filled  lightly with ore.
+                These are  huge, spanning several adjacent  chunks,
+                and consequently rather  rare.  They contain a
+                sizeable  amount of ore, but it takes some  time and
+                effort to mine due to  low density. The intent for
+                strategic clouds is that the  player will need to
+                actively  search for one and then set up a  semi-
+                permanent mining base and  spend some time actually
+                mining  the ore.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:7' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='CloudRadius' avg=':= _default_ * nclcLithiumSize ' range=':= _default_ * nclcLithiumSize ' type='normal' />
+              <Setting name='CloudThickness' avg=':= _default_ * nclcLithiumSize ' range=':= _default_ * nclcLithiumSize ' type='normal' scaleTo='base' />
+              <Setting name='DistributionFrequency' avg=':= 0 * nclcLithiumFreq ' range=':= 0 * nclcLithiumFreq ' type='normal' scaleTo='base' />
+              <Setting name='CloudHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Veins name='nclcLithiumHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='false' wireframeColor='0x60620C7F' drawBoundBox='false' boundBoxColor='0x60204FE9'>
+                <Description>
+                  Single blocks, generously  scattered through all
+                  heights  (density is about that of  vanilla iron
+                  ore). They will  replace dirt and sandstone  (but
+                  not grass or sand), so  they can be found nearer to
+                  the surface than most ores.  Intened to be used as a
+                  child  distribution for large, rare  strategic
+                  deposits that would  otherwise be very difficult  to
+                  find.  Note that the  frequency is multiplied by
+                  ground level to maintain a  constant density, but
+                  not by  ore frequency because it is  assumed that
+                  the frequency of  the parent distribution will
+                  already be scaled by that.
+                </Description>
+                <OreBlock block='NuclearCraft:blockOre:7' weight='1.0' />
+                <Replaces block='minecraft:dirt' weight='1.0' />
+                <Replaces block='minecraft:sandstone' weight='1.0' />
+                <ReplacesOre block='stone' weight='1.0' />
+                <Replaces block='minecraft:gravel' weight='1.0' />
+              </Veins>
+            </Cloud>
+          </IfCondition>
+        </ConfigSection>
+        <!-- StrategicClouds Preset for Lithium is complete. -->
+
+
+        <!-- Starting Vanilla Preset for Lithium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcLithiumDist = "Vanilla"'>
+            <StandardGen name='nclcLithiumStandard'  inherits='PresetStandardGen' drawWireframe='false' wireframeColor='0x60620C7F' drawBoundBox='false' boundBoxColor='0x60204FE9'>
+              <Description>
+                A master preset for standardgen  ore distributions.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:7' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='Size' avg=':= _default_ * nclcLithiumSize ' range=':= _default_ * nclcLithiumSize ' type='normal' />
+              <Setting name='Frequency' avg=':= 0 * nclcLithiumFreq ' range=':= 0 * nclcLithiumFreq ' type='normal' scaleTo='base' />
+              <Setting name='Height' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </StandardGen>
+          </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Lithium is complete. -->
+
+        <!-- End Lithium Generation -->
+
+
+        <!-- Begin Mountain Lithium Generation -->
+
+        <!-- Starting SparseVeins Preset for Mountain Lithium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainLithiumDist = "SparseVeins"'>
+            <Veins name='nclcMountainLithiumVeins'  inherits='PresetSparseVeins' branchType='Bezier' drawWireframe='false' wireframeColor='0x60FCDE6E' drawBoundBox='false' boundBoxColor='0x602DEDBC'>
+              <Description>
+                Large veins filled very lightly  with ore.  Because
+                they contain  less ore per volume, these veins  are
+                relatively wide and long.  Mining the ore from them is
+                time  consuming compared to solid ore  veins.  They
+                are also more  difficult to follow, since it is
+                harder to get an idea of their  direction while
+                mining.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:7' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='MotherlodeFrequency' avg=':= 0 * nclcMountainLithiumFreq ' range=':= 0 * nclcMountainLithiumFreq ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeSize' avg=':= _default_ * nclcMountainLithiumSize ' range=':= _default_ * nclcMountainLithiumSize ' type='normal' />
+              <Setting name='MotherlodeHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchLength' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentLength' avg=':= _default_ * nclcMountainLithiumSize ' range=':= _default_ * nclcMountainLithiumSize ' type='normal' />
+              <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentPitch' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentRadius' avg=':= _default_ * nclcMountainLithiumSize ' range=':= _default_ * nclcMountainLithiumSize ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </Veins>
+          </IfCondition>
+        </ConfigSection>
+        <!-- SparseVeins Preset for Mountain Lithium is  complete. -->
+
+
+        <!-- Starting StrategicClouds Preset for Mountain  Lithium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainLithiumDist = "StrategicClouds"'>
+            <Cloud name='nclcMountainLithiumCloud'  inherits='PresetStrategicCloud' drawWireframe='false' wireframeColor='0x60FCDE6E' drawBoundBox='false' boundBoxColor='0x602DEDBC'>
+              <Description>
+                Large irregular clouds filled  lightly with ore.
+                These are  huge, spanning several adjacent  chunks,
+                and consequently rather  rare.  They contain a
+                sizeable  amount of ore, but it takes some  time and
+                effort to mine due to  low density. The intent for
+                strategic clouds is that the  player will need to
+                actively  search for one and then set up a  semi-
+                permanent mining base and  spend some time actually
+                mining  the ore.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:7' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='CloudRadius' avg=':= _default_ * nclcMountainLithiumSize ' range=':= _default_ * nclcMountainLithiumSize ' type='normal' />
+              <Setting name='CloudThickness' avg=':= _default_ * nclcMountainLithiumSize ' range=':= _default_ * nclcMountainLithiumSize ' type='normal' scaleTo='base' />
+              <Setting name='DistributionFrequency' avg=':= 0 * nclcMountainLithiumFreq ' range=':= 0 * nclcMountainLithiumFreq ' type='normal' scaleTo='base' />
+              <Setting name='CloudHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Veins name='nclcMountainLithiumHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='false' wireframeColor='0x60FCDE6E' drawBoundBox='false' boundBoxColor='0x602DEDBC'>
+                <Description>
+                  Single blocks, generously  scattered through all
+                  heights  (density is about that of  vanilla iron
+                  ore). They will  replace dirt and sandstone  (but
+                  not grass or sand), so  they can be found nearer to
+                  the surface than most ores.  Intened to be used as a
+                  child  distribution for large, rare  strategic
+                  deposits that would  otherwise be very difficult  to
+                  find.  Note that the  frequency is multiplied by
+                  ground level to maintain a  constant density, but
+                  not by  ore frequency because it is  assumed that
+                  the frequency of  the parent distribution will
+                  already be scaled by that.
+                </Description>
+                <OreBlock block='NuclearCraft:blockOre:7' weight='1.0' />
+                <Replaces block='minecraft:dirt' weight='1.0' />
+                <Replaces block='minecraft:sandstone' weight='1.0' />
+                <ReplacesOre block='stone' weight='1.0' />
+                <Replaces block='minecraft:gravel' weight='1.0' />
+              </Veins>
+            </Cloud>
+          </IfCondition>
+        </ConfigSection>
+        <!-- StrategicClouds Preset for Mountain Lithium is  complete. -->
+
+
+        <!-- Starting Vanilla Preset for Mountain Lithium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainLithiumDist = "Vanilla"'>
+            <StandardGen name='nclcMountainLithiumStandard'  inherits='PresetStandardGen' drawWireframe='false' wireframeColor='0x60FCDE6E' drawBoundBox='false' boundBoxColor='0x602DEDBC'>
+              <Description>
+                A master preset for standardgen  ore distributions.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:7' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='Size' avg=':= _default_ * nclcMountainLithiumSize ' range=':= _default_ * nclcMountainLithiumSize ' type='normal' />
+              <Setting name='Frequency' avg=':= 0 * nclcMountainLithiumFreq ' range=':= 0 * nclcMountainLithiumFreq ' type='normal' scaleTo='base' />
+              <Setting name='Height' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </StandardGen>
+          </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Mountain Lithium is complete. -->
+
+        <!-- End Mountain Lithium Generation -->
+
+
+        <!-- Begin Boron Generation -->
+
+        <!-- Starting SparseVeins Preset for Boron. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcBoronDist = "SparseVeins"'>
+            <Veins name='nclcBoronVeins'  inherits='PresetSparseVeins' branchType='Bezier' drawWireframe='false' wireframeColor='0x60EA210D' drawBoundBox='false' boundBoxColor='0x60871196'>
+              <Description>
+                Large veins filled very lightly  with ore.  Because
+                they contain  less ore per volume, these veins  are
+                relatively wide and long.  Mining the ore from them is
+                time  consuming compared to solid ore  veins.  They
+                are also more  difficult to follow, since it is
+                harder to get an idea of their  direction while
+                mining.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:8' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='MotherlodeFrequency' avg=':= 0 * nclcBoronFreq ' range=':= 0 * nclcBoronFreq ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeSize' avg=':= _default_ * nclcBoronSize ' range=':= _default_ * nclcBoronSize ' type='normal' />
+              <Setting name='MotherlodeHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchLength' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentLength' avg=':= _default_ * nclcBoronSize ' range=':= _default_ * nclcBoronSize ' type='normal' />
+              <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentPitch' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentRadius' avg=':= _default_ * nclcBoronSize ' range=':= _default_ * nclcBoronSize ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </Veins>
+          </IfCondition>
+        </ConfigSection>
+        <!-- SparseVeins Preset for Boron is complete. -->
+
+
+        <!-- Starting StrategicClouds Preset for Boron. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcBoronDist = "StrategicClouds"'>
+            <Cloud name='nclcBoronCloud'  inherits='PresetStrategicCloud' drawWireframe='false' wireframeColor='0x60EA210D' drawBoundBox='false' boundBoxColor='0x60871196'>
+              <Description>
+                Large irregular clouds filled  lightly with ore.
+                These are  huge, spanning several adjacent  chunks,
+                and consequently rather  rare.  They contain a
+                sizeable  amount of ore, but it takes some  time and
+                effort to mine due to  low density. The intent for
+                strategic clouds is that the  player will need to
+                actively  search for one and then set up a  semi-
+                permanent mining base and  spend some time actually
+                mining  the ore.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:8' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='CloudRadius' avg=':= _default_ * nclcBoronSize ' range=':= _default_ * nclcBoronSize ' type='normal' />
+              <Setting name='CloudThickness' avg=':= _default_ * nclcBoronSize ' range=':= _default_ * nclcBoronSize ' type='normal' scaleTo='base' />
+              <Setting name='DistributionFrequency' avg=':= 0 * nclcBoronFreq ' range=':= 0 * nclcBoronFreq ' type='normal' scaleTo='base' />
+              <Setting name='CloudHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Veins name='nclcBoronHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='false' wireframeColor='0x60EA210D' drawBoundBox='false' boundBoxColor='0x60871196'>
+                <Description>
+                  Single blocks, generously  scattered through all
+                  heights  (density is about that of  vanilla iron
+                  ore). They will  replace dirt and sandstone  (but
+                  not grass or sand), so  they can be found nearer to
+                  the surface than most ores.  Intened to be used as a
+                  child  distribution for large, rare  strategic
+                  deposits that would  otherwise be very difficult  to
+                  find.  Note that the  frequency is multiplied by
+                  ground level to maintain a  constant density, but
+                  not by  ore frequency because it is  assumed that
+                  the frequency of  the parent distribution will
+                  already be scaled by that.
+                </Description>
+                <OreBlock block='NuclearCraft:blockOre:8' weight='1.0' />
+                <Replaces block='minecraft:dirt' weight='1.0' />
+                <Replaces block='minecraft:sandstone' weight='1.0' />
+                <ReplacesOre block='stone' weight='1.0' />
+                <Replaces block='minecraft:gravel' weight='1.0' />
+              </Veins>
+            </Cloud>
+          </IfCondition>
+        </ConfigSection>
+        <!-- StrategicClouds Preset for Boron is complete. -->
+
+
+        <!-- Starting Vanilla Preset for Boron. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcBoronDist = "Vanilla"'>
+            <StandardGen name='nclcBoronStandard'  inherits='PresetStandardGen' drawWireframe='false' wireframeColor='0x60EA210D' drawBoundBox='false' boundBoxColor='0x60871196'>
+              <Description>
+                A master preset for standardgen  ore distributions.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:8' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='Size' avg=':= _default_ * nclcBoronSize ' range=':= _default_ * nclcBoronSize ' type='normal' />
+              <Setting name='Frequency' avg=':= 0 * nclcBoronFreq ' range=':= 0 * nclcBoronFreq ' type='normal' scaleTo='base' />
+              <Setting name='Height' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </StandardGen>
+          </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Boron is complete. -->
+
+        <!-- End Boron Generation -->
+
+
+        <!-- Begin Mountain Boron Generation -->
+
+        <!-- Starting SparseVeins Preset for Mountain Boron. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainBoronDist = "SparseVeins"'>
+            <Veins name='nclcMountainBoronVeins'  inherits='PresetSparseVeins' branchType='Bezier' drawWireframe='false' wireframeColor='0x60860112' drawBoundBox='false' boundBoxColor='0x6056596B'>
+              <Description>
+                Large veins filled very lightly  with ore.  Because
+                they contain  less ore per volume, these veins  are
+                relatively wide and long.  Mining the ore from them is
+                time  consuming compared to solid ore  veins.  They
+                are also more  difficult to follow, since it is
+                harder to get an idea of their  direction while
+                mining.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:8' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='MotherlodeFrequency' avg=':= 0 * nclcMountainBoronFreq ' range=':= 0 * nclcMountainBoronFreq ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeSize' avg=':= _default_ * nclcMountainBoronSize ' range=':= _default_ * nclcMountainBoronSize ' type='normal' />
+              <Setting name='MotherlodeHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchLength' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentLength' avg=':= _default_ * nclcMountainBoronSize ' range=':= _default_ * nclcMountainBoronSize ' type='normal' />
+              <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentPitch' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentRadius' avg=':= _default_ * nclcMountainBoronSize ' range=':= _default_ * nclcMountainBoronSize ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </Veins>
+          </IfCondition>
+        </ConfigSection>
+        <!-- SparseVeins Preset for Mountain Boron is  complete. -->
+
+
+        <!-- Starting StrategicClouds Preset for Mountain  Boron. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainBoronDist = "StrategicClouds"'>
+            <Cloud name='nclcMountainBoronCloud'  inherits='PresetStrategicCloud' drawWireframe='false' wireframeColor='0x60860112' drawBoundBox='false' boundBoxColor='0x6056596B'>
+              <Description>
+                Large irregular clouds filled  lightly with ore.
+                These are  huge, spanning several adjacent  chunks,
+                and consequently rather  rare.  They contain a
+                sizeable  amount of ore, but it takes some  time and
+                effort to mine due to  low density. The intent for
+                strategic clouds is that the  player will need to
+                actively  search for one and then set up a  semi-
+                permanent mining base and  spend some time actually
+                mining  the ore.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:8' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='CloudRadius' avg=':= _default_ * nclcMountainBoronSize ' range=':= _default_ * nclcMountainBoronSize ' type='normal' />
+              <Setting name='CloudThickness' avg=':= _default_ * nclcMountainBoronSize ' range=':= _default_ * nclcMountainBoronSize ' type='normal' scaleTo='base' />
+              <Setting name='DistributionFrequency' avg=':= 0 * nclcMountainBoronFreq ' range=':= 0 * nclcMountainBoronFreq ' type='normal' scaleTo='base' />
+              <Setting name='CloudHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Veins name='nclcMountainBoronHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='false' wireframeColor='0x60860112' drawBoundBox='false' boundBoxColor='0x6056596B'>
+                <Description>
+                  Single blocks, generously  scattered through all
+                  heights  (density is about that of  vanilla iron
+                  ore). They will  replace dirt and sandstone  (but
+                  not grass or sand), so  they can be found nearer to
+                  the surface than most ores.  Intened to be used as a
+                  child  distribution for large, rare  strategic
+                  deposits that would  otherwise be very difficult  to
+                  find.  Note that the  frequency is multiplied by
+                  ground level to maintain a  constant density, but
+                  not by  ore frequency because it is  assumed that
+                  the frequency of  the parent distribution will
+                  already be scaled by that.
+                </Description>
+                <OreBlock block='NuclearCraft:blockOre:8' weight='1.0' />
+                <Replaces block='minecraft:dirt' weight='1.0' />
+                <Replaces block='minecraft:sandstone' weight='1.0' />
+                <ReplacesOre block='stone' weight='1.0' />
+                <Replaces block='minecraft:gravel' weight='1.0' />
+              </Veins>
+            </Cloud>
+          </IfCondition>
+        </ConfigSection>
+        <!-- StrategicClouds Preset for Mountain Boron is  complete. -->
+
+
+        <!-- Starting Vanilla Preset for Mountain Boron. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainBoronDist = "Vanilla"'>
+            <StandardGen name='nclcMountainBoronStandard'  inherits='PresetStandardGen' drawWireframe='false' wireframeColor='0x60860112' drawBoundBox='false' boundBoxColor='0x6056596B'>
+              <Description>
+                A master preset for standardgen  ore distributions.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:8' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='Size' avg=':= _default_ * nclcMountainBoronSize ' range=':= _default_ * nclcMountainBoronSize ' type='normal' />
+              <Setting name='Frequency' avg=':= 0 * nclcMountainBoronFreq ' range=':= 0 * nclcMountainBoronFreq ' type='normal' scaleTo='base' />
+              <Setting name='Height' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </StandardGen>
+          </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Mountain Boron is complete. -->
+
+        <!-- End Mountain Boron Generation -->
+
+
+        <!-- Begin Thorium Generation -->
+
+        <!-- Starting SparseVeins Preset for Thorium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcThoriumDist = "SparseVeins"'>
+            <Veins name='nclcThoriumVeins'  inherits='PresetSparseVeins' branchType='Bezier' drawWireframe='false' wireframeColor='0x606565D0' drawBoundBox='false' boundBoxColor='0x60D6E267'>
+              <Description>
+                Large veins filled very lightly  with ore.  Because
+                they contain  less ore per volume, these veins  are
+                relatively wide and long.  Mining the ore from them is
+                time  consuming compared to solid ore  veins.  They
+                are also more  difficult to follow, since it is
+                harder to get an idea of their  direction while
+                mining.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:5' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='MotherlodeFrequency' avg=':= 0 * nclcThoriumFreq ' range=':= 0 * nclcThoriumFreq ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeSize' avg=':= _default_ * nclcThoriumSize ' range=':= _default_ * nclcThoriumSize ' type='normal' />
+              <Setting name='MotherlodeHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchLength' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentLength' avg=':= _default_ * nclcThoriumSize ' range=':= _default_ * nclcThoriumSize ' type='normal' />
+              <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentPitch' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentRadius' avg=':= _default_ * nclcThoriumSize ' range=':= _default_ * nclcThoriumSize ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </Veins>
+          </IfCondition>
+        </ConfigSection>
+        <!-- SparseVeins Preset for Thorium is complete. -->
+
+
+        <!-- Starting StrategicClouds Preset for Thorium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcThoriumDist = "StrategicClouds"'>
+            <Cloud name='nclcThoriumCloud'  inherits='PresetStrategicCloud' drawWireframe='false' wireframeColor='0x606565D0' drawBoundBox='false' boundBoxColor='0x60D6E267'>
+              <Description>
+                Large irregular clouds filled  lightly with ore.
+                These are  huge, spanning several adjacent  chunks,
+                and consequently rather  rare.  They contain a
+                sizeable  amount of ore, but it takes some  time and
+                effort to mine due to  low density. The intent for
+                strategic clouds is that the  player will need to
+                actively  search for one and then set up a  semi-
+                permanent mining base and  spend some time actually
+                mining  the ore.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:5' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='CloudRadius' avg=':= _default_ * nclcThoriumSize ' range=':= _default_ * nclcThoriumSize ' type='normal' />
+              <Setting name='CloudThickness' avg=':= _default_ * nclcThoriumSize ' range=':= _default_ * nclcThoriumSize ' type='normal' scaleTo='base' />
+              <Setting name='DistributionFrequency' avg=':= 0 * nclcThoriumFreq ' range=':= 0 * nclcThoriumFreq ' type='normal' scaleTo='base' />
+              <Setting name='CloudHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Veins name='nclcThoriumHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='false' wireframeColor='0x606565D0' drawBoundBox='false' boundBoxColor='0x60D6E267'>
+                <Description>
+                  Single blocks, generously  scattered through all
+                  heights  (density is about that of  vanilla iron
+                  ore). They will  replace dirt and sandstone  (but
+                  not grass or sand), so  they can be found nearer to
+                  the surface than most ores.  Intened to be used as a
+                  child  distribution for large, rare  strategic
+                  deposits that would  otherwise be very difficult  to
+                  find.  Note that the  frequency is multiplied by
+                  ground level to maintain a  constant density, but
+                  not by  ore frequency because it is  assumed that
+                  the frequency of  the parent distribution will
+                  already be scaled by that.
+                </Description>
+                <OreBlock block='NuclearCraft:blockOre:5' weight='1.0' />
+                <Replaces block='minecraft:dirt' weight='1.0' />
+                <Replaces block='minecraft:sandstone' weight='1.0' />
+                <ReplacesOre block='stone' weight='1.0' />
+                <Replaces block='minecraft:gravel' weight='1.0' />
+              </Veins>
+            </Cloud>
+          </IfCondition>
+        </ConfigSection>
+        <!-- StrategicClouds Preset for Thorium is complete. -->
+
+
+        <!-- Starting Vanilla Preset for Thorium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcThoriumDist = "Vanilla"'>
+            <StandardGen name='nclcThoriumStandard'  inherits='PresetStandardGen' drawWireframe='false' wireframeColor='0x606565D0' drawBoundBox='false' boundBoxColor='0x60D6E267'>
+              <Description>
+                A master preset for standardgen  ore distributions.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:5' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='Size' avg=':= _default_ * nclcThoriumSize ' range=':= _default_ * nclcThoriumSize ' type='normal' />
+              <Setting name='Frequency' avg=':= 0 * nclcThoriumFreq ' range=':= 0 * nclcThoriumFreq ' type='normal' scaleTo='base' />
+              <Setting name='Height' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </StandardGen>
+          </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Thorium is complete. -->
+
+        <!-- End Thorium Generation -->
+
+
+        <!-- Begin Mountain Thorium Generation -->
+
+        <!-- Starting SparseVeins Preset for Mountain Thorium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainThoriumDist = "SparseVeins"'>
+            <Veins name='nclcMountainThoriumVeins'  inherits='PresetSparseVeins' branchType='Bezier' drawWireframe='false' wireframeColor='0x600CEA02' drawBoundBox='false' boundBoxColor='0x6041F45D'>
+              <Description>
+                Large veins filled very lightly  with ore.  Because
+                they contain  less ore per volume, these veins  are
+                relatively wide and long.  Mining the ore from them is
+                time  consuming compared to solid ore  veins.  They
+                are also more  difficult to follow, since it is
+                harder to get an idea of their  direction while
+                mining.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:5' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='MotherlodeFrequency' avg=':= 0 * nclcMountainThoriumFreq ' range=':= 0 * nclcMountainThoriumFreq ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeSize' avg=':= _default_ * nclcMountainThoriumSize ' range=':= _default_ * nclcMountainThoriumSize ' type='normal' />
+              <Setting name='MotherlodeHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchLength' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentLength' avg=':= _default_ * nclcMountainThoriumSize ' range=':= _default_ * nclcMountainThoriumSize ' type='normal' />
+              <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentPitch' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentRadius' avg=':= _default_ * nclcMountainThoriumSize ' range=':= _default_ * nclcMountainThoriumSize ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </Veins>
+          </IfCondition>
+        </ConfigSection>
+        <!-- SparseVeins Preset for Mountain Thorium is  complete. -->
+
+
+        <!-- Starting StrategicClouds Preset for Mountain  Thorium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainThoriumDist = "StrategicClouds"'>
+            <Cloud name='nclcMountainThoriumCloud'  inherits='PresetStrategicCloud' drawWireframe='false' wireframeColor='0x600CEA02' drawBoundBox='false' boundBoxColor='0x6041F45D'>
+              <Description>
+                Large irregular clouds filled  lightly with ore.
+                These are  huge, spanning several adjacent  chunks,
+                and consequently rather  rare.  They contain a
+                sizeable  amount of ore, but it takes some  time and
+                effort to mine due to  low density. The intent for
+                strategic clouds is that the  player will need to
+                actively  search for one and then set up a  semi-
+                permanent mining base and  spend some time actually
+                mining  the ore.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:5' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='CloudRadius' avg=':= _default_ * nclcMountainThoriumSize ' range=':= _default_ * nclcMountainThoriumSize ' type='normal' />
+              <Setting name='CloudThickness' avg=':= _default_ * nclcMountainThoriumSize ' range=':= _default_ * nclcMountainThoriumSize ' type='normal' scaleTo='base' />
+              <Setting name='DistributionFrequency' avg=':= 0 * nclcMountainThoriumFreq ' range=':= 0 * nclcMountainThoriumFreq ' type='normal' scaleTo='base' />
+              <Setting name='CloudHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Veins name='nclcMountainThoriumHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='false' wireframeColor='0x600CEA02' drawBoundBox='false' boundBoxColor='0x6041F45D'>
+                <Description>
+                  Single blocks, generously  scattered through all
+                  heights  (density is about that of  vanilla iron
+                  ore). They will  replace dirt and sandstone  (but
+                  not grass or sand), so  they can be found nearer to
+                  the surface than most ores.  Intened to be used as a
+                  child  distribution for large, rare  strategic
+                  deposits that would  otherwise be very difficult  to
+                  find.  Note that the  frequency is multiplied by
+                  ground level to maintain a  constant density, but
+                  not by  ore frequency because it is  assumed that
+                  the frequency of  the parent distribution will
+                  already be scaled by that.
+                </Description>
+                <OreBlock block='NuclearCraft:blockOre:5' weight='1.0' />
+                <Replaces block='minecraft:dirt' weight='1.0' />
+                <Replaces block='minecraft:sandstone' weight='1.0' />
+                <ReplacesOre block='stone' weight='1.0' />
+                <Replaces block='minecraft:gravel' weight='1.0' />
+              </Veins>
+            </Cloud>
+          </IfCondition>
+        </ConfigSection>
+        <!-- StrategicClouds Preset for Mountain Thorium is  complete. -->
+
+
+        <!-- Starting Vanilla Preset for Mountain Thorium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcMountainThoriumDist = "Vanilla"'>
+            <StandardGen name='nclcMountainThoriumStandard'  inherits='PresetStandardGen' drawWireframe='false' wireframeColor='0x600CEA02' drawBoundBox='false' boundBoxColor='0x6041F45D'>
+              <Description>
+                A master preset for standardgen  ore distributions.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:5' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='Size' avg=':= _default_ * nclcMountainThoriumSize ' range=':= _default_ * nclcMountainThoriumSize ' type='normal' />
+              <Setting name='Frequency' avg=':= 0 * nclcMountainThoriumFreq ' range=':= 0 * nclcMountainThoriumFreq ' type='normal' scaleTo='base' />
+              <Setting name='Height' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </StandardGen>
+          </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Mountain Thorium is complete. -->
+
+        <!-- End Mountain Thorium Generation -->
+
+        <!-- Finished adding blocks -->
+
+      </IfCondition>
+      <!-- Overworld Setup Complete -->
+
+
+
+
+
+      <!-- Nether Setup Beginning -->
+
+      <IfCondition condition=':= dimension.generator = "HellRandomLevelSource"'>
+
+        <!-- Starting Original "Nether" Block Removal -->
+
+        <IfCondition condition=':= ?cleanUpNuclearcraft'>
+          <IfCondition condition=':= ?blockExists("minecraft:stone")'>
+            <Substitute name='nclcNetherBlockSubstitute0' block='minecraft:stone'>
+              <Description>
+                Replace vanilla-generated ore clusters.
+              </Description>
+              <Comment>
+                The global option  deferredPopulationRange must be
+                large enough to catch all ore  clusters (>= 32).
+              </Comment>
+              <Replaces block='NuclearCraft:blockOre:6' weight='1.0' />
+            </Substitute>
+          </IfCondition>
+        </IfCondition>
+
+        <!-- Original "Nether" Block Removal Complete -->
+
+        <!-- Adding blocks -->
+
+        <!-- Begin Plutonium Generation -->
+
+        <!-- Starting SparseVeins Preset for Plutonium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcPlutoniumDist = "SparseVeins"'>
+            <Veins name='nclcPlutoniumVeins'  inherits='PresetSparseVeins' branchType='Bezier' drawWireframe='false' wireframeColor='0x60F338CC' drawBoundBox='false' boundBoxColor='0x608A0026'>
+              <Description>
+                Large veins filled very lightly  with ore.  Because
+                they contain  less ore per volume, these veins  are
+                relatively wide and long.  Mining the ore from them is
+                time  consuming compared to solid ore  veins.  They
+                are also more  difficult to follow, since it is
+                harder to get an idea of their  direction while
+                mining.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:6' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='MotherlodeFrequency' avg=':= 0 * nclcPlutoniumFreq ' range=':= 0 * nclcPlutoniumFreq ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeSize' avg=':= _default_ * nclcPlutoniumSize ' range=':= _default_ * nclcPlutoniumSize ' type='normal' />
+              <Setting name='MotherlodeHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchLength' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentLength' avg=':= _default_ * nclcPlutoniumSize ' range=':= _default_ * nclcPlutoniumSize ' type='normal' />
+              <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentPitch' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='SegmentRadius' avg=':= _default_ * nclcPlutoniumSize ' range=':= _default_ * nclcPlutoniumSize ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </Veins>
+          </IfCondition>
+        </ConfigSection>
+        <!-- SparseVeins Preset for Plutonium is complete. -->
+
+
+        <!-- Starting StrategicClouds Preset for Plutonium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcPlutoniumDist = "StrategicClouds"'>
+            <Cloud name='nclcPlutoniumCloud'  inherits='PresetStrategicCloud' drawWireframe='false' wireframeColor='0x60F338CC' drawBoundBox='false' boundBoxColor='0x608A0026'>
+              <Description>
+                Large irregular clouds filled  lightly with ore.
+                These are  huge, spanning several adjacent  chunks,
+                and consequently rather  rare.  They contain a
+                sizeable  amount of ore, but it takes some  time and
+                effort to mine due to  low density. The intent for
+                strategic clouds is that the  player will need to
+                actively  search for one and then set up a  semi-
+                permanent mining base and  spend some time actually
+                mining  the ore.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:6' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='CloudRadius' avg=':= _default_ * nclcPlutoniumSize ' range=':= _default_ * nclcPlutoniumSize ' type='normal' />
+              <Setting name='CloudThickness' avg=':= _default_ * nclcPlutoniumSize ' range=':= _default_ * nclcPlutoniumSize ' type='normal' scaleTo='base' />
+              <Setting name='DistributionFrequency' avg=':= 0 * nclcPlutoniumFreq ' range=':= 0 * nclcPlutoniumFreq ' type='normal' scaleTo='base' />
+              <Setting name='CloudHeight' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+              <Veins name='nclcPlutoniumHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='false' wireframeColor='0x60F338CC' drawBoundBox='false' boundBoxColor='0x608A0026'>
+                <Description>
+                  Single blocks, generously  scattered through all
+                  heights  (density is about that of  vanilla iron
+                  ore). They will  replace dirt and sandstone  (but
+                  not grass or sand), so  they can be found nearer to
+                  the surface than most ores.  Intened to be used as a
+                  child  distribution for large, rare  strategic
+                  deposits that would  otherwise be very difficult  to
+                  find.  Note that the  frequency is multiplied by
+                  ground level to maintain a  constant density, but
+                  not by  ore frequency because it is  assumed that
+                  the frequency of  the parent distribution will
+                  already be scaled by that.
+                </Description>
+                <OreBlock block='NuclearCraft:blockOre:6' weight='1.0' />
+                <Replaces block='minecraft:dirt' weight='1.0' />
+                <Replaces block='minecraft:sandstone' weight='1.0' />
+                <ReplacesOre block='stone' weight='1.0' />
+                <Replaces block='minecraft:gravel' weight='1.0' />
+              </Veins>
+            </Cloud>
+          </IfCondition>
+        </ConfigSection>
+        <!-- StrategicClouds Preset for Plutonium is complete. -->
+
+
+        <!-- Starting Vanilla Preset for Plutonium. -->
+        <ConfigSection>
+          <IfCondition condition=':= nclcPlutoniumDist = "Vanilla"'>
+            <StandardGen name='nclcPlutoniumStandard'  inherits='PresetStandardGen' drawWireframe='false' wireframeColor='0x60F338CC' drawBoundBox='false' boundBoxColor='0x608A0026'>
+              <Description>
+                A master preset for standardgen  ore distributions.
+              </Description>
+              <OreBlock block='NuclearCraft:blockOre:6' weight='1.0' />
+              <ReplacesOre block='stone' weight='1.0' />
+              <Biome name='.*'  />
+              <Setting name='Size' avg=':= _default_ * nclcPlutoniumSize ' range=':= _default_ * nclcPlutoniumSize ' type='normal' />
+              <Setting name='Frequency' avg=':= 0 * nclcPlutoniumFreq ' range=':= 0 * nclcPlutoniumFreq ' type='normal' scaleTo='base' />
+              <Setting name='Height' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
+              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
+            </StandardGen>
+          </IfCondition>
+        </ConfigSection>
+        <!-- Vanilla Preset for Plutonium is complete. -->
+
+        <!-- End Plutonium Generation -->
+
+        <!-- Finished adding blocks -->
+
+      </IfCondition>
+      <!-- Nether Setup Complete -->
+
+
+    </IfCondition>
+
+  </ConfigSection>
+  <!-- Configuration for Custom Ore Generation Complete! -->
+
+</IfModInstalled>
+<!-- The "Nuclearcraft" mod is now configured. -->
+
+
+
+
+
+<!-- =================================================================
+     This file was made using the Sprocket Advanced Configuration
+     Generator.  If you wish to make your own configurations for a mod
+     not currently supported by Custom Ore Generation, and you don't
+     want the hassle of writing XML, you can find the generator script
+     at its GitHub page: http://https://github.com/reteo/Sprocket
+     ================================================================= -->
