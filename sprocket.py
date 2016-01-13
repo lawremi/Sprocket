@@ -764,6 +764,22 @@ def dimensionName(dimensionNumber):
         return "Nether"
     elif dimensionNumber == "1":
         return "End"
+    elif dimensionNumber == "7":
+        return "Twilight Forest"
+    elif dimensionNumber == "-112":
+        return "Last Millenium"
+    elif dimensionNumber == "-100":
+        return "Deep Dark"
+    elif dimensionNumber == "3":
+        return "Aether"
+    elif dimensionNumber == "4":
+        return "Dungeon Dimension"
+    elif dimensionNumber == "-42":
+        return "Outer Lands"
+    elif dimensionNumber == "-19":
+        return "Bedrock Dimension"
+    elif dimensionNumber == "6":
+        return "Aroma1997s Mining World"
     else:
         return "MISSING"
     
@@ -2453,6 +2469,13 @@ def mainConfigStructure():
     configOutput += dimensionSetup("Overworld", "COGActive")+"\n"
     configOutput += dimensionSetup("Nether", "HellRandomLevelSource")+"\n"
     configOutput += dimensionSetup("End", "EndRandomLevelSource")+"\n"
+    configOutput += dimensionSetup("Twilight Forest", "TwilightLevelSource")+"\n"
+    configOutput += dimensionSetup("Last Millenium", "EoTLevelSource")+"\n"
+    configOutput += dimensionSetup("Aether", "RandomLevelSource")+"\n"
+    configOutput += dimensionSetup("Dungeon Dimension", "RandomLevelSource")+"\n"
+    configOutput += dimensionSetup("Outer Lands", "RandomLevelSource")+"\n"
+    configOutput += dimensionSetup("Bedrock Dimension", "Bedrock")+"\n"
+    configOutput += dimensionSetup("Aroma1997s Mining World", "DimensionalWorld")+"\n"
         
     if modDetect.lower() != "minecraft":     
         cogIndent(-1)
