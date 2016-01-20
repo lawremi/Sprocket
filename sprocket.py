@@ -790,6 +790,10 @@ def dimensionName(dimensionCode):
         return "GalactiCraft Mars"
     elif spaceRemove(dimensionCode.lower()) == "asteroids" or spaceRemove(dimensionCode.lower()) == "galacticraftasteroids":
         return "GalactiCraft Asteroids"
+    elif spaceRemove(dimensionCode.lower()) == "rftools":
+        return "RFTools"
+    elif spaceRemove(dimensionCode.lower()) == "mystcraft":
+        return "MystCraft"
     else:
         return "MISSING"
     
@@ -2493,6 +2497,8 @@ def mainConfigStructure():
     configOutput += dimensionSetup("Galacticraft Moon", "ChunkProviderMoon")+"\n"
     configOutput += dimensionSetup("Galacticraft Mars", "ChunkProviderMars")+"\n"
     configOutput += dimensionSetup("Galacticraft Asteroids", "ChunkProviderAsteroids")+"\n"
+    configOutput += dimensionSetup("RFTools", "GenericChunkProvider")+"\n"
+    configOutput += dimensionSetup("MystCraft", "ChunkProviderMyst")+"\n"
         
     if modDetect.lower() != "minecraft":     
         cogIndent(-1)
