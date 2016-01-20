@@ -332,7 +332,7 @@ Config = ConfigParser.SafeConfigParser(
                 'Alternate Block Weights':'MISSING',
                 'Replaces':'minecraft:stone',
                 'Replacement Weights':'MISSING',
-                'Dimensions':'0',
+                'Dimensions':'Overworld',
                 'Need Biomes':'.*',
                 'Need Biome Types':'MISSING',
                 'Avoid Biomes':'MISSING',
@@ -757,29 +757,39 @@ def setBoundingBox(active, color):
 
 ### Dimension Options
    
-def dimensionName(dimensionNumber):
-    if dimensionNumber == "0":
+def dimensionName(dimensionCode):
+    if spaceRemove(dimensionCode.lower()) == "overworld":
         return "Overworld"
-    elif dimensionNumber == "-1":
+    elif spaceRemove(dimensionCode.lower()) == "nether":
         return "Nether"
-    elif dimensionNumber == "1":
+    elif spaceRemove(dimensionCode.lower()) == "end":
         return "End"
-    elif dimensionNumber == "7":
+    elif spaceRemove(dimensionCode.lower()) == "twilightforest":
         return "Twilight Forest"
-    elif dimensionNumber == "-112":
-        return "Last Millenium"
-    elif dimensionNumber == "-100":
+    elif spaceRemove(dimensionCode.lower()) == "lastmillenium" or spaceRemove(dimensionCode.lower()) == "lastmillennium" or spaceRemove(dimensionCode.lower()) == "endoftime":
+        return "Last Millennium"
+    elif spaceRemove(dimensionCode.lower()) == "deepdark" or spaceRemove(dimensionCode.lower()) == "underdark":
         return "Deep Dark"
-    elif dimensionNumber == "3":
+    elif spaceRemove(dimensionCode.lower()) == "aether":
         return "Aether"
-    elif dimensionNumber == "4":
-        return "Dungeon Dimension"
-    elif dimensionNumber == "-42":
+    elif spaceRemove(dimensionCode.lower()) == "dungeon" or spaceRemove(dimensionCode.lower()) == "dungeons" or spaceRemove(dimensionCode.lower()) == "dungeondimension" or spaceRemove(dimensionCode.lower()) == "aetherdungeon" or spaceRemove(dimensionCode.lower()) == "aetherdungeons":
+        return "Aether Dungeons"
+    elif spaceRemove(dimensionCode.lower()) == "outerlands" or spaceRemove(dimensionCode.lower()) == "theouterlands":
         return "Outer Lands"
-    elif dimensionNumber == "-19":
+    elif spaceRemove(dimensionCode.lower()) == "bedrock" or spaceRemove(dimensionCode.lower()) == "bedrockdimension":
         return "Bedrock Dimension"
-    elif dimensionNumber == "6":
+    elif spaceRemove(dimensionCode.lower()) == "mining" or spaceRemove(dimensionCode.lower()) == "miningworld":
         return "Aroma1997s Mining World"
+    elif spaceRemove(dimensionCode.lower()) == "space" or spaceRemove(dimensionCode.lower()) == "galacticraftspace":
+        return "GalactiCraft Space"
+    elif spaceRemove(dimensionCode.lower()) == "moon" or spaceRemove(dimensionCode.lower()) == "galacticraftmoon":
+        return "GalactiCraft Moon"
+    elif spaceRemove(dimensionCode.lower()) == "orbit" or spaceRemove(dimensionCode.lower()) == "galacticraftorbit":
+        return "GalactiCraft Orbit"
+    elif spaceRemove(dimensionCode.lower()) == "mars" or spaceRemove(dimensionCode.lower()) == "galacticraftmars":
+        return "GalactiCraft Mars"
+    elif spaceRemove(dimensionCode.lower()) == "asteroids" or spaceRemove(dimensionCode.lower()) == "galacticraftasteroids":
+        return "GalactiCraft Asteroids"
     else:
         return "MISSING"
     
@@ -2387,7 +2397,7 @@ def configSetupSection():
 
 ### Dimension configuration
 
-def dimensionSetup(dimName, dimGenerator):
+def dimensionSetup(dimName, dimClass):
     blockCount=0 # We start with the first block.
     worldOutput = ""
     
@@ -2398,7 +2408,7 @@ def dimensionSetup(dimName, dimGenerator):
     if dimName == "Overworld":
         worldOutput += cogFormatLine("<IfCondition condition=':= ?COGActive'>")
     else:
-        worldOutput += cogFormatLine("<IfCondition condition=':= dimension.generator = \""+dimGenerator+"\"'>")
+        worldOutput += cogFormatLine("<IfCondition condition=':= dimension.generator.class = \""+dimClass+"\"'>")
     
     cogIndent(1)
     worldOutput += initCleanup(dimName)
@@ -2467,15 +2477,22 @@ def mainConfigStructure():
     # Overworld, Nether, and End, but as new generators can be detected, we can
     # Expand Sprocket's ability to create configurations for additional dimensions.
     configOutput += dimensionSetup("Overworld", "COGActive")+"\n"
-    configOutput += dimensionSetup("Nether", "HellRandomLevelSource")+"\n"
-    configOutput += dimensionSetup("End", "EndRandomLevelSource")+"\n"
-    configOutput += dimensionSetup("Twilight Forest", "TwilightLevelSource")+"\n"
-    configOutput += dimensionSetup("Last Millenium", "EoTLevelSource")+"\n"
-    configOutput += dimensionSetup("Aether", "RandomLevelSource")+"\n"
-    configOutput += dimensionSetup("Dungeon Dimension", "RandomLevelSource")+"\n"
-    configOutput += dimensionSetup("Outer Lands", "RandomLevelSource")+"\n"
-    configOutput += dimensionSetup("Bedrock Dimension", "Bedrock")+"\n"
-    configOutput += dimensionSetup("Aroma1997s Mining World", "DimensionalWorld")+"\n"
+    configOutput += dimensionSetup("Nether", "ChunkProviderHell")+"\n"
+    configOutput += dimensionSetup("End", "ChunkProviderEnd")+"\n"
+    configOutput += dimensionSetup("Flat", "ChunkProviderFlat")+"\n"
+    configOutput += dimensionSetup("Twilight Forest", "ChunkProviderTwilightForest")+"\n"
+    configOutput += dimensionSetup("Last Millennium", "ChunkProviderEndOfTime")+"\n"
+    configOutput += dimensionSetup("Deep Dark", "ChunkProviderUnderdark")+"\n"
+    configOutput += dimensionSetup("Aether", "ChunkProviderAether")+"\n"
+    configOutput += dimensionSetup("Aether Dungeons", "ChunkProviderDungeons")+"\n"
+    configOutput += dimensionSetup("Outer Lands", "ChunkProviderOuter")+"\n"
+    configOutput += dimensionSetup("Bedrock Dimension", "ChunkProviderBedrock")+"\n"
+    configOutput += dimensionSetup("Aroma1997s Mining World", "ChunkProviderMining")+"\n"
+    configOutput += dimensionSetup("Galacticraft Space", "ChunkProviderSpace")+"\n"
+    configOutput += dimensionSetup("Galacticraft Orbit", "ChunkProviderOrbit")+"\n"
+    configOutput += dimensionSetup("Galacticraft Moon", "ChunkProviderMoon")+"\n"
+    configOutput += dimensionSetup("Galacticraft Mars", "ChunkProviderMars")+"\n"
+    configOutput += dimensionSetup("Galacticraft Asteroids", "ChunkProviderAsteroids")+"\n"
         
     if modDetect.lower() != "minecraft":     
         cogIndent(-1)

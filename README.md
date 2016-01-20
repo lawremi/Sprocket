@@ -305,9 +305,26 @@ Adjusts the weight values of the blocks in the "Replaces" list.  Must always be 
 
 ### Dimensions (List)
 
-List of dimensions for the current distribution.  Current options are -1 (Nether), 0 (Overworld), and 1 (End).  Other numbers can be added, but won't be used.
+List of dimensions for the current distribution.  This list has been heavily expanded, and includes quite a few mods' dimensions.  The current options are:
+ 
+* Overworld
+* Nether
+* End
+* Twilight Forest
+* Last Millennium (or "End of Time")
+* Deep Dark (or "Underdark")
+* Aether
+* Aether Dungeons
+* Outer Lands
+* Bedrock Dimension (or just "Bedrock")
+* Mining World (or just "Mining")
+* GalactiCraft Space (or just "Space")
+* GalactiCraft Orbit (or just "Orbit")
+* GalactiCraft Moon (or just "Moon")
+* GalactiCraft Mars (or just "Mars")
+* GalactiCraft Asteroids (or just "Asteroids")
 
-     Default: 0
+     Default: Overworld
 
 ### Need Biomes (List)
 
