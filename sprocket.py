@@ -1422,7 +1422,7 @@ class cloudPreset(substitutePreset):
         self.addRadiusMultSetting(blockIndex, "1")
         if distHint[blockIndex][0] == "yes":
             # The next step is to set up hint veins to make the deposits findable.
-            currentPreset = veinHintPreset()        
+            currentPreset = veinHintPreset()
             currentPreset.setPresetScript(blockIndex, "HintVeins")
             cogIndent(1)
             self._presetScript += currentPreset.getPresetScript()
@@ -1947,9 +1947,8 @@ class veinGeodePreset(veinPreset):
             self._presetScript += cogFormatLine("</Veins>")
         
             
-# Hint Veins have a different purpose than most.  They do not provide
-# a lot of ore in stone, but they can scatter ores in other materials
-# that are closer to the surface.
+# Hint Veins have a different purpose than most.  They scatter ores in 
+# stone and other materials to hint at the presence of a vein.
         
 class veinHintPreset(veinPreset):   
     def addHintRepBlocksList(self):
@@ -1979,6 +1978,7 @@ class veinHintPreset(veinPreset):
         self._presetScript += cogFormatLine("</Description>")
         self.addMainBlocksList(blockIndex)
         self.addHintRepBlocksList()
+        self.addMotherlodeFrequencySetting(blockIndex, "0.1")
         cogIndent(-1)
         self._presetScript += cogFormatLine("</Veins>")
     
@@ -1992,6 +1992,7 @@ class veinHintPreset(veinPreset):
         self._presetScript += cogFormatLine("</Description>")
         self.addMainBlocksList(blockIndex)
         self.addHintRepBlocksList()
+        self.addFreqSetting(blockIndex, "0.1")
         cogIndent(-1)
         self._presetScript += cogFormatLine("</Veins>")     
 
