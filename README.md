@@ -324,8 +324,7 @@ List of dimensions for the current distribution.  This list has been heavily exp
 * GalactiCraft Mars (or just "Mars")
 * GalactiCraft Asteroids (or just "Asteroids")
 * RFTools
-* MystCraft
-
+* Mystcraft
 
      Default: Overworld
 
