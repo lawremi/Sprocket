@@ -311,8 +311,6 @@ List of dimensions for the current distribution.  This list has been heavily exp
 * Nether
 * End
 * Twilight Forest
-* Last Millennium (or "End of Time")
-* Deep Dark (or "Underdark")
 * Aether
 * Aether Dungeons
 * Outer Lands

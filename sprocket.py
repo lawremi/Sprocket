@@ -766,10 +766,6 @@ def dimensionName(dimensionCode):
         return "End"
     elif spaceRemove(dimensionCode.lower()) == "twilightforest":
         return "Twilight Forest"
-    elif spaceRemove(dimensionCode.lower()) == "lastmillenium" or spaceRemove(dimensionCode.lower()) == "lastmillennium" or spaceRemove(dimensionCode.lower()) == "endoftime":
-        return "Last Millennium"
-    elif spaceRemove(dimensionCode.lower()) == "deepdark" or spaceRemove(dimensionCode.lower()) == "underdark":
-        return "Deep Dark"
     elif spaceRemove(dimensionCode.lower()) == "aether":
         return "Aether"
     elif spaceRemove(dimensionCode.lower()) == "dungeon" or spaceRemove(dimensionCode.lower()) == "dungeons" or spaceRemove(dimensionCode.lower()) == "dungeondimension" or spaceRemove(dimensionCode.lower()) == "aetherdungeon" or spaceRemove(dimensionCode.lower()) == "aetherdungeons":
@@ -2311,7 +2307,7 @@ def initCleanup(dimName):
           cogIndent(1)
         cleanupSubOutput += cogFormatLine("<IfCondition condition=':= ?blockExists(\""+uniqueSections[sectionSelect]+"\")'>")
         cogIndent(1)
-        cleanupSubOutput += cogFormatLine("<Substitute name='"+modPrefix+dimName+"BlockSubstitute"+str(sectionSelect)+"' block='"+uniqueSections[sectionSelect]+"'>")
+        cleanupSubOutput += cogFormatLine("<Substitute name='"+modPrefix+spaceRemove(dimName)+"BlockSubstitute"+str(sectionSelect)+"' block='"+uniqueSections[sectionSelect]+"'>")
         cogIndent(1)
         cleanupSubOutput += cogFormatLine("<Description>")
         cogIndent(1)
@@ -2487,8 +2483,6 @@ def mainConfigStructure():
     configOutput += dimensionSetup("End", "ChunkProviderEnd")
     configOutput += dimensionSetup("Flat", "ChunkProviderFlat")
     configOutput += dimensionSetup("Twilight Forest", "ChunkProviderTwilightForest")
-    configOutput += dimensionSetup("Last Millennium", "ChunkProviderEndOfTime")
-    configOutput += dimensionSetup("Deep Dark", "ChunkProviderUnderdark")
     configOutput += dimensionSetup("Aether", "ChunkProviderAether")
     configOutput += dimensionSetup("Aether Dungeons", "ChunkProviderDungeons")
     configOutput += dimensionSetup("Outer Lands", "ChunkProviderOuter")
