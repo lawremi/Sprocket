@@ -1988,7 +1988,7 @@ class veinHintPreset(veinPreset):
         self._presetScript += cogFormatLine("</Description>")
         self.addMainBlocksList(blockIndex)
         self.addHintRepBlocksList()
-        self.addFreqSetting(blockIndex, "0.1")
+        self.addMotherlodeFrequencySetting(blockIndex, "0.1")
         cogIndent(-1)
         self._presetScript += cogFormatLine("</Veins>")     
 
