@@ -2028,7 +2028,7 @@ def chosenBlockList(replacementBlock, dimName):
     
     # Next, we will collect the substitutable alternate blocks.
     for altBlockSelect in range(0, len(altBlocks)):
-        if dimensionCheck(dimensionList[altBlockSelect], dimName) and initSubAlt[altBlockSelect][0] == "yes" and extractFirstBlock(repBlocks[mainBlockSelect]) == replacementBlock:
+        if dimensionCheck(dimensionList[altBlockSelect], dimName)  and initSubAlt[altBlockSelect][0]   == "yes" and extractFirstBlock(repBlocks[altBlockSelect]) == replacementBlock:
             for cleanupBlockSelect in range(0, len(altBlocks[mainBlockSelect])):
                 cleanupBlockList.append(spaceRemove(altBlocks[altBlockSelect][cleanupBlockSelect]))
     
