@@ -25,10 +25,20 @@
         Distribution options for Substitution Test Ores.
       </Description>
     </OptionDisplayGroup>
+    <OptionChoice name='enableSubstitutionTest' displayName='Handle Substitution Test Setup?' default='true' displayState='shown_dynamic' displayGroup='groupSubstitutionTest'>
+      <Description> Should Custom Ore Generation handle Substitution Test ore generation? </Description>
+      <Choice value=':= ?true' displayValue='Yes' description='Use Custom Ore Generation to handle Substitution Test ores.'/>
+      <Choice value=':= ?false' displayValue='No' description='Substitution Test ores will be handled by Minecraft directly.'/>
+    </OptionChoice>
+    <OptionChoice name='cleanUpSubstitutionTest' displayName='Use Substitution Test Cleanup?' default='true' displayState='shown_dynamic' displayGroup='groupSubstitutionTest'>
+      <Description> Should Custom Ore Generation use the Substitution Pass to remove all instances of Substitution Test ore from the world?  If the mod's oregen can be turned off in its configuration, then it's recommended to do so, as the substitution pass can slow the game significantly.  If this option is disabled without disabling the mod's own ore generation, you'll end up with two oregens working at once, flooding the world with ore.  Enabled by default to ensure the ores are completely removed. </Description>
+      <Choice value=':= ?true' displayValue='Yes' description='Use the substitution pass to clean up Substitution Test ores.'/>
+      <Choice value=':= ?false' displayValue='No' description='Substitution Test ores do not need to be cleaned up by a substitution pass.'/>
+    </OptionChoice>
 
     <!-- Deepen the Dirt Configuration UI Starting -->
     <ConfigSection>
-      <OptionChoice name='subtDeepentheDirtDist' default='none'  displayState=':= "shown"' displayGroup='groupSubstitutionTest'>
+      <OptionChoice name='subtDeepentheDirtDist' default='none'  displayState=':= if(?enableSubstitutionTest, "shown", "hidden")' displayGroup='groupSubstitutionTest'>
         <Description> Controls how Deepen the Dirt is generated </Description>
         <DisplayName>Substitution Test Deepen the Dirt</DisplayName>
         <IfCondition condition=':= (?blockExists("minecraft:dirt")) '>
@@ -42,11 +52,11 @@
 
         <Choice value='none' displayValue='None' description='Deepen the Dirt is not generated in the world.'/>
       </OptionChoice>
-      <OptionNumeric name='subtDeepentheDirtFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions, "shown", "hidden")' displayGroup='groupSubstitutionTest'>
+      <OptionNumeric name='subtDeepentheDirtFreq' default='1'  min='0' max='5' displayState=':= if(?enableSubstitutionTest, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupSubstitutionTest'>
         <Description> Frequency multiplier for Substitution Test Deepen the Dirt distributions </Description>
         <DisplayName>Substitution Test Deepen the Dirt Freq.</DisplayName>
       </OptionNumeric>
-      <OptionNumeric name='subtDeepentheDirtSize' default='1'  min='0' max='5' displayState=':= if(?advOptions, "shown", "hidden")' displayGroup='groupSubstitutionTest'>
+      <OptionNumeric name='subtDeepentheDirtSize' default='1'  min='0' max='5' displayState=':= if(?enableSubstitutionTest, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupSubstitutionTest'>
         <Description> Size multiplier for Substitution Test Deepen the Dirt distributions </Description>
         <DisplayName>Substitution Test Deepen the Dirt Size</DisplayName>
       </OptionNumeric>
@@ -56,7 +66,7 @@
 
     <!-- Dirt Mountains Configuration UI Starting -->
     <ConfigSection>
-      <OptionChoice name='subtDirtMountainsDist' default='none'  displayState=':= "shown"' displayGroup='groupSubstitutionTest'>
+      <OptionChoice name='subtDirtMountainsDist' default='none'  displayState=':= if(?enableSubstitutionTest, "shown", "hidden")' displayGroup='groupSubstitutionTest'>
         <Description> Controls how Dirt Mountains is generated </Description>
         <DisplayName>Substitution Test Dirt Mountains</DisplayName>
         <IfCondition condition=':= (?blockExists("minecraft:dirt")) '>
@@ -70,11 +80,11 @@
 
         <Choice value='none' displayValue='None' description='Dirt Mountains is not generated in the world.'/>
       </OptionChoice>
-      <OptionNumeric name='subtDirtMountainsFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions, "shown", "hidden")' displayGroup='groupSubstitutionTest'>
+      <OptionNumeric name='subtDirtMountainsFreq' default='1'  min='0' max='5' displayState=':= if(?enableSubstitutionTest, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupSubstitutionTest'>
         <Description> Frequency multiplier for Substitution Test Dirt Mountains distributions </Description>
         <DisplayName>Substitution Test Dirt Mountains Freq.</DisplayName>
       </OptionNumeric>
-      <OptionNumeric name='subtDirtMountainsSize' default='1'  min='0' max='5' displayState=':= if(?advOptions, "shown", "hidden")' displayGroup='groupSubstitutionTest'>
+      <OptionNumeric name='subtDirtMountainsSize' default='1'  min='0' max='5' displayState=':= if(?enableSubstitutionTest, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupSubstitutionTest'>
         <Description> Size multiplier for Substitution Test Dirt Mountains distributions </Description>
         <DisplayName>Substitution Test Dirt Mountains Size</DisplayName>
       </OptionNumeric>
@@ -84,7 +94,7 @@
 
     <!-- Glass the Land Configuration UI Starting -->
     <ConfigSection>
-      <OptionChoice name='subtGlasstheLandDist' default='none'  displayState=':= "shown"' displayGroup='groupSubstitutionTest'>
+      <OptionChoice name='subtGlasstheLandDist' default='none'  displayState=':= if(?enableSubstitutionTest, "shown", "hidden")' displayGroup='groupSubstitutionTest'>
         <Description> Controls how Glass the Land is generated </Description>
         <DisplayName>Substitution Test Glass the Land</DisplayName>
         <IfCondition condition=':= (?blockExists("minecraft:glass")) '>
@@ -98,11 +108,11 @@
 
         <Choice value='none' displayValue='None' description='Glass the Land is not generated in the world.'/>
       </OptionChoice>
-      <OptionNumeric name='subtGlasstheLandFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions, "shown", "hidden")' displayGroup='groupSubstitutionTest'>
+      <OptionNumeric name='subtGlasstheLandFreq' default='1'  min='0' max='5' displayState=':= if(?enableSubstitutionTest, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupSubstitutionTest'>
         <Description> Frequency multiplier for Substitution Test Glass the Land distributions </Description>
         <DisplayName>Substitution Test Glass the Land Freq.</DisplayName>
       </OptionNumeric>
-      <OptionNumeric name='subtGlasstheLandSize' default='1'  min='0' max='5' displayState=':= if(?advOptions, "shown", "hidden")' displayGroup='groupSubstitutionTest'>
+      <OptionNumeric name='subtGlasstheLandSize' default='1'  min='0' max='5' displayState=':= if(?enableSubstitutionTest, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupSubstitutionTest'>
         <Description> Size multiplier for Substitution Test Glass the Land distributions </Description>
         <DisplayName>Substitution Test Glass the Land Size</DisplayName>
       </OptionNumeric>
@@ -112,7 +122,7 @@
 
     <!-- No Ground Water Configuration UI Starting -->
     <ConfigSection>
-      <OptionChoice name='subtNoGroundWaterDist' default='none'  displayState=':= "shown"' displayGroup='groupSubstitutionTest'>
+      <OptionChoice name='subtNoGroundWaterDist' default='none'  displayState=':= if(?enableSubstitutionTest, "shown", "hidden")' displayGroup='groupSubstitutionTest'>
         <Description> Controls how No Ground Water is generated </Description>
         <DisplayName>Substitution Test No Ground Water</DisplayName>
         <IfCondition condition=':= (?blockExists("MISSING")) '>
@@ -126,11 +136,11 @@
 
         <Choice value='none' displayValue='None' description='No Ground Water is not generated in the world.'/>
       </OptionChoice>
-      <OptionNumeric name='subtNoGroundWaterFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions, "shown", "hidden")' displayGroup='groupSubstitutionTest'>
+      <OptionNumeric name='subtNoGroundWaterFreq' default='1'  min='0' max='5' displayState=':= if(?enableSubstitutionTest, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupSubstitutionTest'>
         <Description> Frequency multiplier for Substitution Test No Ground Water distributions </Description>
         <DisplayName>Substitution Test No Ground Water Freq.</DisplayName>
       </OptionNumeric>
-      <OptionNumeric name='subtNoGroundWaterSize' default='1'  min='0' max='5' displayState=':= if(?advOptions, "shown", "hidden")' displayGroup='groupSubstitutionTest'>
+      <OptionNumeric name='subtNoGroundWaterSize' default='1'  min='0' max='5' displayState=':= if(?enableSubstitutionTest, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupSubstitutionTest'>
         <Description> Size multiplier for Substitution Test No Ground Water distributions </Description>
         <DisplayName>Substitution Test No Ground Water Size</DisplayName>
       </OptionNumeric>
@@ -140,111 +150,113 @@
   </ConfigSection>
   <!-- Setup Screen Complete -->
 
+  <IfCondition condition=':= ?enableSubstitutionTest'>
 
 
 
 
-  <!-- Overworld Setup Beginning -->
+    <!-- Overworld Setup Beginning -->
 
-  <IfCondition condition=':= ?COGActive'>
+    <IfCondition condition=':= ?COGActive'>
 
-    <!-- Starting Original "Overworld" Block Removal -->
-    <!-- Original "Overworld" Block Removal Complete -->
+      <!-- Starting Original "Overworld" Block Removal -->
+      <!-- Original "Overworld" Block Removal Complete -->
 
-    <!-- Adding blocks -->
+      <!-- Adding blocks -->
 
-    <!-- Begin Deepen the Dirt Generation -->
+      <!-- Begin Deepen the Dirt Generation -->
 
-    <!-- Starting Substitution Preset for Deepen the Dirt. -->
-    <ConfigSection>
-      <IfCondition condition=':= subtDeepentheDirtDist = "Substitution"'>
-        <Substitute name='subtDeepentheDirtSubstitute'  minHeight='50'  maxHeight='64' >
-          <Description>
-            This is a global replacement of one block  with another.
-            Height clamping is needed  to keep the substitution from
-            being  universal.
-          </Description>
-          <OreBlock block='minecraft:dirt' weight='1.0' />
-          <ReplacesOre block='stone' weight='1.0' />
-          <Biome name='.*'  />
-        </Substitute>
-      </IfCondition>
-    </ConfigSection>
-    <!-- Substitution Preset for Deepen the Dirt is complete. -->
+      <!-- Starting Substitution Preset for Deepen the Dirt. -->
+      <ConfigSection>
+        <IfCondition condition=':= subtDeepentheDirtDist = "Substitution"'>
+          <Substitute name='subtDeepentheDirtSubstitute'  minHeight='50'  maxHeight='64' >
+            <Description>
+              This is a global replacement of one  block with another.
+              Height clamping  is needed to keep the substitution
+              from being universal.
+            </Description>
+            <OreBlock block='minecraft:dirt' weight='1.0' />
+            <ReplacesOre block='stone' weight='1.0' />
+            <Biome name='.*'  />
+          </Substitute>
+        </IfCondition>
+      </ConfigSection>
+      <!-- Substitution Preset for Deepen the Dirt is complete. -->
 
-    <!-- End Deepen the Dirt Generation -->
-
-
-    <!-- Begin Dirt Mountains Generation -->
-
-    <!-- Starting Substitution Preset for Dirt Mountains. -->
-    <ConfigSection>
-      <IfCondition condition=':= subtDirtMountainsDist = "Substitution"'>
-        <Substitute name='subtDirtMountainsSubstitute'  minHeight='63'  maxHeight='128' >
-          <Description>
-            This is a global replacement of one block  with another.
-            Height clamping is needed  to keep the substitution from
-            being  universal.
-          </Description>
-          <OreBlock block='minecraft:dirt' weight='1.0' />
-          <ReplacesOre block='stone' weight='1.0' />
-          <Biome name='.*'  />
-        </Substitute>
-      </IfCondition>
-    </ConfigSection>
-    <!-- Substitution Preset for Dirt Mountains is complete. -->
-
-    <!-- End Dirt Mountains Generation -->
+      <!-- End Deepen the Dirt Generation -->
 
 
-    <!-- Begin Glass the Land Generation -->
+      <!-- Begin Dirt Mountains Generation -->
 
-    <!-- Starting Substitution Preset for Glass the Land. -->
-    <ConfigSection>
-      <IfCondition condition=':= subtGlasstheLandDist = "Substitution"'>
-        <Substitute name='subtGlasstheLandSubstitute' >
-          <Description>
-            This is a global replacement of one block  with another.
-            Height clamping is needed  to keep the substitution from
-            being  universal.
-          </Description>
-          <OreBlock block='minecraft:glass' weight='1.0' />
-          <ReplacesOre block='stone' weight='1.0' />
-          <Biome name='.*'  />
-        </Substitute>
-      </IfCondition>
-    </ConfigSection>
-    <!-- Substitution Preset for Glass the Land is complete. -->
+      <!-- Starting Substitution Preset for Dirt Mountains. -->
+      <ConfigSection>
+        <IfCondition condition=':= subtDirtMountainsDist = "Substitution"'>
+          <Substitute name='subtDirtMountainsSubstitute'  minHeight='63'  maxHeight='128' >
+            <Description>
+              This is a global replacement of one  block with another.
+              Height clamping  is needed to keep the substitution
+              from being universal.
+            </Description>
+            <OreBlock block='minecraft:dirt' weight='1.0' />
+            <ReplacesOre block='stone' weight='1.0' />
+            <Biome name='.*'  />
+          </Substitute>
+        </IfCondition>
+      </ConfigSection>
+      <!-- Substitution Preset for Dirt Mountains is complete. -->
 
-    <!-- End Glass the Land Generation -->
+      <!-- End Dirt Mountains Generation -->
 
 
-    <!-- Begin No Ground Water Generation -->
+      <!-- Begin Glass the Land Generation -->
 
-    <!-- Starting Substitution Preset for No Ground Water. -->
-    <ConfigSection>
-      <IfCondition condition=':= subtNoGroundWaterDist = "Substitution"'>
-        <Substitute name='subtNoGroundWaterSubstitute'  minHeight='0'  maxHeight='64' >
-          <Description>
-            This is a global replacement of one block  with another.
-            Height clamping is needed  to keep the substitution from
-            being  universal.
-          </Description>
-          
-          <ReplacesOre block='stone' weight='1.0' />
-          <Biome name='.*'  />
-        </Substitute>
-      </IfCondition>
-    </ConfigSection>
-    <!-- Substitution Preset for No Ground Water is complete. -->
+      <!-- Starting Substitution Preset for Glass the Land. -->
+      <ConfigSection>
+        <IfCondition condition=':= subtGlasstheLandDist = "Substitution"'>
+          <Substitute name='subtGlasstheLandSubstitute' >
+            <Description>
+              This is a global replacement of one  block with another.
+              Height clamping  is needed to keep the substitution
+              from being universal.
+            </Description>
+            <OreBlock block='minecraft:glass' weight='1.0' />
+            <ReplacesOre block='stone' weight='1.0' />
+            <Biome name='.*'  />
+          </Substitute>
+        </IfCondition>
+      </ConfigSection>
+      <!-- Substitution Preset for Glass the Land is complete. -->
 
-    <!-- End No Ground Water Generation -->
+      <!-- End Glass the Land Generation -->
 
-    <!-- Finished adding blocks -->
+
+      <!-- Begin No Ground Water Generation -->
+
+      <!-- Starting Substitution Preset for No Ground Water. -->
+      <ConfigSection>
+        <IfCondition condition=':= subtNoGroundWaterDist = "Substitution"'>
+          <Substitute name='subtNoGroundWaterSubstitute'  minHeight='0'  maxHeight='64' >
+            <Description>
+              This is a global replacement of one  block with another.
+              Height clamping  is needed to keep the substitution
+              from being universal.
+            </Description>
+            
+            <ReplacesOre block='stone' weight='1.0' />
+            <Biome name='.*'  />
+          </Substitute>
+        </IfCondition>
+      </ConfigSection>
+      <!-- Substitution Preset for No Ground Water is complete. -->
+
+      <!-- End No Ground Water Generation -->
+
+      <!-- Finished adding blocks -->
+
+    </IfCondition>
+    <!-- Overworld Setup Complete -->
 
   </IfCondition>
-  <!-- Overworld Setup Complete -->
-
 
 </ConfigSection>
 <!-- Configuration for Custom Ore Generation Complete! -->
