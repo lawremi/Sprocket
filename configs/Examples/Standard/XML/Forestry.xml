@@ -11,7 +11,7 @@
 
 
 <!-- Is the "Forestry" mod on the system?  Let's find out! -->
-<IfModInstalled name="Forestry">
+<IfModInstalled name="forestry">
 
   <!-- Starting Configuration for Custom Ore Generation. -->
   <ConfigSection>
@@ -43,7 +43,7 @@
         <OptionChoice name='frstApatiteDist'  displayState=':= if(?enableForestry, "shown", "hidden")' displayGroup='groupForestry'>
           <Description> Controls how Apatite is generated </Description>
           <DisplayName>Forestry Apatite</DisplayName>
-          <IfCondition condition=':= (?blockExists("Forestry:resources")) '>
+          <IfCondition condition=':= (?blockExists("forestry:resources")) '>
 
           <Choice value='SparseVeins' displayValue='Sparse Veins'>
             <Description>
@@ -52,7 +52,7 @@
           </Choice>
           </IfCondition>
 
-          <IfCondition condition=':= (?blockExists("Forestry:resources")) '>
+          <IfCondition condition=':= (?blockExists("forestry:resources")) '>
 
           <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
             <Description>
@@ -61,7 +61,7 @@
           </Choice>
           </IfCondition>
 
-          <IfCondition condition=':= (?blockExists("Forestry:resources")) '>
+          <IfCondition condition=':= (?blockExists("forestry:resources")) '>
 
           <Choice value='Vanilla' displayValue='Vanilla'>
             <Description>
@@ -89,7 +89,7 @@
         <OptionChoice name='frstCopperDist'  displayState=':= if(?enableForestry, "shown", "hidden")' displayGroup='groupForestry'>
           <Description> Controls how Copper is generated </Description>
           <DisplayName>Forestry Copper</DisplayName>
-          <IfCondition condition=':= (?blockExists("Forestry:resources:1")) '>
+          <IfCondition condition=':= (?blockExists("forestry:resources:1")) '>
 
           <Choice value='LayeredVeins' displayValue='Layered Veins'>
             <Description>
@@ -98,7 +98,7 @@
           </Choice>
           </IfCondition>
 
-          <IfCondition condition=':= (?blockExists("Forestry:resources:1")) '>
+          <IfCondition condition=':= (?blockExists("forestry:resources:1")) '>
 
           <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
             <Description>
@@ -107,7 +107,7 @@
           </Choice>
           </IfCondition>
 
-          <IfCondition condition=':= (?blockExists("Forestry:resources:1")) '>
+          <IfCondition condition=':= (?blockExists("forestry:resources:1")) '>
 
           <Choice value='Vanilla' displayValue='Vanilla'>
             <Description>
@@ -135,7 +135,7 @@
         <OptionChoice name='frstTinDist'  displayState=':= if(?enableForestry, "shown", "hidden")' displayGroup='groupForestry'>
           <Description> Controls how Tin is generated </Description>
           <DisplayName>Forestry Tin</DisplayName>
-          <IfCondition condition=':= (?blockExists("Forestry:resources:2")) '>
+          <IfCondition condition=':= (?blockExists("forestry:resources:2")) '>
 
           <Choice value='LayeredVeins' displayValue='Layered Veins'>
             <Description>
@@ -144,7 +144,7 @@
           </Choice>
           </IfCondition>
 
-          <IfCondition condition=':= (?blockExists("Forestry:resources:2")) '>
+          <IfCondition condition=':= (?blockExists("forestry:resources:2")) '>
 
           <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
             <Description>
@@ -153,7 +153,7 @@
           </Choice>
           </IfCondition>
 
-          <IfCondition condition=':= (?blockExists("Forestry:resources:2")) '>
+          <IfCondition condition=':= (?blockExists("forestry:resources:2")) '>
 
           <Choice value='Vanilla' displayValue='Vanilla'>
             <Description>
@@ -199,9 +199,9 @@
                 The global option  deferredPopulationRange must be
                 large enough to catch all ore  clusters (>= 32).
               </Comment>
-              <Replaces block='Forestry:resources' weight='1.0' />
-              <Replaces block='Forestry:resources:1' weight='1.0' />
-              <Replaces block='Forestry:resources:2' weight='1.0' />
+              <Replaces block='forestry:resources' weight='1.0' />
+              <Replaces block='forestry:resources:1' weight='1.0' />
+              <Replaces block='forestry:resources:2' weight='1.0' />
             </Substitute>
           </IfCondition>
         </IfCondition>
@@ -225,7 +225,7 @@
                 harder to get an idea of their  direction while
                 mining.
               </Description>
-              <OreBlock block='Forestry:resources' weight='1.0' />
+              <OreBlock block='forestry:resources' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <Biome name='.*'  />
               <Setting name='MotherlodeFrequency' avg=':= 2.599 * _default_ * frstApatiteFreq ' range=':= 2.599 * _default_ * frstApatiteFreq ' type='normal' scaleTo='base' />
@@ -265,7 +265,7 @@
                 permanent mining base and  spend some time actually
                 mining  the ore.
               </Description>
-              <OreBlock block='Forestry:resources' weight='1.0' />
+              <OreBlock block='forestry:resources' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <Biome name='.*'  />
               <Setting name='CloudRadius' avg=':= 1.101 * _default_ * frstApatiteSize ' range=':= 1.101 * _default_ * frstApatiteSize ' type='normal' />
@@ -293,7 +293,7 @@
                   the frequency of  the parent distribution will
                   already be scaled by that.
                 </Description>
-                <OreBlock block='Forestry:resources' weight='1.0' />
+                <OreBlock block='forestry:resources' weight='1.0' />
                 <Replaces block='minecraft:dirt' weight='1.0' />
                 <Replaces block='minecraft:sandstone' weight='1.0' />
                 <ReplacesOre block='stone' weight='1.0' />
@@ -313,7 +313,7 @@
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
-              <OreBlock block='Forestry:resources' weight='1.0' />
+              <OreBlock block='forestry:resources' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <Biome name='.*'  />
               <Setting name='Size' avg=':= 24.0 * oreSize * frstApatiteSize ' range=':= 12.0 * oreSize * frstApatiteSize ' type='normal' />
@@ -338,7 +338,7 @@
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
               </Description>
-              <OreBlock block='Forestry:resources:1' weight='1.0' />
+              <OreBlock block='forestry:resources:1' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <Biome name='.*'  />
               <Setting name='MotherlodeFrequency' avg=':= 1.938 * _default_ * frstCopperFreq ' range=':= 1.938 * _default_ * frstCopperFreq ' type='normal' scaleTo='base' />
@@ -378,7 +378,7 @@
                 permanent mining base and  spend some time actually
                 mining  the ore.
               </Description>
-              <OreBlock block='Forestry:resources:1' weight='1.0' />
+              <OreBlock block='forestry:resources:1' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <Biome name='.*'  />
               <Setting name='CloudRadius' avg=':= 1.488 * _default_ * frstCopperSize ' range=':= 1.488 * _default_ * frstCopperSize ' type='normal' />
@@ -406,7 +406,7 @@
                   the frequency of  the parent distribution will
                   already be scaled by that.
                 </Description>
-                <OreBlock block='Forestry:resources:1' weight='1.0' />
+                <OreBlock block='forestry:resources:1' weight='1.0' />
                 <Replaces block='minecraft:dirt' weight='1.0' />
                 <Replaces block='minecraft:sandstone' weight='1.0' />
                 <ReplacesOre block='stone' weight='1.0' />
@@ -426,7 +426,7 @@
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
-              <OreBlock block='Forestry:resources:1' weight='1.0' />
+              <OreBlock block='forestry:resources:1' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <Biome name='.*'  />
               <Setting name='Size' avg=':= 4.0 * oreSize * frstCopperSize ' range=':= 2.0 * oreSize * frstCopperSize ' type='normal' />
@@ -451,7 +451,7 @@
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
               </Description>
-              <OreBlock block='Forestry:resources:2' weight='1.0' />
+              <OreBlock block='forestry:resources:2' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <Biome name='.*'  />
               <Setting name='MotherlodeFrequency' avg=':= 1.839 * _default_ * frstTinFreq ' range=':= 1.839 * _default_ * frstTinFreq ' type='normal' scaleTo='base' />
@@ -491,7 +491,7 @@
                 permanent mining base and  spend some time actually
                 mining  the ore.
               </Description>
-              <OreBlock block='Forestry:resources:2' weight='1.0' />
+              <OreBlock block='forestry:resources:2' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <Biome name='.*'  />
               <Setting name='CloudRadius' avg=':= 1.449 * _default_ * frstTinSize ' range=':= 1.449 * _default_ * frstTinSize ' type='normal' />
@@ -519,7 +519,7 @@
                   the frequency of  the parent distribution will
                   already be scaled by that.
                 </Description>
-                <OreBlock block='Forestry:resources:2' weight='1.0' />
+                <OreBlock block='forestry:resources:2' weight='1.0' />
                 <Replaces block='minecraft:dirt' weight='1.0' />
                 <Replaces block='minecraft:sandstone' weight='1.0' />
                 <ReplacesOre block='stone' weight='1.0' />
@@ -539,7 +539,7 @@
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
-              <OreBlock block='Forestry:resources:2' weight='1.0' />
+              <OreBlock block='forestry:resources:2' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <Biome name='.*'  />
               <Setting name='Size' avg=':= 4.0 * oreSize * frstTinSize ' range=':= 2.0 * oreSize * frstTinSize ' type='normal' />

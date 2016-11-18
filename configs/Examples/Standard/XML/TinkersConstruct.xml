@@ -1,22 +1,17 @@
 <!-- =================================================================
      Custom Ore Generation "Tinkers Construct" Module: This
-     configuration covers copper, mountain copper, tin, mountain tin,
-     aluminum, mountain aluminum, cobalt, ardite, iron gravel,
-     mountain iron gravel, gold gravel, mountain gold gravel, copper
-     gravel, tin gravel, mountain tin gravel, aluminum gravel,
-     mountain aluminum gravel, and cobalt gravel.
+     configuration covers cobalt and ardite.
      ================================================================= -->
 
 
 <!-- A mod centering around tool manufacturing, the smelting of ores
-     plays a large part.  This mod also includes ores that are
-     embedded in gravel, rather than stone. Configuration by Reteo. -->
+     plays a large part.  Configuration by Reteo. -->
 
 
 
 
 <!-- Is the "Tinkers Construct" mod on the system?  Let's find out! -->
-<IfModInstalled name="TConstruct">
+<IfModInstalled name="tconstruct">
 
   <!-- Starting Configuration for Custom Ore Generation. -->
   <ConfigSection>
@@ -43,6 +38,8 @@
         <Choice value=':= ?false' displayValue='No' description='Tinkers Construct ores do not need to be cleaned up by a substitution pass.'/>
       </OptionChoice>
 
+<<<<<<< HEAD
+=======
       <!-- Copper Configuration UI Starting -->
       <ConfigSection>
         <OptionChoice name='ticoCopperDist'  displayState=':= if(?enableTinkersConstruct, "shown", "hidden")' displayGroup='groupTinkersConstruct'>
@@ -319,11 +316,15 @@
       <!-- Mountain Aluminum Configuration UI Complete -->
 
 
+>>>>>>> 8f629e5ba493cdc521f6b342c2dfb7754cb9c40c
       <!-- Cobalt Configuration UI Starting -->
       <ConfigSection>
         <OptionChoice name='ticoCobaltDist'  displayState=':= if(?enableTinkersConstruct, "shown", "hidden")' displayGroup='groupTinkersConstruct'>
           <Description> Controls how Cobalt is generated </Description>
           <DisplayName>Tinkers Construct Cobalt</DisplayName>
+<<<<<<< HEAD
+          <IfCondition condition=':= (?blockExists("tconstruct:ore")) '>
+=======
           <IfCondition condition=':= (?blockExists("TConstruct:SearedBrick:1")) '>
 
           <Choice value='SmallDeposits' displayValue='Small Deposits'>
@@ -831,12 +832,15 @@
           <Description> Controls how Cobalt Gravel is generated </Description>
           <DisplayName>Tinkers Construct Cobalt Gravel</DisplayName>
           <IfCondition condition=':= (?blockExists("TConstruct:GravelOre:5")) '>
+>>>>>>> 8f629e5ba493cdc521f6b342c2dfb7754cb9c40c
 
           <Choice value='SmallDeposits' displayValue='Small Deposits'>
             <Description>
               Small motherlodes without any branches.
             </Description>
           </Choice>
+<<<<<<< HEAD
+=======
           </IfCondition>
 
           <IfCondition condition=':= (?blockExists("TConstruct:GravelOre:5")) '>
@@ -2488,11 +2492,18 @@
                 <Setting name='MotherlodeFrequency' avg=':= 0.751 * _default_ * ticoAluminumGravelFreq  * 0.1 ' range=':= 0.751 * _default_ * ticoAluminumGravelFreq  * 0.1 ' type='normal' scaleTo='base' />
               </Veins>
             </Cloud>
+>>>>>>> 8f629e5ba493cdc521f6b342c2dfb7754cb9c40c
           </IfCondition>
-        </ConfigSection>
-        <!-- StrategicClouds Preset for Aluminum Gravel is  complete. -->
 
+          <IfCondition condition=':= (?blockExists("tconstruct:ore")) '>
 
+<<<<<<< HEAD
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+=======
         <!-- Starting Vanilla Preset for Aluminum Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoAluminumGravelDist = "Vanilla"'>
@@ -2508,108 +2519,55 @@
               <Setting name='Height' avg=':= 35 ' range=':= 29 ' type='normal' scaleTo='base' />
               <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
             </StandardGen>
+>>>>>>> 8f629e5ba493cdc521f6b342c2dfb7754cb9c40c
           </IfCondition>
-        </ConfigSection>
-        <!-- Vanilla Preset for Aluminum Gravel is complete. -->
 
-        <!-- End Aluminum Gravel Generation -->
+          <IfCondition condition=':= (?blockExists("tconstruct:ore")) '>
 
-
-        <!-- Begin Mountain Aluminum Gravel Generation -->
-
-        <!-- Starting LayeredVeins Preset for Mountain  Aluminum
-             Gravel. -->
-        <ConfigSection>
-          <IfCondition condition=':= ticoMountainAluminumGravelDist = "LayeredVeins"'>
-            <Veins name='ticoMountainAluminumGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
-              <Description>
-                Small, fairly rare motherlodes  with 2-4 horizontal
-                veins each.
-              </Description>
-              <OreBlock block='TConstruct:GravelOre:4' weight='1.0' />
-              <Replaces block='minecraft:gravel' weight='1.0' />
-              <BiomeType name='Mountain'  />
-              <Setting name='MotherlodeFrequency' avg=':= 0.751 * _default_ * ticoMountainAluminumGravelFreq ' range=':= 0.751 * _default_ * ticoMountainAluminumGravelFreq ' type='normal' scaleTo='base' />
-              <Setting name='MotherlodeSize' avg=':= 0.953 * _default_ * ticoMountainAluminumGravelSize ' range=':= 0.953 * _default_ * ticoMountainAluminumGravelSize ' type='normal' />
-              <Setting name='MotherlodeHeight' avg=':= 169 ' range=':= 87 ' type='normal' scaleTo='base' />
-              <Setting name='MotherlodeRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Setting name='BranchFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Setting name='BranchInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Setting name='BranchLength' avg=':= 0.866 * _default_ ' range=':= 0.866 * _default_ ' type='normal' />
-              <Setting name='BranchHeightLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
-              <Setting name='SegmentForkFrequency' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Setting name='SegmentForkLengthMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Setting name='SegmentLength' avg=':= _default_ * ticoMountainAluminumGravelSize ' range=':= _default_ * ticoMountainAluminumGravelSize ' type='normal' />
-              <Setting name='SegmentAngle' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Setting name='SegmentPitch' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Setting name='SegmentRadius' avg=':= 0.931 * _default_ * ticoMountainAluminumGravelSize ' range=':= 0.931 * _default_ * ticoMountainAluminumGravelSize ' type='normal' />
-              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-            </Veins>
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
           </IfCondition>
-        </ConfigSection>
-        <!-- LayeredVeins Preset for Mountain Aluminum Gravel  is
-             complete. -->
+
+          <Choice value='none' displayValue='None' description='Cobalt is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='ticoCobaltFreq' default='1'  min='0' max='5' displayState=':= if(?enableTinkersConstruct, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupTinkersConstruct'>
+          <Description> Frequency multiplier for Tinkers Construct Cobalt distributions </Description>
+          <DisplayName>Tinkers Construct Cobalt Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='ticoCobaltSize' default='1'  min='0' max='5' displayState=':= if(?enableTinkersConstruct, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupTinkersConstruct'>
+          <Description> Size multiplier for Tinkers Construct Cobalt distributions </Description>
+          <DisplayName>Tinkers Construct Cobalt Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Cobalt Configuration UI Complete -->
 
 
-        <!-- Starting StrategicClouds Preset for Mountain  Aluminum
-             Gravel. -->
-        <ConfigSection>
-          <IfCondition condition=':= ticoMountainAluminumGravelDist = "StrategicClouds"'>
-            <Cloud name='ticoMountainAluminumGravelCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
-              <Description>
-                Large irregular clouds filled  lightly with ore.
-                These are  huge, spanning several adjacent  chunks,
-                and consequently rather  rare.  They contain a
-                sizeable  amount of ore, but it takes some  time and
-                effort to mine due to  low density. The intent for
-                strategic clouds is that the  player will need to
-                actively  search for one and then set up a  semi-
-                permanent mining base and  spend some time actually
-                mining  the ore.
-              </Description>
-              <OreBlock block='TConstruct:GravelOre:4' weight='1.0' />
-              <Replaces block='minecraft:gravel' weight='1.0' />
-              <BiomeType name='Mountain'  />
-              <Setting name='CloudRadius' avg=':= 0.926 * _default_ * ticoMountainAluminumGravelSize ' range=':= 0.926 * _default_ * ticoMountainAluminumGravelSize ' type='normal' />
-              <Setting name='CloudThickness' avg=':= 0.926 * _default_ * ticoMountainAluminumGravelSize ' range=':= 0.926 * _default_ * ticoMountainAluminumGravelSize ' type='normal' scaleTo='base' />
-              <Setting name='DistributionFrequency' avg=':= 0.857 * _default_ * ticoMountainAluminumGravelFreq ' range=':= 0.857 * _default_ * ticoMountainAluminumGravelFreq ' type='normal' scaleTo='base' />
-              <Setting name='CloudHeight' avg=':= 169 ' range=':= 87 ' type='normal' scaleTo='base' />
-              <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Setting name='CloudSizeNoise' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Setting name='CloudInclination' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
-              <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoMountainAluminumGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
-                <Description>
-                  Single blocks, generously  scattered through all
-                  heights  (density is about that of  vanilla iron
-                  ore). They will  replace dirt and sandstone  (but
-                  not grass or sand), so  they can be found nearer to
-                  the surface than most ores.  Intened to be used as a
-                  child  distribution for large, rare  strategic
-                  deposits that would  otherwise be very difficult  to
-                  find.  Note that the  frequency is multiplied by
-                  ground level to maintain a  constant density, but
-                  not by  ore frequency because it is  assumed that
-                  the frequency of  the parent distribution will
-                  already be scaled by that.
-                </Description>
-                <OreBlock block='TConstruct:GravelOre:4' weight='1.0' />
-                <Replaces block='minecraft:dirt' weight='1.0' />
-                <Replaces block='minecraft:sandstone' weight='1.0' />
-                <ReplacesOre block='stone' weight='1.0' />
-                <Replaces block='minecraft:gravel' weight='1.0' />
-                <Setting name='MotherlodeFrequency' avg=':= 0.751 * _default_ * ticoMountainAluminumGravelFreq  * 0.1 ' range=':= 0.751 * _default_ * ticoMountainAluminumGravelFreq  * 0.1 ' type='normal' scaleTo='base' />
-              </Veins>
-            </Cloud>
+      <!-- Ardite Configuration UI Starting -->
+      <ConfigSection>
+        <OptionChoice name='ticoArditeDist'  displayState=':= if(?enableTinkersConstruct, "shown", "hidden")' displayGroup='groupTinkersConstruct'>
+          <Description> Controls how Ardite is generated </Description>
+          <DisplayName>Tinkers Construct Ardite</DisplayName>
+          <IfCondition condition=':= (?blockExists("tconstruct:ore:1")) '>
+
+          <Choice value='SmallDeposits' displayValue='Small Deposits'>
+            <Description>
+              Small motherlodes without any branches.
+            </Description>
+          </Choice>
           </IfCondition>
-        </ConfigSection>
-        <!-- StrategicClouds Preset for Mountain Aluminum  Gravel is
-             complete. -->
 
+          <IfCondition condition=':= (?blockExists("tconstruct:ore:1")) '>
 
+<<<<<<< HEAD
+          <Choice value='StrategicClouds' displayValue='Strategic Clouds'>
+            <Description>
+              Large irregular clouds filled lightly with ore.
+            </Description>
+          </Choice>
+=======
         <!-- Starting Vanilla Preset for Mountain Aluminum  Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainAluminumGravelDist = "Vanilla"'>
@@ -2625,17 +2583,35 @@
               <Setting name='Height' avg=':= 169 ' range=':= 87 ' type='normal' scaleTo='base' />
               <Setting name='ParentRangeLimit' avg=':= _default_ ' range=':= _default_ ' type='normal' />
             </StandardGen>
+>>>>>>> 8f629e5ba493cdc521f6b342c2dfb7754cb9c40c
           </IfCondition>
-        </ConfigSection>
-        <!-- Vanilla Preset for Mountain Aluminum Gravel is  complete. -->
 
-        <!-- End Mountain Aluminum Gravel Generation -->
+          <IfCondition condition=':= (?blockExists("tconstruct:ore:1")) '>
 
-        <!-- Finished adding blocks -->
+          <Choice value='Vanilla' displayValue='Vanilla'>
+            <Description>
+              Simulates Vanilla Minecraft.
+            </Description>
+          </Choice>
+          </IfCondition>
 
-      </IfCondition>
-      <!-- Overworld Setup Complete -->
+          <Choice value='none' displayValue='None' description='Ardite is not generated in the world.'/>
+        </OptionChoice>
+        <OptionNumeric name='ticoArditeFreq' default='1'  min='0' max='5' displayState=':= if(?enableTinkersConstruct, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupTinkersConstruct'>
+          <Description> Frequency multiplier for Tinkers Construct Ardite distributions </Description>
+          <DisplayName>Tinkers Construct Ardite Freq.</DisplayName>
+        </OptionNumeric>
+        <OptionNumeric name='ticoArditeSize' default='1'  min='0' max='5' displayState=':= if(?enableTinkersConstruct, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupTinkersConstruct'>
+          <Description> Size multiplier for Tinkers Construct Ardite distributions </Description>
+          <DisplayName>Tinkers Construct Ardite Size</DisplayName>
+        </OptionNumeric>
+      </ConfigSection>
+      <!-- Ardite Configuration UI Complete -->
 
+    </ConfigSection>
+    <!-- Setup Screen Complete -->
+
+    <IfCondition condition=':= ?enableTinkersConstruct'>
 
 
 
@@ -2647,24 +2623,8 @@
         <!-- Starting Original "Nether" Block Removal -->
 
         <IfCondition condition=':= ?cleanUpTinkersConstruct'>
-          <IfCondition condition=':= ?blockExists("minecraft:gravel")'>
-            <Substitute name='ticoNetherBlockSubstitute0' block='minecraft:gravel'>
-              <Description>
-                Replace vanilla-generated ore clusters.
-              </Description>
-              <Comment>
-                The global option  deferredPopulationRange must be
-                large enough to catch all ore  clusters (>= 32).
-              </Comment>
-              <Replaces block='TConstruct:GravelOre:5' weight='1.0' />
-            </Substitute>
-          </IfCondition>
-        </IfCondition>
-
-
-        <IfCondition condition=':= ?cleanUpTinkersConstruct'>
           <IfCondition condition=':= ?blockExists("minecraft:netherrack")'>
-            <Substitute name='ticoNetherBlockSubstitute1' block='minecraft:netherrack'>
+            <Substitute name='ticoNetherBlockSubstitute0' block='minecraft:netherrack'>
               <Description>
                 Replace vanilla-generated ore clusters.
               </Description>
@@ -2672,8 +2632,8 @@
                 The global option  deferredPopulationRange must be
                 large enough to catch all ore  clusters (>= 32).
               </Comment>
-              <Replaces block='TConstruct:SearedBrick:1' weight='1.0' />
-              <Replaces block='TConstruct:SearedBrick:2' weight='1.0' />
+              <Replaces block='tconstruct:ore' weight='1.0' />
+              <Replaces block='tconstruct:ore:1' weight='1.0' />
             </Substitute>
           </IfCondition>
         </IfCondition>
@@ -2692,7 +2652,7 @@
                 Small motherlodes without any  branches.  Similar to
                 the  deposits produced by StandardGen  distributions.
               </Description>
-              <OreBlock block='TConstruct:SearedBrick:1' weight='1.0' />
+              <OreBlock block='tconstruct:ore' weight='1.0' />
               <Replaces block='minecraft:netherrack' weight='1.0' />
               <Biome name='.*'  />
               <Setting name='MotherlodeFrequency' avg=':= 1.084 * _default_ * ticoCobaltFreq ' range=':= 1.084 * _default_ * ticoCobaltFreq ' type='normal' scaleTo='base' />
@@ -2732,7 +2692,7 @@
                 permanent mining base and  spend some time actually
                 mining  the ore.
               </Description>
-              <OreBlock block='TConstruct:SearedBrick:1' weight='1.0' />
+              <OreBlock block='tconstruct:ore' weight='1.0' />
               <Replaces block='minecraft:netherrack' weight='1.0' />
               <Biome name='.*'  />
               <Setting name='CloudRadius' avg=':= 0.995 * _default_ * ticoCobaltSize ' range=':= 0.995 * _default_ * ticoCobaltSize ' type='normal' />
@@ -2760,7 +2720,7 @@
                   the frequency of  the parent distribution will
                   already be scaled by that.
                 </Description>
-                <OreBlock block='TConstruct:SearedBrick:1' weight='1.0' />
+                <OreBlock block='tconstruct:ore' weight='1.0' />
                 <Replaces block='minecraft:dirt' weight='1.0' />
                 <Replaces block='minecraft:sandstone' weight='1.0' />
                 <ReplacesOre block='stone' weight='1.0' />
@@ -2780,7 +2740,7 @@
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
-              <OreBlock block='TConstruct:SearedBrick:1' weight='1.0' />
+              <OreBlock block='tconstruct:ore' weight='1.0' />
               <Replaces block='minecraft:netherrack' weight='1.0' />
               <Biome name='.*'  />
               <Setting name='Size' avg=':= 2.0 * oreSize * ticoCobaltSize ' range=':= 1.0 * oreSize * ticoCobaltSize ' type='normal' />
@@ -2805,7 +2765,7 @@
                 Small motherlodes without any  branches.  Similar to
                 the  deposits produced by StandardGen  distributions.
               </Description>
-              <OreBlock block='TConstruct:SearedBrick:2' weight='1.0' />
+              <OreBlock block='tconstruct:ore:1' weight='1.0' />
               <Replaces block='minecraft:netherrack' weight='1.0' />
               <Biome name='.*'  />
               <Setting name='MotherlodeFrequency' avg=':= 1.084 * _default_ * ticoArditeFreq ' range=':= 1.084 * _default_ * ticoArditeFreq ' type='normal' scaleTo='base' />
@@ -2845,7 +2805,7 @@
                 permanent mining base and  spend some time actually
                 mining  the ore.
               </Description>
-              <OreBlock block='TConstruct:SearedBrick:2' weight='1.0' />
+              <OreBlock block='tconstruct:ore:1' weight='1.0' />
               <Replaces block='minecraft:netherrack' weight='1.0' />
               <Biome name='.*'  />
               <Setting name='CloudRadius' avg=':= 0.995 * _default_ * ticoArditeSize ' range=':= 0.995 * _default_ * ticoArditeSize ' type='normal' />
@@ -2873,7 +2833,7 @@
                   the frequency of  the parent distribution will
                   already be scaled by that.
                 </Description>
-                <OreBlock block='TConstruct:SearedBrick:2' weight='1.0' />
+                <OreBlock block='tconstruct:ore:1' weight='1.0' />
                 <Replaces block='minecraft:dirt' weight='1.0' />
                 <Replaces block='minecraft:sandstone' weight='1.0' />
                 <ReplacesOre block='stone' weight='1.0' />
@@ -2893,7 +2853,7 @@
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
-              <OreBlock block='TConstruct:SearedBrick:2' weight='1.0' />
+              <OreBlock block='tconstruct:ore:1' weight='1.0' />
               <Replaces block='minecraft:netherrack' weight='1.0' />
               <Biome name='.*'  />
               <Setting name='Size' avg=':= 2.0 * oreSize * ticoArditeSize ' range=':= 1.0 * oreSize * ticoArditeSize ' type='normal' />
@@ -2907,6 +2867,8 @@
 
         <!-- End Ardite Generation -->
 
+<<<<<<< HEAD
+=======
 
         <!-- Begin Cobalt Gravel Generation -->
 
@@ -3020,6 +2982,7 @@
 
         <!-- End Cobalt Gravel Generation -->
 
+>>>>>>> 8f629e5ba493cdc521f6b342c2dfb7754cb9c40c
         <!-- Finished adding blocks -->
 
       </IfCondition>
