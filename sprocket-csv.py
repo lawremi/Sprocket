@@ -93,7 +93,7 @@ def oreStanza(recordIndex):
     sizeAvg = round(sizeAvgCalc,3)
     sizeRng = round(sizeRngCalc,2)
     
-    stanzaOutput += "Standard Size: "+str(sizeAvg)+", "+str(sizeRng)+", normal, base\n"
+    stanzaOutput += "Standard Size: "+str(sizeAvg)+" * oreSize, "+str(sizeRng)+" * oreSize, normal, base\n"
     
     maxFreqString = sprocketModDatabase[recordIndex][9]
     maxFreq = float(maxFreqString)*2
@@ -105,7 +105,7 @@ def oreStanza(recordIndex):
     freqAvg = round(freqAvgCalc,3)
     freqRng = round(freqRngCalc,2)
     
-    stanzaOutput += "Standard Frequency: "+str(freqAvg)+" * oreFreq, "+str(freqRng)+" * oreSize, normal, base\n"
+    stanzaOutput += "Standard Frequency: "+str(freqAvg)+" * oreFreq, "+str(freqRng)+" * oreFreq, normal, base\n"
     stanzaOutput += "Vein Motherlode Frequency: "+sprocketModDatabase[recordIndex][11]+" * _default_, "+sprocketModDatabase[recordIndex][11]+" * _default_, normal, base\n"
     if sprocketModDatabase[recordIndex][12] != "none":
         stanzaOutput += "Vein Motherlode Size: "+sprocketModDatabase[recordIndex][12]+" * _default_, "+sprocketModDatabase[recordIndex][12]+" * _default_, normal, base\n"
@@ -156,7 +156,7 @@ def oreStanza(recordIndex):
       sizeAvg = round(sizeAvgCalc,3)
       sizeRng = round(sizeRngCalc,2)
       
-      stanzaOutput += "Standard Size: "+str(sizeAvg)+", "+str(sizeRng)+", normal, base\n"
+      stanzaOutput += "Standard Size: "+str(sizeAvg)+" * oreSize, "+str(sizeRng)+" * oreSize, normal, base\n"
       
       maxFreqString = sprocketModDatabase[recordIndex][9]
       maxFreq = float(maxFreqString)*2
@@ -168,7 +168,7 @@ def oreStanza(recordIndex):
       freqAvg = round(freqAvgCalc,3)
       freqRng = round(freqRngCalc,2)
       
-      stanzaOutput += "Standard Frequency: "+str(freqAvg)+", "+str(freqRng)+", normal, base\n"
+      stanzaOutput += "Standard Frequency: "+str(freqAvg)+" * oreFreq, "+str(freqRng)+" * oreFreq, normal, base\n"
       stanzaOutput += "Vein Motherlode Frequency: "+sprocketModDatabase[recordIndex][11]+" * _default_, "+sprocketModDatabase[recordIndex][11]+" * _default_, normal, base\n"
       if sprocketModDatabase[recordIndex][12] != "none":
           stanzaOutput += "Vein Motherlode Size: "+sprocketModDatabase[recordIndex][12]+" * _default_, "+sprocketModDatabase[recordIndex][12]+" * _default_, normal, base\n"
