@@ -23,8 +23,8 @@ Configuration Utility for Custom Ore Gen: First Revival mod
 
 # Using the Program
 
-Sprocket is a command-line program.  It requires that you have Python 2.7
-installed on your system.  You can pick up Python 2.7 from www.python.org
+Sprocket is a command-line program.  It requires that you have Python
+installed on your system.  You can pick up Python from www.python.org
 
 To run the program, you have one of two options:
         
