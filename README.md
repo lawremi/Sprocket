@@ -202,8 +202,6 @@ If set to "yes," then the configuration will undergo a "cleaning" pass before be
 
 If set to "no," the cleanup pass is skipped.  However, if the mod does not have oregen disabled in its own configuration, you will end up with both Custom Ore Generation distributions, as well as the mod's own oregen.
 
-This option is not available for "minecraft" (non-modded) configurations.
-
     Default: yes
 
 ### Main Block Cleanup (Boolean)
