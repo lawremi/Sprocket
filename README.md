@@ -134,7 +134,7 @@ Custom Ore Generation comes with several built-in presets, and Sprocket adds som
 * **Custom Distributions**: The following are distributions to use when you know what you're doing, and you have something specific in mind.  These distributions will not include a preset value.
     * **Custom Veins**: This will produce an un-preset vein distribution.  You can use all vein-related options in this distribution.
     * **Custom Cloud**: This will produce an un-preset cloud distribution.  You can use all cloud-related options in this distribution.
-    * **Null**: This will produce only the absolute basic XML configuration; The settings options will all be there, the distribution configuration section will be empty, and all distribution-specific names and values will include the word "NULL".  This is meant to be a blank canvas on which a configuration writer can make their custom-designed XML code without needing to worry about arganizing the main file.
+    * **Null**: This will produce only the absolute basic XML configuration; The settings options will all be there, the distribution configuration section will be empty, and all distribution-specific names and values will include the word "NULL".  This is meant to be a blank canvas on which a configuration writer can make their custom-designed XML code without needing to worry about organizing the main file.
 
 ## Option Types
 
