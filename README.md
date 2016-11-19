@@ -322,6 +322,7 @@ List of dimensions for the current distribution.  This list has been heavily exp
 * RFTools
 * Mystcraft
 
+RFTools and Mystcraft are not recommended, since the config would override any configuration done by the player.  They're just added for completeness.
 
      Default: Overworld
 
