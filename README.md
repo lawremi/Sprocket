@@ -392,7 +392,7 @@ List of block IDs.  Block will only be placed if it is connected to the top surf
 
      Default: MISSING
      
-# Substitution Distribution Options
+## Substitution Distribution Options
 
 ### Substitution Height Clamp Range (List)
 
