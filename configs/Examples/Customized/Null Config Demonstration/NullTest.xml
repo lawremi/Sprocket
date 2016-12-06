@@ -16,127 +16,138 @@
 
 
 
-    <!-- Setup Screen Configuration -->
+  <!-- Setup Screen Configuration -->
+  <ConfigSection>
+    <OptionDisplayGroup name='groupNullTest' displayName='Null Test' displayState='shown'>
+      <Description>
+        Distribution options for Null Test Ores.
+      </Description>
+    </OptionDisplayGroup>
+    <OptionChoice name='enableNullTest' displayName='Handle Null Test Setup?' default='true' displayState='shown_dynamic' displayGroup='groupNullTest'>
+      <Description> Should Custom Ore Generation handle Null Test ore generation? </Description>
+      <Choice value=':= ?true' displayValue='Yes' description='Use Custom Ore Generation to handle Null Test ores.'/>
+      <Choice value=':= ?false' displayValue='No' description='Null Test ores will be handled by Minecraft directly.'/>
+    </OptionChoice>
+    <OptionChoice name='cleanUpNullTest' displayName='Use Null Test Cleanup?' default='true' displayState='shown_dynamic' displayGroup='groupNullTest'>
+      <Description> Should Custom Ore Generation use the Substitution Pass to remove all instances of Null Test ore from the world?  If the mod's oregen can be turned off in its configuration, then it's recommended to do so, as the substitution pass can slow the game significantly.  If this option is disabled without disabling the mod's own ore generation, you'll end up with two oregens working at once, flooding the world with ore.  Enabled by default to ensure the ores are completely removed. </Description>
+      <Choice value=':= ?true' displayValue='Yes' description='Use the substitution pass to clean up Null Test ores.'/>
+      <Choice value=':= ?false' displayValue='No' description='Null Test ores do not need to be cleaned up by a substitution pass.'/>
+    </OptionChoice>
+
+    <!-- Material Configuration UI Starting -->
     <ConfigSection>
-        <OptionDisplayGroup name='groupNullTest' displayName='Null Test' displayState='shown'>
-            <Description>
-                Distribution options for Null Test Ores.
-            </Description>
-        </OptionDisplayGroup>
+      <OptionChoice name='nlltMaterialDist'  displayState=':= if(?enableNullTest, "shown", "hidden")' displayGroup='groupNullTest'>
+        <Description> Controls how Material is generated </Description>
+        <DisplayName>Null Test Material</DisplayName>
+        <IfCondition condition=':= (?blockExists("MISSING")) '>
 
-        <!-- Material Configuration UI Starting -->
-        <ConfigSection>
-            <OptionChoice name='nlltMaterialDist'  displayState=':= "shown"' displayGroup='groupNullTest'>
-                <Description> Controls how Material is generated </Description>
-                <DisplayName>Null Test Material</DisplayName>
-                <IfCondition condition=':= (?blockExists("MISSING")) '>
+        <Choice value='NULL' displayValue='Blank'>
+          <Description>
+            MISSING
+          </Description>
+        </Choice>
+        </IfCondition>
 
-                <Choice value='NULL' displayValue='Blank'>
-                    <Description>
-                        MISSING
-                    </Description>
-                </Choice>
-                </IfCondition>
+        <IfCondition condition=':= (?blockExists("MISSING")) '>
 
-                <IfCondition condition=':= (?blockExists("MISSING")) '>
+        <Choice value='NULL' displayValue='Blank'>
+          <Description>
+            MISSING
+          </Description>
+        </Choice>
+        </IfCondition>
 
-                <Choice value='NULL' displayValue='Blank'>
-                    <Description>
-                        MISSING
-                    </Description>
-                </Choice>
-                </IfCondition>
+        <IfCondition condition=':= (?blockExists("MISSING")) '>
 
-                <IfCondition condition=':= (?blockExists("MISSING")) '>
+        <Choice value='NULL' displayValue='Blank'>
+          <Description>
+            MISSING
+          </Description>
+        </Choice>
+        </IfCondition>
 
-                <Choice value='NULL' displayValue='Blank'>
-                    <Description>
-                        MISSING
-                    </Description>
-                </Choice>
-                </IfCondition>
-
-                <Choice value='none' displayValue='None' description='Material is not generated in the world.'/>
-            </OptionChoice>
-            <OptionNumeric name='nlltMaterialFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions, "shown", "hidden")' displayGroup='groupNullTest'>
-                <Description> Frequency multiplier for Null Test Material distributions </Description>
-                <DisplayName>Null Test Material Freq.</DisplayName>
-            </OptionNumeric>
-            <OptionNumeric name='nlltMaterialSize' default='1'  min='0' max='5' displayState=':= if(?advOptions, "shown", "hidden")' displayGroup='groupNullTest'>
-                <Description> Size multiplier for Null Test Material distributions </Description>
-                <DisplayName>Null Test Material Size</DisplayName>
-            </OptionNumeric>
-        </ConfigSection>
-        <!-- Material Configuration UI Complete -->
-
-
-        <!-- Ore Configuration UI Starting -->
-        <ConfigSection>
-            <OptionChoice name='nlltOreDist'  displayState=':= "shown"' displayGroup='groupNullTest'>
-                <Description> Controls how Ore is generated </Description>
-                <DisplayName>Null Test Ore</DisplayName>
-                <IfCondition condition=':= (?blockExists("MISSING")) '>
-
-                <Choice value='NULL' displayValue='Blank'>
-                    <Description>
-                        MISSING
-                    </Description>
-                </Choice>
-                </IfCondition>
-
-                <IfCondition condition=':= (?blockExists("MISSING")) '>
-
-                <Choice value='NULL' displayValue='Blank'>
-                    <Description>
-                        MISSING
-                    </Description>
-                </Choice>
-                </IfCondition>
-
-                <Choice value='none' displayValue='None' description='Ore is not generated in the world.'/>
-            </OptionChoice>
-            <OptionNumeric name='nlltOreFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions, "shown", "hidden")' displayGroup='groupNullTest'>
-                <Description> Frequency multiplier for Null Test Ore distributions </Description>
-                <DisplayName>Null Test Ore Freq.</DisplayName>
-            </OptionNumeric>
-            <OptionNumeric name='nlltOreSize' default='1'  min='0' max='5' displayState=':= if(?advOptions, "shown", "hidden")' displayGroup='groupNullTest'>
-                <Description> Size multiplier for Null Test Ore distributions </Description>
-                <DisplayName>Null Test Ore Size</DisplayName>
-            </OptionNumeric>
-        </ConfigSection>
-        <!-- Ore Configuration UI Complete -->
-
-
-        <!-- Stone Configuration UI Starting -->
-        <ConfigSection>
-            <OptionChoice name='nlltStoneDist'  displayState=':= "shown"' displayGroup='groupNullTest'>
-                <Description> Controls how Stone is generated </Description>
-                <DisplayName>Null Test Stone</DisplayName>
-                <IfCondition condition=':= (?blockExists("MISSING")) '>
-
-                <Choice value='NULL' displayValue='Blank'>
-                    <Description>
-                        MISSING
-                    </Description>
-                </Choice>
-                </IfCondition>
-
-                <Choice value='none' displayValue='None' description='Stone is not generated in the world.'/>
-            </OptionChoice>
-            <OptionNumeric name='nlltStoneFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions, "shown", "hidden")' displayGroup='groupNullTest'>
-                <Description> Frequency multiplier for Null Test Stone distributions </Description>
-                <DisplayName>Null Test Stone Freq.</DisplayName>
-            </OptionNumeric>
-            <OptionNumeric name='nlltStoneSize' default='1'  min='0' max='5' displayState=':= if(?advOptions, "shown", "hidden")' displayGroup='groupNullTest'>
-                <Description> Size multiplier for Null Test Stone distributions </Description>
-                <DisplayName>Null Test Stone Size</DisplayName>
-            </OptionNumeric>
-        </ConfigSection>
-        <!-- Stone Configuration UI Complete -->
-
+        <Choice value='none' displayValue='None' description='Material is not generated in the world.'/>
+      </OptionChoice>
+      <OptionNumeric name='nlltMaterialFreq' default='1'  min='0' max='5' displayState=':= if(?enableNullTest, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNullTest'>
+        <Description> Frequency multiplier for Null Test Material distributions </Description>
+        <DisplayName>Null Test Material Freq.</DisplayName>
+      </OptionNumeric>
+      <OptionNumeric name='nlltMaterialSize' default='1'  min='0' max='5' displayState=':= if(?enableNullTest, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNullTest'>
+        <Description> Size multiplier for Null Test Material distributions </Description>
+        <DisplayName>Null Test Material Size</DisplayName>
+      </OptionNumeric>
     </ConfigSection>
-    <!-- Setup Screen Complete -->
+    <!-- Material Configuration UI Complete -->
 
+
+    <!-- Ore Configuration UI Starting -->
+    <ConfigSection>
+      <OptionChoice name='nlltOreDist'  displayState=':= if(?enableNullTest, "shown", "hidden")' displayGroup='groupNullTest'>
+        <Description> Controls how Ore is generated </Description>
+        <DisplayName>Null Test Ore</DisplayName>
+        <IfCondition condition=':= (?blockExists("MISSING")) '>
+
+        <Choice value='NULL' displayValue='Blank'>
+          <Description>
+            MISSING
+          </Description>
+        </Choice>
+        </IfCondition>
+
+        <IfCondition condition=':= (?blockExists("MISSING")) '>
+
+        <Choice value='NULL' displayValue='Blank'>
+          <Description>
+            MISSING
+          </Description>
+        </Choice>
+        </IfCondition>
+
+        <Choice value='none' displayValue='None' description='Ore is not generated in the world.'/>
+      </OptionChoice>
+      <OptionNumeric name='nlltOreFreq' default='1'  min='0' max='5' displayState=':= if(?enableNullTest, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNullTest'>
+        <Description> Frequency multiplier for Null Test Ore distributions </Description>
+        <DisplayName>Null Test Ore Freq.</DisplayName>
+      </OptionNumeric>
+      <OptionNumeric name='nlltOreSize' default='1'  min='0' max='5' displayState=':= if(?enableNullTest, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNullTest'>
+        <Description> Size multiplier for Null Test Ore distributions </Description>
+        <DisplayName>Null Test Ore Size</DisplayName>
+      </OptionNumeric>
+    </ConfigSection>
+    <!-- Ore Configuration UI Complete -->
+
+
+    <!-- Stone Configuration UI Starting -->
+    <ConfigSection>
+      <OptionChoice name='nlltStoneDist'  displayState=':= if(?enableNullTest, "shown", "hidden")' displayGroup='groupNullTest'>
+        <Description> Controls how Stone is generated </Description>
+        <DisplayName>Null Test Stone</DisplayName>
+        <IfCondition condition=':= (?blockExists("MISSING")) '>
+
+        <Choice value='NULL' displayValue='Blank'>
+          <Description>
+            MISSING
+          </Description>
+        </Choice>
+        </IfCondition>
+
+        <Choice value='none' displayValue='None' description='Stone is not generated in the world.'/>
+      </OptionChoice>
+      <OptionNumeric name='nlltStoneFreq' default='1'  min='0' max='5' displayState=':= if(?enableNullTest, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNullTest'>
+        <Description> Frequency multiplier for Null Test Stone distributions </Description>
+        <DisplayName>Null Test Stone Freq.</DisplayName>
+      </OptionNumeric>
+      <OptionNumeric name='nlltStoneSize' default='1'  min='0' max='5' displayState=':= if(?enableNullTest, if(?advOptions, "shown", "hidden"), "hidden")' displayGroup='groupNullTest'>
+        <Description> Size multiplier for Null Test Stone distributions </Description>
+        <DisplayName>Null Test Stone Size</DisplayName>
+      </OptionNumeric>
+    </ConfigSection>
+    <!-- Stone Configuration UI Complete -->
+
+  </ConfigSection>
+  <!-- Setup Screen Complete -->
+
+  <IfCondition condition=':= ?enableNullTest'>
 
 
 
@@ -145,151 +156,150 @@
 
     <IfCondition condition=':= ?COGActive'>
 
-        <!-- Starting Original "Overworld" Block Removal -->
+      <!-- Starting Original "Overworld" Block Removal -->
 
-        <IfCondition condition=':= ?blockExists("minecraft:stone")'>
-            <Substitute name='nlltOverworldBlockSubstitute0' block='minecraft:stone'>
-                <Description>
-                    Replace vanilla-generated ore clusters.
-                </Description>
-                <Comment>
-                    The global option deferredPopulationRange  must be
-                    large enough to catch all ore  clusters (>= 32).
-                </Comment>
-                
-            </Substitute>
+      <IfCondition condition=':= ?blockExists("minecraft:stone")'>
+        <Substitute name='nlltOverworldBlockSubstitute0' block='minecraft:stone'>
+          <Description>
+            Replace vanilla-generated ore clusters.
+          </Description>
+          <Comment>
+            The global option deferredPopulationRange  must be large
+            enough to catch all ore  clusters (>= 32).
+          </Comment>
+          
+        </Substitute>
+      </IfCondition>
+
+      <!-- Original "Overworld" Block Removal Complete -->
+
+      <!-- Adding blocks -->
+
+      <!-- Begin Material Generation -->
+
+      <!-- Starting NULL Preset for Material. -->
+      <ConfigSection>
+        <IfCondition condition=':= nlltMaterialDist = "NULL"'>
+          <NULL name='nlltMaterialNULL'>
+            <Description>
+              MISSING
+            </Description>
+
+
+            <!-- Enter your distribution code here -->
+
+
+          </NULL>
         </IfCondition>
-
-        <!-- Original "Overworld" Block Removal Complete -->
-
-        <!-- Adding blocks -->
-
-        <!-- Begin Material Generation -->
-
-        <!-- Starting NULL Preset for Material. -->
-        <ConfigSection>
-            <IfCondition condition=':= nlltMaterialDist = "NULL"'>
-                <NULL name='nlltMaterialNULL'>
-                    <Description>
-                        MISSING
-                    </Description>
+      </ConfigSection>
+      <!-- NULL Preset for Material is complete. -->
 
 
-                    <!-- Enter your distribution code here -->
+      <!-- Starting NULL Preset for Material. -->
+      <ConfigSection>
+        <IfCondition condition=':= nlltMaterialDist = "NULL"'>
+          <NULL name='nlltMaterialNULL'>
+            <Description>
+              MISSING
+            </Description>
 
 
-                </NULL>
-            </IfCondition>
-        </ConfigSection>
-        <!-- NULL Preset for Material is complete. -->
+            <!-- Enter your distribution code here -->
 
 
-        <!-- Starting NULL Preset for Material. -->
-        <ConfigSection>
-            <IfCondition condition=':= nlltMaterialDist = "NULL"'>
-                <NULL name='nlltMaterialNULL'>
-                    <Description>
-                        MISSING
-                    </Description>
+          </NULL>
+        </IfCondition>
+      </ConfigSection>
+      <!-- NULL Preset for Material is complete. -->
 
 
-                    <!-- Enter your distribution code here -->
+      <!-- Starting NULL Preset for Material. -->
+      <ConfigSection>
+        <IfCondition condition=':= nlltMaterialDist = "NULL"'>
+          <NULL name='nlltMaterialNULL'>
+            <Description>
+              MISSING
+            </Description>
 
 
-                </NULL>
-            </IfCondition>
-        </ConfigSection>
-        <!-- NULL Preset for Material is complete. -->
+            <!-- Enter your distribution code here -->
 
 
-        <!-- Starting NULL Preset for Material. -->
-        <ConfigSection>
-            <IfCondition condition=':= nlltMaterialDist = "NULL"'>
-                <NULL name='nlltMaterialNULL'>
-                    <Description>
-                        MISSING
-                    </Description>
+          </NULL>
+        </IfCondition>
+      </ConfigSection>
+      <!-- NULL Preset for Material is complete. -->
+
+      <!-- End Material Generation -->
 
 
-                    <!-- Enter your distribution code here -->
+      <!-- Begin Ore Generation -->
+
+      <!-- Starting NULL Preset for Ore. -->
+      <ConfigSection>
+        <IfCondition condition=':= nlltOreDist = "NULL"'>
+          <NULL name='nlltOreNULL'>
+            <Description>
+              MISSING
+            </Description>
 
 
-                </NULL>
-            </IfCondition>
-        </ConfigSection>
-        <!-- NULL Preset for Material is complete. -->
-
-        <!-- End Material Generation -->
+            <!-- Enter your distribution code here -->
 
 
-        <!-- Begin Ore Generation -->
-
-        <!-- Starting NULL Preset for Ore. -->
-        <ConfigSection>
-            <IfCondition condition=':= nlltOreDist = "NULL"'>
-                <NULL name='nlltOreNULL'>
-                    <Description>
-                        MISSING
-                    </Description>
+          </NULL>
+        </IfCondition>
+      </ConfigSection>
+      <!-- NULL Preset for Ore is complete. -->
 
 
-                    <!-- Enter your distribution code here -->
+      <!-- Starting NULL Preset for Ore. -->
+      <ConfigSection>
+        <IfCondition condition=':= nlltOreDist = "NULL"'>
+          <NULL name='nlltOreNULL'>
+            <Description>
+              MISSING
+            </Description>
 
 
-                </NULL>
-            </IfCondition>
-        </ConfigSection>
-        <!-- NULL Preset for Ore is complete. -->
+            <!-- Enter your distribution code here -->
 
 
-        <!-- Starting NULL Preset for Ore. -->
-        <ConfigSection>
-            <IfCondition condition=':= nlltOreDist = "NULL"'>
-                <NULL name='nlltOreNULL'>
-                    <Description>
-                        MISSING
-                    </Description>
+          </NULL>
+        </IfCondition>
+      </ConfigSection>
+      <!-- NULL Preset for Ore is complete. -->
+
+      <!-- End Ore Generation -->
 
 
-                    <!-- Enter your distribution code here -->
+      <!-- Begin Stone Generation -->
+
+      <!-- Starting NULL Preset for Stone. -->
+      <ConfigSection>
+        <IfCondition condition=':= nlltStoneDist = "NULL"'>
+          <NULL name='nlltStoneNULL'>
+            <Description>
+              MISSING
+            </Description>
 
 
-                </NULL>
-            </IfCondition>
-        </ConfigSection>
-        <!-- NULL Preset for Ore is complete. -->
-
-        <!-- End Ore Generation -->
+            <!-- Enter your distribution code here -->
 
 
-        <!-- Begin Stone Generation -->
+          </NULL>
+        </IfCondition>
+      </ConfigSection>
+      <!-- NULL Preset for Stone is complete. -->
 
-        <!-- Starting NULL Preset for Stone. -->
-        <ConfigSection>
-            <IfCondition condition=':= nlltStoneDist = "NULL"'>
-                <NULL name='nlltStoneNULL'>
-                    <Description>
-                        MISSING
-                    </Description>
+      <!-- End Stone Generation -->
 
-
-                    <!-- Enter your distribution code here -->
-
-
-                </NULL>
-            </IfCondition>
-        </ConfigSection>
-        <!-- NULL Preset for Stone is complete. -->
-
-        <!-- End Stone Generation -->
-
-        <!-- Finished adding blocks -->
+      <!-- Finished adding blocks -->
 
     </IfCondition>
     <!-- Overworld Setup Complete -->
 
-
-
+  </IfCondition>
 
 </ConfigSection>
 <!-- Configuration for Custom Ore Generation Complete! -->
