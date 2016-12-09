@@ -1207,15 +1207,15 @@ class substitutePreset:
     
     def addAvoidBiomesList(self, biomeIndex):
         if checkOption(biomeAvoidTypes[biomeIndex]):
-            for biomeStep in range(0, len(biomeAvoidTypes[biomeIndex])):
-                self._presetScript += cogFormatLine(biomeIgnore("Biome", biomeAvoidTypes[biomeIndex][biomeStep], biomeRainfall[biomeIndex], biomeTmperature[biomeIndex]))
+            for biomeStep in range(0, len(biomeAvoidNames[biomeIndex])):
+                self._presetScript += cogFormatLine(biomeIgnore("Biome", biomeAvoidNames[biomeIndex][biomeStep], biomeRainfall[biomeIndex], biomeTmperature[biomeIndex]))
             
         return
     
     def addAvoidBiomeTypesList(self, biomeIndex):
         if checkOption(biomeAvoidNames[biomeIndex]):
-            for biomeStep in range(0, len(biomeAvoidNames[biomeIndex])):
-                self._presetScript += cogFormatLine(biomeIgnore("Biome", biomeAvoidNames[biomeIndex][biomeStep], biomeRainfall[biomeIndex], biomeTmperature[biomeIndex]))
+            for biomeStep in range(0, len(biomeAvoidTypes[biomeIndex])):
+                self._presetScript += cogFormatLine(biomeIgnore("BiomeType", biomeAvoidTypes[biomeIndex][biomeStep], biomeRainfall[biomeIndex], biomeTmperature[biomeIndex]))
             
         return
         
