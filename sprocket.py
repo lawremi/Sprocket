@@ -2383,7 +2383,7 @@ def configSetupSection():
         cogIndent(-1)
         setupOutput += cogFormatLine("</OptionChoice>")
     
-    setupOutput += cogFormatLine("<OptionChoice name='cleanUp"+modConfigName+"' displayName='Use "+modName+" Cleanup?' default='"+modCleanupState()+"' displayState='shown_dynamic' displayGroup='group"+modConfigName+"'>")
+    setupOutput += cogFormatLine("<OptionChoice name='cleanUp"+modConfigName+"' displayName='Use "+modName+" Cleanup?' default='"+modCleanupState()+"' displayState=':= if(?enable"+modConfigName+", \"shown\", \"hidden\")' displayGroup='group"+modConfigName+"'>")
     cogIndent(1)    
     setupOutput += cogFormatLine("<Description> Should Custom Ore Generation use the Substitution Pass to remove all instances of "+modName+" ore from the world?  If the mod's oregen can be turned off in its configuration, then it's recommended to do so, as the substitution pass can slow the game significantly.  If this option is disabled without disabling the mod's own ore generation, you'll end up with two oregens working at once, flooding the world with ore.  Enabled by default to ensure the ores are completely removed. </Description>")
     setupOutput += cogFormatLine("<Choice value=':= ?true' displayValue='Yes' description='Use the substitution pass to clean up "+modName+" ores.'/>")
