@@ -740,7 +740,7 @@ def placeNear(direction, blockId):
 # Wireframes
 def setWireframe(active, color):
     if active == "yes":
-        return "drawWireframe='true' wireframeColor='0x60"+hashRemove(color)+"'"
+        return "drawWireframe=':= drawWireframes' wireframeColor='0x60"+hashRemove(color)+"'"
     else:
         return "drawWireframe='false' wireframeColor='0x60"+hashRemove(color)+"'"
     
