@@ -42,7 +42,7 @@
       <Choice value=':= ?true' displayValue='Yes' description='Keep the vanilla oregen disabled.'/>
       <Choice value=':= ?false' displayValue='No' description='Vanilla ores will be handled by Minecraft directly.'/>
     </OptionChoice>
-    <OptionChoice name='cleanUpVanilla' displayName='Use Vanilla Cleanup?' default='true' displayState='shown_dynamic' displayGroup='groupVanilla'>
+    <OptionChoice name='cleanUpVanilla' displayName='Use Vanilla Cleanup?' default='true' displayState=':= if(?enableVanilla, "shown", "hidden")' displayGroup='groupVanilla'>
       <Description> Should Custom Ore Generation use the Substitution Pass to remove all instances of Vanilla ore from the world?  If the mod's oregen can be turned off in its configuration, then it's recommended to do so, as the substitution pass can slow the game significantly.  If this option is disabled without disabling the mod's own ore generation, you'll end up with two oregens working at once, flooding the world with ore.  Enabled by default to ensure the ores are completely removed. </Description>
       <Choice value=':= ?true' displayValue='Yes' description='Use the substitution pass to clean up Vanilla ores.'/>
       <Choice value=':= ?false' displayValue='No' description='Vanilla ores do not need to be cleaned up by a substitution pass.'/>
@@ -693,9 +693,11 @@
             <Replaces block='minecraft:gravel' weight='1.0' />
             <Replaces block='minecraft:dirt' weight='1.0' />
             <Biome name='.*'  />
-            <Biome name='Ocean'  weight='-1' />
-            <Biome name='Desert'  weight='-1' />
-            <Biome name='Mountain'  weight='-1' />
+            <Biome name='.*Ocean.*'  weight='-1' />
+            <Biome name='.*Savanna.*'  weight='-1' />
+            <BiomeType name='Mountain'  weight='-1' />
+            <BiomeType name='Sandy'  weight='-1' />
+            <BiomeType name='Snowy'  weight='-1' />
             <Setting name='MotherlodeFrequency' avg=':= 1.252 * _default_ * vnlaClayFreq ' range=':= 1.252 * _default_ * vnlaClayFreq ' type='normal' scaleTo='base' />
             <Setting name='MotherlodeSize' avg=':= 1.648 * _default_ * vnlaClaySize ' range=':= 1.648 * _default_ * vnlaClaySize ' type='normal' />
             <Setting name='MotherlodeHeight' avg=':= 64 ' range=':= 10 ' type='uniform' scaleTo='seaLevel' />
@@ -724,11 +726,12 @@
             <Replaces block='minecraft:gravel' weight='1.0' />
             <Replaces block='minecraft:dirt' weight='1.0' />
             <BiomeType name='Swamp'  />
-            <BiomeType name='Beach'  />
             <BiomeType name='River'  />
-            <Biome name='Ocean'  weight='-1' />
-            <Biome name='Desert'  weight='-1' />
-            <Biome name='Mountain'  weight='-1' />
+            <Biome name='.*Ocean.*'  weight='-1' />
+            <Biome name='.*Savanna.*'  weight='-1' />
+            <BiomeType name='Mountain'  weight='-1' />
+            <BiomeType name='Sandy'  weight='-1' />
+            <BiomeType name='Snowy'  weight='-1' />
             <Setting name='MotherlodeFrequency' avg=':= 1.252 * _default_ * vnlaClayFreq ' range=':= 1.252 * _default_ * vnlaClayFreq ' type='normal' scaleTo='base' />
             <Setting name='MotherlodeSize' avg=':= 1.648 * _default_ * vnlaClaySize ' range=':= 1.648 * _default_ * vnlaClaySize ' type='normal' />
             <Setting name='MotherlodeHeight' avg=':= 64 ' range=':= 10 ' type='uniform' scaleTo='seaLevel' />
