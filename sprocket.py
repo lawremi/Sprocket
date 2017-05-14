@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 
 # sprocket-advanced.py:
 #              A configuration generator for the Custom Ore Generation:

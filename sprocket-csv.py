@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 
 # sprocket-csv.py: Utility to generate INI files from the "COG Ore Settings Chart" LibreOffice spreadsheet. 
 
