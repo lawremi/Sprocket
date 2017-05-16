@@ -2410,7 +2410,7 @@ def configSetupSection():
 
 ### Dimension configuration
 
-def dimensionSetup(dimName, dimClass):
+def dimensionSetup(dimName):
     blockCount=0 # We start with the first block.
     worldOutput = ""
     
@@ -2421,7 +2421,7 @@ def dimensionSetup(dimName, dimClass):
     if dimName == "Overworld":
         worldOutput += cogFormatLine("<IfCondition condition=':= ?COGActive'>")
     else:
-        worldOutput += cogFormatLine("<IfCondition condition=':= dimension.generator.class = \""+dimClass+"\"'>")
+        worldOutput += cogFormatLine("<IfCondition condition=':= dimension = \""+dimName+"\"'>")
     
     cogIndent(1)
     worldOutput += initCleanup(dimName)
@@ -2486,26 +2486,24 @@ def mainConfigStructure():
     configOutput += cogFormatLine("<IfCondition condition=':= ?enable"+modConfigName+"'>")
     cogIndent(1)
     
-    # Next, let's get the worlds prepared.  For now, we're limited to the
-    # Overworld, Nether, and End, but as new generators can be detected, we can
-    # Expand Sprocket's ability to create configurations for additional dimensions.
-    configOutput += dimensionSetup("Overworld", "COGActive")
-    configOutput += dimensionSetup("Nether", "ChunkProviderHell")
-    configOutput += dimensionSetup("End", "ChunkProviderEnd")
-    configOutput += dimensionSetup("Flat", "ChunkProviderFlat")
-    configOutput += dimensionSetup("Twilight Forest", "ChunkProviderTwilightForest")
-    configOutput += dimensionSetup("Aether", "ChunkProviderAether")
-    configOutput += dimensionSetup("Aether Dungeons", "ChunkProviderDungeons")
-    configOutput += dimensionSetup("Outer Lands", "ChunkProviderOuter")
-    configOutput += dimensionSetup("Bedrock Dimension", "ChunkProviderBedrock")
-    configOutput += dimensionSetup("Aroma1997s Mining World", "ChunkProviderMining")
-    configOutput += dimensionSetup("Galacticraft Space", "ChunkProviderSpace")
-    configOutput += dimensionSetup("Galacticraft Orbit", "ChunkProviderOrbit")
-    configOutput += dimensionSetup("Galacticraft Moon", "ChunkProviderMoon")
-    configOutput += dimensionSetup("Galacticraft Mars", "ChunkProviderMars")
-    configOutput += dimensionSetup("Galacticraft Asteroids", "ChunkProviderAsteroids")
-    configOutput += dimensionSetup("RFTools", "GenericChunkProvider")
-    configOutput += dimensionSetup("MystCraft", "ChunkProviderMyst")
+    # Next, let's get the worlds prepared.
+    configOutput += dimensionSetup("Overworld")
+    configOutput += dimensionSetup("Nether")
+    configOutput += dimensionSetup("End")
+    configOutput += dimensionSetup("Flat")
+    # configOutput += dimensionSetup("Twilight Forest")
+    # configOutput += dimensionSetup("Aether")
+    # configOutput += dimensionSetup("Aether Dungeons")
+    # configOutput += dimensionSetup("Outer Lands")
+    # configOutput += dimensionSetup("Bedrock Dimension")
+    configOutput += dimensionSetup("Aroma1997s Mining World") # configurable!
+    # configOutput += dimensionSetup("Galacticraft Space")
+    # configOutput += dimensionSetup("Galacticraft Orbit")
+    # configOutput += dimensionSetup("Galacticraft Moon")
+    # configOutput += dimensionSetup("Galacticraft Mars")
+    # configOutput += dimensionSetup("Galacticraft Asteroids")
+    # configOutput += dimensionSetup("RFTools")
+    # configOutput += dimensionSetup("MystCraft")
         
     cogIndent(-1)
     configOutput += cogFormatLine("</IfCondition>")
