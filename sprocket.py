@@ -2365,7 +2365,7 @@ def configSetupSection():
 
     
     # New option, designed to allow the player to bypass specific mods in favor of others.  By default, always enabled.
-    setupOutput += cogFormatLine("<OptionChoice name='enable"+modConfigName+"' displayName='Handle "+modName+" Setup?' default='"+modHandleState()+"' displayState='shown_dynamic' displayGroup='group"+modConfigName+"'>")
+    setupOutput += cogFormatLine("<OptionChoice name='enable"+modConfigName+"' displayName='Handle "+modName+" Gen?' default='"+modHandleState()+"' displayState='shown_dynamic' displayGroup='group"+modConfigName+"'>")
     cogIndent(1)    
     setupOutput += cogFormatLine("<Description> Should Custom Ore Generation handle "+modName+" ore generation? </Description>")
     setupOutput += cogFormatLine("<Choice value=':= ?true' displayValue='Yes' description='Use Custom Ore Generation to handle "+modName+" ores.'/>")
