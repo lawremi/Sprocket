@@ -48,33 +48,32 @@ def newlineConvert(field):
 # First, the individual ore stanzas.
 
 def oreStanza(row):
-    row = row.values()
     global previousMod
 
     stanzaOutput = ""
 
-    if row[0] != previousMod:
+    if row['Mod.Name.'] != previousMod:
         stanzaOutput += "\n\n\n\n\n\n"
-        stanzaOutput += "\n# ---- "+row[0]+" ----\n"
-        previousMod = row[0]
-    stanzaOutput += "["+row[1]+"]\n"
-    if row[2] == "Veins":
-        stanzaOutput += "Distribution Presets: "+row[3]+", "+row[4]+", Vanilla\n"
-    elif row[2] == "Clouds":
-        stanzaOutput += "Distribution Presets: "+row[4]+", "+row[3]+", Vanilla\n"
+        stanzaOutput += "\n# ---- "+row['Mod.Name.']+" ----\n"
+        previousMod = row['Mod.Name.']
+    stanzaOutput += "["+row['Ore.Name.']+"]\n"
+    if row['Preferred.Preset'] == "Veins":
+        stanzaOutput += "Distribution Presets: "+row['Vein.Preset.']+", "+row['Cloud.Preset']+", Vanilla\n"
+    elif row['Preferred.Preset'] == "Clouds":
+        stanzaOutput += "Distribution Presets: "+row['Cloud.Preset']+", "+row['Vein.Preset.']+", Vanilla\n"
     else:
-        stanzaOutput += "Distribution Presets: Vanilla, "+row[3]+", "+row[4]+"\n"
-    if row[28]:
-        stanzaOutput += "Seed: "+row[28]+"\n"
-    if row[29] != "Overworld":
-        stanzaOutput += "Dimensions: "+row[29]+"\n"
-    stanzaOutput += "Wireframe Color: "+row[27]+"\n"
-    stanzaOutput += "Bounding Box Color: "+row[27]+"\n"
-    stanzaOutput += "Blocks: "+row[31]+"\n"
-    stanzaOutput += "Replaces: "+row[32]+"\n"
-    stanzaOutput += "Height: "+row[18]+", "+row[19]+", "+row[30]+", base\n"
+        stanzaOutput += "Distribution Presets: Vanilla, "+row['Vein.Preset.']+", "+row['Cloud.Preset']+"\n"
+    if row['Seed']:
+        stanzaOutput += "Seed: "+row['Seed']+"\n"
+    if row['Dimension'] != "Overworld":
+        stanzaOutput += "Dimensions: "+row['Dimension']+"\n"
+    stanzaOutput += "Wireframe Color: "+row['Debugging.Color']+"\n"
+    stanzaOutput += "Bounding Box Color: "+row['Debugging.Color']+"\n"
+    stanzaOutput += "Blocks: "+row['Block.ID.s.']+"\n"
+    stanzaOutput += "Replaces: "+row['Replaces']+"\n"
+    stanzaOutput += "Height: "+row['Average.']+", "+row['Range.']+", "+row['Distribution.Type']+", base\n"
 
-    maxSizeString = row[8]
+    maxSizeString = row['Standard.Size.']
     maxSize = float(maxSizeString)*2
     minSize = maxSize/3
 
@@ -86,7 +85,7 @@ def oreStanza(row):
 
     stanzaOutput += "Standard Size: "+str(sizeAvg)+" * oreSize, "+str(sizeRng)+" * oreSize, normal, base\n"
 
-    maxFreqString = row[9]
+    maxFreqString = row['Standard.Frequency.']
     maxFreq = float(maxFreqString)*2
     minFreq = maxFreq/3
 
@@ -97,47 +96,47 @@ def oreStanza(row):
     freqRng = round(freqRngCalc,2)
 
     stanzaOutput += "Standard Frequency: "+str(freqAvg)+" * oreFreq, "+str(freqRng)+" * oreFreq, normal, base\n"
-    stanzaOutput += "Vein Motherlode Frequency: "+row[11]+" * _default_, "+row[11]+" * _default_, normal, base\n"
-    if row[12] != "none":
-        stanzaOutput += "Vein Motherlode Size: "+row[12]+" * _default_, "+row[12]+" * _default_, normal, base\n"
+    stanzaOutput += "Vein Motherlode Frequency: "+row['Frequency']+" * _default_, "+row['Frequency']+" * _default_, normal, base\n"
+    if row['Motherlode.Size'] != "none":
+        stanzaOutput += "Vein Motherlode Size: "+row['Motherlode.Size']+" * _default_, "+row['Motherlode.Size']+" * _default_, normal, base\n"
     else:
         stanzaOutput += "Vein Motherlode Size: 0 * _default_, 0 * _default_, normal, base\n"
-    if row[13] != "none":
-        if row[13] != "default":
-            stanzaOutput += "Vein Branch Length: "+row[13]+" * _default_, "+row[13]+" * _default_, normal, base\n"
-        stanzaOutput += "Vein Segment Radius: "+row[14]+" * _default_, "+row[14]+" * _default_, normal, base\n"
+    if row['Branch.Length'] != "none":
+        if row['Branch.Length'] != "default":
+            stanzaOutput += "Vein Branch Length: "+row['Branch.Length']+" * _default_, "+row['Branch.Length']+" * _default_, normal, base\n"
+        stanzaOutput += "Vein Segment Radius: "+row['Segment.Radius']+" * _default_, "+row['Segment.Radius']+" * _default_, normal, base\n"
     else:
         stanzaOutput += "Vein Branch Length: 0 * _default_, 0 * _default_, normal, base\n"
         stanzaOutput += "Vein Segment Radius: 0 * _default_, 0 * _default_, normal, base\n"
-    stanzaOutput += "Cloud Frequency: "+row[16]+" * _default_, "+row[16]+" * _default_, normal, base\n"
-    stanzaOutput += "Cloud Radius: "+row[17]+" * _default_, "+row[17]+" * _default_, normal, base\n"
-    stanzaOutput += "Cloud Thickness: "+row[17]+" * _default_, "+row[17]+" * _default_, normal, base\n"
-    stanzaOutput += newlineConvert(row[33])+"\n"
-    if row[35]:
-        stanzaOutput += "# "+row[35]+"\n"
+    stanzaOutput += "Cloud Frequency: "+row['Frequency.1']+" * _default_, "+row['Frequency.1']+" * _default_, normal, base\n"
+    stanzaOutput += "Cloud Radius: "+row['Radius...Thickness']+" * _default_, "+row['Radius...Thickness']+" * _default_, normal, base\n"
+    stanzaOutput += "Cloud Thickness: "+row['Radius...Thickness']+" * _default_, "+row['Radius...Thickness']+" * _default_, normal, base\n"
+    stanzaOutput += newlineConvert(row['Extra.Sprocket.Settings'])+"\n"
+    if row['Notes.']:
+        stanzaOutput += "# "+row['Notes.']+"\n"
     stanzaOutput += "\n"
 
     ### Next, for the mountains.
 
-    if row[24] != "0":
-      stanzaOutput += "[Mountain "+row[1]+"]\n"
-      if row[2] == "Veins":
-          stanzaOutput += "Distribution Presets: "+row[3]+", "+row[4]+", Vanilla\n"
-      elif row[2] == "Clouds":
-          stanzaOutput += "Distribution Presets: "+row[4]+", "+row[3]+", Vanilla\n"
+    if row['Mountain.Avg.'] != "0":
+      stanzaOutput += "[Mountain "+row['Ore.Name.']+"]\n"
+      if row['Preferred.Preset'] == "Veins":
+          stanzaOutput += "Distribution Presets: "+row['Vein.Preset.']+", "+row['Cloud.Preset']+", Vanilla\n"
+      elif row['Preferred.Preset'] == "Clouds":
+          stanzaOutput += "Distribution Presets: "+row['Cloud.Preset']+", "+row['Vein.Preset.']+", Vanilla\n"
       else:
-          stanzaOutput += "Distribution Presets: Vanilla, "+row[3]+", "+row[4]+"\n"
-      if row[28]:
-          stanzaOutput += "Seed: "+row[28]+"\n"
-      if row[29] != "Overworld":
-          stanzaOutput += "Dimensions: "+row[29]+"\n"
-      stanzaOutput += "Wireframe Color: "+row[27]+"\n"
-      stanzaOutput += "Bounding Box Color: "+row[27]+"\n"
-      stanzaOutput += "Blocks: "+row[31]+"\n"
-      stanzaOutput += "Replaces: "+row[32]+"\n"
-      stanzaOutput += "Height: "+row[24]+", "+row[25]+", "+row[30]+", base\n"
+          stanzaOutput += "Distribution Presets: Vanilla, "+row['Vein.Preset.']+", "+row['Cloud.Preset']+"\n"
+      if row['Seed']:
+          stanzaOutput += "Seed: "+row['Seed']+"\n"
+      if row['Dimension'] != "Overworld":
+          stanzaOutput += "Dimensions: "+row['Dimension']+"\n"
+      stanzaOutput += "Wireframe Color: "+row['Debugging.Color']+"\n"
+      stanzaOutput += "Bounding Box Color: "+row['Debugging.Color']+"\n"
+      stanzaOutput += "Blocks: "+row['Block.ID.s.']+"\n"
+      stanzaOutput += "Replaces: "+row['Replaces']+"\n"
+      stanzaOutput += "Height: "+row['Mountain.Avg.']+", "+row['Mountain.Range.']+", "+row['Distribution.Type']+", base\n"
 
-      maxSizeString = row[8]
+      maxSizeString = row['Standard.Size.']
       maxSize = float(maxSizeString)*2
       minSize = maxSize/3
 
@@ -149,7 +148,7 @@ def oreStanza(row):
 
       stanzaOutput += "Standard Size: "+str(sizeAvg)+" * oreSize, "+str(sizeRng)+" * oreSize, normal, base\n"
 
-      maxFreqString = row[9]
+      maxFreqString = row['Standard.Frequency.']
       maxFreq = float(maxFreqString)*2
       minFreq = maxFreq/3
 
@@ -160,27 +159,27 @@ def oreStanza(row):
       freqRng = round(freqRngCalc,2)
 
       stanzaOutput += "Standard Frequency: "+str(freqAvg)+" * oreFreq, "+str(freqRng)+" * oreFreq, normal, base\n"
-      stanzaOutput += "Vein Motherlode Frequency: "+row[11]+" * _default_, "+row[11]+" * _default_, normal, base\n"
-      if row[12] != "none":
-          stanzaOutput += "Vein Motherlode Size: "+row[12]+" * _default_, "+row[12]+" * _default_, normal, base\n"
+      stanzaOutput += "Vein Motherlode Frequency: "+row['Frequency']+" * _default_, "+row['Frequency']+" * _default_, normal, base\n"
+      if row['Motherlode.Size'] != "none":
+          stanzaOutput += "Vein Motherlode Size: "+row['Motherlode.Size']+" * _default_, "+row['Motherlode.Size']+" * _default_, normal, base\n"
       else:
           stanzaOutput += "Vein Motherlode Size: 0 * _default_, 0 * _default_, normal, base\n"
-      if row[13] != "none":
-          if row[13] != "default":
-              stanzaOutput += "Vein Branch Length: "+row[13]+" * _default_, "+row[13]+" * _default_, normal, base\n"
-          stanzaOutput += "Vein Segment Radius: "+row[14]+" * _default_, "+row[14]+" * _default_, normal, base\n"
+      if row['Branch.Length'] != "none":
+          if row['Branch.Length'] != "default":
+              stanzaOutput += "Vein Branch Length: "+row['Branch.Length']+" * _default_, "+row['Branch.Length']+" * _default_, normal, base\n"
+          stanzaOutput += "Vein Segment Radius: "+row['Segment.Radius']+" * _default_, "+row['Segment.Radius']+" * _default_, normal, base\n"
       else:
           stanzaOutput += "Vein Branch Length: 0 * _default_, 0 * _default_, normal, base\n"
           stanzaOutput += "Vein Segment Radius: 0 * _default_, 0 * _default_, normal, base\n"
-      stanzaOutput += "Cloud Frequency: "+row[16]+" * _default_, "+row[16]+" * _default_, normal, base\n"
-      stanzaOutput += "Cloud Radius: "+row[17]+" * _default_, "+row[17]+" * _default_, normal, base\n"
-      stanzaOutput += "Cloud Thickness: "+row[17]+" * _default_, "+row[17]+" * _default_, normal, base\n"
-      if row[33]:
-          stanzaOutput += newlineConvert(row[33])+"\n"
-      if row[34]:
-          stanzaOutput += newlineConvert(row[34])+"\n"
-      if row[35]:
-          stanzaOutput += "# "+row[35]+"\n"
+      stanzaOutput += "Cloud Frequency: "+row['Frequency.1']+" * _default_, "+row['Frequency.1']+" * _default_, normal, base\n"
+      stanzaOutput += "Cloud Radius: "+row['Radius...Thickness']+" * _default_, "+row['Radius...Thickness']+" * _default_, normal, base\n"
+      stanzaOutput += "Cloud Thickness: "+row['Radius...Thickness']+" * _default_, "+row['Radius...Thickness']+" * _default_, normal, base\n"
+      if row['Extra.Sprocket.Settings']:
+          stanzaOutput += newlineConvert(row['Extra.Sprocket.Settings'])+"\n"
+      if row['Extra.Sprocket.Mountain.Settings']:
+          stanzaOutput += newlineConvert(row['Extra.Sprocket.Mountain.Settings'])+"\n"
+      if row['Notes.']:
+          stanzaOutput += "# "+row['Notes.']+"\n"
 
     return stanzaOutput
 
