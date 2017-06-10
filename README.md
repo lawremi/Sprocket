@@ -265,7 +265,7 @@ This identifies how far away a child distribution can be from the parent.
 
 ### Blocks (List)
 
-List of block IDs that will be placed in the distribution.  This option *must be supplied*.
+List of block IDs that will be placed in the distribution.  This option *must be supplied*.  Unfortunately, NBT tags are not supported, so configuration for mods like GregTech is not currently possible without editing the XML afterwards.
 
      Default: MISSING
 
@@ -637,3 +637,20 @@ The color, in web color code, of the bounding box for this distribution.  Sprock
 
      Default: MISSING
      
+
+
+# Using `sprocket-csv.py`
+
+ 1. Convert `COG Ore Settings Chart.ods` from OpenOffice format to CSV format.
+
+    This can be done using OpenOffice, or an [on-line converter tool.](https://cloudconvert.com/ods-to-csv)
+
+    You should obtain a CSV file, named `COG Ore Settings Chart.csv`.
+
+ 2. Use a text editor on `COG Ore Settings Chart.csv` to replace all commas `,` with semicolons `;`.
+
+ 3. Invoke the `sprocket-csv.py` script, giving the path to the CSV file as the first argument.
+
+    Note - this script is written for Python 2. If you have both Python 2 and Python 3 installed, make sure to invoke the script using Python 2.
+
+        C:\Python27\python.exe .\sprocket-csv.py '.\COG Ore Settings Chart.csv'
