@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 
 # sprocket-csv.py: Utility to generate INI files from the "COG Ore Settings Chart" LibreOffice spreadsheet. 
 
@@ -64,7 +64,7 @@ def oreStanza(recordIndex):
     
     if sprocketModDatabase[recordIndex][0] != previousMod:
         stanzaOutput += "\n\n\n\n\n\n"
-        stanzaOutput += "\n; ---- "+sprocketModDatabase[recordIndex][0]+" ----\n"
+        stanzaOutput += "\n# ---- "+sprocketModDatabase[recordIndex][0]+" ----\n"
         previousMod = sprocketModDatabase[recordIndex][0]
     stanzaOutput += "["+sprocketModDatabase[recordIndex][1]+"]\n"
     if sprocketModDatabase[recordIndex][2] == "Veins":
@@ -123,7 +123,7 @@ def oreStanza(recordIndex):
     stanzaOutput += "Cloud Thickness: "+sprocketModDatabase[recordIndex][17]+" * _default_, "+sprocketModDatabase[recordIndex][17]+" * _default_, normal, base\n"
     stanzaOutput += newlineConvert(sprocketModDatabase[recordIndex][33])+"\n"
     if sprocketModDatabase[recordIndex][35]:
-        stanzaOutput += "; "+sprocketModDatabase[recordIndex][35]+"\n"
+        stanzaOutput += "# "+sprocketModDatabase[recordIndex][35]+"\n"
     stanzaOutput += "\n"
         
     ### Next, for the mountains.
@@ -189,7 +189,7 @@ def oreStanza(recordIndex):
       if sprocketModDatabase[recordIndex][34]:
           stanzaOutput += newlineConvert(sprocketModDatabase[recordIndex][34])+"\n"
       if sprocketModDatabase[recordIndex][35]:
-          stanzaOutput += "; "+sprocketModDatabase[recordIndex][35]+"\n"
+          stanzaOutput += "# "+sprocketModDatabase[recordIndex][35]+"\n"
       
     return stanzaOutput
   
