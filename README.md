@@ -265,7 +265,7 @@ This identifies how far away a child distribution can be from the parent.
 
 ### Blocks (List)
 
-List of block IDs that will be placed in the distribution.  This option *must be supplied*.
+List of block IDs that will be placed in the distribution.  This option *must be supplied*.  Unfortunately, NBT tags are not supported, so configuration for mods like GregTech is not currently possible without editing the XML afterwards.
 
      Default: MISSING
 
